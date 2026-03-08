@@ -11,7 +11,7 @@ if errorlevel 1 (
 echo.
 echo === Git: dodawanie zmian ===
 cd "%~dp0.."
-git add app/src/data/ data/learning.db materials/
+git add app/src/ data/learning.db materials/ scripts/ .env.example
 git status --short
 
 echo.
