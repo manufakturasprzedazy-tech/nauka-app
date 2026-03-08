@@ -911,5 +911,49 @@
     "testCode": "def test_full_analysis_basic():\n    result = full_analysis([9, 41, 12, 3, 74, 15])\n    assert result[\"max\"] == 74\n    assert result[\"min\"] == 3\n    assert result[\"total\"] == 154\n    assert result[\"count\"] == 6\n    assert abs(result[\"average\"] - 25.6667) < 0.01\n    assert result[\"max_index\"] == 4\n    assert result[\"min_index\"] == 3\n\ndef test_full_analysis_single():\n    result = full_analysis([42])\n    assert result[\"max\"] == 42\n    assert result[\"min\"] == 42\n    assert result[\"average\"] == 42.0\n    assert result[\"max_index\"] == 0\n    assert result[\"min_index\"] == 0\n\ndef test_full_analysis_empty():\n    assert full_analysis([]) is None\n\ndef test_full_analysis_negative():\n    result = full_analysis([-5, -1, -10, -3])\n    assert result[\"max\"] == -1\n    assert result[\"min\"] == -10\n    assert result[\"max_index\"] == 1\n    assert result[\"min_index\"] == 2\n    assert result[\"total\"] == -19\n\ndef test_full_analysis_duplicates():\n    result = full_analysis([5, 5, 5, 5])\n    assert result[\"max\"] == 5\n    assert result[\"min\"] == 5\n    assert result[\"average\"] == 5.0\n    assert result[\"max_index\"] == 0\n    assert result[\"min_index\"] == 0\n\ndef test_full_analysis_max_at_end():\n    result = full_analysis([1, 2, 3, 100])\n    assert result[\"max\"] == 100\n    assert result[\"max_index\"] == 3\n    assert result[\"min\"] == 1\n    assert result[\"min_index\"] == 0",
     "difficulty": "hard",
     "topic": "Pętle — kompletna analiza danych w jednym przebiegu"
+  },
+  {
+    "id": 84,
+    "materialId": 22,
+    "title": "Tworzenie i wypisywanie listy",
+    "description": "Napisz funkcję `create_greeting_list(names, greeting)`, która przyjmuje listę imion i tekst powitania, a zwraca nową listę stringów w formacie \"{greeting}, {imie}!\".\n\nPrzykład: `create_greeting_list([\"Anna\", \"Jan\"], \"Cześć\")` zwraca `[\"Cześć, Anna!\", \"Cześć, Jan!\"]`.",
+    "starterCode": "def create_greeting_list(names, greeting):\n    # TODO: Stwórz pustą listę wynikową\n    # TODO: Iteruj po liście imion\n    # TODO: Dla każdego imienia dodaj sformatowany string do listy\n    # TODO: Zwróć listę\n    pass",
+    "solution": "def create_greeting_list(names, greeting):\n    result = []\n    for name in names:\n        result.append(f\"{greeting}, {name}!\")\n    return result",
+    "testCode": "def test_basic():\n    assert create_greeting_list([\"Anna\", \"Jan\"], \"Cześć\") == [\"Cześć, Anna!\", \"Cześć, Jan!\"]\n\ndef test_single():\n    assert create_greeting_list([\"Ola\"], \"Hej\") == [\"Hej, Ola!\"]\n\ndef test_empty():\n    assert create_greeting_list([], \"Witaj\") == []",
+    "difficulty": "easy",
+    "topic": "Tworzenie list i iteracja"
+  },
+  {
+    "id": 85,
+    "materialId": 22,
+    "title": "Modyfikacja elementów listy",
+    "description": "Napisz funkcję `double_values(numbers)`, która przyjmuje listę liczb i modyfikuje ją w miejscu (in-place), podwajając każdą wartość. Funkcja powinna zwrócić zmodyfikowaną listę.\n\nPrzykład: `double_values([1, 2, 3])` zwraca `[2, 4, 6]`.",
+    "starterCode": "def double_values(numbers):\n    # TODO: Użyj pętli zliczanej (range + len)\n    # TODO: Dla każdego indeksu podwój wartość\n    # TODO: Zwróć listę\n    pass",
+    "solution": "def double_values(numbers):\n    for i in range(len(numbers)):\n        numbers[i] = numbers[i] * 2\n    return numbers",
+    "testCode": "def test_basic():\n    assert double_values([1, 2, 3]) == [2, 4, 6]\n\ndef test_zeros():\n    assert double_values([0, 5, 0]) == [0, 10, 0]\n\ndef test_negative():\n    assert double_values([-1, 3, -2]) == [-2, 6, -4]\n\ndef test_empty():\n    assert double_values([]) == []",
+    "difficulty": "medium",
+    "topic": "Mutowalność list i pętla zliczana"
+  },
+  {
+    "id": 86,
+    "materialId": 22,
+    "title": "Znajdowanie indeksu elementu",
+    "description": "Napisz funkcję `find_index(lst, target)`, która zwraca indeks pierwszego wystąpienia wartości target w liście. Jeśli nie istnieje, zwróć -1. Nie używaj .index().\n\nPrzykład: `find_index([10, 20, 30, 20], 20)` zwraca `1`.",
+    "starterCode": "def find_index(lst, target):\n    # TODO: Użyj pętli zliczanej\n    # TODO: Sprawdź czy element == target\n    # TODO: Jeśli tak, zwróć indeks\n    # TODO: Jeśli nie znaleziono, zwróć -1\n    pass",
+    "solution": "def find_index(lst, target):\n    for i in range(len(lst)):\n        if lst[i] == target:\n            return i\n    return -1",
+    "testCode": "def test_found():\n    assert find_index([10, 20, 30, 20], 20) == 1\n\ndef test_first():\n    assert find_index([5, 10, 15], 5) == 0\n\ndef test_not_found():\n    assert find_index([1, 2, 3], 99) == -1\n\ndef test_empty():\n    assert find_index([], 5) == -1",
+    "difficulty": "medium",
+    "topic": "Indeksowanie i pętla zliczana"
+  },
+  {
+    "id": 87,
+    "materialId": 22,
+    "title": "Zamiana elementów listy",
+    "description": "Napisz funkcję `swap_first_last(lst)`, która zamienia miejscami pierwszy i ostatni element listy (in-place). Jeśli lista ma mniej niż 2 elementy, zwróć ją bez zmian.\n\nPrzykład: `swap_first_last([1, 2, 3, 4])` zwraca `[4, 2, 3, 1]`.",
+    "starterCode": "def swap_first_last(lst):\n    # TODO: Sprawdź długość listy\n    # TODO: Zamień pierwszy i ostatni element\n    # TODO: Zwróć listę\n    pass",
+    "solution": "def swap_first_last(lst):\n    if len(lst) >= 2:\n        lst[0], lst[-1] = lst[-1], lst[0]\n    return lst",
+    "testCode": "def test_basic():\n    assert swap_first_last([1, 2, 3, 4]) == [4, 2, 3, 1]\n\ndef test_two():\n    assert swap_first_last([10, 20]) == [20, 10]\n\ndef test_one():\n    assert swap_first_last([5]) == [5]\n\ndef test_empty():\n    assert swap_first_last([]) == []",
+    "difficulty": "medium",
+    "topic": "Mutowalność list i indeksowanie"
   }
 ]

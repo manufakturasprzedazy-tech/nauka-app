@@ -2383,5 +2383,155 @@
     "explanation": "Zmienna iteracyjna the_num przyjmuje w kolejnych iteracjach wartości poszczególnych elementów listy: najpierw 9, potem 41, 12, 3, 74 i na końcu 15. Nie jest to indeks ani licznik – to bezpośrednio wartość z listy.",
     "difficulty": "easy",
     "topic": "Pętle for w Pythonie"
+  },
+  {
+    "id": 160,
+    "materialId": 22,
+    "question": "Które nawiasy służą do tworzenia list w Pythonie?",
+    "choices": [
+      "Okrągłe ()",
+      "Kwadratowe []",
+      "Klamrowe {}",
+      "Ostre <>"
+    ],
+    "correctIndex": 1,
+    "explanation": "Listy w Pythonie definiujemy za pomocą nawiasów kwadratowych [], np. [1, 2, 3].",
+    "difficulty": "easy",
+    "topic": "Stałe listowe"
+  },
+  {
+    "id": 161,
+    "materialId": 22,
+    "question": "Co się stanie gdy spróbujemy wykonać: fruit = \"banana\"; fruit[0] = \"b\"?",
+    "choices": [
+      "Zmieni pierwszą literę na małą",
+      "Nic się nie stanie",
+      "Powstanie błąd TypeError",
+      "Utworzy nowy string"
+    ],
+    "correctIndex": 2,
+    "explanation": "Stringi nie są mutowalne — próba przypisania do indeksu wywoła TypeError.",
+    "difficulty": "easy",
+    "topic": "Mutowalność"
+  },
+  {
+    "id": 162,
+    "materialId": 22,
+    "question": "Jaki będzie wynik: lista = [2, 14, 26, 41, 63]; lista[2] = 28; print(lista)?",
+    "choices": [
+      "[2, 14, 26, 28, 63]",
+      "[2, 28, 26, 41, 63]",
+      "[2, 14, 28, 41, 63]",
+      "Błąd"
+    ],
+    "correctIndex": 2,
+    "explanation": "lista[2] = 28 zmienia trzeci element (indeks 2) z 26 na 28.",
+    "difficulty": "medium",
+    "topic": "Mutowalność list"
+  },
+  {
+    "id": 163,
+    "materialId": 22,
+    "question": "Co zwróci len([\"red\", 24, 98.6, True])?",
+    "choices": [
+      "3",
+      "4",
+      "10",
+      "Błąd"
+    ],
+    "correctIndex": 1,
+    "explanation": "len() zwraca liczbę elementów w liście. Lista ma 4 elementy.",
+    "difficulty": "easy",
+    "topic": "Funkcja len()"
+  },
+  {
+    "id": 164,
+    "materialId": 22,
+    "question": "Co zwraca range(3)?",
+    "choices": [
+      "[1, 2, 3]",
+      "[0, 1, 2]",
+      "[0, 1, 2, 3]",
+      "[1, 2, 3, 4]"
+    ],
+    "correctIndex": 1,
+    "explanation": "range(3) generuje sekwencję 0, 1, 2 — trzy liczby od 0 do ale nie włączając 3.",
+    "difficulty": "easy",
+    "topic": "Funkcja range()"
+  },
+  {
+    "id": 165,
+    "materialId": 22,
+    "question": "Jaki jest indeks pierwszego elementu listy w Pythonie?",
+    "choices": [
+      "1",
+      "0",
+      "-1",
+      "Zależy od typu"
+    ],
+    "correctIndex": 1,
+    "explanation": "Indeksowanie zaczyna się od 0. Pierwszy element ma indeks 0.",
+    "difficulty": "easy",
+    "topic": "Indeksowanie list"
+  },
+  {
+    "id": 166,
+    "materialId": 22,
+    "question": "Która pętla daje dostęp do indeksu elementu podczas iteracji?",
+    "choices": [
+      "for friend in friends",
+      "for i in range(len(friends))",
+      "while friends",
+      "for i in friends.index()"
+    ],
+    "correctIndex": 1,
+    "explanation": "for i in range(len(friends)) to pętla zliczana — i przyjmuje wartości indeksów.",
+    "difficulty": "medium",
+    "topic": "Iteracja po listach"
+  },
+  {
+    "id": 167,
+    "materialId": 22,
+    "question": "Czy lista może zawierać inną listę jako element?",
+    "choices": [
+      "Nie, to błąd",
+      "Tak, listy mogą być zagnieżdżone",
+      "Tylko puste listy",
+      "Tylko w Pythonie 3"
+    ],
+    "correctIndex": 1,
+    "explanation": "Listy mogą zawierać inne listy, np. [1, [5, 6], 7].",
+    "difficulty": "easy",
+    "topic": "Zagnieżdżone listy"
+  },
+  {
+    "id": 168,
+    "materialId": 22,
+    "question": "Co oznacza friends[1] jeśli friends = [\"Joseph\", \"Glenn\", \"Sally\"]?",
+    "choices": [
+      "\"Joseph\"",
+      "\"Glenn\"",
+      "\"Sally\"",
+      "Błąd"
+    ],
+    "correctIndex": 1,
+    "explanation": "friends[1] to drugi element (indeksowanie od 0). friends[0] = \"Joseph\", friends[1] = \"Glenn\".",
+    "difficulty": "easy",
+    "topic": "Indeksowanie list"
+  },
+  {
+    "id": 169,
+    "materialId": 22,
+    "question": "Ile elementów ma lista [1, [5, 6], 7]?",
+    "choices": [
+      "2",
+      "3",
+      "4",
+      "5"
+    ],
+    "correctIndex": 1,
+    "explanation": "Lista ma 3 elementy: 1, [5, 6] (jeden element), 7.",
+    "difficulty": "medium",
+    "topic": "Zagnieżdżone listy"
   }
 ]

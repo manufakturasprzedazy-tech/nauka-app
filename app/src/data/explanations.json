@@ -1482,5 +1482,75 @@
     "prompt": "Jakie inne operacje oprócz szukania maksimum można realizować za pomocą idiomów pętli?",
     "modelAnswer": "Szukanie minimum, zliczanie elementów, obliczanie sumy, obliczanie średniej, sprawdzanie przynależności elementu do zbioru.",
     "topic": "Wzorce pętli w Pythonie"
+  },
+  {
+    "id": 213,
+    "materialId": 22,
+    "prompt": "Czym różnią się algorytmy od struktur danych?",
+    "modelAnswer": "Algorytmy to ścieżki (kroki) w kodzie — jak nawigacja GPS. Struktury danych to sposoby organizacji zmiennych w pamięci — jak dane są przechowywane podczas działania programu.",
+    "topic": "Struktury danych w Pythonie"
+  },
+  {
+    "id": 214,
+    "materialId": 22,
+    "prompt": "Jak wygląda składnia stałej listowej (list constant) w Pythonie?",
+    "modelAnswer": "Elementy umieszcza się w nawiasach kwadratowych, oddzielone przecinkami, np. [1, 24, 76] lub [\"red\", \"yellow\", \"blue\"].",
+    "topic": "Listy w Pythonie"
+  },
+  {
+    "id": 215,
+    "materialId": 22,
+    "prompt": "Czy lista w Pythonie może zawierać różne typy danych?",
+    "modelAnswer": "Tak — jedna lista może zawierać stringi, liczby całkowite i zmiennoprzecinkowe jednocześnie, np. [\"red\", 24, 98.6]. Może nawet zawierać inne listy.",
+    "topic": "Listy w Pythonie"
+  },
+  {
+    "id": 216,
+    "materialId": 22,
+    "prompt": "Co oznacza, że listy są mutowalne (mutable)?",
+    "modelAnswer": "Mutowalność oznacza, że elementy listy można zmieniać po jej utworzeniu. Np. lotto[2] = 28 zmieni trzeci element listy. Stringi nie są mutowalne — nie można zmienić pojedynczego znaku.",
+    "topic": "Mutowalność list"
+  },
+  {
+    "id": 217,
+    "materialId": 22,
+    "prompt": "Dlaczego stringi nie są mutowalne w Pythonie?",
+    "modelAnswer": "Python nie pozwala na zmianę pojedynczych znaków w stringu (fruit[0] = \"b\" wywoła błąd TypeError). Metody jak .lower() tworzą kopię stringa zamiast modyfikować oryginał.",
+    "topic": "Mutowalność list"
+  },
+  {
+    "id": 218,
+    "materialId": 22,
+    "prompt": "Jak działa operator indeksowania w listach?",
+    "modelAnswer": "Operator [] pozwala odczytać element na danej pozycji. Indeksowanie zaczyna się od 0, więc lista[0] to pierwszy element, lista[1] to drugi itd.",
+    "topic": "Indeksowanie list"
+  },
+  {
+    "id": 219,
+    "materialId": 22,
+    "prompt": "Co zwraca funkcja len() dla listy?",
+    "modelAnswer": "Funkcja len() zwraca liczbę elementów w liście. Np. len([1, \"dwa\", 3.0, True]) zwróci 4. Działa tak samo jak dla stringów.",
+    "topic": "Funkcje dla list"
+  },
+  {
+    "id": 220,
+    "materialId": 22,
+    "prompt": "Co zwraca funkcja range(4)?",
+    "modelAnswer": "range(4) zwraca sekwencję liczb od 0 do 3 (0, 1, 2, 3) — cztery liczby zaczynając od 0, do ale nie włączając 4. Odpowiada to indeksom 4-elementowej listy.",
+    "topic": "Funkcja range()"
+  },
+  {
+    "id": 221,
+    "materialId": 22,
+    "prompt": "Jaka jest różnica między iteracją bezpośrednią a zliczaną po liście?",
+    "modelAnswer": "Bezpośrednia: for friend in friends — zmienna iteracyjna przyjmuje wartości elementów. Zliczana: for i in range(len(friends)) — zmienna iteracyjna przyjmuje indeksy (0, 1, 2...), a elementy odczytujemy przez friends[i].",
+    "topic": "Iteracja po listach"
+  },
+  {
+    "id": 222,
+    "materialId": 22,
+    "prompt": "Kiedy warto użyć pętli zliczanej (counted loop) zamiast bezpośredniej iteracji po liście?",
+    "modelAnswer": "Gdy potrzebujemy znać pozycję (indeks) elementu w liście, np. aby wypisać \"znaleziono na pozycji 3\". Bezpośrednia iteracja nie daje dostępu do indeksu.",
+    "topic": "Iteracja po listach"
   }
 ]

@@ -372,5 +372,27 @@
     "flashcardCount": 0,
     "quizCount": 0,
     "exerciseCount": 0
+  },
+  {
+    "id": 22,
+    "courseId": "python",
+    "filename": "Listy.md",
+    "title": "Listy w Pythonie – kolekcje danych, indeksowanie i iteracja",
+    "summary": "Materiał wprowadza pojęcie list jako pierwszej struktury danych (kolekcji) w Pythonie. Listy pozwalają przechowywać wiele wartości w jednej zmiennej, używając składni z nawiasami kwadratowymi. Omówiono stałe listowe (list constants), możliwość mieszania typów danych w jednej liście, zagnieżdżanie list oraz listy puste. Kluczową cechą list jest ich mutowalność (zmienialność) — w przeciwieństwie do stringów, elementy listy można modyfikować przez przypisanie do indeksu. Materiał pokazuje operator indeksowania (numeracja od 0), funkcję len() zwracającą długość listy oraz funkcję range() generującą sekwencje liczb. Na końcu przedstawiono dwa sposoby iteracji po listach: bezpośredni (for element in lista) oraz zliczany z użyciem range(len(lista)), który daje dostęp do pozycji elementu.",
+    "topics": [
+      "Struktury danych vs algorytmy",
+      "Stałe listowe (list constants) i nawiasy kwadratowe",
+      "Mieszane typy danych w listach",
+      "Zagnieżdżone listy",
+      "Mutowalność list vs niemutowalność stringów",
+      "Operator indeksowania (index operator)",
+      "Funkcja len() dla list",
+      "Funkcja range()",
+      "Iteracja bezpośrednia vs zliczana (counted loop)",
+      "Pętle for z listami"
+    ],
+    "flashcardCount": 10,
+    "quizCount": 10,
+    "exerciseCount": 4
   }
 ]
