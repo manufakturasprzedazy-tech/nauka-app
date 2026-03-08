@@ -1,11 +1,13 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Header } from '@/components/layout/Header';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
+import { ProgressRing } from '@/components/ui/ProgressRing';
 import { cn } from '@/utils/cn';
 import { useContentStore } from '@/stores/contentStore';
+import { db } from '@/db/database';
 
 type Tab = 'info' | 'flashcards' | 'quiz' | 'coding' | 'explain';
 
@@ -13,15 +15,44 @@ export function MaterialDetailPage() {
   const { courseId, id } = useParams<{ courseId: string; id: string }>();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<Tab>('info');
+  const [progress, setProgress] = useState(0);
   const { getMaterial, getFlashcardsByMaterial, getQuizzesByMaterial, getExercisesByMaterial, getExplanationsByMaterial } = useContentStore();
 
   const material = getMaterial(Number(id));
-  if (!material) return <div className="p-4 text-slate-400">Materiał nie znaleziony</div>;
 
-  const flashcards = getFlashcardsByMaterial(material.id);
-  const quizzes = getQuizzesByMaterial(material.id);
-  const exercises = getExercisesByMaterial(material.id);
-  const explanations = getExplanationsByMaterial(material.id);
+  const flashcards = material ? getFlashcardsByMaterial(material.id) : [];
+  const quizzes = material ? getQuizzesByMaterial(material.id) : [];
+  const exercises = material ? getExercisesByMaterial(material.id) : [];
+  const explanations = material ? getExplanationsByMaterial(material.id) : [];
+
+  useEffect(() => {
+    if (!material) return;
+    // Calculate progress
+    const total = flashcards.length + quizzes.length + exercises.length + explanations.length;
+    if (total === 0) return;
+
+    Promise.all([
+      db.flashcardReviews.toArray(),
+      db.quizAttempts.toArray(),
+      db.codingAttempts.toArray(),
+      db.explanationAttempts.toArray(),
+    ]).then(([reviews, quizAttempts, codingAttempts, explAttempts]) => {
+      const reviewedIds = new Set(reviews.map(r => r.flashcardId));
+      const answeredIds = new Set(quizAttempts.map(a => a.questionId));
+      const codedIds = new Set(codingAttempts.filter(a => a.completed).map(a => a.exerciseId));
+      const explainedIds = new Set(explAttempts.map(a => a.explanationId));
+
+      let done = 0;
+      done += flashcards.filter(f => reviewedIds.has(f.id)).length;
+      done += quizzes.filter(q => answeredIds.has(q.id)).length;
+      done += exercises.filter(e => codedIds.has(e.id)).length;
+      done += explanations.filter(e => explainedIds.has(e.id)).length;
+
+      setProgress(done / total);
+    });
+  }, [material, flashcards, quizzes, exercises, explanations]);
+
+  if (!material) return <div className="p-4 text-slate-400">Materiał nie znaleziony</div>;
 
   const tabs: { key: Tab; label: string; count: number }[] = [
     { key: 'info', label: 'Info', count: 0 },
@@ -34,6 +65,16 @@ export function MaterialDetailPage() {
   return (
     <div>
       <Header title={material.title} showBack />
+
+      {/* Progress ring */}
+      <div className="flex items-center gap-3 px-4 py-2">
+        <ProgressRing value={progress} size={40} strokeWidth={4} color={
+          progress >= 0.8 ? '#10b981' : progress >= 0.4 ? '#f59e0b' : '#3b82f6'
+        }>
+          <span className="text-[10px] font-bold text-white">{Math.round(progress * 100)}%</span>
+        </ProgressRing>
+        <span className="text-xs text-slate-400">Postęp materiału</span>
+      </div>
 
       {/* Tabs */}
       <div className="flex overflow-x-auto px-4 py-2 gap-1 no-scrollbar">

@@ -36,6 +36,13 @@ export function getLevelProgress(totalXP: number): { level: Level; current: numb
   return { level, current: totalXP, nextThreshold, progress: Math.min(1, progress) };
 }
 
+export function getCodingXP(score: number): number {
+  if (score >= 4) return 25;
+  if (score === 3) return 15;
+  if (score === 2) return 10;
+  return 5;
+}
+
 export function getExplanationXP(selfRating: number): number {
   // Scale XP by self-rating (1-5)
   return Math.round(XP.EXPLANATION_BASE * (selfRating / 5));

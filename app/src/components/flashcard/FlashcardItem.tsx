@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
+import { FormattedText } from '@/components/ui/FormattedText';
 import type { Flashcard } from '@/types/content';
 
 interface FlashcardItemProps {
@@ -22,13 +23,13 @@ export function FlashcardItem({ card, onRate }: FlashcardItemProps) {
           {/* Front */}
           <div className="flip-card-front absolute inset-0 rounded-2xl bg-gradient-to-br from-slate-800 to-slate-900 border border-slate-700/50 p-6 flex flex-col items-center justify-center shadow-xl">
             <div className="text-xs text-blue-400 font-medium mb-4 uppercase tracking-wider">{card.topic}</div>
-            <p className="text-lg text-white text-center leading-relaxed">{card.front}</p>
+            <FormattedText text={card.front} className="text-lg text-white text-center" />
             <div className="mt-6 text-sm text-slate-500">Dotknij aby odkryć</div>
           </div>
           {/* Back */}
           <div className="flip-card-back absolute inset-0 rounded-2xl bg-gradient-to-br from-blue-900/30 to-violet-900/30 border border-blue-700/30 p-6 flex flex-col items-center justify-center shadow-xl">
             <div className="text-xs text-violet-400 font-medium mb-4 uppercase tracking-wider">Odpowiedź</div>
-            <p className="text-lg text-white text-center leading-relaxed">{card.back}</p>
+            <FormattedText text={card.back} className="text-lg text-white text-center" />
           </div>
         </div>
       </div>

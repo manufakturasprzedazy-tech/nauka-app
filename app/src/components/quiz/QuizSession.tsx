@@ -3,6 +3,7 @@ import { cn } from '@/utils/cn';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { ProgressBar } from '@/components/ui/ProgressBar';
+import { FormattedText } from '@/components/ui/FormattedText';
 import type { QuizQuestion } from '@/types/content';
 
 interface QuizSessionProps {
@@ -40,7 +41,7 @@ export function QuizSession({
           transition={{ duration: 0.25 }}
         >
           <Card variant="elevated" padding="lg">
-            <p className="text-white text-base leading-relaxed font-medium">{question.question}</p>
+            <FormattedText text={question.question} className="text-white text-base font-medium" />
           </Card>
 
           {/* Choices */}
@@ -76,7 +77,7 @@ export function QuizSession({
                     )}>
                       {String.fromCharCode(65 + i)}
                     </span>
-                    <span className="text-slate-200 text-sm leading-relaxed">{choice}</span>
+                    <FormattedText text={choice} className="text-slate-200 text-sm" />
                   </div>
                 </button>
               );
@@ -102,7 +103,7 @@ export function QuizSession({
                     {isCorrect ? 'Poprawnie!' : 'Niepoprawnie'}
                   </span>
                 </div>
-                <p className="text-sm text-slate-300 leading-relaxed">{question.explanation}</p>
+                <FormattedText text={question.explanation} className="text-sm text-slate-300" />
               </Card>
               <Button onClick={onNext} fullWidth className="mt-4">
                 Następne

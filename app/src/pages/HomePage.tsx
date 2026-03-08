@@ -1,3 +1,4 @@
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Card } from '@/components/ui/Card';
 import { XPBar } from '@/components/gamification/XPBar';
@@ -6,11 +7,28 @@ import { DailyPlan } from '@/components/dashboard/DailyPlan';
 import { useProgress } from '@/hooks/useProgress';
 import { useStreak } from '@/hooks/useStreak';
 import { useFlashcards } from '@/hooks/useFlashcards';
+import { db } from '@/db/database';
 
 export function HomePage() {
   const { todayActivity, totalXP, loading } = useProgress();
   const { streak, todayActive } = useStreak();
   const { dueCards, newCards } = useFlashcards();
+  const [wrongCount, setWrongCount] = useState(0);
+
+  useEffect(() => {
+    // Count wrong quiz answers (not later corrected)
+    db.quizAttempts.toArray().then(attempts => {
+      const wrongIds = new Set<number>();
+      const correctIds = new Set<number>();
+      for (const a of attempts) {
+        if (a.isCorrect) correctIds.add(a.questionId);
+        else wrongIds.add(a.questionId);
+      }
+      // Remove those that were later answered correctly
+      for (const id of correctIds) wrongIds.delete(id);
+      setWrongCount(wrongIds.size);
+    });
+  }, []);
 
   if (loading) {
     return <div className="flex items-center justify-center h-64 text-slate-400">Ładowanie...</div>;
@@ -67,6 +85,24 @@ export function HomePage() {
           />
         </div>
       </div>
+
+      {/* Quiz review badge */}
+      {wrongCount > 0 && (
+        <Link to="/powtorka">
+          <Card variant="default" className="bg-gradient-to-r from-red-600/20 to-orange-600/20 active:scale-[0.98] transition-transform">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <span className="text-2xl">🔄</span>
+                <div>
+                  <div className="text-sm font-semibold text-white">Powtórka błędów</div>
+                  <div className="text-xs text-slate-400">{wrongCount} pytań do powtórzenia</div>
+                </div>
+              </div>
+              <span className="px-2 py-0.5 rounded-full bg-red-600 text-white text-xs font-bold">{wrongCount}</span>
+            </div>
+          </Card>
+        </Link>
+      )}
     </div>
   );
 }

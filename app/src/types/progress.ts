@@ -22,6 +22,8 @@ export interface CodingAttempt {
   userCode: string;
   completed: boolean;
   completedAt: string;
+  score?: number;
+  aiReviewed?: boolean;
 }
 
 export interface ExplanationAttempt {

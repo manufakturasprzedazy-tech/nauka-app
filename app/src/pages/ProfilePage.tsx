@@ -1,4 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Header } from '@/components/layout/Header';
 import { Card } from '@/components/ui/Card';
 import { Button } from '@/components/ui/Button';
@@ -11,7 +12,8 @@ import { useProgress, useAchievements } from '@/hooks/useProgress';
 import { useStreak } from '@/hooks/useStreak';
 import { useAppStore } from '@/stores/appStore';
 import { getLevelProgress, getLevelColor, ACHIEVEMENTS } from '@/services/gamification';
-import { db } from '@/db/database';
+import { testConnection } from '@/services/aiService';
+import { db, getSetting, setSetting } from '@/db/database';
 
 export function ProfilePage() {
   const { totalXP, todayActivity, refresh } = useProgress();
@@ -20,8 +22,24 @@ export function ProfilePage() {
   const { isDark, toggleTheme, dailyGoal, setDailyGoal } = useAppStore();
   const [showReset, setShowReset] = useState(false);
   const [showSettings, setShowSettings] = useState(false);
+  const [apiKey, setApiKey] = useState('');
+  const [apiKeyStatus, setApiKeyStatus] = useState<'idle' | 'testing' | 'ok' | 'error'>('idle');
 
   const levelInfo = getLevelProgress(totalXP);
+
+  useEffect(() => {
+    getSetting('claude_api_key', '').then(setApiKey);
+  }, []);
+
+  const handleSaveApiKey = async () => {
+    await setSetting('claude_api_key', apiKey);
+  };
+
+  const handleTestConnection = async () => {
+    setApiKeyStatus('testing');
+    const ok = await testConnection(apiKey);
+    setApiKeyStatus(ok ? 'ok' : 'error');
+  };
 
   const handleReset = async () => {
     await db.flashcardReviews.clear();
@@ -65,6 +83,24 @@ export function ProfilePage() {
             </div>
           </div>
         </Card>
+
+        {/* Quick links */}
+        <div className="grid grid-cols-2 gap-2">
+          <Link to="/statystyki">
+            <Card variant="default" className="bg-gradient-to-br from-blue-600/20 to-blue-800/20 active:scale-[0.97] transition-transform">
+              <div className="text-2xl mb-1">📊</div>
+              <div className="text-sm font-semibold text-white">Statystyki</div>
+              <div className="text-xs text-slate-400">Szczegółowe dane</div>
+            </Card>
+          </Link>
+          <Link to="/powtorka">
+            <Card variant="default" className="bg-gradient-to-br from-red-600/20 to-red-800/20 active:scale-[0.97] transition-transform">
+              <div className="text-2xl mb-1">🔄</div>
+              <div className="text-sm font-semibold text-white">Powtórka błędów</div>
+              <div className="text-xs text-slate-400">Popraw odpowiedzi</div>
+            </Card>
+          </Link>
+        </div>
 
         {/* Today stats */}
         {todayActivity && (
@@ -130,6 +166,31 @@ export function ProfilePage() {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* Claude API Key */}
+          <div>
+            <p className="text-sm text-slate-300 mb-2">Klucz API Claude</p>
+            <input
+              type="password"
+              value={apiKey}
+              onChange={(e) => { setApiKey(e.target.value); setApiKeyStatus('idle'); }}
+              placeholder="sk-ant-..."
+              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+            />
+            <p className="text-[10px] text-slate-500 mt-1">
+              Klucz przechowywany lokalnie w przeglądarce. Opcjonalny — do weryfikacji AI wyjaśnień i kodu.
+            </p>
+            <div className="flex gap-2 mt-2">
+              <Button variant="secondary" size="sm" onClick={handleSaveApiKey}>
+                Zapisz
+              </Button>
+              <Button variant="ghost" size="sm" onClick={handleTestConnection} disabled={!apiKey || apiKeyStatus === 'testing'}>
+                {apiKeyStatus === 'testing' ? 'Testuję...' :
+                 apiKeyStatus === 'ok' ? 'Połączono!' :
+                 apiKeyStatus === 'error' ? 'Błąd!' : 'Testuj połączenie'}
+              </Button>
+            </div>
           </div>
 
           <Button variant="danger" onClick={() => setShowReset(true)} fullWidth size="sm">
