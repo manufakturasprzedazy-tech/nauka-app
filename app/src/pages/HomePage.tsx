@@ -77,11 +77,11 @@ export function HomePage() {
             color="from-amber-600/20 to-amber-800/20"
           />
           <QuickAction
-            to="/wyjasnianie"
-            icon="📝"
-            label="Wyjaśnianie"
-            sublabel="Naucz się tłumaczyć"
-            color="from-violet-600/20 to-violet-800/20"
+            to="/powtorka"
+            icon="🔄"
+            label="Powtórka"
+            sublabel="Popraw błędy"
+            color="from-red-600/20 to-red-800/20"
           />
         </div>
       </div>

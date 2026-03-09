@@ -9,7 +9,6 @@ import { FlashcardsPage } from '@/pages/FlashcardsPage';
 import { QuizPage } from '@/pages/QuizPage';
 import { CodingPage } from '@/pages/CodingPage';
 import { CodingExercisePage } from '@/pages/CodingExercisePage';
-import { ExplanationPage } from '@/pages/ExplanationPage';
 import { StudyPage } from '@/pages/StudyPage';
 import { ProfilePage } from '@/pages/ProfilePage';
 import { QuizReviewPage } from '@/pages/QuizReviewPage';
@@ -30,7 +29,6 @@ export default function App() {
             <Route path="/quiz" element={<QuizPage />} />
             <Route path="/kodowanie" element={<CodingPage />} />
             <Route path="/kodowanie/:id" element={<CodingExercisePage />} />
-            <Route path="/wyjasnianie" element={<ExplanationPage />} />
             <Route path="/profil" element={<ProfilePage />} />
             <Route path="/powtorka" element={<QuizReviewPage />} />
             <Route path="/statystyki" element={<StatsPage />} />

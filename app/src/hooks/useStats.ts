@@ -17,8 +17,6 @@ interface MaterialProgress {
   quizzesTotal: number;
   codingDone: number;
   codingTotal: number;
-  explanationsDone: number;
-  explanationsTotal: number;
   percentage: number;
 }
 
@@ -137,9 +135,6 @@ export function useStats() {
     const answeredQuestionIds = new Set(quizAttempts.map(a => a.questionId));
     const codingAttempts = await db.codingAttempts.toArray();
     const completedExerciseIds = new Set(codingAttempts.filter(a => a.completed).map(a => a.exerciseId));
-    const explanationAttempts = await db.explanationAttempts.toArray();
-    const writtenExplanationIds = new Set(explanationAttempts.map(a => a.explanationId));
-
     const progresses: MaterialProgress[] = store.materials.map(mat => {
       const flashcardsTotal = store.flashcards.filter(f => f.materialId === mat.id).length;
       const flashcardsDone = store.flashcards.filter(f => f.materialId === mat.id && reviewedFlashcardIds.has(f.id)).length;
@@ -147,11 +142,9 @@ export function useStats() {
       const quizzesDone = store.quizzes.filter(q => q.materialId === mat.id && answeredQuestionIds.has(q.id)).length;
       const codingTotal = store.exercises.filter(e => e.materialId === mat.id).length;
       const codingDone = store.exercises.filter(e => e.materialId === mat.id && completedExerciseIds.has(e.id)).length;
-      const explanationsTotal = store.explanations.filter(e => e.materialId === mat.id).length;
-      const explanationsDone = store.explanations.filter(e => e.materialId === mat.id && writtenExplanationIds.has(e.id)).length;
 
-      const totalItems = flashcardsTotal + quizzesTotal + codingTotal + explanationsTotal;
-      const doneItems = flashcardsDone + quizzesDone + codingDone + explanationsDone;
+      const totalItems = flashcardsTotal + quizzesTotal + codingTotal;
+      const doneItems = flashcardsDone + quizzesDone + codingDone;
       const percentage = totalItems > 0 ? Math.round(doneItems / totalItems * 100) : 0;
 
       return {
@@ -160,7 +153,6 @@ export function useStats() {
         flashcardsDone, flashcardsTotal,
         quizzesDone, quizzesTotal,
         codingDone, codingTotal,
-        explanationsDone, explanationsTotal,
         percentage,
       };
     });

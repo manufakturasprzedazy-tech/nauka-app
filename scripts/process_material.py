@@ -13,7 +13,7 @@ except ImportError:
 
 
 def process_material(filepath: str, api_key: str) -> dict:
-    """Process a .md file and generate flashcards, quizzes, exercises, and explanations."""
+    """Process a .md file and generate flashcards, quizzes, exercises."""
     with open(filepath, 'r', encoding='utf-8') as f:
         content = f.read()
 
@@ -22,16 +22,15 @@ def process_material(filepath: str, api_key: str) -> dict:
 
     client = anthropic.Anthropic(api_key=api_key)
 
-    # Generate all content in one call for efficiency
-    prompt = f"""Przeanalizuj poniższy materiał edukacyjny i wygeneruj treści do nauki.
+    prompt = f"""Przeanalizuj poniższy materiał edukacyjny o Pythonie i wygeneruj treści do nauki.
 
 MATERIAŁ:
 {content}
 
 Wygeneruj JSON z następującą strukturą:
 {{
-  "title": "tytuł materiału",
-  "summary": "krótkie podsumowanie (2-3 zdania)",
+  "title": "tytuł materiału (zdroworozsądkowy — jeśli materiał to lista funkcji, daj ogólny tytuł tematu np. 'Operacje na słownikach')",
+  "summary": "podsumowanie 2-3 zdania — o czym jest materiał i co uczeń się nauczy",
   "topics": ["lista", "głównych", "tematów"],
   "flashcards": [
     {{"front": "pytanie", "back": "odpowiedź", "topic": "temat"}}
@@ -41,7 +40,7 @@ Wygeneruj JSON z następującą strukturą:
       "question": "pytanie",
       "choices": ["A", "B", "C", "D"],
       "correctIndex": 0,
-      "explanation": "wyjaśnienie poprawnej odpowiedzi",
+      "explanation": "wyjaśnienie DLACZEGO ta odpowiedź jest poprawna",
       "difficulty": "easy|medium|hard",
       "topic": "temat"
     }}
@@ -49,27 +48,57 @@ Wygeneruj JSON z następującą strukturą:
   "exercises": [
     {{
       "title": "tytuł ćwiczenia",
-      "description": "opis zadania",
-      "starterCode": "# kod startowy\\n",
+      "description": "opis zadania — co ma zrobić uczeń",
+      "starterCode": "# kod startowy z komentarzami co zrobić\\n",
       "solution": "# pełne rozwiązanie\\n",
-      "testCode": "# kod testujący\\nassert ...",
+      "testCode": "# testy sprawdzające\\nassert ...",
       "difficulty": "easy|medium|hard",
       "topic": "temat"
     }}
   ]
 }}
 
-ZASADY:
-- Fiszki: 8-12 sztuk, pytanie-odpowiedź, kluczowe pojęcia
-- Quizy: 6-10 pytań, 4 odpowiedzi, różne trudności
-- Ćwiczenia: 3-5 zadań kodowania, z kodem startowym i rozwiązaniem
-- Wszystko po polsku
-- Tematy (topics) powinny być zwięzłe (1-3 słowa)
+=== ZASADY DLA FISZEK ===
+- 8-15 fiszek
+- Testuj ZROZUMIENIE konceptów, nie pamięć konkretnych przykładów z lekcji
+- Pytaj: "Co robi funkcja X?", "Jaka jest różnica między X a Y?", "Kiedy używamy X?"
+- Odpowiedzi zwięzłe ale kompletne
+- Możesz dodać fiszki z własnej wiedzy jeśli uzupełniają temat
+
+=== ZASADY DLA QUIZÓW ===
+- 8-12 pytań, mix trudności
+- NIGDY nie pytaj o konkretne przykłady z materiału (np. "jaki był wynik friends[0]?")
+- Pytaj o LOGIKĘ i ZROZUMIENIE:
+  - "Co zwróci ten kod?" (z NOWYM przykładem, nie z materiału)
+  - "Która metoda służy do X?"
+  - "Co się stanie gdy zrobimy X z Y?"
+  - "Jaka jest różnica między X a Y?"
+- Błędne odpowiedzi powinny być wiarygodne (częste błędy początkujących)
+- Wyjaśnienia tłumaczą DLACZEGO, nie tylko "bo tak"
+- Kod w pytaniach: używaj NOWYCH zmiennych i wartości, nie tych z materiału
+
+=== ZASADY DLA ĆWICZEŃ KODOWANIA ===
+- 4-6 ćwiczeń, od łatwych do trudnych
+- PRAKTYCZNE zadania — uczeń ma NAPISAĆ kod, nie odtworzyć przykład z lekcji
+- Zadania typu:
+  - easy: użyj jednej funkcji/konceptu w prostym kontekście
+  - medium: połącz 2-3 koncepty razem, przetwórz dane
+  - hard: rozwiąż realny problem używając konceptów z lekcji
+- Starter code: szkielet z komentarzami co zrobić (def nazwa_funkcji(...): # ...)
+- Solution: kompletne, czytelne rozwiązanie
+- Test code: 2-3 asserty sprawdzające różne przypadki
+- NIGDY nie kopiuj przykładów z materiału — twórz nowe scenariusze
+- Pamiętaj: uczeń rozumie koncepty ale ma problem z pisaniem kodu — ćwiczenia mają budować tę umiejętność stopniowo
+
+=== OGÓLNE ===
+- Jeśli materiał to lista funkcji/metod — potraktuj jako jeden spójny temat
+- Możesz dodawać treści z własnej wiedzy jeśli uzupełniają materiał
+- Wszystko po polsku (nazwy zmiennych mogą być po angielsku)
 - Odpowiedz TYLKO JSON, bez markdown"""
 
     message = client.messages.create(
         model="claude-sonnet-4-20250514",
-        max_tokens=4096,
+        max_tokens=8192,
         messages=[{"role": "user", "content": prompt}],
     )
 

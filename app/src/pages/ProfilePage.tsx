@@ -110,7 +110,6 @@ export function ProfilePage() {
               <Stat label="Fiszki" value={todayActivity.flashcardsReviewed} />
               <Stat label="Quiz" value={todayActivity.quizAnswered} />
               <Stat label="Kodowanie" value={todayActivity.codingCompleted} />
-              <Stat label="Wyjaśnienia" value={todayActivity.explanationsWritten} />
             </div>
           </Card>
         )}
@@ -149,7 +148,6 @@ export function ProfilePage() {
               { key: 'flashcards', label: 'Fiszki' },
               { key: 'quizzes', label: 'Quiz' },
               { key: 'coding', label: 'Kodowanie' },
-              { key: 'explanations', label: 'Wyjaśnienia' },
             ] as const).map(item => (
               <div key={item.key} className="flex items-center justify-between py-1">
                 <span className="text-xs text-slate-400">{item.label}</span>

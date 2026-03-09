@@ -17,7 +17,6 @@ export function DailyPlan({ activity }: DailyPlanProps) {
     { label: 'Fiszki', done: activity.flashcardsReviewed, goal: dailyGoal.flashcards, link: '/fiszki', color: '#3b82f6', icon: '🎴' },
     { label: 'Quiz', done: activity.quizAnswered, goal: dailyGoal.quizzes, link: '/quiz', color: '#10b981', icon: '❓' },
     { label: 'Kodowanie', done: activity.codingCompleted, goal: dailyGoal.coding, link: '/kodowanie', color: '#f59e0b', icon: '💻' },
-    { label: 'Wyjaśnianie', done: activity.explanationsWritten, goal: dailyGoal.explanations, link: '/wyjasnianie', color: '#8b5cf6', icon: '📝' },
   ];
 
   const totalDone = items.reduce((s, i) => s + Math.min(i.done, i.goal), 0);

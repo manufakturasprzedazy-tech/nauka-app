@@ -99,7 +99,6 @@ export function StatsPage() {
                   <span>Fiszki: {mp.flashcardsDone}/{mp.flashcardsTotal}</span>
                   <span>Quiz: {mp.quizzesDone}/{mp.quizzesTotal}</span>
                   <span>Kod: {mp.codingDone}/{mp.codingTotal}</span>
-                  <span>Wyj: {mp.explanationsDone}/{mp.explanationsTotal}</span>
                 </div>
               </Card>
             ))}

@@ -102,17 +102,8 @@ def export():
         })
     write_json('exercises.json', exercises)
 
-    # 6. Explanations (generated from flashcards)
-    explanations = []
-    for fc in flashcards:
-        explanations.append({
-            "id": fc['id'],
-            "materialId": fc['materialId'],
-            "prompt": fc['front'],
-            "modelAnswer": fc['back'],
-            "topic": fc['topic'],
-        })
-    write_json('explanations.json', explanations)
+    # 6. Explanations (empty — feature removed)
+    write_json('explanations.json', [])
 
     conn.close()
     print(f"Exported to {OUT_DIR}:")

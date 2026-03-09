@@ -9,48 +9,43 @@ import { cn } from '@/utils/cn';
 import { useContentStore } from '@/stores/contentStore';
 import { db } from '@/db/database';
 
-type Tab = 'info' | 'flashcards' | 'quiz' | 'coding' | 'explain';
+type Tab = 'info' | 'flashcards' | 'quiz' | 'coding';
 
 export function MaterialDetailPage() {
   const { courseId, id } = useParams<{ courseId: string; id: string }>();
   const navigate = useNavigate();
   const [activeTab, setActiveTab] = useState<Tab>('info');
   const [progress, setProgress] = useState(0);
-  const { getMaterial, getFlashcardsByMaterial, getQuizzesByMaterial, getExercisesByMaterial, getExplanationsByMaterial } = useContentStore();
+  const { getMaterial, getFlashcardsByMaterial, getQuizzesByMaterial, getExercisesByMaterial } = useContentStore();
 
   const material = getMaterial(Number(id));
 
   const flashcards = material ? getFlashcardsByMaterial(material.id) : [];
   const quizzes = material ? getQuizzesByMaterial(material.id) : [];
   const exercises = material ? getExercisesByMaterial(material.id) : [];
-  const explanations = material ? getExplanationsByMaterial(material.id) : [];
 
   useEffect(() => {
     if (!material) return;
-    // Calculate progress
-    const total = flashcards.length + quizzes.length + exercises.length + explanations.length;
+    const total = flashcards.length + quizzes.length + exercises.length;
     if (total === 0) return;
 
     Promise.all([
       db.flashcardReviews.toArray(),
       db.quizAttempts.toArray(),
       db.codingAttempts.toArray(),
-      db.explanationAttempts.toArray(),
-    ]).then(([reviews, quizAttempts, codingAttempts, explAttempts]) => {
+    ]).then(([reviews, quizAttempts, codingAttempts]) => {
       const reviewedIds = new Set(reviews.map(r => r.flashcardId));
       const answeredIds = new Set(quizAttempts.map(a => a.questionId));
       const codedIds = new Set(codingAttempts.filter(a => a.completed).map(a => a.exerciseId));
-      const explainedIds = new Set(explAttempts.map(a => a.explanationId));
 
       let done = 0;
       done += flashcards.filter(f => reviewedIds.has(f.id)).length;
       done += quizzes.filter(q => answeredIds.has(q.id)).length;
       done += exercises.filter(e => codedIds.has(e.id)).length;
-      done += explanations.filter(e => explainedIds.has(e.id)).length;
 
       setProgress(done / total);
     });
-  }, [material, flashcards, quizzes, exercises, explanations]);
+  }, [material, flashcards, quizzes, exercises]);
 
   if (!material) return <div className="p-4 text-slate-400">Materiał nie znaleziony</div>;
 
@@ -59,7 +54,6 @@ export function MaterialDetailPage() {
     { key: 'flashcards', label: 'Fiszki', count: flashcards.length },
     { key: 'quiz', label: 'Quiz', count: quizzes.length },
     { key: 'coding', label: 'Kod', count: exercises.length },
-    { key: 'explain', label: 'Wyjaśnij', count: explanations.length },
   ];
 
   return (
@@ -152,19 +146,6 @@ export function MaterialDetailPage() {
                   </Badge>
                 </div>
                 <p className="text-sm text-white font-medium">{ex.title}</p>
-              </Card>
-            ))}
-          </div>
-        )}
-
-        {activeTab === 'explain' && (
-          <div className="space-y-3">
-            <Button onClick={() => navigate(`/wyjasnianie?material=${material.id}`)} fullWidth>
-              Rozpocznij sesję ({explanations.length})
-            </Button>
-            {explanations.slice(0, 3).map(ex => (
-              <Card key={ex.id} variant="default">
-                <p className="text-sm text-white">{ex.prompt}</p>
               </Card>
             ))}
           </div>

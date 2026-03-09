@@ -6,7 +6,7 @@ import { useContentStore } from '@/stores/contentStore';
 
 export function StudyPage() {
   const { dueCards, newCards } = useFlashcards();
-  const { quizzes, explanations } = useContentStore();
+  const { quizzes, exercises } = useContentStore();
 
   const modes = [
     {
@@ -26,12 +26,12 @@ export function StudyPage() {
       gradient: 'from-emerald-600/20 to-emerald-800/20',
     },
     {
-      to: '/wyjasnianie',
-      icon: '📝',
-      title: 'Wyjaśnianie',
-      description: 'Napisz wyjaśnienie konceptu',
-      stat: `${explanations.length} ćwiczeń`,
-      gradient: 'from-violet-600/20 to-violet-800/20',
+      to: '/kodowanie',
+      icon: '💻',
+      title: 'Kodowanie',
+      description: 'Pisz kod — ćwicz praktycznie',
+      stat: `${exercises.length} ćwiczeń`,
+      gradient: 'from-amber-600/20 to-amber-800/20',
     },
   ];
 
