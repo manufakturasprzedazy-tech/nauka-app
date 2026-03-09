@@ -2,1555 +2,2094 @@
   {
     "id": 1,
     "materialId": 1,
-    "front": "Jakie słowo kluczowe w Pythonie służy do tworzenia pętli nieokreślonych (indefinite loops)?",
-    "back": "Słowo kluczowe while — pętla działa dopóki warunek logiczny jest prawdziwy lub do napotkania break.",
-    "topic": "Pętle w Pythonie"
+    "front": "Co oznacza, że `def` tylko definiuje funkcję, a nie uruchamia jej?",
+    "back": "Instrukcja `def` tworzy obiekt funkcji i przechowuje jego kod pod nazwą; nie wykonuje ciała funkcji. Funkcję trzeba wywołać później pisząc jej nazwę z nawiasami, np. `my_func()`.",
+    "topic": "def — definiowanie funkcji"
   },
   {
     "id": 2,
     "materialId": 1,
-    "front": "Jakie słowo kluczowe w Pythonie służy do tworzenia pętli określonych (definite loops)?",
-    "back": "Słowo kluczowe for — pętla przechodzi przez wszystkie elementy w kolekcji (lista, plik, string itp.).",
-    "topic": "Pętle w Pythonie"
+    "front": "Co się stanie, jeśli zdefiniujesz funkcję, ale nigdy jej nie wywołasz?",
+    "back": "Funkcja zostanie zarejestrowana w przestrzeni nazw, ale żaden kod w jej wnętrzu się nie wykona — nie będzie efektów ubocznych ani wydruku.",
+    "topic": "Różnica między definicją a wywołaniem funkcji"
   },
   {
     "id": 3,
     "materialId": 1,
-    "front": "Czym różni się pętla określona (definite loop) od nieokreślonej (indefinite loop)?",
-    "back": "Pętla określona iteruje przez skończony zbiór elementów (np. listę), a nieokreślona działa dopóki warunek logiczny nie stanie się fałszywy. Pętla określona jest bardziej przewidywalna.",
-    "topic": "Pętle w Pythonie"
+    "front": "Co robi parametr w definicji funkcji (np. `def greet(lang):`)?",
+    "back": "Parametr jest nazwą-aliaską, która przez czas wykonania funkcji odwołuje się do wartości przekazanej przy wywołaniu. Przykład: przy `greet('pl')` wewnątrz funkcji `lang` będzie aliasem dla `'pl'`.",
+    "topic": "Argumenty i aliasy parametrów"
   },
   {
     "id": 4,
     "materialId": 1,
-    "front": "Co to jest zmienna iteracyjna (iteration variable) w pętli for?",
-    "back": "To zmienna, która automatycznie przyjmuje kolejne wartości z kolekcji przy każdym przejściu pętli. Np. w 'for i in [5, 4, 3]' zmienną iteracyjną jest i.",
-    "topic": "Pętla for"
+    "front": "Jaka jest różnica między argumentem a zmienną globalną?",
+    "back": "Argument to wartość przekazana do funkcji — wewnątrz funkcji występuje jako lokalny alias parametru. Zmienna globalna istnieje niezależnie w module i może być odczytywana/modyfikowana przez funkcję (co jest zwykle odradzane).",
+    "topic": "Argumenty i aliasy parametrów"
   },
   {
     "id": 5,
     "materialId": 1,
-    "front": "Jaka jest składnia pętli for w Pythonie?",
-    "back": "for zmienna_iteracyjna in kolekcja:\n    blok kodu (wcięty)\n\nNp.: for i in [5, 4, 3, 2, 1]:\n    print(i)",
-    "topic": "Pętla for"
+    "front": "Dlaczego lepiej nie nazywać parametru `p1`, `p2` zamiast opisowych nazw?",
+    "back": "Nazwy opisowe (np. `lang`, `text`) ułatwiają zrozumienie, jaka wartość powinna być przekazana. `p1` nie mówi nic o roli parametru i zwiększa ryzyko błędów przy czytaniu kodu.",
+    "topic": "Kiedy lepiej użyć X zamiast Y?"
   },
   {
     "id": 6,
     "materialId": 1,
-    "front": "Jaką rolę pełni słowo kluczowe in w pętli for?",
-    "back": "Oznacza 'dla każdej wartości w kolekcji' — łączy zmienną iteracyjną z kolekcją, przez którą pętla iteruje. Można je porównać do symbolu 'należy do' (∈) z teorii zbiorów.",
-    "topic": "Pętla for"
+    "front": "Jaki częsty błąd popełniają początkujący z funkcjami i `print`?",
+    "back": "Częsty błąd to myślenie, że definicja funkcji automatycznie coś wydrukuje. `print` w ciele funkcji wykona się dopiero po wywołaniu funkcji, np. `foo()`.",
+    "topic": "GOTCHA/PITFALL"
   },
   {
     "id": 7,
     "materialId": 1,
-    "front": "Jakie typy kolekcji można iterować pętlą for w Pythonie?",
-    "back": "Listy, pliki (linie w pliku), stringi (znaki w stringu) i inne kolekcje.",
-    "topic": "Pętla for"
+    "front": "Jak wywołać funkcję bez argumentów?",
+    "back": "Należy użyć nazwy funkcji z pustymi nawiasami, np. `say_hi()` — nawet jeśli funkcja nie ma parametrów nawiasy są wymagane przy wywołaniu.",
+    "topic": "def — definiowanie funkcji"
   },
   {
     "id": 8,
     "materialId": 1,
-    "front": "Co wypisze poniższy kod?\nfor i in [5, 4, 3, 2, 1]:\n    print(i)\nprint('Blastoff!')",
-    "back": "Wypisze kolejno: 5, 4, 3, 2, 1 (każde w nowej linii), a na końcu 'Blastoff!'. Pętla wykona się 5 razy.",
-    "topic": "Pętla for"
+    "front": "Co to jest alias parametru i jak go najlepiej rozumieć?",
+    "back": "Alias parametru to lokalna nazwa, która wskazuje na przekazaną wartość podczas wykonania funkcji. Lepiej myśleć o niej jak o etykiecie wskazującej na argument, np. przy `def f(x):` w `f(10)` `x` jest aliasem dla `10`.",
+    "topic": "Argumenty i aliasy parametrów"
   },
   {
     "id": 9,
     "materialId": 1,
-    "front": "Czy zmienna iteracyjna w pętli for musi mieć konkretną nazwę?",
-    "back": "Nie — można wybrać dowolną nazwę zmiennej. Python nie rozumie semantyki nazw (np. nie wie, że 'friends' to liczba mnoga od 'friend').",
-    "topic": "Pętla for"
+    "front": "Kiedy warto użyć funkcji zamiast kopiować kod?",
+    "back": "Gdy fragment kodu powtarza się w kilku miejscach — funkcja pozwala umieścić ten kod raz i wywoływać go wielokrotnie, co ułatwia konserwację i testowanie.",
+    "topic": "Użycie funkcji do ponownego użycia kodu"
   },
   {
     "id": 10,
     "materialId": 1,
-    "front": "Co wypisze poniższy kod?\nfriends = ['Joseph', 'Glenn', 'Sally']\nfor friend in friends:\n    print('Happy New Year:', friend)",
-    "back": "Happy New Year: Joseph\nHappy New Year: Glenn\nHappy New Year: Sally\n\nPętla wykona się 3 razy — raz dla każdego elementu listy.",
-    "topic": "Pętla for"
+    "front": "Co się stanie gdy zdefiniujesz funkcję z jednym parametrem, a wywołasz ją z dwoma argumentami?",
+    "back": "Python zgłosi błąd typu `TypeError` mówiący, że funkcja otrzymała zbyt wiele argumentów. Trzeba dopasować liczbę parametrów do liczby argumentów lub użyć parametrów opcjonalnych.",
+    "topic": "GOTCHA/PITFALL"
   },
   {
     "id": 11,
     "materialId": 1,
-    "front": "Jakie zadania pętla for wykonuje automatycznie za programistę?",
-    "back": "1. Sprawdza, czy są jeszcze elementy do przetworzenia\n2. Ustawia zmienną iteracyjną na kolejną wartość\n3. Kończy pętlę po przejściu przez wszystkie elementy\nNie trzeba ręcznie zarządzać warunkiem stopu ani inkrementacją.",
-    "topic": "Pętla for"
+    "front": "Jak przekazać różne wartości do tej samej funkcji, aby uzyskać różne zachowanie?",
+    "back": "Przy każdym wywołaniu podajesz inne argumenty: `my_func(1)`, `my_func('a')` — wewnątrz funkcji parametr będzie aliasem dla aktualnie przekazanej wartości i kod może działać inaczej.",
+    "topic": "Użycie funkcji do ponownego użycia kodu"
   },
   {
     "id": 12,
     "materialId": 1,
-    "front": "Jak zapisać listę w Pythonie?",
-    "back": "W nawiasach kwadratowych, elementy oddzielone przecinkami. Np. [5, 4, 3, 2, 1] (lista intów) lub ['Joseph', 'Glenn', 'Sally'] (lista stringów).",
-    "topic": "Listy w Pythonie"
+    "front": "Jakie są dwa podstawowe kroki pracy z funkcją w Pythonie?",
+    "back": "1) Definicja: napisać funkcję za pomocą `def` (zapisuje się kod). 2) Wywołanie: uruchomić funkcję, np. `name(args)`, aby wykonać zapisany kod.",
+    "topic": "def — definiowanie funkcji"
   },
   {
     "id": 13,
-    "materialId": 1,
-    "front": "Ile razy wykona się blok kodu w pętli for iterującej po liście n elementów?",
-    "back": "Dokładnie n razy — raz dla każdego elementu listy. Pętla for gwarantuje wykonanie bloku kodu jednokrotnie dla każdego elementu kolekcji.",
-    "topic": "Pętla for"
+    "materialId": 2,
+    "front": "Co robi instrukcja `return` w funkcji?",
+    "back": "Instrukcja `return` natychmiast kończy wykonanie funkcji i zwraca określoną wartość do miejsca wywołania. Jeśli nie podano żadnej wartości, funkcja zwraca `None`.",
+    "topic": "Instrukcja `return` i wartość zwracana"
   },
   {
     "id": 14,
-    "materialId": 1,
-    "front": "Czym są loop idioms (idiomy pętli) i do czego służą?",
-    "back": "To wzorce wykorzystania pętli do typowych zadań, takich jak: znajdowanie największej/najmniejszej wartości, sprawdzanie obecności wartości w zbiorze itp.",
-    "topic": "Idiomy pętli"
+    "materialId": 2,
+    "front": "Jaka jest różnica między `print()` a `return` w funkcji?",
+    "back": "`print()` wypisuje tekst na ekran, ale nie przekazuje wartości do wywołującego kodu. `return` zwraca wartość, którą można przypisać do zmiennej lub użyć dalej, np. `x = func()`.",
+    "topic": "Instrukcja `return` i wartość zwracana"
   },
   {
     "id": 15,
     "materialId": 2,
-    "front": "Co robi słowo kluczowe DEF w Pythonie?",
-    "back": "DEF tylko definiuje (zapamiętuje) funkcję — nie uruchamia jej kodu. Kod funkcji zostanie wykonany dopiero po jej wywołaniu (invocation).",
-    "topic": "Definiowanie funkcji w Pythonie"
+    "front": "Co się stanie jeśli funkcja nie zawiera żadnego `return`?",
+    "back": "Funkcja bez `return` zwróci automatycznie `None`. Na przykład `def f(): pass` → `f()` zwraca `None`.",
+    "topic": "Domyślna wartość `None`"
   },
   {
     "id": 16,
     "materialId": 2,
-    "front": "Jaka jest różnica między definiowaniem a wywoływaniem funkcji?",
-    "back": "Definiowanie (def) to zapisanie kodu funkcji w pamięci (store). Wywołanie (call/invoke) to faktyczne uruchomienie tego kodu, np. print_lyrics().",
-    "topic": "Definiowanie funkcji w Pythonie"
+    "front": "Jaki częsty błąd popełniają początkujący przy zwracaniu wartości?",
+    "back": "Częsty błąd to użycie `print()` zamiast `return`, przez co wynik nie może być użyty dalej, np. `result = func()` będzie `None` jeśli funkcja tylko `print()`-uje.",
+    "topic": "GOTCHA"
   },
   {
     "id": 17,
     "materialId": 2,
-    "front": "Co się stanie, jeśli zdefiniujesz funkcję za pomocą DEF, ale nigdy jej nie wywołasz?",
-    "back": "Kod wewnątrz funkcji nigdy się nie wykona. Funkcja zostanie zapamiętana, ale żadne instrukcje w jej ciele nie zostaną uruchomione.",
-    "topic": "Definiowanie funkcji w Pythonie"
+    "front": "Co oznacza, że funkcja jest „fruitful”?",
+    "back": "Funkcja „fruitful” to taka, która zwraca wartość przez `return`. Przykład: `def add(a,b): return a+b` — to jest funkcja zwracająca wynik.",
+    "topic": "Funkcje owocne"
   },
   {
     "id": 18,
     "materialId": 2,
-    "front": "Jak Python rozpoznaje, które linie kodu należą do ciała funkcji?",
-    "back": "Za pomocą wcięć (indentacji). Wszystkie linie z wcięciem pod instrukcją DEF należą do bloku funkcji. Pierwsza linia bez wcięcia (de-indent) kończy blok funkcji.",
-    "topic": "Składnia funkcji w Pythonie"
+    "front": "Czy nazwy parametrów wewnątrz funkcji muszą być takie same jak nazwy argumentów przy wywołaniu?",
+    "back": "Nie, nazwy parametrów wewnątrz funkcji są lokalne i mogą różnić się od nazw użytych przy wywołaniu. Ważna jest kolejność (chyba że użyto nazwanych argumentów).",
+    "topic": "Parametry i argumenty funkcji"
   },
   {
     "id": 19,
     "materialId": 2,
-    "front": "Jak wywołać funkcję bez argumentów w Pythonie?",
-    "back": "Podając nazwę funkcji z pustymi nawiasami, np. print_lyrics().",
-    "topic": "Wywoływanie funkcji"
+    "front": "Jak przerwać funkcję wcześniej i zwrócić wartość z wnętrza pętli?",
+    "back": "Użyj `return` wewnątrz pętli — spowoduje to natychmiastowe zakończenie funkcji i zwrócenie wartości, np. ```python\nfor x in items:\n    if x>0:\n        return x\n```",
+    "topic": "Zatrzymanie wykonania funkcji"
   },
   {
     "id": 20,
     "materialId": 2,
-    "front": "Czym są argumenty (arguments) funkcji?",
-    "back": "Argumenty to dane wejściowe (input) przekazywane do funkcji w nawiasach podczas jej wywołania, np. greet(\"en\").",
-    "topic": "Argumenty funkcji"
+    "front": "Czy funkcja może zwrócić więcej niż jedną wartość? Jak to wygląda?",
+    "back": "Tak — można zwrócić kilka wartości jako krotkę. Przykład: `def stats(nums): return min(nums), max(nums), sum(nums)` — wywołanie zwróci krotkę.",
+    "topic": "Wielokrotne wartości"
   },
   {
     "id": 21,
     "materialId": 2,
-    "front": "Czym jest parametr w definicji funkcji i jak najlepiej go rozumieć?",
-    "back": "Parametr to alias (pseudonim) dla wartości, która zostanie przekazana jako argument przy wywołaniu. Np. w def greet(lang) — lang jest aliasem dla pierwszego argumentu.",
-    "topic": "Parametry funkcji"
+    "front": "Co oznacza 'residual value' (wartość resztkowa) funkcji?",
+    "back": "To wartość, którą funkcja zwraca i która zastępuje wywołanie funkcji w wyrażeniu. Na przykład `y = greet()` — wynik `greet()` jest wartością resztkową przypisaną do `y`.",
+    "topic": "Instrukcja `return` i wartość zwracana"
   },
   {
     "id": 22,
     "materialId": 2,
-    "front": "Co się dzieje w momencie wywołania funkcji z punktu widzenia przepływu programu?",
-    "back": "Python zapamiętuje miejsce, z którego nastąpiło wywołanie, przeskakuje do ciała funkcji, wykonuje jej kod, a następnie wraca do zapamiętanego miejsca i kontynuuje wykonanie programu.",
-    "topic": "Przepływ sterowania"
+    "front": "Kiedy lepiej użyć `return` zamiast `print()`?",
+    "back": "Gdy trzeba użyć wyniku w dalszym kodzie, np. przypisać do zmiennej, przetestować lub przekazać do innej funkcji. `print()` jest przydatny tylko do debugowania lub wyświetlania użytkownikowi.",
+    "topic": "WHEN TO USE"
   },
   {
     "id": 23,
     "materialId": 2,
-    "front": "Jak ta sama funkcja może dawać różne wyniki przy różnych wywołaniach?",
-    "back": "Poprzez przekazywanie różnych argumentów. Np. greet(\"en\") wypisze \"Hello\", greet(\"es\") wypisze \"Hola\", greet(\"fr\") wypisze \"Bonjour\".",
-    "topic": "Parametryzacja funkcji"
+    "front": "Jaki wpływ ma `return` na zmienne lokalne funkcji?",
+    "back": "Po `return` funkcja kończy działanie, a jej zmienne lokalne przestają istnieć. Możesz jednak zwrócić wartości tych zmiennych (np. `return local_var`).",
+    "topic": "Zatrzymanie wykonania funkcji"
   },
   {
     "id": 24,
     "materialId": 2,
-    "front": "Jakie dwa kluczowe etapy pracy z funkcjami wyróżniamy?",
-    "back": "1. Store (zapamiętanie) — definicja funkcji za pomocą DEF. 2. Reuse (ponowne użycie) — wywołanie funkcji, możliwe wielokrotnie.",
-    "topic": "Koncepcja funkcji"
+    "front": "Co się stanie jeśli w funkcji wykonamy `return` bez wartości?",
+    "back": "Funkcja zakończy się i zwróci `None`. To jest równoważne `return None`.",
+    "topic": "Domyślna wartość `None`"
   },
   {
     "id": 25,
-    "materialId": 2,
-    "front": "Czy parametr funkcji jest zmienną w tradycyjnym sensie?",
-    "back": "Nie do końca — parametr nie ma własnego miejsca w pamięci. Jest raczej aliasem (pseudonimem) dla wartości przekazanej jako argument przy wywołaniu.",
-    "topic": "Parametry funkcji"
+    "materialId": 3,
+    "front": "Co to jest licznik w pętli i jak go zainicjować?",
+    "back": "Licznik to zmienna, która zlicza ile razy pętla wykonała jakąś akcję. Zazwyczaj inicjalizujemy go przed pętlą wartością zero, np. `count = 0`, a w pętli zwiększamy: `count = count + 1`.",
+    "topic": "liczniki (count)"
   },
   {
     "id": 26,
-    "materialId": 2,
-    "front": "Czy instrukcja DEF musi znajdować się na początku programu?",
-    "back": "Nie, DEF nie musi być na początku programu. Musi jednak pojawić się przed pierwszym wywołaniem danej funkcji.",
-    "topic": "Składnia funkcji w Pythonie"
+    "materialId": 3,
+    "front": "Jak obliczyć sumę liczb w liście?",
+    "back": "Ustaw zmienną sumy na zero przed pętlą, w pętli dodawaj każdą wartość: \n```python\ntotal = 0\nfor x in numbers:\n    total += x\n```",
+    "topic": "sumowanie (total)"
   },
   {
     "id": 27,
-    "materialId": 2,
-    "front": "Co oznacza 'invoke' w kontekście funkcji Pythona?",
-    "back": "Invoke (wywołanie) oznacza uruchomienie wcześniej zdefiniowanej funkcji poprzez podanie jej nazwy z nawiasami, np. greet(\"en\").",
-    "topic": "Wywoływanie funkcji"
+    "materialId": 3,
+    "front": "Jak obliczyć średnią ze zbioru wartości w pętli?",
+    "back": "Trzeba prowadzić zarówno licznik, jak i sumę, a po pętli podzielić sumę przez licznik: \n```python\ncount = 0\ntotal = 0\nfor x in data:\n    count += 1\n    total += x\naverage = total / count\n```",
+    "topic": "obliczanie średniej"
   },
   {
     "id": 28,
-    "materialId": 4,
-    "front": "Czym jest licznik (counter) w kontekście pętli i jak go zainicjalizować?",
-    "back": "Licznik to zmienna śledząca ile razy pętla się wykonała. Inicjalizuje się ją wartością 0 przed pętlą, a w każdej iteracji zwiększa o 1 (zork = zork + 1).",
-    "topic": "Wzorce pętli – licznik"
+    "materialId": 3,
+    "front": "Czym różni się licznik od sumy w pętli?",
+    "back": "Licznik zlicza ile elementów/iteracji wystąpiło (`count += 1`), suma agreguje wartość elementów (`total += value`). Obie zmienne inicjalizujemy zwykle na `0` przed pętlą.",
+    "topic": "liczniki vs sumy"
   },
   {
     "id": 29,
-    "materialId": 4,
-    "front": "Jakie trzy kroki składają się na wzorzec zliczania (counting pattern) w pętli?",
-    "back": "1. Przed pętlą: ustaw zmienną na 0\n2. W pętli: dodawaj 1 w każdej iteracji\n3. Po pętli: wypisz końcową wartość licznika",
-    "topic": "Wzorce pętli – licznik"
+    "materialId": 3,
+    "front": "Co to jest filtrowanie w kontekście pętli?",
+    "back": "Filtrowanie to sprawdzanie warunku dla każdego elementu i wykonywanie akcji tylko dla tych, które spełniają warunek, np. `if x > 10: print(x)`.",
+    "topic": "filtrowanie wartości"
   },
   {
     "id": 30,
-    "materialId": 4,
-    "front": "Czym jest wzorzec sumowania (totaling) w pętli i czym różni się od licznika?",
-    "back": "Zamiast dodawać 1 w każdej iteracji, dodajemy aktualną wartość elementu do zmiennej przechowującej sumę bieżącą (running total). Np. total = total + value.",
-    "topic": "Wzorce pętli – sumowanie"
+    "materialId": 3,
+    "front": "Jak użyć zmiennej boolean do wykrycia, czy element został znaleziony?",
+    "back": "Zainicjuj `found = False` przed pętlą. W pętli, gdy znajdziesz element, ustaw `found = True`. Po zakończeniu pętli `found` będzie mówić, czy element wystąpił przynajmniej raz.",
+    "topic": "wyszukiwanie i zmienna boolean"
   },
   {
     "id": 31,
-    "materialId": 4,
-    "front": "Co to jest running total (suma bieżąca)?",
-    "back": "Zmienna akumulująca sumę wartości napotkanych dotychczas w pętli. Przed pętlą wynosi 0, a w każdej iteracji dodawana jest kolejna wartość.",
-    "topic": "Wzorce pętli – sumowanie"
+    "materialId": 3,
+    "front": "Kiedy warto użyć `break` podczas wyszukiwania?",
+    "back": "Gdy chcesz zakończyć przeszukiwanie natychmiast po znalezieniu pierwszego dopasowania — ustaw `found = True` i użyj `break`, aby przerwać pętlę i zaoszczędzić czas.",
+    "topic": "przerywanie pętli (`break`)"
   },
   {
     "id": 32,
-    "materialId": 4,
-    "front": "Jak obliczyć średnią (average) z elementów w pętli?",
-    "back": "Należy prowadzić jednocześnie dwa akumulatory: sumę (sum) i licznik (count). Po zakończeniu pętli dzielimy sumę przez licznik: average = sum / count.",
-    "topic": "Wzorce pętli – średnia"
+    "materialId": 3,
+    "front": "Jaki typ błędu otrzymasz, gdy podzielisz przez zero podczas obliczania średniej?",
+    "back": "Dostaniesz `ZeroDivisionError` jeśli licznik jest zero. Dlatego przed dzieleniem trzeba sprawdzić `if count == 0` i obsłużyć ten przypadek (np. zwrócić `None` lub `0`).",
+    "topic": "typowe błędy"
   },
   {
     "id": 33,
-    "materialId": 4,
-    "front": "Czy w jednej pętli można stosować więcej niż jeden wzorzec akumulacji (np. licznik i sumę)?",
-    "back": "Tak. Można jednocześnie zliczać elementy i sumować ich wartości w tej samej pętli, używając oddzielnych zmiennych.",
-    "topic": "Wzorce pętli – łączenie wzorców"
+    "materialId": 3,
+    "front": "Jaki częsty błąd popełniają początkujący przy użyciu licznika?",
+    "back": "Często inicjalizują licznik wewnątrz pętli, np. `for x in data: count = 0`, co powoduje jego resetowanie i błędny wynik. Inicjalizacja powinna być przed pętlą.",
+    "topic": "typowe błędy"
   },
   {
     "id": 34,
-    "materialId": 4,
-    "front": "Na czym polega wzorzec filtrowania (filtering) w pętli?",
-    "back": "Wewnątrz pętli umieszczamy instrukcję if, która sprawdza warunek. Kod wykonuje się tylko dla elementów spełniających kryterium, np. if value > 20.",
-    "topic": "Wzorce pętli – filtrowanie"
+    "materialId": 3,
+    "front": "Czy warto używać `print()` wewnątrz funkcji zamiast zwracać wartości? Kiedy lepiej użyć `found` zamiast `print()`?",
+    "back": "W funkcjach lepiej zwracać wartości (np. `return found`) niż drukować je. Zmienna `found` jest przydatna, gdy chcesz użyć wyniku w dalszym przetwarzaniu, zamiast go tylko wyświetlić.",
+    "topic": "when to use"
   },
   {
     "id": 35,
-    "materialId": 4,
-    "front": "Co to jest zmienna typu Boolean w Pythonie?",
-    "back": "Zmienna, która może przyjmować tylko dwie wartości: True lub False. W Pythonie True i False to wbudowane stałe.",
-    "topic": "Typy danych – Boolean"
+    "materialId": 3,
+    "front": "Co się stanie jeśli użyjesz nazwy `sum` jako nazwy zmiennej?",
+    "back": "Przypisanie `sum = 0` przesłoni wbudowaną funkcję `sum()`. To działa, ale możesz później przypadkowo stracić dostęp do funkcji `sum()`. Lepiej użyć `total` lub `running_total`.",
+    "topic": "gotcha/pitfall"
   },
   {
     "id": 36,
-    "materialId": 4,
-    "front": "Jakie cztery podstawowe typy zmiennych wymieniono w materiale?",
-    "back": "1. Integer (liczby całkowite)\n2. String (łańcuchy znaków)\n3. Float (liczby zmiennoprzecinkowe)\n4. Boolean (wartości logiczne True/False)",
-    "topic": "Typy danych"
+    "materialId": 3,
+    "front": "Dlaczego warto aktualizować tylko jedną zmienną w pętli zamiast resetować/ponownie inicjalizować kilka?",
+    "back": "Resetowanie zmiennych w złym miejscu (np. wewnątrz pętli) prowadzi do błędów logicznych. Trzymaj inicjalizację przed pętlą, a aktualizacje tylko w ciele pętli.",
+    "topic": "gotcha/pitfall"
   },
   {
     "id": 37,
     "materialId": 4,
-    "front": "Jak działa wzorzec wyszukiwania (search pattern) z użyciem zmiennej Boolean?",
-    "back": "Przed pętlą ustawiamy found = False. W pętli, jeśli znajdziemy szukany element, ustawiamy found = True. Po pętli sprawdzamy wartość found, by wiedzieć, czy element wystąpił.",
-    "topic": "Wzorce pętli – wyszukiwanie"
+    "front": "Co to jest instrukcja `if` i jak wygląda jej podstawowa składnia?",
+    "back": "Instrukcja `if` pozwala wykonać blok kodu tylko gdy warunek jest prawdziwy. Podstawowa składnia:\n```python\nif condition:\n    # blok kodu wykonany gdy condition jest True\n```",
+    "topic": "instrukcja `if`"
   },
   {
     "id": 38,
     "materialId": 4,
-    "front": "Dlaczego zmienna found nie wraca do False po znalezieniu elementu, mimo że pętla kontynuuje?",
-    "back": "Ponieważ przypisanie found = True następuje tylko w bloku if (gdy warunek jest spełniony). Nie ma kodu, który ustawiałby found z powrotem na False, więc raz ustawiona wartość True pozostaje do końca pętli.",
-    "topic": "Wzorce pętli – wyszukiwanie"
+    "front": "Jaka jest różnica między `=` a `==` w Pythonie?",
+    "back": "`=` to operator przypisania, np. `x = 5` ustawia wartość. `==` to operator porównania, pyta czy dwie wartości są równe, np. `x == 5` zwraca `True` lub `False`.",
+    "topic": "operatory porównania"
   },
   {
     "id": 39,
     "materialId": 4,
-    "front": "Jak można zoptymalizować wzorzec wyszukiwania po znalezieniu szukanego elementu?",
-    "back": "Można użyć instrukcji break zaraz po ustawieniu found = True, ponieważ dalsze iteracje nie zmienią już wyniku.",
-    "topic": "Wzorce pętli – optymalizacja"
+    "front": "Co zwróci wyrażenie porównawcze i czy zmieni dane wejściowe? Przykład: `5 < 10`",
+    "back": "Wyrażenie porównawcze zwraca wartość logiczną `True` lub `False` i nie modyfikuje danych wejściowych. `5 < 10` zwróci `True`.",
+    "topic": "operatory porównania"
   },
   {
     "id": 40,
     "materialId": 4,
-    "front": "Co to jest zmienna iteracyjna (iteration variable) w pętli for?",
-    "back": "Zmienna, która w każdej iteracji pętli automatycznie przyjmuje kolejną wartość z sekwencji, po której iterujemy. Np. w 'for thing in [9, 41, 12]:' zmienną iteracyjną jest thing.",
-    "topic": "Pętla for – podstawy"
+    "front": "Jaki jest cel wcięć w Pythonie?",
+    "back": "Wcięcia definiują zakresy bloków kodu (np. ciało `if`, `for`, `while`). Python używa wcięć syntaktycznie, więc brak właściwego wcięcia spowoduje błąd lub zmieni zachowanie programu.",
+    "topic": "wcięcia i zakresy bloków"
   },
   {
     "id": 41,
     "materialId": 4,
-    "front": "Co oznacza termin 'increment' w kontekście pętli?",
-    "back": "Increment (inkrementacja) to zwiększenie wartości zmiennej o określoną wartość, najczęściej o 1. Np. zork = zork + 1.",
-    "topic": "Wzorce pętli – terminologia"
+    "front": "Co się często psuje przy mieszaniu tabulatorów i spacji?",
+    "back": "Mieszanie tabulatorów i spacji może wyglądać poprawnie w edytorze, ale Python wyrzuci `IndentationError` lub zachowanie będzie nieoczekiwane. Zalecane: używać 4 spacji zamiast tabów.",
+    "topic": "pułapki"
   },
   {
     "id": 42,
-    "materialId": 5,
-    "front": "Jakie słowo kluczowe w Pythonie rozpoczyna wykonanie warunkowe (conditional execution)?",
-    "back": "Słowo kluczowe `if`. Po nim następuje warunek (wyrażenie zwracające True lub False), a linia kończy się dwukropkiem.",
-    "topic": "Instrukcja warunkowa if"
+    "materialId": 4,
+    "front": "Jak wykonać dwukierunkową decyzję (if/else)?",
+    "back": "Użyj `if` dla warunku prawdziwego i `else` dla alternatywy:\n```python\nif condition:\n    do_true()\nelse:\n    do_false()\n```",
+    "topic": "`else` i `elif`"
   },
   {
     "id": 43,
-    "materialId": 5,
-    "front": "Czym różni się operator `=` od `==` w Pythonie?",
-    "back": "`=` to operator przypisania (np. x = 5 przypisuje wartość 5 do x). `==` to operator porównania, który zadaje pytanie \"czy wartości są równe?\" i zwraca True lub False, nie modyfikując zmiennej.",
-    "topic": "Operatory porównania"
+    "materialId": 4,
+    "front": "Kiedy użyć `elif` zamiast wielu zagnieżdżonych `if`?",
+    "back": "Użyj `elif`, gdy chcesz sprawdzić kolejne, wykluczające się warunki po pierwszym `if`. `elif` jest czytelniejsze niż wiele zagnieżdżonych `if` prowadzących do tych samych alternatyw.",
+    "topic": "`else` i `elif`"
   },
   {
     "id": 44,
-    "materialId": 5,
-    "front": "Wymień 6 operatorów porównania w Pythonie.",
-    "back": "1. `<` — mniejsze niż\n2. `<=` — mniejsze lub równe\n3. `==` — równe\n4. `>=` — większe lub równe\n5. `>` — większe niż\n6. `!=` — różne (nierówne)",
-    "topic": "Operatory porównania"
+    "materialId": 4,
+    "front": "Jaki jest wynik porównania `x != y`?",
+    "back": "Operator `!=` sprawdza nierówność i zwraca `True` jeśli `x` jest różne od `y`, np. `3 != 4` zwraca `True`.",
+    "topic": "operatory porównania"
   },
   {
     "id": 45,
-    "materialId": 5,
-    "front": "Jak Python wyznacza bloki kodu warunkowego (np. po instrukcji if)?",
-    "back": "Za pomocą wcięć (indentation). Linie o tym samym poziomie wcięcia po dwukropku tworzą blok warunkowy. Zmniejszenie wcięcia (de-indent) kończy blok.",
-    "topic": "Wcięcia w Pythonie"
+    "materialId": 4,
+    "front": "Jaki częsty błąd popełniają początkujący z blokiem warunkowym?",
+    "back": "Często zapominają wcięcia albo używają złej liczby spacji, co powoduje `IndentationError` lub nieoczekiwane wykonywanie kodu. Zawsze utrzymuj spójność wcięć (np. 4 spacje).",
+    "topic": "pułapki"
   },
   {
     "id": 46,
-    "materialId": 5,
-    "front": "Ile spacji zaleca się używać jako standardowe wcięcie w Pythonie?",
-    "back": "4 spacje. Jest to zalecany (recommended) wzorzec wcięć.",
-    "topic": "Wcięcia w Pythonie"
+    "materialId": 4,
+    "front": "Czy instrukcja wewnątrz `if` może mieć kilka linii? Jak to napisać?",
+    "back": "Tak. Zachowaj to samo wcięcie dla wszystkich linii należących do bloku. Przykład:\n```python\nif x > 0:\n    print('plus')\n    x += 1\n    do_something()\n```",
+    "topic": "wcięcia i zakresy bloków"
   },
   {
     "id": 47,
-    "materialId": 5,
-    "front": "Dlaczego mieszanie tabulatorów i spacji we wcięciach jest problemem w Pythonie?",
-    "back": "Python może się \"pomylić\" — kod może wyglądać poprawnie na ekranie, ale Python zgłosi błąd. Dlatego należy ustawić edytor tak, aby zamieniał tabulatory na spacje (expand tabs).",
-    "topic": "Wcięcia w Pythonie"
+    "materialId": 4,
+    "front": "Kiedy lepiej użyć `if` zamiast wyrażeń logicznych w jednej linii?",
+    "back": "Dla czytelności i gdy blok zawiera wiele instrukcji użyj wieloliniowego `if`. Dla krótkich przypisań można użyć wyrażenia warunkowego w jednej linii (`a if cond else b`), ale nie nadużywać go.",
+    "topic": "instrukcja `if`"
   },
   {
     "id": 48,
-    "materialId": 5,
-    "front": "Jak stworzyć wieloliniowy blok kodu warunkowego w Pythonie?",
-    "back": "Utrzymując ten sam poziom wcięcia dla kolejnych linii po instrukcji `if`. Wszystkie linie z tym samym wcięciem należą do tego samego bloku warunkowego.",
-    "topic": "Bloki kodu"
+    "materialId": 4,
+    "front": "Jak sprawdzić czy zmienna `s` jest niepusta przed użyciem `len()`?",
+    "back": "Można użyć warunku prostego:\n```python\nif s:\n    # s nie jest pusty (niepusty string, lista itp.)\n    print(len(s))\nelse:\n    print('pusty')\n```",
+    "topic": "zagnieżdżone instrukcje warunkowe"
   },
   {
     "id": 49,
     "materialId": 5,
-    "front": "Co oznacza termin 'nested' (zagnieżdżenie) w kontekście instrukcji warunkowych?",
-    "back": "To blok kodu wewnątrz innego bloku — np. instrukcja `if` wewnątrz innej instrukcji `if` lub wewnątrz pętli `for`. Każde zagnieżdżenie wymaga dodatkowego poziomu wcięcia.",
-    "topic": "Zagnieżdżanie bloków"
+    "front": "Co robi blok `try` / `except` w Pythonie?",
+    "back": "Blok `try` wykonuje kod, który może spowodować wyjątek. Jeśli w `try` wystąpi błąd, wykonanie przeskakuje do bloku `except`, który może obsłużyć błąd zamiast pokazywać traceback. Jeśli nic się nie wydarzy, `except` jest ignorowany.",
+    "topic": "`try` i `except`"
   },
   {
     "id": 50,
     "materialId": 5,
-    "front": "Do czego służy słowo kluczowe `else` w Pythonie?",
-    "back": "Tworzy dwukierunkową decyzję (two-way decision). Jeśli warunek w `if` jest True, wykonuje się blok po `if`. Jeśli jest False, wykonuje się blok po `else`. Zawsze wykona się dokładnie jeden z dwóch bloków.",
-    "topic": "Instrukcja if-else"
+    "front": "Jaka jest różnica między `try` / `except` a zwykłym `if`?",
+    "back": "`if` sprawdza warunek i decyduje, która ścieżka wykonać. `try` / `except` reaguje na wyjątki podczas wykonywania kodu — nie sprawdza warunków, tylko przechwytuje błędy runtime.",
+    "topic": "Porównanie"
   },
   {
     "id": 51,
     "materialId": 5,
-    "front": "Czy w konstrukcji if-else mogą wykonać się oba bloki jednocześnie?",
-    "back": "Nie. Zawsze wykonuje się dokładnie jeden blok — albo blok po `if` (gdy warunek jest True), albo blok po `else` (gdy warunek jest False). Nigdy oba naraz.",
-    "topic": "Instrukcja if-else"
+    "front": "Co się stanie, jeśli umieścisz w `try` wiele linii, a jedna z nich wywoła wyjątek?",
+    "back": "Gdy któraś linia w `try` wywoła wyjątek, wykonanie natychmiast przerywa resztę bloku `try` i przechodzi do odpowiadającego `except`. Pozostałe instrukcje w `try` nie zostaną wykonane.",
+    "topic": "Gotcha / Pitfall"
   },
   {
     "id": 52,
     "materialId": 5,
-    "front": "Jak kończy się linia z instrukcją `if` lub `else` w Pythonie?",
-    "back": "Dwukropkiem (`:`). Dwukropek sygnalizuje początek nowego wciętego bloku kodu.",
-    "topic": "Składnia instrukcji warunkowych"
+    "front": "Kiedy lepiej użyć `try` / `except` zamiast sprawdzania warunku (np. `if s.isdigit()`)?",
+    "back": "Użyj `try` / `except` gdy sprawdzanie jest kosztowne lub gdy nie masz jednoznacznego warunku (np. konwersja różnych formatów). `EAFP` (Easier to Ask Forgiveness than Permission) to styl Pythona: próbuj, a w razie błędu obsłuż wyjątek.",
+    "topic": "Kiedy użyć"
   },
   {
     "id": 53,
     "materialId": 5,
-    "front": "Co zwracają operatory porównania w Pythonie?",
-    "back": "Wartość logiczną: `True` lub `False`. Nie modyfikują danych, na których operują.",
-    "topic": "Operatory porównania"
+    "front": "Jaki częsty błąd popełniają początkujący, używając `try` / `except`?",
+    "back": "Otaczają zbyt duży fragment kodu jednym blokiem `try`, przez co trudno zlokalizować źródło błędu. Lepsze jest zawężenie `try` do dokładnie tej linii, która może zawieść.",
+    "topic": "Gotcha / Pitfall"
   },
   {
     "id": 54,
     "materialId": 5,
-    "front": "Czym różni się wykonanie sekwencyjne (sequential execution) od warunkowego (conditional execution)?",
-    "back": "W wykonaniu sekwencyjnym Python wykonuje instrukcje po kolei, jedną po drugiej. W wykonaniu warunkowym Python na podstawie warunku decyduje, które instrukcje wykonać, a które pominąć.",
-    "topic": "Typy wykonania kodu"
+    "front": "Jak w `except` sprawdzić tylko konkretny typ wyjątku, np. `ValueError`?",
+    "back": "Użyj `except ValueError:`. Dzięki temu inne typy wyjątków nie będą złapane przez ten `except` i unikniesz ukrywania nieoczekiwanych błędów.",
+    "topic": "Obsługa wyjątków"
   },
   {
     "id": 55,
     "materialId": 5,
-    "front": "Czy można zapisać krótką instrukcję warunkową w jednej linii w Pythonie?",
-    "back": "Tak. Jeśli blok warunkowy ma tylko jedną linię, można ją umieścić w tej samej linii co `if`, np.: `if x < 6: print('less than 6')`",
-    "topic": "Składnia instrukcji warunkowych"
+    "front": "Co oznacza akronim EAFP i jak odnosi się do `try`/`except`?",
+    "back": "EAFP = \"Easier to Ask Forgiveness than Permission\". W Pythonie preferuje się próbę wykonania operacji i przechwycenie wyjątków (`try`/`except`) zamiast uprzedniego sprawdzania wielu warunków.",
+    "topic": "Koncepcja"
   },
   {
     "id": 56,
-    "materialId": 6,
-    "front": "Czym jest słowo kluczowe elif w Pythonie i z jakich słów się wywodzi?",
-    "back": "elif to połączenie słów else i if. Służy do tworzenia wielowarunkowych instrukcji warunkowych (multi-way if).",
-    "topic": "Instrukcje warunkowe w Pythonie"
+    "materialId": 5,
+    "front": "Co zwróci `int('007')` i czy warto łapać wyjątek dla takiego przypadku?",
+    "back": "`int('007')` zwróci `7`. Nie trzeba łapać wyjątku dla tego przypadku, bo to poprawny ciąg znaków; `try`/`except` przyda się gdy dane mogą być nie-numeryczne, np. `int('abc')`.",
+    "topic": "Przykład"
   },
   {
     "id": 57,
-    "materialId": 6,
-    "front": "Ile gałęzi kodu zostanie wykonanych w konstrukcji if-elif-elif-else?",
-    "back": "Dokładnie jedna. Gdy pierwszy warunek okaże się prawdziwy, jego blok kodu zostaje wykonany, a reszta konstrukcji jest pomijana.",
-    "topic": "Instrukcje warunkowe w Pythonie"
+    "materialId": 5,
+    "front": "Jakie jest ryzyko użycia pustego `except:` (bez typu wyjątku)?",
+    "back": "Pusty `except:` złapie każdy wyjątek, w tym `KeyboardInterrupt` i błędy programistyczne, co utrudnia debugowanie. Lepsze jest `except ValueError:` lub `except Exception as e:` i logowanie wyjątku.",
+    "topic": "Gotcha / Pitfall"
   },
   {
     "id": 58,
-    "materialId": 6,
-    "front": "W jakiej kolejności sprawdzane są warunki w konstrukcji if-elif-else?",
-    "back": "Warunki są sprawdzane sekwencyjnie (po kolei), od góry do dołu — nie równolegle. Pierwszy warunek, który okaże się prawdziwy, kończy sprawdzanie.",
-    "topic": "Instrukcje warunkowe w Pythonie"
+    "materialId": 5,
+    "front": "Co zrobić po złapaniu wyjątku, żeby użytkownik wiedział co się stało?",
+    "back": "W bloku `except` wypisz przyjazny komunikat (np. `print(\"Błąd: niepoprawna liczba\")`) lub zwróć wartość domyślną. Możesz też zalogować szczegóły używając `except Exception as e:` i `print(e)`.",
+    "topic": "Dobre praktyki"
   },
   {
     "id": 59,
-    "materialId": 6,
-    "front": "Co się stanie, jeśli w konstrukcji if-elif (bez else) żaden warunek nie jest spełniony?",
-    "back": "Żaden blok kodu nie zostanie wykonany. Program przejdzie do pierwszej instrukcji po całej konstrukcji warunkowej.",
-    "topic": "Instrukcje warunkowe w Pythonie"
+    "materialId": 5,
+    "front": "Kiedy nie powinieneś używać `try` / `except`?",
+    "back": "Nie używaj go do kontrolowania normalnego przepływu programu tam, gdzie prosty `if` wystarczy. Nie otaczaj całego programu wyjątkiem tylko po to, żeby ukryć błędy.",
+    "topic": "Kiedy nie używać"
   },
   {
     "id": 60,
-    "materialId": 6,
-    "front": "Jaka jest rola bloku else w konstrukcji if-elif-else?",
-    "back": "else działa jako \"catch-all\" — przechwytuje wszystkie przypadki, które nie zostały obsłużone przez wcześniejsze warunki if i elif. Gwarantuje, że przynajmniej jeden blok kodu zostanie wykonany.",
-    "topic": "Instrukcje warunkowe w Pythonie"
+    "materialId": 5,
+    "front": "Jak poprawnie zapisać blok `try` / `except` z dodatkowymi instrukcjami po obsłudze?",
+    "back": "Przykład: ```python\ntry:\n    value = int(user_input)\nexcept ValueError:\n    value = -1\nprint(value)\n``` Tutaj `print(value)` wykona się zawsze po bloku `try`/`except`.",
+    "topic": "Składnia"
   },
   {
     "id": 61,
     "materialId": 6,
-    "front": "Czy blok else jest wymagany w konstrukcji if-elif?",
-    "back": "Nie, else jest opcjonalny. Bez niego możliwe jest, że żaden blok kodu nie zostanie wykonany, jeśli żaden warunek nie jest spełniony.",
-    "topic": "Instrukcje warunkowe w Pythonie"
+    "front": "Co to jest funkcja w Pythonie?",
+    "back": "Funkcja to nazwana, wielolinijkowa jednostka kodu przechowywana w pamięci, którą można wywołać wielokrotnie. Definiuje się ją przez `def name(...):` i wywołuje przez `name()`.",
+    "topic": "Funkcje"
   },
   {
     "id": 62,
     "materialId": 6,
-    "front": "Ile bloków elif można użyć w jednej konstrukcji warunkowej?",
-    "back": "Dowolnie wiele. Można łączyć wiele bloków elif jeden po drugim, a Python sprawdzi je po kolei.",
-    "topic": "Instrukcje warunkowe w Pythonie"
+    "front": "Jak definiujemy prostą funkcję bez argumentów?",
+    "back": "Używamy składni `def` i bloku wcięcia, np. `def hello():\\n    print('Cześć')`. Sama definicja nie wykonuje kodu — trzeba wywołać `hello()`.",
+    "topic": "Definicja i wywołanie (`def`, nazwa() )"
   },
   {
     "id": 63,
     "materialId": 6,
-    "front": "Dlaczego kolejność warunków w if-elif ma znaczenie? Podaj przykład.",
-    "back": "Jeśli wcześniejszy warunek jest szerszy i obejmuje przypadki późniejszego, to późniejszy nigdy się nie wykona. Np. if x < 20, elif x < 10 — warunek x < 10 nigdy nie zadziała, bo każda wartość < 10 jest też < 20, więc pierwszy warunek przechwyci ją wcześniej.",
-    "topic": "Instrukcje warunkowe w Pythonie"
+    "front": "Jaka jest różnica między `def f():` a `f()`?",
+    "back": "`def f():` tworzy (definiuje) funkcję i zapisuje ją pod nazwą `f`. `f()` wywołuje już zdefiniowaną funkcję i uruchamia jej kod.",
+    "topic": "Definicja i wywołanie (`def`, nazwa() )"
   },
   {
     "id": 64,
     "materialId": 6,
-    "front": "Co oznacza zasada \"jedno wejście, jedno wyjście\" w kontekście bloków warunkowych?",
-    "back": "Blok warunkowy (if-elif-else) ma jeden punkt wejścia (początek if) i jeden punkt wyjścia (pierwsza linia po całym bloku). Niezależnie od tego, która gałąź się wykona, program kontynuuje w tym samym miejscu po bloku.",
-    "topic": "Instrukcje warunkowe w Pythonie"
+    "front": "Co robi `return` w funkcji?",
+    "back": "`return` przerywa wykonanie funkcji i wysyła wartość do miejsca jej wywołania. Jeśli brak `return`, funkcja zwraca `None`.",
+    "topic": "Argumenty i `return`"
   },
   {
     "id": 65,
     "materialId": 6,
-    "front": "Jak Python rozpoznaje, które linie kodu należą do danego bloku warunkowego?",
-    "back": "Przez wcięcia (indentację). Linie z tym samym poziomem wcięcia po if/elif/else należą do danego bloku. Pierwsza linia z mniejszym wcięciem (de-indentacja) oznacza koniec bloku.",
-    "topic": "Instrukcje warunkowe w Pythonie"
+    "front": "Co się stanie, gdy wywołasz `int('xyz')`?",
+    "back": "Funkcja `int()` spróbuje skonwertować string na liczbę całkowitą. Dla `int('xyz')` powstanie `ValueError` (traceback), bo `'xyz'` nie jest poprawną reprezentacją liczby.",
+    "topic": "Konwersje typów (`int`, `float`, `str`)"
   },
   {
     "id": 66,
     "materialId": 6,
-    "front": "Dla kodu: if x < 2: ... elif x >= 2: ... else: ... — która gałąź nigdy się nie wykona i dlaczego?",
-    "back": "Blok else nigdy się nie wykona, ponieważ warunki x < 2 i x >= 2 pokrywają wszystkie możliwe wartości x. Jeden z dwóch pierwszych warunków zawsze będzie prawdziwy.",
-    "topic": "Instrukcje warunkowe w Pythonie"
+    "front": "Dlaczego warto tworzyć funkcje zamiast kopiować kod?",
+    "back": "Funkcje wspierają zasadę DRY (Don't Repeat Yourself): ułatwiają utrzymanie, testowanie i ponowne użycie kodu. Zmiana logiki wymaga poprawki tylko w jednym miejscu.",
+    "topic": "DRY — nie powtarzaj się"
   },
   {
     "id": 67,
     "materialId": 6,
-    "front": "Co się stanie, gdy w bloku if-elif dwa warunki są jednocześnie prawdziwe dla danej wartości?",
-    "back": "Wykona się tylko blok przy pierwszym prawdziwym warunku (sprawdzanym od góry). Pozostałe warunki nie będą nawet sprawdzane — Python opuści cały blok po wykonaniu pierwszej pasującej gałęzi.",
-    "topic": "Instrukcje warunkowe w Pythonie"
+    "front": "Co zwróci funkcja, jeśli nie zawiera `return`?",
+    "back": "Jeśli funkcja nie zawiera `return`, to po jej wykonaniu zwróci `None`.",
+    "topic": "Argumenty i `return`"
   },
   {
     "id": 68,
-    "materialId": 7,
-    "front": "Do czego służy struktura try/except w Pythonie?",
-    "back": "Służy do przechwytywania błędów (traceback), które mogłyby spowodować awarię programu. Pozwala wykonać alternatywny kod zamiast przerywać działanie programu.",
-    "topic": "Obsługa błędów - try/except"
+    "materialId": 6,
+    "front": "Jaka jest różnica między `print()` a `return`?",
+    "back": "`print()` wypisuje tekst na wyjście (konsolę) i zwraca `None`. `return` przekazuje wartość do wywołującego — można ją dalej użyć w wyrażeniu lub przypisać do zmiennej.",
+    "topic": "Argumenty i `return`"
   },
   {
     "id": 69,
-    "materialId": 7,
-    "front": "Co się dzieje, gdy kod wewnątrz bloku try wykona się poprawnie (bez błędu)?",
-    "back": "Blok except jest całkowicie pomijany — kod w except nie zostaje wykonany. try/except nie ma żadnego wpływu, gdy wszystko działa poprawnie.",
-    "topic": "Obsługa błędów - try/except"
+    "materialId": 6,
+    "front": "Co oznacza, że funkcja jest „wartością” i jak można to wykorzystać?",
+    "back": "Funkcję można przypisać do zmiennej, przekazać jako argument lub zwrócić z innej funkcji. Np. `f = print` pozwala wywołać `f('Hello')`.",
+    "topic": "Funkcje"
   },
   {
     "id": 70,
-    "materialId": 7,
-    "front": "Co się dzieje, gdy w bloku try wystąpi błąd (traceback)?",
-    "back": "Python przerywa wykonywanie kodu w bloku try, przeskakuje do bloku except, wykonuje kod w except, a następnie kontynuuje program poniżej całego bloku try/except.",
-    "topic": "Obsługa błędów - try/except"
+    "materialId": 6,
+    "front": "Jaki częsty błąd popełniają początkujący związany z nazwami funkcji?",
+    "back": "Nadają nazwę, która zacienia wbudowaną funkcję lub typ, np. `list = ...` lub `int = 5`, co powoduje błędy przy późniejszym wywołaniu wbudowanych funkcji.",
+    "topic": "Błędy i traceback"
   },
   {
     "id": 71,
-    "materialId": 7,
-    "front": "Dlaczego NIE należy umieszczać całego programu w jednym bloku try/except?",
-    "back": "Ponieważ gdy wystąpi błąd w dowolnej linii bloku try, reszta kodu w tym bloku nie zostanie wykonana — program przeskoczy od razu do except. Tracimy informację o tym, co dokładnie poszło nie tak.",
-    "topic": "Obsługa błędów - try/except"
+    "materialId": 6,
+    "front": "Kiedy lepiej użyć funkcji zamiast prostego fragmentu kodu?",
+    "back": "Gdy ten fragment jest używany w wielu miejscach, gdy ma logiczną samodzielność lub gdy chcemy go przetestować oddzielnie. Funkcja poprawia czytelność i ułatwia debugowanie.",
+    "topic": "DRY — nie powtarzaj się"
   },
   {
     "id": 72,
-    "materialId": 7,
-    "front": "Ile linii kodu powinno się idealnie umieszczać w bloku try?",
-    "back": "Jak najmniej — najlepiej tylko tę jedną linię, która jest \"niebezpieczna\" i może wywołać błąd. Bezpieczne operacje (np. print) powinny być poza blokiem try.",
-    "topic": "Obsługa błędów - try/except"
+    "materialId": 6,
+    "front": "Jak przekazać argument do funkcji i użyć go w środku?",
+    "back": "W definicji umieszczamy nazwę parametru w nawiasach, np. `def greet(name):\\n    return 'Cześć ' + name`. Wywołamy `greet('Ania')` aby otrzymać powitanie.",
+    "topic": "Argumenty i `return`"
   },
   {
     "id": 73,
     "materialId": 7,
-    "front": "Czy po wystąpieniu błędu w bloku try Python wraca do pozostałych linii w tym bloku?",
-    "back": "Nie. Po błędzie Python przechodzi do bloku except i nigdy nie wraca do niewykonanych linii w bloku try. Z bloku except jest tylko jedno wyjście — w dół, do kodu po całym bloku.",
-    "topic": "Obsługa błędów - try/except"
+    "front": "Co robi metoda `split()` bez argumentów?",
+    "back": "Metoda `split()` bez argumentów dzieli łańcuch na listę wyrazów według białych znaków (spaces, taby, nowe linie) i kompresuje dowolną liczbę kolejnych białych znaków do jednego separatora. Przykład: `\" a  b\\tc\".split()` daje `['a','b','c']`.",
+    "topic": "split()"
   },
   {
     "id": 74,
     "materialId": 7,
-    "front": "Jaka jest składnia bloku try/except w Pythonie?",
-    "back": "try:\n    niebezpieczny_kod\nexcept:\n    kod_awaryjny\n\nOba słowa kluczowe kończą się dwukropkiem, a ich bloki są wcięte (indentowane).",
-    "topic": "Obsługa błędów - try/except"
+    "front": "Jaka jest różnica między `s.split()` a `s.split(' ')`?",
+    "back": "`s.split()` dzieli według dowolnych białych znaków i pomija puste elementy (kompresuje), natomiast `s.split(' ')` dzieli dokładnie na znaki spacji i zachowuje puste elementy jeśli występują podwójne spacje. Przykład: `\"x  y\".split()` → `['x','y']`, ale `\"x  y\".split(' ')` → `['x','','y']`.",
+    "topic": "split()"
   },
   {
     "id": 75,
     "materialId": 7,
-    "front": "Dlaczego konwersja int() na danych od użytkownika jest uważana za \"niebezpieczną\" operację?",
-    "back": "Ponieważ użytkownik może wpisać tekst, który nie jest liczbą (np. \"hello\" zamiast \"42\"), co spowoduje traceback — błąd ValueError przy próbie konwersji.",
-    "topic": "Obsługa błędów - try/except"
+    "front": "Co zwróci `''.split()` i `''.split(',')`? Jaka jest różnica?",
+    "back": "`''.split()` zwróci pustą listę `[]` (brak wyrazów). `''.split(',')` zwróci listę z jednym pustym stringiem `['']` — przy jawnie zadanym separatorze pusty ciąg jest traktowany jak jeden element.",
+    "topic": "gotcha"
   },
   {
     "id": 76,
     "materialId": 7,
-    "front": "Co to jest traceback w Pythonie?",
-    "back": "To komunikat o błędzie, który pojawia się gdy Python napotka problem i nie może kontynuować. Wskazuje numer linii, w której wystąpił błąd, i przerywa działanie programu.",
-    "topic": "Obsługa błędów - traceback"
+    "front": "Co to jest 'podwójne split' i kiedy warto go użyć?",
+    "back": "Podwójne split to najpierw `split()` aby uzyskać fragmenty, a potem `split()` drugi raz na jednym fragmencie, np. najpierw `parts = line.split()` żeby wydobyć e-mail, potem `user,domain = parts[1].split('@',1)` żeby rozdzielić użytkownika i domenę. Przydatne przy parsowaniu zagnieżdżonych pól.",
+    "topic": "podwójne split"
   },
   {
     "id": 77,
     "materialId": 7,
-    "front": "Dlaczego profesjonalne programy nie powinny pokazywać użytkownikom traceback?",
-    "back": "Traceback oznacza, że programista nie przewidział i nie obsłużył wszystkich możliwych błędów. To oznaka niskiej jakości kodu — zamiast tego program powinien wyświetlić czytelny komunikat o błędzie.",
-    "topic": "Obsługa błędów - dobre praktyki"
+    "front": "Jaki błąd może wystąpić jeśli po `split()` od razu robisz `parts[2]`?",
+    "back": "Może wystąpić `IndexError` jeśli lista ma mniej elementów niż oczekujesz. Zanim użyjesz indeksu sprawdź długość: `if len(parts) >= 3:` lub użyj obsługi wyjątków.",
+    "topic": "gotcha"
   },
   {
     "id": 78,
     "materialId": 7,
-    "front": "Czym blok except przypomina instrukcję else w if/else?",
-    "back": "Podobnie jak else wykonuje się gdy warunek if jest fałszywy, except wykonuje się gdy kod w try zawiedzie. To alternatywna ścieżka: jeśli się uda — wykonaj try, jeśli nie — wykonaj except.",
-    "topic": "Obsługa błędów - try/except"
+    "front": "Kiedy lepiej użyć `split()` zamiast `find()` i `slice`?",
+    "back": "Gdy chcesz szybko rozbić łańcuch na pola/wyrazy i nie interesuje Cię pozycja znaków. `split()` jest prostsze i mniej podatne na błędy niż wielokrotne `find()` i ręczne wycinanie za pomocą slice.",
+    "topic": "when to use"
   },
   {
     "id": 79,
     "materialId": 7,
-    "front": "Jakie rodzaje struktur warunkowych omówiono w rozdziale?",
-    "back": "1) Decyzje jednokierunkowe (if)\n2) Decyzje dwukierunkowe (if/else)\n3) Decyzje zagnieżdżone (if wewnątrz if)\n4) Wielokierunkowe (elif)\n5) Obsługa błędów (try/except)",
-    "topic": "Struktury warunkowe - podsumowanie"
+    "front": "Co zwróci `s.split(';')` dla `s = 'a;;b'` i dlaczego to może zaskakiwać początkujących?",
+    "back": "Zwróci `['a','','b']` ponieważ separator `';'` jest użyty dosłownie i podwójne średniki wydzielają pusty element. To różni się od `split()` bez argumentu, które kompresuje białe znaki.",
+    "topic": "gotcha"
   },
   {
     "id": 80,
     "materialId": 7,
-    "front": "Czy operatory porównania (np. x < 5) zmieniają wartość zmiennej?",
-    "back": "Nie. Operatory porównania tylko sprawdzają warunek i zwracają True lub False — nie modyfikują wartości zmiennych.",
-    "topic": "Operatory porównania"
+    "front": "Jak użyć `split()` żeby podzielić tylko raz (maksymalnie jedno rozcięcie)?",
+    "back": "Użyj argumentu `maxsplit`, np. `s.split('@', 1)` rozdzieli tylko raz na pierwszym `@` i zwróci listę z maksymalnie dwoma elementami.",
+    "topic": "split()"
   },
   {
     "id": 81,
-    "materialId": 8,
-    "front": "Jaki jest czwarty wzorzec programowania (obok sekwencji, warunku i iteracji)?",
-    "back": "Store and reuse (przechowuj i używaj ponownie) — czyli definiowanie funkcji, by nie powtarzać tego samego kodu w wielu miejscach.",
-    "topic": "Wzorce programowania"
+    "materialId": 7,
+    "front": "Co to znaczy, że lista jest 'sekwencyjna' i jak się do niej odwołujemy?",
+    "back": "Lista jest uporządkowaną kolekcją elementów dostępną po indeksie. Odwołujemy się za pomocą operatora indeksu w nawiasach kwadratowych: `items[0]` dla pierwszego elementu, `items[-1]` dla ostatniego.",
+    "topic": "listy"
   },
   {
     "id": 82,
-    "materialId": 8,
-    "front": "Co oznacza zasada DRY w programowaniu?",
-    "back": "Don't Repeat Yourself — nie powtarzaj się. Zamiast kopiować ten sam kod w wielu miejscach, wydziel go do funkcji i wywołuj ją wielokrotnie.",
-    "topic": "Zasady programowania"
+    "materialId": 7,
+    "front": "Jaki jest typ wyniku `s.split()` i jakie operacje można na nim wykonać?",
+    "back": "Wynikiem jest lista (`list`). Można ją iterować pętlą `for`, pobierać elementy indeksami, używać `len()`, sortować (`sorted()`), modyfikować (append, pop) itd.",
+    "topic": "listy"
   },
   {
     "id": 83,
-    "materialId": 8,
-    "front": "Jakiego słowa kluczowego używamy w Pythonie do definiowania funkcji?",
-    "back": "def — po nim podajemy nazwę funkcji, nawiasy z opcjonalnymi parametrami i dwukropek, a ciało funkcji jest wcięte.",
-    "topic": "Definiowanie funkcji"
+    "materialId": 7,
+    "front": "Początkujący: dlaczego niebezpieczne jest używanie `line.split(' ')[1]` bez sprawdzenia?",
+    "back": "Bo jeśli `line` ma wiele spacji po separatorze, `split(' ')` utworzy puste elementy i `[1]` może być pustym stringiem zamiast oczekiwanego pola. Lepiej `parts = line.split()` lub sprawdzić `len(parts)`.",
+    "topic": "gotcha"
   },
   {
     "id": 84,
-    "materialId": 8,
-    "front": "Czy kod wewnątrz bloku def wykonuje się w momencie definicji funkcji?",
-    "back": "Nie. Python jedynie zapamiętuje kod funkcji. Wykonanie następuje dopiero przy wywołaniu (call/invoke) funkcji.",
-    "topic": "Definiowanie funkcji"
+    "materialId": 7,
+    "front": "Jak wydobyć domenę z e-maila `user@sub.example.com`, żeby dostać `sub.example.com`? Użyj `split()`.",
+    "back": "Możesz użyć `domain = email.split('@', 1)[1]`. Ustawienie `maxsplit=1` zabezpiecza przed wieloma `@` w stringu i zwraca część po pierwszym `@`.",
+    "topic": "podwójne split"
   },
   {
     "id": 85,
     "materialId": 8,
-    "front": "W jaki sposób można porównać funkcję do zmiennej?",
-    "back": "Funkcja jest jak zmienna, ale zamiast przechowywać wartość (np. liczbę), przechowuje kod, który można wielokrotnie wykonać.",
-    "topic": "Definiowanie funkcji"
+    "front": "Co to jest lista w Pythonie?",
+    "back": "Lista to kolekcja uporządkowanych elementów zapisana w nawiasach kwadratowych, np. `['a', 'b', 'c']`. Elementy mogą mieć różne typy i lista jest mutowalna (można zmieniać jej elementy).",
+    "topic": "listy"
   },
   {
     "id": 86,
     "materialId": 8,
-    "front": "Jak wygląda składnia wywołania funkcji w Pythonie?",
-    "back": "nazwa_funkcji() — nazwa funkcji, a po niej nawiasy z opcjonalnymi argumentami, np. print(\"Hello\") lub thing().",
-    "topic": "Wywoływanie funkcji"
+    "front": "Jak utworzyć literę listy zawierającą trzy liczby?",
+    "back": "Użyj nawiasów kwadratowych z przecinkami, np. `numbers = [3, 14, 7]`.",
+    "topic": "listy"
   },
   {
     "id": 87,
     "materialId": 8,
-    "front": "Co się dzieje po zakończeniu wykonywania funkcji w Pythonie?",
-    "back": "Python pamięta miejsce, z którego funkcja została wywołana, i wraca dokładnie tam, kontynuując wykonanie reszty programu.",
-    "topic": "Wywoływanie funkcji"
+    "front": "Jaka jest różnica między listą a napisem (stringiem)?",
+    "back": "Napis to sekwencja znaków i jest niemutowalny (np. `s[0] = 'x'` spowoduje błąd), natomiast lista jest mutowalna i możesz zmienić element przez przypisanie: `lst[1] = 10`.",
+    "topic": "mutowalność"
   },
   {
     "id": 88,
     "materialId": 8,
-    "front": "Co robi wbudowana funkcja max() gdy przekażemy jej string?",
-    "back": "Przegląda wszystkie znaki w stringu i zwraca największy (wg wartości ASCII/Unicode). Np. max(\"Hello world\") zwraca \"w\", bo małe litery mają wyższe wartości niż wielkie.",
-    "topic": "Funkcje wbudowane"
+    "front": "Co robi `len()` gdy dostaniesz listę?",
+    "back": "`len(lista)` zwraca liczbę elementów w liście, np. `len([1,2,3])` zwróci `3`.",
+    "topic": "len"
   },
   {
     "id": 89,
     "materialId": 8,
-    "front": "Co zwraca funkcja min() dla stringa \"Hello world\"?",
-    "back": "Zwraca spację (\" \"), ponieważ spacja ma najniższą wartość ASCII spośród wszystkich znaków w tym stringu.",
-    "topic": "Funkcje wbudowane"
+    "front": "Co zwraca `range(n)` w Pythonie 3 i jak go użyć w pętli?",
+    "back": "`range(n)` zwraca iterowalny obiekt reprezentujący liczby od `0` do `n-1`. Można go użyć w pętli: `for i in range(3): print(i)` (wyświetli 0,1,2).",
+    "topic": "range"
   },
   {
     "id": 90,
     "materialId": 8,
-    "front": "Czym jest argument funkcji?",
-    "back": "To wartość przekazywana do funkcji w nawiasach podczas jej wywołania, np. w max(\"Hello world\") argumentem jest string \"Hello world\".",
-    "topic": "Argumenty i parametry"
+    "front": "Jak działa indeksowanie list i co oznacza indeks `-1`?",
+    "back": "Indeksowanie zaczyna się od `0`, więc `lst[0]` to pierwszy element. Indeks `-1` odnosi się do ostatniego elementu listy, np. `lst[-1]` to ostatni element.",
+    "topic": "indeksowanie"
   },
   {
     "id": 91,
     "materialId": 8,
-    "front": "Co oznacza return w kontekście funkcji?",
-    "back": "Return to mechanizm, dzięki któremu funkcja zwraca wynik do miejsca wywołania. Zwrócona wartość zastępuje wywołanie funkcji w wyrażeniu.",
-    "topic": "Zwracanie wartości"
+    "front": "Co to jest `item assignment` w kontekście list?",
+    "back": "To przypisanie nowej wartości do konkretnego elementu listy, np. `lst[2] = 'x'` zmienia trzeci element listy. Działa dla list, nie dla stringów.",
+    "topic": "mutowalność"
   },
   {
     "id": 92,
     "materialId": 8,
-    "front": "Co robi funkcja float() i podaj przykład jej użycia w wyrażeniu?",
-    "back": "Konwertuje wartość na liczbę zmiennoprzecinkową. Np. float(99)/100 → najpierw float(99) zwraca 99.0, potem 99.0/100 daje 0.99.",
-    "topic": "Konwersje typów"
+    "front": "Co się stanie gdy spróbujesz zrobić `s[0] = 'b'` gdy `s = 'Apple'`?",
+    "back": "Pojawi się błąd typu `TypeError`, ponieważ napisy są niemutowalne i nie można przypisać pojedynczego znaku przez indeks, np. `TypeError: 'str' object does not support item assignment`.",
+    "topic": "gotchas"
   },
   {
     "id": 93,
     "materialId": 8,
-    "front": "Dlaczego nie można wykonać operacji \"123\" + 1 w Pythonie?",
-    "back": "Ponieważ \"123\" to string, a 1 to int — Python nie pozwala na konkatenację stringa z liczbą. Trzeba najpierw skonwertować: int(\"123\") + 1 daje 124.",
-    "topic": "Konwersje typów"
+    "front": "Kiedy lepiej użyć `for element in lst:` zamiast `for i in range(len(lst)):`?",
+    "back": "Użyj `for element in lst:` gdy potrzebujesz tylko wartości elementów. Użyj `for i in range(len(lst)):` gdy potrzebujesz indeksu (pozycję) wraz z wartością.",
+    "topic": "when to use"
   },
   {
     "id": 94,
     "materialId": 8,
-    "front": "Co się stanie, gdy przekażemy do int() wartość, której nie da się skonwertować, np. int(\"hello bob\")?",
-    "back": "Funkcja zgłosi błąd (traceback/ValueError), ponieważ string \"hello bob\" nie jest poprawną reprezentacją liczby całkowitej.",
-    "topic": "Obsługa błędów"
+    "front": "Co to są listy zagnieżdżone i jak pobrać element z dwu-wymiarowej listy?",
+    "back": "Listy zagnieżdżone to listy wewnątrz listy, np. `matrix = [[1,2],[3,4]]`. Aby dostać 3 użyj `matrix[1][0]` (druga lista, pierwszy element).",
+    "topic": "listy zagnieżdżone"
   },
   {
     "id": 95,
     "materialId": 8,
-    "front": "Wymień 5 wbudowanych funkcji Pythona omawianych w tym rozdziale.",
-    "back": "print() — wypisywanie, input() — odczyt od użytkownika, type() — sprawdzanie typu, int() i float() — konwersje typów. Dodatkowo: max() i min().",
-    "topic": "Funkcje wbudowane"
+    "front": "Jaki częsty błąd robią początkujący używając pętli `for i in lst:` i próbując uzyskać element przez `lst[i]`?",
+    "back": "Pomyłka polega na tym, że `i` już jest elementem, a nie indeksem. Jeśli `lst` zawiera np. napisy, `lst[i]` może spowodować `TypeError` lub `KeyError`. Zamiast tego użyj `for i, val in enumerate(lst):` by mieć indeks i wartość.",
+    "topic": "gotchas"
   },
   {
     "id": 96,
-    "materialId": 9,
-    "front": "Czym jest technika mnemoniczna w kontekście nazywania zmiennych w Pythonie?",
-    "back": "Technika mnemoniczna polega na wybieraniu nazw zmiennych, które mają sens i opisują, do czego zmienna jest używana (np. 'hours' zamiast 'x' dla godzin pracy). Ułatwia to czytanie i zrozumienie kodu przez ludzi.",
-    "topic": "Nazewnictwo zmiennych"
+    "materialId": 8,
+    "front": "Jaka jest różnica między listą a krotką (tuple)?",
+    "back": "Główna różnica to mutowalność: lista jest mutowalna (`lst[0] = x` działa), krotka jest niemutowalna. Krotki używa się, gdy chcemy stałą sekwencję danych.",
+    "topic": "comparison"
   },
   {
     "id": 97,
-    "materialId": 9,
-    "front": "Czy Python rozumie znaczenie nazw zmiennych (np. 'hours', 'pay')?",
-    "back": "Nie. Python traktuje wszystkie nazwy zmiennych jednakowo — nie analizuje ich znaczenia. Nazwy mnemoniczne służą wyłącznie ludziom, nie mają wpływu na działanie programu.",
-    "topic": "Nazewnictwo zmiennych"
+    "materialId": 11,
+    "front": "Co to jest nazwa zmiennej w Pythonie?",
+    "back": "Nazwa zmiennej to etykieta przypisana pewnemu miejscu w pamięci, która odwołuje się do przechowywanej wartości. Nazwy służą ludziom do czytelności; Python traktuje je jako identyfikatory.",
+    "topic": "Nazwy zmiennych"
   },
   {
     "id": 98,
-    "materialId": 9,
-    "front": "Dlaczego Python nie zgłosi błędu przy zapisie 'pay = hours * hours', mimo że logicznie to nie ma sensu w kontekście obliczania wynagrodzenia?",
-    "back": "Python nie interpretuje znaczenia nazw zmiennych. Wykonuje tylko operacje matematyczne na wartościach. Tylko człowiek czytający kod może zauważyć, że mnożenie godzin przez godziny jest błędem logicznym.",
-    "topic": "Nazewnictwo zmiennych"
+    "materialId": 11,
+    "front": "Co oznacza \"mnemoniczne\" nazewnictwo zmiennych i dlaczego warto go używać?",
+    "back": "Mnemoniczne nazwy to takie, które opisują przechowywaną wartość (np. `price`, `quantity`). Dzięki nim kod jest łatwiejszy do zrozumienia dla ludzi i prostszy do debugowania, chociaż Python nie wymaga takiej nazwy.",
+    "topic": "Mnemoniczne nazewnictwo"
   },
   {
     "id": 99,
-    "materialId": 9,
-    "front": "Jakie są trzy poziomy jakości nazw zmiennych omówione w materiale?",
-    "back": "1. Nieczytelne nazwy (np. losowe ciągi znaków) — złe dla ludzi, OK dla Pythona. 2. Proste nazwy (np. a, b, c) — lepsze, łatwiejsze do śledzenia. 3. Nazwy mnemoniczne (np. hours, rate, pay) — najlepsze dla zrozumienia kodu.",
-    "topic": "Nazewnictwo zmiennych"
+    "materialId": 11,
+    "front": "Jaka jest różnica między `=` a `==` w Pythonie?",
+    "back": "`=` to operator przypisania (np. `x = 3` zapisuje 3 w `x`). `==` to operator porównania sprawdzający równość wartości (np. `x == 3` zwraca `True` lub `False`).",
+    "topic": "Przypisanie vs równość"
   },
   {
     "id": 100,
-    "materialId": 9,
-    "front": "Co jest jedynym wymaganiem Pythona wobec nazw zmiennych w programie?",
-    "back": "Python wymaga jedynie, aby nazwy zmiennych były spójne (konsystentne) w obrębie programu — ta sama nazwa musi odnosić się do tej samej zmiennej.",
-    "topic": "Nazewnictwo zmiennych"
+    "materialId": 11,
+    "front": "Co się stanie, gdy użyjesz tej samej nazwy zmiennej po obu stronach: `x = x + 1`?",
+    "back": "Python najpierw obliczy wyrażenie po prawej stronie (odczyta starą wartość `x`), a potem zapisze wynik do `x`. To pozwala na inkrementację, np. zwiększenie o 1.",
+    "topic": "Inkrementacja i `x = x + 1`"
   },
   {
     "id": 101,
-    "materialId": 9,
-    "front": "Czym różni się operator przypisania (=) w Pythonie od znaku równości w matematyce?",
-    "back": "W matematyce '=' oznacza równość (obie strony są sobie równe). W Pythonie '=' to instrukcja przypisania — oblicza wyrażenie po prawej stronie i zapisuje wynik do zmiennej po lewej stronie (działa jak strzałka w prawo → lewo).",
-    "topic": "Instrukcje przypisania"
+    "materialId": 11,
+    "front": "Dlaczego `x = x + 1` ma sens w programowaniu, ale nie w matematyce?",
+    "back": "W matematyce `=` oznacza równość, więc `x = x + 1` byłoby sprzeczne. W programowaniu `=` to przypisanie (strzałka): najpierw obliczamy prawą stronę, potem zapisujemy wynik w `x`.",
+    "topic": "Przypisanie vs równość"
   },
   {
     "id": 102,
-    "materialId": 9,
-    "front": "Dlaczego w Pythonie można napisać x = x + 1, choć w matematyce to nie ma sensu?",
-    "back": "Ponieważ Python najpierw oblicza prawą stronę (bierze starą wartość x i dodaje 1), a dopiero potem zapisuje wynik do zmiennej x, nadpisując starą wartość. To nie jest równanie, lecz instrukcja przypisania.",
-    "topic": "Instrukcje przypisania"
+    "materialId": 11,
+    "front": "Co oznacza, że Python jest \"case-sensitive\" w kontekście nazw zmiennych?",
+    "back": "Nazwy rozróżniają wielkość liter: `value` i `Value` to dwie różne zmienne. Trzeba być konsekwentnym w użyciu wielkości liter.",
+    "topic": "Nazwy zmiennych"
   },
   {
     "id": 103,
-    "materialId": 9,
-    "front": "W jakiej kolejności Python przetwarza instrukcję przypisania np. x = x * 0.6 + 936?",
-    "back": "1. Najpierw oblicza całe wyrażenie po prawej stronie (używając starej wartości x). 2. Dopiero gdy wynik jest gotowy, zapisuje go do zmiennej x po lewej stronie, nadpisując starą wartość.",
-    "topic": "Instrukcje przypisania"
+    "materialId": 11,
+    "front": "Jaki częsty błąd popełniają początkujący związany z nazwami zmiennych?",
+    "back": "Częsty błąd to nadanie zmiennej nazwy identycznej z wbudowaną funkcją lub typem (np. `list`, `str`, `sum`), co powoduje shadowing i utrudnia użycie oryginalnej funkcji. Lepiej używać nazw niekolidujących z wbudowanymi.",
+    "topic": "Błędy początkujących (shadowing)"
   },
   {
     "id": 104,
-    "materialId": 9,
-    "front": "Co oznacza termin 'increment' w programowaniu?",
-    "back": "Increment to zwiększenie wartości zmiennej o jeden, najczęściej zapisywane jako x = x + 1. Stara wartość x jest pobierana, zwiększana o 1, a wynik nadpisuje starą wartość.",
-    "topic": "Instrukcje przypisania"
+    "materialId": 11,
+    "front": "Co się stanie, jeśli spróbujesz wykonać `x = x + 1` zanim `x` zostanie zdefiniowane?",
+    "back": "Dostaniesz `NameError`, ponieważ próba odczytu niezainicjalizowanej zmiennej po prawej stronie kończy się błędem. Najpierw trzeba nadać wartość `x`.",
+    "topic": "Błędy początkujących (niezdefiniowane zmienne)"
   },
   {
     "id": 105,
-    "materialId": 9,
-    "front": "Co robi instrukcja przypisania w kontekście pamięci komputera?",
-    "back": "Znajduje (lub tworzy) miejsce w pamięci oznaczone nazwą zmiennej i umieszcza w nim obliczoną wartość. Np. 'hours = 35' oznacza: znajdź miejsce w pamięci, oznacz je etykietą 'hours' i zapisz tam wartość 35.",
-    "topic": "Zmienne i pamięć"
+    "materialId": 11,
+    "front": "Kiedy warto użyć nazwy w liczbie mnogiej (np. `items`) zamiast pojedynczej (np. `item`)?",
+    "back": "Używaj liczby mnogiej dla kolekcji (list, tuple, dict) zawierających wiele elementów, np. `items` dla listy elementów, a liczby pojedynczej dla pojedynczego elementu. To poprawia czytelność kodu dla ludzi.",
+    "topic": "Mnemoniczne nazewnictwo"
   },
   {
     "id": 106,
-    "materialId": 9,
-    "front": "Dlaczego nazwy mnemoniczne mogą być mylące dla początkujących programistów?",
-    "back": "Początkujący mogą błędnie sądzić, że Python rozumie znaczenie nazw zmiennych (np. że 'hours' oznacza godziny, 'pay' oznacza wypłatę). W rzeczywistości Python nie przypisuje żadnego znaczenia nazwom — to tylko etykiety.",
-    "topic": "Nazewnictwo zmiennych"
+    "materialId": 11,
+    "front": "Co to znaczy, że przypisanie wykonuje się jak \"strzałka\" (arrow)?",
+    "back": "To metafora: najpierw obliczana jest wartość po prawej stronie, a potem wynik jest zapisany do zmiennej po lewej stronie. Prawa strona nie widzi jeszcze zmiany wartości po lewej, bo zapis następuje dopiero po obliczeniu.",
+    "topic": "Przypisanie i kolejność"
   },
   {
     "id": 107,
-    "materialId": 9,
-    "front": "Czy Python rozumie liczbę mnogą w nazwach zmiennych (np. 'friend' vs 'friends')?",
-    "back": "Nie. Python nie rozumie pluralizacji. Używanie liczby mnogiej w nazwie zmiennej (np. 'friends' dla kolekcji) to konwencja czytelności dla ludzi, nie informacja dla Pythona.",
-    "topic": "Nazewnictwo zmiennych"
+    "materialId": 11,
+    "front": "Dlaczego nazwy zmiennych mogą być krótkie (np. `a`, `b`) i czym to grozi?",
+    "back": "Python działa poprawnie z krótkimi, mało opisowymi nazwami, ale utrudnia to zrozumienie kodu przez ludzi. Krótkie nazwy mogą prowadzić do pomyłek i błędów przy czytaniu lub utrzymaniu programu.",
+    "topic": "Nazwy zmiennych"
   },
   {
     "id": 108,
-    "materialId": 9,
-    "front": "Co oznacza 'wyrażenie' (expression) po prawej stronie instrukcji przypisania?",
-    "back": "To kombinacja wartości, zmiennych i operatorów, którą Python oblicza do pojedynczej wartości przed zapisaniem wyniku do zmiennej po lewej stronie znaku '='.",
-    "topic": "Wyrażenia"
+    "materialId": 11,
+    "front": "Jak bezpiecznie zwiększyć zmienną `count` o 1 w Pythonie? Podaj dwa poprawne sposoby.",
+    "back": "Można użyć `count = count + 1` lub składni skróconej `count += 1`. Oba sposoby najpierw obliczają nową wartość, potem zapisują ją do `count`.",
+    "topic": "Inkrementacja i `x = x + 1`"
   },
   {
     "id": 109,
-    "materialId": 10,
-    "front": "Jakie są trzy podstawowe etapy działania programu komputerowego?",
-    "back": "Input (wejście), processing (przetwarzanie) i output (wyjście). Program pobiera dane, przetwarza je, a następnie zwraca wynik.",
-    "topic": "Podstawy programowania"
+    "materialId": 13,
+    "front": "Co to jest komentarz w Pythonie i jak zaczyna się linia komentarza?",
+    "back": "Komentarz to linia ignorowana przez Pythona, służąca dla czytelnika kodu. Zaczyna się od znaku `#`, np. `# To jest komentarz`.",
+    "topic": "Komentarze"
   },
   {
     "id": 110,
-    "materialId": 10,
-    "front": "Co robi funkcja input() w Pythonie?",
-    "back": "Wyświetla prompt (zachętę) użytkownikowi, zatrzymuje program i czeka na wpisanie danych przez użytkownika. Po naciśnięciu Enter zwraca wpisany tekst jako string.",
-    "topic": "Funkcje wejścia/wyjścia"
+    "materialId": 13,
+    "front": "Co robi docstring i czym różni się od zwykłego komentarza?",
+    "back": "Docstring to tekst opisowy umieszczony tuż po definicji modułu, funkcji lub klasy w potrójnych cudzysłowach. Jest dostępny w czasie wykonania przez np. `obj.__doc__`. Przykład: ```python\ndef f():\n    \"\"\"Opis funkcji f\"\"\"\n    pass\n```",
+    "topic": "Docstringi i dokumentacja"
   },
   {
     "id": 111,
-    "materialId": 10,
-    "front": "Dlaczego dane zwrócone przez input() trzeba konwertować funkcją int() przed wykonaniem operacji arytmetycznych?",
-    "back": "Ponieważ input() zawsze zwraca dane jako string. Nie można dodać liczby do stringa — trzeba go najpierw przekonwertować na integer za pomocą int().",
-    "topic": "Konwersja typów"
+    "materialId": 13,
+    "front": "Jaka jest różnica między komentowaniem kodu a użyciem czytelnych nazw zmiennych?",
+    "back": "Czytelne nazwy (np. `total_price`) redukują potrzebę oczywistych komentarzy. Komentarze powinny wyjaśniać \"dlaczego\" lub nietrywialny \"jak\", a nie powtarzać to, co już jasno mówi `variable = value`.",
+    "topic": "Nazwy zmiennych"
   },
   {
     "id": 112,
-    "materialId": 10,
-    "front": "Co się stanie, jeśli do funkcji int() przekażemy string, którego nie da się zamienić na liczbę (np. 'Bob')?",
-    "back": "Python zgłosi błąd traceback — int() nie potrafi przekonwertować tekstu niebędącego liczbą na integer.",
-    "topic": "Obsługa błędów"
+    "materialId": 13,
+    "front": "Kiedy lepiej użyć docstringa zamiast komentarza?",
+    "back": "Docstring gdy opisujesz interfejs funkcji/modułu (co robi, jakie ma argumenty, co zwraca). Komentarze używaj wewnątrz implementacji, by wyjaśnić złożone fragmenty.",
+    "topic": "Docstringi i dokumentacja"
   },
   {
     "id": 113,
-    "materialId": 10,
-    "front": "Czym są mnemonic variable names (mnemoniczne nazwy zmiennych)?",
-    "back": "To nazwy zmiennych dobrane tak, by sugerowały ich przeznaczenie, np. 'usf' dla United States floor, 'inp' dla input. Ułatwiają czytanie kodu, choć mogą być początkowo mylące.",
-    "topic": "Zmienne"
+    "materialId": 13,
+    "front": "Jak tymczasowo wyłączyć linię kodu podczas debugowania?",
+    "back": "Możesz dodać `#` na początku linii, np. `# print(x)` — linia zostanie zignorowana bez usuwania jej.",
+    "topic": "Debugowanie"
   },
   {
     "id": 114,
-    "materialId": 10,
-    "front": "Co robi przecinek w funkcji print() w Pythonie?",
-    "back": "Oddziela argumenty i wstawia między nimi spację w wydruku, np. print('US floor', usf) wypisze tekst i wartość zmiennej rozdzielone spacją.",
-    "topic": "Funkcje wejścia/wyjścia"
+    "materialId": 13,
+    "front": "Jaki jest częsty błąd początkujących dotyczący komentarzy?",
+    "back": "Pisanie komentarzy, które jedynie powtarzają kod, np. `# ustaw x na 1` nad `x = 1`. To zbędne; lepsze są komentarze wyjaśniające intencję.",
+    "topic": "Gotchas"
   },
   {
     "id": 115,
-    "materialId": 10,
-    "front": "Czym są komentarze w Pythonie i jaki mają wpływ na wykonanie programu?",
-    "back": "Komentarze to tekst oznaczony znakiem #, przeznaczony dla programistów czytających kod. Python je całkowicie ignoruje — nie mają wpływu na działanie programu.",
-    "topic": "Składnia Pythona"
+    "materialId": 13,
+    "front": "Co powinien wyjaśniać dobry komentarz?",
+    "back": "Dobry komentarz wyjaśnia \"dlaczego\" rozwiązanie jest takie, a nie inne, lub opisuje nietrywialne kroki algorytmu — nie powtarza oczywistej implementacji.",
+    "topic": "Komentarze"
   },
   {
     "id": 116,
-    "materialId": 10,
-    "front": "Czym różnią się stałe (constants) od zmiennych (variables)?",
-    "back": "Stałe to wartości, które nie zmieniają się w trakcie działania programu (np. liczba 1, string 'hello'). Zmienne to nazwane miejsca w pamięci, których wartość może się zmieniać.",
-    "topic": "Typy danych"
+    "materialId": 13,
+    "front": "Jak pisać krótkie notatki o autorze lub wersji w module?",
+    "back": "Dodaj je w docstringu na początku pliku, np.: ```python\n\"\"\"Moduł do analizy tekstu\nAutor: Jan Kowalski\nWersja: 0.1\n\"\"\"\n```",
+    "topic": "Docstringi i dokumentacja"
   },
   {
     "id": 117,
-    "materialId": 10,
-    "front": "Czym są reserved words (słowa zastrzeżone) w Pythonie?",
-    "back": "To słowa o specjalnym znaczeniu w języku Python (np. if, else, int), których nie można używać jako nazw zmiennych.",
-    "topic": "Składnia Pythona"
+    "materialId": 13,
+    "front": "Co to jest histogram słów w analizie tekstu?",
+    "back": "Histogram słów to mapa częstotliwości: słowo → liczba wystąpień. Można go budować z `collections.Counter` lub słownika (`dict`).",
+    "topic": "Analiza tekstu"
   },
   {
     "id": 118,
-    "materialId": 10,
-    "front": "Co oznacza operator precedence (priorytet operatorów)?",
-    "back": "Określa kolejność wykonywania operacji w wyrażeniu, np. mnożenie wykonuje się przed dodawaniem, chyba że użyjemy nawiasów.",
-    "topic": "Operatory"
+    "materialId": 13,
+    "front": "Jaka jest zaleta dobrych nazw zmiennych?",
+    "back": "Ułatwiają czytanie kodu i zmniejszają potrzebę dodatkowych komentarzy. Nazwy takie jak `count_by_word` są bardziej informacyjne niż `c`.",
+    "topic": "Nazwy zmiennych"
   },
   {
     "id": 119,
-    "materialId": 10,
-    "front": "Czym jest type conversion (konwersja typów) w Pythonie?",
-    "back": "To zamiana wartości z jednego typu na inny, np. int('42') zamienia string na integer, a str(42) zamienia integer na string.",
-    "topic": "Konwersja typów"
+    "materialId": 13,
+    "front": "Czy komentarze powinny opisywać każdy krok algorytmu?",
+    "back": "Nie: komentuj tylko nietrywialne fragmenty lub decyzje projektowe. Dla prostych operacji lepsze są czytelne nazwy funkcji i zmiennych.",
+    "topic": "Komentarze"
   },
   {
     "id": 120,
-    "materialId": 10,
-    "front": "Jak wygląda kompletny program konwertujący numer piętra z europejskiego na amerykański?",
-    "back": "inp = input('Europe floor? ')\nusf = int(inp) + 1\nprint('US floor', usf)\n\nProgram pobiera piętro europejskie, dodaje 1 (bo w USA parter = 1) i wypisuje wynik.",
-    "topic": "Przykładowy program"
+    "materialId": 13,
+    "front": "Jaki jest prosty sposób odróżnienia przydatnego komentarza od złego?",
+    "back": "Przydatny komentarz dodaje informację, której nie widać w kodzie (intencja, ograniczenia, efekt uboczny). Zły komentarz jedynie powtarza kod: `# dodaj 1` nad `i += 1`.",
+    "topic": "Gotchas"
   },
   {
     "id": 121,
-    "materialId": 10,
-    "front": "Jaka jest różnica w numeracji pięter między USA a Europą, którą rozwiązuje przykładowy program?",
-    "back": "W Europie parter to piętro 0, a w USA parter to piętro 1. Dlatego numer piętra amerykańskiego = numer europejski + 1.",
-    "topic": "Kontekst problemu"
+    "materialId": 15,
+    "front": "Co robi `open('plik.txt')` w Pythonie?",
+    "back": "Zwraca uchwyt do pliku (obiekt plikowy), który pozwala czytać lub pisać dane. Nie ładuje całej zawartości pliku do pamięci — daje dostęp do strumienia danych.",
+    "topic": "Otwieranie plików"
   },
   {
     "id": 122,
-    "materialId": 11,
-    "front": "Czym są komentarze w Pythonie i jak się je oznacza?",
-    "back": "Komentarze to tekst ignorowany przez Pythona, dodawany do kodu dla ludzi. Oznacza się je znakiem # (pound sign) na początku linii lub po kodzie.",
-    "topic": "Komentarze w Pythonie"
+    "materialId": 15,
+    "front": "Jakie są różnice między `f.read()` a iteracją `for line in f:`?",
+    "back": "Wywołanie `f.read()` zwraca cały plik jako jeden łańcuch znaków (jedna duża 'bańka' z zakończeniami linii). Iteracja `for line in f:` zwraca kolejne wiersze (każda iteracja to jedna linia). Iteracja jest zwykle pamięciooszczędniejsza.",
+    "topic": "Metoda `read()`"
   },
   {
     "id": 123,
-    "materialId": 11,
-    "front": "Wymień trzy główne zastosowania komentarzy w kodzie.",
-    "back": "1. Wyjaśnianie, co robi dany fragment kodu\n2. Dokumentowanie, kto napisał kod\n3. Tymczasowe wyłączanie linii kodu (np. podczas debugowania)",
-    "topic": "Komentarze w Pythonie"
+    "materialId": 15,
+    "front": "Dlaczego używamy `line.rstrip()` przed `print(line)`?",
+    "back": "Ponieważ `line` już zawiera znak nowej linii z pliku, a `print()` dodaje kolejny. `line.rstrip()` usuwa końcowe białe znaki (w tym `\\n`), zapobiegając drukowaniu podwójnej pustej linii.",
+    "topic": "Metody stringów"
   },
   {
     "id": 124,
-    "materialId": 11,
-    "front": "Jak można wykorzystać komentarze do debugowania?",
-    "back": "Można dodać znak # przed linią kodu, aby ją tymczasowo wyłączyć zamiast usuwać. Gdy kod jest ponownie potrzebny, wystarczy usunąć # aby go włączyć z powrotem.",
-    "topic": "Debugowanie z komentarzami"
+    "materialId": 15,
+    "front": "Jaka jest typowa struktura licznika linii w pliku?",
+    "back": "Ustawiamy licznik: `count = 0`, potem: ```python\nfor line in f:\n    count += 1\n``` Pozwala policzyć liczbę linii bez wcześniejszej znajomości rozmiaru.",
+    "topic": "Zliczanie linii"
   },
   {
     "id": 125,
-    "materialId": 11,
-    "front": "Czym są zmienne mnemoniczne (mnemonic variables)?",
-    "back": "To zmienne o nazwach przyjaznych dla człowieka, które pomagają zrozumieć, co dana zmienna przechowuje. Dobre nazwy zmiennych ułatwiają czytanie i utrzymanie kodu.",
-    "topic": "Zmienne mnemoniczne"
+    "materialId": 15,
+    "front": "Co robi `if not line.startswith('From'):\n    continue` w pętli?",
+    "back": "Pomija wszystkie linie, które nie zaczynają się od `'From'`. `continue` przeskakuje do następnej iteracji, więc poniższy kod wykona się tylko dla linii zaczynających się od `'From'`.",
+    "topic": "Sterowanie pętlą"
   },
   {
     "id": 126,
-    "materialId": 11,
-    "front": "Dlaczego nie należy pisać komentarzy typu: x = 1 # przypisz 1 do x?",
-    "back": "Ponieważ takie komentarze są zbędne — każdy programista rozumie, co robi x = 1. Komentarze powinny wyjaśniać nieoczywistą logikę, a nie opisywać oczywiste operacje.",
-    "topic": "Dobre praktyki komentowania"
+    "materialId": 15,
+    "front": "Jak sprawdzić, czy ciąg znaków `'uct'` występuje gdziekolwiek w linii?",
+    "back": "Użyj operatora `in`: `if 'uct' in line:` — warunek będzie prawdziwy gdy `'uct'` pojawi się jako podciąg gdziekolwiek w `line`.",
+    "topic": "Wyszukiwanie w liniach"
   },
   {
     "id": 127,
-    "materialId": 11,
-    "front": "Kto jest głównym beneficjentem dobrze napisanych komentarzy i nazw zmiennych?",
-    "back": "Przede wszystkim sam autor kodu — jego przyszła wersja. Po dniu, tygodniu czy miesiącu nie będzie pamiętał, co dokładnie robił dany fragment kodu.",
-    "topic": "Dokumentacja kodu"
+    "materialId": 15,
+    "front": "Jaki jest najczęstszy powód, że `open()` wyrzuca wyjątek i jak to obsłużyć?",
+    "back": "`open()` może wyrzucić `FileNotFoundError` lub `IOError` gdy plik nie istnieje lub brak dostępu. Obsługuje się to blokiem `try/except`: ```python\ntry:\n    f = open(fname)\nexcept:\n    print('Nie mogę otworzyć pliku', fname)\n    quit()\n```",
+    "topic": "Obsługa błędów"
   },
   {
     "id": 128,
-    "materialId": 11,
-    "front": "Jaką analogię do tekstu pisanego autor stosuje do opisywania struktury kodu?",
-    "back": "Porównuje bloki kodu do akapitów (paragraphs) — każdy blok realizuje jedno logiczne zadanie i może być poprzedzony komentarzem opisującym jego cel.",
-    "topic": "Struktura kodu"
+    "materialId": 15,
+    "front": "Kiedy warto użyć `f.read()` mimo że zajmuje więcej pamięci?",
+    "back": "Gdy potrzebujesz operować na całym tekście jako jednym łańcuchu (np. do wyszukiwania złożonych wzorców, pobrania pierwszych N znaków lub użycia `split()` bez liniowania). Dla małych plików to wygodne.",
+    "topic": "Metoda `read()`"
   },
   {
     "id": 129,
-    "materialId": 11,
-    "front": "W jaki sposób komentarze mogą pomóc w weryfikacji poprawności kodu?",
-    "back": "Czytelnik może przeczytać komentarz opisujący zamierzony cel fragmentu kodu, a następnie sprawdzić, czy kod faktycznie realizuje to, co komentarz deklaruje.",
-    "topic": "Debugowanie z komentarzami"
+    "materialId": 15,
+    "front": "Jaki częsty błąd popełniają początkujący gdy drukują linie bez `rstrip()`?",
+    "back": "Użytkownicy dostają dodatkowe puste linie w wyjściu, ponieważ każda linia ma już `\\n`, a `print()` dodaje kolejny `\\n`, co daje podwójne odstępy.",
+    "topic": "Gotcha"
   },
   {
     "id": 130,
-    "materialId": 11,
-    "front": "Jaka jest ogólna zasada dotycząca tego, kiedy pisać komentarze?",
-    "back": "Komentarze należy pisać wtedy, gdy są naprawdę użyteczne — gdy fragment kodu jest złożony lub nieoczywisty. Nie należy pisać ich na siłę do każdej linii kodu.",
-    "topic": "Dobre praktyki komentowania"
+    "materialId": 15,
+    "front": "Jaka jest różnica między `strip()` a `rstrip()`?",
+    "back": "`strip()` usuwa białe znaki z obu końców łańcucha, `rstrip()` usuwa tylko z prawej strony (koniec łańcucha). Do usuwania końca linii zwykle używamy `rstrip()`.",
+    "topic": "Metody stringów"
   },
   {
     "id": 131,
-    "materialId": 11,
-    "front": "Jakie dwa elementy dokumentacji kodu zostały omówione jako \"przyjazne dla ludzi\"?",
-    "back": "1. Zmienne mnemoniczne (mnemonic variables) — czytelne nazwy zmiennych\n2. Komentarze (#) — tekstowe opisy wyjaśniające działanie kodu",
-    "topic": "Dokumentacja kodu"
+    "materialId": 15,
+    "front": "Kiedy lepiej iterować plik liniami zamiast używać `read()`?",
+    "back": "Gdy plik jest duży lub nie chcesz ładować całej zawartości do pamięci. Iteracja liniami zużywa mniej pamięci i pozwala przetwarzać dane stopniowo.",
+    "topic": "Kiedy używać"
   },
   {
     "id": 132,
-    "materialId": 11,
-    "front": "W przykładzie z liczeniem częstotliwości słów (word frequency), jakie trzy sekcje kodu wyodrębniono komentarzami?",
-    "back": "1. Pobranie nazwy pliku i otwarcie go\n2. Zliczenie częstotliwości słów (stworzenie histogramu)\n3. Wypisanie wyników",
-    "topic": "Struktura kodu"
+    "materialId": 15,
+    "front": "Co robi `quit()` w skrypcie po wykryciu błędu otwarcia pliku?",
+    "back": "`quit()` kończy działanie programu (nie wraca). Zapobiega dalszemu wykonywaniu kodu, który zakłada poprawnie otwarty plik.",
+    "topic": "Obsługa błędów"
   },
   {
     "id": 133,
-    "materialId": 12,
-    "front": "Jakie dwa słowa kluczowe w Pythonie służą do tworzenia pętli?",
-    "back": "while (pętla nieokreślona) oraz for (pętla określona).",
-    "topic": "Pętle w Pythonie"
+    "materialId": 18,
+    "front": "Co to jest słownik w Pythonie (`dict`)?",
+    "back": "Słownik to zbiór par klucz-wartość, gdzie każdy klucz wskazuje na odpowiadającą mu wartość. Klucze muszą być hashowalne i unikatowe, a słowniki są mutowalne: `d = {'a': 1, 'b': 2}`.",
+    "topic": "słowniki"
   },
   {
     "id": 134,
-    "materialId": 12,
-    "front": "Czym różni się pętla while od instrukcji if?",
-    "back": "Obie sprawdzają warunek i wykonują blok kodu gdy jest prawdziwy, ale while po wykonaniu bloku wraca na górę i ponownie sprawdza warunek — powtarza to dopóki warunek jest True.",
-    "topic": "Pętla while"
+    "materialId": 18,
+    "front": "Jak utworzyć pusty słownik?",
+    "back": "Możesz użyć literału lub konstruktora: `d = {}` lub `d = dict()`.",
+    "topic": "tworzenie"
   },
   {
     "id": 135,
-    "materialId": 12,
-    "front": "Co to jest pętla nieskończona (infinite loop) i co ją powoduje?",
-    "back": "To pętla, która nigdy się nie kończy, ponieważ warunek pętli nigdy nie staje się False. Najczęściej wynika z braku modyfikacji zmiennej iteracyjnej wewnątrz pętli.",
-    "topic": "Pętla nieskończona"
+    "materialId": 18,
+    "front": "Jak dodać lub zmienić element w słowniku?",
+    "back": "Przypisz wartość do klucza: `d['key'] = 42` — jeśli klucz nie istniał, zostanie dodany; jeśli istniał, wartość zostanie nadpisana.",
+    "topic": "modyfikacja"
   },
   {
     "id": 136,
-    "materialId": 12,
-    "front": "Co to jest zmienna iteracyjna (iteration variable)?",
-    "back": "Zmienna, która zmienia swoją wartość w każdej iteracji pętli i kontroluje, jak długo pętla działa oraz kiedy się zatrzymuje.",
-    "topic": "Zmienna iteracyjna"
+    "materialId": 18,
+    "front": "Jak bezpiecznie pobrać wartość, gdy klucz może nie istnieć?",
+    "back": "Użyj `get` z wartością domyślną: `value = d.get('key', default)` — nie powoduje `KeyError` gdy klucza brak.",
+    "topic": "bezpieczeństwo"
   },
   {
     "id": 137,
-    "materialId": 12,
-    "front": "Co to jest pętla zero-przebiegowa (zero-trip loop)?",
-    "back": "Pętla while, której warunek jest fałszywy już na początku — blok kodu wewnątrz pętli nie wykonuje się ani razu. Działa wtedy jak instrukcja if z fałszywym warunkiem.",
-    "topic": "Pętla while"
+    "materialId": 18,
+    "front": "Jaka jest różnica między `d['k']` a `d.get('k')`?",
+    "back": "`d['k']` podniesie `KeyError` jeśli klucz nie istnieje. `d.get('k')` zwróci `None` lub podany domyślny argument: `d.get('k', 0)`.",
+    "topic": "gotcha"
   },
   {
     "id": 138,
-    "materialId": 12,
-    "front": "Co robi instrukcja break w pętli?",
-    "back": "Natychmiast przerywa działanie pętli i przenosi wykonanie do pierwszej linii kodu za pętlą. Całkowicie opuszcza pętlę.",
-    "topic": "Instrukcja break"
+    "materialId": 18,
+    "front": "Jakie typy danych mogą być kluczami w słowniku?",
+    "back": "Klucz musi być hashowalny (niemutowalny) — np. `str`, `int`, `float`, `tuple` (z niemutowalnymi elementami). Nie możesz użyć `list` lub `dict` jako klucza.",
+    "topic": "klucze"
   },
   {
     "id": 139,
-    "materialId": 12,
-    "front": "Co robi instrukcja continue w pętli?",
-    "back": "Przerywa bieżącą iterację pętli i wraca na początek pętli, aby rozpocząć kolejną iterację. Nie opuszcza pętli — pomija jedynie resztę kodu w danej iteracji.",
-    "topic": "Instrukcja continue"
+    "materialId": 18,
+    "front": "Co się stanie, gdy przypiszesz wartość do istniejącego klucza?",
+    "back": "Stara wartość zostanie nadpisana tym nowym przypisaniem: `d['a'] = 1` potem `d['a'] = 2` → `d['a']` równa się `2`.",
+    "topic": "modyfikacja"
   },
   {
     "id": 140,
-    "materialId": 12,
-    "front": "Jaka jest kluczowa różnica między break a continue?",
-    "back": "break opuszcza pętlę całkowicie (przeskakuje za pętlę), a continue pomija resztę bieżącej iteracji i wraca na początek pętli do następnej iteracji.",
-    "topic": "break vs continue"
+    "materialId": 18,
+    "front": "Czy słowniki są uporządkowane?",
+    "back": "Od Pythona 3.7 w górę słowniki zachowują kolejność wstawiania elementów, ale nie są automatycznie sortowane według kluczy czy wartości.",
+    "topic": "porządek"
   },
   {
     "id": 141,
-    "materialId": 12,
-    "front": "Jak bezpiecznie użyć while True do stworzenia pętli, która nie będzie nieskończona?",
-    "back": "Wewnątrz pętli while True umieszcza się instrukcję break wewnątrz warunku if, np.:\nwhile True:\n    line = input('> ')\n    if line == 'done':\n        break\n    print(line)",
-    "topic": "Wzorzec while True z break"
+    "materialId": 18,
+    "front": "Kiedy lepiej użyć słownika zamiast listy?",
+    "back": "Użyj słownika gdy musisz szukać po nazwach/kluczach (np. `person['age']`) lub gdy klucze mają znaczenie semantyczne. Listy lepsze, gdy ważna jest pozycja/porządek i operacje indeksowe.",
+    "topic": "porównanie"
   },
   {
     "id": 142,
-    "materialId": 12,
-    "front": "Dlaczego instrukcję break zazwyczaj umieszcza się wewnątrz instrukcji if?",
-    "back": "Ponieważ break ma sens tylko warunkowo — chcemy opuścić pętlę gdy zajdzie konkretny warunek, a nie bezwarunkowo w każdej iteracji.",
-    "topic": "Instrukcja break"
+    "materialId": 18,
+    "front": "Jaki jest częsty błąd początkujących związany z kluczami?",
+    "back": "Próba użycia mutowalnego typu jako klucza (np. `d[[1,2]] = 3`) — spowoduje `TypeError: unhashable type: 'list'`.",
+    "topic": "gotcha"
   },
   {
     "id": 143,
-    "materialId": 12,
-    "front": "Co się stanie z wartością zmiennej iteracyjnej po zakończeniu pętli while?",
-    "back": "Zmienna iteracyjna zachowuje wartość, jaką miała w momencie zakończenia pętli (wartość resztkowa). Np. jeśli pętla kończy się gdy n == 0, to po wyjściu z pętli n wynosi 0.",
-    "topic": "Zmienna iteracyjna"
+    "materialId": 21,
+    "front": "Co to jest stała w Pythonie? Podaj dwa przykłady.",
+    "back": "Stała to wartość zapisana literalnie w kodzie, która się nie zmienia. Przykłady: liczby (`123`, `3.14`) i stringi (`'hello'`, `\"Ala\"`).",
+    "topic": "Stałe (liczby i stringi)"
   },
   {
     "id": 144,
-    "materialId": 12,
-    "front": "Czym jest pętla nieokreślona (indefinite loop)?",
-    "back": "Pętla (np. while), w której z góry nie wiadomo ile razy się wykona — działa dopóki warunek logiczny nie stanie się False lub nie zostanie użyte break.",
-    "topic": "Rodzaje pętli"
+    "materialId": 21,
+    "front": "Co robi instrukcja przypisania w Pythonie (np. `x = 7`)?",
+    "back": "Prosi Pythona, żeby znalazł wolne miejsce pamięci (lub użył już istniejącego dla `x`) i zapisał tam wartość 7, przypisując jej etykietę `x`. Przypisanie ma kierunek: wartość → zmienna.",
+    "topic": "Przypisanie (directional assignment)"
   },
   {
     "id": 145,
-    "materialId": 12,
-    "front": "Czym jest pętla określona (definite loop)?",
-    "back": "Pętla (np. for), w której z góry wiadomo ile razy się wykona, ponieważ iteruje po znanym zbiorze elementów.",
-    "topic": "Rodzaje pętli"
+    "materialId": 21,
+    "front": "Jaka jest różnica między `x = x + 1` a `x += 1`?",
+    "back": "`x = x + 1` i `x += 1` robią to samo dla typów niezmiennych liczbowych — inkrementują wartość `x` o 1. `x += 1` to skrócona forma i może zachowywać się inaczej przy obiektach mutowalnych (np. listy).",
+    "topic": "Przypisanie (directional assignment)"
   },
   {
     "id": 146,
-    "materialId": 13,
-    "front": "Jak nazywa się operator oznaczany nawiasami kwadratowymi [], który pozwala wyciągnąć pojedynczy znak ze stringa?",
-    "back": "Index operator (operator indeksowania). Wymawia się go jako 'sub', np. fruit[1] to 'fruit sub one'.",
-    "topic": "Stringi - operator indeksowania"
+    "materialId": 21,
+    "front": "Dlaczego nie można użyć słowa kluczowego Pythona jako nazwy zmiennej (np. `class = 5`)?",
+    "back": "Słowa kluczowe mają specjalne znaczenie w języku (np. `class`, `for`, `def`) i parser oczekuje, że będą użyte zgodnie z tym znaczeniem. Użycie ich jako nazwy zmiennej spowoduje błąd składniowy.",
+    "topic": "Słowa zarezerwowane (keywords)"
   },
   {
     "id": 147,
-    "materialId": 13,
-    "front": "Od jakiego numeru zaczyna się indeksowanie znaków w stringu w Pythonie?",
-    "back": "Od zera. Pierwszy znak ma indeks 0, drugi ma indeks 1 itd. Np. w stringu 'banana' znak 'b' ma indeks 0.",
-    "topic": "Stringi - indeksowanie od zera"
+    "materialId": 21,
+    "front": "Jakie znaki i gdzie można używać przy tworzeniu nazwy zmiennej?",
+    "back": "Nazwa zmiennej musi zaczynać się literą lub podkreśleniem, potem można używać liter, cyfr i podkreśleń. Nie można zaczynać od cyfry ani używać spacji czy znaków specjalnych.",
+    "topic": "Nazwy zmiennych i reguły"
   },
   {
     "id": 148,
-    "materialId": 13,
-    "front": "Jaki błąd zwróci Python, gdy spróbujesz odwołać się do indeksu wykraczającego poza długość stringa?",
-    "back": "IndexError: string index out of range",
-    "topic": "Stringi - błędy indeksowania"
+    "materialId": 21,
+    "front": "Co zwróci ten kod i dlaczego? ```python\ncount = 2\ncount = 10\nprint(count)\n```",
+    "back": "Wypisze `10`. Drugie przypisanie nadpisuje wcześniejszą wartość zmiennej `count`, więc końcowa wartość to 10.",
+    "topic": "Przypisanie (directional assignment)"
   },
   {
     "id": 149,
-    "materialId": 13,
-    "front": "Co zwraca funkcja len() dla stringa 'banana'?",
-    "back": "Zwraca 6 (liczbę znaków). Mimo że indeksy idą od 0 do 5, długość stringa to nadal 6.",
-    "topic": "Stringi - funkcja len()"
+    "materialId": 21,
+    "front": "Czy `Spam` i `spam` to ta sama zmienna? Wyjaśnij.",
+    "back": "Nie. Python rozróżnia wielkość liter (case sensitive), więc `Spam` i `spam` to dwie różne nazwy zmiennych.",
+    "topic": "Case sensitivity"
   },
   {
     "id": 150,
-    "materialId": 13,
-    "front": "Jak wygląda pętla for iterująca po znakach stringa w Pythonie?",
-    "back": "for letter in fruit:\n    print(letter)\n\nZmienna iteracyjna (letter) przyjmuje kolejno wartości każdego znaku w stringu.",
-    "topic": "Stringi - pętla for"
+    "materialId": 21,
+    "front": "Jaki częsty błąd popełniają początkujący przy użyciu operatora `=`?",
+    "back": "Mylą operator przypisania `=` z porównaniem; porównanie w Pythonie robi się przez `==`. Użycie `=` w wyrażeniu porównawczym spowoduje błąd składni.",
+    "topic": "Przypisanie (directional assignment)"
   },
   {
     "id": 151,
-    "materialId": 13,
-    "front": "Jakie są zalety użycia pętli for zamiast while do iterowania po stringu?",
-    "back": "Pętla for jest krótsza (2 linie vs 4-5), łatwiejsza do napisania, debugowania i zrozumienia. Nie trzeba ręcznie tworzyć zmiennej indeksowej, sprawdzać warunku ani inkrementować.",
-    "topic": "Stringi - for vs while"
+    "materialId": 21,
+    "front": "Kiedy lepiej użyć podkreślenia na początku nazwy zmiennej (np. `_value`)?",
+    "back": "Pojedyncze podkreślenie na początku (`_value`) sugeruje, że zmienna jest przeznaczona do użytku wewnętrznego (konwencja), ale nie jest obowiązkowe. Unikaj jednak zaczynania od podwójnego podkreślenia (`__`) bez potrzeby.",
+    "topic": "Nazwy zmiennych i reguły"
   },
   {
     "id": 152,
-    "materialId": 13,
-    "front": "Czym jest slicing (wycinanie) w kontekście stringów w Pythonie?",
-    "back": "To wyciąganie fragmentu stringa za pomocą zakresu w nawiasach kwadratowych, np. s[0:4]. Używa składni s[start:end], gdzie start to indeks początkowy, a end to indeks końcowy (nie włączając go).",
-    "topic": "Stringi - slicing"
+    "materialId": 21,
+    "front": "Co robi funkcja `print()` w Pythonie?",
+    "back": "Funkcja `print()` wypisuje podany argument na standardowe wyjście (zwykle konsolę). Przykład: `print('Witaj')` wypisze `Witaj`.",
+    "topic": "Funkcja `print()`"
   },
   {
     "id": 153,
-    "materialId": 13,
-    "front": "Co oznacza zasada 'up to but not including' w slicingu stringów?",
-    "back": "Drugi indeks w zakresie s[start:end] nie jest uwzględniany w wyniku. Np. s[0:4] zwraca znaki o indeksach 0, 1, 2, 3 — ale NIE 4.",
-    "topic": "Stringi - slicing"
+    "materialId": 21,
+    "front": "Co się stanie, jeśli użyjesz zmiennej po prawej stronie przypisania, zanim zostanie zainicjalizowana? (np. `a = b + 1` gdy `b` nie istnieje)",
+    "back": "Python zgłosi błąd `NameError`, ponieważ odwołujesz się do nazwy, która nie ma przypisanej wartości.",
+    "topic": "Przypisanie (directional assignment)"
   },
   {
     "id": 154,
-    "materialId": 13,
-    "front": "Co się stanie, gdy w slicingu podasz indeks końcowy wykraczający poza długość stringa, np. s[6:20]?",
-    "back": "Python NIE zgłosi błędu — po prostu zwróci znaki od indeksu 6 do końca stringa. W slicingu wykroczenie poza zakres jest dozwolone.",
-    "topic": "Stringi - slicing poza zakresem"
+    "materialId": 21,
+    "front": "Jaki jest bezpieczny sposób sprawdzenia, czy string jest poprawną nazwą zmiennej i nie jest słowem kluczowym?",
+    "back": "Użyć `str.isidentifier()` i `keyword.iskeyword()`. Przykład: ```python\nimport keyword\nname.isidentifier() and not keyword.iskeyword(name)\n```",
+    "topic": "Nazwy zmiennych i reguły"
   },
   {
     "id": 155,
-    "materialId": 13,
-    "front": "Co oznaczają pominięte wartości w slicingu: s[:2], s[8:], s[:]?",
-    "back": "s[:2] — od początku do indeksu 2 (nie włączając). s[8:] — od indeksu 8 do końca. s[:] — cały string (kopia).",
-    "topic": "Stringi - skróty slicingu"
+    "materialId": 23,
+    "front": "Co robi operator `+` dla dwóch stringów?",
+    "back": "Operator `+` konkatenatuje (łączy) dwa stringi bez dodawania spacji. Jeśli chcesz spację, dodaj ją jawnie, np. `a + ' ' + b`.",
+    "topic": "Konkatenacja stringów"
   },
   {
     "id": 156,
-    "materialId": 13,
-    "front": "Dlaczego nie można wykonać operacji '100' - 10 w Pythonie?",
-    "back": "Funkcja input() zawsze zwraca string. String '100' nie jest liczbą — trzeba go najpierw skonwertować za pomocą int() lub float(), np. int('100') - 10 = 90.",
-    "topic": "Stringi - konwersja typów"
+    "materialId": 23,
+    "front": "Jakie jest główne zastosowanie operatora `in` dla stringów?",
+    "back": "Operator `in` sprawdza, czy dany podciąg występuje w stringu i zwraca `True` lub `False`, np. `'py' in 'python'` zwraca `True`.",
+    "topic": "Operator `in`"
   },
   {
     "id": 157,
-    "materialId": 13,
-    "front": "Jaki błąd zgłosi Python przy próbie konkatenacji stringa z liczbą całkowitą?",
-    "back": "TypeError: cannot concatenate str and int (nie można połączyć stringa z liczbą całkowitą).",
-    "topic": "Stringi - TypeError"
+    "materialId": 23,
+    "front": "Czym różni się `s.find(sub)` od operatora `in`?",
+    "back": "`s.find(sub)` zwraca indeks pierwszego wystąpienia podciągu lub `-1` jeśli nie znaleziono. Operator `in` zwraca tylko `True/False`.",
+    "topic": "find vs in"
   },
   {
     "id": 158,
-    "materialId": 13,
-    "front": "Jak w Pythonie policzyć liczbę wystąpień litery 'a' w stringu za pomocą pętli for?",
-    "back": "count = 0\nfor letter in word:\n    if letter == 'a':\n        count = count + 1\nprint(count)\n\nWzorzec: inicjalizacja licznika, iteracja, warunek, inkrementacja, wynik na końcu.",
-    "topic": "Stringi - zliczanie znaków"
+    "materialId": 23,
+    "front": "Co zwróci `s.find('x')` gdy `'x'` nie występuje w `s`?",
+    "back": "Zwróci `-1`. To sposób Pythonu na oznaczenie \"nie znaleziono\".",
+    "topic": "Metoda `find()`"
   },
   {
     "id": 159,
-    "materialId": 13,
-    "front": "Czy wyrażenie wewnątrz operatora indeksowania [] może być zmienną lub wyrażeniem matematycznym?",
-    "back": "Tak. Np. fruit[x-1] jest poprawne — Python najpierw obliczy wyrażenie x-1, a następnie użyje wyniku jako indeksu.",
-    "topic": "Stringi - wyrażenia w indeksie"
+    "materialId": 23,
+    "front": "Czy wywołanie `s.lower()` zmienia oryginalny string `s`?",
+    "back": "`s.lower()` zwraca nowy string w małych literach; oryginalny `s` pozostaje niezmieniony (stringi są niemutowalne).",
+    "topic": "Immutable stringów"
   },
   {
     "id": 160,
-    "materialId": 14,
-    "front": "Jak operator + zachowuje się różnie w zależności od typu operandów?",
-    "back": "Dla liczb całkowitych (int) wykonuje dodawanie (np. 1+4=5). Dla stringów wykonuje konkatenację, czyli łączenie tekstów (np. 'hel'+'lo' = 'hello'). Nie dodaje spacji przy konkatenacji.",
-    "topic": "Operator + i typy danych"
+    "materialId": 23,
+    "front": "Kiedy lepiej użyć `strip()` a kiedy `rstrip()` lub `lstrip()`?",
+    "back": "`strip()` usuwa białe znaki z obu końców. `lstrip()` usuwa od lewej, `rstrip()` od prawej. Użyj odpowiedniej metody zależnie od tego, którą stronę chcesz oczyścić.",
+    "topic": "Whitespace i strip"
   },
   {
     "id": 161,
-    "materialId": 14,
-    "front": "Co się stanie, gdy spróbujesz dodać string do int w Pythonie (np. 'hello' + 1)?",
-    "back": "Python zgłosi błąd TypeError — nie potrafi niejawnie przekonwertować int na string. Program zatrzyma się z komunikatem traceback.",
-    "topic": "TypeError i niezgodność typów"
+    "materialId": 23,
+    "front": "Co robi metoda `replace(old, new)` na stringu?",
+    "back": "Zwraca kopię stringu, w której wszystkie wystąpienia `old` zostały zastąpione przez `new`. Oryginał nie ulega zmianie.",
+    "topic": "Metoda `replace()`"
   },
   {
     "id": 162,
-    "materialId": 14,
-    "front": "Co oznacza traceback w Pythonie?",
-    "back": "Traceback to komunikat informujący, że Python napotkał błąd i nie wie, co robić dalej. Podaje: gdzie wystąpił błąd (numer linii), jaki to rodzaj błędu i co go spowodowało. Program zatrzymuje się w miejscu błędu.",
-    "topic": "Obsługa błędów — traceback"
+    "materialId": 23,
+    "front": "Jaki częsty błąd popełniają początkujący z `replace()`?",
+    "back": "Oczekują, że metoda zmodyfikuje string w miejscu. Trzeba przypisać wynik, np. `s = s.replace('a','b')`.",
+    "topic": "GOTCHA `replace()`"
   },
   {
     "id": 163,
-    "materialId": 14,
-    "front": "Do czego służy wbudowana funkcja type() w Pythonie?",
-    "back": "Funkcja type() zwraca typ zmiennej lub stałej — np. type('hello') zwróci <class 'str'>, a type(1) zwróci <class 'int'>. Pomaga sprawdzić, jakiego typu jest dana wartość.",
-    "topic": "Funkcja type()"
+    "materialId": 23,
+    "front": "Jak użyć `find()` razem z slicingiem, by wyciągnąć fragment między dwoma znakami?",
+    "back": "Znajdź indeks początku `i = s.find(start_char)` i indeks końca `j = s.find(end_char, i+1)` a następnie użyj `s[i+1:j]` (pamiętając, że koniec nie jest wliczony).",
+    "topic": "Slicing i find"
   },
   {
     "id": 164,
-    "materialId": 14,
-    "front": "Czym różni się int od float w Pythonie?",
-    "back": "int (integer) to liczba całkowita bez kropki dziesiętnej (np. 42). float to liczba zmiennoprzecinkowa z kropką dziesiętną (np. 42.0). Nawet 98.0 to float — wystarczy obecność kropki.",
-    "topic": "Typy liczbowe: int vs float"
+    "materialId": 23,
+    "front": "Jaka jest różnica między `==` a `is` dla porównywania stringów?",
+    "back": "`==` porównuje wartości (czy stringi mają te same znaki). `is` sprawdza tożsamość obiektów (czy to ten sam obiekt w pamięci) — zwykle nie używamy `is` do porównywania tekstu.",
+    "topic": "Porównania"
   },
   {
     "id": 165,
-    "materialId": 14,
-    "front": "Jakie są różnice w zakresie i precyzji między int a float?",
-    "back": "float ma większy zakres wartości, ale mniejszą precyzję. int jest idealnie dokładny, ale ma ograniczony zakres. Dlatego nie używa się float do operacji na pieniądzach — mogą wystąpić błędy zaokrągleń.",
-    "topic": "Zakres i precyzja typów liczbowych"
+    "materialId": 23,
+    "front": "Dlaczego `'Z' < 'a'` często zwraca `True`?",
+    "back": "Porównanie stringów jest leksykograficzne oparte na kodach znaków (codepoints). W standardowym porządku ASCII/Unicode wielkie litery mają mniejsze wartości niż małe, więc `'Z'` może być mniejsze niż `'a'`.",
+    "topic": "Porównania i kolejność znaków"
   },
   {
     "id": 166,
-    "materialId": 14,
-    "front": "Do czego służą funkcje float() i int() w Pythonie?",
-    "back": "Służą do konwersji typów. float(99) zwraca 99.0 (konwersja int na float). int('123') zwraca liczbę 123 (konwersja string na int). Pozwalają na jawne wymuszenie zmiany typu.",
-    "topic": "Konwersja typów"
+    "materialId": 23,
+    "front": "Kiedy warto najpierw zastosować `lower()` przed porównaniem dwóch stringów?",
+    "back": "Gdy chcesz porównanie ignorujące wielkość liter. Np. `if s1.lower() == s2.lower():` sprawdza równość niezależnie od case.",
+    "topic": "Ignorowanie wielkości liter"
   },
   {
     "id": 167,
-    "materialId": 14,
-    "front": "Jak działa dzielenie liczb całkowitych w Python 3 w porównaniu z Python 2?",
-    "back": "W Python 3 dzielenie zawsze daje wynik float (np. 9/2 = 4.5, 99/100 = 0.99). W Python 2 dzielenie int/int obcinało część dziesiętną (9/2 = 4, 99/100 = 0). To jedna z największych zmian między wersjami.",
-    "topic": "Dzielenie w Python 2 vs Python 3"
+    "materialId": 26,
+    "front": "Co to jest uchwyt pliku (file handle) w Pythonie?",
+    "back": "Uchwyt pliku to obiekt zwrócony przez `open()` który reprezentuje połączenie między programem a plikiem na dysku — nie jest to sama zawartość pliku, lecz «port» umożliwiający czytanie i zapisywanie.",
+    "topic": "file handle (uchwyt pliku)"
   },
   {
     "id": 168,
-    "materialId": 14,
-    "front": "Co się stanie, gdy wywołasz int() na stringu bez cyfr, np. int('xyz')?",
-    "back": "Python zgłosi błąd ValueError z komunikatem 'invalid literal for int() with base 10'. Konwersja string na int działa tylko, gdy string zawiera poprawną reprezentację liczby.",
-    "topic": "Błędy konwersji typów"
+    "materialId": 26,
+    "front": "Co robi `open(filename)` domyślnie?",
+    "back": "Domyślnie `open(filename)` otwiera plik w trybie tylko do odczytu (`'r'`) i zwraca uchwyt pliku. Aby zapisać trzeba użyć `'w'` lub `'a'`.",
+    "topic": "otwieranie plików"
   },
   {
     "id": 169,
-    "materialId": 14,
-    "front": "Do czego służy funkcja input() i jaki typ danych zwraca?",
-    "back": "Funkcja input() wyświetla prompt (tekst zachęty), czeka na wpisanie danych z klawiatury i naciśnięcie Enter, a następnie zwraca wpisany tekst jako string. Zawsze zwraca string — nawet jeśli użytkownik wpisze liczbę.",
-    "topic": "Funkcja input()"
+    "materialId": 26,
+    "front": "Jaka jest różnica między `open('f.txt', 'r')` a `open('f.txt', 'w')`?",
+    "back": "`'r'` otwiera do odczytu i wymaga, aby plik istniał; `'w'` otwiera do zapisu i jeśli plik istnieje - nadpisze go, a jeśli nie istnieje - utworzy nowy.",
+    "topic": "czytanie vs zapis"
   },
   {
     "id": 170,
-    "materialId": 14,
-    "front": "Jak działa funkcja print() z wieloma argumentami oddzielonymi przecinkami?",
-    "back": "Funkcja print() wypisuje wszystkie argumenty, automatycznie dodając spację między nimi. Np. print('welcome,', nam) wypisze 'welcome, Chuck' ze spacją między argumentami.",
-    "topic": "Funkcja print() z wieloma argumentami"
+    "materialId": 26,
+    "front": "Co reprezentuje w pliku znak `\\n`?",
+    "back": "Znak `\\n` to pojedynczy nie drukowalny znak nowej linii. W tekście go wpisujemy jako `\\n`, ale wewnętrznie to jeden znak końca linii.",
+    "topic": "znak nowej linii (`\\n`)"
   },
   {
     "id": 171,
-    "materialId": 14,
-    "front": "Dlaczego dane odczytane z zewnątrz (klawiatura, sieć, baza danych) przychodzą jako stringi?",
-    "back": "Dane z zewnętrznych źródeł są traktowane jako tekst (string). Jeśli potrzebujemy wartości liczbowej, musimy jawnie przekonwertować string na int lub float za pomocą funkcji int() lub float().",
-    "topic": "Dane zewnętrzne i konwersja typów"
+    "materialId": 26,
+    "front": "Jak sprawdzić czy plik nie istnieje bez powodowania wyjątku?",
+    "back": "Użyj bloku `try/except` i przechwyć `FileNotFoundError`, np.: `try:\\n    f = open('x.txt')\\nexcept FileNotFoundError:\\n    print('Brak pliku')`.",
+    "topic": "obsługa błędów przy otwieraniu plików"
   },
   {
     "id": 172,
-    "materialId": 14,
-    "front": "Co oznacza reguła: jeśli jeden z operandów jest float, wynik też będzie float?",
-    "back": "Gdy w operacji arytmetycznej jeden operand to float, Python automatycznie konwertuje wynik na float. Np. float(99) + 100 daje 199.0 (float), a nie 199 (int).",
-    "topic": "Automatyczna konwersja na float"
+    "materialId": 26,
+    "front": "Jaki częsty błąd popełniają początkujący przy czytaniu linii z pliku?",
+    "back": "Często iterują po `f.read()` zamiast po samym uchwycie — `f.read()` zwraca cały tekst jako jedną długą string, a iteracja po nim iteruje po znakach. Zamiast tego użyj `for line in f:`.",
+    "topic": "iteracja po liniach pliku"
   },
   {
     "id": 173,
-    "materialId": 14,
-    "front": "Czy nazwa zmiennej w Pythonie wpływa na jej typ?",
-    "back": "Nie. Python nie przypisuje typu na podstawie nazwy zmiennej. Zmienna o nazwie 'ival' nie jest automatycznie int-em — to programista nadaje nazwy mnemonicznie dla czytelności, ale Python to ignoruje.",
-    "topic": "Nazwy zmiennych a typy"
+    "materialId": 26,
+    "front": "Co się stanie jeśli nie zamkniesz pliku (nie wywołasz `close()`)?",
+    "back": "System ostatecznie zamknie plik przy zakończeniu programu, ale pozostawienie otwartych uchwytów może zużyć zasoby i uniemożliwić np. innym procesom zapis do pliku. Lepsze jest użycie `with open(...) as f:`.",
+    "topic": "file handle (uchwyt pliku)"
   },
   {
     "id": 174,
-    "materialId": 16,
-    "front": "Czym są stałe (constants) w Pythonie? Podaj przykłady.",
-    "back": "Stałe to wartości, które się nie zmieniają. Przykłady: liczby całkowite (123), zmiennoprzecinkowe (98.6) oraz łańcuchy znaków (\"hello world\").",
-    "topic": "Stałe w Pythonie"
+    "materialId": 26,
+    "front": "Kiedy lepiej użyć `with open(filename) as f:` zamiast `f = open(filename)`?",
+    "back": "Użyj `with` gdy chcesz, aby plik został automatycznie zamknięty po bloku - to bezpieczniejsze i chroni przed wyciekami zasobów nawet gdy wystąpi wyjątek.",
+    "topic": "otwieranie plików"
   },
   {
     "id": 175,
-    "materialId": 16,
-    "front": "Czym są słowa zastrzeżone (reserved words) w Pythonie?",
-    "back": "To specjalne słowa, które mają z góry określone znaczenie dla Pythona (np. class, del, else, lambda, break, in, from). Nie wolno ich używać jako nazw zmiennych, funkcji ani klas.",
-    "topic": "Słowa zastrzeżone"
+    "materialId": 26,
+    "front": "Jak odczytać wszystkie linie pliku do listy?",
+    "back": "Użyj `lines = f.readlines()` albo `lines = list(f)`; obie metody zwracają listę łańcuchów, gdzie każdy element to linia z końcowym `\\n` (o ile występuje).",
+    "topic": "czytanie vs zapis"
   },
   {
     "id": 176,
-    "materialId": 16,
-    "front": "Co robi operator przypisania (=) w Pythonie?",
-    "back": "Przypisuje wartość z prawej strony do zmiennej po lewej stronie. Działa jak strzałka w prawo-lewo — nie oznacza równości matematycznej.",
-    "topic": "Operator przypisania"
+    "materialId": 26,
+    "front": "Co robi `print()` z końcem linii domyślnie i jak to zmienić?",
+    "back": "Domyślnie `print()` dodaje znak nowej linii na końcu. Możesz to zmienić przez parametr `end`, np. `print('x', end='')` nie doda `\\n`.",
+    "topic": "znak nowej linii (`\\n`)"
   },
   {
     "id": 177,
-    "materialId": 16,
-    "front": "Co się dzieje, gdy przypiszesz nową wartość do istniejącej zmiennej?",
-    "back": "Nowa wartość nadpisuje (zastępuje) starą wartość w pamięci. Np. po x = 12.2, a potem x = 100, zmienna x przechowuje wartość 100.",
-    "topic": "Nadpisywanie zmiennych"
+    "materialId": 26,
+    "front": "Jak sprawdzić liczbę znaków w stringu zawierającym nową linię, np. `s = 'a\\nb'`?",
+    "back": "Użyj `len(s)`. Dla `s = 'a\\nb'` wynik to `3`, ponieważ `\\n` jest pojedynczym znakiem.",
+    "topic": "znak nowej linii (`\\n`)"
   },
   {
     "id": 178,
-    "materialId": 16,
-    "front": "Jakie są zasady nazewnictwa zmiennych w Pythonie?",
-    "back": "Nazwa musi zaczynać się od litery lub podkreślnika (_). Pozostałe znaki mogą być literami, cyframi lub podkreślnikami. Nie można zaczynać od cyfry ani używać znaków specjalnych (np. #).",
-    "topic": "Nazewnictwo zmiennych"
+    "materialId": 26,
+    "front": "Jaki błąd logiczny może się pojawić przy porównywaniu linii z pliku?",
+    "back": "Linia z pliku zwykle zawiera `\\n` na końcu — jeśli porównujesz ze stringiem bez `\\n` możesz otrzymać False. Rozwiązanie: użyj `line.strip()` lub `line.rstrip('\\n')` przed porównaniem.",
+    "topic": "iteracja po liniach pliku"
   },
   {
     "id": 179,
-    "materialId": 16,
-    "front": "Czy Python rozróżnia wielkość liter w nazwach zmiennych?",
-    "back": "Tak, Python jest case sensitive — spam, Spam i SPAM to trzy różne zmienne. Jednak nie zaleca się polegania na samej różnicy wielkości liter, bo utrudnia to czytanie kodu.",
-    "topic": "Nazewnictwo zmiennych"
+    "materialId": 28,
+    "front": "Co to jest łańcuch znaków (string) w Pythonie?",
+    "back": "Łańcuch (string) to sekwencja znaków zapisana między pojedynczymi lub podwójnymi cudzysłowami, np. `\"Hello\"` lub `'abc'`. Można go indeksować, ciąć (`slicing`) i iterować.",
+    "topic": "Indeksowanie znaków"
   },
   {
     "id": 180,
-    "materialId": 16,
-    "front": "Dlaczego nie zaleca się rozpoczynania nazw zmiennych od podkreślnika (_)?",
-    "back": "Ponieważ Python używa podkreślników do własnych celów wewnętrznych. Choć technicznie jest to dozwolone, lepiej tego unikać.",
-    "topic": "Nazewnictwo zmiennych"
+    "materialId": 28,
+    "front": "Co robi funkcja `len()` gdy podamy jej string?",
+    "back": "Zwraca długość łańcucha jako liczbę całkowitą — ilość znaków. Przykład: `len(\"Python\")` zwróci `6`.",
+    "topic": "Funkcje"
   },
   {
     "id": 181,
-    "materialId": 16,
-    "front": "Co oznacza instrukcja x = x + 2 w Pythonie?",
-    "back": "Python pobiera aktualną wartość x, dodaje do niej 2, a następnie wynik zapisuje z powrotem do zmiennej x. To nie jest równanie matematyczne, lecz instrukcja przypisania.",
-    "topic": "Wyrażenia i przypisania"
+    "materialId": 28,
+    "front": "Jak działa indeksowanie znaków w stringu — od którego indeksu zaczynamy?",
+    "back": "Indeksowanie zaczyna się od `0`. Pierwszy znak ma indeks `0`, drugi `1` itd. Na przykład `s = \"code\"`, `s[0]` to `\"c\"`, `s[3]` to `\"e\"`.",
+    "topic": "Indeksowanie znaków"
   },
   {
     "id": 182,
-    "materialId": 16,
-    "front": "Do czego służy funkcja print() w Pythonie?",
-    "back": "Służy do wyświetlania (wypisywania) danych na wyjściu. Składnia: print(wartość). Np. print(x) wypisze aktualną wartość zmiennej x.",
-    "topic": "Funkcja print()"
+    "materialId": 28,
+    "front": "Co zwróci `s[2:5]` i co oznacza że koniec jest \"do, ale nie włącznie\"?",
+    "back": "Zwróci fragment `s` od indeksu `2` do `4` włącznie; indeks `5` nie jest wliczony. Przykład: `s = \"computer\"`, `s[2:5]` zwróci `\"mpu\"`.",
+    "topic": "Slicing"
   },
   {
     "id": 183,
-    "materialId": 16,
-    "front": "Jaka jest składnia wywołania funkcji w Pythonie?",
-    "back": "Nazwa funkcji, po której następują nawiasy okrągłe z argumentami w środku: nazwa_funkcji(argumenty). Np. print(4).",
-    "topic": "Wywoływanie funkcji"
+    "materialId": 28,
+    "front": "Co zrobi `s[-1]`?",
+    "back": "`s[-1]` zwraca ostatni znak łańcucha. Przykład: `s = \"data\"`, `s[-1]` to `\"a\"`. Negatywne indeksy liczą od końca.",
+    "topic": "Indeksowanie znaków"
   },
   {
     "id": 184,
-    "materialId": 16,
-    "front": "Jakie są trzy podstawowe elementy składowe (atomy) Pythona omówione w materiale?",
-    "back": "1. Stałe (constants) — liczby, łańcuchy znaków. 2. Słowa zastrzeżone (reserved words). 3. Zmienne (variables).",
-    "topic": "Podstawy składni Pythona"
+    "materialId": 28,
+    "front": "Co się stanie, gdy spróbujesz odczytać `s[100]` dla krótkiego stringa?",
+    "back": "Powstanie wyjątek `IndexError`, ponieważ indeks poza zakresem nie jest dozwolony dla pojedynczego indeksu: np. `s = \"hi\"; s[100]` -> `IndexError`.",
+    "topic": "Błędy"
   },
   {
     "id": 185,
-    "materialId": 16,
-    "front": "Czym jest zmienna (variable) w Pythonie?",
-    "back": "To nazwane miejsce w pamięci, w którym Python przechowuje wartość. Programista wybiera nazwę (etykietę), a Python alokuje pamięć i zapamiętuje przypisaną wartość.",
-    "topic": "Zmienne"
+    "materialId": 28,
+    "front": "Jaka jest różnica między `s[i]` a `s[i:j]`?",
+    "back": "`s[i]` zwraca pojedynczy znak (string długości 1), a `s[i:j]` zwraca nowy string (może być pusty) od `i` do `j-1`. `s[i]` może rzucić `IndexError`, `s[i:j]` nie jeśli `j` wykracza poza koniec.",
+    "topic": "Slicing vs indeksowanie"
   },
   {
     "id": 186,
-    "materialId": 16,
-    "front": "Czym jest camelCase i kiedy się go stosuje?",
-    "back": "CamelCase to styl nazewnictwa, w którym kolejne słowa zaczynają się wielką literą (np. myVariable). Niektóre aplikacje go używają, ale w Pythonie preferuje się małe litery z podkreślnikami (snake_case).",
-    "topic": "Konwencje nazewnictwa"
+    "materialId": 28,
+    "front": "Kiedy lepiej użyć pętli `for` zamiast `while` do przejścia przez znaki stringa?",
+    "back": "Użyj `for` gdy chcesz po prostu przejść po każdym znaku bez potrzeby kontrolowania indeksu. `for ch in s:` jest krótsze i mniej podatne na błędy niż ręczne zarządzanie indeksem z `while`.",
+    "topic": "Pętle"
   },
   {
     "id": 187,
-    "materialId": 17,
-    "front": "Dlaczego inicjalizacja zmiennej 'smallest' wartością -1 nie działa przy szukaniu najmniejszej wartości na liście liczb dodatnich?",
-    "back": "-1 jest mniejsze od każdej liczby dodatniej, więc warunek 'value < smallest' nigdy nie będzie spełniony — żadna liczba dodatnia nie jest mniejsza od -1. Zmienna zawsze pozostanie równa -1.",
-    "topic": "Szukanie wartości najmniejszej"
+    "materialId": 28,
+    "front": "Dlaczego `input()` zwraca string i co zrobić, by otrzymać liczbę całkowitą?",
+    "back": "`input()` zawsze zwraca tekst. Aby zamienić go na liczbę całkowitą użyj `int()`, np. `age = int(input(\"Wiek: \"))`. Jeśli tekst nie jest poprawną cyfrą, `int()` rzuci `ValueError`.",
+    "topic": "Konwersje typu"
   },
   {
     "id": 188,
-    "materialId": 17,
-    "front": "Co to jest None w Pythonie i do jakiego typu należy?",
-    "back": "None to specjalna wartość typu NoneType oznaczająca brak wartości (absence of a value). Typ NoneType ma tylko jedną możliwą wartość — None.",
-    "topic": "Typ None w Pythonie"
+    "materialId": 28,
+    "front": "Jaki błąd popełniają początkujący próbujący dodać liczbę do tekstu?",
+    "back": "Próbują robić `\"wiek: \" + 5` co daje `TypeError`. Należy konwertować typy: `\"wiek: \" + str(5)` lub użyć f-stringa `f\"wiek: {5}\"`.",
+    "topic": "Błędy"
   },
   {
     "id": 189,
-    "materialId": 17,
-    "front": "Jak poprawnie zainicjalizować zmienną przy szukaniu najmniejszej/największej wartości na liście, aby uniknąć problemów z wartością początkową?",
-    "back": "Ustawić zmienną na None, a następnie w pętli sprawdzać 'if smallest is None' — jeśli tak, przypisać pierwszy napotkany element. Dzięki temu algorytm działa niezależnie od zakresu liczb.",
-    "topic": "Szukanie wartości najmniejszej"
+    "materialId": 28,
+    "front": "Jak sprawdzić czy znak lub podciąg występuje w stringu?",
+    "back": "Użyj operatora `in`: `if \"@\" in email:` - zwróci `True` jeśli występuje. Alternatywnie `s.find(sub)` zwraca indeks lub `-1` gdy nie ma.",
+    "topic": "Operator `in`"
   },
   {
     "id": 190,
-    "materialId": 17,
-    "front": "Czym różni się operator 'is' od operatora '==' w Pythonie?",
-    "back": "'is' sprawdza tożsamość obiektu (czy to dokładnie ten sam obiekt) — jest silniejszą formą porównania. '==' sprawdza równość matematyczną z możliwą konwersją typów. Operatora 'is' używa się głównie z None, True i False.",
-    "topic": "Operatory porównania w Pythonie"
+    "materialId": 28,
+    "front": "Jak policzyć ile razy występuje znak w stringu bez pętli?",
+    "back": "Użyj metody `count`: `s.count('a')` zwróci liczbę wystąpień znaku `'a'` w `s`. Działa szybciej i jest czytelniejsze niż ręczne zliczanie.",
+    "topic": "Liczenie wystąpień"
   },
   {
     "id": 191,
-    "materialId": 17,
-    "front": "Co to jest 'flag value' (wartość flagowa) w kontekście pętli?",
-    "back": "To specjalna wartość (np. None) przypisana zmiennej przed pętlą, która sygnalizuje, że jeszcze nie przetworzono żadnych danych. Służy jako znacznik stanu początkowego, nie jako właściwa wartość obliczeniowa.",
-    "topic": "Wzorce pętli"
+    "materialId": 28,
+    "front": "Co zwróci `s[:]` i do czego to się przydaje?",
+    "back": "`s[:]` zwraca kopię całego stringa (ten sam ciąg znaków). Przydatne gdy chcesz operować na kopii albo użyć slicing z domyślnymi granicami.",
+    "topic": "Slicing"
   },
   {
     "id": 192,
-    "materialId": 17,
-    "front": "Jakie dwa elementy kodu trzeba zmienić, przechodząc z algorytmu szukania największej wartości na szukanie najmniejszej?",
-    "back": "1. Zmienić operator porównania z '>' na '<'. 2. Zmienić wartość inicjalizacyjną — zamiast -1 (lub innej stałej) użyć None z odpowiednim kodem obsługi pierwszej iteracji.",
-    "topic": "Szukanie wartości najmniejszej"
+    "materialId": 29,
+    "front": "Co robi operator `x % y` w Pythonie?",
+    "back": "Operator `x % y` zwraca resztę z dzielenia `x` przez `y`. Dla liczb całkowitych to klasyczna reszta; dla liczb zmiennoprzecinkowych zwraca wartość reszty jako float, np. `7.5 % 2` daje `1.5`.",
+    "topic": "Operator modulo (%)"
   },
   {
     "id": 193,
-    "materialId": 17,
-    "front": "Dlaczego ustawienie dużej liczby (np. 1000) jako wartości początkowej 'smallest' nie jest dobrym rozwiązaniem?",
-    "back": "Nigdy nie wiadomo, czy w danych nie pojawią się jeszcze większe liczby. Każdy wybrany próg może okazać się niewystarczający — nie ma uniwersalnej 'wystarczająco dużej' wartości początkowej.",
-    "topic": "Szukanie wartości najmniejszej"
+    "materialId": 29,
+    "front": "Jaka jest różnica między `**` a `^` w Pythonie?",
+    "back": "W Pythonie `**` to potęgowanie (np. `2 ** 3` daje `8`), natomiast `^` to operacja bitowego XOR, która nie podnosi do potęgi (np. `2 ^ 3` daje `1`).",
+    "topic": "Potęgowanie (`**`)"
   },
   {
     "id": 194,
-    "materialId": 17,
-    "front": "Dlaczego algorytm szukania największej wartości z inicjalizacją -1 nie działa, gdy wszystkie liczby na liście są ujemne?",
-    "back": "Żadna liczba ujemna nie jest większa od... — właściwie -1 jest większa od wielu ujemnych, ale jeśli wszystkie liczby są mniejsze od -1 (np. -5, -10), warunek 'value > largest' nigdy nie zostanie spełniony i wynik końcowy to -1, która nie należy do listy.",
-    "topic": "Szukanie wartości największej"
+    "materialId": 29,
+    "front": "Jak nawiasy wpływają na kolejność działań?",
+    "back": "Nawiasy zawsze mają pierwszeństwo: wyrażenia w `(` i `)` są obliczane najpierw. Używaj nawiasów, by jawnie określić oczekiwaną kolejność, np. `(1 + 2) * 3`.",
+    "topic": "Kolejność działań i nawiasy"
   },
   {
     "id": 195,
-    "materialId": 17,
-    "front": "Jak działa wzorzec 'priming' (inicjalizacji) przy użyciu None w pętli szukającej minimum?",
-    "back": "Zmienna = None. W pętli: jeśli zmienna is None → przypisz pierwszy element (inicjalizacja). W kolejnych iteracjach None już nie występuje, więc działa normalny warunek elif value < smallest.",
-    "topic": "Wzorce pętli"
+    "materialId": 29,
+    "front": "Jaka jest domyślna kolejność działań (od najwyższej mocy do najniższej)?",
+    "back": "Najpierw nawiasy, potem potęgowanie (`**`), następnie mnożenie, dzielenie i modulo (`*`, `/`, `%`) (te mają równą wagę i liczone są od lewej do prawej), a na końcu dodawanie i odejmowanie (`+`, `-`).",
+    "topic": "Kolejność działań i nawiasy"
   },
   {
     "id": 196,
-    "materialId": 17,
-    "front": "Co robi operator 'is not' w Pythonie?",
-    "back": "Jest przeciwieństwem operatora 'is' — zwraca True, gdy obiekt NIE jest tożsamy z podaną wartością. Np. 'smallest is not None' zwraca True, gdy smallest zawiera jakąkolwiek wartość inną niż None.",
-    "topic": "Operatory porównania w Pythonie"
+    "materialId": 29,
+    "front": "Dlaczego `100 / 5 * 2` zwraca inny typ niż `100 // 5 * 2`?",
+    "back": "Operator `/` zawsze zwraca `float` (np. `100 / 5` → `20.0`), zaś `//` to dzielenie całkowite (floor division) i zwraca int dla intów. Mnożenie `* 2` zachowa typ wynikający z pierwszej operacji.",
+    "topic": "Operatory arytmetyczne"
   },
   {
     "id": 197,
-    "materialId": 17,
-    "front": "Wymień trzy rodzaje pętli omówione w rozdziale i ich cechy.",
-    "back": "1. Pętla for (definite loop) — iteruje po znanej kolekcji, automatycznie zarządza zmienną iteracyjną. 2. Pętla while (indefinite loop) — wymaga ręcznego zarządzania zmienną iteracyjną. 3. Obie wspierają break (wyjście z pętli) i continue (skok do kolejnej iteracji).",
-    "topic": "Rodzaje pętli w Pythonie"
+    "materialId": 29,
+    "front": "Jak użyć operatora modulo do losowego wyboru karty z talii 52 kart?",
+    "back": "Weź dużą losową liczbę `r` i policz `index = r % 52`. Ten `index` będzie w zakresie `0..51` i można go zamapować na kartę (np. `rank = ranks[index % 13]`, `suit = suits[index // 13]`).",
+    "topic": "Operator modulo (%)"
   },
   {
     "id": 198,
-    "materialId": 17,
-    "front": "Czym jest 'loop idiom' (wzorzec pętli) i jakie ma trzy fazy?",
-    "back": "To powtarzalny schemat programowania z pętlą: 1. Inicjalizacja przed pętlą (np. smallest = None). 2. Przetwarzanie w środku pętli (porównania, akumulacja). 3. Odbiór wyniku po zakończeniu pętli (np. wypisanie wyniku).",
-    "topic": "Wzorce pętli"
+    "materialId": 29,
+    "front": "Jaki częsty błąd popełniają początkujący używając `^` zamiast `**`?",
+    "back": "Używają `^` myśląc, że to potęgowanie. W Pythonie `^` to XOR bitowy, co daje nieoczekiwane wyniki (np. `3 ^ 2` → `1`). Zawsze używaj `**` do potęgowania, np. `3 ** 2`.",
+    "topic": "Pułapki początkujących"
   },
   {
     "id": 199,
-    "materialId": 17,
-    "front": "Jakie typowe operacje na listach można realizować za pomocą wzorców pętli (loop idioms)?",
-    "back": "Szukanie największej wartości, szukanie najmniejszej wartości, zliczanie elementów (counting), sumowanie (summing), obliczanie średniej (averaging), wyszukiwanie wartości (searching).",
-    "topic": "Wzorce pętli"
+    "materialId": 29,
+    "front": "Co zwróci `n % 2` i jak to użyć do sprawdzenia parzystości?",
+    "back": "Wyrażenie `n % 2` zwraca `0` dla liczb parzystych i `1` dla nieparzystych (dla dodatnich `n`). Sprawdzenie parzystości: `n % 2 == 0`.",
+    "topic": "Operator modulo (%)"
   },
   {
     "id": 200,
-    "materialId": 18,
-    "front": "Jaka jest ogólna struktura pętli przetwarzającej zbiór danych w trzech etapach?",
-    "back": "1) Przed pętlą — inicjalizacja zmiennych\n2) W trakcie pętli — przetwarzanie każdej wartości\n3) Po pętli — odczytanie wyniku końcowego",
-    "topic": "Wzorce pętli w Pythonie"
+    "materialId": 29,
+    "front": "Co się stanie, jeśli spróbujesz wykonać `5 % 0`?",
+    "back": "W Pythonie `5 % 0` spowoduje `ZeroDivisionError`, ponieważ modulo przez zero jest niedozwolone (tak jak dzielenie przez zero).",
+    "topic": "Pułapki początkujących"
   },
   {
     "id": 201,
-    "materialId": 18,
-    "front": "Czym jest zmienna largest_so_far w kontekście szukania maksimum w pętli?",
-    "back": "To zmienna przechowująca największą wartość napotkaną dotychczas podczas iteracji. Po zakończeniu pętli zawiera wartość maksymalną z całego zbioru.",
-    "topic": "Szukanie maksimum w pętli"
+    "materialId": 29,
+    "front": "Czy kolejność działań między `*`, `/` i `%` ma znaczenie?",
+    "back": "Tak — `*`, `/` i `%` mają tę samą wagę i są obliczane od lewej do prawej. Wyrażenie `a / b * c % d` będzie wykonywane w kolejności: `( (a / b) * c ) % d`.",
+    "topic": "Kolejność działań i nawiasy"
   },
   {
     "id": 202,
-    "materialId": 18,
-    "front": "Jak działa algorytm znajdowania największej wartości w pętli for?",
-    "back": "Ustawiamy largest_so_far na wartość początkową (np. -1). Dla każdego elementu: jeśli bieżący element > largest_so_far, to largest_so_far = bieżący element. Po zakończeniu pętli largest_so_far zawiera maksimum.",
-    "topic": "Szukanie maksimum w pętli"
+    "materialId": 29,
+    "front": "Czy `x % y` działa dla liczb zmiennoprzecinkowych?",
+    "back": "Tak — w Pythonie `%` działa też dla `float`. Na przykład `7.5 % 2` da `1.5`. Wynik będzie typu float i odpowiada reszcie po dzieleniu z użyciem dzielenia zmiennoprzecinkowego.",
+    "topic": "Operator modulo (%)"
   },
   {
     "id": 203,
-    "materialId": 18,
-    "front": "Dlaczego komputer nie może znaleźć maksimum w zbiorze tak jak człowiek?",
-    "back": "Człowiek patrzy na wszystkie liczby naraz i wizualnie wychwytuje największą. Komputer przetwarza wartości sekwencyjnie — jedną po drugiej — i musi porównywać każdą z dotychczasowym maksimum.",
-    "topic": "Przetwarzanie sekwencyjne"
+    "materialId": 29,
+    "front": "Kiedy lepiej użyć nawiasów zamiast polegać na kolejności działań?",
+    "back": "Zawsze gdy chcesz poprawić czytelność kodu lub zapobiec niejednoznacznościom. Nawiasy sprawiają, że intencja jest jawna i zmniejszają ryzyko błędów (np. `result = (a + b) * c`).",
+    "topic": "Kolejność działań i nawiasy"
   },
   {
     "id": 204,
-    "materialId": 18,
-    "front": "Co oznacza termin 'loop idiom' (idiom pętli)?",
-    "back": "To typowy, powtarzalny wzorzec użycia pętli do rozwiązania konkretnego problemu, np. szukanie maksimum, minimum, zliczanie elementów, obliczanie sumy czy średniej.",
-    "topic": "Wzorce pętli w Pythonie"
+    "materialId": 31,
+    "front": "Co to jest pętla `for` w Pythonie?",
+    "back": "Pętla `for` to konstrukcja umożliwiająca wykonanie bloku kodu raz dla każdego elementu w iterowalnym obiekcie (np. lista, string, `range()`, plik). Przykład: `for x in items: print(x)`.",
+    "topic": "Pętla for"
   },
   {
     "id": 205,
-    "materialId": 18,
-    "front": "Dlaczego w trakcie działania pętli nie znamy jeszcze wyniku końcowego?",
-    "back": "Bo nie wiemy, czy kolejne iteracje nie zmienią wyniku. Dopiero po przetworzeniu wszystkich elementów wartość 'so far' staje się wartością ostateczną.",
-    "topic": "Wzorce pętli w Pythonie"
+    "materialId": 31,
+    "front": "Jaka jest główna różnica między `for` a `while`?",
+    "back": "`for` jest pętlą definitywną — iteruje po znanym zbiorze elementów. `while` jest pętlą niedefinitywną — działa dopóki warunek logiczny jest prawdziwy. `for` często jest krótszy i bezpieczniejszy, gdy mamy kolekcję do przejścia.",
+    "topic": "Porównanie z while"
   },
   {
     "id": 206,
-    "materialId": 18,
-    "front": "Jaka jest rola zmiennej iteracyjnej (np. the_num) w pętli for szukającej maksimum?",
-    "back": "Zmienna iteracyjna przyjmuje kolejno każdą wartość z listy. Jest porównywana z largest_so_far, aby sprawdzić, czy bieżący element jest nowym maksimum.",
-    "topic": "Szukanie maksimum w pętli"
+    "materialId": 31,
+    "front": "Co robi słowo kluczowe `in` w pętli `for`?",
+    "back": "`in` mówi \"dla każdego elementu w tej kolekcji\". W `for x in seq:` `x` po kolei przyjmuje wartości elementów `seq`.",
+    "topic": "Pętla for"
   },
   {
     "id": 207,
-    "materialId": 18,
-    "front": "Co się dzieje w pętli, gdy bieżący element jest mniejszy od largest_so_far?",
-    "back": "Nic się nie zmienia — largest_so_far zachowuje swoją dotychczasową wartość, a pętla przechodzi do następnej iteracji.",
-    "topic": "Szukanie maksimum w pętli"
+    "materialId": 31,
+    "front": "Jakie typy obiektów można iterować w `for`?",
+    "back": "Można iterować po listach, krotkach, zbiorach, słownikach (po kluczach), stringach, obiektach `range()` oraz plikach. Wszystko, co jest iterable (implementuje protokół iteracji).",
+    "topic": "Iteratory i iterables"
   },
   {
     "id": 208,
-    "materialId": 18,
-    "front": "Jaką wartość początkową przypisano zmiennej largest_so_far w przykładzie z kursu i jakie to ma ograniczenie?",
-    "back": "Przypisano -1. Ograniczenie: jeśli wszystkie wartości w zbiorze byłyby mniejsze od -1, algorytm zwróciłby błędny wynik.",
-    "topic": "Inicjalizacja zmiennych w pętli"
+    "materialId": 31,
+    "front": "Co to jest zmienna iteracyjna w `for`?",
+    "back": "Zmienna iteracyjna (np. `i`, `item`) to zmienna, którą pętla przypisuje kolejnym elementom kolekcji podczas każdej iteracji: `for item in items: ...`.",
+    "topic": "Pętla for"
   },
   {
     "id": 209,
-    "materialId": 18,
-    "front": "Czy nazwy zmiennych w Pythonie mogą zawierać podkreślenia (underscores)?",
-    "back": "Tak. Przykład: largest_so_far — podkreślenia poprawiają czytelność nazw wielowyrazowych.",
-    "topic": "Składnia Pythona"
+    "materialId": 31,
+    "front": "Jak uzyskać indeks elementu podczas iteracji?",
+    "back": "Użyj `enumerate()`, np. `for i, x in enumerate(items):` gdzie `i` to indeks, a `x` to element. Można też użyć `start=` by ustawić początkowy indeks: `enumerate(items, start=1)`.",
+    "topic": "Pętla for"
   },
   {
     "id": 210,
-    "materialId": 18,
-    "front": "Prześledź działanie algorytmu maksimum dla listy [9, 41, 12, 3, 74, 15]. Jakie wartości przyjmuje largest_so_far po każdej iteracji?",
-    "back": "Po 9 → 9, po 41 → 41, po 12 → 41, po 3 → 41, po 74 → 74, po 15 → 74. Wynik końcowy: 74.",
-    "topic": "Szukanie maksimum w pętli"
+    "materialId": 31,
+    "front": "Jaki jest częsty błąd początkujących przy modyfikowaniu listy w trakcie iteracji?",
+    "back": "Usuwanie lub wstawianie elementów do listy podczas jej iteracji może powodować pominięte elementy lub niespodziewane zachowanie. Rozwiązania: iterować po kopii `for x in lst[:]` lub budować nową listę (list comprehension).",
+    "topic": "Błędy przy iteracji"
   },
   {
     "id": 211,
-    "materialId": 18,
-    "front": "Kiedy wartość 'largest so far' staje się wartością 'largest' (ostateczną)?",
-    "back": "Gdy pętla for zakończy iterowanie po wszystkich elementach — wtedy największa wartość napotkana dotychczas jest największą wartością w całym zbiorze.",
-    "topic": "Szukanie maksimum w pętli"
+    "materialId": 31,
+    "front": "Czy pętla `for` zmienia oryginalną listę jeśli tylko odczytujesz elementy?",
+    "back": "Nie — samo iterowanie po liście nie zmienia jej. Zmiana zachodzi tylko, gdy jawnie modyfikujesz listę wewnątrz pętli (np. `append`, `remove`, przypisanie do indeksu).",
+    "topic": "Pętla for"
   },
   {
     "id": 212,
-    "materialId": 18,
-    "front": "Jakie inne operacje oprócz szukania maksimum można realizować za pomocą idiomów pętli?",
-    "back": "Szukanie minimum, zliczanie elementów, obliczanie sumy, obliczanie średniej, sprawdzanie przynależności elementu do zbioru.",
-    "topic": "Wzorce pętli w Pythonie"
+    "materialId": 31,
+    "front": "Jak zatrzymać pętlę wcześniej i jak pominąć jedną iterację?",
+    "back": "Użyj `break` aby zakończyć pętlę natychmiast. Użyj `continue` aby pominąć resztę bieżącej iteracji i przejść do następnej: `for x in items: if cond: break` oraz `if cond: continue`.",
+    "topic": "Pętla for"
   },
   {
     "id": 213,
-    "materialId": 22,
-    "front": "Czym różnią się algorytmy od struktur danych?",
-    "back": "Algorytmy to ścieżki (kroki) w kodzie — jak nawigacja GPS. Struktury danych to sposoby organizacji zmiennych w pamięci — jak dane są przechowywane podczas działania programu.",
-    "topic": "Struktury danych w Pythonie"
+    "materialId": 31,
+    "front": "Jak iteracja po słowniku wygląda domyślnie?",
+    "back": "Domyślnie `for k in mydict:` iteruje po kluczach słownika. Aby otrzymać pary klucz-wartość użyj `for k, v in mydict.items():`.",
+    "topic": "Iteratory i iterables"
   },
   {
     "id": 214,
-    "materialId": 22,
-    "front": "Jak wygląda składnia stałej listowej (list constant) w Pythonie?",
-    "back": "Elementy umieszcza się w nawiasach kwadratowych, oddzielone przecinkami, np. [1, 24, 76] lub [\"red\", \"yellow\", \"blue\"].",
-    "topic": "Listy w Pythonie"
+    "materialId": 31,
+    "front": "Kiedy warto użyć `range()` zamiast listy liczb?",
+    "back": "Użyj `range()` gdy potrzebujesz sekwencji liczb (np. do indeksowania lub powtórzeń) bez tworzenia pełnej listy w pamięci. Przykład: `for i in range(5):` daje `0..4`.",
+    "topic": "range()"
   },
   {
     "id": 215,
-    "materialId": 22,
-    "front": "Czy lista w Pythonie może zawierać różne typy danych?",
-    "back": "Tak — jedna lista może zawierać stringi, liczby całkowite i zmiennoprzecinkowe jednocześnie, np. [\"red\", 24, 98.6]. Może nawet zawierać inne listy.",
-    "topic": "Listy w Pythonie"
+    "materialId": 31,
+    "front": "Co się stanie gdy zrobisz `for ch in 'abc':`?",
+    "back": "Zmienna iteracyjna `ch` będzie kolejno przyjmować znaki `'a'`, `'b'`, `'c'`. String jest iterowalny po znakach: `for ch in s: print(ch)`.",
+    "topic": "Iteratory i iterables"
   },
   {
     "id": 216,
-    "materialId": 22,
-    "front": "Co oznacza, że listy są mutowalne (mutable)?",
-    "back": "Mutowalność oznacza, że elementy listy można zmieniać po jej utworzeniu. Np. lotto[2] = 28 zmieni trzeci element listy. Stringi nie są mutowalne — nie można zmienić pojedynczego znaku.",
-    "topic": "Mutowalność list"
+    "materialId": 32,
+    "front": "Co oznacza wzorzec \"largest_so_far\" w pętli?",
+    "back": "To wzorzec, gdzie przed pętlą inicjalizujemy zmienną akumulującą (np. `largest_so_far`), podczas iteracji porównujemy bieżący element z wartością w akumulatorze i w razie potrzeby aktualizujemy akumulator. Po zakończeniu pętli akumulator zawiera wynik, np. największą wartość.",
+    "topic": "Akumulatory i wzorce pętli"
   },
   {
     "id": 217,
-    "materialId": 22,
-    "front": "Dlaczego stringi nie są mutowalne w Pythonie?",
-    "back": "Python nie pozwala na zmianę pojedynczych znaków w stringu (fruit[0] = \"b\" wywoła błąd TypeError). Metody jak .lower() tworzą kopię stringa zamiast modyfikować oryginał.",
-    "topic": "Mutowalność list"
+    "materialId": 32,
+    "front": "Jak poprawnie zainicjalizować akumulator przy szukaniu maksimum gdy lista może zawierać liczby ujemne?",
+    "back": "Najbezpieczniej zainicjalizować akumulator jako `None` i dla pierwszego elementu ustawić go na ten element, albo przypisać akumulatorowi pierwszy element listy: `largest = nums[0]` (ale najpierw sprawdź, czy lista nie jest pusta). Unikaj magicznych wartości jak `-1` jeśli dane mogą być mniejsze.",
+    "topic": "Inicjalizacja i wartości początkowe"
   },
   {
     "id": 218,
-    "materialId": 22,
-    "front": "Jak działa operator indeksowania w listach?",
-    "back": "Operator [] pozwala odczytać element na danej pozycji. Indeksowanie zaczyna się od 0, więc lista[0] to pierwszy element, lista[1] to drugi itd.",
-    "topic": "Indeksowanie list"
+    "materialId": 32,
+    "front": "Co się stanie jeśli ustawisz `largest = 0` i lista zawiera tylko liczby ujemne?",
+    "back": "Wynik będzie błędny — `largest` pozostanie `0`, mimo że `0` nie znajduje się w liście i największa wartość powinna być ujemna. To klasyczny błąd inicjalizacji akumulatora.",
+    "topic": "GOTCHA"
   },
   {
     "id": 219,
-    "materialId": 22,
-    "front": "Co zwraca funkcja len() dla listy?",
-    "back": "Funkcja len() zwraca liczbę elementów w liście. Np. len([1, \"dwa\", 3.0, True]) zwróci 4. Działa tak samo jak dla stringów.",
-    "topic": "Funkcje dla list"
+    "materialId": 32,
+    "front": "Jaka jest różnica między użyciem `max(lista)` a ręcznym wzorcem z pętlą?",
+    "back": "Funkcja `max(lista)` jest skrótem i wygodna, ale ręczny wzorzec pozwala na dodatkowe akcje podczas iteracji (np. zapamiętanie indeksu największego elementu, stosowanie filtrów, liczenie warunków) i kontrolę nad obsługą pustej listy.",
+    "topic": "Porównanie"
   },
   {
     "id": 220,
-    "materialId": 22,
-    "front": "Co zwraca funkcja range(4)?",
-    "back": "range(4) zwraca sekwencję liczb od 0 do 3 (0, 1, 2, 3) — cztery liczby zaczynając od 0, do ale nie włączając 4. Odpowiada to indeksom 4-elementowej listy.",
-    "topic": "Funkcja range()"
+    "materialId": 32,
+    "front": "Kiedy lepiej użyć ręcznej pętli zamiast wbudowanego `max()`?",
+    "back": "Gdy potrzebujesz dodatkowych informacji (np. indeks największego elementu), chcesz zastosować filtr (np. tylko parzyste liczby), lub chcesz obsłużyć pustą listę w niestandardowy sposób (`None` zamiast wyjątku).",
+    "topic": "WHEN TO USE"
   },
   {
     "id": 221,
-    "materialId": 22,
-    "front": "Jaka jest różnica między iteracją bezpośrednią a zliczaną po liście?",
-    "back": "Bezpośrednia: for friend in friends — zmienna iteracyjna przyjmuje wartości elementów. Zliczana: for i in range(len(friends)) — zmienna iteracyjna przyjmuje indeksy (0, 1, 2...), a elementy odczytujemy przez friends[i].",
-    "topic": "Iteracja po listach"
+    "materialId": 32,
+    "front": "Jak obliczyć średnią przy pomocy pętli?",
+    "back": "Utrzymuj dwie zmienne: `total` (suma) i `count` (licznik). Dla każdego elementu aktualizuj `total += value` i `count += 1`. Po pętli oblicz `average = total / count` jeśli `count != 0`, w przeciwnym razie obsłuż przypadek pustej kolekcji.",
+    "topic": "Sumy i średnie"
   },
   {
     "id": 222,
-    "materialId": 22,
-    "front": "Kiedy warto użyć pętli zliczanej (counted loop) zamiast bezpośredniej iteracji po liście?",
-    "back": "Gdy potrzebujemy znać pozycję (indeks) elementu w liście, np. aby wypisać \"znaleziono na pozycji 3\". Bezpośrednia iteracja nie daje dostępu do indeksu.",
-    "topic": "Iteracja po listach"
+    "materialId": 32,
+    "front": "Jaki prosty sposób pozwala zliczyć ile elementów spełnia warunek w pętli?",
+    "back": "Utwórz licznik `count = 0`, w pętli sprawdzaj warunek i jeśli jest spełniony wykonaj `count += 1`. Po pętli `count` zawiera liczbę pasujących elementów.",
+    "topic": "Zliczanie warunków"
+  },
+  {
+    "id": 223,
+    "materialId": 32,
+    "front": "Co to jest \"before-during-after\" w kontekście pętli?",
+    "back": "\"Before\" — inicjalizacja akumulatorów (przed pętlą). \"During\" — operacje wykonywane na każdym elemencie (w ciele pętli). \"After\" — odczyt/zwrot końcowego rezultatu po zakończeniu pętli.",
+    "topic": "Akumulatory i wzorce pętli"
+  },
+  {
+    "id": 224,
+    "materialId": 32,
+    "front": "Jaki częsty błąd popełniają początkujący przy znajdowaniu maksimum w liście?",
+    "back": "Używanie stałej wartości (np. `-1` lub `0`) jako inicjalnej bez upewnienia się, że pasuje do zakresu danych — prowadzi to do błędów gdy wszystkie elementy są mniejsze od tej wartości.",
+    "topic": "GOTCHA"
+  },
+  {
+    "id": 225,
+    "materialId": 32,
+    "front": "Jak znaleźć indeks największego elementu podczas jednej pętli?",
+    "back": "Przechowuj dwa akumulatory: `largest_value` i `largest_index`. Dla każdej iteracji sprawdź `if value > largest_value:` wtedy ustaw `largest_value = value` i `largest_index = current_index`.",
+    "topic": "Szukanie maksimum i minimum"
+  },
+  {
+    "id": 226,
+    "materialId": 32,
+    "front": "Jak obsłużyć pustą listę gdy chcesz zwrócić maksimum ręcznie?",
+    "back": "Przed odwołaniem do `nums[0]` sprawdź `if not nums:` i zwróć np. `None` lub rzuć własny wyjątek. Alternatywnie inicjalizuj `largest = None` i ustaw przy pierwszym elemencie.",
+    "topic": "Edge cases"
+  },
+  {
+    "id": 227,
+    "materialId": 32,
+    "front": "Czy zawsze warto używać `>=` zamiast `>` przy aktualizacji `largest_so_far`? Kiedy to ma znaczenie?",
+    "back": "Użycie `>=` sprawi, że przy równych wartościach ostatni napotkany element zostanie wybrany jako \"największy\" (nadpisze wcześniejszy). To ma znaczenie, gdy chcesz zachować pierwszy lub ostatni indeks największej wartości.",
+    "topic": "GOTCHA"
+  },
+  {
+    "id": 228,
+    "materialId": 33,
+    "front": "Co robi operator `+` gdy zastosujemy go do dwóch list, np. `a + b`?",
+    "back": "Operator `+` konkatenjuje dwie listy, tworząc nową listę zawierającą elementy `a` a następnie elementy `b`. Nie modyfikuje oryginalnych list.",
+    "topic": "konkatenacja list"
+  },
+  {
+    "id": 229,
+    "materialId": 33,
+    "front": "Jak działa wycinek `lst[1:4]` na liście?",
+    "back": "Zwraca nową listę z elementami od indeksu `1` do `3` włącznie — prawa granica `4` nie jest włączona. Slicing jest podobny do stringów: początek włącznie, koniec wyłącznie.",
+    "topic": "slicing (wycinki)"
+  },
+  {
+    "id": 230,
+    "materialId": 33,
+    "front": "Jaka jest różnica między `lst.append(x)` a `lst.extend([x])`?",
+    "back": "`lst.append(x)` dodaje pojedynczy element `x` jako pojedynczą komórkę na końcu listy. `lst.extend([x])` traktuje argument jako iterable i dodaje jego elementy pojedynczo; czyli `extend` rozszerza listę o elementy innej sekwencji.",
+    "topic": "metody listowe"
+  },
+  {
+    "id": 231,
+    "materialId": 33,
+    "front": "Dlaczego nie powinno się pisać `x = x.append(5)`?",
+    "back": "`append` modyfikuje listę w miejscu i zwraca `None`. Przypisanie `x = x.append(5)` ustawi `x` na `None` i stracisz odwołanie do listy. Lepiej użyć `x.append(5)` bez przypisania.",
+    "topic": "gotcha/pitfall"
+  },
+  {
+    "id": 232,
+    "materialId": 33,
+    "front": "Co robi metoda `list.sort()` i jak różni się od funkcji `sorted(list)`?",
+    "back": "`list.sort()` sortuje listę na miejscu (modyfikuje oryginalną listę) i zwraca `None`. `sorted(list)` zwraca nową posortowaną listę, pozostawiając oryginał bez zmian.",
+    "topic": "sortowanie"
+  },
+  {
+    "id": 233,
+    "materialId": 33,
+    "front": "Kiedy lepiej użyć `sum(lista)` zamiast pętli sumującej?",
+    "back": "Jeśli już masz listę liczb w pamięci, `sum(lista)` jest krótsze i czytelniejsze. Jeśli natomiast liczby pochodzą ze strumienia (np. pliku) i nie chcesz trzymać wszystkiego w pamięci, lepiej iterować i utrzymywać bieżącą sumę.",
+    "topic": "kiedy użyć"
+  },
+  {
+    "id": 234,
+    "materialId": 33,
+    "front": "Co zwróci `lst.count(x)` i czym różni się od `len(lst)`?",
+    "back": "`lst.count(x)` zwraca liczbę wystąpień wartości `x` w liście. `len(lst)` zwraca całkowitą liczbę elementów w liście, niezależnie od ich wartości.",
+    "topic": "metody listowe"
+  },
+  {
+    "id": 235,
+    "materialId": 33,
+    "front": "Jaki jest typ wyniku operacji `lst[2]` i co się stanie jeśli indeks jest poza zakresem?",
+    "back": "`lst[2]` zwraca element o indeksie 2 (trzeci element). Jeśli indeks jest poza zakresem, Python zgłosi `IndexError` (np. `IndexError: list index out of range`).",
+    "topic": "indeksowanie"
+  },
+  {
+    "id": 236,
+    "materialId": 33,
+    "front": "Co sprawdza operator `in` wobec listy, np. `5 in lst`?",
+    "back": "Operator `in` sprawdza przynależność elementu: zwraca `True` jeśli element (porównywany za pomocą `==`) znajduje się w liście, w przeciwnym razie `False`. Działa to dla wartości, nie pozycji.",
+    "topic": "operatory"
+  },
+  {
+    "id": 237,
+    "materialId": 33,
+    "front": "Jaka jest różnica między listą a stringiem pod względem mutowalności?",
+    "back": "Listy są mutowalne — można zmieniać ich zawartość (np. `lst.append(1)`, `lst[0] = 'a'`). Stringi są niemutowalne — operacje zwracają nowe stringi i nie zmieniają istniejącego obiektu.",
+    "topic": "mutowalność"
+  },
+  {
+    "id": 238,
+    "materialId": 33,
+    "front": "W którym scenariuszu warto akumulować wartości w liście, zamiast trzymać jedynie sumy i liczniki?",
+    "back": "Gdy później potrzebujesz analizować wszystkie wartości (np. policzyć medianę, odrzucić skrajne wartości, ponownie obliczyć różne statystyki), warto zebrać je w liście. Uwaga: zużycie pamięci rośnie z liczbą elementów.",
+    "topic": "kiedy użyć"
+  },
+  {
+    "id": 239,
+    "materialId": 33,
+    "front": "Co zrobi metoda `insert(i, x)` i jak wpływa na indeksy elementów?",
+    "back": "`insert(i, x)` wstawi element `x` przed pozycję `i`. Elementy od pozycji `i` w prawo zostaną przesunięte o jeden indeks. Jeśli `i` jest większe od długości listy, `x` zostanie dołączone na końcu.",
+    "topic": "metody listowe"
+  },
+  {
+    "id": 240,
+    "materialId": 34,
+    "front": "Co robi funkcja `input()` w Pythonie?",
+    "back": "Funkcja `input()` wyświetla opcjonalny prompt, zatrzymuje program do momentu naciśnięcia Enter i zwraca wpisany tekst jako łańcuch znaków (string). Aby wykonać operacje arytmetyczne, trzeba często przekonwertować wynik, np. `int(inp)` lub `float(inp)`.",
+    "topic": "Wejście i `input()`"
+  },
+  {
+    "id": 241,
+    "materialId": 34,
+    "front": "Co robi `int('42')` i czego trzeba się obawiać używając `int()` na dowolnym tekście?",
+    "back": "`int('42')` zwraca liczbę całkowitą `42`. Jeśli `int()` otrzyma tekst, który nie reprezentuje całkowitej liczby (np. `'Bob'`, `''`, `'3.5'`), to podniesie wyjątek `ValueError`.",
+    "topic": "Konwersja typów (`int`, `float`)"
+  },
+  {
+    "id": 242,
+    "materialId": 34,
+    "front": "Jaka jest różnica między `int('3.5')` a `float('3.5')`?",
+    "back": "`int('3.5')` spowoduje `ValueError` (tekst nie jest liczbą całkowitą), natomiast `float('3.5')` zwróci liczbę zmiennoprzecinkową `3.5`. Jeśli chcemy zaokrąglić, trzeba najpierw użyć `float()` i potem `int()` lub funkcji `round()`.",
+    "topic": "Konwersja typów (`int`, `float`)"
+  },
+  {
+    "id": 243,
+    "materialId": 34,
+    "front": "Co oznacza znak `#` w kodzie Python?",
+    "back": "Znak `#` rozpoczyna komentarz — reszta linii jest ignorowana przez interpreter. Komentarze służą dla czytelności kodu, np. `# oblicz temperaturę w F`.",
+    "topic": "Komentarze"
+  },
+  {
+    "id": 244,
+    "materialId": 34,
+    "front": "Jaki typ ma wynik wywołania `input()` i jak to sprawdzić?",
+    "back": "Wynik `input()` to zawsze string. Można to sprawdzić używając `type()`, np. `type(input('> '))` -> `<class 'str'>`.",
+    "topic": "Wejście i `input()`"
+  },
+  {
+    "id": 245,
+    "materialId": 34,
+    "front": "Jaki częsty błąd popełniają początkujący gdy dodają `input()` do liczby: `inp + 1`?",
+    "back": "Jeśli `inp` pochodzi z `input()` i nie został przekonwertowany, to `inp` jest stringiem i `inp + 1` spowoduje `TypeError` (nie można dodać `str` i `int`). Należy użyć `int(inp) + 1` lub `float(inp) + 1.0`.",
+    "topic": "Błędy konwersji i `ValueError`"
+  },
+  {
+    "id": 246,
+    "materialId": 34,
+    "front": "Jak `print(a, b)` formatuje wyjście w Pythonie 3?",
+    "back": "`print(a, b)` wypisuje wartości `a` i `b` oddzielone pojedynczą spacją i kończy linię znakiem nowej linii. Jeśli chcesz inne separatory, użyj argumentu `sep`, np. `print(a, b, sep=' - ')`.",
+    "topic": "Wyjście i `print()`"
+  },
+  {
+    "id": 247,
+    "materialId": 34,
+    "front": "Co to jest kolejność działań (operator precedence)? Podaj przykład z `+` i `*`.",
+    "back": "Kolejność działań określa, które operacje wykonuje się wcześniej. Operatory `*` i `/` mają wyższy priorytet niż `+` i `-`. Przykład: `2 + 3 * 4` daje `14`, bo najpierw `3 * 4 = 12`, potem `2 + 12 = 14`.",
+    "topic": "Operatory i kolejność działań"
+  },
+  {
+    "id": 248,
+    "materialId": 34,
+    "front": "Kiedy lepiej użyć `try/except` zamiast sprawdzania `str.isdigit()` przed konwersją?",
+    "back": "`try/except` jest pewniejszy — obsłuży spacjowane ciągi, znaki plus/minus i liczby zmiennoprzecinkowe (z `float`). `str.isdigit()` nie rozpozna negatywnych liczb (`'-3'`) ani spacji. Dlatego do bezpiecznej konwersji użyj: ```python\ntry:\n    n = int(s)\nexcept ValueError:\n    # obsłuż błąd\n```",
+    "topic": "Walidacja i `try/except`"
+  },
+  {
+    "id": 249,
+    "materialId": 34,
+    "front": "Co się stanie, jeśli wywołasz `int('')` (pusty string)?",
+    "back": "Wywołanie `int('')` spowoduje `ValueError`, ponieważ pusty string nie reprezentuje liczby. Należy sprawdzić lub obsłużyć wyjątek przed próbą konwersji.",
+    "topic": "Błędy konwersji i `ValueError`"
+  },
+  {
+    "id": 250,
+    "materialId": 34,
+    "front": "Dlaczego warto używać opisowych nazw zmiennych jak `user_floor` zamiast `x`?",
+    "back": "Opisowe nazwy poprawiają czytelność i ułatwiają zrozumienie celu zmiennej — łatwiej debugować i rozbudowywać kod. `user_floor` od razu pokazuje, że zmienna przechowuje numer piętra podanego przez użytkownika.",
+    "topic": "Zmienne i nazewnictwo"
+  },
+  {
+    "id": 251,
+    "materialId": 34,
+    "front": "Jaki jest typ wyniku działania `3 / 2` w Pythonie 3 i jak otrzymać wynik całkowity?",
+    "back": "W Pythonie 3 `3 / 2` zwróci `1.5` (typ `float`). Aby otrzymać wynik całkowity (dzielenie bez reszty), użyj `3 // 2` co da `1` (typ `int`).",
+    "topic": "Operatory i kolejność działań"
+  },
+  {
+    "id": 252,
+    "materialId": 35,
+    "front": "Co to jest pętla `while` i kiedy jej używamy?",
+    "back": "Pętla `while` powtarza blok kodu tak długo, jak warunek logiczny jest prawdziwy. Używamy jej, gdy nie wiemy z góry, ile iteracji będzie potrzebnych (iteracje zależą od warunku).",
+    "topic": "pętla while"
+  },
+  {
+    "id": 253,
+    "materialId": 35,
+    "front": "Co to jest zmienna iteracyjna?",
+    "back": "Zmienna iteracyjna to zmienna kontrolująca postęp pętli (np. licznik). Musi się zmieniać w pętli, żeby warunek mógł w końcu stać się fałszywy i zakończyć pętlę.",
+    "topic": "zmienna iteracyjna"
+  },
+  {
+    "id": 254,
+    "materialId": 35,
+    "front": "Jaka jest różnica między pętlą, która nigdy się nie wykona, a pętlą nieskończoną?",
+    "back": "Jeśli warunek początkowy jest fałszywy, pętla `while` nie wykona się ani razu (zero-trip). Pętla nieskończona to taka, której warunek pozostaje zawsze prawdziwy i nigdy nie nastąpi zakończenie (np. brak zmiany zmiennej iteracyjnej).",
+    "topic": "zero-trip loop"
+  },
+  {
+    "id": 255,
+    "materialId": 35,
+    "front": "Co robi instrukcja `break` w pętli?",
+    "back": "Instrukcja `break` natychmiast przerywa wykonywanie najbliższej pętli i kontynuuje działanie programu od pierwszej instrukcji po pętli.",
+    "topic": "break"
+  },
+  {
+    "id": 256,
+    "materialId": 35,
+    "front": "Co robi instrukcja `continue` w pętli?",
+    "back": "Instrukcja `continue` przerywa bieżącą iterację i przechodzi do kolejnej iteracji pętli (czyli skacze do sprawdzenia warunku i ewentualnego rozpoczęcia następnej iteracji).",
+    "topic": "continue"
+  },
+  {
+    "id": 257,
+    "materialId": 35,
+    "front": "Jaki częsty błąd popełniają początkujący z pętlą `while`?",
+    "back": "Zapomnienie zaktualizować zmienną iteracyjną wewnątrz pętli, co skutkuje pętlą nieskończoną. Przykład: `while x > 0: print(x)` bez `x -= 1` w środku.",
+    "topic": "pętla nieskończona"
+  },
+  {
+    "id": 258,
+    "materialId": 35,
+    "front": "Kiedy lepiej użyć `for` zamiast `while`?",
+    "back": "Gdy wiemy z góry liczbę iteracji lub iterujemy po sekwencji (lista, string, range). `for` jest czytelniejszy i mniej podatny na błędy licznika.",
+    "topic": "pętla while"
+  },
+  {
+    "id": 259,
+    "materialId": 35,
+    "front": "Jak można zasymulować konstrukcję 'do...while' w Pythonie używając `while`?",
+    "back": "Użyć pętli `while True:` i `break` wewnątrz po sprawdzeniu warunku na końcu. Przykład:\n```python\nwhile True:\n    do_something()\n    if not condition():\n        break\n```",
+    "topic": "pętla while"
+  },
+  {
+    "id": 260,
+    "materialId": 35,
+    "front": "Co się stanie jeśli użyjesz `break` wewnątrz zagnieżdżonej pętli?",
+    "back": "`break` przerywa tylko najbliższą (wewnętrzną) pętlę, nie wszystkie zagnieżdżone. Aby przerwać zewnętrzną pętlę, trzeba użyć dodatkowej logiki (np. flagi) lub wyjątku.",
+    "topic": "break"
+  },
+  {
+    "id": 261,
+    "materialId": 35,
+    "front": "Kiedy warto użyć `continue` zamiast rozgałęzienia `if`?",
+    "back": "Gdy chcesz szybko pominąć niechcianą iterację i przejść do następnej, co upraszcza strukturę kodu (mniej wcięć). Np. pomijać komentarze: `if line.startswith('#'): continue`.",
+    "topic": "continue"
+  },
+  {
+    "id": 262,
+    "materialId": 35,
+    "front": "Co to jest 'residual value' zmiennej po wyjściu z pętli i dlaczego to ważne?",
+    "back": "Wartość zmiennej iteracyjnej po zakończeniu pętli (resztkowa) może być użyteczna albo problematyczna. Na przykład po `while n>0:` z `n -= 1` zmienna `n` będzie równa 0 — trzeba to mieć na uwadze przy dalszym użyciu.",
+    "topic": "zmienna iteracyjna"
+  },
+  {
+    "id": 263,
+    "materialId": 35,
+    "front": "Jaki idiom używa się często do czytania wejścia aż użytkownik wpisze znak kończący?",
+    "back": "Użycie pętli `while True:` z warunkiem zakończenia i `break`, np. `while True: line = input('> ') if line == 'quit': break`.",
+    "topic": "break"
+  },
+  {
+    "id": 264,
+    "materialId": 36,
+    "front": "Co to jest typ danych w Pythonie i po co Python go śledzi?",
+    "back": "Typ danych określa, jaką kategorię wartości przechowuje zmienna (np. `int`, `float`, `str`). Python śledzi typy, żeby wiedzieć, jakie operacje są dozwolone (np. `1 + 4` to dodawanie liczb, a `'a' + 'b'` to konkatenacja stringów).",
+    "topic": "Typy danych"
+  },
+  {
+    "id": 265,
+    "materialId": 36,
+    "front": "Co robi funkcja `type(x)`?",
+    "back": "Funkcja `type(x)` zwraca typ obiektu `x`, np. `type(42)` zwróci `<class 'int'>`, a `type('hi')` zwróci `<class 'str'>`.",
+    "topic": "Funkcja `type()`"
+  },
+  {
+    "id": 266,
+    "materialId": 36,
+    "front": "Jaka jest różnica między `int` a `float`?",
+    "back": "`int` to liczba całkowita bez części dziesiętnej, `float` to liczba zmiennoprzecinkowa (ma część dziesiętną). `float` ma większy zakres, ale może być mniej precyzyjny niż `int`.",
+    "topic": "Liczby"
+  },
+  {
+    "id": 267,
+    "materialId": 36,
+    "front": "Co się stanie gdy wykonasz `3 + '4'`?",
+    "back": "Powstanie `TypeError`, ponieważ `3` to `int`, a `'4'` to `str` — `+` nie zna sensownej domyślnej operacji między `int` i `str`.",
+    "topic": "Błędy typu"
+  },
+  {
+    "id": 268,
+    "materialId": 36,
+    "front": "Jak zamienić string z cyframi na liczbę całkowitą?",
+    "back": "Użyj `int(s)`, np. `int('123')` zwróci `123` jako `int`. Jeżeli string nie reprezentuje liczby całkowitej, to `int()` zgłosi wyjątek.",
+    "topic": "Konwersje typów"
+  },
+  {
+    "id": 269,
+    "materialId": 36,
+    "front": "Jak zamienić string na liczbę zmiennoprzecinkową?",
+    "back": "Użyj `float(s)`, np. `float('3.14')` zwróci `3.14` jako `float`. Jeśli string nie jest poprawnym zapisem liczby, `float()` zgłosi wyjątek.",
+    "topic": "Konwersje typów"
+  },
+  {
+    "id": 270,
+    "materialId": 36,
+    "front": "Kiedy lepiej użyć `float` zamiast `int`?",
+    "back": "Gdy potrzebujesz wartości z częścią dziesiętną, np. temperatury lub prędkości: `float(98.6)`. Nie używaj `float` do reprezentowania precyzyjnych wartości pieniężnych (zaokrąglenia mogą wprowadzać błędy).",
+    "topic": "Liczby"
+  },
+  {
+    "id": 271,
+    "materialId": 36,
+    "front": "Co robi funkcja `input(prompt)`?",
+    "back": "Wyświetla `prompt`, czeka na wpisanie tekstu i naciśnięcie Enter, a następnie zwraca wprowadzony tekst jako `str`, np. `name = input('Imię: ')`.",
+    "topic": "Wejście/wyjście"
+  },
+  {
+    "id": 272,
+    "materialId": 36,
+    "front": "Dlaczego `print('Hi', name)` dodaje spację między elementami?",
+    "back": "Funkcja `print()` oddziela przekazane argumenty spacją domyślnie. `print('Hi', name)` wypisze `Hi <name>` — separator można zmienić parametrem `sep`.",
+    "topic": "Wejście/wyjście"
+  },
+  {
+    "id": 273,
+    "materialId": 36,
+    "front": "Jak rozwiązać problem dodania liczby i tekstu, gdy otrzymujesz `TypeError`?",
+    "back": "Musisz dokonać jawnej konwersji jednego z operandów: albo zamienić tekst na liczbę `int(s)`/`float(s)`, albo liczbę na tekst `str(n)` przed konkatenacją.",
+    "topic": "Błędy typu"
+  },
+  {
+    "id": 274,
+    "materialId": 36,
+    "front": "Co oznacza traceback i jak go analizować?",
+    "back": "Traceback to raport błędu, pokazuje miejsce (linia, plik) i typ błędu (np. `TypeError`). Szukaj pierwszej linii wskazującej na Twój kod i czytaj komunikat błędu, by zrozumieć przyczynę.",
+    "topic": "Błędy typu"
+  },
+  {
+    "id": 275,
+    "materialId": 36,
+    "front": "Jaki częsty błąd popełniają początkujący przy konwersji wejścia z `input()`?",
+    "back": "Zakładają, że wynik `input()` jest liczbą. W rzeczywistości `input()` zwraca `str`, więc trzeba jawnie wykonać `int(s)` lub `float(s)` zanim użyjesz go jako liczby.",
+    "topic": "Wejście/wyjście"
+  },
+  {
+    "id": 276,
+    "materialId": 37,
+    "front": "Co robi instrukcja `elif` w Pythonie?",
+    "back": "`elif` to skrót od \"else if\". Pozwala sprawdzać dodatkowe, kolejne warunki po niepowodzeniu wcześniejszych. Python sprawdza je po kolei i wykona tylko pierwszy blok, którego warunek jest prawdziwy.",
+    "topic": "if/elif/else"
+  },
+  {
+    "id": 277,
+    "materialId": 37,
+    "front": "Jaka jest różnica między serią `if` a połączeniem `if` + `elif`?",
+    "back": "Seria oddzielnych `if` może wykonać dowolną liczbę bloków jeśli ich warunki są prawdziwe. `if` + `elif` gwarantuje, że wykona się maksymalnie jeden blok — pierwszy, którego warunek jest prawdziwy.",
+    "topic": "if/elif/else"
+  },
+  {
+    "id": 278,
+    "materialId": 37,
+    "front": "Co się stanie jeśli pominiesz `else` w wielokierunkowym `if/elif`?",
+    "back": "Możliwe jest, że żaden z warunków nie będzie prawdziwy i wtedy żaden blok nie wykona się — nie nastąpi żaden 'catch-all'. Funkcja bez `return` zwróci `None`.",
+    "topic": "brak else"
+  },
+  {
+    "id": 279,
+    "materialId": 37,
+    "front": "Jak myśleć o bloku `if`/`elif`/`else`?",
+    "back": "Każdy blok traktuj jako jedną strukturę z jednym wejściem i jednym wyjściem: wejście to sprawdzenie warunku od góry, wyjście następuje po wykonaniu pierwszego prawdziwego bloku lub po pominięciu wszystkich (i ewentualnym wykonaniu `else`).",
+    "topic": "blok kodu"
+  },
+  {
+    "id": 280,
+    "materialId": 37,
+    "front": "Dlaczego kolejność warunków ma znaczenie?",
+    "back": "Warunki są sprawdzane sekwencyjnie. Jeśli wcześniejszy warunek jest szerszy (pokrywa wartości kolejnego), to ten późniejszy może nigdy nie zostać sprawdzony i stanie się nieosiągalny.",
+    "topic": "kolejność warunków"
+  },
+  {
+    "id": 281,
+    "materialId": 37,
+    "front": "Podaj przykład typowego błędu związanego z kolejnością warunków.",
+    "back": "Sprawdzasz najpierw `if x < 20:` a potem `elif x < 10:` — dla `x = 6` pierwszy warunek jest prawdziwy i drugi nigdy nie zostanie sprawdzony. Poprawne jest sprawdzanie od najwęższych do najszerszych lub użycie prawidłowych granic.",
+    "topic": "częste błędy i pułapki"
+  },
+  {
+    "id": 282,
+    "materialId": 37,
+    "front": "Jak zapewnić, że kilka warunków wykona się jednocześnie?",
+    "back": "Użyj oddzielnych instrukcji `if` dla każdego warunku (nie `elif`) lub zaprojektuj warunki z `and`/`or`. `elif` blokuje wykonanie kolejnych po napotkaniu pierwszego prawdziwego.",
+    "topic": "if/elif/else"
+  },
+  {
+    "id": 283,
+    "materialId": 37,
+    "front": "Jak uniknąć nieosiągalnego kodu w łańcuchu warunków?",
+    "back": "Przemyśl zakresy i porównania. Sprawdź, czy wcześniejszy warunek nie pokrywa zestawu wartości późniejszych warunków. Często wystarczy zamienić kolejność lub użyć precyzyjnych porównań, np. `if x < 10:`, `elif x < 20:`.",
+    "topic": "nieosiągalny kod"
+  },
+  {
+    "id": 284,
+    "materialId": 37,
+    "front": "Co to jest 'catch-all' w kontekście `if/elif/else`?",
+    "back": "`else` działa jako 'catch-all' — wykona się gdy żaden z poprzednich warunków nie był prawdziwy. Zapewnia, że przynajmniej jeden blok wykona się (jeśli `else` istnieje).",
+    "topic": "brak else"
+  },
+  {
+    "id": 285,
+    "materialId": 37,
+    "front": "Jaki błąd spowoduje użycie `=` zamiast `==` w `if`?",
+    "back": "`=` to operator przypisania i w instrukcji `if` spowoduje błąd składniowy w Pythonie (SyntaxError). Porównanie równości robi się przez `==`.",
+    "topic": "częste błędy i pułapki"
+  },
+  {
+    "id": 286,
+    "materialId": 37,
+    "front": "Kiedy lepiej użyć złączenia warunków (`and`/`or`) zamiast wielu `elif`?",
+    "back": "Użyj `and`/`or` gdy chcesz wyrazić złożony warunek, który musi być spełniony jednocześnie lub alternatywnie. `elif` służy do wyboru jednej z wielu wzajemnie wykluczających się ścieżek.",
+    "topic": "if/elif/else"
+  },
+  {
+    "id": 287,
+    "materialId": 37,
+    "front": "Jaki częsty błąd powoduje, że `elif` nigdy nie zostanie wywołane — przykład z liczbami?",
+    "back": "Jeśli najpierw napiszesz `if x < 20:` a potem `elif x < 10:`, to dla dowolnego `x < 10` pierwszy warunek już był prawdziwy i `elif` nie zostanie sprawdzone. Zawsze ustawiaj bardziej szczegółowe warunki wcześniej.",
+    "topic": "kolejność warunków"
+  },
+  {
+    "id": 288,
+    "materialId": 38,
+    "front": "Co to jest `None` w Pythonie?",
+    "back": "`None` to specjalna wartość typu `NoneType`, która oznacza brak wartości lub brak inicjalizacji. Używa się jej jako wskaźnika, że jeszcze nic nie przypisano (np. `x = None`).",
+    "topic": "None jako flag value"
+  },
+  {
+    "id": 289,
+    "materialId": 38,
+    "front": "Dlaczego zła jest inicjalizacja `smallest = -1` gdy szukamy najmniejszej wartości?",
+    "back": "Bo `-1` może być mniejszy niż wszystkie elementy listy (np. gdy wszystkie elementy są dodatnie) i wtedy wynik będzie fałszywy. Wstępne stałe liczbowej wartości są kruche wobec zakresu danych.",
+    "topic": "błędy początkujących"
+  },
+  {
+    "id": 290,
+    "materialId": 38,
+    "front": "Jak bezpiecznie zainicjalizować zmienną przed pętlą żeby znaleźć najmniejszą wartość?",
+    "back": "Ustaw ją na `None` i w pętli: jeśli zmienna jest `None` (pierwszy element) przypisz pierwszy element, w przeciwnym razie porównuj. Na przykład:\n```python\nsmallest = None\nfor v in nums:\n    if smallest is None:\n        smallest = v\n    elif v < smallest:\n        smallest = v\n```",
+    "topic": "inicjalizacja zmiennej"
+  },
+  {
+    "id": 291,
+    "materialId": 38,
+    "front": "Jaka jest różnica między `is` a `==`?",
+    "back": "`is` sprawdza tożsamość obiektów (czy to ten sam obiekt w pamięci), a `==` sprawdza równość wartości (może być nadpisana). Dla `None` powinno się używać `is`/`is not`: `x is None`.",
+    "topic": "operator `is` / `is not`"
+  },
+  {
+    "id": 292,
+    "materialId": 38,
+    "front": "Co się stanie jeśli porównasz `None < 5`?",
+    "back": "Dostaniesz `TypeError`, bo `NoneType` nie jest porównywalny z liczbami przy użyciu operatorów porównania (`<`, `>`). Najpierw trzeba upewnić się, że zmienna nie jest `None`.",
+    "topic": "błędy początkujących"
+  },
+  {
+    "id": 293,
+    "materialId": 38,
+    "front": "Co to jest 'flag value' (wartość flagowa) i dlaczego `None` jest lepsze niż arbitralne liczby?",
+    "back": "Wartość flagowa to specjalna wartość informująca o stanie (np. że nic nie znaleziono). `None` jest lepsze, bo jest jednoznaczne i niezależne od zakresu danych, podczas gdy arbitralne liczby mogą kolidować z prawdziwymi danymi.",
+    "topic": "None jako flag value"
+  },
+  {
+    "id": 294,
+    "materialId": 38,
+    "front": "Kiedy lepiej użyć wbudowanej funkcji `min()` zamiast ręcznej pętli?",
+    "back": "Gdy masz prostą listę i nie musisz obsługiwać złożonych przypadków (np. brak elementów). `min(nums)` jest krótsze i wydajne. Dla pustej listy można użyć `min(nums, default=None)` lub najpierw sprawdzić `if nums:`.",
+    "topic": "wbudowane funkcje `min()`"
+  },
+  {
+    "id": 295,
+    "materialId": 38,
+    "front": "Jaki typ błędu popełnia początkujący, używając `smallest = -1` i listy zawierającej tylko liczby ujemne?",
+    "back": "Zwróci błędny wynik: jeśli wszystkie liczby są ujemne, `-1` może być większe niż niektóre liczby (np. -5), więc `-1` nie będzie najmniejszą wartością. To błąd logiczny wynikający ze złej inicjalizacji.",
+    "topic": "błędy początkujących"
+  },
+  {
+    "id": 296,
+    "materialId": 38,
+    "front": "Jakie są dwa kroki \"priming\" (inicjowania) przed pętlą?",
+    "back": "1) Ustawić zmienną sterującą na wskaźnik braku wartości, np. `None`. 2) W pierwszym przebiegu pętli przypisać pierwszy element do tej zmiennej zamiast porównywać z wartością flagi.\nPrzykład:\n```python\nsmallest = None\nfor v in nums:\n    if smallest is None:\n        smallest = v\n    elif v < smallest:\n        smallest = v\n```",
+    "topic": "pętle (for, while)"
+  },
+  {
+    "id": 297,
+    "materialId": 38,
+    "front": "Czy zawsze należy używać `is` do porównywania z `None`? A co z `==`?",
+    "back": "Dla `None` preferuje się `is`/`is not`, bo sprawdza tożsamość obiektu `None`. `== None` zwykle zadziała, ale może być niejednoznaczne jeśli obiekt nadpisuje `__eq__`.",
+    "topic": "operator `is` / `is not`"
+  },
+  {
+    "id": 298,
+    "materialId": 38,
+    "front": "Co się stanie, jeśli w pętli najpierw spróbujesz porównać wartość z `smallest`, który jest `None`?",
+    "back": "Spowoduje to `TypeError`, np. przy `if v < smallest:` gdy `smallest` to `None`. Trzeba najpierw sprawdzić `if smallest is None:` i dopiero potem porównywać.",
+    "topic": "błędy początkujących"
+  },
+  {
+    "id": 299,
+    "materialId": 38,
+    "front": "Kiedy warto użyć `min(iterable, default=...)`?",
+    "back": "Gdy możesz mieć pusty iterable i chcesz uniknąć `ValueError`. Na przykład `min(nums, default=None)` zwróci `None` zamiast rzucać wyjątek dla pustej listy.",
+    "topic": "wbudowane funkcje `min()`"
   }
 ]

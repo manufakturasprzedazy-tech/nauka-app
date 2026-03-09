@@ -5,6 +5,7 @@ import { CodeFeedback } from './CodeFeedback';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
+import { FormattedText } from '@/components/ui/FormattedText';
 import { db, getOrCreateTodayActivity, getSetting } from '@/db/database';
 import { getCodingXP } from '@/services/gamification';
 import { compareCode, type CodeComparisonResult } from '@/services/codeComparison';
@@ -105,10 +106,13 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
     setXpEarned(0);
   };
 
-  // Extract first line of solution as hint
-  const hint = exercise.solution
-    .split('\n')
-    .find(l => l.trim() && !l.trim().startsWith('#'));
+  // Use hints from data, fallback to extracting from solution
+  const hints = exercise.hints && exercise.hints.length > 0
+    ? exercise.hints
+    : (() => {
+        const line = exercise.solution.split('\n').find(l => l.trim() && !l.trim().startsWith('#'));
+        return line ? [line] : [];
+      })();
 
   return (
     <div className="px-4 py-4 space-y-4">
@@ -123,15 +127,24 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
 
       {/* Description */}
       <Card variant="outlined">
-        <p className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">{exercise.description}</p>
+        <FormattedText text={exercise.description} className="text-sm text-slate-300" />
       </Card>
 
-      {/* Hint */}
-      {showHint && hint && (
+      {/* Hints */}
+      {showHint && hints.length > 0 && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <Card variant="outlined" className="border-l-4 border-l-amber-500">
-            <div className="text-xs text-amber-400 font-medium mb-1 uppercase tracking-wider">Podpowiedź</div>
-            <pre className="text-sm text-slate-300 font-mono">{hint}</pre>
+            <div className="text-xs text-amber-400 font-medium mb-1 uppercase tracking-wider">
+              {hints.length > 1 ? 'Podpowiedzi' : 'Podpowiedź'}
+            </div>
+            <ul className="text-sm text-slate-300 space-y-1">
+              {hints.map((h, i) => (
+                <li key={i} className="flex gap-2">
+                  <span className="text-amber-500 shrink-0">•</span>
+                  <FormattedText text={h} className="inline" />
+                </li>
+              ))}
+            </ul>
           </Card>
         </motion.div>
       )}

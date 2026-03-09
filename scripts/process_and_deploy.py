@@ -1,15 +1,17 @@
 #!/usr/bin/env python3
 """
-All-in-one script: detect new materials → process with Claude → save to SQLite → export JSON → deploy.
+All-in-one script: detect new materials → process with OpenAI API → save to SQLite → export JSON → deploy.
 
 Usage:
   python scripts/process_and_deploy.py              # Process new materials + export JSON
   python scripts/process_and_deploy.py --deploy      # + git commit & push
   python scripts/process_and_deploy.py --dry-run     # Show what would be processed
+  python scripts/process_and_deploy.py --reprocess   # Reprocess ALL existing materials
+  python scripts/process_and_deploy.py --reprocess "Pętle definite" "Funkcje cz.1"  # Reprocess specific
 
 Requirements:
-  pip install anthropic
-  Set ANTHROPIC_API_KEY env variable or create .env file in project root.
+  pip install openai
+  Set OPENAI_API_KEY env variable or create .env file in project root.
 """
 
 import sqlite3
@@ -37,11 +39,29 @@ def load_env():
                     os.environ.setdefault(key.strip(), value.strip())
 
 
+def ensure_schema(conn):
+    """Ensure database schema has all required columns."""
+    cur = conn.cursor()
+    cur.execute("PRAGMA table_info(coding_exercises)")
+    columns = [row[1] for row in cur.fetchall()]
+    if 'hints' not in columns:
+        cur.execute('ALTER TABLE coding_exercises ADD COLUMN hints TEXT DEFAULT "[]"')
+        conn.commit()
+        print("Dodano kolumnę 'hints' do tabeli coding_exercises.")
+
+
 def get_existing_filenames(conn):
     """Get set of filenames already in the database."""
     cur = conn.cursor()
     cur.execute('SELECT filename FROM source_materials')
     return {row[0] for row in cur.fetchall()}
+
+
+def get_all_materials(conn):
+    """Get all materials from the database."""
+    cur = conn.cursor()
+    cur.execute('SELECT id, filename, title FROM source_materials ORDER BY id')
+    return cur.fetchall()
 
 
 def get_new_materials(existing_filenames):
@@ -54,15 +74,25 @@ def get_new_materials(existing_filenames):
     return sorted(new_files)
 
 
+def delete_material_data(conn, material_id):
+    """Delete all data for a specific material (for reprocessing)."""
+    cur = conn.cursor()
+    cur.execute('DELETE FROM flashcards WHERE material_id = ?', (material_id,))
+    cur.execute('DELETE FROM quiz_questions WHERE material_id = ?', (material_id,))
+    cur.execute('DELETE FROM coding_exercises WHERE material_id = ?', (material_id,))
+    cur.execute('DELETE FROM source_materials WHERE id = ?', (material_id,))
+    conn.commit()
+
+
 def save_to_db(conn, data):
     """Save processed material data to SQLite."""
     cur = conn.cursor()
 
     # Insert source_material
     cur.execute(
-        '''INSERT INTO source_materials (filename, title, summary, topics, processed)
-           VALUES (?, ?, ?, ?, 1)''',
-        (data['filename'], data['title'], data['summary'], json.dumps(data.get('topics', []), ensure_ascii=False))
+        '''INSERT INTO source_materials (filename, filepath, title, summary, topics, processed_at)
+           VALUES (?, ?, ?, ?, ?, datetime('now'))''',
+        (data['filename'], data['filename'], data['title'], data['summary'], json.dumps(data.get('topics', []), ensure_ascii=False))
     )
     material_id = cur.lastrowid
 
@@ -84,11 +114,12 @@ def save_to_db(conn, data):
 
     # Insert coding exercises
     for ex in data.get('exercises', []):
+        hints = json.dumps(ex.get('hints', []), ensure_ascii=False)
         cur.execute(
-            '''INSERT INTO coding_exercises (material_id, title, description, starter_code, solution, test_code, difficulty, topic)
-               VALUES (?, ?, ?, ?, ?, ?, ?, ?)''',
+            '''INSERT INTO coding_exercises (material_id, title, description, starter_code, solution, test_code, difficulty, topic, hints)
+               VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)''',
             (material_id, ex['title'], ex['description'], ex.get('starterCode', ''),
-             ex.get('solution', ''), ex.get('testCode', ''), ex.get('difficulty', 'medium'), ex.get('topic', ''))
+             ex.get('solution', ''), ex.get('testCode', ''), ex.get('difficulty', 'medium'), ex.get('topic', ''), hints)
         )
 
     conn.commit()
@@ -105,52 +136,22 @@ def git_deploy():
     """Git add, commit, push."""
     os.chdir(ROOT_DIR)
     subprocess.run(['git', 'add', '-A'], check=True)
-    subprocess.run(['git', 'commit', '-m', 'Dodaj nowe materiały i zaktualizuj dane'], check=True)
+    subprocess.run(['git', 'commit', '-m', 'Przetworzono materiały z zaktualizowanymi promptami'], check=True)
     subprocess.run(['git', 'push'], check=True)
     print("Git push completed!")
 
 
-def main():
-    parser = argparse.ArgumentParser(description='Process new materials and deploy')
-    parser.add_argument('--deploy', action='store_true', help='Git commit and push after processing')
-    parser.add_argument('--dry-run', action='store_true', help='Show what would be processed')
-    args = parser.parse_args()
-
-    load_env()
-
-    api_key = os.environ.get('ANTHROPIC_API_KEY', '')
-    if not api_key and not args.dry_run:
-        print("ERROR: ANTHROPIC_API_KEY not set. Set it in .env or environment.")
-        sys.exit(1)
-
-    conn = sqlite3.connect(DB_PATH)
-    existing = get_existing_filenames(conn)
-    new_files = get_new_materials(existing)
-
-    if not new_files:
-        print("Brak nowych materiałów do przetworzenia.")
-        print(f"Istniejące: {len(existing)} materiałów w bazie.")
-
-        if args.deploy:
-            export_json()
-            git_deploy()
-        return
-
-    print(f"Znaleziono {len(new_files)} nowych materiałów:")
-    for f in new_files:
-        print(f"  - {f}")
-
-    if args.dry_run:
-        print("\n(--dry-run: nie przetwarzam)")
-        conn.close()
-        return
-
-    # Import process_material
+def process_files(filenames, api_key, conn):
+    """Process a list of .md files and save to database."""
     from process_material import process_material
 
     processed = 0
-    for filename in new_files:
+    for filename in filenames:
         filepath = os.path.join(MATERIALS_DIR, filename)
+        if not os.path.exists(filepath):
+            print(f"  POMINIĘTO: {filename} — plik nie istnieje w {MATERIALS_DIR}")
+            continue
+
         print(f"\nPrzetwarzam: {filename}...")
 
         try:
@@ -165,14 +166,109 @@ def main():
             print(f"  BŁĄD: {e}")
             continue
 
+    return processed
+
+
+def main():
+    parser = argparse.ArgumentParser(description='Process materials and deploy')
+    parser.add_argument('--deploy', action='store_true', help='Git commit and push after processing')
+    parser.add_argument('--dry-run', action='store_true', help='Show what would be processed')
+    parser.add_argument('--reprocess', nargs='*', default=None,
+                        help='Reprocess existing materials. Without args = ALL. With args = matching titles/filenames.')
+    args = parser.parse_args()
+
+    load_env()
+
+    api_key = os.environ.get('OPENAI_API_KEY', '')
+    if not api_key and not args.dry_run:
+        print("ERROR: OPENAI_API_KEY not set. Set it in .env or environment.")
+        sys.exit(1)
+
+    conn = sqlite3.connect(DB_PATH, timeout=30)
+    ensure_schema(conn)
+
+    # --- REPROCESS MODE ---
+    if args.reprocess is not None:
+        all_materials = get_all_materials(conn)
+
+        if len(args.reprocess) == 0:
+            # Reprocess ALL
+            to_reprocess = all_materials
+        else:
+            # Match by title or filename (partial match, case-insensitive)
+            to_reprocess = []
+            for mat_id, mat_filename, mat_title in all_materials:
+                for query in args.reprocess:
+                    q = query.lower()
+                    if q in (mat_title or '').lower() or q in mat_filename.lower():
+                        to_reprocess.append((mat_id, mat_filename, mat_title))
+                        break
+
+        if not to_reprocess:
+            print("Nie znaleziono materiałów do przetworzenia.")
+            conn.close()
+            return
+
+        print(f"Materiały do przetworzenia ponownie ({len(to_reprocess)}):")
+        for mat_id, mat_filename, mat_title in to_reprocess:
+            print(f"  [{mat_id}] {mat_title or mat_filename}")
+
+        if args.dry_run:
+            print("\n(--dry-run: nie przetwarzam)")
+            conn.close()
+            return
+
+        # Delete existing data for these materials
+        filenames_to_process = []
+        for mat_id, mat_filename, mat_title in to_reprocess:
+            print(f"  Usuwam stare dane: [{mat_id}] {mat_title or mat_filename}")
+            delete_material_data(conn, mat_id)
+            filenames_to_process.append(mat_filename)
+
+        processed = process_files(filenames_to_process, api_key, conn)
+        conn.close()
+        print(f"\nPrzetworzono ponownie {processed}/{len(to_reprocess)} materiałów.")
+
+        print("\nEksportuję JSON...")
+        export_json()
+
+        if args.deploy:
+            print("\nDeploying...")
+            git_deploy()
+
+        print("\nGotowe!")
+        return
+
+    # --- NEW MATERIALS MODE (default) ---
+    existing = get_existing_filenames(conn)
+    new_files = get_new_materials(existing)
+
+    if not new_files:
+        print("Brak nowych materiałów do przetworzenia.")
+        print(f"Istniejące: {len(existing)} materiałów w bazie.")
+
+        if args.deploy:
+            export_json()
+            git_deploy()
+        conn.close()
+        return
+
+    print(f"Znaleziono {len(new_files)} nowych materiałów:")
+    for f in new_files:
+        print(f"  - {f}")
+
+    if args.dry_run:
+        print("\n(--dry-run: nie przetwarzam)")
+        conn.close()
+        return
+
+    processed = process_files(new_files, api_key, conn)
     conn.close()
     print(f"\nPrzetworzono {processed}/{len(new_files)} materiałów.")
 
-    # Export JSON
     print("\nEksportuję JSON...")
     export_json()
 
-    # Deploy
     if args.deploy:
         print("\nDeploying...")
         git_deploy()

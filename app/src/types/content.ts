@@ -43,6 +43,7 @@ export interface CodingExercise {
   materialId: number;
   title: string;
   description: string;
+  hints?: string[];
   starterCode: string;
   solution: string;
   testCode: string;

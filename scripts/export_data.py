@@ -10,7 +10,7 @@ OUT_DIR = os.path.join(os.path.dirname(__file__), '..', 'app', 'src', 'data')
 
 def export():
     os.makedirs(OUT_DIR, exist_ok=True)
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=30)
     conn.row_factory = sqlite3.Row
 
     cur = conn.cursor()
@@ -87,9 +87,11 @@ def export():
 
     # 5. Exercises
     cur.execute('SELECT * FROM coding_exercises ORDER BY id')
+    col_names = [desc[0] for desc in cur.description]
+    has_hints = 'hints' in col_names
     exercises = []
     for r in cur.fetchall():
-        exercises.append({
+        ex = {
             "id": r['id'],
             "materialId": r['material_id'],
             "title": r['title'],
@@ -99,7 +101,12 @@ def export():
             "testCode": r['test_code'],
             "difficulty": r['difficulty'],
             "topic": r['topic'],
-        })
+        }
+        if has_hints:
+            ex["hints"] = json.loads(r['hints']) if r['hints'] else []
+        else:
+            ex["hints"] = []
+        exercises.append(ex)
     write_json('exercises.json', exercises)
 
     # 6. Explanations (empty — feature removed)
