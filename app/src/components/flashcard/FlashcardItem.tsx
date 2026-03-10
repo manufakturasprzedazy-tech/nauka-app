@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion';
 import { FormattedText } from '@/components/ui/FormattedText';
+import { ExplainButton } from '@/components/ui/ExplainButton';
 import type { Flashcard } from '@/types/content';
 
 interface FlashcardItemProps {
@@ -34,18 +35,24 @@ export function FlashcardItem({ card, onRate }: FlashcardItemProps) {
         </div>
       </div>
 
-      {/* Rating buttons — only show when flipped */}
+      {/* Explain + Rating buttons — only show when flipped */}
       {isFlipped && (
         <motion.div
-          className="flex gap-2 w-full max-w-sm"
+          className="flex flex-col gap-3 w-full max-w-sm"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3 }}
         >
-          <RateButton label="Nie pamiętam" color="bg-red-600" onClick={() => onRate('again')} />
-          <RateButton label="Trudne" color="bg-orange-600" onClick={() => onRate('hard')} />
-          <RateButton label="Dobrze" color="bg-blue-600" onClick={() => onRate('good')} />
-          <RateButton label="Łatwe" color="bg-emerald-600" onClick={() => onRate('easy')} />
+          <ExplainButton
+            content={`Przód: ${card.front}\n\nTył: ${card.back}`}
+            context="flashcard"
+          />
+          <div className="flex gap-2 w-full">
+            <RateButton label="Nie pamiętam" color="bg-red-600" onClick={() => onRate('again')} />
+            <RateButton label="Trudne" color="bg-orange-600" onClick={() => onRate('hard')} />
+            <RateButton label="Dobrze" color="bg-blue-600" onClick={() => onRate('good')} />
+            <RateButton label="Łatwe" color="bg-emerald-600" onClick={() => onRate('easy')} />
+          </div>
         </motion.div>
       )}
     </div>

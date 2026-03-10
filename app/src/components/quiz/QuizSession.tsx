@@ -4,6 +4,7 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { FormattedText } from '@/components/ui/FormattedText';
+import { ExplainButton } from '@/components/ui/ExplainButton';
 import type { QuizQuestion } from '@/types/content';
 
 interface QuizSessionProps {
@@ -105,6 +106,12 @@ export function QuizSession({
                 </div>
                 <FormattedText text={question.explanation} className="text-sm text-slate-300" />
               </Card>
+              <div className="mt-3">
+                <ExplainButton
+                  content={`Pytanie: ${question.question}\n\nOdpowiedzi:\n${question.choices.map((c, i) => `${String.fromCharCode(65 + i)}) ${c}`).join('\n')}\n\nPoprawna: ${String.fromCharCode(65 + question.correctIndex)}) ${question.choices[question.correctIndex]}\n\nWyjaśnienie: ${question.explanation}`}
+                  context="quiz"
+                />
+              </div>
               <Button onClick={onNext} fullWidth className="mt-4">
                 Następne
               </Button>

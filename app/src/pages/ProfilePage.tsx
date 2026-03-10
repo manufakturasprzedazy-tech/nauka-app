@@ -13,6 +13,7 @@ import { useStreak } from '@/hooks/useStreak';
 import { useAppStore } from '@/stores/appStore';
 import { getLevelProgress, getLevelColor, ACHIEVEMENTS } from '@/services/gamification';
 import { testConnection } from '@/services/aiService';
+import { testOpenAIConnection } from '@/services/openaiService';
 import { db, getSetting, setSetting } from '@/db/database';
 
 export function ProfilePage() {
@@ -24,11 +25,14 @@ export function ProfilePage() {
   const [showSettings, setShowSettings] = useState(false);
   const [apiKey, setApiKey] = useState('');
   const [apiKeyStatus, setApiKeyStatus] = useState<'idle' | 'testing' | 'ok' | 'error'>('idle');
+  const [openaiKey, setOpenaiKey] = useState('');
+  const [openaiKeyStatus, setOpenaiKeyStatus] = useState<'idle' | 'testing' | 'ok' | 'error'>('idle');
 
   const levelInfo = getLevelProgress(totalXP);
 
   useEffect(() => {
     getSetting('claude_api_key', '').then(setApiKey);
+    getSetting('openai_api_key', '').then(setOpenaiKey);
   }, []);
 
   const handleSaveApiKey = async () => {
@@ -39,6 +43,16 @@ export function ProfilePage() {
     setApiKeyStatus('testing');
     const ok = await testConnection(apiKey);
     setApiKeyStatus(ok ? 'ok' : 'error');
+  };
+
+  const handleSaveOpenaiKey = async () => {
+    await setSetting('openai_api_key', openaiKey);
+  };
+
+  const handleTestOpenaiConnection = async () => {
+    setOpenaiKeyStatus('testing');
+    const ok = await testOpenAIConnection(openaiKey);
+    setOpenaiKeyStatus(ok ? 'ok' : 'error');
   };
 
   const handleReset = async () => {
@@ -187,6 +201,31 @@ export function ProfilePage() {
                 {apiKeyStatus === 'testing' ? 'Testuję...' :
                  apiKeyStatus === 'ok' ? 'Połączono!' :
                  apiKeyStatus === 'error' ? 'Błąd!' : 'Testuj połączenie'}
+              </Button>
+            </div>
+          </div>
+
+          {/* OpenAI API Key */}
+          <div>
+            <p className="text-sm text-slate-300 mb-2">Klucz API OpenAI</p>
+            <input
+              type="password"
+              value={openaiKey}
+              onChange={(e) => { setOpenaiKey(e.target.value); setOpenaiKeyStatus('idle'); }}
+              placeholder="sk-..."
+              className="w-full bg-slate-800 border border-slate-700 rounded-lg px-3 py-2 text-sm text-white placeholder-slate-500 focus:outline-none focus:border-blue-500"
+            />
+            <p className="text-[10px] text-slate-500 mt-1">
+              Do wyjaśniania pojęć w fiszkach i quizach (GPT-5 mini).
+            </p>
+            <div className="flex gap-2 mt-2">
+              <Button variant="secondary" size="sm" onClick={handleSaveOpenaiKey}>
+                Zapisz
+              </Button>
+              <Button variant="ghost" size="sm" onClick={handleTestOpenaiConnection} disabled={!openaiKey || openaiKeyStatus === 'testing'}>
+                {openaiKeyStatus === 'testing' ? 'Testuję...' :
+                 openaiKeyStatus === 'ok' ? 'Połączono!' :
+                 openaiKeyStatus === 'error' ? 'Błąd!' : 'Testuj połączenie'}
               </Button>
             </div>
           </div>
