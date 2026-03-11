@@ -22,6 +22,15 @@ export function ExplainButton({ content, context }: ExplainButtonProps) {
     getSetting('openai_api_key', '').then(setApiKey);
   }, []);
 
+  // Defensive: if state is 'done' but explanation is empty, reset to error
+  useEffect(() => {
+    if (state === 'done' && !explanation) {
+      setState('error');
+      setVisible(false);
+      showToast('Nie udało się wygenerować wyjaśnienia', '⚠️', 'warning');
+    }
+  }, [state, explanation, showToast]);
+
   const handleClick = useCallback(async () => {
     if (state === 'done') {
       setVisible(v => !v);

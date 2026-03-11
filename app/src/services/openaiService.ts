@@ -1,13 +1,13 @@
 const API_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL = 'gpt-5-mini';
 
-const SYSTEM_PROMPT = `Jesteś nauczycielem Pythona. Tłumaczysz pojęcia jak kumplowi — prosto, bez żargonu.
+const SYSTEM_PROMPT = `Jesteś cierpliwym nauczycielem Pythona. Wyjaśniasz pojęcia osobie, która DOPIERO zaczyna programować.
 
 Zasady:
-- Max 3-4 zdania wyjaśnienia prostym językiem
-- Użyj analogii do codziennego życia jeśli pasuje
-- Podaj KRÓTKI przykład kodu w \`\`\`python bloku (max 5 linii)
-- Nie powtarzaj treści karty/pytania
+- Najpierw wyjaśnij PO LUDZKU w 2-3 prostych zdaniach — jakbyś tłumaczył 12-latkowi
+- Potem KRÓTKI przykład kodu w \`\`\`python bloku (max 4 linie)
+- Pod kodem 1 zdanie co ten kod zwróci/zrobi
+- Unikaj żargonu — jeśli musisz użyć technicznego słowa, wyjaśnij je w nawiasie
 - Formatuj: inline \`kod\`, bloki \`\`\`python`;
 
 export async function explainContent(
@@ -17,8 +17,8 @@ export async function explainContent(
 ): Promise<string> {
   const userMessage =
     context === 'flashcard'
-      ? `Uczeń przeglądał fiszkę i nie rozumie pojęcia. Oto treść fiszki:\n\n${content}\n\nWyjaśnij kluczowe pojęcie z tej fiszki.`
-      : `Uczeń odpowiadał na pytanie quizowe i nie rozumie pojęcia. Oto treść pytania:\n\n${content}\n\nWyjaśnij kluczowe pojęcie z tego pytania.`;
+      ? `Nie rozumiem tego:\n\n${content}\n\nWytłumacz mi to prosto.`
+      : `Nie rozumiem tego pytania:\n\n${content}\n\nWytłumacz mi o co tu chodzi.`;
 
   const response = await fetch(API_URL, {
     method: 'POST',
@@ -28,7 +28,7 @@ export async function explainContent(
     },
     body: JSON.stringify({
       model: MODEL,
-      max_completion_tokens: 1024,
+      max_completion_tokens: 512,
       messages: [
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: userMessage },
