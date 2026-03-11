@@ -33,14 +33,23 @@ export function ExplainButton({ content, context }: ExplainButtonProps) {
       return;
     }
 
+    if (state === 'error') {
+      setState('idle');
+    }
+
     setState('loading');
     try {
       const result = await explainContent(content, context, apiKey);
       setExplanation(result);
       setState('done');
       setVisible(true);
-    } catch {
+    } catch (err) {
       setState('error');
+      showToast(
+        err instanceof Error ? err.message : 'Nie udało się wygenerować wyjaśnienia',
+        '⚠️',
+        'warning',
+      );
     }
   }, [state, apiKey, content, context, showToast]);
 

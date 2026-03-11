@@ -1,14 +1,14 @@
 const API_URL = 'https://api.openai.com/v1/chat/completions';
 const MODEL = 'gpt-5-mini';
 
-const SYSTEM_PROMPT = `Jesteś nauczycielem Pythona dla początkujących. Uczeń napotkał pojęcie lub funkcję, której jeszcze nie zna.
+const SYSTEM_PROMPT = `Jesteś nauczycielem Pythona. Tłumaczysz pojęcia jak kumplowi — prosto, bez żargonu.
 
 Zasady:
-- Wyjaśnij KRÓTKO po polsku co to robi i do czego służy
-- Podaj PRZYKŁAD KODU w \`\`\`python bloku pokazujący jak to działa
-- Wyjaśnij DLACZEGO tak działa (mechanizm pod spodem)
-- Skup się na nieznanym pojęciu, nie powtarzaj treści karty/pytania
-- Formatuj kod inline jako \`kod\` i bloki jako \`\`\`python`;
+- Max 3-4 zdania wyjaśnienia prostym językiem
+- Użyj analogii do codziennego życia jeśli pasuje
+- Podaj KRÓTKI przykład kodu w \`\`\`python bloku (max 5 linii)
+- Nie powtarzaj treści karty/pytania
+- Formatuj: inline \`kod\`, bloki \`\`\`python`;
 
 export async function explainContent(
   content: string,
@@ -41,7 +41,11 @@ export async function explainContent(
   }
 
   const data = await response.json();
-  return data.choices[0].message.content;
+  const text = data.choices[0]?.message?.content;
+  if (!text?.trim()) {
+    throw new Error('API returned empty response');
+  }
+  return text;
 }
 
 export async function testOpenAIConnection(apiKey: string): Promise<boolean> {
