@@ -4,102 +4,103 @@
     "courseId": "python",
     "filename": "Funkcje budynku, część 1.md",
     "title": "Definiowanie i wywoływanie funkcji w Pythonie",
-    "summary": "Omówienie jak definiować funkcje za pomocą `def`, czym różni się definicja od wywołania oraz jak przekazywać argumenty (aliasy parametrów). Materiał wyjaśnia też typowe błędy początkujących i pokazuje ponowne użycie kodu przez wywołania funkcji.",
+    "summary": "Lekcja pokazuje jak tworzyć własne funkcje za pomocą `def`. Wyjaśnia, że definicja tylko zapisuje kod, a wykonanie następuje po wywołaniu funkcji. Pokazuje też jak przekazywać argumenty i używać ich jako aliasów wewnątrz funkcji.",
     "topics": [
-      "def — definiowanie funkcji",
-      "Różnica między definicją a wywołaniem funkcji",
-      "Argumenty i aliasy parametrów",
-      "Użycie funkcji do ponownego użycia kodu",
-      "Typowe błędy i pułapki"
+      "def i definicja funkcji",
+      "wywołanie (invoke) funkcji",
+      "argumenty i alias parametrów",
+      "blok kodu i wcięcia",
+      "instrukcja warunkowa w funkcji"
     ],
-    "flashcardCount": 12,
-    "quizCount": 10,
+    "flashcardCount": 11,
+    "quizCount": 8,
     "exerciseCount": 4
   },
   {
     "id": 2,
     "courseId": "python",
     "filename": "Funkcje budynku, część 2.md",
-    "title": "Zwracanie wartości i parametry funkcji w Pythonie",
-    "summary": "Omówienie działania instrukcji `return`, roli parametrów i wartości zwracanych w funkcjach Python. Materiał wyjaśnia jak `return` kończy funkcję i przekazuje wartość z powrotem do miejsca wywołania oraz różnice między funkcjami zwracającymi a niezwracającymi wartości.",
+    "title": "Instrukcja `return` i wartości zwracane w funkcjach",
+    "summary": "Lekcja wyjaśnia, jak funkcje zwracają wartość za pomocą `return`. Pokazuje, że `return` kończy działanie funkcji i przekazuje \"residual value\" (wartość zwracana) do miejsca wywołania. Omówione są też parametry, argumenty, funkcje zwracające wartość (fruitful) i niewracające (non-fruitful).",
     "topics": [
-      "Instrukcja `return` i wartość zwracana",
-      "Parametry i argumenty funkcji",
-      "Funkcje owocne (fruitful) vs. nieowocne",
-      "Zatrzymanie wykonania funkcji",
-      "Domyślna wartość `None` i wielokrotne wartości (krotki)"
-    ],
-    "flashcardCount": 12,
-    "quizCount": 9,
-    "exerciseCount": 5
-  },
-  {
-    "id": 3,
-    "courseId": "python",
-    "filename": "Idiomy Loop.md",
-    "title": "Licznik, sumowanie, średnia i filtrowanie w pętlach",
-    "summary": "Materiały wyjaśniają, jak używać liczników do zliczania iteracji, zmiennych-sum do sumowania wartości, jak obliczyć średnią oraz jak filtrować i wyszukiwać wartości w pętli. Pokazuje też użycie zmiennej logicznej (`True`/`False`) do oznaczania, czy coś zostało znalezione, oraz kiedy można przerwać pętlę za pomocą `break`.",
-    "topics": [
-      "liczniki (count)",
-      "sumowanie (total)",
-      "obliczanie średniej",
-      "filtrowanie wartości",
-      "wyszukiwanie i zmienna boolean",
-      "przerywanie pętli (`break`)",
-      "typowe błędy (ZeroDivisionError, inicjalizacja)"
-    ],
-    "flashcardCount": 12,
-    "quizCount": 9,
-    "exerciseCount": 5
-  },
-  {
-    "id": 4,
-    "courseId": "python",
-    "filename": "Instrukcje warunkowe, część 1.md",
-    "title": "Instrukcje warunkowe i wcięcia w Pythonie",
-    "summary": "Rozdział wyjaśnia, jak podejmować decyzje w programie za pomocą instrukcji warunkowych `if`, `else` oraz znaczenie wcięć w Pythonie. Omawia operatory porównania, zagnieżdżanie bloków oraz typowe błędy związane z wcięciami i tabulatorami.",
-    "topics": [
-      "instrukcja `if`",
-      "`else` i `elif`",
-      "operatory porównania",
-      "wcięcia i zakresy bloków",
-      "zagnieżdżone instrukcje warunkowe",
-      "typowe pułapki (taby vs spacje)"
+      "Funkcje",
+      "Instrukcja `return`",
+      "Parametry i argumenty",
+      "Wartość zwracana (residual value)",
+      "Funkcje zwracające vs. nie zwracające",
+      "Wiele parametrów",
+      "Wywołanie funkcji i przypisanie wyniku"
     ],
     "flashcardCount": 12,
     "quizCount": 10,
     "exerciseCount": 4
   },
   {
+    "id": 3,
+    "courseId": "python",
+    "filename": "Idiomy Loop.md",
+    "title": "Zliczanie, sumowanie, filtrowanie i flagi w pętlach",
+    "summary": "Materiały pokazują, jak używać zmiennych przed pętlą, by liczyć elementy, sumować je, obliczać średnią i filtrować wartości. Pokazano też użycie zmiennej logicznej (flagi) do wykrycia, czy coś zostało znalezione podczas pętli.",
+    "topics": [
+      "liczniki (count)",
+      "suma (total)",
+      "średnia (average)",
+      "filtrowanie z `if`",
+      "zmienna logiczna (flag / found)"
+    ],
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 4,
+    "courseId": "python",
+    "filename": "Instrukcje warunkowe, część 1.md",
+    "title": "Instrukcje warunkowe w Pythonie",
+    "summary": "Poznasz instrukcję `if`, porównania (`<`, `<=`, `>`, `>=`, `==`, `!=`), blok kodu przez wcięcie oraz `else` i zagnieżdżone decyzje. Zobaczysz, jak działa warunkowe wykonywanie kodu i dlaczego wcięcia są ważne.",
+    "topics": [
+      "Instrukcja `if`",
+      "Operatorzy porównania",
+      "Wcięcie i bloki kodu",
+      "Zagnieżdżone `if`",
+      "Instrukcja `else`",
+      "Pętla `for` i zagnieżdżone warunki"
+    ],
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
     "id": 5,
     "courseId": "python",
     "filename": "Instrukcje warunkowe, część 3.md",
-    "title": "Obsługa błędów w Pythonie: `try` i `except` oraz kontrola przepływu",
-    "summary": "Omówienie mechanizmu `try` / `except` w Pythonie: jak łapać wyjątki, kiedy go używać i jakie są dobre praktyki (np. minimalizowanie kodu wewnątrz `try`). Pokrótce: kontrola przepływu przez `if`/`else`, znaczenie wcięć oraz dlaczego nie warto otaczać całego programu jedną blokadą `try`.",
+    "title": "Obsługa błędów: try i except w Pythonie",
+    "summary": "Poznajesz blok `try` i `except`, który pozwala złapać błędy zamiast dostawać traceback. Uczysz się używać tego przy konwersji `int()` i danych od użytkownika oraz unikać umieszczania za dużo kodu w bloku `try`.",
     "topics": [
-      "`try` i `except`",
-      "Obsługa wyjątków (exceptions)",
-      "Indentacja i przepływ sterowania",
-      "Kiedy łapać błędy",
-      "Dobre praktyki"
+      "try i except",
+      "konwersja int()",
+      "input i dane od użytkownika",
+      "if / else i porównania",
+      "wcięcia i struktura kodu",
+      "najlepsze praktyki try/except"
     ],
-    "flashcardCount": 12,
-    "quizCount": 10,
+    "flashcardCount": 11,
+    "quizCount": 8,
     "exerciseCount": 5
   },
   {
     "id": 6,
     "courseId": "python",
     "filename": "Korzystanie z funkcji.md",
-    "title": "Funkcje — przechowywanie i ponowne użycie kodu",
-    "summary": "Rozdział przedstawia wzorzec „przechowuj i używaj” (DRY) oraz funkcje w Pythonie: jak je definiować przez `def`, jak je wywoływać, przekazywać argumenty i zwracać wartości. Omawia także wbudowane funkcje konwersji (`int`, `float`, `str`) oraz typowe błędy jak nieudana konwersja i zacienianie nazw.",
+    "title": "Funkcje — przechowuj i używaj ponownie",
+    "summary": "Nauczysz się czym są funkcje w Pythonie i dlaczego ich używamy. Zobaczysz jak zdefiniować funkcję z `def`, jak ją wywołać i jak działają podstawowe funkcje wbudowane jak `int`, `float`, `max` i `min`.",
     "topics": [
-      "Funkcje",
-      "Definicja i wywołanie (`def`, nazwa() )",
-      "Argumenty i `return`",
-      "Konwersje typów (`int`, `float`, `str`)",
-      "DRY — nie powtarzaj się",
-      "Błędy i traceback"
+      "Definiowanie funkcji (`def`)",
+      "Wywoływanie funkcji",
+      "Argumenty i wartości zwracane",
+      "Funkcje wbudowane: `print`, `int`, `float`, `max`, `min`, `type`",
+      "Konwersje typów",
+      "Błędy przy nieprawidłowej konwersji"
     ],
     "flashcardCount": 12,
     "quizCount": 10,
@@ -109,354 +110,382 @@
     "id": 7,
     "courseId": "python",
     "filename": "Listy i ciągi znaków.md",
-    "title": "Przetwarzanie tekstu: `split()` i listy",
-    "summary": "Omówienie użycia metody `split()` do dzielenia łańcuchów na listy oraz pracy z wynikowymi listami. Pokazano też wzorzec „split + pętla” i technikę podwójnego `split()` do wydobywania części, np. nazwy użytkownika i domeny z adresu e-mail.",
+    "title": "Praca z tekstem: `split()` i listy",
+    "summary": "Lekcja pokazuje jak zamieniać stringi na listy za pomocą `split()`. Uczymy się też indeksować listy, używać pętli `for` i robić „double split”, czyli podzielić tekst dwa razy, by wyciągnąć fragmenty.",
     "topics": [
       "split()",
       "listy",
-      "parsing tekstu",
-      "podwójne split",
+      "indeksowanie",
       "pętle for",
-      "obsługa białych znaków"
+      "startsWith i filtrowanie",
+      "podział podwójny (double split)"
     ],
-    "flashcardCount": 12,
-    "quizCount": 10,
-    "exerciseCount": 5
+    "flashcardCount": 10,
+    "quizCount": 8,
+    "exerciseCount": 4
   },
   {
     "id": 8,
     "courseId": "python",
     "filename": "Listy.md",
-    "title": "Listy i podstawowe operacje na kolekcjach w Pythonie",
-    "summary": "W tym rozdziale uczymy się, czym są listy — zmienne zawierające wiele wartości — oraz jak je indeksować, modyfikować i iterować. Omówione są też właściwości mutowalności, funkcje pomocnicze `len()` i `range()` oraz listy zagnieżdżone.",
+    "title": "Listy, indeksy i pętle",
+    "summary": "Ten rozdział wprowadza listy jako zmienne przechowujące wiele wartości. Omawia indeksowanie, mutowalność list, funkcje `len()` i `range()` oraz użycie pętli `for` z listami i z zakresami.",
     "topics": [
-      "listy",
-      "indeksowanie",
-      "mutowalność",
-      "pętle for",
-      "range",
-      "len",
-      "listy zagnieżdżone"
+      "Listy",
+      "Indeksowanie",
+      "Mutowalność",
+      "Pętle for",
+      "len i range",
+      "Listy zagnieżdżone"
+    ],
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 9,
+    "courseId": "python",
+    "filename": "Nazwy zmiennych i ich przypisywanie.md",
+    "title": "Nazwy zmiennych i przypisania w Pythonie",
+    "summary": "Lekcja wyjaśnia, że nazwy zmiennych są wyborem programisty i że Python nie rozumie ich znaczenia. Pokazuje jak działa przypisanie: najpierw obliczana jest prawa strona, potem wynik zapisany jest do zmiennej po lewej.",
+    "topics": [
+      "Nazwy zmiennych",
+      "Mnemonika nazw (czytelność)",
+      "Przypisanie z operatorem `=`",
+      "Kolejność obliczeń (RHS przed przypisaniem)",
+      "Użycie tej samej zmiennej po obu stronach (np. `x = x + 1`)"
     ],
     "flashcardCount": 12,
     "quizCount": 10,
-    "exerciseCount": 5
+    "exerciseCount": 4
+  },
+  {
+    "id": 10,
+    "courseId": "python",
+    "filename": "Pisanie komentarzy w Pythonie.md",
+    "title": "Komentarze i dokumentacja kodu",
+    "summary": "Lekcja uczy, jak pisać komentarze w Pythonie i dlaczego to ważne. Pokazuje też, jak używać znaku `#` do wyłączania kodu podczas debugowania i jak wybierać dobre nazwy zmiennych.",
+    "topics": [
+      "Komentarze",
+      "Znak `#`",
+      "Dobre nazwy zmiennych",
+      "Wyłączanie kodu (debug)",
+      "Dokumentacja kodu"
+    ],
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
   },
   {
     "id": 11,
     "courseId": "python",
-    "filename": "Nazwy zmiennych i ich przypisywanie.md",
-    "title": "Nazwy zmiennych i przypisania w Pythonie",
-    "summary": "Materiał wyjaśnia, że nazwy zmiennych wybiera programista i że Python nie interpretuje znaczenia tych nazw — służą głównie ludziom. Omawia też semantykę przypisania: wyrażenie po prawej stronie jest obliczane najpierw, a dopiero potem wynik jest zapisywany w zmiennej po lewej stronie.",
+    "filename": "Przetwarzanie plików.md",
+    "title": "Odczytywanie plików i przetwarzanie linii",
+    "summary": "Lekcja pokazuje jak otwierać pliki, czytać je linia po linii i przetwarzać te linie. Uczymy się też czytać cały plik jako jeden ciąg, usuwać końcowe białe znaki i obsługiwać błędne nazwy plików.",
     "topics": [
-      "Nazwy zmiennych",
-      "Mnemoniczne nazewnictwo",
-      "Przypisanie vs równość",
-      "Kolejność ewaluacji wyrażeń",
-      "Inkrementacja i `x = x + 1`",
-      "Błędy początkujących (shadowing, nieistniejące zmienne)"
+      "Otwieranie plików",
+      "Iterowanie po liniach pliku",
+      "Czytanie całego pliku z `.read()`",
+      "Usuwanie końcowych białych znaków z `rstrip()`",
+      "Wyszukiwanie z `startswith()` i `in`",
+      "Obsługa błędów z `try/except`",
+      "Użycie `continue` do pomijania linii",
+      "Liczenie elementów w pętli"
     ],
     "flashcardCount": 12,
-    "quizCount": 10,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 12,
+    "courseId": "python",
+    "filename": "Słowniki.md",
+    "title": "Słowniki w Pythonie (klucz:wartość)",
+    "summary": "Słowniki przechowują pary klucz:wartość. Pozwalają na szybki dostęp przez klucz zamiast przez pozycję. Tworzymy je za pomocą `{}` lub `dict()` i odwołujemy się jak `d['key']`.",
+    "topics": [
+      "Słowniki",
+      "Listy",
+      "Klucze i wartości",
+      "Literały słowników",
+      "Indeksowanie"
+    ],
+    "flashcardCount": 12,
+    "quizCount": 8,
     "exerciseCount": 4
   },
   {
     "id": 13,
     "courseId": "python",
-    "filename": "Pisanie komentarzy w Pythonie.md",
-    "title": "Komentarze i dokumentacja kodu — czytelność i dobre praktyki",
-    "summary": "Materiały omawiają znaczenie komentarzy, dobrych nazw zmiennych i dokumentacji dla czytelności kodu. Pokazują, kiedy pisać komentarze, jak unikać zbędnych uwag oraz jak używać komentarzy do debugowania.",
+    "filename": "Zastrzeżone.md",
+    "title": "Stałe, zmienne i przypisanie w Pythonie",
+    "summary": "Lekcja wyjaśnia, czym są stałe (liczby i łańcuchy), jak działają zmienne i przypisanie oraz jakie są zasady nazw zmiennych. Pokazuje też, jak `print()` wypisuje wynik i jak nadpisywanie zmiennej zmienia jej wartość.",
     "topics": [
-      "Komentarze",
-      "Docstringi i dokumentacja",
-      "Nazwy zmiennych",
-      "Czytelność kodu",
-      "Debugowanie",
-      "Analiza tekstu (histogramy)"
+      "stałe (liczby i łańcuchy)",
+      "zmienne i przypisanie",
+      "nazwy zmiennych i reguły",
+      "słowa zastrzeżone",
+      "funkcja `print()`"
     ],
     "flashcardCount": 12,
     "quizCount": 10,
+    "exerciseCount": 4
+  },
+  {
+    "id": 14,
+    "courseId": "python",
+    "filename": "Pliki.md",
+    "title": "Pliki tekstowe i znak nowej linii",
+    "summary": "Wprowadzenie do plików tekstowych. Omówienie otwierania pliku za pomocą `open()`, pojęcia uchwytu pliku oraz znaczenia znaku nowej linii `\\n`.",
+    "topics": [
+      "Pliki płaskie (flat text files)",
+      "Funkcja `open()` i tryb odczytu",
+      "Uchwyt pliku (file handle)",
+      "Znak nowej linii `\\n`",
+      "Print automatycznie dodaje nową linię",
+      "Błąd przy otwarciu nieistniejącego pliku"
+    ],
+    "flashcardCount": 12,
+    "quizCount": 9,
     "exerciseCount": 4
   },
   {
     "id": 15,
     "courseId": "python",
-    "filename": "Przetwarzanie plików.md",
-    "title": "Czytanie plików i przetwarzanie linii w Pythonie",
-    "summary": "Materiały wyjaśniają, jak otwierać pliki, iterować przez nie linia po linii przy pomocy pętli `for`, kiedy użyć `read()` vs iteracji, jak usuwać znaki końca linii z `rstrip()` oraz jak bezpiecznie otwierać pliki przy użyciu `try/except` i `input()`.",
+    "filename": "Wyrażenia numeryczne.md",
+    "title": "Operatory arytmetyczne i kolejność działań",
+    "summary": "Poznasz podstawowe operatory arytmetyczne: `+`, `-`, `*`, `/`, `%`, `**` oraz zasady kolejności działań. Dowiesz się, jak nawiasy zmieniają kolejność i kiedy użyć operatora modulo.",
     "topics": [
-      "Otwieranie plików",
-      "Iterowanie przez plik z `for line in f`",
-      "Metoda `read()`",
-      "Usuwanie znaków końca linii z `rstrip()`",
-      "Wyszukiwanie w liniach: `in` i `startswith()`",
-      "Obsługa błędów przy otwieraniu plików (`try/except`)",
-      "Sterowanie pętlą: `continue`",
-      "Zliczanie linii i podstawowe parsowanie"
+      "Podstawowe operatory: +, -, *, /, %, **",
+      "Operator modulo i zastosowania",
+      "Kolejność działań",
+      "Nawiasy i nadpisywanie kolejności"
+    ],
+    "flashcardCount": 12,
+    "quizCount": 10,
+    "exerciseCount": 4
+  },
+  {
+    "id": 16,
+    "courseId": "python",
+    "filename": "Definite Loop.md",
+    "title": "Pętla for i iteracja po kolekcjach",
+    "summary": "Pętla `for` służy do przechodzenia przez wszystkie elementy kolekcji (lista, string, plik). Zmienna iteracyjna przyjmuje po kolei kolejne wartości z kolekcji, a blok kodu wykonuje się określoną liczbę razy.",
+    "topics": [
+      "Pętla for",
+      "Zmienna iteracyjna",
+      "Słowo kluczowe `in`",
+      "Listy jako kolekcje",
+      "String jako kolekcja",
+      "Pętle określone (definite loops)"
     ],
     "flashcardCount": 12,
     "quizCount": 9,
-    "exerciseCount": 5
+    "exerciseCount": 4
+  },
+  {
+    "id": 17,
+    "courseId": "python",
+    "filename": "Znajdowanie największej wartości.md",
+    "title": "Wzorzec pętli: szukanie największej wartości",
+    "summary": "Pokazano wzorzec: ustawiamy zmienną przed pętlą, przechodzimy po elementach i aktualizujemy wynik. Na końcu pętli mamy szukany rezultat, np. największą liczbę.",
+    "topics": [
+      "pętle for",
+      "inicjalizacja przed pętlą",
+      "aktualizacja w pętli",
+      "porównania",
+      "znajdowanie maksimum",
+      "wzorce iteracyjne"
+    ],
+    "flashcardCount": 12,
+    "quizCount": 8,
+    "exerciseCount": 4
   },
   {
     "id": 18,
     "courseId": "python",
-    "filename": "Słowniki.md",
-    "title": "Słowniki w Pythonie — klucze i wartości",
-    "summary": "Słowniki to struktury danych przechowujące pary klucz-wartość, pozwalające na szybki dostęp przez klucz zamiast pozycji. W Pythonie (od 3.7+) zachowują kolejność wstawiania, ale wciąż indeksuje się je po kluczach, nie po pozycjach.",
+    "filename": "Manipulowanie listami.md",
+    "title": "Operacje na listach",
+    "summary": "Lekcja opisuje jak pracować z listami w Pythonie. Pokazuje łączenie, wycinki (slicing), dodawanie elementów metodą `append()`, sprawdzanie przynależności przez `in` oraz podstawowe funkcje jak `len()`, `sum()`, `sort()`.",
     "topics": [
-      "słowniki",
-      "pary klucz-wartość",
-      "indeksowanie po kluczu",
-      "literały słownikowe",
-      "modyfikacja i odczyt wartości",
-      "klucze hashowalne",
-      "różnice między listą a słownikiem",
-      "metody: get, in, keys, values"
+      "łączenie list (`+`)",
+      "slicing list",
+      "metoda `append()`",
+      "mutowalność list",
+      "operator `in` / `not in`",
+      "sortowanie (`sort()`)",
+      "funkcje `len()`, `sum()`, `max()`, `min()`",
+      "budowanie list i obliczanie średniej"
     ],
-    "flashcardCount": 10,
+    "flashcardCount": 12,
+    "quizCount": 8,
+    "exerciseCount": 4
+  },
+  {
+    "id": 19,
+    "courseId": "python",
+    "filename": "Pierwszy program.md",
+    "title": "Wprowadzenie: wejście, przetwarzanie, wyjście (pierwszy program)",
+    "summary": "Nauczysz się prostego programu z trzema etapami: wejście, przetwarzanie i wyjście. Program pokazuje jak pobrać dane z `input()`, zmienić typ za pomocą `int()` i wydrukować wynik przez `print()`.",
+    "topics": [
+      "wejście i `input()`",
+      "konwersja typów z `int()`",
+      "drukowanie `print()` i przecinek w wydruku",
+      "zmienne i nazwy pamiętające znaczenie",
+      "komentarze i prosty przepływ programu",
+      "błędy przy nieprawidłowej konwersji"
+    ],
+    "flashcardCount": 12,
+    "quizCount": 8,
+    "exerciseCount": 4
+  },
+  {
+    "id": 20,
+    "courseId": "python",
+    "filename": "Pętle i iteracja.md",
+    "title": "Pętle i iteracja",
+    "summary": "Poznasz pętle, które pozwalają komputerowi powtarzać zadania. Nauczysz się `while`, zmiennej iteracji, nieskończonych pętli oraz instrukcji `break` i `continue`.",
+    "topics": [
+      "Pętla `while`",
+      "Zmienna iteracji",
+      "Nieskończona pętla",
+      "Instrukcja `break`",
+      "Instrukcja `continue`",
+      "Zero-trip loop (pętla, która nie wykona się wcale)"
+    ],
+    "flashcardCount": 12,
     "quizCount": 9,
-    "exerciseCount": 5
+    "exerciseCount": 4
   },
   {
     "id": 21,
     "courseId": "python",
-    "filename": "Zastrzeżone.md",
-    "title": "Stałe, zmienne i przypisanie w Pythonie",
-    "summary": "Wprowadza pojęcia stałych (liczb, stringów), słów zarezerwowanych, nazw zmiennych, reguł nazewnictwa oraz działania instrukcji przypisania. Pokazuje też, jak używać zmiennych po prawej stronie przypisania i jak działa funkcja `print()`.",
+    "filename": "Typy zmiennych.md",
+    "title": "Typy danych, konwersje i wejście/wyjście w Pythonie",
+    "summary": "Poznaj podstawowe typy: liczby całkowite, liczby zmiennoprzecinkowe i napisy. Nauczysz się konwertować między typami, używać `type()`, oraz czytać dane z klawiatury przez `input()` i wypisywać je `print()`.",
     "topics": [
-      "Stałe (liczby i stringi)",
-      "Słowa zarezerwowane (keywords)",
-      "Nazwy zmiennych i reguły",
-      "Przypisanie (directional assignment)",
-      "Case sensitivity",
-      "Funkcja `print()`",
-      "Użycie zmiennej po prawej stronie przypisania"
+      "typy danych (int, float, string)",
+      "operator + jako dodawanie i konkatenacja",
+      "konwersje: int(), float()",
+      "funkcja type()",
+      "wejście i wyjście: input(), print()",
+      "dzielenie w Python 3 (zwraca float)",
+      "traceback i błędy typu"
+    ],
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 22,
+    "courseId": "python",
+    "filename": "Instrukcje warunkowe, część 2.md",
+    "title": "Instrukcje warunkowe: if, elif, else",
+    "summary": "Nauczysz się, jak działa sekwencyjne sprawdzanie warunków w Pythonie. Poznasz, że `if`/`elif`/`else` sprawdzają warunki po kolei i tylko jeden blok wykona się dla danej wartości.",
+    "topics": [
+      "Podstawy `if`",
+      "`elif` jako else-if",
+      "`else` jako zabezpieczenie",
+      "Kolejność i kolejność sprawdzania",
+      "Brak `else` i niektóre wartości bez akcji",
+      "Wiele `elif` i gałęzie nieosiągalne"
     ],
     "flashcardCount": 12,
     "quizCount": 10,
-    "exerciseCount": 5
+    "exerciseCount": 4
   },
   {
     "id": 23,
     "courseId": "python",
-    "filename": "Manipulowanie ciągami znaków.md",
-    "title": "Operacje na łańcuchach znaków w Pythonie",
-    "summary": "Przegląd podstawowych operacji na stringach: konkatenacja, wyszukiwanie, metody (`lower`, `upper`, `find`, `replace`, `strip`, `startswith`) oraz cięcie (slicing). Omówiono też różnice między modyfikacją kopii a oryginału oraz kwestie związane z porównywaniem i kodowaniem znaków.",
+    "filename": "Znajdowanie najmniejszej wartości.md",
+    "title": "Szukanie największej i najmniejszej wartości w pętli",
+    "summary": "Jak znaleźć najmniejszą (i największą) liczbę w liście używając pętli. Pokazujemy problem z błędnym inicjowaniem i poprawne podejście z użyciem `None` jako zmiennej-znacznika.",
     "topics": [
-      "Konkatenacja stringów",
-      "Operator `in` i metoda `find()`",
-      "Slicing (wycinki) stringów",
-      "Metody: `lower()`, `upper()`, `replace()`, `strip()`, `startswith()`",
-      "Porównania i kolejność znaków",
-      "Immutable (niemutowalność) stringów",
-      "Unicode i różnice między Python 2 a 3"
+      "pętle",
+      "wyszukiwanie wartości",
+      "zmienna-znacznik (flag)",
+      "None",
+      "operatory porównania",
+      "operator `is` i `is not`",
+      "idiom: inicjalizacja przy pierwszym przebiegu pętli"
     ],
     "flashcardCount": 12,
     "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 24,
+    "courseId": "python",
+    "filename": "Liczenie z słownikami.md",
+    "title": "Histogramy i liczniki w słownikach",
+    "summary": "Pokazujemy jak użyć słownika do zliczania wystąpień elementów (histogram). Uczymy się sprawdzać obecność klucza (`in`) i używać metody `get` do bezpiecznego pobierania wartości z domyślną wartością.",
+    "topics": [
+      "słowniki",
+      "histogram",
+      "liczenie elementów",
+      "operator in",
+      "metoda get",
+      "pętla for",
+      "if/else",
+      "traceback / KeyError"
+    ],
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 25,
+    "courseId": "python",
+    "filename": "Słowniki i pliki.md",
+    "title": "Liczenie słów i operacje na słownikach",
+    "summary": "Nauczysz się tworzyć histogramy słów ze znaków wejścia. Poznasz iterowanie po słownikach oraz metody `get()`, `keys()`, `values()` i `items()` i jak znaleźć najczęściej występujące słowo.",
+    "topics": [
+      "słowniki",
+      "histogram (liczenie słów)",
+      "pętla for",
+      "split()",
+      "get()",
+      "items(), keys(), values()",
+      "tuple (przypisanie w pętli)"
+    ],
+    "flashcardCount": 12,
+    "quizCount": 8,
     "exerciseCount": 4
   },
   {
     "id": 26,
     "courseId": "python",
-    "filename": "Pliki.md",
-    "title": "Pliki tekstowe i operacje wejścia/wyjścia w Pythonie",
-    "summary": "Rozdział wyjaśnia jak Python pracuje z plikami tekstowymi: otwieranie plików, pojęcie uchwytu (file handle), znak nowej linii oraz podstawowe błędy związane z dostępem do plików. Pokazuje też różnicę między samym otwarciem pliku a czytaniem jego zawartości i jak zamykać połączenie z plikiem.",
+    "filename": "Manipulowanie ciągami znaków.md",
+    "title": "Operacje na napisach (stringi)",
+    "summary": "Lekcja omawia podstawowe operacje na napisach. Pokazuje konkatenację, operator `in`, metody stringów takie jak `find()`, `lower()`, `upper()`, `replace()`, `strip()`, `startswith()` oraz wycinki (slicing).",
     "topics": [
-      "otwieranie plików",
-      "file handle (uchwyt pliku)",
-      "znak nowej linii (`\\n`)",
-      "czytanie vs zapis",
-      "obsługa błędów przy otwieraniu plików",
-      "iteracja po liniach pliku"
+      "Konkatenacja",
+      "Operator `in`",
+      "Metody stringów: `find`, `lower`, `upper`, `replace`, `strip`, `startswith`, `capitalize`",
+      "Slicing (wycinki)",
+      "Porównania stringów",
+      "Immutable (napisy nie zmieniają się)",
+      "Znak spacji i whitespace"
     ],
     "flashcardCount": 12,
-    "quizCount": 9,
-    "exerciseCount": 4
+    "quizCount": 10,
+    "exerciseCount": 5
   },
   {
-    "id": 28,
+    "id": 27,
     "courseId": "python",
     "filename": "Struny.md",
-    "title": "Operacje na łańcuchach znaków (indeksowanie, slicing, iteracja)",
-    "summary": "Rozdział opisuje jak pracować z łańcuchami znaków w Pythonie: indeksowanie (od zera), wycinanie fragmentów (slicing), iterowanie po znakach, funkcję `len()` oraz typowe pułapki (błędy typu, indeks poza zakresem). Pokazuje też kiedy użyć pętli `for` zamiast `while`.",
+    "title": "Operacje na łańcuchach znaków (stringi)",
+    "summary": "Rozdział o pracy z tekstem w Pythonie. Uczymy się indeksować, wycinać fragmenty, mierzyć długość i iterować po znakach.",
     "topics": [
-      "Indeksowanie znaków",
-      "Slicing (wycinanie zakresów)",
-      "Pętla `for` vs `while`",
-      "Funkcja `len()`",
-      "Operator `in` (członkostwo)",
-      "Konwersje typu (np. `int()`)",
-      "Błędy: `IndexError` i `TypeError`",
-      "Liczenie wystąpień znaków"
-    ],
-    "flashcardCount": 13,
-    "quizCount": 9,
-    "exerciseCount": 5
-  },
-  {
-    "id": 29,
-    "courseId": "python",
-    "filename": "Wyrażenia numeryczne.md",
-    "title": "Operatory arytmetyczne i kolejność działań w Pythonie",
-    "summary": "Omówienie podstawowych operatorów arytmetycznych w Pythonie (dodawanie, odejmowanie, mnożenie, dzielenie, modulo, potęgowanie) oraz zasady kolejności działań. Materiał wyjaśnia też praktyczne zastosowania operatora modulo i typowe pułapki początkujących.",
-    "topics": [
-      "Operatory arytmetyczne",
-      "Operator modulo (%)",
-      "Potęgowanie (`**`)",
-      "Kolejność działań i nawiasy",
-      "Pułapki początkujących"
-    ],
-    "flashcardCount": 12,
-    "quizCount": 9,
-    "exerciseCount": 4
-  },
-  {
-    "id": 31,
-    "courseId": "python",
-    "filename": "Definite Loop.md",
-    "title": "Pętle `for` i pętle definitywne w Pythonie",
-    "summary": "Pętla `for` w Pythonie służy do wykonywania kodu dla każdego elementu kolekcji (lista, string, plik, `range()` itp.). Jest to pętla definitywna — określamy zbiór wartości, po których iterujemy, a Python zajmuje się staniem pętli i kolejnymi wartościami zmiennej iteracyjnej.",
-    "topics": [
-      "Pętla for",
-      "Iteratory i iterables",
-      "range()",
-      "Porównanie z while",
-      "Błędy przy iteracji"
-    ],
-    "flashcardCount": 12,
-    "quizCount": 10,
-    "exerciseCount": 4
-  },
-  {
-    "id": 32,
-    "courseId": "python",
-    "filename": "Znajdowanie największej wartości.md",
-    "title": "Wzorzec 'largest so far' — pętle do agregacji wartości",
-    "summary": "Omówienie wzorca pętli, w którym najpierw inicjalizujemy zmienne (akumulatory), potem iterujemy przez elementy i aktualizujemy rezultat, a na końcu odczytujemy końcowy wynik. Pokazuje to, jak znaleźć maksimum, minimum, sumę, średnią czy policzyć wystąpienia bez użycia wbudowanych funkcji.",
-    "topics": [
-      "Akumulatory i wzorce pętli",
-      "Szukanie maksimum i minimum",
-      "Sumy i średnie w pętlach",
-      "Zliczanie warunków",
-      "Inicjalizacja i wartości początkowe",
-      "Obsługa pustych danych i edge case'y"
-    ],
-    "flashcardCount": 12,
-    "quizCount": 10,
-    "exerciseCount": 4
-  },
-  {
-    "id": 33,
-    "courseId": "python",
-    "filename": "Manipulowanie listami.md",
-    "title": "Operacje na listach i podstawowe metody",
-    "summary": "Materiały omawiają podstawowe operacje na listach w Pythonie: łączenie, wycinanie (slicing), metody takie jak `append`, `extend`, `sort`, sprawdzanie przynależności przez `in` oraz funkcje agregujące jak `len`, `sum`, `max`, `min`. Poruszony jest też aspekt mutowalności list i konsekwencje wyboru przechowywania wszystkich elementów w pamięci kontra obliczanie na bieżąco.",
-    "topics": [
-      "konkatenacja list",
-      "slicing (wycinki)",
-      "metody listowe: append, extend, insert, remove, pop, count",
-      "sortowanie: `sort()` vs `sorted()`",
-      "operatory: `in` i `not in`",
-      "funkcje: `len`, `sum`, `max`, `min`",
-      "mutowalność list vs niemutowalność stringów",
-      "projektowanie pętli vs użycie funkcji agregujących",
-      "zużycie pamięci przy akumulacji danych"
-    ],
-    "flashcardCount": 12,
-    "quizCount": 9,
-    "exerciseCount": 4
-  },
-  {
-    "id": 34,
-    "courseId": "python",
-    "filename": "Pierwszy program.md",
-    "title": "Wejście, przetwarzanie i wyjście — podstawy konwersji i walidacji danych",
-    "summary": "Wprowadzenie do wzorca wejście → przetwarzanie → wyjście w programie Python. Materiał pokazuje jak pobrać dane jako tekst, konwertować typy (np. `int`, `float`), obsługiwać proste błędy i wypisać wynik.",
-    "topics": [
-      "Wejście i `input()`",
-      "Konwersja typów (`int`, `float`)",
-      "Zmienne i nazewnictwo",
-      "Komentarze",
-      "Błędy konwersji i `ValueError`",
-      "Wyjście i `print()`",
-      "Operatory i kolejność działań",
-      "Walidacja i `try/except`"
-    ],
-    "flashcardCount": 12,
-    "quizCount": 9,
-    "exerciseCount": 5
-  },
-  {
-    "id": 35,
-    "courseId": "python",
-    "filename": "Pętle i iteracja.md",
-    "title": "Pętle i iteracje (while, break, continue)",
-    "summary": "Omówienie pętli `while`, zmiennej iteracyjnej oraz instrukcji `break` i `continue`. Materiał wyjaśnia, jak działają pętle warunkowe, jakie są typowe błędy (np. pętla nieskończona) i kiedy użyć przerwania lub pominięcia iteracji.",
-    "topics": [
-      "pętla while",
-      "zmienna iteracyjna",
-      "pętla nieskończona",
-      "zero-trip loop (pętla zerowy-przejazd)",
-      "instrukcja break",
-      "instrukcja continue",
-      "debugowanie pętli"
-    ],
-    "flashcardCount": 12,
-    "quizCount": 9,
-    "exerciseCount": 4
-  },
-  {
-    "id": 36,
-    "courseId": "python",
-    "filename": "Typy zmiennych.md",
-    "title": "Typy danych, konwersje i wejście/wyjście w Pythonie",
-    "summary": "Omówienie podstawowych typów danych w Pythonie (string, int, float), sposobu w jaki operator `+` zachowuje się zależnie od typów oraz funkcji pomocniczych `type()`, `int()`, `float()`, `input()` i `print()`. Materiał wyjaśnia typowe błędy typu (np. `TypeError`) i pokazuje, jak bezpiecznie konwertować dane z wejścia.",
-    "topics": [
-      "Typy danych",
-      "Konwersje typów",
-      "Operator `+` i przeciążenie",
-      "Błędy typu i traceback",
-      "Funkcja `type()`",
-      "Liczby całkowite vs zmiennoprzecinkowe",
-      "Funkcje `int()` i `float()`",
-      "Wejście z klawiatury: `input()` i wypisywanie `print()`"
-    ],
-    "flashcardCount": 12,
-    "quizCount": 10,
-    "exerciseCount": 4
-  },
-  {
-    "id": 37,
-    "courseId": "python",
-    "filename": "Instrukcje warunkowe, część 2.md",
-    "title": "Instrukcje warunkowe: if, elif i else w Pythonie",
-    "summary": "Omówienie wielokierunkowych instrukcji warunkowych w Pythonie z użyciem `if`, `elif` i `else`. Materiał wyjaśnia kolejność sprawdzania warunków, zasady wykonywania tylko jednego bloku oraz typowe pułapki związane z kolejnością i pokrywaniem się warunków.",
-    "topics": [
-      "if/elif/else",
-      "kolejność warunków",
-      "blok kodu",
-      "brak else",
-      "nieosiągalny kod",
-      "częste błędy i pułapki"
-    ],
-    "flashcardCount": 12,
-    "quizCount": 10,
-    "exerciseCount": 4
-  },
-  {
-    "id": 38,
-    "courseId": "python",
-    "filename": "Znajdowanie najmniejszej wartości.md",
-    "title": "Szukanie najmniejszej wartości i technika `None`",
-    "summary": "Jak poprawnie znaleźć najmniejszą wartość w zbiorze danych przy pomocy pętli i jak użyć `None` jako wskaźnika \"braku wartości\" (priming). Omówione są też pułapki z wstępną inicjalizacją, operatorami `is`/`is not` oraz alternatywy jak wbudowane `min()`.",
-    "topics": [
-      "pętle (for, while)",
-      "inicjalizacja zmiennej",
-      "None jako flag value",
-      "operator `is` / `is not`",
-      "błędy początkujących",
-      "wbudowane funkcje `min()`"
+      "Stringi",
+      "Indeksowanie",
+      "Slicing (wycinanie)",
+      "Funkcja len()",
+      "Pętle for i while",
+      "Operator in",
+      "Konwersja int()",
+      "Błędy: TypeError i IndexError",
+      "Konkatenacja"
     ],
     "flashcardCount": 12,
     "quizCount": 9,

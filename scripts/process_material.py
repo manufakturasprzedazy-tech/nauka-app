@@ -15,7 +15,13 @@ except ImportError:
 
 SYSTEM_PROMPT = """You are an expert Python teacher creating learning materials for a mobile study app.
 
-TARGET AUDIENCE: A Polish-speaking beginner who understands concepts but struggles to write code from scratch.
+TARGET AUDIENCE: A Polish-speaking beginner learning Python from scratch. They know NOTHING beyond what is in the provided lesson.
+
+LANGUAGE STYLE: Write in simple, everyday Polish. Short sentences. No fancy words, no academic tone,
+no unnecessary jargon. Explain like talking to a friend who just started coding.
+
+SCOPE CONSTRAINT: ONLY use concepts, functions, and syntax that appear in the provided material.
+Do NOT introduce anything new — even if it seems basic or closely related.
 
 FORMATTING RULES (CRITICAL):
 - Inline code: wrap in backticks, e.g. `print()`, `len()`, `for x in list`
@@ -90,7 +96,8 @@ Rules:
 - Test UNDERSTANDING of concepts, not memorization of lesson examples
 - Answers: concise but complete
 - If the answer involves code — include a short snippet in backticks
-- You may add flashcards from your own knowledge if they complement the topic
+- ONLY test concepts from the material — do NOT introduce functions, methods, or syntax the student hasn't seen
+- Use simple, short sentences — no academic language, no fancy wording
 - Format code in backticks: `print()`, `len()`, ```python\\ncode\\n```
 
 ========================================
@@ -109,6 +116,8 @@ CRITICAL RULES:
 - GOOD: "Co zwróci colors[2] jeśli colors = ['red', 'blue', 'green']?" (new data)
 - Wrong answers must be plausible (common beginner mistakes, off-by-one, type errors)
 - Explanation must cover: WHY the correct answer is correct + WHY the most popular wrong answer is wrong
+- ONLY use concepts and syntax from the material — if the lesson covers `len()` and `range()`, do NOT use `enumerate()`, `.append()` etc.
+- Explanations: simple language, 1-2 short sentences. No jargon. Like explaining to a friend.
 - Format code in backticks
 
 ========================================
@@ -128,13 +137,16 @@ Rules:
   - GOOD: "Użyj pętli for do przejścia przez każdy element", "Sprawdź co zwraca `split()`"
   - BAD: "Użyj for i in range(len(lista)): wynik += lista[i]" (that's almost the solution!)
 - NEVER copy examples from the material — create new scenarios
+- ONLY use concepts taught in the material — do NOT require knowledge of functions/syntax not in the lesson
+- Descriptions and hints: plain language, no fancy words
 - Remember: the student understands concepts but struggles to write code from scratch
 
 ========================================
 GENERAL
 ========================================
 - If the material is a list of functions/methods — treat as one cohesive topic
-- You may add content from your own knowledge if it complements the material
+- STRICTLY limit all content to concepts in the material — the student knows NOTHING beyond this lesson
+- Write EVERYTHING in simple, everyday Polish — short sentences, no jargon, no academic tone
 - ALL text content in POLISH (code variable names may be in English)
 - Format CODE in backticks — this is critical for rendering in the app
 - Respond with JSON ONLY"""
