@@ -35,6 +35,14 @@ export default defineConfig({
             handler: 'CacheFirst',
             options: { cacheName: 'google-fonts-cache', expiration: { maxEntries: 10, maxAgeSeconds: 60 * 60 * 24 * 365 } },
           },
+          {
+            urlPattern: /^https:\/\/cdn\.jsdelivr\.net\/pyodide\//,
+            handler: 'CacheFirst',
+            options: {
+              cacheName: 'pyodide-cache',
+              expiration: { maxAgeSeconds: 30 * 24 * 60 * 60 },
+            },
+          },
         ],
       },
     }),

@@ -43,6 +43,41 @@ export function CodeFeedback({ result, xpEarned }: CodeFeedbackProps) {
       {/* Feedback */}
       <p className="text-sm text-slate-300 leading-relaxed">{result.feedback}</p>
 
+      {/* Errors */}
+      {result.errors && result.errors.length > 0 && (
+        <div>
+          <span className="text-xs text-red-400 block mb-1">Błędy</span>
+          <div className="space-y-1">
+            {result.errors.map((err, i) => (
+              <div key={i} className="text-xs text-red-300 bg-red-900/20 border border-red-800/30 rounded px-2 py-1 font-mono break-all">
+                {err}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
+      {/* Test results */}
+      {result.testResults && result.testResults.length > 0 && (
+        <div>
+          <span className="text-xs text-slate-400 block mb-1">
+            Testy ({result.testResults.filter(t => t.passed).length}/{result.testResults.length})
+          </span>
+          <div className="space-y-1">
+            {result.testResults.map((t, i) => (
+              <div key={i} className={`text-xs font-mono px-2 py-1 rounded break-all ${
+                t.passed
+                  ? 'text-emerald-300 bg-emerald-900/20 border border-emerald-800/30'
+                  : 'text-red-300 bg-red-900/20 border border-red-800/30'
+              }`}>
+                <span className="mr-1">{t.passed ? '✓' : '✗'}</span>
+                {t.test}
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
+
       {/* Matched concepts */}
       {result.matchedConcepts.length > 0 && (
         <div>

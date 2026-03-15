@@ -10,6 +10,7 @@ import { db, getOrCreateTodayActivity, getSetting } from '@/db/database';
 import { getCodingXP } from '@/services/gamification';
 import { compareCode, type CodeComparisonResult } from '@/services/codeComparison';
 import { evaluateCode } from '@/services/aiService';
+import { runPython, preload } from '@/services/pythonRunner';
 import type { CodingExercise as CodingExerciseType } from '@/types/content';
 
 interface CodingExerciseProps {
@@ -36,37 +37,55 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
     getSetting('claude_api_key', '').then(key => {
       if (key) setApiKey(key);
     });
+    preload();
   }, []);
 
   const handleSubmit = useCallback(async () => {
     setPhase('reviewing');
 
     let result: CodeComparisonResult;
-    let aiReviewed = false;
 
-    if (apiKey) {
-      setAiLoading(true);
+    // Try Pyodide if there's test code
+    if (exercise.testCode?.trim()) {
       try {
-        const aiResult = await evaluateCode(
-          exercise.description,
-          exercise.solution,
-          code,
-          exercise.testCode || '',
-          apiKey
-        );
+        const pyResult = await runPython(code, exercise.testCode);
+
+        let score: number;
+        let feedback: string;
+        const errors: string[] = [];
+
+        if (pyResult.syntaxError) {
+          score = 1;
+          feedback = `Błąd składni: ${pyResult.syntaxError}`;
+          errors.push(pyResult.syntaxError);
+        } else if (pyResult.runtimeError) {
+          score = 1;
+          feedback = `Błąd wykonania: ${pyResult.runtimeError}`;
+          errors.push(pyResult.runtimeError);
+        } else {
+          const { passRate } = pyResult;
+          if (passRate === 1) { score = 5; feedback = 'Wszystkie testy przechodzą!'; }
+          else if (passRate >= 0.75) { score = 4; feedback = 'Prawie wszystko działa!'; }
+          else if (passRate >= 0.5) { score = 3; feedback = 'Ponad połowa testów przechodzi.'; }
+          else if (passRate >= 0.25) { score = 2; feedback = 'Część testów przechodzi.'; }
+          else { score = 1; feedback = 'Większość testów nie przeszła.'; }
+
+          for (const t of pyResult.testResults) {
+            if (!t.passed && t.error) errors.push(`${t.test}: ${t.error}`);
+          }
+        }
+
         result = {
-          score: aiResult.score,
-          feedback: aiResult.feedback,
-          matchedConcepts: aiResult.strengths || [],
-          missedConcepts: aiResult.improvements || [],
+          score,
+          feedback,
+          matchedConcepts: [],
+          missedConcepts: [],
+          errors: errors.length > 0 ? errors : undefined,
+          testResults: pyResult.testResults,
         };
-        aiReviewed = true;
-        if (aiResult.feedback) setAiFeedback(aiResult.feedback);
       } catch {
-        // Fallback to offline
+        // Pyodide unavailable, fallback to offline comparison
         result = compareCode(code, exercise.solution);
-      } finally {
-        setAiLoading(false);
       }
     } else {
       result = compareCode(code, exercise.solution);
@@ -84,7 +103,7 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
       completed: true,
       completedAt: new Date().toISOString(),
       score: result.score,
-      aiReviewed,
+      aiReviewed: false,
     });
 
     const activity = await getOrCreateTodayActivity();
@@ -94,6 +113,17 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
     });
 
     setPhase('reviewed');
+
+    // Optional AI feedback in background (doesn't affect score)
+    if (apiKey) {
+      setAiLoading(true);
+      evaluateCode(exercise.description, exercise.solution, code, exercise.testCode || '', apiKey)
+        .then(aiResult => {
+          if (aiResult.feedback) setAiFeedback(aiResult.feedback);
+        })
+        .catch(() => {})
+        .finally(() => setAiLoading(false));
+    }
   }, [code, exercise, apiKey]);
 
   const handleReset = () => {
@@ -167,7 +197,7 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
             </Button>
           )}
           <Button onClick={handleSubmit} fullWidth disabled={code.trim() === exercise.starterCode.trim()}>
-            {aiLoading ? 'Sprawdzam...' : 'Sprawdź kod'}
+            Sprawdź kod
           </Button>
         </div>
       )}
@@ -175,7 +205,7 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
       {/* Reviewing phase — loading */}
       {phase === 'reviewing' && (
         <div className="text-center py-4">
-          <div className="text-slate-400 text-sm">Analizuję kod...</div>
+          <div className="text-slate-400 text-sm">Uruchamiam testy...</div>
         </div>
       )}
 
@@ -190,7 +220,14 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
             <CodeFeedback result={feedbackResult} xpEarned={xpEarned} />
 
             {/* AI detailed feedback */}
-            {aiFeedback && (
+            {aiLoading && (
+              <Card variant="outlined" className="border-l-4 border-l-violet-500/50">
+                <div className="text-xs text-violet-400/70 font-medium uppercase tracking-wider">
+                  Ładuję feedback AI...
+                </div>
+              </Card>
+            )}
+            {aiFeedback && !aiLoading && (
               <Card variant="outlined" className="border-l-4 border-l-violet-500">
                 <div className="text-xs text-violet-400 font-medium mb-1 uppercase tracking-wider">Feedback AI</div>
                 <p className="text-sm text-slate-300 leading-relaxed whitespace-pre-wrap">{aiFeedback}</p>

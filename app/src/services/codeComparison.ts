@@ -1,8 +1,16 @@
+export interface TestResult {
+  test: string;
+  passed: boolean;
+  error?: string;
+}
+
 export interface CodeComparisonResult {
   score: number; // 1-5
   feedback: string;
   matchedConcepts: string[];
   missedConcepts: string[];
+  errors?: string[];
+  testResults?: TestResult[];
 }
 
 function tokenize(code: string): string[] {
