@@ -14,6 +14,7 @@ export interface Material {
   title: string;
   summary: string;
   topics: string[];
+  notes: string;
   flashcardCount: number;
   quizCount: number;
   exerciseCount: number;

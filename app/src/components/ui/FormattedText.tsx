@@ -37,6 +37,31 @@ function isCodeBlock(block: string): boolean {
   return codeLineCount / lines.length >= 0.4;
 }
 
+/** Parse inline formatting: `code` and **bold** */
+function renderInlineFormatting(text: string, keyPrefix: string): ReactNode[] {
+  const parts = text.split(/(`[^`\n]+`|\*\*[^*]+\*\*)/g);
+  return parts.map((part, i) => {
+    if (part.startsWith('`') && part.endsWith('`') && part.length > 2) {
+      return (
+        <code
+          key={`${keyPrefix}-${i}`}
+          className="bg-slate-800/60 px-1.5 py-0.5 rounded text-emerald-300 font-mono text-[0.9em]"
+        >
+          {part.slice(1, -1)}
+        </code>
+      );
+    }
+    if (part.startsWith('**') && part.endsWith('**') && part.length > 4) {
+      return (
+        <strong key={`${keyPrefix}-${i}`} className="font-semibold text-white">
+          {part.slice(2, -2)}
+        </strong>
+      );
+    }
+    return part ? <span key={`${keyPrefix}-${i}`}>{part}</span> : null;
+  });
+}
+
 /** Parse inline backtick code within a text string */
 function renderInlineCode(text: string, keyPrefix: string): ReactNode[] {
   const parts = text.split(/(`[^`\n]+`)/g);
@@ -55,9 +80,9 @@ function renderInlineCode(text: string, keyPrefix: string): ReactNode[] {
   });
 }
 
-/** Check if text contains markdown-style code formatting */
-function hasMarkdownCode(text: string): boolean {
-  return /```/.test(text) || /`[^`\n]+`/.test(text);
+/** Check if text contains markdown formatting */
+function hasMarkdown(text: string): boolean {
+  return /```/.test(text) || /`[^`\n]+`/.test(text) || /^#{2,3}\s/m.test(text) || /\*\*[^*]+\*\*/.test(text);
 }
 
 /** Render text with markdown backtick support */
@@ -85,18 +110,72 @@ function renderMarkdown(text: string, className: string) {
       continue;
     }
 
-    // Text block — split by double newlines into paragraphs
-    const paragraphs = part.split(/\n\n+/);
-    for (let j = 0; j < paragraphs.length; j++) {
-      const para = paragraphs[j].trim();
-      if (!para) continue;
+    // Text block — parse line by line for headers, bullets, paragraphs
+    const lines = part.split('\n');
+    let bulletBuffer: ReactNode[] = [];
+    let bulletKeyBase = '';
 
+    const flushBullets = () => {
+      if (bulletBuffer.length > 0) {
+        elements.push(
+          <ul key={bulletKeyBase} className="list-disc ml-4 space-y-1">
+            {bulletBuffer}
+          </ul>
+        );
+        bulletBuffer = [];
+      }
+    };
+
+    for (let j = 0; j < lines.length; j++) {
+      const line = lines[j];
+      const trimmed = line.trim();
+      if (!trimmed) {
+        flushBullets();
+        continue;
+      }
+
+      // ## Header
+      if (trimmed.startsWith('## ')) {
+        flushBullets();
+        elements.push(
+          <h2 key={`${i}-h2-${j}`} className="text-lg font-bold text-white mt-5 mb-2">
+            {renderInlineFormatting(trimmed.slice(3), `${i}-h2-${j}`)}
+          </h2>
+        );
+        continue;
+      }
+
+      // ### Subheader
+      if (trimmed.startsWith('### ')) {
+        flushBullets();
+        elements.push(
+          <h3 key={`${i}-h3-${j}`} className="text-base font-semibold text-blue-300 mt-4 mb-1">
+            {renderInlineFormatting(trimmed.slice(4), `${i}-h3-${j}`)}
+          </h3>
+        );
+        continue;
+      }
+
+      // - bullet
+      if (trimmed.startsWith('- ')) {
+        if (bulletBuffer.length === 0) bulletKeyBase = `${i}-ul-${j}`;
+        bulletBuffer.push(
+          <li key={`${i}-li-${j}`} className="leading-relaxed">
+            {renderInlineFormatting(trimmed.slice(2), `${i}-li-${j}`)}
+          </li>
+        );
+        continue;
+      }
+
+      // Regular text line
+      flushBullets();
       elements.push(
         <p key={`${i}-${j}`} className="leading-relaxed">
-          {renderInlineCode(para, `${i}-${j}`)}
+          {renderInlineFormatting(trimmed, `${i}-${j}`)}
         </p>
       );
     }
+    flushBullets();
   }
 
   return <div className={className}>{elements}</div>;
@@ -134,7 +213,7 @@ function renderAutoDetect(text: string, className: string) {
 }
 
 export function FormattedText({ text, className = '' }: FormattedTextProps) {
-  if (hasMarkdownCode(text)) {
+  if (hasMarkdown(text)) {
     return renderMarkdown(text, className);
   }
   return renderAutoDetect(text, className);

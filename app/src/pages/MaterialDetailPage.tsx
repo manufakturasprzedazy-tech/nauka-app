@@ -5,11 +5,12 @@ import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { Button } from '@/components/ui/Button';
 import { ProgressRing } from '@/components/ui/ProgressRing';
+import { FormattedText } from '@/components/ui/FormattedText';
 import { cn } from '@/utils/cn';
 import { useContentStore } from '@/stores/contentStore';
 import { db } from '@/db/database';
 
-type Tab = 'info' | 'flashcards' | 'quiz' | 'coding';
+type Tab = 'info' | 'notes' | 'flashcards' | 'quiz' | 'coding';
 
 export function MaterialDetailPage() {
   const { courseId, id } = useParams<{ courseId: string; id: string }>();
@@ -51,6 +52,7 @@ export function MaterialDetailPage() {
 
   const tabs: { key: Tab; label: string; count: number }[] = [
     { key: 'info', label: 'Info', count: 0 },
+    { key: 'notes', label: 'Notatki', count: 0 },
     { key: 'flashcards', label: 'Fiszki', count: flashcards.length },
     { key: 'quiz', label: 'Quiz', count: quizzes.length },
     { key: 'coding', label: 'Kod', count: exercises.length },
@@ -98,6 +100,18 @@ export function MaterialDetailPage() {
               ))}
             </div>
           </Card>
+        )}
+
+        {activeTab === 'notes' && (
+          material.notes ? (
+            <FormattedText text={material.notes} className="text-sm text-slate-300" />
+          ) : (
+            <Card variant="outlined">
+              <p className="text-sm text-slate-400 text-center py-4">
+                Notatki dla tej lekcji nie są jeszcze dostępne.
+              </p>
+            </Card>
+          )
         )}
 
         {activeTab === 'flashcards' && (

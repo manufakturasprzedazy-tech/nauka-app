@@ -30,6 +30,8 @@ def export():
 
     # 2. Materials
     cur.execute('SELECT * FROM source_materials ORDER BY id')
+    col_names_mat = [desc[0] for desc in cur.description]
+    has_notes = 'notes' in col_names_mat
     materials = []
     for r in cur.fetchall():
         topics = json.loads(r['topics']) if r['topics'] else []
@@ -49,6 +51,7 @@ def export():
             "title": r['title'],
             "summary": r['summary'],
             "topics": topics,
+            "notes": r['notes'] if has_notes and r['notes'] else "",
             "flashcardCount": fc_count,
             "quizCount": qz_count,
             "exerciseCount": ex_count,

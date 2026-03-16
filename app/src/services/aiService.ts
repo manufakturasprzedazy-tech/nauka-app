@@ -33,7 +33,15 @@ async function callClaude(apiKey: string, systemPrompt: string, userMessage: str
   });
 
   if (!response.ok) {
-    throw new Error(`API error: ${response.status}`);
+    const errorBody = await response.text();
+    let detail = '';
+    try {
+      const err = JSON.parse(errorBody);
+      detail = err.error?.message || errorBody;
+    } catch {
+      detail = errorBody;
+    }
+    throw new Error(`Claude API ${response.status}: ${detail}`);
   }
 
   const data = await response.json();

@@ -49,6 +49,13 @@ def ensure_schema(conn):
         conn.commit()
         print("Dodano kolumnę 'hints' do tabeli coding_exercises.")
 
+    cur.execute("PRAGMA table_info(source_materials)")
+    columns = [row[1] for row in cur.fetchall()]
+    if 'notes' not in columns:
+        cur.execute('ALTER TABLE source_materials ADD COLUMN notes TEXT DEFAULT ""')
+        conn.commit()
+        print("Dodano kolumnę 'notes' do tabeli source_materials.")
+
 
 def get_existing_filenames(conn):
     """Get set of filenames already in the database."""
@@ -90,9 +97,10 @@ def save_to_db(conn, data):
 
     # Insert source_material
     cur.execute(
-        '''INSERT INTO source_materials (filename, filepath, title, summary, topics, processed_at)
-           VALUES (?, ?, ?, ?, ?, datetime('now'))''',
-        (data['filename'], data['filename'], data['title'], data['summary'], json.dumps(data.get('topics', []), ensure_ascii=False))
+        '''INSERT INTO source_materials (filename, filepath, title, summary, topics, notes, processed_at)
+           VALUES (?, ?, ?, ?, ?, ?, datetime('now'))''',
+        (data['filename'], data['filename'], data['title'], data['summary'],
+         json.dumps(data.get('topics', []), ensure_ascii=False), data.get('notes', ''))
     )
     material_id = cur.lastrowid
 
@@ -175,6 +183,8 @@ def main():
     parser.add_argument('--dry-run', action='store_true', help='Show what would be processed')
     parser.add_argument('--reprocess', nargs='*', default=None,
                         help='Reprocess existing materials. Without args = ALL. With args = matching titles/filenames.')
+    parser.add_argument('--generate-notes', action='store_true',
+                        help='Generate notes for materials that don\'t have them yet.')
     args = parser.parse_args()
 
     load_env()
@@ -186,6 +196,62 @@ def main():
 
     conn = sqlite3.connect(DB_PATH, timeout=30)
     ensure_schema(conn)
+
+    # --- GENERATE NOTES MODE ---
+    if args.generate_notes:
+        from process_material import generate_notes
+
+        cur = conn.cursor()
+        cur.execute("SELECT id, filename, title FROM source_materials WHERE notes IS NULL OR notes = ''")
+        missing = cur.fetchall()
+
+        if not missing:
+            print("Wszystkie materiały mają już notatki.")
+            conn.close()
+            if args.deploy:
+                export_json()
+                git_deploy()
+            return
+
+        print(f"Materiały bez notatek ({len(missing)}):")
+        for mat_id, mat_filename, mat_title in missing:
+            print(f"  [{mat_id}] {mat_title or mat_filename}")
+
+        if args.dry_run:
+            print("\n(--dry-run: nie generuję)")
+            conn.close()
+            return
+
+        generated = 0
+        for mat_id, mat_filename, mat_title in missing:
+            filepath = os.path.join(MATERIALS_DIR, mat_filename)
+            if not os.path.exists(filepath):
+                print(f"  POMINIĘTO: {mat_filename} — plik nie istnieje")
+                continue
+
+            print(f"\nGeneruję notatki: {mat_title or mat_filename}...")
+            try:
+                notes = generate_notes(filepath, mat_title or mat_filename, api_key)
+                cur.execute("UPDATE source_materials SET notes = ? WHERE id = ?", (notes, mat_id))
+                conn.commit()
+                print(f"  Zapisano ({len(notes)} znaków)")
+                generated += 1
+            except Exception as e:
+                print(f"  BŁĄD: {e}")
+                continue
+
+        conn.close()
+        print(f"\nWygenerowano notatki dla {generated}/{len(missing)} materiałów.")
+
+        print("\nEksportuję JSON...")
+        export_json()
+
+        if args.deploy:
+            print("\nDeploying...")
+            git_deploy()
+
+        print("\nGotowe!")
+        return
 
     # --- REPROCESS MODE ---
     if args.reprocess is not None:

@@ -13,6 +13,22 @@ except ImportError:
     raise
 
 
+NOTES_SYSTEM_PROMPT = """You are an expert Python teacher creating condensed study notes for a mobile learning app.
+
+Write in simple, everyday Polish. Short sentences. No fancy words. Explain like talking to a friend who just started coding.
+
+Use markdown formatting:
+- ## for section headers
+- ### for concept names
+- `inline code` for code references
+- ```python for code blocks
+- **bold** for important terms
+- - for bullet lists
+
+ONLY use concepts from the provided material. Do NOT introduce anything new.
+Respond with a JSON object: {"notes": "markdown string"} — no markdown wrapper, no text before/after."""
+
+
 SYSTEM_PROMPT = """You are an expert Python teacher creating learning materials for a mobile study app.
 
 TARGET AUDIENCE: A Polish-speaking beginner learning Python from scratch. They know NOTHING beyond what is in the provided lesson.
@@ -49,6 +65,7 @@ Generate JSON with this structure:
   "title": "material title (in Polish)",
   "summary": "2-3 sentence summary in Polish",
   "topics": ["list", "of", "main", "topics"],
+  "notes": "condensed markdown notes (see NOTES RULES below)",
   "flashcards": [
     {{"front": "question", "back": "answer", "topic": "topic"}}
   ],
@@ -140,6 +157,42 @@ Rules:
 - ONLY use concepts taught in the material — do NOT require knowledge of functions/syntax not in the lesson
 - Descriptions and hints: plain language, no fancy words
 - Remember: the student understands concepts but struggles to write code from scratch
+
+========================================
+NOTES RULES (condensed study notes, 300-600 words)
+========================================
+Generate a condensed summary of the lesson in markdown. Structure:
+
+## O czym jest ta lekcja
+1-2 sentence intro.
+
+## Kluczowe pojęcia
+### Concept Name
+2-3 sentences explaining the concept with `inline code`.
+(repeat for 3-6 key concepts from the material)
+
+## Przykłady kodu
+```python
+# key example with comments
+```
+1 sentence explaining the example.
+(1-3 code examples)
+
+## Ważne zasady
+- **Rule 1** — explanation
+- **Rule 2** — explanation
+(3-6 rules)
+
+## Częste błędy
+- **Mistake 1**: what happens and how to avoid it
+- **Mistake 2**: what happens and how to avoid it
+(2-4 common mistakes)
+
+Rules:
+- Write in simple Polish — short sentences, no jargon
+- Use `backticks` for all code references
+- Only cover concepts from the material — nothing extra
+- Keep it practical and useful as a quick review reference
 
 ========================================
 GENERAL
@@ -238,6 +291,9 @@ def validate_data(data: dict) -> list[str]:
     if len(exercises) < 3:
         issues.append(f'too few exercises ({len(exercises)})')
 
+    if not data.get('notes') or len(data.get('notes', '')) < 100:
+        issues.append('missing or too short notes')
+
     return issues
 
 
@@ -249,3 +305,78 @@ def extract_title(content: str, filename: str) -> str:
             return line[2:].strip()
     # Fallback to filename
     return filename.replace('.md', '').replace('_', ' ').replace('-', ' ').title()
+
+
+def generate_notes(filepath: str, title: str, api_key: str, max_retries: int = 2) -> str:
+    """Generate only notes for an existing material (lightweight call)."""
+    with open(filepath, 'r', encoding='utf-8') as f:
+        content = f.read()
+
+    client = OpenAI(api_key=api_key)
+
+    prompt = f"""Generate condensed study notes for this Python lesson: "{title}"
+
+MATERIAL:
+{content}
+
+Generate a JSON object with a single key "notes" containing markdown-formatted study notes in Polish.
+The notes should be 300-600 words and follow this structure:
+
+## O czym jest ta lekcja
+1-2 sentence intro.
+
+## Kluczowe pojęcia
+### Concept Name
+2-3 sentences with `inline code`.
+(3-6 concepts)
+
+## Przykłady kodu
+```python
+# key example
+```
+(1-3 examples)
+
+## Ważne zasady
+- **Rule** — explanation
+(3-6 rules)
+
+## Częste błędy
+- **Mistake**: explanation
+(2-4 mistakes)
+
+Write in simple Polish. Use `backticks` for code. Only concepts from the material.
+Respond with JSON only: {{"notes": "markdown string"}}"""
+
+    for attempt in range(max_retries + 1):
+        response = client.chat.completions.create(
+            model="gpt-5-mini",
+            max_completion_tokens=4096,
+            messages=[
+                {"role": "system", "content": NOTES_SYSTEM_PROMPT},
+                {"role": "user", "content": prompt},
+            ],
+        )
+
+        response_text = response.choices[0].message.content
+        if not response_text:
+            if attempt < max_retries:
+                print(f"  Empty response (attempt {attempt + 1}), retrying...")
+                time.sleep(2)
+                continue
+            else:
+                raise ValueError("API returned empty response after all retries")
+
+        data = parse_response(response_text)
+        notes = data.get('notes', '')
+
+        if notes and len(notes) >= 100:
+            return notes
+
+        if attempt < max_retries:
+            print(f"  Notes too short ({len(notes)} chars), retrying...")
+            time.sleep(2)
+        else:
+            print(f"  WARNING: Notes still short after retries ({len(notes)} chars)")
+            return notes
+
+    return ''
