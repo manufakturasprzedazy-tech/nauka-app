@@ -258,17 +258,24 @@ def process_material(filepath: str, api_key: str, max_retries: int = 2) -> dict:
 
 def parse_response(response_text: str) -> dict:
     """Parse JSON from API response."""
+    # strict=False allows control characters (newlines/tabs) inside JSON strings
     try:
-        return json.loads(response_text)
+        return json.loads(response_text, strict=False)
     except json.JSONDecodeError:
         # Try to extract JSON from markdown code block
         match = re.search(r'```(?:json)?\s*(.*?)\s*```', response_text, re.DOTALL)
         if match:
-            return json.loads(match.group(1))
+            try:
+                return json.loads(match.group(1), strict=False)
+            except json.JSONDecodeError:
+                pass
         # Try to find JSON object
         match = re.search(r'\{.*\}', response_text, re.DOTALL)
         if match:
-            return json.loads(match.group(0))
+            try:
+                return json.loads(match.group(0), strict=False)
+            except json.JSONDecodeError:
+                pass
         raise ValueError(f"Failed to parse API response:\n{response_text[:500]}")
 
 

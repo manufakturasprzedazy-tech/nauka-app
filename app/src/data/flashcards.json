@@ -2238,5 +2238,173 @@
     "front": "Jaki częsty błąd przy liczeniu liter popełniają początkujący?",
     "back": "Często zapominają ustawić licznik na `0` przed pętlą. Trzeba zrobić `count = 0` zanim zaczniemy zliczać.",
     "topic": "Gotcha"
+  },
+  {
+    "id": 321,
+    "materialId": 28,
+    "front": "Co to jest `tuple`?",
+    "back": "Krotka to niemutowalna sekwencja zapisana w nawiasach `()`, np. `(\"a\", \"b\")`.",
+    "topic": "krotki"
+  },
+  {
+    "id": 322,
+    "materialId": 28,
+    "front": "Jaka jest główna różnica między `list` a `tuple`?",
+    "back": "Lista jest mutowalna i można ją zmieniać. Krotki są niemutowalne i nie można przypisać nowej wartości `t[1] = x`.",
+    "topic": "niemutowalność"
+  },
+  {
+    "id": 323,
+    "materialId": 28,
+    "front": "Co się stanie jeśli spróbujesz napisać `t[0] = 5` gdy `t` jest krotką?",
+    "back": "Python zgłosi błąd (traceback) bo krotki są niemutowalne i nie można zmieniać elementów.",
+    "topic": "gotcha"
+  },
+  {
+    "id": 324,
+    "materialId": 28,
+    "front": "Jak zrobić jednoczesne przypisanie dwóch zmiennych?",
+    "back": "Użyj krotki po obu stronach: `x, y = 4, \"fred\"` — to przypisanie wielokrotne.",
+    "topic": "przypisanie wielokrotne"
+  },
+  {
+    "id": 325,
+    "materialId": 28,
+    "front": "Jak porównywane są dwie krotki, np. `(1, 3, 5)` i `(1, 4, 0)`?",
+    "back": "Porównanie zaczyna od pierwszego elementu. Jeśli pierwszy elementy są równe, porównuje drugi i tak dalej. Tu `(1,3,5) < (1,4,0)` ponieważ `3 < 4`.",
+    "topic": "porównywanie krotek"
+  },
+  {
+    "id": 326,
+    "materialId": 28,
+    "front": "Kiedy lepiej użyć `tuple` zamiast `list`?",
+    "back": "Gdy nie potrzebujesz zmieniać danych i chcesz mniejszego narzutu pamięci. Krotki są szybsze i bezpieczniejsze do tymczasowych danych.",
+    "topic": "when to use"
+  },
+  {
+    "id": 327,
+    "materialId": 28,
+    "front": "Jak utworzyć listę par `(wartość, klucz)` z słownika `d`?",
+    "back": "Zrób pustą listę i pętlę: `temp = []\\nfor k, v in d.items():\\n    temp.append((v, k))`.",
+    "topic": "sortowanie słownika"
+  },
+  {
+    "id": 328,
+    "materialId": 28,
+    "front": "Do czego służy `sorted(..., reverse=True)`?",
+    "back": "Zwraca posortowaną listę w kolejności od największej do najmniejszej (odwrócona kolejność).",
+    "topic": "sortowanie"
+  },
+  {
+    "id": 329,
+    "materialId": 28,
+    "front": "Co zwróci `sorted(d.items())` gdy `d` jest słownikiem?",
+    "back": "Zwróci listę krotek `(klucz, wartość)` posortowaną według kluczy, bo to naturalny porządek krotek według pierwszego elementu.",
+    "topic": "sortowanie"
+  },
+  {
+    "id": 330,
+    "materialId": 28,
+    "front": "Jak wziąć pierwsze 10 elementów z listy `L`?",
+    "back": "Użyj slicingu: `L[:10]` (to bierze elementy 0..9).",
+    "topic": "slicing"
+  },
+  {
+    "id": 331,
+    "materialId": 28,
+    "front": "Jaki błąd popełnia początkujący, chcąc posortować słownik po wartościach?",
+    "back": "Często pisze `sorted(d.items())` — to sortuje po kluczu. Trzeba najpierw zamienić pary na `(wartość, klucz)`.",
+    "topic": "gotcha"
+  },
+  {
+    "id": 332,
+    "materialId": 28,
+    "front": "Czy krotki można sortować? Jak to działa?",
+    "back": "Tak. Krotki sortuje się element po elemencie od lewej. Pierwszy element ma największe znaczenie, potem drugi, itd.",
+    "topic": "porównywanie krotek"
+  },
+  {
+    "id": 333,
+    "materialId": 29,
+    "front": "Co to jest wyrażenie regularne?",
+    "back": "To sposób opisania wzorca tekstu. Pozwala dopasować lub wyciągnąć pewne napisy z większego tekstu.",
+    "topic": "wyrażenia regularne"
+  },
+  {
+    "id": 334,
+    "materialId": 29,
+    "front": "Co robi `re.search()`?",
+    "back": "Sprawdza, czy wzorzec występuje w danym łańcuchu. Zwraca dopasowanie (prawda) lub `None` (fałsz).",
+    "topic": "re.search"
+  },
+  {
+    "id": 335,
+    "materialId": 29,
+    "front": "Do czego służy `re.findall()`?",
+    "back": "Wydobywa fragmenty pasujące do wzorca i zwraca listę tych fragmentów. Przydatne do ekstrakcji wielu elementów.",
+    "topic": "re.findall"
+  },
+  {
+    "id": 336,
+    "materialId": 29,
+    "front": "Co oznacza znak `^` w wyrażeniu regularnym?",
+    "back": "`^` oznacza początek linii. Przykład: `^From` dopasuje tylko jeśli `From` jest na początku.",
+    "topic": "metaznaki"
+  },
+  {
+    "id": 337,
+    "materialId": 29,
+    "front": "Co oznacza znak `$`?",
+    "back": "`$` oznacza koniec linii. Użyj go, gdy chcesz, by wzorzec znajdował się na końcu tekstu.",
+    "topic": "metaznaki"
+  },
+  {
+    "id": 338,
+    "materialId": 29,
+    "front": "Co robi `.` w regexie?",
+    "back": "`.` pasuje do dowolnego pojedynczego znaku (nie do pustego ciągu).",
+    "topic": "metaznaki"
+  },
+  {
+    "id": 339,
+    "materialId": 29,
+    "front": "Jaka jest różnica między `*` a `+`?",
+    "back": "`*` oznacza zero lub więcej wystąpień, a `+` oznacza jedno lub więcej wystąpień.",
+    "topic": "metaznaki"
+  },
+  {
+    "id": 340,
+    "materialId": 29,
+    "front": "Co robią nawiasy `()` w regexie?",
+    "back": "Służą do grupowania i do wydobywania części dopasowania przy użyciu `re.findall` lub innych funkcji.",
+    "topic": "grupowanie"
+  },
+  {
+    "id": 341,
+    "materialId": 29,
+    "front": "Jaka jest różnica między `line.find('From')` a `re.search('From', line)`?",
+    "back": "`line.find` szuka dokładnego ciągu znaków i zwraca pozycję lub -1. `re.search` używa wzorca regex i zwraca dopasowanie lub `None`.",
+    "topic": "porównanie"
+  },
+  {
+    "id": 342,
+    "materialId": 29,
+    "front": "Kiedy lepiej użyć regex zamiast `startswith`?",
+    "back": "Gdy potrzebujesz wzorca, np. różne znaki między elementami albo ekstra reguły. Do prostego sprawdzenia prefiksu lepsze `startswith`.",
+    "topic": "kiedy użyć"
+  },
+  {
+    "id": 343,
+    "materialId": 29,
+    "front": "Jaki błąd popełniają początkujący z `.` w regex?",
+    "back": "Myślą, że `.` to dosłowna kropka. W regex `.` oznacza dowolny znak, więc może dopasować więcej niż oczekiwano.",
+    "topic": "pułapki"
+  },
+  {
+    "id": 344,
+    "materialId": 29,
+    "front": "Co się stanie jeśli użyjesz `re.search('From', line) >= 0`?",
+    "back": "To błąd logiczny, bo `re.search` nie zwraca indeksu, tylko dopasowanie lub `None`. Trzeba użyć `if re.search(...):`.",
+    "topic": "pułapki"
   }
 ]

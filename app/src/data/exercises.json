@@ -1652,5 +1652,125 @@
       "Jeśli `len(sub) > len(text)` zwróć 0.",
       "Użyj pętli `while` i porównuj `text[i:i+len(sub)]` z `sub`."
     ]
+  },
+  {
+    "id": 111,
+    "materialId": 28,
+    "title": "Utwórz krotkę z trzech wartości",
+    "description": "Napisz funkcję `make_tuple(a, b, c)` która zwraca krotkę z trzech podanych wartości.",
+    "starterCode": "```python\ndef make_tuple(a, b, c):\n    # TODO: zwróć krotkę z a, b, c\n    pass\n```",
+    "solution": "```python\ndef make_tuple(a, b, c):\n    # tworzymy krotkę i zwracamy ją\n    return (a, b, c)\n```",
+    "testCode": "```python\n# tests\nassert make_tuple(1, 2, 3) == (1, 2, 3)\nassert make_tuple('x', 'y', 'z') == ('x', 'y', 'z')\nassert make_tuple(10, None, 5) == (10, None, 5)\n```",
+    "difficulty": "easy",
+    "topic": "krotki",
+    "hints": [
+      "Użyj nawiasów `()` aby utworzyć krotkę.",
+      "Możesz zwrócić bezpośrednio `(a, b, c)`."
+    ]
+  },
+  {
+    "id": 112,
+    "materialId": 28,
+    "title": "Zlicz słowa w tekście",
+    "description": "Napisz funkcję `count_words(text)` która zwraca słownik z liczbą wystąpień każdego słowa. Użyj `split()` i pętli `for`.",
+    "starterCode": "```python\ndef count_words(text):\n    # TODO: zwróć słownik {słowo: liczba}\n    counts = {}\n    return counts\n```",
+    "solution": "```python\ndef count_words(text):\n    counts = {}\n    words = text.split()\n    for w in words:\n        if w in counts:\n            counts[w] = counts[w] + 1\n        else:\n            counts[w] = 1\n    return counts\n```",
+    "testCode": "```python\n# tests\nassert count_words(\"\") == {}\nassert count_words(\"a a b\") == {'a': 2, 'b': 1}\nassert count_words(\"one two two three\") == {'one':1,'two':2,'three':1}\n```",
+    "difficulty": "medium",
+    "topic": "słowniki",
+    "hints": [
+      "Użyj `text.split()` by rozbić tekst na słowa.",
+      "Sprawdzaj `if word in counts` by zliczać bez `get()`."
+    ]
+  },
+  {
+    "id": 113,
+    "materialId": 28,
+    "title": "Top N słów z tekstu",
+    "description": "Napisz funkcję `top_n_words(text, n)` która zwraca listę `n` krotek `(word, count)` z najczęstszymi słowami od największej do najmniejszej. Użyj techniki: zbuduj `temp` listę `(count, word)`, posortuj `sorted(..., reverse=True)`, weź `[:n]` i zamień z powrotem na `(word, count)`.",
+    "starterCode": "```python\ndef top_n_words(text, n):\n    # TODO: zwróć listę n krotek (word, count) od największego do najmniejszego\n    # przykład wyniku: [(\"the\", 10), (\"a\", 7)]\n    counts = {}\n    # zlicz słowa\n    for w in text.split():\n        if w in counts:\n            counts[w] = counts[w] + 1\n        else:\n            counts[w] = 1\n    # zbuduj listę (count, word)\n    temp = []\n    return []\n```",
+    "solution": "```python\ndef top_n_words(text, n):\n    counts = {}\n    for w in text.split():\n        if w in counts:\n            counts[w] = counts[w] + 1\n        else:\n            counts[w] = 1\n    temp = []\n    for k, v in counts.items():\n        # dodajemy krotki (wartość, klucz)\n        temp.append((v, k))\n    # sortujemy od największego do najmniejszego\n    sorted_temp = sorted(temp, reverse=True)\n    # bierzemy pierwsze n i zamieniamy z powrotem na (word, count)\n    result = []\n    for val, key in sorted_temp[:n]:\n        result.append((key, val))\n    return result\n```",
+    "testCode": "```python\n# tests\ntext = \"a b a c a b\"\nassert top_n_words(text, 2) == [('a', 3), ('b', 2)]\n# n większe niż liczba unikalnych słów\nassert top_n_words(\"x y\", 5) == [('x',1), ('y',1)]\n# pusty tekst\nassert top_n_words(\"\", 3) == []\n```",
+    "difficulty": "medium",
+    "topic": "sortowanie słownika",
+    "hints": [
+      "Najpierw zbuduj słownik zliczający słowa (użyj poprzedniej funkcji lub podobnego kodu).",
+      "Stwórz listę `temp` i `append((v, k))` dla `k, v in counts.items()`."
+    ]
+  },
+  {
+    "id": 114,
+    "materialId": 28,
+    "title": "Posortuj słownik według klucza i wypisz",
+    "description": "Napisz funkcję `sorted_keys(d)` która zwraca listę krotek `(key, value)` posortowaną według klucza. Użyj `sorted(d.items())` i zwróć wynik.",
+    "starterCode": "```python\ndef sorted_keys(d):\n    # TODO: zwróć listę (key, value) posortowaną po kluczu\n    return []\n```",
+    "solution": "```python\ndef sorted_keys(d):\n    # sorted(d.items()) zwraca listę (key, value) posortowaną po kluczu\n    return sorted(d.items())\n```",
+    "testCode": "```python\n# tests\nd = {'b':2, 'a':1, 'c':3}\nassert sorted_keys(d) == [('a',1), ('b',2), ('c',3)]\nassert sorted_keys({}) == []\n# pojedynczy element\nassert sorted_keys({'z':9}) == [('z',9)]\n```",
+    "difficulty": "easy",
+    "topic": "sortowanie",
+    "hints": [
+      "Funkcja `d.items()` zwraca listę krotek `(key, value)`.",
+      "Użyj `sorted()` by uzyskać listę w kolejności kluczy."
+    ]
+  },
+  {
+    "id": 115,
+    "materialId": 29,
+    "title": "Sprawdź, czy linia zaczyna się od 'From'",
+    "description": "Napisz funkcję `starts_with_from(line)` która zwraca `True` jeśli `line` zaczyna się od `From`, inaczej `False`. Użyj `re.search` i wzorca z `^`.",
+    "starterCode": "```python\n# starter code\nimport re\n\ndef starts_with_from(line):\n    # TODO: zwróć True jeśli linia zaczyna się od 'From'\n    pass\n```",
+    "solution": "```python\n# full solution\nimport re\n\ndef starts_with_from(line):\n    if re.search(r\"^From\", line):\n        return True\n    else:\n        return False\n```",
+    "testCode": "```python\n# tests\nassert starts_with_from(\"From: user@example.com\") == True\nassert starts_with_from(\"X-From: user\") == False\nassert starts_with_from(\"\") == False\n```",
+    "difficulty": "easy",
+    "topic": "re.search",
+    "hints": [
+      "Zaimportuj `re` na początku funkcji.",
+      "Użyj wzorca zaczynającego się od `^` np. `^From`."
+    ]
+  },
+  {
+    "id": 116,
+    "materialId": 29,
+    "title": "Filtruj nagłówki zaczynające od 'X-'",
+    "description": "Napisz funkcję `filter_x_headers(lines)` która dostaje listę linii i zwraca nową listę tylko z tych linii, które zaczynają się od `X-` , mają co najmniej jeden nie-spacji znak po `X-` i kończą się dwukropkiem dalej w linii. Użyj wzorca `^X-\\S+:` i `re.search`.",
+    "starterCode": "```python\n# starter code\nimport re\n\ndef filter_x_headers(lines):\n    result = []\n    # TODO: wypełnij result liniami pasującymi do wzorca\n    return result\n```",
+    "solution": "```python\n# full solution\nimport re\n\ndef filter_x_headers(lines):\n    result = []\n    for line in lines:\n        if re.search(r\"^X-\\S+:\", line):\n            result.append(line)\n    return result\n```",
+    "testCode": "```python\n# tests\nlines = [\n    \"X-Rate: 10\",\n    \"X-Plane behind schedule:\",\n    \"X-Name: Test\",\n    \"Subject: Hello\",\n    \"X- : bad\"\n]\nres = filter_x_headers(lines)\nassert res == [\"X-Rate: 10\", \"X-Name: Test\"]\nassert filter_x_headers([]) == []\n```",
+    "difficulty": "medium",
+    "topic": "re.search",
+    "hints": [
+      "Użyj pętli `for` by przejść przez `lines`.",
+      "Wzorzec `^X-\\S+:` wymaga co najmniej jednego niebiałego znaku przed dwukropkiem."
+    ]
+  },
+  {
+    "id": 117,
+    "materialId": 29,
+    "title": "Wyciągnij adresy z linii 'From:'",
+    "description": "Napisz funkcję `extract_from_address(line)` która zwraca adres e-mail po `From: ` jeśli linia ma taki prefiks, lub pusty string jeśli nie. Użyj `re.findall` i grupowania `()` z wzorcem `From: (.*)`.",
+    "starterCode": "```python\n# starter code\nimport re\n\ndef extract_from_address(line):\n    # TODO: zwróć adres po 'From: ' lub pusty string\n    pass\n```",
+    "solution": "```python\n# full solution\nimport re\n\ndef extract_from_address(line):\n    found = re.findall(r\"From: (.*)\", line)\n    if found:\n        return found[0]\n    else:\n        return \"\"\n```",
+    "testCode": "```python\n# tests\nassert extract_from_address(\"From: user@example.com\") == \"user@example.com\"\nassert extract_from_address(\"X-From: user\") == \"\"\nassert extract_from_address(\"\") == \"\"\n```",
+    "difficulty": "medium",
+    "topic": "re.findall",
+    "hints": [
+      "Użyj `re.findall` z nawiasami, by dostać część po `From:`.",
+      "Jeśli `re.findall` zwróci pustą listę, zwróć `\"\"`."
+    ]
+  },
+  {
+    "id": 118,
+    "materialId": 29,
+    "title": "Wydobądź nazwy nagłówków X-",
+    "description": "Napisz funkcję `extract_x_names(lines)` która przyjmuje listę linii nagłówków i zwraca listę nazw nagłówków zaczynających się od `X-`, bez `X-` i bez wartości. Użyj `re.findall` z grupą: `^X-(\\S+):`.",
+    "starterCode": "```python\n# starter code\nimport re\n\ndef extract_x_names(lines):\n    names = []\n    # TODO: dodaj do names nazwy nagłówków X- bez wartości\n    return names\n```",
+    "solution": "```python\n# full solution\nimport re\n\ndef extract_x_names(lines):\n    names = []\n    for line in lines:\n        found = re.findall(r\"^X-(\\S+):\", line)\n        if found:\n            names.append(found[0])\n    return names\n```",
+    "testCode": "```python\n# tests\nlines = [\n    \"X-Rate: 10\",\n    \"X-Name: Test\",\n    \"X-Plane behind schedule:\",\n    \"Subject: Hello\",\n    \"X-Extra: value\"\n]\nassert extract_x_names(lines) == [\"Rate\", \"Name\", \"Extra\"]\nassert extract_x_names([]) == []\n```",
+    "difficulty": "hard",
+    "topic": "re.findall",
+    "hints": [
+      "Użyj pętli `for` i `re.findall` dla każdej linii.",
+      "Wzorzec powinien wyciągać tylko część między `X-` a `:` bez spacji."
+    ]
   }
 ]

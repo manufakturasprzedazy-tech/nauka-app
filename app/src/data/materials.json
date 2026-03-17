@@ -517,5 +517,43 @@
     "flashcardCount": 12,
     "quizCount": 9,
     "exerciseCount": 4
+  },
+  {
+    "id": 28,
+    "courseId": "python",
+    "filename": "Krotki.md",
+    "title": "Krotki i sortowanie słowników",
+    "summary": "Lekcja wyjaśnia, czym są krotki (`tuple`) i jak różnią się od list. Pokazuje też, jak użyć krotek do sortowania danych ze słownika, by znaleźć najczęstsze słowa.",
+    "topics": [
+      "krotki",
+      "niemutowalność",
+      "przypisanie wielokrotne",
+      "porównywanie krotek",
+      "sortowanie",
+      "sortowanie słownika według wartości",
+      "lista krotek"
+    ],
+    "notes": "## O czym jest ta lekcja\nLekcja mówi o krotkach (`tuple`) i o tym, jak użyć ich razem z listami i funkcją `sorted()` by sortować dane ze słowników.\n\n## Kluczowe pojęcia\n### Krotka (`tuple`)\nKrotka to kolekcja podobna do listy, ale zapisana w nawiasach `()` zamiast `[]`. Przykład: `(\"a\", \"b\", \"c\")`.\n\n### Niemutowalność\nKrotki nie można zmieniać po utworzeniu. Próba przypisania `t[1] = \"x\"` spowoduje błąd. To różni je od list.\n\n### Przypisanie wielokrotne (unpacking)\nMożna jednocześnie przypisać wiele zmiennych: `x, y = 4, \"fred\"`. Prawo/lewo musi pasować liczebnie.\n\n### Porównywanie krotek\nKrotki porównuje się element po elemencie od lewej. Pierwszy element ma największe znaczenie. To pozwala sortować krotki naturalnie.\n\n### Sortowanie słownika po wartości\nAby posortować słownik po wartościach, stworzymy listę krotek `(wartość, klucz)`, posortujemy ją `sorted(..., reverse=True)` i wybierzemy pierwsze elementy.\n\n## Przykłady kodu\n```python\n# tworzenie krotki i odczyt elementu\nt = (\"x\", \"y\", \"z\")\nprint(t[0])\n```\nTo wypisze pierwszy element krotki.\n\n```python\n# zamiana słownika na listę (wartość, klucz) i sortowanie\ntemp = []\nfor k, v in d.items():\n    temp.append((v, k))\nsorted_list = sorted(temp, reverse=True)\n```\nTo daje listę posortowaną od największej wartości.\n\n## Ważne zasady\n- **Krotki są niemutowalne** — nie można zmieniać elementów po utworzeniu.\n- **Krotka wygląda jak lista, ale używa `()`** — indeksowanie działa tak samo: `t[0]`.\n- **Przypisanie wielokrotne** — `a, b = 1, 2` przypisuje oba naraz.\n- **Do sortowania po wartości** — zamień `(klucz, wartość)` na `(wartość, klucz)` i użyj `sorted(..., reverse=True)`.\n- **Slicing dla top N** — użyj `[:10]` by wziąć pierwsze 10 elementów z listy.\n\n## Częste błędy\n- **Próba zmiany elementu krotki**: `t[1] = 5` spowoduje błąd. Użyj listy jeśli chcesz modyfikować.\n- **Nieprawidłowe przypisanie wielokrotne**: `a, b = 5` spowoduje błąd, bo liczba elementów po obu stronach musi się zgadzać.\n- **Sortowanie słownika bez zamiany par**: `sorted(d.items())` sortuje po kluczu, nie po wartości. Zamień pary miejscami, by sortować po wartości.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 29,
+    "courseId": "python",
+    "filename": "Wyrażenia regularne.md",
+    "title": "Podstawy wyrażeń regularnych (regex) w Pythonie",
+    "summary": "Lekcja wprowadza wyrażenia regularne jako sposób wyszukiwania i ekstrakcji tekstu. Pokazuje `import re`, `re.search` i podstawowe metaznaki: `^`, `$`, `.`, `*`, `+`, nawiasy i nawiasy kwadratowe.",
+    "topics": [
+      "wyrażenia regularne",
+      "import re",
+      "re.search",
+      "re.findall",
+      "metaznaki: ^ $ . * + () []"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: wyrażenia regularne to sposób opisu wzorca w tekście. W Pythonie używamy biblioteki `re` by wyszukiwać i wydobywać fragmenty tekstu.\n\n## Kluczowe pojęcia\n### Wyrażenie regularne\nTo ciąg znaków z symbolami specjalnymi, który opisuje wzorzec tekstu. Wzorzec porównuje się z liniami tekstu.\n\n### `import re` i `re.search`\nZaczynamy od `import re`. `re.search` sprawdza, czy wzorzec pojawia się w linii. Zwraca dopasowanie (prawda) lub `None` (fałsz).\n\n### `re.findall`\nSłuży do wydobywania fragmentów. Może zwrócić listę znalezionych fragmentów, gdy użyjemy nawiasów do wyodrębnienia części.\n\n### Metaznaki\n- `^` — początek linii. Przykład: `^From` dopasuje tylko gdy `From` jest na początku.\n- `$` — koniec linii.\n- `.` — dowolny pojedynczy znak.\n- `*` — zero lub więcej wystąpień poprzedniego znaku.\n- `+` — jeden lub więcej wystąpień poprzedniego znaku.\n- `()` — grupowanie i wydobywanie fragmentów.\n- `[]` — zbiór znaków.\n\n## Przykłady kodu\n```python\nimport re\nline = \"From: user@example.com\"\nif re.search(\"^From\", line):\n    print(\"Tak, linia zaczyna się od From\")\n```\nPrzykład szuka, czy linia zaczyna się od `From`.\n\n```python\nimport re\nline = \"X-Rate: 10\"\nmatch = re.search(\"^X-\\S+:\", line)\nprint(bool(match))\n```\nTen wzorzec szuka linii zaczynającej się `X-`, potem co najmniej jeden niebędący spacją znak, i dwukropka.\n\n## Ważne zasady\n- **Import** — zawsze `import re` przed użyciem funkcji regex.\n- **`re.search`** — używaj do sprawdzenia czy wzorzec występuje (true/false).\n- **`re.findall`** — używaj gdy chcesz wyciągnąć fragmenty tekstu.\n- **Metaznaki mają znaczenie** — jeśli użyjesz `.` to nie jest dosłowna kropka, to znaczy „dowolny znak”.\n- **Doprecyzuj wzorzec** — użyj `^`, `+`, `*` by dopasować dokładniej.\n\n## Częste błędy\n- **Użycie `re.search` jak `find`**: `re.search` nie zwraca indeksu, tylko obiekt dopasowania albo `None`. Sprawdź to przez `if re.search(...)`.\n- **Mylenie `.` z kropką literalną**: `.` pasuje do dowolnego znaku, więc aby dopasować prawdziwą kropkę trzeba by użyć innego podejścia (nie omawiane tutaj).",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
   }
 ]

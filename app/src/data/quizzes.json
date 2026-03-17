@@ -3628,5 +3628,275 @@
     "explanation": "Jeśli liczymy nakładające się wystąpienia, `\"aa\"` pojawia się w `\"aaaa\"` trzy razy: na pozycjach 0,1,2. Inna odpowiedź zakłada brak nakładania się.",
     "difficulty": "hard",
     "topic": "Slicing i pętle"
+  },
+  {
+    "id": 243,
+    "materialId": 28,
+    "question": "Co zwróci ten kod?\n\n```python\ncolors = (\"red\", \"blue\", \"green\")\nprint(colors[1])\n```",
+    "choices": [
+      "\"red\"",
+      "\"blue\"",
+      "\"green\"",
+      "Błąd przy przypisie"
+    ],
+    "correctIndex": 1,
+    "explanation": "Indeks 1 to drugi element krotki, czyli \"blue\". Nie ma tu żadnego przypisu, więc nie będzie błędu.",
+    "difficulty": "easy",
+    "topic": "krotki"
+  },
+  {
+    "id": 244,
+    "materialId": 28,
+    "question": "Co się stanie gdy wykonamy:\n\n```python\nt = (1, 2, 3)\nt[0] = 9\n```",
+    "choices": [
+      "t staje się (9,2,3)",
+      "Powstaje nowa lista",
+      "Zgłoszony jest błąd",
+      "Nic się nie zmieni, t pozostanie (1,2,3)"
+    ],
+    "correctIndex": 2,
+    "explanation": "Krotki są niemutowalne, więc `t[0] = 9` spowoduje błąd. Nie można zmieniać elementów krotki.",
+    "difficulty": "easy",
+    "topic": "niemutowalność"
+  },
+  {
+    "id": 245,
+    "materialId": 28,
+    "question": "Która wersja poprawnie tworzy listę `(wartość, klucz)` z `d`?\n\nA:\n```python\ntemp = []\nfor k, v in d.items():\n    temp.append((k, v))\n```\nB:\n```python\ntemp = []\nfor k, v in d.items():\n    temp.append((v, k))\n```\nC:\n```python\ntemp = []\nfor v in d.values():\n    temp.append((v))\n```\nD:\n```python\ntemp = d.items()\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wersja B tworzy `(wartość, klucz)` co potrzebne do sortowania po wartościach. A tworzy `(klucz, wartość)`, C i D są niepoprawne dla celu.",
+    "difficulty": "medium",
+    "topic": "sortowanie słownika"
+  },
+  {
+    "id": 246,
+    "materialId": 28,
+    "question": "Co zwróci ten kod?\n\n```python\npairs = [(2, 'a'), (5, 'b'), (3, 'c')]\nprint(sorted(pairs)[0])\n```",
+    "choices": [
+      "(5, 'b')",
+      "(3, 'c')",
+      "(2, 'a')",
+      "Błąd, bo krotki mają różne typy"
+    ],
+    "correctIndex": 2,
+    "explanation": "Sortowanie krotek porównuje pierwszy element. Najmniejszy pierwszy element to 2, więc pierwszy element posortowanej listy to `(2, 'a')`.",
+    "difficulty": "easy",
+    "topic": "porównywanie krotek"
+  },
+  {
+    "id": 247,
+    "materialId": 28,
+    "question": "Co robi `sorted(temp, reverse=True)` gdy `temp` to lista `(wartość, klucz)`?",
+    "choices": [
+      "Sortuje rosnąco po kluczu",
+      "Sortuje malejąco po wartości, a gdy wartości się powtórzą to po kluczu",
+      "Zamienia miejscami klucz i wartość",
+      "Usuwa duplikaty"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sortuje malejąco według pierwszego elementu (wartości). Jeśli wartości są równe, porówna drugi element (klucz).",
+    "difficulty": "medium",
+    "topic": "sortowanie"
+  },
+  {
+    "id": 248,
+    "materialId": 28,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\na, b = 10\n```",
+    "choices": [
+      "Brakuje przecinka między 10 i zmienną",
+      "Liczba elementów po lewej nie zgadza się z prawą stroną",
+      "Zmienna b nie została zadeklarowana wcześniej",
+      "To poprawny zapis przypisania wielokrotnego"
+    ],
+    "correctIndex": 1,
+    "explanation": "Po lewej są dwie zmienne, więc po prawej musi być krotka/dwie wartości. `10` jest pojedynczą wartością i to powoduje błąd.",
+    "difficulty": "easy",
+    "topic": "przypisanie wielokrotne"
+  },
+  {
+    "id": 249,
+    "materialId": 28,
+    "question": "Które zdanie jest prawdziwe?\n\n```python\nd = {'x':1,'y':2}\nprint(sorted(d.items()))\n```",
+    "choices": [
+      "Posortuje pary według wartości",
+      "Posortuje pary według kluczy",
+      "Zwróci posortowane wartości bez kluczy",
+      "Zwróci błąd, bo `items()` nie można sortować"
+    ],
+    "correctIndex": 1,
+    "explanation": "`sorted(d.items())` sortuje listę `(klucz, wartość)` według kluczy — to pierwszy element krotki.",
+    "difficulty": "easy",
+    "topic": "sortowanie słownika"
+  },
+  {
+    "id": 250,
+    "materialId": 28,
+    "question": "Co się stanie gdy wykonamy:\n\n```python\nL = []\nprint(L[:10])\n```",
+    "choices": [
+      "Błąd, bo lista pusta",
+      "Zwróci pierwsze 10 elementów, ale lista się zmieni",
+      "Zwróci pustą listę",
+      "Zwróci None"
+    ],
+    "correctIndex": 2,
+    "explanation": "Slicing zwróci pustą listę jeśli nie ma elementów. To nie powoduje błędu i nie zmienia oryginału.",
+    "difficulty": "easy",
+    "topic": "slicing"
+  },
+  {
+    "id": 251,
+    "materialId": 28,
+    "question": "Dlaczego często tworzymy listę `(v, k)` z `(k, v)` przed sortowaniem?",
+    "choices": [
+      "Żeby zmienić nazwy kluczy",
+      "Bo `sorted()` zawsze sortuje po drugim elemencie",
+      "By domyślnie sortować po wartościach",
+      "To jest krótszy zapis niż pętla"
+    ],
+    "correctIndex": 2,
+    "explanation": "Zamieniając pary na `(wartość, klucz)` sprawiamy, że `sorted()` porówna najpierw wartość, dając sortowanie po wartościach.",
+    "difficulty": "medium",
+    "topic": "sortowanie słownika"
+  },
+  {
+    "id": 252,
+    "materialId": 29,
+    "question": "Co wypisze ten kod?\n```python\nimport re\nline = \"X-Header: value\"\nprint(bool(re.search(\"^X.*:\", line)))\n```",
+    "choices": [
+      "True",
+      "False",
+      "None",
+      "Błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wzorzec `^X.*:` znajduje linie zaczynające się od `X`, potem dowolne znaki i dwukropek, więc dopasowanie istnieje. Popularna zła odpowiedź to `False`, ale `re.search` tu zwraca dopasowanie, a `bool(...)` daje `True`.",
+    "difficulty": "easy",
+    "topic": "re.search"
+  },
+  {
+    "id": 253,
+    "materialId": 29,
+    "question": "Co jest nie tak z tym kodem?\n```python\nimport re\nline = \"From: hello\"\nif re.search(\"From\", line) >= 0:\n    print(\"Found\")\n```",
+    "choices": [
+      "Porównujemy wynik `re.search` do liczby, a `re.search` nie zwraca indeksu",
+      "Brakuje `import re`",
+      "Wzorzec powinien być `^From$`",
+      "Funkcja `re.search` zawsze zwraca `None`"
+    ],
+    "correctIndex": 0,
+    "explanation": "`re.search` zwraca dopasowanie lub `None`, nie liczbę. Trzeba użyć `if re.search(...):`. Popularny błąd to myśleć, że działa jak `find`.",
+    "difficulty": "medium",
+    "topic": "re.search"
+  },
+  {
+    "id": 254,
+    "materialId": 29,
+    "question": "Który wzorzec dopasuje tylko linie zaczynające się od `From:`?",
+    "choices": [
+      "`From`",
+      "`^From`",
+      "`From$`",
+      "`.From`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`^From` wymusza początek linii. `From` znajdzie też w środku linii. `From$` wymusza koniec linii, a `.From` wymaga dowolnego znaku przed `From`.",
+    "difficulty": "easy",
+    "topic": "metaznaki"
+  },
+  {
+    "id": 255,
+    "materialId": 29,
+    "question": "Co zwróci ten kod?\n```python\nimport re\nm = re.search(\"X\", \"\")\nprint(m)\n```",
+    "choices": [
+      "None",
+      "True",
+      "Błąd",
+      "\"X\""
+    ],
+    "correctIndex": 0,
+    "explanation": "W pustym łańcuchu nie ma `X`, więc `re.search` zwraca `None`. Popularny błąd to myśleć, że zwróci `False` lub pusty string.",
+    "difficulty": "easy",
+    "topic": "re.search"
+  },
+  {
+    "id": 256,
+    "materialId": 29,
+    "question": "Dla linii `\"X:\"`, który wzorzec dopasuje tę linię?\nA: `^X.*:`\nB: `^X.+:`",
+    "choices": [
+      "Tylko A",
+      "Tylko B",
+      "Oba A i B",
+      "Żaden"
+    ],
+    "correctIndex": 0,
+    "explanation": "`.*` pozwala na zero znaków między `X` a `:`, więc A dopasowuje. `.+` wymaga co najmniej jednego znaku, więc B nie dopasuje. Błąd to myśleć, że `+` i `*` są takie same.",
+    "difficulty": "medium",
+    "topic": "metaznaki"
+  },
+  {
+    "id": 257,
+    "materialId": 29,
+    "question": "Co wypisze ten kod?\n```python\nimport re\nline = \"X-Rate: 10\"\nprint(bool(re.search(\"^X-.+:\", line)))\n```",
+    "choices": [
+      "True",
+      "False",
+      "Błąd",
+      "None"
+    ],
+    "correctIndex": 0,
+    "explanation": "`^X-.+:` wymaga co najmniej jednego znaku po `X-` przed dwukropkiem. W `\"X-Rate: 10\"` jest `Rate`, więc dopasowanie jest. Popularna zła odpowiedź to `False` gdy ktoś myśli że spacje zabijają dopasowanie.",
+    "difficulty": "easy",
+    "topic": "metaznaki"
+  },
+  {
+    "id": 258,
+    "materialId": 29,
+    "question": "Do czego służą nawiasy `()` w wyrażeniach regularnych?",
+    "choices": [
+      "Do grupowania i wydobywania części dopasowania",
+      "Do oznaczania końca linii",
+      "Do zapisu komentarza",
+      "Do ignorowania wzorca"
+    ],
+    "correctIndex": 0,
+    "explanation": "Nawiasy grupują część wzorca i pozwalają `re.findall` zwrócić tę część. Błędna odpowiedź to np. koniec linii, który oznacza `$`.",
+    "difficulty": "easy",
+    "topic": "grupowanie"
+  },
+  {
+    "id": 259,
+    "materialId": 29,
+    "question": "Która metoda lepiej nadaje się do prostego sprawdzenia, czy linia zaczyna się od `Subject:`?",
+    "choices": [
+      "`line.startswith('Subject:')`",
+      "`re.search('Subject', line)`",
+      "`re.findall('Subject')`",
+      "`line.find('Subject') >= 0`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Do prostego sprawdzenia prefiksu `startswith` jest czytelne i proste. `re.search` też zadziała, ale to powinno być użyte gdy potrzebujesz wzorca.",
+    "difficulty": "easy",
+    "topic": "kiedy użyć"
+  },
+  {
+    "id": 260,
+    "materialId": 29,
+    "question": "Jak wyciągnąć część tekstu po `From: ` z linii `\"From: user@example.com\"` przy użyciu regex?",
+    "choices": [
+      "`re.findall(\"From: (.*)\", line)`",
+      "`re.search(\"From: (.*)\", line) >= 0`",
+      "`line.find(\"From: \")`",
+      "`re.findall(\"From: .*\", line)[0]`"
+    ],
+    "correctIndex": 0,
+    "explanation": " `re.findall(\"From: (.*)\", line)` zwróci listę z częścią po `From: `. Druga opcja jest błędna, bo nie porównujemy `re.search` do liczby. Ostatnia zwróci cały dopasowany fragment, nie tylko grupę.",
+    "difficulty": "medium",
+    "topic": "re.findall"
   }
 ]
