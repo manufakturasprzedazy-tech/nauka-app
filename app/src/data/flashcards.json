@@ -2406,5 +2406,89 @@
     "front": "Co się stanie jeśli użyjesz `re.search('From', line) >= 0`?",
     "back": "To błąd logiczny, bo `re.search` nie zwraca indeksu, tylko dopasowanie lub `None`. Trzeba użyć `if re.search(...):`.",
     "topic": "pułapki"
+  },
+  {
+    "id": 345,
+    "materialId": 30,
+    "front": "Co robi `re.findall()`?",
+    "back": "Skanuje tekst i zwraca listę wszystkich dopasowanych napisów. Jeśli nic nie znajdzie, zwraca pustą listę.",
+    "topic": "Podstawy `re.findall()`"
+  },
+  {
+    "id": 346,
+    "materialId": 30,
+    "front": "Co oznacza wzorzec `[0-9]+`?",
+    "back": "`[0-9]` to pojedyncza cyfra. `+` oznacza jeden lub więcej, więc `[0-9]+` to ciąg jednej lub więcej cyfr.",
+    "topic": "Nawiasy kwadratowe i zakresy"
+  },
+  {
+    "id": 347,
+    "materialId": 30,
+    "front": "Jaka jest różnica między `+` a `*`?",
+    "back": "`+` wymaga co najmniej jednego wystąpienia. `*` pozwala na zero lub więcej wystąpień (może dać puste).",
+    "topic": "Kwantyfikatory"
+  },
+  {
+    "id": 348,
+    "materialId": 30,
+    "front": "Co to jest zachłanne dopasowanie (greedy)?",
+    "back": "To domyślne zachowanie `+` i `*` — biorą możliwie najdłuższy fragment, który nadal pasuje do wzorca.",
+    "topic": "Zachłanność"
+  },
+  {
+    "id": 349,
+    "materialId": 30,
+    "front": "Jak sprawić, by `+` był nie-zachłanny?",
+    "back": "Dodać `?` po `+`, czyli użyć `+?`. To wybierze najkrótsze możliwe dopasowanie.",
+    "topic": "Zachłanność"
+  },
+  {
+    "id": 350,
+    "materialId": 30,
+    "front": "Co robi `\\S` w wzorcu?",
+    "back": "`\\S` oznacza pojedynczy nie-blank znak (np. litera, cyfra, znak bez spacji).",
+    "topic": "`\\S` i znaki specjalne"
+  },
+  {
+    "id": 351,
+    "materialId": 30,
+    "front": "Jak wyciągnąć tylko część dopasowania?",
+    "back": "Użyć nawiasów `()` w wzorcu. `findall` zwróci to, co jest w nawiasach.",
+    "topic": "Przechwytywanie"
+  },
+  {
+    "id": 352,
+    "materialId": 30,
+    "front": "Co zwróci `findall` jeśli nie znajdzie dopasowania?",
+    "back": "Zwróci pustą listę `[]`. Trzeba to sprawdzić przed użyciem wyniku.",
+    "topic": "Podstawy `re.findall()`"
+  },
+  {
+    "id": 353,
+    "materialId": 30,
+    "front": "Jak dopasować dosłowny znak `$` we wzorcu?",
+    "back": "Użyć ucieczki `\\$` we wzorcu, bo `$` ma specjalne znaczenie.",
+    "topic": "Ucieczka znaków"
+  },
+  {
+    "id": 354,
+    "materialId": 30,
+    "front": "Jaki wzorzec znajdzie adres e-mail na linii zaczynającej się od `From `?",
+    "back": "Możesz użyć `^From\\s+(\\S+@\\S+)` — to dopasuje linię zaczynającą się od `From ` i wyciągnie adres.",
+    "topic": "Przechwytywanie"
+  },
+  {
+    "id": 355,
+    "materialId": 30,
+    "front": "Dlaczego czasem dostajemy większy fragment niż oczekiwaliśmy?",
+    "back": "Bo `+` i `*` są zachłanne i rozszerzają dopasowanie jak najdalej. Użyj `?` żeby temu zapobiec.",
+    "topic": "Zachłanność"
+  },
+  {
+    "id": 356,
+    "materialId": 30,
+    "front": "Kiedy lepiej użyć nawiasów niż prostego wzorca?",
+    "back": "Gdy chcesz dopasować większy kontekst, ale wyciągnąć tylko wybrany fragment. Nawiasy zwracają tylko ten fragment.",
+    "topic": "Przechwytywanie"
   }
 ]

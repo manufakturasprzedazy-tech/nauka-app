@@ -3898,5 +3898,140 @@
     "explanation": " `re.findall(\"From: (.*)\", line)` zwróci listę z częścią po `From: `. Druga opcja jest błędna, bo nie porównujemy `re.search` do liczby. Ostatnia zwróci cały dopasowany fragment, nie tylko grupę.",
     "difficulty": "medium",
     "topic": "re.findall"
+  },
+  {
+    "id": 261,
+    "materialId": 30,
+    "question": "Co zwróci ten kod?\n```python\nimport re\ns = 'I have 7 apples and 12 oranges'\nprint(re.findall('[0-9]+', s))\n```",
+    "choices": [
+      "A: `['7', '12']`",
+      "B: `['7 12']`",
+      "C: `['7', '12', '']`",
+      "D: `[]`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wzorzec `[0-9]+` szuka ciągów cyfr. Znajdzie '7' i '12'. B jest błędne bo `findall` nie łączy oddzielnych dopasowań, C jest błędne bo nie dodaje pustego elementu.",
+    "difficulty": "easy",
+    "topic": "Nawiasy kwadratowe i zakresy"
+  },
+  {
+    "id": 262,
+    "materialId": 30,
+    "question": "Co jest nie tak z tym kodem?\n```python\nimport re\ns = 'Price: $4.50'\nprint(re.findall('^\\$[0-9.]+', s))\n```",
+    "choices": [
+      "A: Nic, zwróci `['$4.50']`",
+      "B: Brakuje `\\S`",
+      "C: Trzeba użyć `+?`",
+      "D: `^` nie działa w `findall`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wzorzec jest poprawny i ucieka `$` przez `\\$`, więc zwróci `['$4.50']`. B, C i D to mylne stwierdzenia.",
+    "difficulty": "easy",
+    "topic": "Ucieczka znaków"
+  },
+  {
+    "id": 263,
+    "materialId": 30,
+    "question": "Która wersja poprawnie zwróci najmniejszy fragment między `F` i `:` z `F ab : cd :`?\nA:\n```python\nre.findall('F.+:', 'F ab : cd :')\n```\nB:\n```python\nre.findall('F.+?:', 'F ab : cd :')\n```",
+    "choices": [
+      "A: Wersja A",
+      "B: Wersja B",
+      "C: Obie tak samo",
+      "D: Żadna z nich"
+    ],
+    "correctIndex": 1,
+    "explanation": "A jest zachłanna i zwróci najdłuższy fragment, B z `+?` jest nie-zachłanna i zwróci najmniejszy dopasowany fragment.",
+    "difficulty": "medium",
+    "topic": "Zachłanność"
+  },
+  {
+    "id": 264,
+    "materialId": 30,
+    "question": "Co zwróci ten kod?\n```python\nimport re\ns = 'Contact: user@site.com'\nprint(re.findall('\\S+@\\S+', s))\n```",
+    "choices": [
+      "A: `['user@site.com']`",
+      "B: `['Contact: user@site.com']`",
+      "C: `[]`",
+      "D: `['user', 'site.com']`"
+    ],
+    "correctIndex": 0,
+    "explanation": "`\\S+@\\S+` dopasowuje adres bez spacji. Zwróci pojedynczy element z adresem. B jest błędne bo wzorzec nie obejmuje prefiksu 'Contact: '.",
+    "difficulty": "easy",
+    "topic": "`\\S` i e-maile"
+  },
+  {
+    "id": 265,
+    "materialId": 30,
+    "question": "Co się stanie gdy wywołamy `re.findall('[0-9]+', '')` na pustym stringu?",
+    "choices": [
+      "A: `[]`",
+      "B: `['']`",
+      "C: `None`",
+      "D: Błąd wyjątku"
+    ],
+    "correctIndex": 0,
+    "explanation": "Brak dopasowań daje pustą listę. Nie otrzymamy pustego napisu ani błędu.",
+    "difficulty": "easy",
+    "topic": "Podstawy `re.findall()`"
+  },
+  {
+    "id": 266,
+    "materialId": 30,
+    "question": "Który wzorzec wyciągnie tylko numer z linii `X-DSPAM-Confidence: 0.8475`?\nA: `'^X-DSPAM-Confidence:\\s+([0-9.]+)'`\nB: `'X-DSPAM-Confidence: [0-9.]+'`\nC: `'([0-9.]+)'`\nD: `'^([0-9.]+) X-DSPAM'`",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 0,
+    "explanation": "A dopasowuje prefix i przechwytuje tylko numer. B dopasowuje cały fragment, a `findall` zwróci cały dopasowany tekst, nie samą liczbę; C i D są nieprecyzyjne.",
+    "difficulty": "medium",
+    "topic": "Przechwytywanie i filtrowanie"
+  },
+  {
+    "id": 267,
+    "materialId": 30,
+    "question": "Co zwróci ten kod?\n```python\nimport re\ns = 'aaa 1 bb 22 cc 333'\nprint(re.findall('\\d+', s))\n```",
+    "choices": [
+      "A: `['1', '22', '333']`",
+      "B: `['1 22 333']`",
+      "C: `['\\d+']`",
+      "D: `[]`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wzorzec `\\d+` (równoważne `[0-9]+`) znajdzie wszystkie ciągi cyfr. Błędne odpowiedzi mylą łączenie dopasowań lub wzorzec jako tekst.",
+    "difficulty": "easy",
+    "topic": "Nawiasy kwadratowe i zakresy"
+  },
+  {
+    "id": 268,
+    "materialId": 30,
+    "question": "Masz kod:\n```python\nimport re\nline = 'From: user at example'\nm = re.findall('From\\s+(\\S+@\\S+)', line)\nprint(m)\n```\nCo się stanie?",
+    "choices": [
+      "A: Zwróci `['user@example']`",
+      "B: Zwróci `[]`",
+      "C: Błąd wyjątku",
+      "D: Zwróci `['From: user@example']`"
+    ],
+    "correctIndex": 1,
+    "explanation": "W linii nie ma `@`, więc wzorzec nie dopasuje i `findall` zwróci pustą listę. Nie ma błędu, tylko brak dopasowania.",
+    "difficulty": "medium",
+    "topic": "Przechwytywanie"
+  },
+  {
+    "id": 269,
+    "materialId": 30,
+    "question": "Która odpowiedź najlepiej opisuje użycie nawiasów w `findall`?\nA: Nawiasy zwiększają szybkość\nB: Nawiasy zmieniają co `findall` zwraca\nC: Nawiasy powodują wyjątek\nD: Nawiasy są ignorowane",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Nawiasy określają grupy, które `findall` zwróci zamiast całego dopasowania. Nie są ignorowane ani nie powodują błędu.",
+    "difficulty": "easy",
+    "topic": "Przechwytywanie"
   }
 ]

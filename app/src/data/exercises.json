@@ -1772,5 +1772,66 @@
       "Użyj pętli `for` i `re.findall` dla każdej linii.",
       "Wzorzec powinien wyciągać tylko część między `X-` a `:` bez spacji."
     ]
+  },
+  {
+    "id": 119,
+    "materialId": 30,
+    "title": "Wyodrębnij wszystkie liczby",
+    "description": "Napisz funkcję `extract_numbers(text)` która zwraca listę ciągów cyfr znalezionych w `text` przy użyciu `re.findall` i wzorca opartych na `[0-9]`.",
+    "starterCode": "```python\nimport re\n\ndef extract_numbers(text):\n    # TODO: użyj re.findall aby znaleźć wszystkie ciągi cyfr\n    pass\n```",
+    "solution": "```python\nimport re\n\ndef extract_numbers(text):\n    # znajdź wszystkie ciągi cyfr i zwróć listę napisów\n    return re.findall('[0-9]+', text)\n```",
+    "testCode": "```python\n# tests\nassert extract_numbers('No numbers here') == []\nassert extract_numbers('Room 404') == ['404']\nassert extract_numbers('A1 B22 C333') == ['1', '22', '333']\n```",
+    "difficulty": "easy",
+    "topic": "Nawiasy kwadratowe i zakresy",
+    "hints": [
+      "Użyj wzorca `[0-9]+` z `re.findall`.",
+      "Jeśli nie ma liczb, zwróć pustą listę."
+    ]
+  },
+  {
+    "id": 120,
+    "materialId": 30,
+    "title": "Wyciągnij e-mail po prefiksie 'From '",
+    "description": "Napisz funkcję `extract_from_email(line)` która przyjmuje pojedynczy wiersz tekstu. Jeśli wiersz zaczyna się od `From `, zwróć adres e-mail (użyj nawiasów w wzorcu). W przeciwnym razie zwróć `None`.",
+    "starterCode": "```python\nimport re\n\ndef extract_from_email(line):\n    # TODO: jeśli linia zaczyna od 'From ', zwróć email, inaczej None\n    pass\n```",
+    "solution": "```python\nimport re\n\ndef extract_from_email(line):\n    # szukamy linii zaczynającej się od 'From ' i przechwytujemy adres\n    m = re.findall('^From\\s+(\\S+@\\S+)', line)\n    if len(m) == 1:\n        return m[0]\n    return None\n```",
+    "testCode": "```python\n# tests\nassert extract_from_email('From alice@example.com') == 'alice@example.com'\nassert extract_from_email('From: bob@example.com') is None\nassert extract_from_email('Random line') is None\n```",
+    "difficulty": "medium",
+    "topic": "Przechwytywanie i filtrowanie",
+    "hints": [
+      "Użyj wzorca z `^From\\s+` i grupą `(...)` dla `\\S+@\\S+`.",
+      "Sprawdź długość wynikowej listy, bo `findall` może zwrócić pustą listę."
+    ]
+  },
+  {
+    "id": 121,
+    "materialId": 30,
+    "title": "Małe dopasowanie między znakami (non-greedy)",
+    "description": "Napisz funkcję `small_between_F_and_colon(text)` która zwraca listę najkrótszych fragmentów między `F` a `:` w tekście. Użyj nie-zachłannego wzorca.",
+    "starterCode": "```python\nimport re\n\ndef small_between_F_and_colon(text):\n    # TODO: zwróć listę najkrótszych dopasowań zaczynających się od 'F' i kończących na ':'\n    pass\n```",
+    "solution": "```python\nimport re\n\ndef small_between_F_and_colon(text):\n    # nie-zachłanne dopasowanie od 'F' do pierwszego ':'\n    return re.findall('F.+?:', text)\n```",
+    "testCode": "```python\n# tests\ns = 'F a: b: F x:y: F 1:2:'\nassert small_between_F_and_colon(s) == ['F a:', 'F x:', 'F 1:']\nassert small_between_F_and_colon('No F here') == []\nassert small_between_F_and_colon('F :') == ['F :']\n```",
+    "difficulty": "medium",
+    "topic": "Zachłanność",
+    "hints": [
+      "Użyj wzorca `F.+?:` i `findall`.",
+      "Możesz zwrócić same środkowe fragmenty lub całe dopasowanie — wybierz całe dopasowanie z `F` i `:`.",
+      "Pamiętaj, że `?` po `+` daje nie-zachłanne dopasowanie."
+    ]
+  },
+  {
+    "id": 122,
+    "materialId": 30,
+    "title": "Wyciągnij wartości X-DSPAM-Confidence",
+    "description": "Masz listę wierszy. Napisz funkcję `extract_dspam(lines)` która zwraca listę napisów z numerami (np. `0.8475`) po prefiksie `X-DSPAM-Confidence:`. Użyj wzorca z `[0-9.]` i sprawdź długość dopasowania.",
+    "starterCode": "```python\nimport re\n\ndef extract_dspam(lines):\n    # TODO: dla każdej linii wyciągnąć liczbę po 'X-DSPAM-Confidence:'\n    pass\n```",
+    "solution": "```python\nimport re\n\ndef extract_dspam(lines):\n    results = []\n    for line in lines:\n        line = line.strip()\n        m = re.findall('^X-DSPAM-Confidence:\\s*([0-9.]+)', line)\n        if len(m) == 1:\n            results.append(m[0])\n    return results\n```",
+    "testCode": "```python\n# tests\nlines = [\n    'X-DSPAM-Confidence: 0.8475',\n    'X-DSPAM-Confidence: garbage',\n    'Some other line',\n    'X-DSPAM-Confidence: 1.0'\n]\nassert extract_dspam(lines) == ['0.8475', '1.0']\nassert extract_dspam([]) == []\nassert extract_dspam(['X-DSPAM-Confidence:']) == []\n```",
+    "difficulty": "hard",
+    "topic": "Przechwytywanie i filtrowanie",
+    "hints": [
+      "Użyj `^X-DSPAM-Confidence:\\s*([0-9.]+)` w `findall`.",
+      "Przejdź po każdej linii i zbieraj dopasowania tylko gdy jest dokładnie jedno."
+    ]
   }
 ]

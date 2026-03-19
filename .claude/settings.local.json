@@ -56,7 +56,9 @@
       "Bash(curl -s \"https://manufakturasprzedazy-tech.github.io/nauka-app/assets/data-78PUPG4I.js\" 2>&1 | tr ',' '\\\\n' | grep -c \"exerciseCount\")",
       "Bash(curl -s \"https://manufakturasprzedazy-tech.github.io/nauka-app/assets/data-78PUPG4I.js\" 2>&1 | grep -c \"courseId\")",
       "Bash(curl -s \"https://manufakturasprzedazy-tech.github.io/nauka-app/assets/index-BeCeMOES.js\" 2>&1 | grep -c \"courseId\")",
-      "Bash(curl -s \"https://manufakturasprzedazy-tech.github.io/nauka-app/assets/index-BeCeMOES.js\" 2>&1 | grep -oP '\"notes\":\"[^\"]{0,50}' | head -3)"
+      "Bash(curl -s \"https://manufakturasprzedazy-tech.github.io/nauka-app/assets/index-BeCeMOES.js\" 2>&1 | grep -oP '\"notes\":\"[^\"]{0,50}' | head -3)",
+      "Bash(python -c \":*)",
+      "Bash(npm run:*)"
     ]
   }
 }

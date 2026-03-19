@@ -555,5 +555,24 @@
     "flashcardCount": 12,
     "quizCount": 9,
     "exerciseCount": 4
+  },
+  {
+    "id": 30,
+    "courseId": "python",
+    "filename": "Wyodrębnianie danych.md",
+    "title": "Wyodrębnianie danych za pomocą wyrażeń regularnych",
+    "summary": "Lekcja uczy jak wyciągać fragmenty tekstu za pomocą `re.findall()` i wzorców. Omawia nawiasy kwadratowe, `+`, `*`, zachłanność i znaki `?`, `\\S`, nawiasy do przechwytywania oraz ucieczkę znaków.",
+    "topics": [
+      "Podstawy `re.findall()`",
+      "Nawiasy kwadratowe i zakresy",
+      "Kwantyfikatory `+`, `*` i `?`",
+      "Zachłanne vs nie-zachłanne dopasowanie",
+      "Przechwytywanie z nawiasami",
+      "Ucieczka znaków `\\` i `\\S`"
+    ],
+    "notes": "## O czym jest ta lekcja\nKilka prostych sposobów na wyciąganie części tekstu za pomocą wyrażeń regularnych i `re.findall()`.\n\n## Kluczowe pojęcia\n### `re.findall()`\nFunkcja przeszukuje tekst i zwraca listę wszystkich dopasowań jako napisy. Jeśli nic nie znajdzie, zwróci pustą listę.\n\n### Nawiasy kwadratowe `[]` i zakresy\n`[0-9]` oznacza pojedynczą cyfrę. Lista w nawiasach to dozwolone znaki. `AEIOU` to np. litery samogłosek.\n\n### Kwantyfikatory `+` i `*`\n`+` oznacza \"jeden lub więcej\". `*` oznacza \"zero lub więcej\". Należy uważać, bo `*` może dać puste dopasowanie.\n\n### Zachłanność i `?`\nDomyślnie `+` i `*` są zachłanne — biorą jak największy fragment. Dodanie `?` po nich daje wersję nie-zachłanną, czyli najmniejszy możliwy fragment.\n\n### `\\S` i ucieczka znaków\n`\\S` to pojedynczy nie-blank znak (wszystko poza spacją). Jeśli chcesz dopasować znak specjalny, użyj `\\` przed nim, np. `\\$`.\n\n### Nawiasy do przechwytywania `()`\nNawiasy pozwalają wybrać, którą część dopasowania `findall` ma zwrócić. Możesz dopasować dłuższy wzorzec, a wyciągnąć tylko fragment.\n\n## Przykłady kodu\n```python\nimport re\nre.findall('[0-9]+', 'Ala ma 2 koty i 42 rybki')\n```\nTo zwróci listę napisów z liczbami.\n\n```python\nimport re\nre.findall('^From\\s+(\\S+@\\S+)', 'From joe@example.com')\n```\nZwróci adres e-mail z linii zaczynającej się od `From `.\n\n## Ważne zasady\n- **Sprawdź długość listy** — `findall` może zwrócić 0 elementów.\n- **Użyj nawiasów** gdy chcesz wyciągnąć tylko część dopasowania.\n- **Uważaj na zachłanność** — czasem trzeba dodać `?` po `+` lub `*`.\n- **Ucieczka znaków** — jeśli wzorzec ma specjalny znak, poprzedź go `\\`.\n\n## Częste błędy\n- **Zbyt szeroki wzorzec (zachłanny)**: otrzymasz większy fragment niż oczekujesz; użyj `?` żeby skrócić.\n- **Nie sprawdzenie pustej listy**: próbujesz indexować pustą listę i dostajesz błąd; najpierw sprawdź `len()`.",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
   }
 ]
