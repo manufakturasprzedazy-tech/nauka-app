@@ -161,90 +161,6 @@
     "topic": "GOTCHA/PITFALL"
   },
   {
-    "id": 24,
-    "materialId": 3,
-    "front": "Co to jest licznik w pętli?",
-    "back": "Zmienna ustawiona na zero przed pętlą, którą zwiększamy o 1 w każdej iteracji. Przykład: `count = 0` potem w pętli `count = count + 1`.",
-    "topic": "liczniki (count)"
-  },
-  {
-    "id": 25,
-    "materialId": 3,
-    "front": "Jak obliczyć sumę wszystkich wartości w liście?",
-    "back": "Utwórz zmienną `total = 0` przed pętlą. W pętli dodawaj każdą wartość: `total = total + value`. Po pętli `total` ma sumę.",
-    "topic": "suma (total)"
-  },
-  {
-    "id": 26,
-    "materialId": 3,
-    "front": "Jak obliczyć średnią z wartości?",
-    "back": "Użyj licznika i sumy. Po pętli podziel sumę przez licznik: `average = total / count` (upewnij się, że `count` nie jest zero).",
-    "topic": "średnia (average)"
-  },
-  {
-    "id": 27,
-    "materialId": 3,
-    "front": "Co robi filtr w pętli?",
-    "back": "W pętli sprawdzasz warunek `if` i tylko gdy jest prawdziwy, wykonujesz kod (np. `if value > 10: print(value)`).",
-    "topic": "filtrowanie z `if`"
-  },
-  {
-    "id": 28,
-    "materialId": 3,
-    "front": "Co to jest flaga (`found`) i kiedy jej użyć?",
-    "back": "To zmienna logiczna `False` lub `True`. Ustawiasz `found = False` przed pętlą i zmieniasz na `True`, gdy znajdziesz poszukiwany element.",
-    "topic": "zmienna logiczna (flag / found)"
-  },
-  {
-    "id": 29,
-    "materialId": 3,
-    "front": "Jaka jest różnica między licznikiem a sumą?",
-    "back": "Licznik zlicza ile elementów przeszło przez pętlę (`+1`). Suma dodaje wartości elementów (`total = total + value`).",
-    "topic": "liczniki (count)"
-  },
-  {
-    "id": 30,
-    "materialId": 3,
-    "front": "Co się stanie, jeśli podzielisz przez `count` równy zero?",
-    "back": "Wykonanie `total / count` gdy `count` ma 0 spowoduje błąd dzielenia przez zero. Najpierw sprawdź, czy `count` > 0.",
-    "topic": "średnia (average)"
-  },
-  {
-    "id": 31,
-    "materialId": 3,
-    "front": "Jak można znaleźć czy lista zawiera liczbę 7 bez drukowania wszystkiego?",
-    "back": "Ustaw `found = False` przed pętlą. W pętli: `if value == 7: found = True`. Po pętli `found` mówi, czy znaleziono.",
-    "topic": "zmienna logiczna (flag / found)"
-  },
-  {
-    "id": 32,
-    "materialId": 3,
-    "front": "Jaki częsty błąd popełniają początkujący przy liczeniu elementów?",
-    "back": "Ustawienie licznika na 1 zamiast na 0 przed pętlą. Trzeba zacząć od `count = 0`.",
-    "topic": "liczniki (count)"
-  },
-  {
-    "id": 33,
-    "materialId": 3,
-    "front": "Kiedy lepiej filtrować w pętli zamiast liczyć wszystkie elementy?",
-    "back": "Gdy chcesz tylko wybrać lub przetworzyć elementy spełniające warunek, np. `if value > 20: print(value)`.",
-    "topic": "filtrowanie z `if`"
-  },
-  {
-    "id": 34,
-    "materialId": 3,
-    "front": "Co robi `found = True` wewnątrz pętli?",
-    "back": "Zaznacza, że warunek został spełniony przynajmniej raz. Po ustawieniu na `True` nie zmieni się automatycznie z powrotem na `False`.",
-    "topic": "zmienna logiczna (flag / found)"
-  },
-  {
-    "id": 35,
-    "materialId": 3,
-    "front": "Jak obliczyć średnią tylko gdy lista nie jest pusta?",
-    "back": "Najpierw policz `count`. Po pętli sprawdź `if count > 0:` i wtedy zrób `average = total / count`.",
-    "topic": "średnia (average)"
-  },
-  {
     "id": 36,
     "materialId": 4,
     "front": "Co to jest instrukcja `if` w Pythonie?",
@@ -404,244 +320,6 @@
     "front": "Co zrobić gdy chcesz wiedzieć, która linia w bloku `try` się zepsuła?",
     "back": "Zostaw tylko tę jedną ryzykowną linię w `try` lub dodaj kilka małych `try` wokół poszczególnych linii.",
     "topic": "najlepsze praktyki try/except"
-  },
-  {
-    "id": 59,
-    "materialId": 6,
-    "front": "Co robi słowo kluczowe `def`?",
-    "back": "Rozpoczyna definicję funkcji. Tworzy nazwę i blok kodu, ale nie uruchamia go od razu.",
-    "topic": "Definiowanie funkcji (`def`)"
-  },
-  {
-    "id": 60,
-    "materialId": 6,
-    "front": "Jaka jest różnica między `def foo():` a `foo()`?",
-    "back": "`def foo():` tworzy funkcję. `foo()` wywołuje ją, czyli uruchamia zapisany kod.",
-    "topic": "Wywoływanie funkcji"
-  },
-  {
-    "id": 61,
-    "materialId": 6,
-    "front": "Co się stanie, jeśli zdefiniujesz funkcję, ale jej nie wywołasz?",
-    "back": "Nic się nie wydrukuje. Funkcja jest zapisana, ale jej kod nie zostanie uruchomiony.",
-    "topic": "Wywoływanie funkcji"
-  },
-  {
-    "id": 62,
-    "materialId": 6,
-    "front": "Co to jest argument funkcji?",
-    "back": "To wartość, którą podajesz w nawiasach przy wywołaniu, np. w `max('abc')` argumentem jest `'abc'`.",
-    "topic": "Argumenty i wartości zwracane"
-  },
-  {
-    "id": 63,
-    "materialId": 6,
-    "front": "Co zwraca funkcja `max()` gdy dostanie string?",
-    "back": "Zwraca największy znak według porządku znaków. Np. `max('azA')` zwróci `'z'`.",
-    "topic": "Funkcje wbudowane"
-  },
-  {
-    "id": 64,
-    "materialId": 6,
-    "front": "Co robi `int('123')`?",
-    "back": "Konwertuje string `'123'` na liczbę całkowitą `123`.",
-    "topic": "Konwersje typów"
-  },
-  {
-    "id": 65,
-    "materialId": 6,
-    "front": "Co robi `float(42)`?",
-    "back": "Konwertuje liczbę całkowitą `42` na zmiennoprzecinkową `42.0`.",
-    "topic": "Konwersje typów"
-  },
-  {
-    "id": 66,
-    "materialId": 6,
-    "front": "Jaki częsty błąd popełniają początkujący z `int()`?",
-    "back": "Próbują zrobić `int('abc')` i program wyrzuca błąd, bo nie każdy string da się zamienić na liczbę.",
-    "topic": "Błędy przy nieprawidłowej konwersji"
-  },
-  {
-    "id": 67,
-    "materialId": 6,
-    "front": "Co robi `type(x)`?",
-    "back": "Zwraca informację o typie zmiennej `x`, np. `<class 'int'>` dla liczb całkowitych.",
-    "topic": "Funkcje wbudowane"
-  },
-  {
-    "id": 68,
-    "materialId": 6,
-    "front": "Dlaczego warto używać funkcji? (DRY)",
-    "back": "Żeby nie powtarzać tego samego kodu. Piszesz raz, wywołujesz wiele razy.",
-    "topic": "Definiowanie funkcji (`def`)"
-  },
-  {
-    "id": 69,
-    "materialId": 6,
-    "front": "Co się dzieje gdy wywołasz funkcję w miejscu wyrażenia, np. `float('3')` w obliczeniu?",
-    "back": "Python wstrzymuje obliczenie, uruchamia `float('3')`, bierze wynik i wstawia go do dalszego obliczenia.",
-    "topic": "Wywoływanie funkcji"
-  },
-  {
-    "id": 70,
-    "materialId": 6,
-    "front": "Jaka jest różnica między `print()` a funkcją, która zwraca wartość?",
-    "back": "`print()` wypisuje coś na ekran. Funkcja zwracająca wartość używa `return` (koncept) i podaje wynik dalej, np. do przypisania.",
-    "topic": "Funkcje wbudowane"
-  },
-  {
-    "id": 71,
-    "materialId": 7,
-    "front": "Co robi metoda `split()` bez argumentu?",
-    "back": "Dzieli string na listę słów używając białych znaków. Rozpoznaje wiele spacji i traktuje je jak pojedynczy separator, np. `s.split()`.",
-    "topic": "split()"
-  },
-  {
-    "id": 72,
-    "materialId": 7,
-    "front": "Co zwróci `s.split(';')` dla `s = 'a;;b'`?",
-    "back": "Zwróci listę z pustym elementem między separatorami: `['a', '', 'b']`.",
-    "topic": "split(z delim)"
-  },
-  {
-    "id": 73,
-    "materialId": 7,
-    "front": "Co się stanie jeśli w stringu nie ma białych znaków i wywołamy `split()`?",
-    "back": "Dostaniemy listę z jednym elementem — cały oryginalny string, np. `'abc'.split()` → `['abc']`.",
-    "topic": "split()"
-  },
-  {
-    "id": 74,
-    "materialId": 7,
-    "front": "Jak wyciągnąć trzeci wyraz ze stringa `line` po `split()`?",
-    "back": "Najpierw `words = line.split()` a potem `words[2]` — indeksy zaczynają się od zera.",
-    "topic": "indeksowanie"
-  },
-  {
-    "id": 75,
-    "materialId": 7,
-    "front": "Co to jest \"double split\"?",
-    "back": "Najpierw dzielisz linię na słowa `words = line.split()`, potem dzielisz jedno słowo dalej, np. `parts = words[1].split('@')`.",
-    "topic": "double split"
-  },
-  {
-    "id": 76,
-    "materialId": 7,
-    "front": "Jaka jest różnica między `split()` a `split(' ')`?",
-    "back": "`split()` dzieli po białych znakach i kompresuje wiele spacji. `split(' ')` dzieli dokładnie po jednym znaku spacji i nie kompresuje wielu spacji.",
-    "topic": "split() vs split(' ')"
-  },
-  {
-    "id": 77,
-    "materialId": 7,
-    "front": "Dlaczego użyć `startswith('From ')` zanim zrobisz `split()`?",
-    "back": "Żeby pominąć niepotrzebne linie. Jeśli linia nie zaczyna się od `From `, to ją `continue` i nie robisz `split()`.",
-    "topic": "startsWith i filtrowanie"
-  },
-  {
-    "id": 78,
-    "materialId": 7,
-    "front": "Jaki częsty błąd robią początkujący przy wyciąganiu domeny z emaila?",
-    "back": "Próbują znaleźć pozycję znaku zamiast użyć `split('@')`. Łatwiej jest: `email = words[1]` i `domain = email.split('@')[1]`.",
-    "topic": "gotcha"
-  },
-  {
-    "id": 79,
-    "materialId": 7,
-    "front": "Co zwróci pętla `for w in words:` jeśli `words = s.split()`?",
-    "back": "Przejdzie po każdym elemencie listy `words`. W każdej iteracji `w` będzie jednym z elementów listy.",
-    "topic": "pętle for"
-  },
-  {
-    "id": 80,
-    "materialId": 7,
-    "front": "Kiedy lepiej użyć `split()` zamiast kilku `find()` i `slice`?",
-    "back": "Gdy chcesz szybko rozbić linię na fragmenty i pobrać konkretne pole. `split()` jest prostszy i czytelniejszy.",
-    "topic": "when to use"
-  },
-  {
-    "id": 81,
-    "materialId": 8,
-    "front": "Co to jest lista w Pythonie?",
-    "back": "Lista to zmienna, która może przechowywać wiele wartości w nawiasach kwadratowych, np. `['a', 'b', 'c']`.",
-    "topic": "Listy"
-  },
-  {
-    "id": 82,
-    "materialId": 8,
-    "front": "Jak zapisujemy stałą listy w kodzie?",
-    "back": "Używamy nawiasów kwadratowych i przecinków, np. `['red', 'yellow', 'blue']`.",
-    "topic": "Listy"
-  },
-  {
-    "id": 83,
-    "materialId": 8,
-    "front": "Co oznacza \"indeks\" listy?",
-    "back": "Indeks to pozycja elementu w liście. Pierwszy indeks to `0`, drugi `1`, itd.",
-    "topic": "Indeksowanie"
-  },
-  {
-    "id": 84,
-    "materialId": 8,
-    "front": "Jak dostać drugi element listy `items`?",
-    "back": "Użyj indeksu `1`, np. `items[1]`.",
-    "topic": "Indeksowanie"
-  },
-  {
-    "id": 85,
-    "materialId": 8,
-    "front": "Co to znaczy, że lista jest mutowalna?",
-    "back": "Że można zmienić elementy listy przez przypisanie, np. `nums[2] = 10` zmienia trzeci element.",
-    "topic": "Mutowalność"
-  },
-  {
-    "id": 86,
-    "materialId": 8,
-    "front": "Jaka jest różnica między listą a stringiem?",
-    "back": "Lista jest mutowalna (można zmieniać elementy), string nie jest mutowalny (nie można przypisać `s[0] = 'x'`).",
-    "topic": "Mutowalność"
-  },
-  {
-    "id": 87,
-    "materialId": 8,
-    "front": "Co robi `len()` gdy podamy listę?",
-    "back": "`len(lista)` zwraca liczbę elementów w liście, np. `len([1,2,3])` daje `3`.",
-    "topic": "len i range"
-  },
-  {
-    "id": 88,
-    "materialId": 8,
-    "front": "Co zwraca `range(4)` i dlaczego to jest przydatne?",
-    "back": "`range(4)` to lista liczb od `0` do `3`. Przydatne do licznikowych pętli i indeksów, np. `for i in range(len(lista))`.",
-    "topic": "len i range"
-  },
-  {
-    "id": 89,
-    "materialId": 8,
-    "front": "Kiedy użyć `for x in lista` zamiast `for i in range(len(lista))`?",
-    "back": "Użyj `for x in lista`, gdy potrzebujesz samych wartości. Użyj `for i in range(len(lista))`, gdy potrzebujesz indeksów.",
-    "topic": "Pętle for"
-  },
-  {
-    "id": 90,
-    "materialId": 8,
-    "front": "Jaki błąd popełniają początkujący przy indeksowaniu?",
-    "back": "Często zaczynają od `1` zamiast od `0`, co prowadzi do złego elementu lub `IndexError`.",
-    "topic": "Indeksowanie"
-  },
-  {
-    "id": 91,
-    "materialId": 8,
-    "front": "Czy lista może zawierać różne typy wartości?",
-    "back": "Tak. Możesz mieć `['red', 24, 98.6]` w jednej liście.",
-    "topic": "Listy"
-  },
-  {
-    "id": 92,
-    "materialId": 8,
-    "front": "Jak zmienić element w liście `bags = ['hat','scarf']` na `'cap'`?",
-    "back": "Przypisz wartość przez indeks: `bags[0] = 'cap'` zmieni pierwszy element.",
-    "topic": "Mutowalność"
   },
   {
     "id": 93,
@@ -1400,90 +1078,6 @@
     "topic": "liczniki"
   },
   {
-    "id": 201,
-    "materialId": 18,
-    "front": "Co to jest lista w Pythonie?",
-    "back": "Lista to uporządkowana kolekcja elementów. Tworzysz ją przez `[]` lub `list()` i możesz zmieniać jej zawartość.",
-    "topic": "podstawy"
-  },
-  {
-    "id": 202,
-    "materialId": 18,
-    "front": "Co robi operator `+` dla list?",
-    "back": "Łączy (konkatenacja) dwie listy i tworzy nową listę. Nie zmienia oryginalnych list.",
-    "topic": "łączenie list"
-  },
-  {
-    "id": 203,
-    "materialId": 18,
-    "front": "Co robi `append()`?",
-    "back": "Dodaje element na koniec listy i zmienia istniejącą listę. Przywołaj `lista.append(x)` bez przypisywania wyniku.",
-    "topic": "metody list"
-  },
-  {
-    "id": 204,
-    "materialId": 18,
-    "front": "Jaka jest różnica między listą a stringiem pod względem mutowalności?",
-    "back": "Stringi nie można zmieniać (immutable). Listy można zmieniać (mutable). `append()` działa na listach, nie na stringach.",
-    "topic": "mutowalność"
-  },
-  {
-    "id": 205,
-    "materialId": 18,
-    "front": "Co robi slicing `a[1:3]`?",
-    "back": "Zwraca podlistę od indeksu 1 do indeksu 3, nie włączając pozycji 3. Indeksy zaczynają się od 0.",
-    "topic": "slicing"
-  },
-  {
-    "id": 206,
-    "materialId": 18,
-    "front": "Co się stanie jeśli napiszesz `x = x.append(5)`?",
-    "back": "To jest błąd logiczny: `append()` zmienia listę, a jego wynik nie jest lista. Przypisanie nadpisze `x` nieprawidłową wartością, więc nie rób tak.",
-    "topic": "gotcha"
-  },
-  {
-    "id": 207,
-    "materialId": 18,
-    "front": "Do czego służy operator `in` dla list?",
-    "back": "Sprawdza, czy dany element występuje w liście. Na przykład `5 in nums` zwróci `True` jeśli 5 jest w `nums`.",
-    "topic": "operator in"
-  },
-  {
-    "id": 208,
-    "materialId": 18,
-    "front": "Co robi `sort()` na liście?",
-    "back": "`sort()` porządkuje elementy listy i zmienia tę listę. Nie zwraca nowej listy, tylko modyfikuje oryginał.",
-    "topic": "sort"
-  },
-  {
-    "id": 209,
-    "materialId": 18,
-    "front": "Jak policzyć liczbę elementów listy?",
-    "back": "Użyj `len(lista)` żeby dostać liczbę elementów w liście.",
-    "topic": "funkcje"
-  },
-  {
-    "id": 210,
-    "materialId": 18,
-    "front": "Jak policzyć sumę liczb w liście?",
-    "back": "Użyj `sum(lista)` żeby dostać sumę wartości numerycznych w liście.",
-    "topic": "funkcje"
-  },
-  {
-    "id": 211,
-    "materialId": 18,
-    "front": "Co robi `count()` na liście?",
-    "back": "Zwraca ile razy dany element pojawia się w liście, np. `lista.count('a')`.",
-    "topic": "metody list"
-  },
-  {
-    "id": 212,
-    "materialId": 18,
-    "front": "Kiedy lepiej użyć `sum()` i `len()` zamiast ręcznej pętli?",
-    "back": "Jeśli już masz wszystkie liczby w liście, `sum()` i `len()` są krótsze i czytelniejsze. Ale pamiętaj, że przechowywanie wszystkich liczb w liście używa pamięci.",
-    "topic": "kiedy używać"
-  },
-  {
     "id": 213,
     "materialId": 19,
     "front": "Co robi `input()`?",
@@ -1650,90 +1244,6 @@
     "front": "Co to znaczy, że `break` \"ucieka z bloku\"?",
     "back": "`break` natychmiast kończy wykonywanie bloku pętli i przechodzi do pierwszej instrukcji po pętli.",
     "topic": "Instrukcja `break`"
-  },
-  {
-    "id": 237,
-    "materialId": 21,
-    "front": "Co to jest typ danych w Pythonie?",
-    "back": "To informacja, czy wartość jest na przykład liczbą całkowitą, zmiennoprzecinkową lub napisem. Python śledzi typy każdej wartości.",
-    "topic": "typy danych (int, float, string)"
-  },
-  {
-    "id": 238,
-    "materialId": 21,
-    "front": "Co robi `type(x)`?",
-    "back": "Zwraca typ wartości `x`. Na przykład `type(3.0)` pokaże, że to `float`.",
-    "topic": "funkcja type()"
-  },
-  {
-    "id": 239,
-    "materialId": 21,
-    "front": "Jaka jest różnica między `int` a `float`?",
-    "back": "`int` to liczba bez części dziesiętnej. `float` ma część dziesiętną. `float` ma większy zakres, ale mniej precyzji.",
-    "topic": "typy danych (int, float, string)"
-  },
-  {
-    "id": 240,
-    "materialId": 21,
-    "front": "Co robi `int('123')`?",
-    "back": "Konwertuje napis `'123'` na liczbę całkowitą 123. Jeśli napis nie ma cyfr, wywoła błąd.",
-    "topic": "konwersje: int(), float()"
-  },
-  {
-    "id": 241,
-    "materialId": 21,
-    "front": "Co zrobi `float(5)`?",
-    "back": "Zwróci `5.0` jako wartość zmiennoprzecinkową. To wymuszona konwersja na `float`.",
-    "topic": "konwersje: int(), float()"
-  },
-  {
-    "id": 242,
-    "materialId": 21,
-    "front": "Co robi operator `+` dla dwóch napisów?",
-    "back": "Łączy (konkatenacja) napisy. Na przykład `\"Hi\" + \" there\"` daje `\"Hi there\"`.",
-    "topic": "operator + jako dodawanie i konkatenacja"
-  },
-  {
-    "id": 243,
-    "materialId": 21,
-    "front": "Co zrobi `1 + 2.0`?",
-    "back": "Doda liczby i zwróci `3.0` jako `float`, bo jedna z wartości jest `float`.",
-    "topic": "typy danych (int, float, string)"
-  },
-  {
-    "id": 244,
-    "materialId": 21,
-    "front": "Co się stanie gdy spróbujesz dodać napis i liczbę: `\"age\" + 5`?",
-    "back": "Python wyrzuci błąd typu (TypeError). Nie można łączyć `str` i `int` za pomocą `+`.",
-    "topic": "gotcha: mieszanie typów"
-  },
-  {
-    "id": 245,
-    "materialId": 21,
-    "front": "Jaki komunikat daje Python gdy nie wie co zrobić z typami?",
-    "back": "Pokaże `Traceback` i błąd np. `TypeError` lub `ValueError`, i wskaże linię, gdzie wystąpił problem.",
-    "topic": "traceback i błędy typu"
-  },
-  {
-    "id": 246,
-    "materialId": 21,
-    "front": "Co zwraca `input('Kto? ')`?",
-    "back": "Zwraca napis z tego, co użytkownik wpisał. Nawet jeśli wpisze cyfry, to będzie to string, np. `'123'`.",
-    "topic": "wejście i wyjście: input(), print()"
-  },
-  {
-    "id": 247,
-    "materialId": 21,
-    "front": "Jak `print()` traktuje kilka argumentów oddzielonych przecinkami?",
-    "back": "Wypisze je z odstępami. `print('Hello', name)` doda jedną spację między elementami.",
-    "topic": "wejście i wyjście: input(), print()"
-  },
-  {
-    "id": 248,
-    "materialId": 21,
-    "front": "Kiedy lepiej użyć `float` zamiast `int`?",
-    "back": "Gdy potrzebujesz części dziesiętnej, np. temperatury lub prędkości. Do pieniędzy float może powodować błędy precyzji.",
-    "topic": "typy danych (int, float, string)"
   },
   {
     "id": 249,
@@ -1988,258 +1498,6 @@
     "topic": "histogram"
   },
   {
-    "id": 285,
-    "materialId": 25,
-    "front": "Co to jest słownik w Pythonie?",
-    "back": "Słownik to kolekcja par klucz:wartość. Tworzymy go przy pomocy nawiasów klamrowych, np. `{'A': 1, 'B': 2}`.",
-    "topic": "słowniki"
-  },
-  {
-    "id": 286,
-    "materialId": 25,
-    "front": "Co robi `split()` gdy wywołamy je na łańcuchu tekstu?",
-    "back": "`split()` dzieli łańcuch na listę słów po białych znakach. Przykład: `'ala ma kota'.split()` daje `['ala', 'ma', 'kota']`.",
-    "topic": "split()"
-  },
-  {
-    "id": 287,
-    "materialId": 25,
-    "front": "Jaka jest różnica między pętlą `for` nad listą a nad słownikiem?",
-    "back": "Dla listy pętla przechodzi po elementach. Dla słownika pętla domyślnie przechodzi po kluczach. Wartości trzeba pobrać przez `slo[n]` lub użyć `items()`.",
-    "topic": "pętla for"
-  },
-  {
-    "id": 288,
-    "materialId": 25,
-    "front": "Do czego służy `counts.get(key, 0)` w idiomie liczenia?",
-    "back": "Zwraca wartość dla `key` jeśli jest, a gdy nie ma — zwraca `0`. Dzięki temu można napisać `counts[key] = counts.get(key, 0) + 1`.",
-    "topic": "get()"
-  },
-  {
-    "id": 289,
-    "materialId": 25,
-    "front": "Co zwraca `d.keys()` i `list(d)` dla słownika `d`?",
-    "back": "Obie formy zwracają listę kluczy słownika. `d.keys()` to metoda, `list(d)` konwertuje słownik na listę kluczy.",
-    "topic": "keys()"
-  },
-  {
-    "id": 290,
-    "materialId": 25,
-    "front": "Do czego służy `d.values()`?",
-    "back": "`d.values()` zwraca listę wartości słownika w mniej więcej tej samej kolejności, co klucze.",
-    "topic": "values()"
-  },
-  {
-    "id": 291,
-    "materialId": 25,
-    "front": "Co robi `d.items()` i jak użyć tego w pętli?",
-    "back": "`d.items()` zwraca pary (klucz, wartość). Można je rozpakować w pętli: `for key, value in d.items():` i wtedy mamy oba naraz.",
-    "topic": "items()"
-  },
-  {
-    "id": 292,
-    "materialId": 25,
-    "front": "Co to jest \"idiom histogramu\" w tym materiale?",
-    "back": "To wzorzec `counts[word] = counts.get(word, 0) + 1`, który tworzy wpis w słowniku i od razu zwiększa licznik.",
-    "topic": "histogram"
-  },
-  {
-    "id": 293,
-    "materialId": 25,
-    "front": "Jaki częsty błąd popełniają początkujący z `counts.get(word)`?",
-    "back": "Jeśli użyją `counts.get(word) + 1` bez wartości domyślnej, to dla nieistniejącego klucza `get` zwróci `None` i `None + 1` spowoduje błąd.",
-    "topic": "get()"
-  },
-  {
-    "id": 294,
-    "materialId": 25,
-    "front": "Kiedy lepiej użyć słownika zamiast listy?",
-    "back": "Gdy potrzebujesz liczyć rzeczy lub szybko wyszukiwać po kluczu. Słowniki dają szybkie wyszukiwanie po kluczu nawet dla dużych danych.",
-    "topic": "słowniki"
-  },
-  {
-    "id": 295,
-    "materialId": 25,
-    "front": "Jak znaleźć najczęściej występujące słowo po zbudowaniu histogramu?",
-    "back": "Przejdź pętlą po `counts.items()` i pamiętaj największy licznik. Wzorzec: `bigcount = None` potem `if bigcount is None or count > bigcount: bigword = word; bigcount = count`.",
-    "topic": "histogram"
-  },
-  {
-    "id": 296,
-    "materialId": 25,
-    "front": "Co to jest tuple w kontekście `items()` i pętli?",
-    "back": "Para `(key, value)` z `items()` to tuple — niezmienny zestaw wartości. W pętli można je rozpakować: `for key, value in d.items():`.",
-    "topic": "tuple"
-  },
-  {
-    "id": 297,
-    "materialId": 26,
-    "front": "Co robi operator `+` dla napisów?",
-    "back": "Łączy dwa napisy dosłownie. Na przykład `\"Hi\" + \"There\"` daje `\"HiThere\"` (bez spacji).",
-    "topic": "Konkatenacja"
-  },
-  {
-    "id": 298,
-    "materialId": 26,
-    "front": "Jaka jest różnica między `in` a `find()`?",
-    "back": "`in` zwraca wartość logiczną True/False. `find()` zwraca indeks pierwszego dopasowania lub `-1` jeśli nie znajdzie.",
-    "topic": "Operator `in`"
-  },
-  {
-    "id": 299,
-    "materialId": 26,
-    "front": "Co zwróci `fruit.find('na')` gdy `fruit = 'banana'`?",
-    "back": "Zwróci `2`, czyli indeks pierwszego wystąpienia podnapisu. Indeksy zaczynają się od 0.",
-    "topic": "Metody stringów"
-  },
-  {
-    "id": 300,
-    "materialId": 26,
-    "front": "Co się stanie jeśli w wywołaniu `replace()` nie przypiszesz wyniku do zmiennej?",
-    "back": "Oryginalny napis się nie zmieni. `replace()` zwraca nowy napis. Musisz przypisać wynik: `s = s.replace('a','b')`.",
-    "topic": "Immutable (napisy nie zmieniają się)"
-  },
-  {
-    "id": 301,
-    "materialId": 26,
-    "front": "Jak usunąć spacje na początku i końcu napisu?",
-    "back": "Użyj `strip()`. Na przykład `\"  hi  \".strip()` zwróci `\"hi\"`.",
-    "topic": "Metody stringów"
-  },
-  {
-    "id": 302,
-    "materialId": 26,
-    "front": "Co robi `startswith()`?",
-    "back": "Sprawdza, czy napis zaczyna się od podanego prefiksu. Zwraca `True` lub `False`. Przykład: `s.startswith('Please')`.",
-    "topic": "Metody stringów"
-  },
-  {
-    "id": 303,
-    "materialId": 26,
-    "front": "Jak porównać dwa napisy ignorując wielkość liter?",
-    "back": "Porównaj ich wersje małymi literami: `if a.lower() == b.lower():`.",
-    "topic": "Porównania stringów"
-  },
-  {
-    "id": 304,
-    "materialId": 26,
-    "front": "Co zwróci `find()` jeśli nie znajdzie podnapisu?",
-    "back": "Zwróci `-1`. To sygnał, że nie znaleziono podnapisu.",
-    "topic": "Metody stringów"
-  },
-  {
-    "id": 305,
-    "materialId": 26,
-    "front": "Jak wyciągnąć część napisu między dwoma indeksami?",
-    "back": "Użyj wycinka: `s[start:end]`. Zwróci znaki od `start` do `end-1`.",
-    "topic": "Slicing (wycinki)"
-  },
-  {
-    "id": 306,
-    "materialId": 26,
-    "front": "Jaki częsty błąd popełniają początkujący przy konkatenacji?",
-    "back": "Myślą, że `+` doda spację automatycznie. Nie doda. Trzeba dodać spację ręcznie: `a + ' ' + b`.",
-    "topic": "Konkatenacja"
-  },
-  {
-    "id": 307,
-    "materialId": 26,
-    "front": "Co robi `capitalize()`?",
-    "back": "Zwraca nowy napis z pierwszą wielką literą i resztą małą. Na przykład `'abc'.capitalize()` → `'Abc'`.",
-    "topic": "Metody stringów"
-  },
-  {
-    "id": 308,
-    "materialId": 26,
-    "front": "Jaka jest kolejność znaków w porównaniach (`<`, `>`)?",
-    "back": "Porównanie używa zestawu znaków komputera. Zazwyczaj wielkie litery sortują przed małymi. Np. `'Z' < 'a'` jest prawdą.",
-    "topic": "Porównania stringów"
-  },
-  {
-    "id": 309,
-    "materialId": 27,
-    "front": "Co to jest string (łańcuch znaków)?",
-    "back": "To tekst w cudzysłowie, np. `\"hello\"` lub `'world'`. To sekwencja znaków.",
-    "topic": "Stringi"
-  },
-  {
-    "id": 310,
-    "materialId": 27,
-    "front": "Co robi konkatenacja stringów?",
-    "back": "Łączy dwa stringi. Na przykład `\"Hi\" + \" Bob\"` daje `Hi Bob`. Nie dodaje spacji samodzielnie.",
-    "topic": "Konkatenacja"
-  },
-  {
-    "id": 311,
-    "materialId": 27,
-    "front": "Co zwraca `len(s)`?",
-    "back": "Liczbę znaków w stringu `s`. Na przykład `len(\"kot\")` zwraca `3`.",
-    "topic": "Funkcja len()"
-  },
-  {
-    "id": 312,
-    "materialId": 27,
-    "front": "Co robi `fruit[0]`?",
-    "back": "Zwraca pierwszy znak stringa `fruit`. Indeksowanie zaczyna się od zera.",
-    "topic": "Indeksowanie"
-  },
-  {
-    "id": 313,
-    "materialId": 27,
-    "front": "Co robi `s[1:4]` (slicing)?",
-    "back": "Zwraca fragment od indeksu `1` do `3` włącznie. Koniec `4` nie jest wliczony. To znaczy znaki o indeksach 1,2,3.",
-    "topic": "Slicing"
-  },
-  {
-    "id": 314,
-    "materialId": 27,
-    "front": "Jaka jest różnica między `s[2]` a `s[2:3]`?",
-    "back": "`s[2]` to pojedynczy znak z pozycji 2. `s[2:3]` to fragment stringa zawierający ten znak (string długości 1).",
-    "topic": "Indeksowanie vs slicing"
-  },
-  {
-    "id": 315,
-    "materialId": 27,
-    "front": "Co się stanie gdy zrobisz `\"42\" + 1`?",
-    "back": "Pojawi się błąd typu `TypeError`, bo nie można dodać stringa i liczby. Najpierw trzeba użyć `int(\"42\")`.",
-    "topic": "TypeError"
-  },
-  {
-    "id": 316,
-    "materialId": 27,
-    "front": "Co się stanie gdy odwołasz się do `s[10]`, a `s` ma długość 5?",
-    "back": "Dostaniesz `IndexError: string index out of range`. Indeks poza zakresem jest niedozwolony.",
-    "topic": "IndexError"
-  },
-  {
-    "id": 317,
-    "materialId": 27,
-    "front": "Co zwróci `s[6:20]` jeśli `s` ma długość 10?",
-    "back": "Zwróci fragment od indeksu 6 do końca. Nie będzie błędu. Slicing poza końcem jest bezpieczny.",
-    "topic": "Slicing"
-  },
-  {
-    "id": 318,
-    "materialId": 27,
-    "front": "Kiedy lepiej użyć `for letter in text` zamiast `while` z indeksem?",
-    "back": "Gdy nie potrzebujesz pozycji znaków, tylko chcesz przejść po wszystkich znakach. `for` jest prostszy i krótszy.",
-    "topic": "Pętle"
-  },
-  {
-    "id": 319,
-    "materialId": 27,
-    "front": "Co robi operator `in` z stringiem?",
-    "back": "Sprawdza, czy znak lub podciąg występuje w tekście. Na przykład `'a' in 'ala'` zwraca `True`.",
-    "topic": "Operator in"
-  },
-  {
-    "id": 320,
-    "materialId": 27,
-    "front": "Jaki częsty błąd przy liczeniu liter popełniają początkujący?",
-    "back": "Często zapominają ustawić licznik na `0` przed pętlą. Trzeba zrobić `count = 0` zanim zaczniemy zliczać.",
-    "topic": "Gotcha"
-  },
-  {
     "id": 321,
     "materialId": 28,
     "front": "Co to jest `tuple`?",
@@ -2490,5 +1748,831 @@
     "front": "Kiedy lepiej użyć nawiasów niż prostego wzorca?",
     "back": "Gdy chcesz dopasować większy kontekst, ale wyciągnąć tylko wybrany fragment. Nawiasy zwracają tylko ten fragment.",
     "topic": "Przechwytywanie"
+  },
+  {
+    "id": 357,
+    "materialId": 31,
+    "front": "Co to jest licznik w pętli i jak go zainicjować?",
+    "back": "Licznik to zmienna, która liczy iteracje. Zainicjuj ją przed pętlą: `count = 0`. W pętli zwiększaj: `count = count + 1`.",
+    "topic": "Liczniki (count)"
+  },
+  {
+    "id": 358,
+    "materialId": 31,
+    "front": "Jak obliczyć sumę wartości w pętli?",
+    "back": "Utwórz `total = 0` przed pętlą. W każdej iteracji dodaj wartość: `total = total + value`. Na końcu `total` to suma.",
+    "topic": "Suma (running total)"
+  },
+  {
+    "id": 359,
+    "materialId": 31,
+    "front": "Jak obliczyć średnią z wartości w pętli?",
+    "back": "Użyj licznika i sumy. Po pętli wykonaj: `average = total / count`, gdzie `total` i `count` były aktualizowane w pętli.",
+    "topic": "Średnia"
+  },
+  {
+    "id": 360,
+    "materialId": 31,
+    "front": "Co robi instrukcja `if` w środku pętli?",
+    "back": "Sprawdza warunek dla bieżącego elementu i wykonuje kod tylko jeśli warunek jest prawdziwy, np. `if value > 20:`.",
+    "topic": "Filtrowanie z if"
+  },
+  {
+    "id": 361,
+    "materialId": 31,
+    "front": "Co to jest zmienna Boolean i jak jej użyć przy szukaniu?",
+    "back": "Boolean ma wartość `True` lub `False`. Ustaw `found = False` przed pętlą i `found = True` gdy coś znajdziesz. Po pętli wiesz, czy znaleziono.",
+    "topic": "Zmienna logiczna"
+  },
+  {
+    "id": 362,
+    "materialId": 31,
+    "front": "Jaka jest różnica między `count = count + 1` a `count = count + value`?",
+    "back": "`count = count + 1` zwiększa licznik o jeden (liczymy elementy). `count = count + value` dodaje bieżącą wartość do zmiennej (to raczej suma).",
+    "topic": "Porównanie count vs suma"
+  },
+  {
+    "id": 363,
+    "materialId": 31,
+    "front": "Co się stanie jeśli zapomnisz `count = 0` przed pętlą?",
+    "back": "Zmienna `count` może nie istnieć lub mieć nieoczekiwaną wartość i zliczanie nie zadziała. Zawsze inicjuj przed pętlą.",
+    "topic": "Gotcha"
+  },
+  {
+    "id": 364,
+    "materialId": 31,
+    "front": "Kiedy lepiej użyć flagi `found` zamiast od razu drukować wynik w pętli?",
+    "back": "Użyj `found`, gdy chcesz po pętli wiedzieć, czy coś wystąpiło. To lepsze do dalszego przetwarzania niż natychmiastowy `print()`.",
+    "topic": "When to use"
+  },
+  {
+    "id": 365,
+    "materialId": 31,
+    "front": "Jaki jest typ wartości zmiennej `found` i jakie ma możliwe wartości?",
+    "back": "`found` to Boolean. Może być `True` lub `False`.",
+    "topic": "Zmienna logiczna"
+  },
+  {
+    "id": 366,
+    "materialId": 31,
+    "front": "Co robi filtr `if value > 20:` w liście liczb?",
+    "back": "Sprawdza każdy element. Jeśli element jest większy niż 20, wtedy wykona się kod w bloku `if`, np. `print(value)`.",
+    "topic": "Filtrowanie z if"
+  },
+  {
+    "id": 367,
+    "materialId": 31,
+    "front": "Jaki częsty błąd przy obliczaniu średniej może się zdarzyć?",
+    "back": "Zapomnienie zliczyć elementy (`count`) lub dzielenie przez 0, jeśli `count` jest 0. Najpierw upewnij się, że `count` > 0.",
+    "topic": "Gotcha"
+  },
+  {
+    "id": 368,
+    "materialId": 31,
+    "front": "Co robi ten fragment: `total = 0\\nfor v in list: total = total + v`?",
+    "back": "Tworzy zmienną `total` i dodaje do niej każdą wartość z `list`. Po pętli `total` zawiera sumę wszystkich elementów.",
+    "topic": "Suma (running total)"
+  },
+  {
+    "id": 369,
+    "materialId": 32,
+    "front": "Co to jest funkcja w Pythonie?",
+    "back": "To zapisany kawałek kodu, któremu daliśmy nazwę. Definiujemy ją `def name():` i wywołujemy przez `name()`.",
+    "topic": "def i definicja funkcji"
+  },
+  {
+    "id": 370,
+    "materialId": 32,
+    "front": "Co robi `def`?",
+    "back": "`def` zapisuje (definiuje) funkcję. Samo `def` nie uruchamia kodu w funkcji.",
+    "topic": "def i definicja funkcji"
+  },
+  {
+    "id": 371,
+    "materialId": 32,
+    "front": "Jak wywołujemy funkcję o nazwie `thing`?",
+    "back": "Używamy `thing()` — nazwa z nawiasami. Bez nawiasów funkcja nie zostanie wykonana.",
+    "topic": "Wywoływanie funkcji"
+  },
+  {
+    "id": 372,
+    "materialId": 32,
+    "front": "Jaka jest różnica między `print()` a `return`?",
+    "back": "`print()` wypisuje coś na ekran. `return` zwraca wartość z funkcji, którą można przypisać do zmiennej.",
+    "topic": "return vs print"
+  },
+  {
+    "id": 373,
+    "materialId": 32,
+    "front": "Co się stanie, jeśli w definicji funkcji użyjemy `print()` dwukrotnie, a potem wywołamy funkcję trzy razy?",
+    "back": "Każde wywołanie wykona obie instrukcje `print`, więc zobaczysz sześć linii wypisanych łącznie.",
+    "topic": "Wywoływanie funkcji"
+  },
+  {
+    "id": 374,
+    "materialId": 32,
+    "front": "Co robi `int('123')`?",
+    "back": "Konwertuje string `'123'` na liczbę całkowitą `123` i zwraca tę wartość.",
+    "topic": "Konwersje typów"
+  },
+  {
+    "id": 375,
+    "materialId": 32,
+    "front": "Co robi `float(42)` w wyrażeniu `float(42) / 100`?",
+    "back": "Zamienia `42` na `42.0`, a potem dzielenie daje `0.42`.",
+    "topic": "Konwersje typów"
+  },
+  {
+    "id": 376,
+    "materialId": 32,
+    "front": "Co zwraca `max('apfel')`?",
+    "back": "`max()` zwraca największy znak według porządku znaków. Dla `'apfel'` będzie to ten znak, który jest \"największy\".",
+    "topic": "Wbudowane funkcje"
+  },
+  {
+    "id": 377,
+    "materialId": 32,
+    "front": "Jaki częsty błąd robi początkujący z `int()`?",
+    "back": "Próbuje `int('hello')`. To spowoduje błąd (traceback). Trzeba podać string, który wygląda jak liczba.",
+    "topic": "Błędy"
+  },
+  {
+    "id": 378,
+    "materialId": 32,
+    "front": "Kiedy warto użyć funkcji zamiast kopiować kod?",
+    "back": "Gdy ten kod powtarza się w wielu miejscach. Wtedy wstaw go do funkcji i wywołuj, łatwiej poprawiać błędy.",
+    "topic": "DRY"
+  },
+  {
+    "id": 379,
+    "materialId": 32,
+    "front": "Co się stanie, gdy zapomnisz nawiasów przy wywołaniu funkcji, np. `greet` zamiast `greet()`?",
+    "back": "Funkcja nie zostanie wykonana. Python zobaczy jedynie nazwę funkcji, ale nie uruchomi zawartości.",
+    "topic": "Wywoływanie funkcji"
+  },
+  {
+    "id": 380,
+    "materialId": 32,
+    "front": "Co to znaczy, że funkcja \"zawiesza\" wykonywanie programu?",
+    "back": "Kiedy Python wywołuje funkcję, najpierw zatrzyma miejsce, uruchomi funkcję, a potem wróci i wznowi dalej kod.",
+    "topic": "Wywoływanie funkcji"
+  },
+  {
+    "id": 381,
+    "materialId": 33,
+    "front": "Co robi `split()` bez argumentu?",
+    "back": "Dzieli łańcuch na listę po białych znakach. Traktuje wiele spacji jako jedną. Przykład: `\"a  b\".split()` da `['a', 'b']`.",
+    "topic": "split"
+  },
+  {
+    "id": 382,
+    "materialId": 33,
+    "front": "Co robi `s.split(';')`?",
+    "back": "Dzieli `s` dokładnie po znaku `;`. Nie łączy powtarzających się separatorów, więc możesz dostać puste elementy, np. `\"a;;b\".split(';')` -> `['a', '', 'b']`.",
+    "topic": "split"
+  },
+  {
+    "id": 383,
+    "materialId": 33,
+    "front": "Jaka jest różnica między `split()` a `split(';')`?",
+    "back": "`split()` dzieli po białych znakach i kompresuje wielokrotne spacje. `split(';')` dzieli tylko po `;` i nie usuwa pustych pól.",
+    "topic": "split"
+  },
+  {
+    "id": 384,
+    "materialId": 33,
+    "front": "Jak wyciągnąć drugi wyraz z `line`?",
+    "back": "Najpierw: `words = line.split()` potem: `second = words[1]` (indeks 1 = drugi element).",
+    "topic": "indeksowanie"
+  },
+  {
+    "id": 385,
+    "materialId": 33,
+    "front": "Co to jest 'double split' (podwójny split)?",
+    "back": "Najpierw dzielimy linię na słowa: `words = line.split()`, potem dzielimy jedno słowo dalej: `parts = words[1].split('@')`. To prosty sposób na wydobycie części np. domeny.",
+    "topic": "podwójny split"
+  },
+  {
+    "id": 386,
+    "materialId": 33,
+    "front": "Kiedy lepiej użyć `split()` zamiast `find()` i wycinek (`slicing`)?",
+    "back": "Gdy chcesz rozbić tekst na kawałki i łatwo pobrać kolejne pola. `split()` daje listę bez ręcznego znajdowania pozycji i wycinek.",
+    "topic": "when to use"
+  },
+  {
+    "id": 387,
+    "materialId": 33,
+    "front": "Co robi `line.rstrip()`?",
+    "back": "Usuwa białe znaki tylko z prawej strony łańcucha. Przydatne przed dalszym przetwarzaniem linii z pliku.",
+    "topic": "rstrip"
+  },
+  {
+    "id": 388,
+    "materialId": 33,
+    "front": "Co sprawdza `line.startswith('From ')`?",
+    "back": "Sprawdza, czy `line` zaczyna się od tekstu `From ` (zawiera spację). Używamy tego do filtrowania linii, które nas interesują.",
+    "topic": "startswith"
+  },
+  {
+    "id": 389,
+    "materialId": 33,
+    "front": "Jaki błąd popełniają początkujący z `split(delimiter)`?",
+    "back": "Mogą oczekiwać, że powtarzające się delimitery zostaną zignorowane. W rzeczywistości mogą powstać puste elementy w liście.",
+    "topic": "gotcha"
+  },
+  {
+    "id": 390,
+    "materialId": 33,
+    "front": "Co się stanie gdy `split()` nie znajdzie żadnego separatora?",
+    "back": "Zwróci listę z jedną pozycją — oryginalnym łańcuchem, np. `\"hello\".split()` -> `['hello']`.",
+    "topic": "split"
+  },
+  {
+    "id": 391,
+    "materialId": 33,
+    "front": "Jak przejść po wszystkich słowach w linii i je wypisać?",
+    "back": "```python\nwords = line.split()\nfor w in words:\n    print(w)\n```",
+    "topic": "pętla for"
+  },
+  {
+    "id": 392,
+    "materialId": 33,
+    "front": "Jaki typ danych zwraca `split()`?",
+    "back": "`split()` zwraca listę (kolekcję elementów), które potem indeksujemy jak `lista[0]`.",
+    "topic": "listy"
+  },
+  {
+    "id": 393,
+    "materialId": 34,
+    "front": "Co to jest lista w Pythonie?",
+    "back": "Lista to zmienna, która przechowuje wiele wartości. Tworzymy ją za pomocą nawiasów kwadratowych, np. `items = [1, 2, 3]`.",
+    "topic": "listy"
+  },
+  {
+    "id": 394,
+    "materialId": 34,
+    "front": "Jak utworzyć listę trzech liczb?",
+    "back": "Użyj nawiasów kwadratowych i przecinków, np. `numbers = [4, 5, 6]`.",
+    "topic": "listy"
+  },
+  {
+    "id": 395,
+    "materialId": 34,
+    "front": "Co robi operator indeksu `[]` na liście?",
+    "back": "Zwraca element o podanym indeksie. Przykład: `colors[1]` zwraca drugi element listy `colors`.",
+    "topic": "indeksowanie"
+  },
+  {
+    "id": 396,
+    "materialId": 34,
+    "front": "Jaki indeks ma pierwszy element listy?",
+    "back": "Pierwszy element ma indeks `0`. Drugi ma `1` i tak dalej.",
+    "topic": "indeksowanie"
+  },
+  {
+    "id": 397,
+    "materialId": 34,
+    "front": "Czy lista może zawierać różne typy wartości?",
+    "back": "Tak. Lista może mieć różne typy, np. `['red', 24, 98.6]`.",
+    "topic": "listy"
+  },
+  {
+    "id": 398,
+    "materialId": 34,
+    "front": "Co to jest pusta lista i jak wygląda?",
+    "back": "Pusta lista to lista bez elementów. Wyrażamy ją jako `[]`.",
+    "topic": "listy"
+  },
+  {
+    "id": 399,
+    "materialId": 34,
+    "front": "Do czego służy funkcja `len()` dla listy?",
+    "back": "`len(lista)` zwraca liczbę elementów w liście. np. `len([1,2,3])` zwraca `3`.",
+    "topic": "len()"
+  },
+  {
+    "id": 400,
+    "materialId": 34,
+    "front": "Co zwraca `range(4)` według tej lekcji?",
+    "back": "`range(4)` zwraca sekwencję liczb od `0` do `3` (cztery liczby). Używana do pętli zliczającej.",
+    "topic": "range()"
+  },
+  {
+    "id": 401,
+    "materialId": 34,
+    "front": "Jaka jest różnica między listą a stringiem (pod kątem zmiany wartości)?",
+    "back": "Listy są mutowalne — można zmienić element przypisaniem `lst[1] = x`. Stringi nie są mutowalne — `s[0] = 'a'` da błąd.",
+    "topic": "mutowalność"
+  },
+  {
+    "id": 402,
+    "materialId": 34,
+    "front": "Co się stanie jeśli spróbujesz wykonać `fruit[0] = 'b'` gdy `fruit = 'Banana'`?",
+    "back": "Pojawi się błąd, bo stringi nie są mutowalne i nie można przypisać pojedynczego znaku.",
+    "topic": "mutowalność"
+  },
+  {
+    "id": 403,
+    "materialId": 34,
+    "front": "Jak zmienić trzeci element listy `lst` na 100?",
+    "back": "Użyj przypisania z indeksem: `lst[2] = 100` (trzeci element ma indeks 2).",
+    "topic": "indeksowanie"
+  },
+  {
+    "id": 404,
+    "materialId": 34,
+    "front": "Kiedy lepiej użyć `for x in lista` a kiedy `for i in range(len(lista))`?",
+    "back": "Użyj `for x in lista` gdy potrzebujesz tylko elementów. Użyj `for i in range(len(lista))` gdy potrzebujesz indeksu elementu.",
+    "topic": "pętle for"
+  },
+  {
+    "id": 405,
+    "materialId": 35,
+    "front": "Co to jest lista w Pythonie?",
+    "back": "Lista to uporządkowana kolekcja elementów. Można ją stworzyć przez `list()` lub `[]` i trzyma elementy w kolejności.",
+    "topic": "lista"
+  },
+  {
+    "id": 406,
+    "materialId": 35,
+    "front": "Co robi `append()` na liście?",
+    "back": "Dodaje element na koniec listy i zmienia ją. Przykład: `x.append(5)` — teraz `5` jest na końcu `x`.",
+    "topic": "append i mutowalność"
+  },
+  {
+    "id": 407,
+    "materialId": 35,
+    "front": "Jaka jest różnica między listą a stringiem pod względem mutowalności?",
+    "back": "Stringi nie można zmieniać, są niemutowalne. Listy są mutowalne — metody jak `append()` zmieniają listę w miejscu.",
+    "topic": "mutowalność"
+  },
+  {
+    "id": 408,
+    "materialId": 35,
+    "front": "Co robi slicing `a[2:5]`?",
+    "back": "Zwraca podlistę z elementami o indeksach `2, 3, 4`. Indeks końcowy `5` nie jest włączony.",
+    "topic": "slicing"
+  },
+  {
+    "id": 409,
+    "materialId": 35,
+    "front": "Co się stanie jeśli napiszesz `x = x.append(3)`?",
+    "back": "To błąd logiczny: `append()` zmienia listę, ale zwraca nic (None). `x` przestanie być listą. Używaj `x.append(3)` bez przypisania.",
+    "topic": "gotcha"
+  },
+  {
+    "id": 410,
+    "materialId": 35,
+    "front": "Jak połączyć dwie listy bez modyfikowania oryginałów?",
+    "back": "Użyj operatora `+`, np. `c = a + b`. `a` i `b` pozostaną niezmienione, a `c` to nowa lista.",
+    "topic": "łączenie list"
+  },
+  {
+    "id": 411,
+    "materialId": 35,
+    "front": "Co robi operator `in` dla list?",
+    "back": "`in` sprawdza, czy element jest w liście. Przykład: `5 in nums` zwraca True jeśli `5` jest jednym z elementów listy.",
+    "topic": "in / not in"
+  },
+  {
+    "id": 412,
+    "materialId": 35,
+    "front": "Co robi metoda `sort()` na liście?",
+    "back": "`sort()` porządkuje elementy listy i zmienia ją w miejscu. Po `lst.sort()` kolejność elementów w `lst` jest posortowana.",
+    "topic": "sortowanie"
+  },
+  {
+    "id": 413,
+    "materialId": 35,
+    "front": "Do czego użyjemy `len()` i `sum()` przy liczbach?",
+    "back": "`len()` podaje liczbę elementów. `sum()` dodaje wszystkie liczby w liście. Średnia = `sum(nums) / len(nums)`.",
+    "topic": "sum / len i średnia"
+  },
+  {
+    "id": 414,
+    "materialId": 35,
+    "front": "Kiedy lepiej zbierać liczby w liście, a kiedy liczyć sumę w pętli na bieżąco?",
+    "back": "Jeśli liczby już masz w liście, użyj `sum()` i `len()`. Gdy czytasz dużo danych po kolei i chcesz oszczędzać pamięć, sumuj je po kolei bez zapisywania wszystkich wartości.",
+    "topic": "kiedy użyć listy"
+  },
+  {
+    "id": 415,
+    "materialId": 36,
+    "front": "Co robi operator `+` gdy obie strony są `int`?",
+    "back": "Dodaje liczby. Na przykład `1 + 4` daje `5`.",
+    "topic": "dodawanie"
+  },
+  {
+    "id": 416,
+    "materialId": 36,
+    "front": "Co robi operator `+` gdy obie strony są `str`?",
+    "back": "Łączy napisy (konkatenacja). Na przykład `'a' + 'b'` daje `'ab'`.",
+    "topic": "konkatenacja"
+  },
+  {
+    "id": 417,
+    "materialId": 36,
+    "front": "Co się stanie gdy spróbujesz dodać `str` i `int`?",
+    "back": "Python zgłosi błąd typu (TypeError) i pokaże traceback. Nie zrobi konwersji automatycznie.",
+    "topic": "TypeError"
+  },
+  {
+    "id": 418,
+    "materialId": 36,
+    "front": "Do czego służy `type()`?",
+    "back": "`type(x)` pokazuje typ wartości w `x`, np. `<class 'int'>` lub `<class 'str'>`.",
+    "topic": "type()"
+  },
+  {
+    "id": 419,
+    "materialId": 36,
+    "front": "Co robi `int('123')`?",
+    "back": "Konwertuje napis `'123'` na liczbę całkowitą `123`.",
+    "topic": "int()"
+  },
+  {
+    "id": 420,
+    "materialId": 36,
+    "front": "Co robi `float(99)`?",
+    "back": "Zwraca wartość zmiennoprzecinkową `99.0`.",
+    "topic": "float()"
+  },
+  {
+    "id": 421,
+    "materialId": 36,
+    "front": "Jaka jest różnica między `int` a `float`?",
+    "back": "`int` to liczby całkowite bez kropki. `float` ma kropkę i może mieć część ułamkową, np. `4.0`.",
+    "topic": "int vs float"
+  },
+  {
+    "id": 422,
+    "materialId": 36,
+    "front": "Dlaczego `input()` zawsze daje `str`?",
+    "back": "Bo `input()` czyta to, co wpiszesz, jako tekst. Nawet '123' to `'123'` i trzeba użyć `int()` lub `float()` by zamienić.",
+    "topic": "input()"
+  },
+  {
+    "id": 423,
+    "materialId": 36,
+    "front": "Co robi `print('Welcome', name)` w kwestii spacji?",
+    "back": "Przecinek w `print` dodaje spację między elementami, więc wynik ma spację między 'Welcome' i wartością `name`.",
+    "topic": "print"
+  },
+  {
+    "id": 424,
+    "materialId": 36,
+    "front": "Co się stanie, gdy zrobisz `int('4.5')`?",
+    "back": "Pojawi się błąd (invalid literal). Najpierw trzeba użyć `float('4.5')`, jeśli chcesz dopiero potem zamienić na `int`.",
+    "topic": "konwersje"
+  },
+  {
+    "id": 425,
+    "materialId": 36,
+    "front": "Dlaczego `9 / 2` daje `4.5` w Python 3?",
+    "back": "W Python 3 operator `/` zawsze zwraca `float`, nawet jeśli obie liczby są całkowite.",
+    "topic": "dzielenie"
+  },
+  {
+    "id": 426,
+    "materialId": 36,
+    "front": "Kiedy użyć `float()` zamiast `int()`?",
+    "back": "Gdy wartość ma część dziesiętną lub chcesz wynik w formie zmiennoprzecinkowej. `float('3.5')` → `3.5`.",
+    "topic": "konwersje"
+  },
+  {
+    "id": 427,
+    "materialId": 37,
+    "front": "Co to jest histogram w kontekście słownika?",
+    "back": "Histogram to słownik, gdzie klucz to element (np. słowo), a wartość to liczba wystąpień tego elementu. Przykład: `{'a': 3, 'b': 2}`.",
+    "topic": "histogram"
+  },
+  {
+    "id": 428,
+    "materialId": 37,
+    "front": "Jak podzielić linię tekstu na słowa w Pythonie?",
+    "back": "Użyj `split()`. Przykład: `words = line.split()` tworzy listę słów z `line`.",
+    "topic": "split"
+  },
+  {
+    "id": 429,
+    "materialId": 37,
+    "front": "Co robi `counts.get(word, 0)`?",
+    "back": "Zwraca wartość dla `word` w słowniku `counts`, a jeśli jej nie ma, zwraca `0` zamiast błędu.",
+    "topic": "metoda get"
+  },
+  {
+    "id": 430,
+    "materialId": 37,
+    "front": "Jaki jest bezpieczny idiom na zwiększanie zliczenia słowa?",
+    "back": "`counts[word] = counts.get(word, 0) + 1` — tworzy wpis jeśli trzeba i zwiększa licznik.",
+    "topic": "metoda get"
+  },
+  {
+    "id": 431,
+    "materialId": 37,
+    "front": "Co zwraca `for key in counts:` gdy `counts` jest słownikiem?",
+    "back": "Iteracja daje kolejne klucze słownika. Wartość można pobrać jako `counts[key]`.",
+    "topic": "iteracja po słowniku"
+  },
+  {
+    "id": 432,
+    "materialId": 37,
+    "front": "Jaka jest różnica między `counts.keys()` a `counts.values()`?",
+    "back": "`counts.keys()` zwraca listę kluczy, a `counts.values()` zwraca listę wartości z tego samego słownika.",
+    "topic": "keys vs values"
+  },
+  {
+    "id": 433,
+    "materialId": 37,
+    "front": "Co zwraca `counts.items()`?",
+    "back": "Zwraca listę par (tupli) `(key, value)`, np. `('a', 3)` — można użyć `for k, v in counts.items():`.",
+    "topic": "items"
+  },
+  {
+    "id": 434,
+    "materialId": 37,
+    "front": "Co to jest tuple assignment w pętli?",
+    "back": "To przypisanie dwóch zmiennych z tupli w pętli, np. `for key, value in counts.items():` daje od razu dwie zmienne.",
+    "topic": "tuple assignment"
+  },
+  {
+    "id": 435,
+    "materialId": 37,
+    "front": "Jaki błąd popełnisz jeśli napiszesz `counts.get(word) + 1` bez drugiego parametru?",
+    "back": "Jeśli `word` nie istnieje, `get` zwróci `None` i dodanie `1` spowoduje błąd typu. Użyj `counts.get(word, 0)`.",
+    "topic": "gotcha"
+  },
+  {
+    "id": 436,
+    "materialId": 37,
+    "front": "Kiedy lepiej użyć słownika niż listy?",
+    "back": "Gdy chcesz mapować klucz na wartość i szybko wyszukiwać po kluczu. Słowniki są szybkie przy dużych danych.",
+    "topic": "when to use"
+  },
+  {
+    "id": 437,
+    "materialId": 37,
+    "front": "Jak znaleźć słowo o największej liczbie wystąpień?",
+    "back": "Przejdź przez `for word, count in counts.items():` i trzymaj `best` jako największy znaleziony `count` oraz `best_word`.",
+    "topic": "max loop"
+  },
+  {
+    "id": 438,
+    "materialId": 37,
+    "front": "Co zrobi pętla `for line in handle:`?",
+    "back": "Przejdzie po kolejnych liniach obiektu `handle` (np. pliku). Każda iteracja daje jedną linię tekstu.",
+    "topic": "czytanie pliku"
+  },
+  {
+    "id": 439,
+    "materialId": 38,
+    "front": "Co robi operator `+` z dwoma napisami?",
+    "back": "Łączy je w jeden napis. Na przykład `\"a\" + \"b\"` daje `\"ab\"`.",
+    "topic": "Konkatenacja"
+  },
+  {
+    "id": 440,
+    "materialId": 38,
+    "front": "Co zwróci `len(\"pies\")`?",
+    "back": "Zwróci `4`, bo napis ma 4 znaki.",
+    "topic": "len()"
+  },
+  {
+    "id": 441,
+    "materialId": 38,
+    "front": "Co to jest indeks w napisie i od którego numeru zaczyna się numeracja?",
+    "back": "Indeks to pozycja znaku w napisie. Numeracja zaczyna się od `0`, więc pierwszy znak to `s[0]`.",
+    "topic": "Indeksowanie"
+  },
+  {
+    "id": 442,
+    "materialId": 38,
+    "front": "Co się stanie gdy napiszemy `s[10]` dla krótkiego napisu?",
+    "back": "Dostaniemy błąd `IndexError`. Indeks poza zakresem jest niedozwolony.",
+    "topic": "Błędy"
+  },
+  {
+    "id": 443,
+    "materialId": 38,
+    "front": "Dlaczego `input()` może mylić początkujących?",
+    "back": "Bo `input()` zawsze zwraca napis. Nawet gdy wpiszesz liczbę, trzeba użyć `int()` by dostać liczbę.",
+    "topic": "input() i int()"
+  },
+  {
+    "id": 444,
+    "materialId": 38,
+    "front": "Co robi `s[1:4]`?",
+    "back": "Zwraca część napisu od indeksu `1` do `3`. Koniec `4` nie jest wliczony.",
+    "topic": "Slicing"
+  },
+  {
+    "id": 445,
+    "materialId": 38,
+    "front": "Jaka jest różnica między `for ch in s:` a pętlą `while` z indeksem?",
+    "back": "`for ch in s:` jest krótsze i automatycznie przechodzi po wszystkich znakach. `while` daje kontrolę nad indeksem, ale jest dłuższe.",
+    "topic": "Pętle"
+  },
+  {
+    "id": 446,
+    "materialId": 38,
+    "front": "Co zrobić, żeby odjąć 10 od wartości wpisanej przez użytkownika?",
+    "back": "Najpierw zamienić napis na liczbę: `x = int(input())` potem `x - 10`.",
+    "topic": "Konwersja"
+  },
+  {
+    "id": 447,
+    "materialId": 38,
+    "front": "Kiedy slicing nie wyrzuci błędu, nawet gdy granica wykracza poza długość napisu?",
+    "back": "Gdy koniec wycinka jest większy niż `len(s)`, slicing po prostu zatrzyma się na końcu i nie da błędu.",
+    "topic": "Slicing"
+  },
+  {
+    "id": 448,
+    "materialId": 38,
+    "front": "Jaki błąd popełniają początkujący przy łączeniu `\"123\" + 1`?",
+    "back": "Mylą typy: to spowoduje `TypeError`. Trzeba użyć `int(\"123\")` by dodać liczbę.",
+    "topic": "Gotcha"
+  },
+  {
+    "id": 449,
+    "materialId": 38,
+    "front": "Jak policzyć ile razy znak `'a'` występuje w napisie?",
+    "back": "Użyć pętli `for` i licznika: `count = 0; for ch in s: if ch == 'a': count = count + 1`.",
+    "topic": "Zliczanie znaków"
+  },
+  {
+    "id": 450,
+    "materialId": 38,
+    "front": "Co zwróci `s[:3]` i jak to się różni od `s[0:3]`?",
+    "back": "Obie formy zwrócą ten sam początkowy fragment. `s[:3]` jest skrótem od `s[0:3]`.",
+    "topic": "Slicing"
+  },
+  {
+    "id": 451,
+    "materialId": 39,
+    "front": "Co to jest gniazdo (socket)?",
+    "back": "To krótkie połączenie między dwiema aplikacjami przez sieć. W Pythonie tworzymy je przez `socket.socket()`.",
+    "topic": "Gniazda (sockets)"
+  },
+  {
+    "id": 452,
+    "materialId": 39,
+    "front": "Jakie trzy kroki pokazano w lekcji, by nawiązać połączenie w Pythonie?",
+    "back": "1) `import socket` 2) `mysock = socket.socket()` 3) `mysock.connect((host, port))`.",
+    "topic": "Połączenie w Pythonie"
+  },
+  {
+    "id": 453,
+    "materialId": 39,
+    "front": "Co robi `socket.socket()`?",
+    "back": "Tworzy obiekt gniazda wewnątrz programu. To punkt końcowy gotowy do połączenia.",
+    "topic": "Gniazda (sockets)"
+  },
+  {
+    "id": 454,
+    "materialId": 39,
+    "front": "Co robi `mysock.connect((host, port))`?",
+    "back": "Nawiązuje połączenie do serwera o nazwie `host` na numerze `port`. To jak wykręcenie numeru telefonu.",
+    "topic": "Połączenie w Pythonie"
+  },
+  {
+    "id": 455,
+    "materialId": 39,
+    "front": "Co oznacza `host:8080` w adresie URL?",
+    "back": "To nazwa hosta i numer portu. `8080` to port, na którym działa aplikacja zamiast domyślnego `80`.",
+    "topic": "Porty"
+  },
+  {
+    "id": 456,
+    "materialId": 39,
+    "front": "Jaka jest różnica między portem 80 a 443?",
+    "back": "Port `80` to zwykły HTTP. Port `443` to bezpieczny HTTPS (szyfrowany).",
+    "topic": "Porty"
+  },
+  {
+    "id": 457,
+    "materialId": 39,
+    "front": "Jaki jest częsty błąd przy tworzeniu gniazda?",
+    "back": "Użycie `socket.socket` bez nawiasów. Trzeba napisać `socket.socket()` by stworzyć obiekt.",
+    "topic": "Gniazda (sockets)"
+  },
+  {
+    "id": 458,
+    "materialId": 39,
+    "front": "Kiedy mówimy, że komunikacja jest \"stream\"?",
+    "back": "Gdy dane płyną jako ciąg znaków jedna po drugiej. To połączenie strumieniowe.",
+    "topic": "Transport layer"
+  },
+  {
+    "id": 459,
+    "materialId": 39,
+    "front": "Co się stanie, jeśli połączysz się do serwera, na którym nie ma aplikacji na danym porcie?",
+    "back": "Połączenie się nie powiedzie. Zwykle dostaniesz błąd lub wyjątek informujący o braku połączenia.",
+    "topic": "Porty"
+  },
+  {
+    "id": 460,
+    "materialId": 39,
+    "front": "Co to jest hostname?",
+    "back": "To nazwa komputera w sieci, np. `example.com`. Służy do znalezienia serwera, z którym chcesz się połączyć.",
+    "topic": "Adresy i hosty"
+  },
+  {
+    "id": 461,
+    "materialId": 39,
+    "front": "Czy różne aplikacje na jednym serwerze używają tych samych portów?",
+    "back": "Nie. Każda aplikacja zwykle nasłuchuje na swoim porcie, więc można uruchomić wiele aplikacji.",
+    "topic": "Porty"
+  },
+  {
+    "id": 462,
+    "materialId": 39,
+    "front": "Kiedy warto użyć portu 8080 zamiast 80?",
+    "back": "Gdy serwer uruchomiony jest na niestandardowym porcie lub testujesz aplikację bez zmiany domyślnego serwera na 80.",
+    "topic": "Porty"
+  },
+  {
+    "id": 463,
+    "materialId": 40,
+    "front": "Co robi operator `+` z dwoma stringami?",
+    "back": "Łączy teksty dosłownie. `\"a\" + \"b\"` daje `\"ab\"`. Nie dodaje spacji sam z siebie.",
+    "topic": "Konkatenacja stringów"
+  },
+  {
+    "id": 464,
+    "materialId": 40,
+    "front": "Co zwraca wyrażenie `'na' in 'banana'`?",
+    "back": "Zwraca `True`, bo podciąg `'na'` występuje w `'banana'`.",
+    "topic": "Operator in"
+  },
+  {
+    "id": 465,
+    "materialId": 40,
+    "front": "Jaka jest różnica między `in` a `find()`?",
+    "back": "`in` daje `True` albo `False`. `find()` zwraca indeks pierwszego wystąpienia lub `-1` jeśli nie ma.",
+    "topic": "in vs find"
+  },
+  {
+    "id": 466,
+    "materialId": 40,
+    "front": "Co zwróci `s.find('x')` gdy `'x'` nie ma w `s`?",
+    "back": "Zwróci `-1`. To sygnał, że nie znaleziono podciągu.",
+    "topic": "find"
+  },
+  {
+    "id": 467,
+    "materialId": 40,
+    "front": "Czy `s.replace('a','b')` zmienia `s`?",
+    "back": "Nie. Zwraca nowy string. `s` pozostaje bez zmian.",
+    "topic": "Niezmienność stringów"
+  },
+  {
+    "id": 468,
+    "materialId": 40,
+    "front": "Kiedy użyć `strip()` zamiast `lstrip()` lub `rstrip()`?",
+    "back": "Użyj `strip()` gdy chcesz usunąć białe znaki z początku i końca. `lstrip()` usuwa tylko z lewej, `rstrip()` tylko z prawej.",
+    "topic": "strip / lstrip / rstrip"
+  },
+  {
+    "id": 469,
+    "materialId": 40,
+    "front": "Co robi `lower()`?",
+    "back": "Zwraca kopię stringa z wszystkimi literami małymi. Przydatne do porównań ignorujących wielkość.",
+    "topic": "lower / upper"
+  },
+  {
+    "id": 470,
+    "materialId": 40,
+    "front": "Jak wyciąć fragment między dwoma indeksami?",
+    "back": "Użyj `s[a:b]`. To daje znaki od `a` do `b-1` (koniec nie jest wliczony).",
+    "topic": "Slicing"
+  },
+  {
+    "id": 471,
+    "materialId": 40,
+    "front": "Co zrobić, by porównać teksty ignorując wielkość liter?",
+    "back": "Porównaj ich wersje z `lower()`, np. `a.lower() == b.lower()`.",
+    "topic": "Kiedy użyć lower()"
+  },
+  {
+    "id": 472,
+    "materialId": 40,
+    "front": "Jak sprawdzić czy string zaczyna się od prefiksu?",
+    "back": "Użyj `startswith()`; zwraca `True` lub `False`. Pamiętaj, że jest czułe na wielkość liter.",
+    "topic": "startswith"
+  },
+  {
+    "id": 473,
+    "materialId": 40,
+    "front": "Co się stanie jeśli użyjesz `find()` z drugim parametrem?",
+    "back": "Szukasz podciągu zaczynając od podanego indeksu. Przykład: `s.find('a', 3)` zaczyna od pozycji 3.",
+    "topic": "find z parametrem start"
+  },
+  {
+    "id": 474,
+    "materialId": 40,
+    "front": "Jaki częsty błąd przy wycinaniu domeny z e-maila?",
+    "back": "Użycie `s[at:...]` zamiast `s[at+1:...]` — wtedy w wyniku zostanie znak `@`. Trzeba przesunąć start o 1.",
+    "topic": "Gotcha slicing"
   }
 ]

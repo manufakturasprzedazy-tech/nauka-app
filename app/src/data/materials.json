@@ -38,24 +38,6 @@
     "exerciseCount": 4
   },
   {
-    "id": 3,
-    "courseId": "python",
-    "filename": "Idiomy Loop.md",
-    "title": "Zliczanie, sumowanie, filtrowanie i flagi w pętlach",
-    "summary": "Materiały pokazują, jak używać zmiennych przed pętlą, by liczyć elementy, sumować je, obliczać średnią i filtrować wartości. Pokazano też użycie zmiennej logicznej (flagi) do wykrycia, czy coś zostało znalezione podczas pętli.",
-    "topics": [
-      "liczniki (count)",
-      "suma (total)",
-      "średnia (average)",
-      "filtrowanie z `if`",
-      "zmienna logiczna (flag / found)"
-    ],
-    "notes": "## O czym jest ta lekcja\nKrótko: uczymy się liczyć, sumować, filtrować i używać flag w pętlach. Pokazuję proste wzorce: licznik, suma, średnia, filtrowanie i zmienna logiczna.\n\n## Kluczowe pojęcia\n### Liczenie (counter)\nUstawiasz zmienną na `0` przed pętlą. W środku pętli zwiększasz ją: `zork = zork + 1` lub `zork += 1`. Na końcu masz liczbę przebiegów pętli.\n\n### Sumowanie (running total)\nUstawiasz `total = 0` przed pętlą. W każdym kroku dodajesz wartość: `total = total + value`. Po pętli `total` to suma wszystkich przejrzanych wartości.\n\n### Średnia (average)\nPotrzebujesz licznika i sumy: `count = 0` i `sum = 0`. Po pętli dzielisz: `average = sum / count`. To daje średnią wartości.\n\n### Filtrowanie (if w pętli)\nW pętli sprawdzasz warunek: `if value > 20:`. Jeśli warunek prawdziwy, wykonujesz akcję (np. `print`). To pozwala wybrać tylko elementy spełniające kryterium.\n\n### Flaga logiczna (Boolean flag)\nUstawiasz `found = False` przed pętlą. Gdy znajdziesz to, czego szukasz, ustawiasz `found = True`. Po pętli wiesz, czy co najmniej raz wystąpił poszukiwany element.\n\n### Zatrzymanie pętli (możliwość przerwania)\nGdy flaga staje się `True`, możesz natychmiast zakończyć pętlę, bo wynik już jest pewny. W materiale zasugerowano przerwanie pętli w tym momencie.\n\n## Przykłady kodu\n```python\n# liczenie\nzork = 0\nfor value in [9,41,12,3,74,15]:\n    zork = zork + 1\nprint('Ile elementów:', zork)\n\n# suma i średnia\ncount = 0\nsum = 0\nfor value in [9,41,12,3,74,15]:\n    count += 1\n    sum = sum + value\nprint('Suma:', sum)\nprint('Średnia:', sum / count)\n\n# filtrowanie i flaga\nfound = False\nfor value in [9,41,12,3,74,15]:\n    if value == 3:\n        found = True\nprint('Czy znaleziono 3?', found)\n```\n\n## Ważne zasady\n- **Inicjalizuj przed pętlą** — ustaw licznik i sumę na `0` przed rozpoczęciem pętli. \n- **Zwiększaj w środku pętli** — `count = count + 1` przy każdym przebiegu.\n- **Sumuj wartości** — zamiast dodawać `1`, dodajesz aktualną wartość: `total = total + value`.\n- **Użyj flagi** — `found = False` i zmień na `True`, gdy znajdziesz szukany element.\n- **Możesz przerwać pętlę** — gdy znaleziono to, co potrzeba, dalsze iteracje zwykle nie są potrzebne.\n\n## Częste błędy\n- **Zapomnienie inicjalizacji**: rozpoczęcie pętli bez ustawienia `count = 0` lub `total = 0` da błędne wyniki.\n- **Zła aktualizacja**: zamiast `total = total + value` użycie `total = value` nadpisze sumę.\n- **Dzielenie przez zero**: jeśli `count` wyniesie `0`, to `sum / count` spowoduje błąd. Upewnij się, że pętla wykonała się przynajmniej raz.\n- **Resetowanie flagi**: nie zmieniaj `found` z powrotem na `False` w dalszych iteracjach po znalezieniu elementu.\n",
-    "flashcardCount": 12,
-    "quizCount": 9,
-    "exerciseCount": 4
-  },
-  {
     "id": 4,
     "courseId": "python",
     "filename": "Instrukcje warunkowe, część 1.md",
@@ -92,63 +74,6 @@
     "flashcardCount": 11,
     "quizCount": 8,
     "exerciseCount": 5
-  },
-  {
-    "id": 6,
-    "courseId": "python",
-    "filename": "Korzystanie z funkcji.md",
-    "title": "Funkcje — przechowuj i używaj ponownie",
-    "summary": "Nauczysz się czym są funkcje w Pythonie i dlaczego ich używamy. Zobaczysz jak zdefiniować funkcję z `def`, jak ją wywołać i jak działają podstawowe funkcje wbudowane jak `int`, `float`, `max` i `min`.",
-    "topics": [
-      "Definiowanie funkcji (`def`)",
-      "Wywoływanie funkcji",
-      "Argumenty i wartości zwracane",
-      "Funkcje wbudowane: `print`, `int`, `float`, `max`, `min`, `type`",
-      "Konwersje typów",
-      "Błędy przy nieprawidłowej konwersji"
-    ],
-    "notes": "## O czym jest ta lekcja\nTa lekcja pokazuje wzorzec „przechowuj i używaj ponownie”.\nUczymy się, jak tworzyć funkcje, żeby nie powtarzać tego samego kodu (DRY).\n\n## Kluczowe pojęcia\n### Funkcja\nFunkcja to kawałek kodu, któremu nadajemy nazwę i przechowujemy. Używamy jej później przez wywołanie, np. `thing()`.\nFunkcja działa jak zmienna, ale zamiast wartości trzyma kod.\n\n### Definicja: `def`\nSłowo kluczowe `def` zaczyna definicję funkcji i kończy się dwukropkiem. Po `def` idzie nazwa funkcji i blok wcięty.\nPrzykład składni: `def nazwa():`.\n\n### Wywołanie / invoke\nAby uruchomić funkcję, piszemy jej nazwę z nawiasami, np. `thing()`. Python wtedy wstrzymuje wykonywanie, idzie do funkcji, potem wraca.\n\n### Argumenty i `return`\nDo funkcji można przekazać dane jako argumenty. Funkcja może coś zwrócić przez `return`.\nPrzykład wbudowanej funkcji: `max(\"Hello world\")` zwraca największy znak.\n\n### Wbudowane funkcje i konwersje\nPython ma wbudowane funkcje jak `print`, `input`, `int`, `float`, `type`, `max`, `min`.\n`int` i `float` konwertują typy. `input` zawsze zwraca `str`.\n\n## Przykłady kodu\n```python\n# przykład z lekcji\ndef thing():\n    print(\"Hello\")\n    print(\"Fun\")\n\nthing()        # wywołanie funkcji\nprint(\"Zip\")  # kontynuacja programu\nthing()        # ponowne wywołanie\n\n# użycie max i min\nbig = max(\"Hello world\")   # daje 'w'\ntiny = min(\"Hello world\")  # daje ' ' (spację)\n\n# konwersja z stringa na int\nsval = \"123\"\nival = int(sval)  # ival to teraz liczba 123\n``` \n\n## Ważne zasady\n- **DRY (Don't Repeat Yourself)** — zamiast kopiować ten sam kod w kilku miejscach, włóż go do funkcji i wywołuj.\n- **Definicja nie wykonuje kodu** — `def` tylko zapisuje funkcję. Kod wewnątrz nie uruchomi się, dopóki nie wywołasz funkcji.\n- **Wywołanie z nawiasami** — użyj nawiasów, np. `f()` żeby uruchomić funkcję.\n- **Funkcja może zwrócić wartość** — wynik wywołania można przypisać do zmiennej, np. `big = max(...)`.\n- **Nazwa funkcji jak zmienna** — zasady nazewnictwa są takie same jak dla zmiennych. Unikaj słów zarezerwowanych.\n\n## Częste błędy\n- **Brak nawiasów**: piszesz `thing` zamiast `thing()`. To nie uruchomi funkcji.\n- **Mylnie myślisz, że `def` wykonuje kod**: definicja tylko przechowuje kod.\n- **Zła konwersja typów**: `int(\"hello\")` spowoduje błąd (traceback). Funkcja może \"blow up\" i przerwać program.\n- **Powtarzanie kodu**: kopiowanie tych samych linii zamiast stworzenia funkcji utrudnia późniejsze poprawki.",
-    "flashcardCount": 12,
-    "quizCount": 10,
-    "exerciseCount": 4
-  },
-  {
-    "id": 7,
-    "courseId": "python",
-    "filename": "Listy i ciągi znaków.md",
-    "title": "Praca z tekstem: `split()` i listy",
-    "summary": "Lekcja pokazuje jak zamieniać stringi na listy za pomocą `split()`. Uczymy się też indeksować listy, używać pętli `for` i robić „double split”, czyli podzielić tekst dwa razy, by wyciągnąć fragmenty.",
-    "topics": [
-      "split()",
-      "listy",
-      "indeksowanie",
-      "pętle for",
-      "startsWith i filtrowanie",
-      "podział podwójny (double split)"
-    ],
-    "notes": "## O czym jest ta lekcja\nKrótko o łączeniu tekstu i list. Uczymy się rozbijać linie na kawałki za pomocą `split()` i potem pracować z listami. To podstawowy wzorzec do parsowania danych.\n\n## Kluczowe pojęcia\n### `split()`\n`split()` dzieli tekst na listę fragmentów. Domyślnie dzieli po białych znakach (spacje, taby) i zwraca listę.\n\n### Listy\nLista to zbiór elementów. Możemy pobierać elementy przez indeks, np. `words[0]` to pierwszy element.\n\n### Pętla `for` nad listą\nPo rozbiciu tekstu otrzymujemy listę i możemy ją przejść pętlą: `for w in words:`. To prosty sposób by robić coś z każdym słowem.\n\n### Separator (delimiter) w `split()`\nMożesz podać inny znak do dzielenia, np. `line.split(';')`. Wtedy `split` dzieli tylko tam, gdzie jest ten znak. Gdy używasz własnego separatora, `split` nie skleja wielu spacji.\n\n### Podwójne dzielenie (double split)\nCzasami najpierw dzielisz po spacji, potem dzielisz jeden fragment dalej, np. `email = words[1]` i potem `parts = email.split('@')`. To pozwala wydobyć nazwę hosta lub użytkownika.\n\n## Przykłady kodu\n```python\n# prosty split i pętla\ns = \"To jest tekst\"\nwords = s.split()\nfor w in words:\n    print(w)\n```\n\n```python\n# split z innym separatorem\nline = \"pierwszy;drugi;trzeci\"\nparts = line.split(';')\nprint(parts)  # ['pierwszy', 'drugi', 'trzeci']\n```\n\n```python\n# parsowanie pliku mailowego i double split\nf = open('mbox-short.txt')\nfor line in f:\n    line = line.rstrip()\n    if not line.startswith('From '):\n        continue\n    words = line.split()\n    day = words[2]            # dzień tygodnia\n    email = words[1]          # adres e-mail\n    parts = email.split('@')\n    host = parts[1]\n    print(day, host)\nf.close()\n```\n\n## Ważne zasady\n- **`split()` zwraca listę** — zawsze otrzymasz listę kawałków po podziale.\n- **Domyślny podział to białe znaki** — bez argumentu `split()` traktuje jeden lub wiele spacji jako separator.\n- **Podanie separatora zmienia zachowanie** — `split(';')` dzieli tylko po średnikach i nie kompresuje spacji.\n- **Wzorzec: split + for** — czytasz linię, `split()`, potem `for` przez elementy.\n- **Double split** — najpierw dzielisz po spacji, potem dzielisz konkretny fragment dalej (np. po `@`).\n\n## Częste błędy\n- **Myślenie, że `split(';')` skompresuje spacje**: gdy podasz separator, `split` nie łączy wielu spacji. Dzieli tylko po podanym znaku.\n- **Nie sprawdzenie linii przed split**: jeśli nie pominiesz niepotrzebnych linii (np. przez `if not line.startswith('From '): continue`), indeksy w `words` mogą być niezgodne.\n- **Używanie `find()` i ręcznego slice zamiast `split()`**: to bardziej skomplikowane i podatne na błędy. `split()` jest prostsze i czytelniejsze.\n",
-    "flashcardCount": 10,
-    "quizCount": 8,
-    "exerciseCount": 4
-  },
-  {
-    "id": 8,
-    "courseId": "python",
-    "filename": "Listy.md",
-    "title": "Listy, indeksy i pętle",
-    "summary": "Ten rozdział wprowadza listy jako zmienne przechowujące wiele wartości. Omawia indeksowanie, mutowalność list, funkcje `len()` i `range()` oraz użycie pętli `for` z listami i z zakresami.",
-    "topics": [
-      "Listy",
-      "Indeksowanie",
-      "Mutowalność",
-      "Pętle for",
-      "len i range",
-      "Listy zagnieżdżone"
-    ],
-    "notes": "## O czym jest ta lekcja\nKrótko o listach, indeksach i pętlach. Pokazane jest jak przechowywać wiele wartości w jednej zmiennej i jak je przeglądać.\n\n## Kluczowe pojęcia\n### Listy\nLista to zbiór wartości w jednej zmiennej. Tworzymy ją za pomocą nawiasów kwadratowych, np. `['Joseph', 'Glenn', 'Sally']`.\n\n### Stałe listy (list constants)\nLista zapisana dosłownie w kodzie używa `[]`. Można w niej mieszać typy, np. `['red', 24, 98.6]`.\n\n### Pętle `for` (definite loops)\nPętla `for` przechodzi po kolejnych elementach listy. Przykład: `for friend in friends:` wykona ciało pętli dla każdego elementu listy.\n\n### Indeksy i operator indeksowania\nElementy listy mają swoje indeksy zaczynające się od 0. Aby dostać drugi element używamy `friends[1]`.\n\n### Mutowalność (item assignment)\nListy są **mutowalne** — można zmieniać ich elementy, np. `lotto[2] = 28`. Naprzeciwko tego, **napisy** (strings) nie są mutowalne i `fruit[0] = 'b'` nie zadziała.\n\n### `len` i `range` (pętle z licznikiem)\nFunkcja `len(...)` zwraca liczbę elementów listy. `range(n)` tworzy sekwencję liczb `0` do `n-1` i często używamy `for i in range(len(friends)):` gdy potrzebujemy indeksu.\n\n## Przykłady kodu\n```python\n# przykład 1: lista i pętla for\nfriends = ['Joseph','Glenn','Sally']\nfor friend in friends:\n    print(friend)\n\n# przykład 2: pętla z indeksami\nfor i in range(len(friends)):\n    print(i, friends[i])\n\n# przykład 3: zmiana elementu listy\nlotto = [2, 14, 26]\nlotto[2] = 28\nprint(lotto)\n```\n\n## Ważne zasady\n- **Listy tworzymy w `[]`** — to lista stała w kodzie.  \n- **Indeksy zaczynają się od 0** — pierwszy element to `lista[0]`.  \n- **Listy są mutowalne** — można przypisać nową wartość: `lista[1] = x`.  \n- **Napisy nie są mutowalne** — nie zmienisz litery przez przypisanie do `string[0]`.  \n- **`len` działa na sekwencjach** — zwraca długość listy lub napisu.  \n- **`range` daje liczby od 0 do n-1** — przydatne do pętli z licznikiem.\n\n## Częste błędy\n- **Mylenie indeksów**: sąsiedni element ma indeks przesunięty o 1. Drugi element to `lista[1]`, nie `lista[2]`.  \n- **Próba zmiany napisu**: `fruit[0] = 'b'` spowoduje błąd, bo stringi są niemutowalne.  \n- **Zapomnienie `len` przy `range`**: `for i in range(friends):` nie zadziała — trzeba `range(len(friends))`.  \n- **Nazwy zmiennych**: `for friend in friends:` to tylko czytelność. Python zaakceptuje inne nazwy, ale używaj czytelnych nazw.\n",
-    "flashcardCount": 12,
-    "quizCount": 9,
-    "exerciseCount": 4
   },
   {
     "id": 9,
@@ -318,27 +243,6 @@
     "exerciseCount": 4
   },
   {
-    "id": 18,
-    "courseId": "python",
-    "filename": "Manipulowanie listami.md",
-    "title": "Operacje na listach",
-    "summary": "Lekcja opisuje jak pracować z listami w Pythonie. Pokazuje łączenie, wycinki (slicing), dodawanie elementów metodą `append()`, sprawdzanie przynależności przez `in` oraz podstawowe funkcje jak `len()`, `sum()`, `sort()`.",
-    "topics": [
-      "łączenie list (`+`)",
-      "slicing list",
-      "metoda `append()`",
-      "mutowalność list",
-      "operator `in` / `not in`",
-      "sortowanie (`sort()`)",
-      "funkcje `len()`, `sum()`, `max()`, `min()`",
-      "budowanie list i obliczanie średniej"
-    ],
-    "notes": "## O czym jest ta lekcja\nKrótko o operacjach na listach w Pythonie. Pokazujemy dodawanie, wycinanie, metody i przykład liczenia średniej.\n\n## Kluczowe pojęcia\n### Dodawanie list\nMożesz łączyć listy używając `+`, tak jak łączysz napisy. `a + b` tworzy nową listę i nie zmienia `a` ani `b`.\n\n### Slicing\nSlicing działa jak w stringach. `lista[start:stop]` bierze elementy od `start` do `stop-1` (czyli \"do, ale nie włącznie\").\n\n### Metody list\nListy mają wiele metod, np. `append`, `count`, `extend`, `index`, `insert`, `pop`, `remove`, `sort`. Używasz ich jako `lista.append(x)`.\n\n### Mutowalność list\nListy są **mutowalne**. Metody takie jak `append` i `sort` zmieniają listę na miejscu. Nie rób `x = x.append(...)`, bo `append` nic nie zwraca.\n\n### Operator `in` i porządek\nMożesz sprawdzić, czy coś jest w liście używając `in` lub `not in`. Listy zachowują kolejność elementów. To znaczy, że kolejność dodawania zostaje zachowana.\n\n### Sumy i statystyki\nDla listy liczb możesz użyć `len`, `sum`, `max`, `min`. Z tych funkcji łatwo policzyć średnią jako `sum(lista) / len(lista)`.\n\n## Przykłady kodu\n```python\n# 1. Łączenie i slicing\na = [1, 2]\nb = [3, 4]\nc = a + b\nprint(c)         # [1, 2, 3, 4]\nlst = ['a','b','c','d','e']\nprint(lst[1:3])  # ['b','c']  (1 do 2)\n\n# 2. Tworzenie listy i append\nstuff = list()\nstuff.append('book')\nstuff.append(99)\nprint(stuff)     # ['book', 99]\n\n# 3. Dwie wersje obliczania średniej\n# manualnie (sum i licznik)\ntotal = 0.0\ncount = 0\nwhile True:\n    inp = input('> ')\n    if inp == 'done':\n        break\n    val = float(inp)\n    total += val\n    count += 1\nprint(total / count)\n\n# z listą (gromadzisz liczby, potem funkcje)\nnums = list()\nwhile True:\n    inp = input('> ')\n    if inp == 'done':\n        break\n    nums.append(float(inp))\nprint(sum(nums) / len(nums))\n```\n\n## Ważne zasady\n- **`append` dodaje na końcu** — używaj `lista.append(x)` żeby dopisać element.\n- **Metody mogą zmieniać listę** — `lista.sort()` zmienia listę na miejscu.\n- **Slicing nie obejmuje końca** — `lista[a:b]` bierze elementy do `b-1`.\n- **Używaj `sum` i `len` gdy masz listę** — to prosty sposób na sumę i średnią.\n- **Pamięć ma znaczenie** — gromadzenie wszystkich liczb w liście używa pamięci. Alternatywnie liczysz sumę i licznik po kolei.\n\n## Częste błędy\n- **Przypisywanie wyniku `append`**: `x = x.append(5)` spowoduje, że `x` będzie `None`. Nie przypisuj wyniku `append`.\n- **Zapominanie, że slicing jest do nie włącznie**: `lista[0:4]` bierze 0,1,2,3 a nie 4.\n- **Mylenie mutowalności**: myślenie, że metody zwracają nową listę jak w stringach. Wiele metod list zmienia obiekt.\n- **Nieprzemyślane użycie pamięci**: trzymanie bardzo wielu liczb w liście może zużyć dużo pamięci.\n",
-    "flashcardCount": 12,
-    "quizCount": 8,
-    "exerciseCount": 4
-  },
-  {
     "id": 19,
     "courseId": "python",
     "filename": "Pierwszy program.md",
@@ -372,26 +276,6 @@
       "Zero-trip loop (pętla, która nie wykona się wcale)"
     ],
     "notes": "## O czym jest ta lekcja\nKrótko o pętlach i iteracji. Uczymy się jak komputer powtarza zadania, żeby nie robić ich ręcznie.\n\n## Kluczowe pojęcia\n### `while`\n`while` to instrukcja, która powtarza blok kodu dopóki warunek jest prawdziwy. Działa podobnie do `if`, ale po wykonaniu bloku sprawdza warunek ponownie.\n\n### Zmienna iteracji\nZmienna iteracji to zmienna, która się zmienia w pętli (np. `n`). Dzięki niej pętla może się zakończyć. Jeśli tej zmiany brak, powstaje problem.\n\n### Nieskończona pętla\nNieskończona pętla powstaje gdy warunek nigdy nie staje się fałszywy. Typowy przykład to `while True:` bez `break` i bez zmiany zmiennej iteracji.\n\n### `break`\n`break` natychmiast przerywa pętlę i przeskakuje do linii po pętli. Używa się go zwykle w `if`, gdy chcemy zakończyć pętlę wcześniej.\n\n### `continue`\n`continue` kończy bieżącą iterację i wraca na początek pętli. Nie wychodzi z pętli, tylko pomija resztę kodu w tej iteracji.\n\n### Zero-trip loop\nTo pętla, która może się nie wykonać ani raz. Jeśli początkowy warunek jest fałszywy, `while` zachowuje się jak `if` i blok zostaje pominięty.\n\n## Przykłady kodu\n```python\n# Odliczanie - zmienna iteracji i zakończenie\nn = 5\nwhile n > 0:\n    print(n)\n    n = n - 1\nprint(\"Blastoff!\")\n```\n\n```python\n# Wejście od użytkownika z break i continue\nwhile True:\n    line = input('> ')\n    if line == 'done':\n        break\n    if line and line[0] == '#':\n        continue\n    print(line)\n```\n\n## Ważne zasady\n- **Zmieniaj zmienną iteracji** — inaczej pętla może nigdy się nie skończyć.\n- **`break` wychodzi z pętli** — przerywa pętlę natychmiast i idzie do kodu poza nią.\n- **`continue` przerywa tylko iterację** — pomija resztę kodu tej iteracji i wraca na początek.\n- **Sprawdzaj warunki startowe** — pętla może wcale się nie wykonać (zero-trip loop).\n- **Unikaj nieskończonych pętli** bez świadomego użycia `break`.\n\n## Częste błędy\n- **Brak zmiany iteracji**: zostawiasz zmienną bez aktualizacji i program zawiesza się w pętli.\n- **Mylenie `break` i `continue`**: `break` wychodzi na zewnątrz pętli; `continue` tylko przeskakuje do następnej iteracji.\n- **Sprawdzanie pierwszego znaku bez warunku**: przy pustym wierszu `line[0]` może spowodować błąd. W przykładzie najpierw sprawdzamy `if line and ...`.\n- **Niedocenienie zero-trip**: kod może nie wykonać się wcale, jeśli warunek początkowy jest fałszywy.\n",
-    "flashcardCount": 12,
-    "quizCount": 9,
-    "exerciseCount": 4
-  },
-  {
-    "id": 21,
-    "courseId": "python",
-    "filename": "Typy zmiennych.md",
-    "title": "Typy danych, konwersje i wejście/wyjście w Pythonie",
-    "summary": "Poznaj podstawowe typy: liczby całkowite, liczby zmiennoprzecinkowe i napisy. Nauczysz się konwertować między typami, używać `type()`, oraz czytać dane z klawiatury przez `input()` i wypisywać je `print()`.",
-    "topics": [
-      "typy danych (int, float, string)",
-      "operator + jako dodawanie i konkatenacja",
-      "konwersje: int(), float()",
-      "funkcja type()",
-      "wejście i wyjście: input(), print()",
-      "dzielenie w Python 3 (zwraca float)",
-      "traceback i błędy typu"
-    ],
-    "notes": "## O czym jest ta lekcja\nKrótko o typach danych w Pythonie, konwersjach i wejściu/wyjściu. Nauczysz się jak Python rozróżnia `int`, `float` i `str`, jak je konwertować i jak czytać dane z klawiatury.\n\n## Kluczowe pojęcia\n### Typy danych\nPython rozpoznaje typy wartości, np. `int`, `float` i `str`. Typ decyduje jak operator `+` i inne działają.\n\n### Operator `+`\nJeśli oba operand to liczby (`int`/`float`) to `+` wykonuje dodawanie. Jeśli oba to napisy (`str`) to `+` konkatenacja (łączenie). `+` nie dodaje spacji automatycznie.\n\n### Konwersje: `int()` i `float()`\nMożesz wymusić konwersję za pomocą `int()` lub `float()`. `float(99)` da `99.0`. `int('123')` zamieni napis na liczbę, jeśli napis składa się z cyfr.\n\n### Sprawdzanie typu: `type()`\nFunkcja `type()` mówi jaki jest typ wartości lub zmiennej. Przydaje się gdy nie jesteś pewien co masz w zmiennej.\n\n### Wejście/wyjście: `input()` i `print()`\n`input(prompt)` wypisze `prompt` i poczeka na wpisanie tekstu. Zwraca zawsze `str`. `print()` może przyjmować wiele wartości rozdzielonych przecinkami — każdy przecinek dodaje spację.\n\n### Dzielenie w Pythonie 3\nOperator `/` zawsze zwraca `float`, np. `9/2` daje `4.5`. To różni się od starego Pythona 2, gdzie wynik mógł być obcięty do `int`.\n\n## Przykłady kodu\n```python\n# dodawanie liczb\nx = 1 + 4\nprint(x)  # 5\n\n# łączenie napisów\ns = 'hello' + ' ' + 'there'\nprint(s)  # hello there\n```\n\n```python\n# błąd: napis + liczba\nname = 'Alice'\nage = 30\n# print(name + age)  # TypeError: nie można dodać str i int\n```\n\n```python\n# input i konwersja\nn = input('Podaj liczbę: ')\ni = int(n)\nprint('Po roku masz', i + 1)  # print z przecinkiem dodaje spację\n```\n\n## Ważne zasady\n- **Zawsze wiesz co jest w zmiennej** — użyj `type()` jeśli nie jesteś pewien. \n- **Konwertuj jawnie** — użyj `int()` lub `float()` gdy potrzebujesz liczby z napisu. \n- **`input()` zwraca `str`** — nawet gdy wpiszesz cyfry. \n- **`/` daje `float`** — w Pythonie 3 każda zwykła dzielona operacja zwraca `float`. \n- **`print()` z przecinkami dodaje spacje** — to wygodne do szybkiego wypisywania wielu rzeczy.\n\n## Częste błędy\n- **Łączenie `str` i `int`**: próba `name + 1` wyrzuci `TypeError`. Konwertuj najpierw. \n- **Konwersja nie-digitalnego napisu**: `int('abc')` lub `int('12a')` da błąd \"invalid literal\". \n- **Oczekiwanie, że `input()` daje liczbę**: zapamiętaj, że to zawsze `str`. \n- **Myślenie że `+` doda spację**: musisz dodać ją samemu lub użyć przecinka w `print()`.\n",
     "flashcardCount": 12,
     "quizCount": 9,
     "exerciseCount": 4
@@ -457,68 +341,6 @@
     "exerciseCount": 4
   },
   {
-    "id": 25,
-    "courseId": "python",
-    "filename": "Słowniki i pliki.md",
-    "title": "Liczenie słów i operacje na słownikach",
-    "summary": "Nauczysz się tworzyć histogramy słów ze znaków wejścia. Poznasz iterowanie po słownikach oraz metody `get()`, `keys()`, `values()` i `items()` i jak znaleźć najczęściej występujące słowo.",
-    "topics": [
-      "słowniki",
-      "histogram (liczenie słów)",
-      "pętla for",
-      "split()",
-      "get()",
-      "items(), keys(), values()",
-      "tuple (przypisanie w pętli)"
-    ],
-    "notes": "## O czym jest ta lekcja\nKilka prostych pomysłów o liczeniu słów w tekście. Pokazujemy, jak budować histogramy za pomocą słowników. Uczymy się też iterować po słownikach i znaleźć najbardziej występujące słowo.\n\n## Kluczowe pojęcia\n### Histogram (liczenie słów)\nTworzymy pusty słownik i dla każdego słowa zwiększamy liczbę. Używamy `split()` żeby podzielić linię lub wiersz na listę słów.\n\n### Idiom `get` dla słowników\nAby dodać lub zaktualizować licznik używamy `counts.get(word, 0) + 1`. To tworzy wpis i zwiększa go w tej samej instrukcji.\n\n### Iterowanie po słowniku (klucze i wartości)\nStandardowy `for key in counts:` przechodzi przez klucze. Wewnątrz pętli pobieramy wartość przez `counts[key]`.\n\n### Metody `keys()`, `values()`, `items()`\n`jjj.keys()` lub `list(jjj)` zwraca listę kluczy. `jjj.values()` zwraca wartości. `jjj.items()` zwraca pary (krotki) klucz-wartość.\n\n### Krotki i rozpakowanie (`items()` + dwa zmienne)\n`jjj.items()` zwraca listę krotek. Możemy użyć dwóch zmiennych w pętli: `for key, value in jjj.items():`. To rozpakowuje krotkę na `key` i `value`.\n\n### Znalezienie największego (max loop)\nTrzyma się zmienne `bigword = None` i `bigcount = None`. W pętli sprawdzamy `if bigcount is None or count > bigcount:` i aktualizujemy największy.\n\n## Przykłady kodu\n```python\n# Liczenie słów z pojedynczej linii\ncounts = {}\nline = input()\nwords = line.split()\nfor word in words:\n    counts[word] = counts.get(word, 0) + 1\nprint(counts)\n```\n\n```python\n# Liczenie słów z pliku i znalezienie najczęstszego\nfname = input('Nazwa pliku: ')\nhandle = open(fname)\ncounts = {}\nfor line in handle:\n    words = line.split()\n    for word in words:\n        counts[word] = counts.get(word, 0) + 1\n# szukamy największego\nbigword = None\nbigcount = None\nfor word, count in counts.items():\n    if bigcount is None or count > bigcount:\n        bigword = word\n        bigcount = count\nprint(bigword, bigcount)\n```\n\n## Ważne zasady\n- **Używaj `split()`** — dzieli linię na słowa po białych znakach. Jest to podstawowy krok przed liczeniem.\n- **`counts.get(word, 0) + 1`** — idiom tworzenia i zwiększania licznika w jednej linii.\n- **Iteruj po `items()`** — jeśli chcesz mieć od razu klucz i wartość, użyj `for key, value in counts.items():`.\n- **Słowniki są szybkie** — dostęp `counts[key]` jest efektywny nawet dla wielu wpisów.\n- **Inicjalizuj do `None` przy szukaniu max** — pozwala łatno obsłużyć pierwszy element w pętli.\n\n## Częste błędy\n- **Brak `get` i KeyError**: próba zrobić `counts[word] += 1` bez wcześniejszego utworzenia klucza spowoduje błąd. Użyj `get` lub sprawdź istnienie klucza.\n- **Iterowanie po słowniku myli początkujących**: `for x in counts:` daje klucze, a nie pary. Jeśli chcesz wartości, użyj `counts.values()` lub `items()`.\n- **Nie rozpakowywać `items()`**: pisanie `for item in counts.items():` bez rozpakowania daje krotki; trzeba odczytać `item[0]` i `item[1]` lub użyć `for key, value in ...`.\n- **Założenie o kolejności**: słowniki nie gwarantują określonej kolejności przy iteracji (nie warto polegać na porządku).",
-    "flashcardCount": 12,
-    "quizCount": 8,
-    "exerciseCount": 4
-  },
-  {
-    "id": 26,
-    "courseId": "python",
-    "filename": "Manipulowanie ciągami znaków.md",
-    "title": "Operacje na napisach (stringi)",
-    "summary": "Lekcja omawia podstawowe operacje na napisach. Pokazuje konkatenację, operator `in`, metody stringów takie jak `find()`, `lower()`, `upper()`, `replace()`, `strip()`, `startswith()` oraz wycinki (slicing).",
-    "topics": [
-      "Konkatenacja",
-      "Operator `in`",
-      "Metody stringów: `find`, `lower`, `upper`, `replace`, `strip`, `startswith`, `capitalize`",
-      "Slicing (wycinki)",
-      "Porównania stringów",
-      "Immutable (napisy nie zmieniają się)",
-      "Znak spacji i whitespace"
-    ],
-    "notes": "## O czym jest ta lekcja\nKrótko o operacjach na napisach. Nauczysz się łączenia, wyszukiwania, zmian i wycinków (slicing) w stringach.\n\n## Kluczowe pojęcia\n### Konkatenacja\n`+` łączy dwa napisy. Nie dodaje automatycznie spacji. Jeśli chcesz spację, dodaj ją jako osobny napis, np. `'A' + ' ' + 'B'`.\n\n### Operator `in`\n`in` sprawdza, czy podnapis istnieje w napisie. Zwraca `True` lub `False`. Przydatne w instrukcji `if`.\n\n### Metody stringów\nNapis to obiekt typu `str`. Ma metody jak `lower()`, `upper()` czy `replace()`. Wywołanie zwraca nowy napis. Oryginał się nie zmienia.\n\n### `find()` i slicing\n`find()` zwraca indeks pierwszego wystąpienia podnapisu lub `-1` gdy nie ma. Indeksy zaczynają się od zera. Slicing (`start:stop`) wycina kawałek napisu. `stop` nie jest wliczony.\n\n### Usuwanie i sprawdzanie początku\n`strip()`, `lstrip()`, `rstrip()` usuwają białe znaki z końców napisu. `startswith()` sprawdza, czy napis zaczyna się od podanego prefiksu. Wynikiem jest `True` lub `False`.\n\n## Przykłady kodu\n```python\n# konkatenacja i brak automatycznej spacji\nname = 'Jan'\nprint('Czesc' + ' ' + name)  # poprawnie: spacja dodana ręcznie\n\n# replace i lower nie zmieniają oryginału\ng = 'Hello Bob'\nprint(g.replace('Bob', 'Jane'))\nprint(g.lower())\n```\n\n```python\n# find + slicing — wyciągnięcie domeny po '@' do spacji\ns = 'From stephen@uct.ac.za Sat Jan 5 09:14:16 2008'\natpos = s.find('@')\nspcpos = s.find(' ', atpos)\ndomain = s[atpos+1:spcpos]\nprint(domain)  # np. 'uct.ac.za'\n```\n\n## Ważne zasadY\n- **`+` nie dodaje spacji** — jeśli chcesz spację, dołącz ją jawnie.\n- **Metody zwracają kopię** — `lower()`, `replace()` itp. nie modyfikują oryginału.\n- **`in` to test logiczny** — zwraca `True/False`, często w `if`.\n- **`find()` daje indeks lub `-1`** — użyj tego, by znaleźć początek podnapisu.\n- **Slicing nie obejmuje końca** — `s[a:b]` bierze od `a` do `b-1`.\n- **Białe znaki to nie tylko spacje** — `strip()` usuwa spacje, taby i nowe linie na końcach.\n\n## Częste błędy\n- **Myślenie, że `+` doda spację**: wynik będzie sklejony bez spacji.\n- **Oczekiwanie, że metoda zmieni napis**: trzeba przypisać wynik, np. `s = s.strip()`.\n- **Zapominanie o indeksach od 0**: `find()` zwraca pozycję od zera.\n- **Mylenie `find()` z globalnym wyszukiwaniem**: `find()` zwraca tylko pierwsze wystąpienie.\n",
-    "flashcardCount": 12,
-    "quizCount": 10,
-    "exerciseCount": 5
-  },
-  {
-    "id": 27,
-    "courseId": "python",
-    "filename": "Struny.md",
-    "title": "Operacje na łańcuchach znaków (stringi)",
-    "summary": "Rozdział o pracy z tekstem w Pythonie. Uczymy się indeksować, wycinać fragmenty, mierzyć długość i iterować po znakach.",
-    "topics": [
-      "Stringi",
-      "Indeksowanie",
-      "Slicing (wycinanie)",
-      "Funkcja len()",
-      "Pętle for i while",
-      "Operator in",
-      "Konwersja int()",
-      "Błędy: TypeError i IndexError",
-      "Konkatenacja"
-    ],
-    "notes": "## O czym jest ta lekcja\nTa lekcja pokazuje podstawy pracy z łańcuchami znaków (stringami) w Pythonie. Nauczysz się łączyć, indeksować, przecinać i iterować po stringach.\n\n## Kluczowe pojęcia\n### Konkatenacja\nMożesz łączyć dwa stringi używając `+`, np. `\"A\" + \"B\"`. Operacja nie dodaje automatycznie spacji.\n\n### Konwersja typów\nDane pobrane przez `input()` są zawsze `str`. Aby zrobić działania arytmetyczne, trzeba użyć np. `int()` do zamiany na liczbę.\n\n### Operator indeksu\nPojedynczy znak z łańcucha pobierasz przez `[]`, np. `fruit[1]`. Indeksy zaczynają się od zera: pierwszy znak to `fruit[0]`.\n\n### `len()`\nFunkcja `len()` zwraca długość stringa jako liczbę całkowitą, np. `len(\"banana\")` zwraca `6`.\n\n### Pętle: `while` i `for`\nMożesz przejść po każdym znaku używając `while` z indeksem lub prostiej pętli `for` z `in`, np. `for letter in fruit:`. `for` sam kontroluje kiedy skończyć.\n\n### Slicing (wycinki)\nUżywasz zapisu `s[start:end]`. Koniec jest **do, ale nie włącznie** — `s[0:4]` bierze indeksy `0,1,2,3`.\n\n## Przykłady kodu\n```python\n# konkatenacja i konwersja\ns = \"123\"\n# s + 1 spowoduje błąd\nn = int(s) + 1\nprint(n)  # 124\n\n# iteracja for po znakach i zliczanie\nfruit = \"banana\"\ncount = 0\nfor letter in fruit:\n    if letter == 'a':\n        count = count + 1\nprint(count)  # 3\n\n# slicing\ns = \"Monty Python\"\nprint(s[0:4])  # 'Mont'\nprint(s[6:20]) # 'Python' (bez błędu, koniec poza zakresem jest ok)\n```\n\n## Ważne zasady\n- **Indeksowanie od zera** — pierwszy znak ma indeks `0`, więc ostatni ma indeks `len(s)-1`.\n- **Slicing kończy się przed wskazanym indeksem** — `s[0:4]` nie zawiera `s[4]`.\n- **`input()` zwraca string** — zawsze dostajesz `str`, nawet gdy wpiszesz liczby.\n- **Używaj `for` gdy nie potrzebujesz indeksu** — prostszy kod, mniej błędów.\n- **`len()` daje liczbę znaków** — pomocne przy pętlach z indeksem.\n\n## Częste błędy\n- **Dodawanie liczby do stringa**: `\"123\" + 1` -> TypeError. Trzeba najpierw `int(\"123\")`.\n- **IndexError: string index out of range**: sięganie poza koniec, np. `s[10]` gdy string jest krótszy.\n- **Mylenie zakresu w slicing**: `s[0:4]` bierze 4 znaki, a nie 5. Końca nie wliczamy.\n- **Używanie `while` zamiast `for` bez potrzeby**: więcej kodu i większe ryzyko błędów z indeksem.",
-    "flashcardCount": 12,
-    "quizCount": 9,
-    "exerciseCount": 4
-  },
-  {
     "id": 28,
     "courseId": "python",
     "filename": "Krotki.md",
@@ -571,6 +393,203 @@
       "Ucieczka znaków `\\` i `\\S`"
     ],
     "notes": "## O czym jest ta lekcja\nKilka prostych sposobów na wyciąganie części tekstu za pomocą wyrażeń regularnych i `re.findall()`.\n\n## Kluczowe pojęcia\n### `re.findall()`\nFunkcja przeszukuje tekst i zwraca listę wszystkich dopasowań jako napisy. Jeśli nic nie znajdzie, zwróci pustą listę.\n\n### Nawiasy kwadratowe `[]` i zakresy\n`[0-9]` oznacza pojedynczą cyfrę. Lista w nawiasach to dozwolone znaki. `AEIOU` to np. litery samogłosek.\n\n### Kwantyfikatory `+` i `*`\n`+` oznacza \"jeden lub więcej\". `*` oznacza \"zero lub więcej\". Należy uważać, bo `*` może dać puste dopasowanie.\n\n### Zachłanność i `?`\nDomyślnie `+` i `*` są zachłanne — biorą jak największy fragment. Dodanie `?` po nich daje wersję nie-zachłanną, czyli najmniejszy możliwy fragment.\n\n### `\\S` i ucieczka znaków\n`\\S` to pojedynczy nie-blank znak (wszystko poza spacją). Jeśli chcesz dopasować znak specjalny, użyj `\\` przed nim, np. `\\$`.\n\n### Nawiasy do przechwytywania `()`\nNawiasy pozwalają wybrać, którą część dopasowania `findall` ma zwrócić. Możesz dopasować dłuższy wzorzec, a wyciągnąć tylko fragment.\n\n## Przykłady kodu\n```python\nimport re\nre.findall('[0-9]+', 'Ala ma 2 koty i 42 rybki')\n```\nTo zwróci listę napisów z liczbami.\n\n```python\nimport re\nre.findall('^From\\s+(\\S+@\\S+)', 'From joe@example.com')\n```\nZwróci adres e-mail z linii zaczynającej się od `From `.\n\n## Ważne zasady\n- **Sprawdź długość listy** — `findall` może zwrócić 0 elementów.\n- **Użyj nawiasów** gdy chcesz wyciągnąć tylko część dopasowania.\n- **Uważaj na zachłanność** — czasem trzeba dodać `?` po `+` lub `*`.\n- **Ucieczka znaków** — jeśli wzorzec ma specjalny znak, poprzedź go `\\`.\n\n## Częste błędy\n- **Zbyt szeroki wzorzec (zachłanny)**: otrzymasz większy fragment niż oczekujesz; użyj `?` żeby skrócić.\n- **Nie sprawdzenie pustej listy**: próbujesz indexować pustą listę i dostajesz błąd; najpierw sprawdź `len()`.",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 31,
+    "courseId": "python",
+    "filename": "Idiomy Loop.md",
+    "title": "Liczniki, sumy, średnie i filtrowanie w pętli",
+    "summary": "Nauczysz się liczyć elementy w pętli, sumować wartości, liczyć średnią oraz filtrować elementy przez `if`. Poznasz też zmienną logiczną (Boolean) do oznaczania, czy coś znaleziono.",
+    "topics": [
+      "Liczniki (count)",
+      "Suma (running total)",
+      "Średnia",
+      "Filtrowanie z if",
+      "Zmienna logiczna (found / True/False)"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: jak używać zmiennych przed pętlą i aktualizować je w każdej iteracji. To pozwala liczyć, sumować, wyliczać średnią i filtrować wartości.\n\n## Kluczowe pojęcia\n### Licznik\nUstawiasz zmienną na 0 przed pętlą i za każdym razem zwiększasz o 1: `count = count + 1`. Dzięki temu wiesz, ile razy pętla się wykonała.\n\n### Suma (running total)\nUstawiasz zmienną na 0 przed pętlą i dodajesz do niej każdą wartość: `total = total + value`. To daje łączny wynik wszystkich przejść.\n\n### Średnia\nPotrzebujesz licznika i sumy. Po pętli dzielisz sumę przez licznik: `average = total / count`.\n\n### Filtrowanie z `if`\nW pętli możesz sprawdzać warunek i wykonać kod tylko wtedy, gdy warunek jest prawdziwy: `if value > 20:`. To pozwala wybrać tylko niektóre elementy.\n\n### Zmienna logiczna (Boolean)\nUżywasz zmiennej, np. `found = False`. Jeżeli znajdziesz szukaną rzecz, ustawiasz `found = True`. Po pętli wiesz, czy coś znaleziono.\n\n## Przykłady kodu\n```python\n# liczenie elementów\ncount = 0\nvalues = [2, 5, 7]\nfor v in values:\n    count = count + 1\nprint(count)\n```\nTen przykład liczy ile jest elementów w liście.\n\n```python\n# suma i średnia\ntotal = 0\ncount = 0\nvalues = [4, 6]\nfor v in values:\n    total = total + v\n    count = count + 1\nprint(total, total / count)\n```\nTo liczy sumę i oblicza średnią.\n\n```python\n# filtrowanie i znalezienie\nfound = False\nfor v in [1, 9, 3]:\n    if v == 3:\n        found = True\nprint(found)\n```\nSprawdza, czy w liście jest liczba 3.\n\n## Ważne zasady\n- **Zainicjuj przed pętlą** — licznik i suma zaczynają od `0` przed `for`.\n- **Aktualizuj wewnątrz pętli** — zwiększaj licznik `count = count + 1` i sumę `total = total + value` w każdej iteracji.\n- **Użyj warunku do filtrowania** — `if value > 20:` pozwala wykonywać kod tylko dla wybranych wartości.\n- **Boolean przy szukaniu** — `found = False` i ustaw `found = True`, gdy znajdziesz element.\n- **Oblicz średnią na końcu** — dopiero po pętli wykonaj `total / count`.\n\n## Częste błędy\n- **Zaniedbanie inicjalizacji**: jeśli nie ustawisz `count = 0`, to zmienna może nie istnieć lub mieć błędną wartość. Zawsze ustaw przed pętlą.\n- **Nie zwiększanie licznika**: jeśli zapomnisz `count = count + 1`, licznik nie zliczy iteracji.\n- **Nadpisanie zmiennej przez błąd**: użycie `=` zamiast `==` w `if` (albo odwrotnie) jest błędem; pamiętaj, że `=` przypisuje, `==` sprawdza równość.\n- **Zmiana found z powrotem**: nie ustawiaj `found` z powrotem na `False` wewnątrz pętli po znalezieniu czegoś.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 5
+  },
+  {
+    "id": 32,
+    "courseId": "python",
+    "filename": "Korzystanie z funkcji.md",
+    "title": "Funkcje — przechowywanie i ponowne użycie",
+    "summary": "Lekcja wyjaśnia ideę przechowywania i ponownego użycia kodu przez funkcje. Pokazuje jak definiować funkcję przez `def`, jak ją wywołać i jak funkcje mogą zwracać wartości oraz powodować błędy przy konwersji typów.",
+    "topics": [
+      "DRY — nie powtarzaj się",
+      "Definiowanie funkcji za pomocą `def`",
+      "Wywoływanie (call / invoke) funkcji",
+      "Zwracanie wartości przez `return`",
+      "Wbudowane funkcje: `print`, `int`, `float`, `max`, `min`, `type`, `input`",
+      "Błędy przy nieprawidłowej konwersji typów"
+    ],
+    "notes": "## O czym jest ta lekcja\nLekcja uczy, że funkcje pozwalają przechować kawałek kodu i uruchomić go wielokrotnie. To pomaga nie powtarzać tych samych linii kodu.\n\n## Kluczowe pojęcia\n### Funkcja i `def`\nFunkcję definiujemy słowem kluczowym `def`, nazwą i dwoma nawiasami, a potem blokiem wciętym. Definicja sama nic nie wykonuje — tylko zapisuje kod.\n\n### Wywołanie funkcji\nAby uruchomić funkcję używamy nazwy z nawiasami, np. `thing()`. Wtedy Python przerywa aktualny kod, wykonuje funkcję i wraca do miejsca wywołania.\n\n### `return` i wartości zwracane\nFunkcja może zwrócić wynik przez `return`. Ten wynik zastępuje wywołanie funkcji w wyrażeniu i można go przypisać do zmiennej.\n\n### Wbudowane funkcje\nFunkcje takie jak `print()`, `int()`, `float()`, `max()`, `min()` są dostępne od razu. `int()` i `float()` konwertują typy. `max()` i `min()` znajdują największy i najmniejszy element.\n\n## Przykłady kodu\n```python\ndef greet():\n    print('Cześć')\n\ngreet()\n```\nPowyżej definiujemy funkcję i ją wywołujemy — wtedy pojawi się napis.\n\n```python\nbig = max('hello world')\nsmall = min('hello world')\n```\n`max()` zwraca największy znak, a `min()` najmniejszy.\n\n```python\nf = float(99) / 100\n```\nTu `float(99)` zamienia `99` na `99.0`, potem dzielenie daje `0.99`.\n\n## Ważne zasady\n- **DRY (Don't Repeat Yourself)** — zamiast kopiować kod, wstaw go do funkcji i wywołuj.  \n- **Definicja nie wykonuje** — `def` tylko zapisuje funkcję, nic nie wypisze dopóki nie wywołasz.  \n- **Wywołanie używa nawiasów** — zapamiętaj: `thing` to nazwa, `thing()` to wywołanie.  \n- **Funkcje mogą zwracać wartość** — wartość z `return` może być przypisana do zmiennej.  \n- **Konwersje typów mogą się nie powieść** — `int('abc')` spowoduje błąd (traceback).\n\n## Częste błędy\n- **Brak nawiasów przy wywołaniu**: piszesz `f` zamiast `f()`. Funkcja nie zostanie wykonana.  \n- **Zła konwersja typów**: próbujesz `int('hello')` — program się zatrzyma z błędem. Zawsze upewnij się, że string to liczba.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 5
+  },
+  {
+    "id": 33,
+    "courseId": "python",
+    "filename": "Listy i ciągi znaków.md",
+    "title": "Podział tekstu i lista: `split()` oraz podstawy parsowania",
+    "summary": "Lekcja pokazuje, jak używać `split()` do zamiany łańcucha w listę. Pokazuje też indeksowanie list, pętlę `for`, oraz podwójne dzielenie (double split) do wyciągania części, np. domeny z adresu e‑mail.",
+    "topics": [
+      "split",
+      "listy",
+      "indeksowanie",
+      "pętla for",
+      "podwójny split",
+      "startswith",
+      "rstrip",
+      "parsowanie linii"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: jak rozbić tekst na kawałki i użyć list do pracy z tymi kawałkami. Uczymy się też prostego wzorca do parsowania linii z pliku.\n\n## Kluczowe pojęcia\n### `split()`\nFunkcja członkowska łańcucha. `s.split()` dzieli `s` na listę słów domyślnie po białych znakach. Zwraca listę elementów.\n\n### `split(delimiter)`\nMożna podać znak rozdzielający, np. `s.split(\";\")`. Wtedy rozdziela dokładnie po tym znaku. Nie łączy wielu rozdzielników w jeden.\n\n### Indeksowanie listy\nPo `split()` dostajemy listę. Pobieramy elementy przez `lista[0]`, `lista[1]` itd. Indeks zaczyna się od zera.\n\n### Pętla `for` przez listę\nMożemy przejść po elementach listy: `for w in words:` i robić coś z każdym elementem.\n\n### Podwójny split (double split)\nNajpierw dzielimy linię na słowa (`words = line.split()`), potem bierzemy jedno słowo i dzielimy je dalej (`parts = words[1].split(\"@\")`) żeby wyciągnąć np. część po `@`.\n\n### Parsowanie pliku - wzorzec\n1. Otwórz plik. 2. `for line in file:` 3. `line = line.rstrip()` 4. sprawdź `if not line.startswith(\"From \"): continue` 5. `parts = line.split()` 6. użyj `parts[...]`.\n\n## Przykłady kodu\n```python\ns = \"ala ma  kota\"\nwords = s.split()\nfor w in words:\n    print(w)\n```\nTen kod wypisze trzy słowa.\n\n```python\nline = \"From alice@exam.com Sat\"\nwords = line.split()\nemail = words[1]\ndomain = email.split(\"@\")[1]\nprint(domain)\n```\nPrzykład podwójnego rozdzielenia: wyciąga część po `@`.\n\n## Ważne zasady\n- **`split()` bez argumentu** — dzieli po białych znakach i traktuje wiele spacji jak jedną.\n- **`split(delimiter)`** — dzieli dokładnie po zadanym znaku. Nie łączy powtarzających się separatorów.\n- **Indeksy zaczynają się od 0** — `words[0]` to pierwszy element.\n- **Podwójny split** to prosty sposób na wydobycie części z już rozdzielonego słowa.\n- **Wzorzec parsowania linii**: `rstrip()`, `startswith()`, `split()`, potem indeksy.\n\n## Częste błędy\n- **Zakładanie, że custom separator łączy powtórzenia**: `s.split(\";\")` może dać puste elementy, jeśli są dwa znaki z rzędu.\n- **Pobieranie indeksu bez sprawdzenia**: `words[2]` może nie istnieć, jeśli linia ma mniej słów. Sprawdzaj zawartość przed użyciem.\n- **Mylenie, co daje `split()` bez argumentu**: on usuwa nadmiar spacji, więc liczba elementów może być inna niż przy `split(\" \")`.\n",
+    "flashcardCount": 12,
+    "quizCount": 8,
+    "exerciseCount": 4
+  },
+  {
+    "id": 34,
+    "courseId": "python",
+    "filename": "Listy.md",
+    "title": "Listy i pętle: indeksowanie, mutowalność i range",
+    "summary": "Lekcja wprowadza listy jako zmienne przechowujące wiele wartości. Omawia indeksy (zerowy start), mutowalność list, funkcje `len()` i `range()` oraz sposoby iteracji: pętlę po elementach i pętlę zliczającą przez indeksy.",
+    "topics": [
+      "listy",
+      "indeksowanie",
+      "pętle for",
+      "mutowalność",
+      "len()",
+      "range()"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko o listach jako kolekcjach wartości. Jak je tworzyć, czytać i zmieniać. Jak używać `len()` i `range()` do sterowania pętlami.\n\n## Kluczowe pojęcia\n### Lista\nLista to zmienna, która trzyma wiele wartości. Tworzymy ją za pomocą nawiasów kwadratowych, np. `items = [1, 2, 3]`.\n\n### Indeksowanie\nDostęp do elementu robimy za pomocą operatora indeksu `[]`. Pierwszy element ma indeks `0`, drugi `1`, itd. Przykład: `colors[1]` zwraca drugi element listy.\n\n### Mutowalność\nListy są mutowalne. Możemy zmienić element przypisaniem: `lst[2] = 10`. Natomiast ciągi znaków (`string`) nie są mutowalne — nie można przypisać `s[0] = 'a'`.\n\n### `len()`\nFunkcja `len()` zwraca liczbę elementów w liście lub liczbę znaków w stringu. Przykład: `len([1,2,3])` daje `3`.\n\n### `range()`\n`range(n)` zwraca sekwencję liczb od `0` do `n-1`. Używamy jej często z `for` gdy potrzebujemy indeksów: `for i in range(len(lst)):`.\n\n## Przykłady kodu\n```python\n# pętla po elementach listy\nfruits = ['jabłko', 'gruszka', 'banan']\nfor f in fruits:\n    print(f)\n```\nPętla wypisze każdy element listy.\n\n```python\n# pętla zliczająca po indeksach\nnums = [10, 20, 30]\nfor i in range(len(nums)):\n    print(i, nums[i])\n```\nTa pętla daje też informację o indeksie elementu.\n\n## Ważne zasady\n- **Listę tworzymy** za pomocą `[]` i przecinków — np. `['a', 'b']`.\n- **Indeksy zaczynają się od 0** — pierwszy element ma indeks `0`.\n- **Listy są mutowalne** — można przypisać `lst[0] = x`.\n- **Stringi nie są mutowalne** — nie można zmienić pojedynczego znaku przez `s[0] = ...`.\n- **`len()`** zwraca długość listy lub długość stringa.\n- **`range(n)`** tworzy sekwencję liczb od `0` do `n-1` i przydaje się do pętli zliczającej.\n\n## Częste błędy\n- **Off-by-one (błąd o jeden)**: Próba użycia indeksu równego długości listy (`lst[len(lst)]`) spowoduje błąd. Indeksy kończą się na `len(lst)-1`.\n- **Próba zmiany stringa**: Kod typu `word[0] = 'x'` da błąd, bo string nie można zmienić w miejscu.\n- **Niepotrzebne użycie indeksów**: Jeśli nie potrzebujesz pozycji elementu, lepiej użyć `for item in lista:` zamiast `for i in range(len(lista)):`.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 35,
+    "courseId": "python",
+    "filename": "Manipulowanie listami.md",
+    "title": "Operacje na listach",
+    "summary": "Lekcja pokazuje jak działa lista w Pythonie. Opisano łączenie list, wycinanie (slicing), dodawanie elementów, sprawdzanie przynależności i podstawowe funkcje jak `len()`, `sum()` czy `sort()`.",
+    "topics": [
+      "listy",
+      "łączenie list",
+      "slicing",
+      "append i mutowalność",
+      "operator in / not in",
+      "sortowanie",
+      "sum / len i średnia"
+    ],
+    "notes": "## O czym jest ta lekcja\n1-2 zdania wprowadzenia.\n\nLekcja uczy podstawowych operacji na listach. Pokazuje jak je łączyć, kroić, dodawać elementy i liczyć prostą statystykę.\n\n## Kluczowe pojęcia\n### Lista\nLista to uporządkowana sekwencja elementów. Tworzymy pustą listę przez `list()` lub `[]`.\n\n### Łączenie list\nMożna dodawać listy przez `+`. To tworzy nową listę i nie zmienia oryginałów.\n\n### Slicing\nSyntax `a[start:end]` bierze elementy od `start` do `end-1`. Indeks końcowy nie jest włączony.\n\n### `append()` i mutowalność\n`append()` dodaje element na końcu listy i zmienia listę. Nie przypisuj wyniku `x = x.append(...)` bo to zepsuje `x`.\n\n### Operator `in` i `not in`\nSprawdza, czy element jest w liście. Przykład: `5 in nums` zwraca True jeśli 5 jest w `nums`.\n\n### `sort()`\nMetoda `sort()` zmienia listę, ustawiając elementy w kolejności rosnącej (dla tekstu: alfabetycznie).\n\n### `len()`, `sum()`, `max()`, `min()`\nFunkcje te działają na listach liczb. `len()` liczy elementy. `sum()` dodaje wszystkie elementy.\n\n## Przykłady kodu\n```python\n# tworzenie i dodawanie\ndata = list()\ndata.append('book')\ndata.append(99)\nprint(data)  # ['book', 99]\n```\nTo tworzy listę i dodaje dwa elementy.\n\n```python\n# slicing i łączenie\na = [1, 2, 3, 4, 5]\nprint(a[1:4])      # [2, 3, 4]\nb = [10, 20]\nc = a + b\nprint(c)           # [1,2,3,4,5,10,20]\n```\nPrzykład pokazuje wycięcie zakresu i łączenie list.\n\n## Ważne zasady\n- **Slicing** — `a[start:end]` bierze elementy do `end-1`.\n- **Append** — `x.append(v)` dodaje na końcu i zmienia listę. Nie przypisuj wyniku tej metody.\n- **Listy zachowują porządek** — elementy wychodzą w tej samej kolejności, w jakiej je dodaliśmy.\n- **Sortowanie zmienia listę** — `lst.sort()` porządkuje `lst` i zmienia ją.\n- **Sumowanie** — jeśli masz listę liczb, użyj `sum(lst)` i `len(lst)` do policzenia średniej.\n\n## Częste błędy\n- **Przypisanie wyniku `append()`**: `x = x.append(5)` sprawi, że `x` przestanie być listą. Zamiast tego używaj `x.append(5)`.\n- **Mylenie typów przy `in`**: `4 in ['4']` zwróci False, bo `'4'` to string, a nie liczba.\n- **Założenie, że slicing zwraca element końcowy**: `a[1:3]` nie zawiera elementu o indeksie 3.\n",
+    "flashcardCount": 10,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 36,
+    "courseId": "python",
+    "filename": "Typy zmiennych.md",
+    "title": "Typy podstawowe: int, float, string i konwersje",
+    "summary": "Lekcja wyjaśnia, że Python śledzi typ wartości (liczba całkowita, liczba zmiennoprzecinkowa, tekst). Pokazuje jak działa operator `+` dla liczb i dla tekstu oraz jak konwertować typy za pomocą `int()` i `float()`. Omawia też `type()`, działanie dzielenia w Python 3, `input()` i komunikaty o błędach (traceback, TypeError).",
+    "topics": [
+      "zmienne i stałe",
+      "typy danych: int, float, string",
+      "dodawanie vs konkatenacja",
+      "konwersje: int(), float()",
+      "funkcja type()",
+      "dzielenie w Python 3",
+      "input() i print()",
+      "traceback i TypeError"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: Python rozróżnia typy wartości. Typ decyduje, jak działa operator `+` i inne operacje. Można konwertować między typami za pomocą `int()` i `float()`.\n\n## Kluczowe pojęcia\n### Typy danych\nPython rozróżnia typy. Najważniejsze tutaj to `int` (liczby całkowite), `float` (liczby zmiennoprzecinkowe) i `str` (napisy, stringi). Typ wpływa na zachowanie operacji.\n\n### Operator `+`\nDla `int` robi dodawanie. Dla `str` robi łączenie (konkatenację). Nie można dodać `str` i `int` bez konwersji.\n\n### Konwersje: `int()` i `float()`\n`int('123')` zwraca liczbę całkowitą 123. `float('3')` zwraca 3.0. Używamy tych funkcji, by zmienić typ wartości.\n\n### Funkcja `type()`\n`type(x)` pokazuje typ wartości w `x`. Przydatne do debugowania gdy Python zwraca błędy typów.\n\n### `input()` i `print()`\n`input(prompt)` zatrzymuje program i czyta linię z klawiatury jako `str`. `print(a, b)` wypisuje wartości oddzielone spacją, bo przecinek dodaje spację.\n\n### Traceback i błędy typów\nGdy Python nie potrafi wykonać operacji (np. dodać `str` i `int`), pokazuje `Traceback` i wyjątek `TypeError` lub inny komunikat z informacją gdzie błąd wystąpił.\n\n## Przykłady kodu\n```python\nx = 1 + 4\nprint(x)  # wypisze 5\n```\nDodawanie dwóch `int` daje `int`.\n\n```python\ns = 'Hello' + ' ' + 'World'\nprint(s)  # wypisze Hello World\n```\nŁączenie trzech `str` daje jeden `str`.\n\n```python\nn = int('123')\nprint(n + 1)  # wypisze 124\n```\nKonwersja `str` z cyframi na `int` pozwala na dodawanie.\n\n## Ważne zasady\n- **Zasada 1** — Nie mieszaj `str` i `int` bez konwersji. Python wtedy zgłosi błąd typu.\n- **Zasada 2** — Użyj `type()` gdy nie rozumiesz, co masz w zmiennej.\n- **Zasada 3** — `float()` i `int()` to wymuszone konwersje. `float(99)` → `99.0`.\n- **Zasada 4** — W Python 3 wynik dzielenia `/` to zawsze `float` (np. `9/2` → `4.5`).\n- **Zasada 5** — `input()` zawsze zwraca `str`.\n\n## Częste błędy\n- **Błąd 1**: Dodawanie `str` i `int` — Python wyrzuci `TypeError`. Rozwiązanie: skonwertuj typy (np. `int()` lub `str()`).\n- **Błąd 2**: `int('4.5')` — to nie zadziała. Trzeba najpierw `float('4.5')`, potem `int()` jeśli to konieczne.\n- **Błąd 3**: Myślenie, że `+` doda spację przy łączeniu — `+` nie dodaje spacji, trzeba ją dodać ręcznie: `'Hello' + ' ' + name`.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 37,
+    "courseId": "python",
+    "filename": "Słowniki i pliki.md",
+    "title": "Liczenie słów i operacje na słownikach",
+    "summary": "Lekcja pokazuje jak zliczać słowa przy pomocy słownika jako histogramu. Omawia pętle `for`, metodę `get`, oraz iterowanie po `keys()`, `values()` i `items()`.",
+    "topics": [
+      "histogram",
+      "słowniki",
+      "pętle for",
+      "metoda get",
+      "keys, values, items",
+      "tuple assignment",
+      "czytanie linii (for line in handle)"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: uczymy się budować histogram słów ze słownika. Używamy `split()` do podziału tekstu i `get()` do aktualizacji zliczeń.\n\n## Kluczowe pojęcia\n### Histogram ze słownika\nHistogram to słownik, gdzie kluczem jest element (np. słowo), a wartością jego zliczenie. Tworzymy pusty słownik `counts = {}` i zwiększamy licznik dla każdego słowa.\n\n### `split()`\n`split()` dzieli tekst na listę słów po białych znakach. Przykład: `words = line.split()`.\n\n### Metoda `get` w słowniku\n`counts.get(key, 0)` zwraca wartość dla `key` lub `0` gdy nie ma klucza. Popularny idiom: `counts[word] = counts.get(word, 0) + 1`.\n\n### Iterowanie po słowniku\n- `for key in counts:` przechodzi po kluczach.\n- `list(counts)` i `counts.keys()` dają listę kluczy.\n- `counts.values()` daje listę wartości.\n- `counts.items()` daje listę par (tupli) `(key, value)`.\n\n### Tuple assignment w pętli\nMożna pisać `for key, value in counts.items():` i wtedy w jednej linii dostajemy oba elementy pary.\n\n### Szukanie największej wartości\nTypowy wzorzec (max loop): przed pętlą ustaw `best = None`, `best_word = None`. W pętli sprawdź `if best is None or count > best:` i zapamiętaj większy wynik.\n\n## Przykłady kodu\n```python\ntext = \"a b a c b b\"\ncounts = {}\nwords = text.split()\nfor w in words:\n    counts[w] = counts.get(w, 0) + 1\nprint(counts)\n```\nPowyżej tworzymy histogram słów.\n\n```python\nfor key, val in counts.items():\n    print(key, val)\n```\nTo wypisuje klucz i odpowiadającą mu wartość.\n\n## Ważne zasady\n- **Używaj `get` z domyślną wartością** — wtedy pierwszy dostęp nie spowoduje błędu. `counts.get(word, 0)`.\n- **Iteracja po słowniku daje klucze** — `for k in d:` zwraca klucze, nie wartości.\n- **`items()` daje pary (tuplę)** — możesz użyć `for k, v in d.items():` by dostać od razu obie części.\n- **Zainicjuj wartość maksymalną jako `None`** — wtedy łatwo rozpoznać pierwszy element w pętli maksymalnej.\n\n## Częste błędy\n- **Brak domyślnej wartości w `get`**: `counts.get(word) + 1` da błąd, bo `get` zwróci `None` dla nieistniejącego klucza. Zamiast tego użyj `counts.get(word, 0) + 1`.\n- **Myślenie, że `for k in d:` daje pary**: w tym wypadku trzeba potem robić `d[k]` lub użyć `d.items()`.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 38,
+    "courseId": "python",
+    "filename": "Struny.md",
+    "title": "Operacje na napisach i indeksowanie",
+    "summary": "Lekcja opisuje podstawy pracy z napisami. Omówione są konkatenacja, indeksowanie, pętle po znakach, funkcja `len()` i wycinki (slicing).",
+    "topics": [
+      "Konkatenacja napisów",
+      "Konwersja typów (`int()`)",
+      "Funkcja `input()`",
+      "Indeksowanie z `[]`",
+      "Funkcja `len()`",
+      "Pętle: `while` i `for`",
+      "Zliczanie znaków",
+      "Slicing (wycinki)",
+      "Błędy: IndexError i TypeError"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko o tym, jak pracować z napisami. Nauczysz się łączyć napisy, odczytywać znaki po indeksie, przeglądać napis pętlą i robić wycinki.\n\n## Kluczowe pojęcia\n### Konkatenacja\n`+` łączy dwa napisy. Nie dodaje spacji automatycznie. Przykład: `\"a\" + \"b\"` daje `\"ab\"`.\n\n### Konwersja do liczby\nFunkcja `int()` zamienia napis, który wygląda jak liczba, na liczbę. Przydaje się gdy wynik `input()` ma być użyty jak liczba.\n\n### `input()` i typy\n`input()` zawsze zwraca napis. Nawet jeśli wpiszesz `100`, to jest to napis. Trzeba użyć `int()` jeśli chcemy działać jak na liczbach.\n\n### Indeksowanie\nZapis `s[0]` pobiera pierwszy znak napisu `s`. Indeksy zaczynają się od `0`. Ostatni indeks jest `len(s)-1`.\n\n### `len()`\n`len(s)` zwraca długość napisu jako liczbę całkowitą.\n\n### Pętle po znakach\n- `while` z indeksem: tworzymy indeks 0 i zwiększamy go do `len(s)-1`.\n- `for` z `in`: prostsze. `for ch in s:` przechodzi po wszystkich znakach.\n\n### Slicing (wycinki)\n` s[a:b] ` zwraca część napisu od indeksu `a` do `b-1`. Koniec jest \"do, ale nie włącznie\". Można pominąć `a` lub `b`: `s[:3]` to pierwsze trzy znaki, `s[2:]` to od drugiego do końca.\n\n## Przykłady kodu\n```python\n# konkatenacja i konwersja\nx = \"123\"\ny = int(x)\nprint(y + 1)\n```\nPowoduje wypisanie `124` po konwersji.\n\n```python\n# iteracja for po znakach\nfor ch in \"kot\":\n    print(ch)\n```\nWypisuje każdy znak osobno.\n\n```python\n# slicing\ns = \"program\"\nprint(s[0:3])  # 'pro'\n```\nWycinek bierze od 0 do 2.\n\n## Ważne zasady\n- **Indeksowanie zaczyna się od 0** — pierwszy znak to `s[0]`.\n- **Koniec w slicing jest nieinkludujący** — `s[0:3]` daje trzy znaki: 0,1,2.\n- **`input()` zwraca napis** — jeśli chcesz liczbę, użyj `int()`.\n- **Użyj `for` gdy nie potrzebujesz indeksu** — krócej i czyściej.\n- **Nie dodawaj napisu i liczby bez konwersji** — to spowoduje `TypeError`.\n\n## Częste błędy\n- **Dodawanie napisu i liczby**: `\"123\" + 1` da `TypeError`. Rozwiąż przez `int(\"123\") + 1`.\n- **IndexError**: `s[10]` gdy `len(s) <= 10`. Sprawdź `len(s)` lub użyj slicing, które nie rzuca błędu przy wyjściu poza koniec.\n- **Mylenie `s[0:3]` z `s[0:2]`**: pamiętaj, że końcowy indeks nie jest wliczony.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 39,
+    "courseId": "python",
+    "filename": "Technologia Networking.md",
+    "title": "Wprowadzenie do gniazd sieciowych (sockets) i portów",
+    "summary": "Lekcja wyjaśnia podstawy komunikacji sieciowej między aplikacjami. Opisane są warstwy sieci, pojęcie gniazda (socket), portów i trzy linie Python potrzebne do nawiązania połączenia.",
+    "topics": [
+      "Architektura sieci (warstwy)",
+      "Transport layer",
+      "Gniazda (sockets)",
+      "Porty TCP/IP",
+      "Podstawowy kod w Pythonie: import, socket.socket(), connect()"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko o tym, jak programy rozmawiają przez internet. Pokazano idea gniazda i jak w Pythonie otworzyć połączenie.\n\n## Kluczowe pojęcia\n### Warstwy sieci\nSieć ma warstwy. Aplikacja rozmawia z warstwą transportową. Transport używa warstwy internet i link.\n\n### Transport layer\nTo część, która łączy dwie aplikacje \"od końca do końca\". W tej warstwie działają połączenia między aplikacjami.\n\n### Gniazdo (socket)\nGniazdo to krótkie połączenie między dwiema aplikacjami. W Pythonie tworzymy je przez `socket.socket()`.\n\n### Porty\nPorty to numery aplikacji na serwerze. Przykłady: `25` dla poczty, `80` dla HTTP, `443` dla HTTPS. W URL można dopisać port po dwukropku, np. `host:8080`.\n\n### Połączenie w Pythonie\nImportujemy bibliotekę `socket`, tworzymy gniazdo `socket.socket()` i wywołujemy `mysock.connect((host, port))`.\n\n## Przykłady kodu\n```python\nimport socket\nmysock = socket.socket()\nmysock.connect(('example.com', 80))\n```\nTo pokazuje trzy podstawowe kroki do nawiązania połączenia.\n\n## Ważne zasady\n- **Import** — zawsze `import socket` przed użyciem gniazda.\n- **Tworzenie gniazda** — użyj `socket.socket()` z nawiasami, to tworzy obiekt gniazda.\n- **Połączenie** — `mysock.connect((host, port))` łączy z serwerem i portem.\n- **Porty** — `80` to zwykły HTTP, `443` to bezpieczny HTTPS.\n\n## Częste błędy\n- **Brak importu**: zapomnisz `import socket` i dostaniesz błąd, bo `socket` nie istnieje.\n- **Brak nawiasów**: `socket.socket` zamiast `socket.socket()` nie tworzy gniazda.\n- **Zły port**: łączenie do nieistniejącego portu kończy się błędem połączenia.\n",
+    "flashcardCount": 12,
+    "quizCount": 8,
+    "exerciseCount": 4
+  },
+  {
+    "id": 40,
+    "courseId": "python",
+    "filename": "Manipulowanie ciągami znaków.md",
+    "title": "Operacje na łańcuchach znaków (stringach)",
+    "summary": "Ta lekcja pokazuje podstawowe operacje na stringach w Pythonie. Omówimy łączenie, wyszukiwanie, metody jak `lower()`, `replace()`, `strip()` oraz wycinanie przy pomocy indeksów (slicing).",
+    "topics": [
+      "Konkatenacja stringów",
+      "Operator `in`",
+      "Metody stringów: `lower()`, `upper()`, `replace()`, `strip()`, `lstrip()`, `rstrip()`, `startswith()`",
+      "Metoda `find()` i drugi parametr startowy",
+      "Slicing (wycinki) i indeksy",
+      "Niezmienność stringów (metody zwracają kopię)"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: jak pracować z tekstem w Pythonie. Pokazujemy łączenie, wyszukiwanie, zmiany i wycinanie fragmentów.\n\n## Kluczowe pojęcia\n### Konkatenacja\n`+` łączy dwa stringi dosłownie. `\"a\" + \"b\"` daje `\"ab\"`. Nie dodaje spacji automatycznie.\n\n### Operator `in`\n`x in s` sprawdza, czy `x` (znak lub podciąg) występuje w `s`. Zwraca `True` lub `False`.\n\n### `find()`\n`find()` zwraca indeks pierwszego wystąpienia podciągu lub `-1`, gdy nie ma wyniku. Ma opcjonalny drugi parametr startu: `s.find(sub, start)`.\n\n### Metody `lower()` i `upper()`\n`lower()` zwraca nowy string z małymi literami. `upper()` robi odwrotnie. Oryginał nie zmienia się.\n\n### `replace()`\n`replace(old, new)` zwraca kopię, gdzie wszystkie `old` są zamienione na `new`.\n\n### `strip()`, `lstrip()`, `rstrip()`\nUsuwają białe znaki (spacje, taby, nowe linie) z początku i/lub końca stringa.\n\n### `startswith()`\nSprawdza, czy string zaczyna się od konkretnego prefiksu. Jest czułe na wielkość liter.\n\n### Slicing (wycinki)\n`s[a:b]` zwraca fragment od indeksu `a` do `b-1`. Indeksy zaczynają się od `0`. Końcowy indeks nie jest wliczany.\n\n## Przykłady kodu\n```python\n# znajdź domenę w prostym wierszu\ns = \"user@site.com Sat\"\nat = s.find(\"@\")\ndomain = s[at+1 : s.find(\" \", at)]\n```\nTen kod znajduje `@` i wycina tekst między `@` a następną spacją.\n\n```python\n# porównanie ignorujące wielkość liter\nif a.lower() == b.lower():\n    print(\"są takie same\")\n```\nUżyj `lower()` do porównań nieczułych na wielkość liter.\n\n## Ważne zasady\n- **`+` nie dodaje spacji** — jeśli chcesz spację, dodaj ją: `a + \" \" + b`.\n- **`in` vs `find()`** — `in` daje `True/False`, `find()` daje indeks lub `-1`.\n- **Metody nie zmieniają oryginału** — `replace()`, `lower()` zwracają kopię.\n- **Slicing ma koniec nieinkludowany** — `s[a:b]` nie zawiera `s[b]`.\n- **`startswith()` jest czułe na wielkość liter** — użyj `lower()` jeśli chcesz ignorować wielkość.\n\n## Częste błędy\n- **Spodziewanie się spacji przy `+`**: `\"a\" + \"b\"` daje `\"ab\"`. Dodaj `\" \"` jeśli chcesz spację.\n- **Nie zauważenie `-1` z `find()`**: próba użyć `-1` jako indekсу wycinka może dać nieoczekiwany wynik; zawsze sprawdź `-1`.\n- **Myślenie, że metoda zmienia string**: `s.replace()` nie zmienia `s`. Przypisz wynik, jeśli chcesz zachować zmianę.\n",
     "flashcardCount": 12,
     "quizCount": 9,
     "exerciseCount": 4

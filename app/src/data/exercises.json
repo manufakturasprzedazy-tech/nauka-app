@@ -120,66 +120,6 @@
     ]
   },
   {
-    "id": 9,
-    "materialId": 3,
-    "title": "Policz liczby większe od progu",
-    "description": "Napisz funkcję, która przyjmuje listę liczb `nums` i liczbę `threshold`. Zwróć ile elementów jest większych niż `threshold`.",
-    "starterCode": "def count_greater(nums, threshold):\n    # TODO: zainicjuj licznik\n    # TODO: przejdź przez listę i zwiększ licznik gdy value > threshold\n    # TODO: zwróć licznik\n    pass\n",
-    "solution": "def count_greater(nums, threshold):\n    count = 0\n    for value in nums:\n        if value > threshold:\n            count = count + 1\n    return count\n",
-    "testCode": "assert count_greater([1, 5, 10, 20], 9) == 2\nassert count_greater([], 0) == 0\nassert count_greater([0, -1, -5], -2) == 1\n",
-    "difficulty": "easy",
-    "topic": "liczniki (count)",
-    "hints": [
-      "Użyj `count = 0` przed pętlą i zwiększaj o 1 gdy warunek prawdziwy.",
-      "Przejdź przez każdy element `for value in nums:`"
-    ]
-  },
-  {
-    "id": 10,
-    "materialId": 3,
-    "title": "Oblicz średnią listy",
-    "description": "Napisz funkcję `average(nums)`, która zwraca średnią wartości w liście. Jeśli lista jest pusta, zwróć 0.0.",
-    "starterCode": "def average(nums):\n    # TODO: zainicjuj total i count\n    # TODO: przejdź przez nums i aktualizuj total i count\n    # TODO: jeśli count>0 zwróć total/count, inaczej 0.0\n    pass\n",
-    "solution": "def average(nums):\n    total = 0\n    count = 0\n    for value in nums:\n        total = total + value\n        count = count + 1\n    if count > 0:\n        return total / count\n    else:\n        return 0.0\n",
-    "testCode": "assert average([10, 20, 30]) == 20.0\nassert average([]) == 0.0\nassert abs(average([1,2]) - 1.5) < 1e-9\n",
-    "difficulty": "medium",
-    "topic": "średnia (average)",
-    "hints": [
-      "Użyj zmiennej `total = 0` i `count = 0` przed pętlą.",
-      "Po pętli sprawdź `if count > 0:` zanim podzielisz."
-    ]
-  },
-  {
-    "id": 11,
-    "materialId": 3,
-    "title": "Znalezienie wartości (flaga)",
-    "description": "Napisz funkcję `found_value(nums, target)`, która zwraca `True` jeśli `target` znajduje się w `nums`, w przeciwnym razie `False`. Użyj zmiennej logicznej jako flagi.",
-    "starterCode": "def found_value(nums, target):\n    # TODO: ustaw flagę na False\n    # TODO: przejdź przez nums i ustaw flagę gdy znajdziesz target\n    # TODO: zwróć flagę\n    pass\n",
-    "solution": "def found_value(nums, target):\n    found = False\n    for value in nums:\n        if value == target:\n            found = True\n    return found\n",
-    "testCode": "assert found_value([2,4,6], 4) == True\nassert found_value([1,3,5], 2) == False\nassert found_value([], 0) == False\n",
-    "difficulty": "easy",
-    "topic": "zmienna logiczna (flag / found)",
-    "hints": [
-      "Zainicjuj `found = False` przed pętlą.",
-      "W pętli porównuj `if value == target:` i ustaw `found = True` gdy znajdziesz."
-    ]
-  },
-  {
-    "id": 12,
-    "materialId": 3,
-    "title": "Średnia z pominięciem zer",
-    "description": "Napisz funkcję `average_ignore_zero(nums)`, która oblicza średnią z elementów różnych od zera. Jeśli nie ma takich elementów, zwróć 0.0.",
-    "starterCode": "def average_ignore_zero(nums):\n    # TODO: zainicjuj total i count\n    # TODO: w pętli dodawaj tylko niezerowe wartości\n    # TODO: zwróć średnią lub 0.0 gdy count==0\n    pass\n",
-    "solution": "def average_ignore_zero(nums):\n    total = 0\n    count = 0\n    for value in nums:\n        if value != 0:\n            total = total + value\n            count = count + 1\n    if count > 0:\n        return total / count\n    else:\n        return 0.0\n",
-    "testCode": "assert average_ignore_zero([0, 5, 0, 15]) == 10.0\nassert average_ignore_zero([0,0,0]) == 0.0\nassert abs(average_ignore_zero([2,3,4]) - 3.0) < 1e-9\n",
-    "difficulty": "hard",
-    "topic": "filtrowanie z `if`",
-    "hints": [
-      "Użyj `total` i `count` z wartościami inicjalnymi 0.",
-      "W pętli dodawaj tylko, gdy `value != 0`."
-    ]
-  },
-  {
     "id": 13,
     "materialId": 4,
     "title": "Proste `if` — opis liczby",
@@ -312,187 +252,6 @@
     "hints": [
       "Zainicjuj sumę jako 0 i dodawaj wartości, które się konwertują.",
       "Użyj `try`/`except` i `for` do przejścia po liście."
-    ]
-  },
-  {
-    "id": 22,
-    "materialId": 6,
-    "title": "Prosta funkcja powitania",
-    "description": "Napisz funkcję `say_hello()` która wypisze dwie linie: `Hello` i `Nice to meet you`. Wywołaj funkcję po jej zdefiniowaniu.",
-    "starterCode": "def say_hello():\n    # TODO: wypisz dwie linie\n\n# TODO: wywołaj funkcję\n",
-    "solution": "def say_hello():\n    print(\"Hello\")\n    print(\"Nice to meet you\")\n\nsay_hello()\n",
-    "testCode": "def say_hello_test():\n    # Testujemy, że funkcja wypisuje dwie linie przy wywołaniu\n    # Tu sprawdzamy zachowanie ręcznie uruchamiając funkcję\n    say_hello()\n\n# Uruchom test (ręczny sprawdzacz - wypisz obserwowany wynik)\nsay_hello_test()\n",
-    "difficulty": "easy",
-    "topic": "Definiowanie funkcji (`def`)",
-    "hints": [
-      "Użyj `def` do definicji funkcji.",
-      "Wewnątrz funkcji użyj `print()` dwa razy."
-    ]
-  },
-  {
-    "id": 23,
-    "materialId": 6,
-    "title": "Dodaj jeden do liczby w stringu",
-    "description": "Napisz funkcję `add_one(s)` która przyjmuje string `s` reprezentujący liczbę całkowitą. Zamień `s` na int, dodaj 1 i zwróć wynik jako int.",
-    "starterCode": "def add_one(s):\n    # TODO: zamień s na int i zwróć wartość + 1\n    pass\n",
-    "solution": "def add_one(s):\n    value = int(s)\n    return value + 1\n",
-    "testCode": "assert add_one('0') == 1\nassert add_one('5') == 6\nassert add_one('99') == 100\n",
-    "difficulty": "easy",
-    "topic": "Konwersje typów",
-    "hints": [
-      "Użyj `int()` aby zamienić string na liczbę.",
-      "Zwróć wynik przy pomocy `return`."
-    ]
-  },
-  {
-    "id": 24,
-    "materialId": 6,
-    "title": "Procent z liczby w stringu",
-    "description": "Napisz funkcję `to_percent(s)` która przyjmuje string `s` z liczbą, konwertuje go na float i zwraca wartość podzieloną przez 100. Przykład: `to_percent('42')` -> `0.42`.",
-    "starterCode": "def to_percent(s):\n    # TODO: zamień s na float i podziel przez 100\n    pass\n",
-    "solution": "def to_percent(s):\n    value = float(s)\n    return value / 100\n",
-    "testCode": "assert abs(to_percent('99') - 0.99) < 1e-9\nassert abs(to_percent('42') - 0.42) < 1e-9\nassert abs(to_percent('0') - 0.0) < 1e-9\n",
-    "difficulty": "medium",
-    "topic": "Konwersje typów",
-    "hints": [
-      "Użyj `float()` do konwersji na zmiennoprzecinkową.",
-      "Dziel wynik przez 100 i zwróć go."
-    ]
-  },
-  {
-    "id": 25,
-    "materialId": 6,
-    "title": "Największy i najmniejszy znak",
-    "description": "Napisz funkcję `min_max_char(s)` która przyjmuje string `s`. Funkcja ma znaleźć największy znak za pomocą `max()` i najmniejszy za pomocą `min()`. Zwróć je jako jeden string oddzielony spacją, np. `'z a'`.",
-    "starterCode": "def min_max_char(s):\n    # TODO: użyj max() i min() i zwróć wynik jako jeden string\n    pass\n",
-    "solution": "def min_max_char(s):\n    big = max(s)\n    small = min(s)\n    return big + \" \" + small\n",
-    "testCode": "assert min_max_char('abzA') == 'z A'\nassert min_max_char(' x') == 'x  '\nassert min_max_char('09') == '9 0'\n",
-    "difficulty": "hard",
-    "topic": "Funkcje wbudowane",
-    "hints": [
-      "Użyj `max(s)` i `min(s)` bez pętli.",
-      "Połącz dwa znaki używając konkatenacji: `a + ' ' + b`."
-    ]
-  },
-  {
-    "id": 26,
-    "materialId": 7,
-    "title": "Podziel zdanie na słowa",
-    "description": "Napisz funkcję `split_words(s)` która przyjmuje string `s` i zwraca listę słów. Funkcja powinna użyć `split()` bez argumentu.",
-    "starterCode": "def split_words(s):\n    # TODO: zwróć listę słów ze stringa s\n    pass\n",
-    "solution": "def split_words(s):\n    # używamy domyślnego split, który dzieli po białych znakach\n    return s.split()\n",
-    "testCode": "def run_tests():\n    assert split_words('a b c') == ['a', 'b', 'c']\n    assert split_words('  hello   world  ') == ['hello', 'world']\n    assert split_words('') == []\n\nrun_tests()\n",
-    "difficulty": "easy",
-    "topic": "split()",
-    "hints": [
-      "Użyj `s.split()`.",
-      "Pamiętaj, że `split()` usuwa nadmiarowe spacje."
-    ]
-  },
-  {
-    "id": 27,
-    "materialId": 7,
-    "title": "Wyciągnij trzeci wyraz z nagłówka",
-    "description": "Napisz funkcję `third_word_if_from(line)` która zwraca trzeci wyraz (indeks 2) tylko jeśli `line` zaczyna się od `From ` (z spacją). W przeciwnym razie funkcja zwraca `None`.",
-    "starterCode": "def third_word_if_from(line):\n    # TODO: jeśli linia zaczyna się od 'From ', zwróć trzeci wyraz, inaczej None\n    pass\n",
-    "solution": "def third_word_if_from(line):\n    if not line.startswith('From '):\n        return None\n    words = line.split()\n    # zakładamy, że linia ma co najmniej trzy pola\n    return words[2]\n",
-    "testCode": "def run_tests():\n    assert third_word_if_from('From a@b.com Tue') == 'Tue'\n    assert third_word_if_from('From    user@host Wed') == 'Wed'\n    assert third_word_if_from('Subject: From test') is None\n\nrun_tests()\n",
-    "difficulty": "medium",
-    "topic": "startsWith i filtrowanie",
-    "hints": [
-      "Sprawdź `line.startswith('From ')`.",
-      "Potem użyj `split()` i `words[2]`."
-    ]
-  },
-  {
-    "id": 28,
-    "materialId": 7,
-    "title": "Wyciągnij domenę z adresu email",
-    "description": "Napisz funkcję `get_domain(line)` która przyjmuje linię zaczynającą się od `From ` i zwraca część za `@` w adresie email (domenę). Dla linii, która nie zaczyna się od `From `, zwróć `None`.",
-    "starterCode": "def get_domain(line):\n    # TODO: jeśli linia zaczyna się od 'From ' zwróć domenę adresu email, inaczej None\n    pass\n",
-    "solution": "def get_domain(line):\n    if not line.startswith('From '):\n        return None\n    words = line.split()\n    email = words[1]\n    parts = email.split('@')\n    # zakładamy, że email ma '@'\n    return parts[1]\n",
-    "testCode": "def run_tests():\n    assert get_domain('From user@example.com Sun') == 'example.com'\n    assert get_domain('From a@b.com Fri') == 'b.com'\n    assert get_domain('Return-Path: <test>') is None\n\nrun_tests()\n",
-    "difficulty": "medium",
-    "topic": "double split",
-    "hints": [
-      "Użyj `split()` żeby dostać email jako `words[1]`.",
-      "Następnie użyj `split('@')` żeby dostać część po `@`."
-    ]
-  },
-  {
-    "id": 29,
-    "materialId": 7,
-    "title": "Przetwórz tekst skrzynki pocztowej",
-    "description": "Napisz funkcję `domains_from_text(text)` która przyjmuje wielolinijkowy string `text`. Funkcja powinna przejść po każdej linii, pominąć linie nie zaczynające się od `From `, a dla pozostałych wypisać (zwrócić) wszystkie domeny (część po `@` w adresie). Zwróć jeden string z domenami rozdzielonymi znakiem nowej linii `\\n`. Jeśli nie ma domen, zwróć pusty string.",
-    "starterCode": "def domains_from_text(text):\n    # TODO: przetwórz tekst i zwróć domeny z linii zaczynających się od 'From '\n    # Zwróć string z domenami oddzielonymi '\\n' lub pusty string gdy brak\n    pass\n",
-    "solution": "def domains_from_text(text):\n    lines = text.split('\\n')\n    result = ''\n    for line in lines:\n        if not line.startswith('From '):\n            continue\n        words = line.split()\n        email = words[1]\n        parts = email.split('@')\n        domain = parts[1]\n        if result == '':\n            result = domain\n        else:\n            result = result + '\\n' + domain\n    return result\n",
-    "testCode": "def run_tests():\n    txt = 'From a@alpha.com Mon\\nSubject: test\\nFrom b@beta.org Tue\\nFrom   c@gamma.net  Wed'\n    out = domains_from_text(txt)\n    assert out == 'alpha.com\\nbeta.org\\ngamma.net'\n\n    # brak linii From\n    assert domains_from_text('Subject: none\\nDate: now') == ''\n\n    # pusty tekst\n    assert domains_from_text('') == ''\n\nrun_tests()\n",
-    "difficulty": "hard",
-    "topic": "pętle for",
-    "hints": [
-      "Podziel `text` na linie używając `split('\\n')` i przejdź przez nie pętlą `for`.",
-      "Zbieraj wynik do stringa przez konkatenację: `result += '\\n' + domain` lub ustaw pierwszy element bez poprzedzającego '\\n'."
-    ]
-  },
-  {
-    "id": 30,
-    "materialId": 8,
-    "title": "Policz wystąpienia",
-    "description": "Napisz funkcję, która zliczy, ile razy dana wartość pojawia się w liście. Zwróć liczbę wystąpień.",
-    "starterCode": "```python\n# starter code\ndef count_value(lst, val):\n    # TODO: policz ile razy val pojawia się w lst\n    pass\n```",
-    "solution": "```python\n# full solution\ndef count_value(lst, val):\n    count = 0\n    for x in lst:\n        if x == val:\n            count = count + 1\n    return count\n```",
-    "testCode": "```python\n# tests\nassert count_value([], 1) == 0\nassert count_value([1,2,1,3], 1) == 2\nassert count_value(['a','b','a'], 'a') == 2\n```",
-    "difficulty": "easy",
-    "topic": "Listy",
-    "hints": [
-      "Użyj pętli `for` by przejść po każdym elemencie listy.",
-      "Porównuj elementy z szukaną wartością i zwiększaj licznik."
-    ]
-  },
-  {
-    "id": 31,
-    "materialId": 8,
-    "title": "Znajdź pierwszy indeks",
-    "description": "Napisz funkcję, która zwraca indeks pierwszego wystąpienia wartości w liście. Jeśli wartość nie istnieje, zwróć -1.",
-    "starterCode": "```python\n# starter code\ndef find_first_index(lst, val):\n    # TODO: zwróć indeks pierwszego wystąpienia val lub -1\n    pass\n```",
-    "solution": "```python\n# full solution\ndef find_first_index(lst, val):\n    for i in range(len(lst)):\n        if lst[i] == val:\n            return i\n    return -1\n```",
-    "testCode": "```python\n# tests\nassert find_first_index([], 5) == -1\nassert find_first_index([3,4,5], 3) == 0\nassert find_first_index([3,4,5,4], 4) == 1\n```",
-    "difficulty": "medium",
-    "topic": "Indeksowanie",
-    "hints": [
-      "Użyj `for i in range(len(lista))` by mieć dostęp do indeksu.",
-      "Porównuj `lista[i]` z szukaną wartością i zwróć `i` gdy znajdziesz."
-    ]
-  },
-  {
-    "id": 32,
-    "materialId": 8,
-    "title": "Zamień wszystkie wartości",
-    "description": "Napisz funkcję, która zmienia wszystkie wystąpienia wartości `old` na `new` w tej samej liście (modyfikacja listy). Zwróć zmienioną listę.",
-    "starterCode": "```python\n# starter code\ndef replace_all(lst, old, new):\n    # TODO: zamień wszystkie wystąpienia old na new w lst\n    return lst\n```",
-    "solution": "```python\n# full solution\ndef replace_all(lst, old, new):\n    for i in range(len(lst)):\n        if lst[i] == old:\n            lst[i] = new\n    return lst\n```",
-    "testCode": "```python\n# tests\nlst1 = [1,2,1,3]\nassert replace_all(lst1, 1, 9) == [9,2,9,3]\nlst2 = []\nassert replace_all(lst2, 'a', 'b') == []\nlst3 = ['x','x','y']\nassert replace_all(lst3, 'x', 'z') == ['z','z','y']\n```",
-    "difficulty": "medium",
-    "topic": "Mutowalność",
-    "hints": [
-      "Przechodź po indeksach przez `range(len(lst))` i przypisuj nowe wartości przez `lst[i] = ...`.",
-      "Pamiętaj, że lista jest mutowalna, więc możesz zmieniać elementy bez tworzenia nowej listy."
-    ]
-  },
-  {
-    "id": 33,
-    "materialId": 8,
-    "title": "Najdłuższa podlista",
-    "description": "Dostaniesz listę list. Zwróć długość najdłuższej podlisty. Jeśli lista zewnętrzna jest pusta, zwróć 0.",
-    "starterCode": "```python\n# starter code\ndef longest_sublist_length(matrix):\n    # matrix to lista list\n    # TODO: zwróć maksymalną długość podlisty lub 0 gdy brak podlist\n    pass\n```",
-    "solution": "```python\n# full solution\ndef longest_sublist_length(matrix):\n    max_len = 0\n    for sub in matrix:\n        if len(sub) > max_len:\n            max_len = len(sub)\n    return max_len\n```",
-    "testCode": "```python\n# tests\nassert longest_sublist_length([]) == 0\nassert longest_sublist_length([[1,2],[3,4,5],[6]]) == 3\nassert longest_sublist_length([[],[]]) == 0\n```",
-    "difficulty": "hard",
-    "topic": "Listy zagnieżdżone",
-    "hints": [
-      "Użyj `len()` by zmierzyć długość każdej podlisty.",
-      "Przechodź przez każdą podlistę i śledź największą długość.",
-      "Pamiętaj o przypadku, gdy lista zewnętrzna jest pusta."
     ]
   },
   {
@@ -1038,66 +797,6 @@
     ]
   },
   {
-    "id": 70,
-    "materialId": 18,
-    "title": "Średnia z listy liczb",
-    "description": "Napisz funkcję `average(nums)` która zwraca średnią wartości w liście `nums`. Jeśli lista jest pusta, zwróć 0.",
-    "starterCode": "```python\ndef average(nums):\n    # TODO: policz średnią listy nums\n    pass\n```",
-    "solution": "```python\ndef average(nums):\n    # jeśli lista pusta, zwracamy 0\n    if len(nums) == 0:\n        return 0\n    return sum(nums) / len(nums)\n```",
-    "testCode": "```python\n# testy\nassert average([2, 4, 6]) == 4\nassert average([3.0, 3.0]) == 3.0\nassert average([]) == 0\nassert average([5]) == 5\n```",
-    "difficulty": "easy",
-    "topic": "sum i len",
-    "hints": [
-      "Użyj `sum()` żeby policzyć sumę.",
-      "Użyj `len()` żeby policzyć elementy i sprawdź czy nie są zerowe."
-    ]
-  },
-  {
-    "id": 71,
-    "materialId": 18,
-    "title": "Średnia z symulowanego wejścia",
-    "description": "Masz listę stringów `inputs`. Każdy element to liczba albo 'done'. Przechodź po elementach w pętli `while`. Zbieraj liczby do listy i zwróć średnią po napotkaniu 'done' lub końca listy. Jeśli nie było liczb, zwróć 0.",
-    "starterCode": "```python\ndef average_from_inputs(inputs):\n    # TODO: użyj while, zbieraj liczby do listy, przerwij na 'done'\n    nums = []\n    i = 0\n    # ...\n```",
-    "solution": "```python\ndef average_from_inputs(inputs):\n    nums = []\n    i = 0\n    while i < len(inputs):\n        val = inputs[i]\n        if val == 'done':\n            break\n        nums.append(float(val))\n        i = i + 1\n    if len(nums) == 0:\n        return 0\n    return sum(nums) / len(nums)\n```",
-    "testCode": "```python\n# testy\nassert average_from_inputs(['3', '9', 'done']) == 6.0\nassert average_from_inputs(['done']) == 0\nassert average_from_inputs(['2', '4', '6']) == 4.0\n```",
-    "difficulty": "medium",
-    "topic": "budowanie list",
-    "hints": [
-      "Użyj pętli `while` z indeksem, aby symulować czytanie wejścia.",
-      "Przy dodawaniu wartości zamień string na `float()` i użyj `append()`."
-    ]
-  },
-  {
-    "id": 72,
-    "materialId": 18,
-    "title": "Unikalne i posortowane imiona",
-    "description": "Napisz funkcję `unique_sorted(names)` która dostaje listę imion. Zwróć nową listę z unikalnymi imionami, posortowaną alfabetycznie. Nie używaj dodatkowych struktur poza listami.",
-    "starterCode": "```python\ndef unique_sorted(names):\n    # TODO: zwróć posortowaną listę unikalnych imion\n    result = []\n    # ...\n```",
-    "solution": "```python\ndef unique_sorted(names):\n    result = []\n    i = 0\n    while i < len(names):\n        name = names[i]\n        if name not in result:\n            result.append(name)\n        i = i + 1\n    result.sort()\n    return result\n```",
-    "testCode": "```python\n# testy\nassert unique_sorted(['Anna', 'Piotr', 'Anna']) == ['Anna', 'Piotr']\nassert unique_sorted([]) == []\nassert unique_sorted(['Zosia', 'Adam', 'Zosia', 'Adam']) == ['Adam', 'Zosia']\n```",
-    "difficulty": "medium",
-    "topic": "sort i in",
-    "hints": [
-      "Utwórz pustą listę wynikową i dodawaj tylko jeśli element nie jest w liście (`in`).",
-      "Na końcu użyj `sort()` żeby posortować wynik."
-    ]
-  },
-  {
-    "id": 73,
-    "materialId": 18,
-    "title": "Średnia bez zapisywania wszystkich liczb",
-    "description": "Napisz funkcję `running_average(inputs)` która dostaje listę stringów z liczbami i 'done'. Przetwarzaj elementy jeden po drugim i oblicz końcową średnią bez przechowywania całej listy liczb (użyj 2 zmiennych: suma i licznik). Jeśli nie ma liczb zwróć 0.",
-    "starterCode": "```python\ndef running_average(inputs):\n    # TODO: użyj total i count, bez tworzenia listy\n    total = 0\n    count = 0\n    i = 0\n    # ...\n```",
-    "solution": "```python\ndef running_average(inputs):\n    total = 0.0\n    count = 0\n    i = 0\n    while i < len(inputs):\n        v = inputs[i]\n        if v == 'done':\n            break\n        total = total + float(v)\n        count = count + 1\n        i = i + 1\n    if count == 0:\n        return 0\n    return total / count\n```",
-    "testCode": "```python\n# testy\nassert running_average(['1', '2', '3', 'done']) == 2.0\nassert running_average(['done']) == 0\nassert running_average(['5']) == 5.0\n```",
-    "difficulty": "hard",
-    "topic": "pętle i pamięć",
-    "hints": [
-      "Użyj zmiennych `total` i `count` i aktualizuj je dla każdej liczby.",
-      "Przestań przetwarzać gdy napotkasz 'done'."
-    ]
-  },
-  {
     "id": 74,
     "materialId": 19,
     "title": "Konwerter pięter (łatwe)",
@@ -1215,66 +914,6 @@
     "hints": [
       "Użyj indeksu `i` i `while i < len(inputs):`.",
       "W środku sprawdzaj `inputs[i]` i zmieniaj `i` odpowiednio przy `continue` i po dodaniu do wyniku."
-    ]
-  },
-  {
-    "id": 82,
-    "materialId": 21,
-    "title": "Dodawanie liczb z napisów",
-    "description": "Napisz funkcję `sum_string_numbers(s1, s2)`, która przyjmuje dwa napisy zawierające cyfry i zwraca ich sumę jako liczbę całkowitą.",
-    "starterCode": "```python\ndef sum_string_numbers(s1, s2):\n    # TODO: zamień napisy na int i zwróć ich sumę\n    pass\n```",
-    "solution": "```python\ndef sum_string_numbers(s1, s2):\n    # Zamiana napisów na int i dodanie\n    return int(s1) + int(s2)\n```",
-    "testCode": "```python\n# tests\nassert sum_string_numbers('10', '5') == 15\nassert sum_string_numbers('0', '0') == 0\nassert sum_string_numbers('123', '877') == 1000\n```",
-    "difficulty": "easy",
-    "topic": "konwersje: int(), float()",
-    "hints": [
-      "Użyj `int()` aby zamienić napis na liczbę.",
-      "Zwróć sumę dwóch liczb, nie napis."
-    ]
-  },
-  {
-    "id": 83,
-    "materialId": 21,
-    "title": "Dodawanie int i napisu z liczbą zmiennoprzecinkową",
-    "description": "Napisz funkcję `add_int_and_float_str(i, f_str)`, która bierze liczbę całkowitą `i` i napis `f_str` z liczbą zmiennoprzecinkową, konwertuje `f_str` na `float` i zwraca sumę.",
-    "starterCode": "```python\ndef add_int_and_float_str(i, f_str):\n    # TODO: zamień f_str na float i dodaj do i\n    pass\n```",
-    "solution": "```python\ndef add_int_and_float_str(i, f_str):\n    return i + float(f_str)\n```",
-    "testCode": "```python\n# tests\nassert add_int_and_float_str(3, '2.5') == 5.5\nassert add_int_and_float_str(0, '0.0') == 0.0\nassert add_int_and_float_str(10, '0.1') == 10.1\n```",
-    "difficulty": "medium",
-    "topic": "konwersje: int(), float()",
-    "hints": [
-      "Użyj `float()` na drugim argumencie.",
-      "Wynik będzie typu `float` gdy jeden argument jest `float`."
-    ]
-  },
-  {
-    "id": 84,
-    "materialId": 21,
-    "title": "Konkatenacja imion",
-    "description": "Napisz funkcję `concat_names(n1, n2)`, która łączy dwa napisy imion z jedną spacją między nimi i zwraca wynik.",
-    "starterCode": "```python\ndef concat_names(n1, n2):\n    # TODO: zwróć napis z n1, spacją i n2\n    pass\n```",
-    "solution": "```python\ndef concat_names(n1, n2):\n    return n1 + \" \" + n2\n```",
-    "testCode": "```python\n# tests\nassert concat_names('Anna', 'Nowak') == 'Anna Nowak'\nassert concat_names('', 'Kowal') == ' Kowal'\nassert concat_names('A', 'B') == 'A B'\n```",
-    "difficulty": "easy",
-    "topic": "operator + jako dodawanie i konkatenacja",
-    "hints": [
-      "Użyj operatora `+` do łączenia napisów.",
-      "Pamiętaj dodać spację `\" \"` między imionami."
-    ]
-  },
-  {
-    "id": 85,
-    "materialId": 21,
-    "title": "Podwojenie liczby z napisu",
-    "description": "Napisz funkcję `double_from_string(s)`, która konwertuje napis z cyframi na `int` i zwraca wartość pomnożoną przez 2.",
-    "starterCode": "```python\ndef double_from_string(s):\n    # TODO: zamień s na int i zwróć wynik * 2\n    pass\n```",
-    "solution": "```python\ndef double_from_string(s):\n    return int(s) * 2\n```",
-    "testCode": "```python\n# tests\nassert double_from_string('4') == 8\nassert double_from_string('0') == 0\nassert double_from_string('123') == 246\n```",
-    "difficulty": "easy",
-    "topic": "konwersje: int(), float()",
-    "hints": [
-      "Najpierw użyj `int()` aby dostać liczbę.",
-      "Pomnóż liczbę przez 2 i zwróć wynik."
     ]
   },
   {
@@ -1459,201 +1098,6 @@
     ]
   },
   {
-    "id": 98,
-    "materialId": 25,
-    "title": "Zlicz słowa w jednej linii",
-    "description": "Napisz funkcję `count_words(line)` która bierze łańcuch `line` i zwraca słownik z liczbą wystąpień każdego słowa. Użyj `split()` i `get()`.",
-    "starterCode": "```python\ndef count_words(line):\n    # TODO: zwróć słownik z liczbą wystąpień słów\n    pass\n```",
-    "solution": "```python\ndef count_words(line):\n    counts = {}\n    for w in line.split():\n        counts[w] = counts.get(w, 0) + 1\n    return counts\n```",
-    "testCode": "```python\n# tests\nassert count_words('') == {}\nassert count_words('python') == {'python': 1}\nassert count_words('a b a') == {'a': 2, 'b': 1}\n```",
-    "difficulty": "easy",
-    "topic": "histogram",
-    "hints": [
-      "Użyj `for w in line.split():` aby przejść po słowach.",
-      "Zwiększ licznik przez `counts[w] = counts.get(w, 0) + 1`."
-    ]
-  },
-  {
-    "id": 99,
-    "materialId": 25,
-    "title": "Zlicz słowa w wielu liniach",
-    "description": "Napisz funkcję `count_words_in_lines(lines)` gdzie `lines` to lista łańcuchów. Funkcja powinna zliczyć słowa we wszystkich liniach i zwrócić słownik z wynikami.",
-    "starterCode": "```python\ndef count_words_in_lines(lines):\n    # TODO: zwróć słownik liczący słowa ze wszystkich linii\n    pass\n```",
-    "solution": "```python\ndef count_words_in_lines(lines):\n    counts = {}\n    for line in lines:\n        for w in line.split():\n            counts[w] = counts.get(w, 0) + 1\n    return counts\n```",
-    "testCode": "```python\n# tests\nassert count_words_in_lines([]) == {}\nassert count_words_in_lines(['']) == {}\nassert count_words_in_lines(['x y', 'y z', 'x']) == {'x': 2, 'y': 2, 'z': 1}\n```",
-    "difficulty": "medium",
-    "topic": "histogram",
-    "hints": [
-      "Przejdź po każdej linii: `for line in lines:`",
-      "W każdej linii użyj `split()` i zwiększaj liczniki w tym samym słowniku."
-    ]
-  },
-  {
-    "id": 100,
-    "materialId": 25,
-    "title": "Znajdź najczęściej występujące słowo",
-    "description": "Napisz funkcję `most_common_word(lines)` która przyjmuje listę linii i zwraca krotkę `(word, count)` z najczęściej występującym słowem i jego licznikiem. Jeśli nie ma słów, zwróć `(None, 0)`.",
-    "starterCode": "```python\ndef most_common_word(lines):\n    # TODO: zwróć (word, count) lub (None, 0) jeśli brak słów\n    pass\n```",
-    "solution": "```python\ndef most_common_word(lines):\n    counts = {}\n    for line in lines:\n        for w in line.split():\n            counts[w] = counts.get(w, 0) + 1\n    if not counts:\n        return (None, 0)\n    bigword = None\n    bigcount = None\n    for w, c in counts.items():\n        if bigcount is None or c > bigcount:\n            bigword = w\n            bigcount = c\n    return (bigword, bigcount)\n```",
-    "testCode": "```python\n# tests\nassert most_common_word([]) == (None, 0)\nassert most_common_word(['']) == (None, 0)\nassert most_common_word(['a b a', 'b a']) in [('a', 3), ('b', 2)] or most_common_word(['a b a', 'b a']) == ('a', 3)\n# konkretne sprawdzenie\nassert most_common_word(['one two two', 'two']) == ('two', 3)\n```",
-    "difficulty": "medium",
-    "topic": "histogram",
-    "hints": [
-      "Najpierw zbuduj histogram podobnie jak w poprzednim zadaniu.",
-      "Użyj wzorca \"max loop\": zacznij od `bigcount = None` i aktualizuj gdy znajdziesz większy licznik."
-    ]
-  },
-  {
-    "id": 101,
-    "materialId": 25,
-    "title": "Wypisz pary klucz-wartość",
-    "description": "Napisz funkcję `format_items(d)` która przyjmuje słownik `d` i zwraca listę łańcuchów w formacie `'<key> <value>'` dla każdej pary. Użyj `items()` i rozpakowania krotek w pętli.",
-    "starterCode": "```python\ndef format_items(d):\n    # TODO: zwróć listę łańcuchów typu 'key value'\n    pass\n```",
-    "solution": "```python\ndef format_items(d):\n    out = []\n    for k, v in d.items():\n        out.append(str(k) + ' ' + str(v))\n    return out\n```",
-    "testCode": "```python\n# tests\nassert format_items({}) == []\nres = format_items({'A':1, 'B':2})\n# sprawdź, że oczekiwane napisy są w wyniku\nassert 'A 1' in res and 'B 2' in res\n```",
-    "difficulty": "hard",
-    "topic": "items()",
-    "hints": [
-      "Użyj `for k, v in d.items():` aby mieć oba elementy naraz.",
-      "Zbuduj listę wynikową i ją zwróć."
-    ]
-  },
-  {
-    "id": 102,
-    "materialId": 26,
-    "title": "Prosta konkatenacja imienia i nazwiska",
-    "description": "Napisz funkcję, która łączy `first` i `last` w jeden napis z pojedynczą spacją między nimi.",
-    "starterCode": "```python\ndef concat_full_name(first, last):\n    # TODO: zwróć napis 'first last'\n    pass\n```",
-    "solution": "```python\ndef concat_full_name(first, last):\n    # Zwracamy po prostu dwa napisy połączone spacją\n    return first + ' ' + last\n```",
-    "testCode": "```python\nassert concat_full_name('Anna', 'Kowalska') == 'Anna Kowalska'\nassert concat_full_name('', 'Nowak') == ' Nowak'\nassert concat_full_name('Piotr', '') == 'Piotr '\n```",
-    "difficulty": "easy",
-    "topic": "Konkatenacja",
-    "hints": [
-      "Użyj operatora `+` do łączenia.",
-      "Pamiętaj, że `+` nie dodaje spacji automatycznie."
-    ]
-  },
-  {
-    "id": 103,
-    "materialId": 26,
-    "title": "Wyciągnij domenę z napisu email",
-    "description": "Dostaniesz napis, który zawiera adres email (np. `'user@domain.com'` lub `'user@domain.com extra'`). Zwróć część po `@` aż do następnej spacji lub do końca napisu.",
-    "starterCode": "```python\ndef find_domain(s):\n    # TODO: znajdź pozycję '@', i zwróć domenę (bez '@')\n    # jeśli '@' nie ma, zwróć pusty napis\n    pass\n```",
-    "solution": "```python\ndef find_domain(s):\n    at = s.find('@')\n    if at == -1:\n        return ''\n    # szukamy spacji po znaku '@'\n    space = s.find(' ', at)\n    if space == -1:\n        return s[at+1:]\n    else:\n        return s[at+1:space]\n```",
-    "testCode": "```python\nassert find_domain('user@domain.com') == 'domain.com'\nassert find_domain('user@domain.com extra') == 'domain.com'\nassert find_domain('no-at-symbol') == ''\nassert find_domain('@start') == 'start'\n```",
-    "difficulty": "medium",
-    "topic": "Metody stringów",
-    "hints": [
-      "Użyj `find()` aby znaleźć pozycję znaku `'@'` i spacji.",
-      "Możesz pominąć koniec napisu w wycinku, używając `s[start:]`."
-    ]
-  },
-  {
-    "id": 104,
-    "materialId": 26,
-    "title": "Zlicz wystąpienia podnapisu",
-    "description": "Napisz funkcję, która zlicza, ile razy w napisie `text` występuje `sub`. Użyj `find()` w pętli, aby znaleźć kolejne wystąpienia.",
-    "starterCode": "```python\ndef count_substring(text, sub):\n    # TODO: zlicz wystąpienia sub w text\n    pass\n```",
-    "solution": "```python\ndef count_substring(text, sub):\n    if sub == '':\n        return 0\n    count = 0\n    start = 0\n    while True:\n        pos = text.find(sub, start)\n        if pos == -1:\n            break\n        count += 1\n        start = pos + 1\n    return count\n```",
-    "testCode": "```python\nassert count_substring('banana', 'ana') == 2\nassert count_substring('aaaa', 'aa') == 3\nassert count_substring('hello', 'x') == 0\nassert count_substring('', 'a') == 0\n```",
-    "difficulty": "medium",
-    "topic": "Metody stringów",
-    "hints": [
-      "Po znalezieniu wystąpienia zacznij kolejne wyszukiwanie od `pos + 1`.",
-      "Gdy `find()` zwróci `-1`, zakończ pętlę."
-    ]
-  },
-  {
-    "id": 105,
-    "materialId": 26,
-    "title": "Porównanie napisów bez uwzględniania spacji i wielkości liter",
-    "description": "Napisz funkcję, która zwraca `True` jeśli dwa napisy są takie same po usunięciu spacji z początku i końca i po sprowadzeniu do małych liter.",
-    "starterCode": "```python\ndef clean_and_compare(a, b):\n    # TODO: zwróć True jeśli a i b po strip() i lower() są równe\n    pass\n```",
-    "solution": "```python\ndef clean_and_compare(a, b):\n    left = a.strip().lower()\n    right = b.strip().lower()\n    return left == right\n```",
-    "testCode": "```python\nassert clean_and_compare('  Hello ', 'hello') is True\nassert clean_and_compare('World', ' world ') is True\nassert clean_and_compare('Hi', 'Ho') is False\nassert clean_and_compare('', '') is True\n```",
-    "difficulty": "easy",
-    "topic": "Metody stringów",
-    "hints": [
-      "Użyj `strip()` żeby usunąć spacje na brzegach.",
-      "Użyj `lower()` aby porównać małe litery."
-    ]
-  },
-  {
-    "id": 106,
-    "materialId": 26,
-    "title": "Wyciągnij adres z linii zaczynającej się od 'From '",
-    "description": "Dostaniesz napis taki jak `'From user@domain.com Sat Jan 5'`. Jeśli napis zaczyna się od `'From '`, zwróć adres email (znak po spacji aż do następnej spacji). W przeciwnym razie zwróć pusty napis.",
-    "starterCode": "```python\ndef extract_email(line):\n    # TODO: jeśli line zaczyna się od 'From ', zwróć email, inaczej ''\n    pass\n```",
-    "solution": "```python\ndef extract_email(line):\n    if not line.startswith('From '):\n        return ''\n    # znajdź pozycję pierwszej spacji po prefiksie 'From '\n    # adres zaczyna się zaraz po 'From '\n    start = line.find(' ', 0) + 1\n    # teraz find kolejnej spacji po adresie\n    end = line.find(' ', start)\n    if end == -1:\n        return line[start:]\n    return line[start:end]\n```",
-    "testCode": "```python\nassert extract_email('From stephen@uct.ac.za Sat Jan 5') == 'stephen@uct.ac.za'\nassert extract_email('NotFrom someone') == ''\nassert extract_email('From a@b') == 'a@b'\n```",
-    "difficulty": "hard",
-    "topic": "Metody stringów",
-    "hints": [
-      "Sprawdź `startswith('From ')`.",
-      "Po znajdź pierwszą spację po `'From '` i użyj wycinka."
-    ]
-  },
-  {
-    "id": 107,
-    "materialId": 27,
-    "title": "Zlicz znak",
-    "description": "Napisz funkcję, która zliczy ile razy znak `ch` występuje w stringu `text`. Zwróć liczbę wystąpień.",
-    "starterCode": "```python\ndef count_char(text, ch):\n    # TODO: zlicz ile razy ch występuje w text\n    pass\n```",
-    "solution": "```python\ndef count_char(text, ch):\n    count = 0\n    for letter in text:\n        if letter == ch:\n            count = count + 1\n    return count\n```",
-    "testCode": "```python\n# tests\nassert count_char(\"hello\", \"l\") == 2\nassert count_char(\"\", \"a\") == 0\nassert count_char(\"aaaaa\", \"a\") == 5\n```",
-    "difficulty": "easy",
-    "topic": "Pętle i zliczanie",
-    "hints": [
-      "Użyj pętli `for ch in text`.",
-      "Pamiętaj ustawić licznik na `0` przed pętlą."
-    ]
-  },
-  {
-    "id": 108,
-    "materialId": 27,
-    "title": "Prefix i suffix",
-    "description": "Napisz funkcję, która zwraca łańcuch złożony z dwóch pierwszych znaków i dwóch ostatnich znaków z `s`. Jeśli `s` ma mniej niż 2 znaki, zwróć `s`.",
-    "starterCode": "```python\ndef first_and_last_two(s):\n    # TODO: zwróć dwa pierwsze i dwa ostatnie znaki\n    pass\n```",
-    "solution": "```python\ndef first_and_last_two(s):\n    if len(s) < 2:\n        return s\n    prefix = s[0:2]\n    suffix = s[len(s)-2:len(s)]\n    return prefix + suffix\n```",
-    "testCode": "```python\n# tests\nassert first_and_last_two(\"python\") == \"pyon\"\nassert first_and_last_two(\"ab\") == \"ab\"\nassert first_and_last_two(\"\") == \"\"\nassert first_and_last_two(\"a\") == \"a\"\n```",
-    "difficulty": "medium",
-    "topic": "Slicing",
-    "hints": [
-      "Użyj `len()` by sprawdzić długość.",
-      "Użyj slicing: `s[0:2]` i `s[len(s)-2:len(s)]`."
-    ]
-  },
-  {
-    "id": 109,
-    "materialId": 27,
-    "title": "Usuń znak na pozycji",
-    "description": "Napisz funkcję, która usuwa znak na pozycji `i` w stringu `s` i zwraca nowy string. Jeśli `i` jest poza zakresem, zwróć oryginalny `s` bez zmian.",
-    "starterCode": "```python\ndef remove_char_at(s, i):\n    # TODO: usuń znak na indeksie i lub zwróć s jeśli i poza zakresem\n    pass\n```",
-    "solution": "```python\ndef remove_char_at(s, i):\n    if i < 0 or i >= len(s):\n        return s\n    return s[0:i] + s[i+1:]\n```",
-    "testCode": "```python\n# tests\nassert remove_char_at(\"hello\", 1) == \"hllo\"\nassert remove_char_at(\"hello\", 0) == \"ello\"\nassert remove_char_at(\"hello\", 10) == \"hello\"\nassert remove_char_at(\"\", 0) == \"\"\n```",
-    "difficulty": "medium",
-    "topic": "Indeksowanie i slicing",
-    "hints": [
-      "Sprawdź zakres: `0 <= i < len(s)`.",
-      "Użyj slicing i konkatenacji: `s[:i] + s[i+1:]`."
-    ]
-  },
-  {
-    "id": 110,
-    "materialId": 27,
-    "title": "Licz wystąpienia podciągu (z nakładaniem)",
-    "description": "Napisz funkcję, która liczy ile razy `sub` występuje w `text`, dopuszczając nakładające się wystąpienia. Zwróć liczbę wystąpień.",
-    "starterCode": "```python\ndef count_substring_occurrences(text, sub):\n    # TODO: policz wszystkie (również nakładające się) wystąpienia sub w text\n    pass\n```",
-    "solution": "```python\ndef count_substring_occurrences(text, sub):\n    if len(sub) == 0:\n        return 0\n    if len(sub) > len(text):\n        return 0\n    count = 0\n    i = 0\n    limit = len(text) - len(sub) + 1\n    while i < limit:\n        if text[i:i+len(sub)] == sub:\n            count = count + 1\n        i = i + 1\n    return count\n```",
-    "testCode": "```python\n# tests\nassert count_substring_occurrences(\"aaaa\", \"aa\") == 3\nassert count_substring_occurrences(\"ababab\", \"ab\") == 3\nassert count_substring_occurrences(\"hello\", \"lo\") == 1\nassert count_substring_occurrences(\"hi\", \"hello\") == 0\nassert count_substring_occurrences(\"\", \"a\") == 0\n```",
-    "difficulty": "hard",
-    "topic": "Slicing i pętle",
-    "hints": [
-      "Jeśli `len(sub) > len(text)` zwróć 0.",
-      "Użyj pętli `while` i porównuj `text[i:i+len(sub)]` z `sub`."
-    ]
-  },
-  {
     "id": 111,
     "materialId": 28,
     "title": "Utwórz krotkę z trzech wartości",
@@ -1832,6 +1276,638 @@
     "hints": [
       "Użyj `^X-DSPAM-Confidence:\\s*([0-9.]+)` w `findall`.",
       "Przejdź po każdej linii i zbieraj dopasowania tylko gdy jest dokładnie jedno."
+    ]
+  },
+  {
+    "id": 123,
+    "materialId": 31,
+    "title": "Policz elementy większe od progu",
+    "description": "Napisz kod, który dostaje listę liczb i liczy, ile jest elementów większych niż podany próg. Wypisz końcowy wynik.\n\nPrzykład: dla listy `[1, 5, 8]` i progu `4` wynik to `2`.",
+    "starterCode": "```python\n# starter code\nvalues = [1, 5, 8, 2]\nthreshold = 4\n# TODO: policz ile elementów jest większych niż threshold\n\n```",
+    "solution": "```python\n# full solution\nvalues = [1, 5, 8, 2]\nthreshold = 4\ncount = 0\nfor v in values:\n    if v > threshold:\n        count = count + 1\nprint(count)\n```",
+    "testCode": "```python\n# tests\nvalues = [1, 5, 8, 2]\nthreshold = 4\ncount = 0\nfor v in values:\n    if v > threshold:\n        count = count + 1\nassert count == 2\n\nvalues = []\nthreshold = 0\ncount = 0\nfor v in values:\n    if v > threshold:\n        count = count + 1\nassert count == 0\n\nvalues = [10, 11, 12]\nthreshold = 9\ncount = 0\nfor v in values:\n    if v > threshold:\n        count = count + 1\nassert count == 3\n```",
+    "difficulty": "easy",
+    "topic": "Liczniki (count)",
+    "hints": [
+      "Ustaw licznik: `count = 0` przed pętlą.",
+      "W pętli sprawdzaj `if v > threshold:` i zwiększaj licznik `count = count + 1`."
+    ]
+  },
+  {
+    "id": 124,
+    "materialId": 31,
+    "title": "Suma dodatnich liczb",
+    "description": "Napisz kod, który oblicza sumę tylko dodatnich liczb z listy. Wypisz wynik.\n\nPrzykład: dla `[-1, 4, 0, 3]` wynik to `7`.",
+    "starterCode": "```python\n# starter code\nvalues = [-1, 4, 0, 3]\n# TODO: policz sumę tylko dodatnich liczb\n\n```",
+    "solution": "```python\n# full solution\nvalues = [-1, 4, 0, 3]\ntotal = 0\nfor v in values:\n    if v > 0:\n        total = total + v\nprint(total)\n```",
+    "testCode": "```python\n# tests\nvalues = [-1, 4, 0, 3]\ntotal = 0\nfor v in values:\n    if v > 0:\n        total = total + v\nassert total == 7\n\nvalues = []\ntotal = 0\nfor v in values:\n    if v > 0:\n        total = total + v\nassert total == 0\n\nvalues = [1, 2, 3]\ntotal = 0\nfor v in values:\n    if v > 0:\n        total = total + v\nassert total == 6\n```",
+    "difficulty": "easy",
+    "topic": "Suma (running total)",
+    "hints": [
+      "Ustaw `total = 0` przed pętlą.",
+      "W pętli użyj `if v > 0:` i dodaj do sumy `total = total + v`."
+    ]
+  },
+  {
+    "id": 125,
+    "materialId": 31,
+    "title": "Oblicz średnią z ocen",
+    "description": "Dostałeś listę ocen (liczby). Oblicz średnią z tych ocen. Wypisz średnią. Jeśli lista jest pusta, wypisz `0`.\n\nPrzykład: `[4, 5, 3]` → `4.0`.",
+    "starterCode": "```python\n# starter code\ngrades = [4, 5, 3]\n# TODO: oblicz srednia ocen; jesli brak ocen, wypisz 0\n\n```",
+    "solution": "```python\n# full solution\ngrades = [4, 5, 3]\ntotal = 0\ncount = 0\nfor g in grades:\n    total = total + g\n    count = count + 1\nif count > 0:\n    print(total / count)\nelse:\n    print(0)\n```",
+    "testCode": "```python\n# tests\ngrades = [4, 5, 3]\ntotal = 0\ncount = 0\nfor g in grades:\n    total = total + g\n    count = count + 1\nif count > 0:\n    assert total / count == 4.0\nelse:\n    assert False\n\ngrades = []\ntotal = 0\ncount = 0\nfor g in grades:\n    total = total + g\n    count = count + 1\nif count > 0:\n    assert False\nelse:\n    assert 0 == 0\n\ngrades = [5]\ntotal = 0\ncount = 0\nfor g in grades:\n    total = total + g\n    count = count + 1\nif count > 0:\n    assert total / count == 5.0\n```",
+    "difficulty": "medium",
+    "topic": "Średnia",
+    "hints": [
+      "Użyj `total = 0` i `count = 0` przed pętlą.",
+      "Po pętli sprawdź, czy `count` jest większe niż 0 zanim podzielisz."
+    ]
+  },
+  {
+    "id": 126,
+    "materialId": 31,
+    "title": "Szukaj liczby i ustaw flagę",
+    "description": "Dla danej listy liczb sprawdź, czy pojawia się liczba `x`. Ustaw `found = False` przed pętlą i zmień na `True` gdy znajdziesz `x`. Wypisz `found` po pętli.",
+    "starterCode": "```python\n# starter code\nvalues = [2, 4, 6, 8]\nx = 6\n# TODO: znajdz czy x jest w values, uzyj found\n\n```",
+    "solution": "```python\n# full solution\nvalues = [2, 4, 6, 8]\nx = 6\nfound = False\nfor v in values:\n    if v == x:\n        found = True\nprint(found)\n```",
+    "testCode": "```python\n# tests\nvalues = [2, 4, 6, 8]\nx = 6\nfound = False\nfor v in values:\n    if v == x:\n        found = True\nassert found == True\n\nvalues = []\nx = 1\nfound = False\nfor v in values:\n    if v == x:\n        found = True\nassert found == False\n\nvalues = [1, 2, 3]\nx = 4\nfound = False\nfor v in values:\n    if v == x:\n        found = True\nassert found == False\n```",
+    "difficulty": "medium",
+    "topic": "Zmienna logiczna",
+    "hints": [
+      "Ustaw `found = False` przed pętlą.",
+      "W pętli użyj `if v == x:` i ustaw `found = True`."
+    ]
+  },
+  {
+    "id": 127,
+    "materialId": 31,
+    "title": "Suma tylko parzystych liczb (wyzwanie)",
+    "description": "Napisz kod, który oblicza sumę tylko parzystych liczb z listy. Użyj pętli i `if`.\n\nPrzykład: `[1, 2, 3, 4]` → `6`.",
+    "starterCode": "```python\n# starter code\nvalues = [1, 2, 3, 4]\n# TODO: oblicz sume liczb parzystych\n\n```",
+    "solution": "```python\n# full solution\nvalues = [1, 2, 3, 4]\ntotal = 0\nfor v in values:\n    if v % 2 == 0:\n        total = total + v\nprint(total)\n```",
+    "testCode": "```python\n# tests\nvalues = [1, 2, 3, 4]\ntotal = 0\nfor v in values:\n    if v % 2 == 0:\n        total = total + v\nassert total == 6\n\nvalues = []\ntotal = 0\nfor v in values:\n    if v % 2 == 0:\n        total = total + v\nassert total == 0\n\nvalues = [2, 2, 2]\ntotal = 0\nfor v in values:\n    if v % 2 == 0:\n        total = total + v\nassert total == 6\n```",
+    "difficulty": "hard",
+    "topic": "Filtrowanie z if",
+    "hints": [
+      "Sprawdź parzystość przez `if v % 2 == 0:` (możesz użyć operatora `%` jeśli znasz).",
+      "Jeśli nie używasz `%`, sprawdź prościej: `if v == 2 or v == 4` dla małych testów.",
+      "Ustaw `total = 0` przed pętlą i dodawaj `total = total + v`."
+    ]
+  },
+  {
+    "id": 128,
+    "materialId": 32,
+    "title": "Proste powitanie",
+    "description": "Napisz funkcję `greet()` bez argumentów, która zwraca string `'Cześć'`.",
+    "starterCode": "def greet():\n    # TODO: zwróć tekst powitania\n    pass\n",
+    "solution": "def greet():\n    # Funkcja zwraca krótki tekst powitania\n    return 'Cześć'\n",
+    "testCode": "assert greet() == 'Cześć'\nassert type(greet()) == type('')\n# dodatkowy test\nres = greet()\nassert res.startswith('C')\n",
+    "difficulty": "easy",
+    "topic": "def i return",
+    "hints": [
+      "Użyj `def greet():` by zdefiniować funkcję.",
+      "Zwróć tekst przez `return 'Cześć'`."
+    ]
+  },
+  {
+    "id": 129,
+    "materialId": 32,
+    "title": "Procent jako float",
+    "description": "Napisz funkcję `percent(n)`, która dostaje liczbę całkowitą i zwraca wynik `n / 100` jako `float`.",
+    "starterCode": "def percent(n):\n    # TODO: zamień na float i podziel przez 100\n    pass\n",
+    "solution": "def percent(n):\n    # Zamieniamy n na float i dzielimy przez 100\n    return float(n) / 100\n",
+    "testCode": "assert percent(99) == 0.99\nassert percent(0) == 0.0\nassert percent(42) == 0.42\n",
+    "difficulty": "easy",
+    "topic": "Konwersje typów",
+    "hints": [
+      "Użyj `float()` by zamienić liczbę na float.",
+      "Potem wykonaj dzielenie przez 100."
+    ]
+  },
+  {
+    "id": 130,
+    "materialId": 32,
+    "title": "Dodaj 1 do liczby w stringu",
+    "description": "Napisz funkcję `add_one_strnum(s)`, która dostaje string z cyframi np. `'123'`, zamienia go na liczbę i zwraca wartość o 1 większą.",
+    "starterCode": "def add_one_strnum(s):\n    # TODO: zamień s na int i dodaj 1\n    pass\n",
+    "solution": "def add_one_strnum(s):\n    # Konwertujemy string na int i dodajemy 1\n    return int(s) + 1\n",
+    "testCode": "assert add_one_strnum('123') == 124\nassert add_one_strnum('0') == 1\nassert add_one_strnum('9') == 10\n# edge case: pusty string powinien podnieść błąd\ntry:\n    add_one_strnum('')\n    raise AssertionError('Oczekiwano błędu dla pustego stringa')\nexcept Exception:\n    pass\n",
+    "difficulty": "medium",
+    "topic": "Konwersje typów",
+    "hints": [
+      "Użyj `int()` by zamienić string na liczbę.",
+      "Zwróć wynik `int(s) + 1`."
+    ]
+  },
+  {
+    "id": 131,
+    "materialId": 32,
+    "title": "Obliczenie z `float()` w środku",
+    "description": "Napisz funkcję `calc(a, b)` która zamienia `b` na float i zwraca wynik `a * float(b) / 10`.",
+    "starterCode": "def calc(a, b):\n    # TODO: zamień b na float i wykonaj obliczenie\n    pass\n",
+    "solution": "def calc(a, b):\n    # Zamiana b na float, potem mnożenie i dzielenie\n    return a * float(b) / 10\n",
+    "testCode": "assert calc(2, '5') == 1.0\nassert calc(3, '2') == 0.6\nassert calc(0, '100') == 0.0\n",
+    "difficulty": "medium",
+    "topic": "Konwersje i operacje",
+    "hints": [
+      "Użyj `float(b)` wewnątrz wyrażenia.",
+      "Zwróć wynik przez `return`.",
+      "Zadanie łączy konwersję i działanie arytmetyczne."
+    ]
+  },
+  {
+    "id": 132,
+    "materialId": 32,
+    "title": "Największy znak w stringu",
+    "description": "Napisz funkcję `biggest_char(s)`, która zwraca największy znak w stringu `s` używając wbudowanej funkcji `max()`.",
+    "starterCode": "def biggest_char(s):\n    # TODO: użyj max(s) by zwrócić największy znak\n    pass\n",
+    "solution": "def biggest_char(s):\n    # Zwracamy największy znak w stringu\n    return max(s)\n",
+    "testCode": "assert biggest_char('abc') == 'c'\nassert biggest_char('Hello') == max('Hello')\n# edge case: pusty string -> max podniesie błąd\ntry:\n    biggest_char('')\n    raise AssertionError('Oczekiwano błędu dla pustego stringa')\nexcept Exception:\n    pass\n",
+    "difficulty": "hard",
+    "topic": "Wbudowane funkcje",
+    "hints": [
+      "Funkcja `max()` działa na stringu i zwraca największy znak.",
+      "Nie obsługujemy pustego stringa — w takim wypadku `max()` podniesie błąd."
+    ]
+  },
+  {
+    "id": 133,
+    "materialId": 33,
+    "title": "Pierwsze słowo",
+    "description": "Napisz funkcję `first_word(line)` która zwraca pierwszy wyraz z łańcucha `line`. Zakładamy, że `line` ma co najmniej jeden wyraz.",
+    "starterCode": "```python\ndef first_word(line):\n    # TODO: rozbij linię i zwróć pierwszy element\n    pass\n```",
+    "solution": "```python\ndef first_word(line):\n    # rozbijamy po białych znakach\n    words = line.split()\n    return words[0]\n```",
+    "testCode": "```python\n# tests\nassert first_word(\"hello world\") == \"hello\"\nassert first_word(\" single\") == \"single\"\nassert first_word(\"a\") == \"a\"\n```",
+    "difficulty": "easy",
+    "topic": "split",
+    "hints": [
+      "Użyj `split()` aby rozbić łańcuch na listę słów.",
+      "Pierwszy wyraz to `words[0]`."
+    ]
+  },
+  {
+    "id": 134,
+    "materialId": 33,
+    "title": "Lista dni z linii",
+    "description": "Masz listę linii. Niektóre linie zaczynają się od `From `. Dla każdej takiej linii wyciągnij trzeci element (dzień tygodnia) i zwróć listę tych dni w kolejności występowania.",
+    "starterCode": "```python\ndef extract_days(lines):\n    # TODO: przetwórz listę linii i zwróć listę dni\n    pass\n```",
+    "solution": "```python\ndef extract_days(lines):\n    days = []\n    for line in lines:\n        line = line.rstrip()\n        if not line.startswith(\"From \"):\n            continue\n        parts = line.split()\n        # parts[2] to dzień tygodnia w formacie From x y\n        days.append(parts[2])\n    return days\n```",
+    "testCode": "```python\n# tests\nlines = [\n    \"From alice@x.com Sat Jan 5\",\n    \"Random line\",\n    \"From bob@y.org Sun Jan 6\",\n    \"From carl@z.net Mon Jan 7\"\n]\nassert extract_days(lines) == [\"Sat\", \"Sun\", \"Mon\"]\n# edge: brak From\nassert extract_days([\"Hello\",\"Nope\"]) == []\n# linia z dodatkową spacją\nassert extract_days([\"From d@d.com  Tue Jan\"]) == [\"Tue\"]\n```",
+    "difficulty": "medium",
+    "topic": "parsowanie linii",
+    "hints": [
+      "Użyj `startswith(\"From \")` żeby sprawdzić linię.",
+      "Następnie `split()` i pobierz odpowiedni indeks."
+    ]
+  },
+  {
+    "id": 135,
+    "materialId": 33,
+    "title": "Lista domen z linii `From`",
+    "description": "Zadbaj o funkcję `domains_from_lines(lines)` która dla każdej linii zaczynającej się od `From ` bierze adres e‑mail (drugie pole) i zwraca listę domen (część po `@`) w kolejności występowania. Zwracaj duplikaty, jeśli występują.",
+    "starterCode": "```python\ndef domains_from_lines(lines):\n    # TODO: zwróć listę domen\n    pass\n```",
+    "solution": "```python\ndef domains_from_lines(lines):\n    domains = []\n    for line in lines:\n        line = line.rstrip()\n        if not line.startswith(\"From \"):\n            continue\n        words = line.split()\n        email = words[1]\n        parts = email.split(\"@\")\n        domains.append(parts[1])\n    return domains\n```",
+    "testCode": "```python\n# tests\nlines = [\n    \"From a@one.com Fri\",\n    \"From b@two.org Sat\",\n    \"Other\",\n    \"From c@one.com Sun\"\n]\nassert domains_from_lines(lines) == [\"one.com\", \"two.org\", \"one.com\"]\n# edge: adres bez @ (niepoprawny) - spowoduje że split da ['address'] i indeks 1 nie istnieje\n# zakładamy, że linie From zawsze mają poprawny email\n```",
+    "difficulty": "medium",
+    "topic": "podwójny split",
+    "hints": [
+      "Użyj `split()` dwa razy: najpierw linię, potem `@` na adresie.",
+      "Pamiętaj o `rstrip()` i `startswith()`."
+    ]
+  },
+  {
+    "id": 136,
+    "materialId": 33,
+    "title": "Pola rozdzielone średnikiem",
+    "description": "Napisz `second_field(s)` która bierze łańcuch z polami rozdzielonymi `;` i zwraca drugi element (indeks 1). Jeśli drugi element jest pusty, zwróć pusty łańcuch `\"\"`. Jeśli jest tylko jedno pole, zwróć `None`.",
+    "starterCode": "```python\ndef second_field(s):\n    # TODO: zwróć drugi element lub None\n    pass\n```",
+    "solution": "```python\ndef second_field(s):\n    parts = s.split(\";\")\n    if len(parts) < 2:\n        return None\n    return parts[1]\n```",
+    "testCode": "```python\n# tests\nassert second_field(\"a;b;c\") == \"b\"\nassert second_field(\"a;;c\") == \"\"  # drugie pole puste\nassert second_field(\"onlyone\") is None\n```",
+    "difficulty": "hard",
+    "topic": "split",
+    "hints": [
+      "Użyj `split(';')` i sprawdź długość listy przed pobraniem indeksu 1.",
+      "Puste pole to po prostu pusty string `''` w wyniku `split`."
+    ]
+  },
+  {
+    "id": 137,
+    "materialId": 34,
+    "title": "Policz elementy listy",
+    "description": "Napisz funkcję `count_items(lst)` która zwraca liczbę elementów w liście `lst` używając `len()`.",
+    "starterCode": "def count_items(lst):\n    # TODO: zwróć liczbę elementów listy\n    pass\n",
+    "solution": "def count_items(lst):\n    # używamy len, aby policzyć elementy\n    return len(lst)\n",
+    "testCode": "assert count_items([]) == 0\nassert count_items([1]) == 1\nassert count_items(['a','b','c']) == 3\n",
+    "difficulty": "easy",
+    "topic": "len()",
+    "hints": [
+      "Użyj funkcji `len()`.",
+      "Zwróć wynik bez drukowania."
+    ]
+  },
+  {
+    "id": 138,
+    "materialId": 34,
+    "title": "Bezpieczna zamiana elementu",
+    "description": "Napisz funkcję `safe_replace(lst, index, value)` która zastępuje element w liście `lst` na pozycji `index` wartością `value` tylko jeśli `index` jest poprawny. Funkcja ma zwracać zmienioną listę.",
+    "starterCode": "def safe_replace(lst, index, value):\n    # TODO: jeśli index jest poprawny zmień element i zwróć listę\n    return lst\n",
+    "solution": "def safe_replace(lst, index, value):\n    if 0 <= index < len(lst):\n        lst[index] = value\n    return lst\n",
+    "testCode": "assert safe_replace([1,2,3], 1, 99) == [1,99,3]\nassert safe_replace([1,2,3], 3, 5) == [1,2,3]\nassert safe_replace([], 0, 10) == []\n",
+    "difficulty": "medium",
+    "topic": "indeksowanie",
+    "hints": [
+      "Sprawdź długość listy za pomocą `len()` zanim przypiszesz.",
+      "Użyj `lst[index] = value` do przypisania."
+    ]
+  },
+  {
+    "id": 139,
+    "materialId": 34,
+    "title": "Znajdź pozycję elementu",
+    "description": "Napisz funkcję `find_position(lst, item)` która zwraca indeks pierwszego wystąpienia `item` w liście `lst`. Jeśli element nie występuje, zwróć `-1`. Użyj pętli i indeksowania.",
+    "starterCode": "def find_position(lst, item):\n    # TODO: zwróć indeks pierwszego wystąpienia item lub -1\n    pass\n",
+    "solution": "def find_position(lst, item):\n    for i in range(len(lst)):\n        if lst[i] == item:\n            return i\n    return -1\n",
+    "testCode": "assert find_position([5,6,7], 6) == 1\nassert find_position(['a','b','a'], 'a') == 0\nassert find_position([], 1) == -1\nassert find_position([1,2,3], 4) == -1\n",
+    "difficulty": "medium",
+    "topic": "pętle for",
+    "hints": [
+      "Użyj `for i in range(len(lst)):` by przejść przez indeksy.",
+      "Porównuj elementy przez `==`. Jeśli znajdziesz, zwróć `i`. Na końcu zwróć `-1`. "
+    ]
+  },
+  {
+    "id": 140,
+    "materialId": 34,
+    "title": "Zamień wszystkie wystąpienia",
+    "description": "Napisz funkcję `replace_all(lst, old, new)` która przechodzi przez listę `lst` i zamienia każde wystąpienie wartości `old` na `new`. Funkcja powinna modyfikować listę w miejscu i zwracać ją.",
+    "starterCode": "def replace_all(lst, old, new):\n    # TODO: zamień wszystkie wystąpienia old na new\n    return lst\n",
+    "solution": "def replace_all(lst, old, new):\n    for i in range(len(lst)):\n        if lst[i] == old:\n            lst[i] = new\n    return lst\n",
+    "testCode": "assert replace_all([1,2,1,3], 1, 9) == [9,2,9,3]\nassert replace_all(['a','b','a'], 'a', 'x') == ['x','b','x']\nassert replace_all([], 1, 2) == []\n",
+    "difficulty": "hard",
+    "topic": "mutowalność",
+    "hints": [
+      "Użyj `for i in range(len(lst)):` by mieć dostęp do indeksów.",
+      "Porównuj `lst[i] == old` i w razie potrzeby przypisz `lst[i] = new`. "
+    ]
+  },
+  {
+    "id": 141,
+    "materialId": 35,
+    "title": "Policz wystąpienia wartości",
+    "description": "Napisz funkcję `count_occurrences(lst, val)`, która zwraca ile razy `val` pojawia się w `lst`.",
+    "starterCode": "def count_occurrences(lst, val):\n    # TODO: zwróć ile razy val jest w lst\n    pass\n",
+    "solution": "def count_occurrences(lst, val):\n    # metoda count() zwraca liczbę wystąpień\n    return lst.count(val)\n",
+    "testCode": "assert count_occurrences([], 5) == 0\nassert count_occurrences([1,2,1,1], 1) == 3\nassert count_occurrences(['a','b','a'], 'b') == 1\n",
+    "difficulty": "easy",
+    "topic": "count",
+    "hints": [
+      "Użyj metody listy, która liczy wystąpienia.",
+      "Sprawdź działanie na pustej liście."
+    ]
+  },
+  {
+    "id": 142,
+    "materialId": 35,
+    "title": "Średnia z listy",
+    "description": "Napisz funkcję `average(nums)`, która zwraca średnią wartości w `nums`. Jeśli lista jest pusta, zwróć 0.",
+    "starterCode": "def average(nums):\n    # TODO: zwróć średnią lub 0 gdy nums jest pusta\n    pass\n",
+    "solution": "def average(nums):\n    if len(nums) == 0:\n        return 0\n    return sum(nums) / len(nums)\n",
+    "testCode": "assert average([]) == 0\nassert average([5]) == 5.0\nassert average([2,4,6]) == 4.0\n",
+    "difficulty": "medium",
+    "topic": "sum / len i średnia",
+    "hints": [
+      "Użyj `sum()` i `len()`.",
+      "Sprawdź długość listy przed dzieleniem."
+    ]
+  },
+  {
+    "id": 143,
+    "materialId": 35,
+    "title": "Połącz i posortuj listy",
+    "description": "Napisz funkcję `merge_and_sort(a, b)`, która tworzy nową listę będącą połączeniem `a` i `b`, a następnie zwraca ją posortowaną.",
+    "starterCode": "def merge_and_sort(a, b):\n    # TODO: połącz a i b, posortuj i zwróć wynik\n    pass\n",
+    "solution": "def merge_and_sort(a, b):\n    c = a + b\n    c.sort()\n    return c\n",
+    "testCode": "assert merge_and_sort([3,1], [2]) == [1,2,3]\nassert merge_and_sort([], [5,4]) == [4,5]\nassert merge_and_sort(['b'], ['a','c']) == ['a','b','c']\n",
+    "difficulty": "medium",
+    "topic": "łączenie list i sort",
+    "hints": [
+      "Użyj operatora `+` do połączenia.",
+      "Następnie użyj `sort()` na powstałej liście."
+    ]
+  },
+  {
+    "id": 144,
+    "materialId": 35,
+    "title": "Średnia z wejścia aż do 'done'",
+    "description": "Napisz funkcję `average_until_done(lines)`, która dostaje listę stringów `lines`. Czyta kolejne elementy; gdy napotka `'done'` przerywa. Dla wcześniejszych elementów konwertuje je na `float`, zbiera i zwraca średnią. Jeśli nie ma żadnej liczby przed `'done'`, zwróć 0.",
+    "starterCode": "def average_until_done(lines):\n    # TODO: policz średnią liczb do pierwszego 'done'\n    pass\n",
+    "solution": "def average_until_done(lines):\n    nums = []\n    for s in lines:\n        if s == 'done':\n            break\n        val = float(s)\n        nums.append(val)\n    if len(nums) == 0:\n        return 0\n    return sum(nums) / len(nums)\n",
+    "testCode": "assert average_until_done(['3', '6', 'done', '9']) == 4.5\nassert average_until_done(['done', '5']) == 0\nassert average_until_done(['2.5', '2.5']) == 2.5\n",
+    "difficulty": "hard",
+    "topic": "pętle i avg",
+    "hints": [
+      "Użyj pętli i `break` gdy napotkasz `'done'`.",
+      "Dodawaj liczby do listy i potem użyj `sum()` i `len()`."
+    ]
+  },
+  {
+    "id": 145,
+    "materialId": 36,
+    "title": "Dodaj 1 do liczby zapisanej w napisie",
+    "description": "Napisz funkcję, która przyjmuje napis z cyframi i zwraca liczbę całkowitą zwiększoną o 1.",
+    "starterCode": "def add_one_from_string(s):\n    # TODO: zamień `s` na int i dodaj 1\n    pass\n",
+    "solution": "def add_one_from_string(s):\n    # Zamień napis na int\n    i = int(s)\n    # Dodaj 1 i zwróć\n    return i + 1\n",
+    "testCode": "def add_one_from_string(s):\n    i = int(s)\n    return i + 1\n\n# tests\nassert add_one_from_string('5') == 6\nassert add_one_from_string('0') == 1\nassert add_one_from_string('-2') == -1\n",
+    "difficulty": "easy",
+    "topic": "konwersje",
+    "hints": [
+      "Użyj `int()` by zamienić napis na liczbę.",
+      "Po konwersji dodaj 1 i zwróć wynik."
+    ]
+  },
+  {
+    "id": 146,
+    "materialId": 36,
+    "title": "Stwórz powitanie przez łączenie napisów",
+    "description": "Napisz funkcję, która dostaje `name` i zwraca napis `Welcome ` połączony z `name`.",
+    "starterCode": "def make_greeting(name):\n    # TODO: zwróć 'Welcome ' + name\n    pass\n",
+    "solution": "def make_greeting(name):\n    # Połącz napis 'Welcome ' z podanym imieniem\n    return 'Welcome ' + name\n",
+    "testCode": "def make_greeting(name):\n    return 'Welcome ' + name\n\n# tests\nassert make_greeting('Ewa') == 'Welcome Ewa'\nassert make_greeting('') == 'Welcome '\nassert make_greeting('Jan Kowalski') == 'Welcome Jan Kowalski'\n",
+    "difficulty": "easy",
+    "topic": "konkatenacja",
+    "hints": [
+      "Użyj operatora `+` do łączenia napisów.",
+      "Pamiętaj o spacji po słowie 'Welcome'."
+    ]
+  },
+  {
+    "id": 147,
+    "materialId": 36,
+    "title": "Suma jako float",
+    "description": "Napisz funkcję, która przyjmuje dwie wartości (liczby lub napisy) i zwraca ich sumę jako `float`.",
+    "starterCode": "def sum_as_float(a, b):\n    # TODO: zamień `a` i `b` na float i zwróć sumę\n    pass\n",
+    "solution": "def sum_as_float(a, b):\n    fa = float(a)\n    fb = float(b)\n    return fa + fb\n",
+    "testCode": "def sum_as_float(a, b):\n    return float(a) + float(b)\n\n# tests\nassert sum_as_float('1', '2') == 3.0\nassert sum_as_float('2.5', '1.5') == 4.0\nassert sum_as_float(3, '4') == 7.0\n",
+    "difficulty": "medium",
+    "topic": "float()",
+    "hints": [
+      "Użyj `float()` na obu wartościach przed dodaniem.",
+      "`float()` zadziała, gdy argument jest `int`, `float` lub napisem z liczbą."
+    ]
+  },
+  {
+    "id": 148,
+    "materialId": 36,
+    "title": "Sprawdź typ wartości",
+    "description": "Napisz funkcję, która zwraca `'int'`, `'float'` lub `'str'` w zależności od typu przekazanej wartości.",
+    "starterCode": "def detect_type(value):\n    # TODO: użyj type() i porównaj z int, float, str\n    pass\n",
+    "solution": "def detect_type(value):\n    t = type(value)\n    if t == int:\n        return 'int'\n    if t == float:\n        return 'float'\n    if t == str:\n        return 'str'\n    return 'other'\n",
+    "testCode": "def detect_type(value):\n    t = type(value)\n    if t == int:\n        return 'int'\n    if t == float:\n        return 'float'\n    if t == str:\n        return 'str'\n    return 'other'\n\n# tests\nassert detect_type(5) == 'int'\nassert detect_type(3.0) == 'float'\nassert detect_type('5') == 'str'\nassert detect_type('') == 'str'\n",
+    "difficulty": "medium",
+    "topic": "type()",
+    "hints": [
+      "Użyj `type()` by sprawdzić typ wartości.",
+      "Porównuj wynik `type()` z `int`, `float` lub `str`."
+    ]
+  },
+  {
+    "id": 149,
+    "materialId": 37,
+    "title": "Zlicz słowa w jednej linii",
+    "description": "Napisz funkcję `count_words(text)` która bierze tekst (jeden string), dzieli go na słowa i zwraca słownik zliczeń. Użyj `split()` i `get()`.",
+    "starterCode": "def count_words(text):\n    # TODO: rozbij tekst i zbuduj histogram\n    counts = {}\n    # TODO: zwróć counts\n    return counts\n",
+    "solution": "def count_words(text):\n    counts = {}\n    words = text.split()\n    for w in words:\n        counts[w] = counts.get(w, 0) + 1\n    return counts\n",
+    "testCode": "assert count_words(\"\") == {}\nassert count_words(\"a a b\") == {'a': 2, 'b': 1}\nassert count_words(\"one two three two\") == {'one': 1, 'two': 2, 'three': 1}\n",
+    "difficulty": "easy",
+    "topic": "histogram",
+    "hints": [
+      "Użyj `text.split()` żeby dostać listę słów.",
+      "Zainicjuj `counts = {}` i dla każdego słowa rób `counts[word] = counts.get(word, 0) + 1`."
+    ]
+  },
+  {
+    "id": 150,
+    "materialId": 37,
+    "title": "Najczęściej występujące słowo z histogramu",
+    "description": "Napisz funkcję `most_common(counts)` która przyjmuje słownik zliczeń i zwraca tuplę `(word, count)` z największym zliczeniem. Jeśli słownik jest pusty zwróć `(None, None)`.",
+    "starterCode": "def most_common(counts):\n    # TODO: znajdź klucz z największą wartością\n    return (None, None)\n",
+    "solution": "def most_common(counts):\n    best = None\n    best_word = None\n    for word, count in counts.items():\n        if best is None or count > best:\n            best = count\n            best_word = word\n    if best is None:\n        return (None, None)\n    return (best_word, best)\n",
+    "testCode": "assert most_common({}) == (None, None)\nassert most_common({'x': 1}) == ('x', 1)\nres = most_common({'a':2, 'b':3, 'c':1})\nassert res == ('b', 3)\n",
+    "difficulty": "medium",
+    "topic": "max loop",
+    "hints": [
+      "Użyj `for word, count in counts.items():` by dostać pary.",
+      "Zainicjuj `best = None` i `best_word = None` zanim wejdziesz w pętlę."
+    ]
+  },
+  {
+    "id": 151,
+    "materialId": 37,
+    "title": "Zlicz słowa z listy linii",
+    "description": "Napisz `count_from_lines(lines)` która bierze listę linii tekstu (np. `['a b', 'b c a']`) i zwraca słownik zliczeń wszystkich słów ze wszystkich linii.",
+    "starterCode": "def count_from_lines(lines):\n    # lines to lista stringów\n    counts = {}\n    # TODO: zbuduj histogram dla wszystkich linii\n    return counts\n",
+    "solution": "def count_from_lines(lines):\n    counts = {}\n    for line in lines:\n        words = line.split()\n        for w in words:\n            counts[w] = counts.get(w, 0) + 1\n    return counts\n",
+    "testCode": "assert count_from_lines([]) == {}\nassert count_from_lines(['']) == {}\nassert count_from_lines(['a b', 'b a a']) == {'a': 3, 'b': 2}\n",
+    "difficulty": "medium",
+    "topic": "czytanie linii",
+    "hints": [
+      "Dla każdej linii użyj `line.split()`.",
+      "Aktualizuj ten sam słownik `counts` dla wszystkich linii."
+    ]
+  },
+  {
+    "id": 152,
+    "materialId": 37,
+    "title": "Najczęstsze słowo z kilku linii",
+    "description": "Napisz `most_common_from_lines(lines)` która bierze listę linii, zlicza słowa i zwraca `(word, count)` dla słowa o największej liczbie wystąpień. Jeśli brak słów zwróć `(None, None)`.",
+    "starterCode": "def most_common_from_lines(lines):\n    # TODO: zlicz słowa z lines i znajdź najczęstsze\n    return (None, None)\n",
+    "solution": "def most_common_from_lines(lines):\n    counts = {}\n    for line in lines:\n        for w in line.split():\n            counts[w] = counts.get(w, 0) + 1\n    best = None\n    best_word = None\n    for word, count in counts.items():\n        if best is None or count > best:\n            best = count\n            best_word = word\n    if best is None:\n        return (None, None)\n    return (best_word, best)\n",
+    "testCode": "assert most_common_from_lines([]) == (None, None)\nassert most_common_from_lines(['']) == (None, None)\nassert most_common_from_lines(['a b', 'b a a']) == ('a', 3)\nassert most_common_from_lines(['x', 'y y', 'x x y']) == ('x', 3)\n",
+    "difficulty": "hard",
+    "topic": "histogram",
+    "hints": [
+      "Połącz poprzednie dwa zadania: najpierw zbuduj histogram, potem znajdź maksimum.",
+      "Użyj `for line in lines:` i `for w in line.split():`."
+    ]
+  },
+  {
+    "id": 153,
+    "materialId": 38,
+    "title": "Pierwszy znak",
+    "description": "Napisz funkcję, która zwraca pierwszy znak napisu. Jeśli napis jest pusty, zwróć pusty napis.",
+    "starterCode": "```python\n# TODO: Zaimplementuj funkcję\ndef first_char(s):\n    # return pierwszy znak lub '' jeśli s jest puste\n    pass\n```",
+    "solution": "```python\n# pełne rozwiązanie\ndef first_char(s):\n    if len(s) == 0:\n        return ''\n    return s[0]\n```",
+    "testCode": "```python\n# testy\nassert first_char('kot') == 'k'\nassert first_char('A') == 'A'\nassert first_char('') == ''\n```",
+    "difficulty": "easy",
+    "topic": "Indeksowanie",
+    "hints": [
+      "Sprawdź `len(s)` przed indeksowaniem.",
+      "Pierwszy znak to `s[0]` gdy `len(s) > 0`."
+    ]
+  },
+  {
+    "id": 154,
+    "materialId": 38,
+    "title": "Zlicz znak",
+    "description": "Napisz funkcję, która liczy ile razy dany znak występuje w napisie. Funkcja przyjmuje `s` i `ch` i zwraca licznik.",
+    "starterCode": "```python\n# TODO: Zaimplementuj funkcję\ndef count_char(s, ch):\n    # return ile razy ch występuje w s\n    pass\n```",
+    "solution": "```python\ndef count_char(s, ch):\n    count = 0\n    for c in s:\n        if c == ch:\n            count = count + 1\n    return count\n```",
+    "testCode": "```python\n# testy\nassert count_char('abrakadabra', 'a') == 5\nassert count_char('hello', 'z') == 0\nassert count_char('', 'a') == 0\n```",
+    "difficulty": "medium",
+    "topic": "Pętle i zliczanie",
+    "hints": [
+      "Użyj pętli `for ch in s:`.",
+      "Zainicjuj licznik jako 0 i zwiększaj go gdy warunek jest spełniony."
+    ]
+  },
+  {
+    "id": 155,
+    "materialId": 38,
+    "title": "Podziel napis na prefix i suffix",
+    "description": "Napisz funkcję `split_at(s, n)`, która zwraca dwuelementową krotkę `(prefix, suffix)` gdzie `prefix` to `s[:n]`, a `suffix` to `s[n:]`. Funkcja powinna działać gdy `n` jest większe niż długość napisu.",
+    "starterCode": "```python\n# TODO: Zaimplementuj funkcję\ndef split_at(s, n):\n    # return (prefix, suffix)\n    pass\n```",
+    "solution": "```python\ndef split_at(s, n):\n    prefix = s[:n]\n    suffix = s[n:]\n    return (prefix, suffix)\n```",
+    "testCode": "```python\n# testy\nassert split_at('python', 3) == ('pyt', 'hon')\nassert split_at('data', 10) == ('data', '')\nassert split_at('', 2) == ('', '')\n```",
+    "difficulty": "medium",
+    "topic": "Slicing",
+    "hints": [
+      "Użyj slicing `s[:n]` i `s[n:]`.",
+      "Slicing nie rzuca błędu gdy `n` przekracza długość napisu."
+    ]
+  },
+  {
+    "id": 156,
+    "materialId": 38,
+    "title": "Usuń spacje z początku i końca (bez `strip()`)",
+    "description": "Napisz funkcję `trim(s)` która usuwa spacje `' '` z początku i końca napisu. Nie używaj metod typu `strip()` — użyj pętli, indeksowania i slicing.",
+    "starterCode": "```python\n# TODO: Zaimplementuj funkcję trim\ndef trim(s):\n    # usuń spacje z początku i końca\n    pass\n```",
+    "solution": "```python\ndef trim(s):\n    # usuń spacje z początku\n    while len(s) > 0 and s[0] == ' ':\n        s = s[1:]\n    # usuń spacje z końca\n    while len(s) > 0 and s[len(s)-1] == ' ':\n        s = s[:len(s)-1]\n    return s\n```",
+    "testCode": "```python\n# testy\nassert trim('  hello  ') == 'hello'\nassert trim('no_space') == 'no_space'\nassert trim('   ') == ''\nassert trim('') == ''\n```",
+    "difficulty": "hard",
+    "topic": "Slicing i pętle",
+    "hints": [
+      "Użyj `while` i sprawdzaj `len(s)` oraz `s[0]` dla początku.",
+      "Dla końca sprawdzaj `s[len(s)-1]` i skracaj `s` przez `s[:len(s)-1]`."
+    ]
+  },
+  {
+    "id": 157,
+    "materialId": 39,
+    "title": "Utwórz krotkę adresu",
+    "description": "Napisz funkcję `make_address(host, port)` która zwraca krotkę `(host, port)`.",
+    "starterCode": "def make_address(host, port):\n    # TODO: zwróć krotkę (host, port)\n    pass\n",
+    "solution": "def make_address(host, port):\n    # Zwracamy krotkę z nazwą hosta i numerem portu\n    return (host, port)\n",
+    "testCode": "assert make_address('a.example', 80) == ('a.example', 80)\nassert make_address('localhost', 8080) == ('localhost', 8080)\nassert make_address('', 0) == ('', 0)\n",
+    "difficulty": "easy",
+    "topic": "Krotki i adresy",
+    "hints": [
+      "Zwróć prostą krotkę: `(host, port)`",
+      "Nie łącz wartości w string, zwróć krotkę."
+    ]
+  },
+  {
+    "id": 158,
+    "materialId": 39,
+    "title": "Parsuj host:port",
+    "description": "Napisz funkcję `parse_hostport(s)` która dla stringa jak `'host:8080'` zwróci krotkę `('host', 8080)`. Zakładamy, że string zawsze zawiera dwukropek.",
+    "starterCode": "def parse_hostport(s):\n    # TODO: podziel s na host i port i zwróć (host, port_int)\n    pass\n",
+    "solution": "def parse_hostport(s):\n    parts = s.split(':')\n    host = parts[0]\n    port = int(parts[1])\n    return (host, port)\n",
+    "testCode": "assert parse_hostport('srv.test:8000') == ('srv.test', 8000)\nassert parse_hostport('api:443') == ('api', 443)\n# krawędź: port 0\nassert parse_hostport('x:0') == ('x', 0)\n",
+    "difficulty": "medium",
+    "topic": "Adresy i porty",
+    "hints": [
+      "Użyj `split(':')` by rozdzielić część przed i po dwukropku.",
+      "Pamiętaj przekonwertować port na liczbę."
+    ]
+  },
+  {
+    "id": 159,
+    "materialId": 39,
+    "title": "Lista adresów z domyślnym portem",
+    "description": "Napisz funkcję `normalize_hosts(list_hosts, default_port)` która z listy stringów jak `['a:80', 'b', 'c:8080']` tworzy listę krotek. Jeśli element nie ma dwukropka, użyj `default_port`.",
+    "starterCode": "def normalize_hosts(list_hosts, default_port):\n    # TODO: zwróć listę krotek (host, port)\n    result = []\n    # ...\n    return result\n",
+    "solution": "def normalize_hosts(list_hosts, default_port):\n    result = []\n    for s in list_hosts:\n        if ':' in s:\n            parts = s.split(':')\n            host = parts[0]\n            port = int(parts[1])\n        else:\n            host = s\n            port = default_port\n        result.append((host, port))\n    return result\n",
+    "testCode": "assert normalize_hosts(['a:80','b','c:8080'], 80) == [('a',80),('b',80),('c',8080)]\nassert normalize_hosts([], 80) == []\nassert normalize_hosts(['onlyhost'], 1234) == [('onlyhost', 1234)]\n",
+    "difficulty": "medium",
+    "topic": "Adresy i porty",
+    "hints": [
+      "Przejdź po liście za pomocą pętli `for`.",
+      "Sprawdź czy `':' in s` by wiedzieć, czy jest port."
+    ]
+  },
+  {
+    "id": 160,
+    "materialId": 39,
+    "title": "Zbuduj kod połączenia jako tekst",
+    "description": "Napisz funkcję `build_socket_code(host, port)` która zwraca string z trzema liniami kodu Python potrzebnymi do połączenia. Przykład zwracanego stringa:\n\n```\nimport socket\nmysock = socket.socket()\nmysock.connect(('example.com', 80))\n```\n\nFunkcja nie ma wykonywać tych instrukcji — tylko zwraca tekst.",
+    "starterCode": "def build_socket_code(host, port):\n    # TODO: zwróć string z trzema liniami kodu używając host i port\n    pass\n",
+    "solution": "def build_socket_code(host, port):\n    line1 = 'import socket'\n    line2 = 'mysock = socket.socket()'\n    line3 = \"mysock.connect(('\" + host + \"', \" + str(port) + \"))\"\n    return line1 + '\\n' + line2 + '\\n' + line3 + '\\n'\n",
+    "testCode": "expected = \"import socket\\nmysock = socket.socket()\\nmysock.connect(('ex', 80))\\n\"\nassert build_socket_code('ex', 80) == expected\nassert build_socket_code('host.test', 8080).startswith('import socket\\n')\n# sprawdź, że numer portu jest w tekście\nassert \"8080\" in build_socket_code('h', 8080)\n",
+    "difficulty": "hard",
+    "topic": "Połączenie w Pythonie",
+    "hints": [
+      "Użyj zwykłego łączenia stringów i `str(port)` by wstawić numer.",
+      "Zwróć dokładnie trzy linie z końcami linii `\\n`."
+    ]
+  },
+  {
+    "id": 161,
+    "materialId": 40,
+    "title": "Połącz dwa słowa ze spacją",
+    "description": "Napisz funkcję `concat_with_space(a, b)`, która zwraca jeden string z `a` i `b` rozdzielony pojedynczą spacją.",
+    "starterCode": "# starter code\ndef concat_with_space(a, b):\n    # TODO: zwróć a i b połączone spacją\n    pass\n",
+    "solution": "# full solution\ndef concat_with_space(a, b):\n    # Połącz dwa stringi i dodaj spację między nimi\n    return a + \" \" + b\n",
+    "testCode": "# tests\nassert concat_with_space(\"hello\", \"you\") == \"hello you\"\nassert concat_with_space(\"\", \"end\") == \" end\"\nassert concat_with_space(\"start\", \"\") == \"start \"\n",
+    "difficulty": "easy",
+    "topic": "Konkatenacja",
+    "hints": [
+      "Użyj operatora `+` do łączenia.",
+      "Pamiętaj, że `+` nie doda spacji sam z siebie."
+    ]
+  },
+  {
+    "id": 162,
+    "materialId": 40,
+    "title": "Wytnij domenę z wiersza",
+    "description": "Napisz funkcję `extract_domain(line)`, która dla linii zawierającej adres (np. `'Contact user@site.com Sat'`) zwraca tekst między `@` a następną spacją. Jeśli nie ma `@`, zwróć pusty string. Jeśli nie ma spacji po domenie, zwróć do końca stringa.",
+    "starterCode": "# starter code\ndef extract_domain(line):\n    # TODO: znajdź '@' i wytnij tekst po nim do następnej spacji\n    pass\n",
+    "solution": "# full solution\ndef extract_domain(line):\n    at = line.find(\"@\")\n    if at == -1:\n        return \"\"\n    start = at + 1\n    end = line.find(\" \", start)\n    if end == -1:\n        return line[start:]\n    return line[start:end]\n",
+    "testCode": "# tests\nassert extract_domain(\"Contact user@site.com Sat\") == \"site.com\"\nassert extract_domain(\"From: x@y\") == \"y\"\nassert extract_domain(\"No email here\") == \"\"\nassert extract_domain(\"lead@domain.org\") == \"domain.org\"\n",
+    "difficulty": "medium",
+    "topic": "find / slicing",
+    "hints": [
+      "Użyj `find()` żeby znaleźć `@` i spację.",
+      "Pamiętaj, że indeks startowy to `at+1` (nie chcesz `@`)."
+    ]
+  },
+  {
+    "id": 163,
+    "materialId": 40,
+    "title": "Zlicz podciągi (ze zliczaniem nakładań)",
+    "description": "Napisz funkcję `count_substring(s, sub)` która zlicza ile razy `sub` występuje w `s`. Zliczaj nakładające się wystąpienia. Jeśli `sub` jest pusty, zwróć `0`.",
+    "starterCode": "# starter code\ndef count_substring(s, sub):\n    # TODO: zlicz wystąpienia sub w s, dopuszczalne nakładanie\n    pass\n",
+    "solution": "# full solution\ndef count_substring(s, sub):\n    if sub == \"\":\n        return 0\n    count = 0\n    start = 0\n    while True:\n        idx = s.find(sub, start)\n        if idx == -1:\n            break\n        count += 1\n        start = idx + 1  # przesuwamy o 1, by liczyć nakładania\n    return count\n",
+    "testCode": "# tests\nassert count_substring(\"aaaa\", \"aa\") == 3  # 'aa' w pozycjach 0,1,2\nassert count_substring(\"banana\", \"na\") == 2\nassert count_substring(\"abc\", \"d\") == 0\nassert count_substring(\"\", \"a\") == 0\nassert count_substring(\"abc\", \"\") == 0\n",
+    "difficulty": "medium",
+    "topic": "find",
+    "hints": [
+      "Użyj pętli `while` i `find()` z drugim parametrem startu.",
+      "Po znalezieniu wystąpienia przesuń start o 1, by policzyć nakładania."
+    ]
+  },
+  {
+    "id": 164,
+    "materialId": 40,
+    "title": "Sprawdź, czy linia zaczyna się od 'From:' (ignoruj case i białe znaki)",
+    "description": "Napisz funkcję `is_sender_line(line)` która usuwa białe znaki z początku i końca, a potem sprawdza, czy linia zaczyna się od `'from:'` bez zwracania uwagi na wielkość liter. Zwróć `True` lub `False`.",
+    "starterCode": "# starter code\ndef is_sender_line(line):\n    # TODO: usuń białe znaki i sprawdź prefiks 'from:' ignorując wielkość liter\n    pass\n",
+    "solution": "# full solution\ndef is_sender_line(line):\n    s = line.strip()\n    return s.lower().startswith('from:')\n",
+    "testCode": "# tests\nassert is_sender_line(\"  From: user@site.com\") == True\nassert is_sender_line(\"from:me@example.com\") == True\nassert is_sender_line(\"  FROM: someone\") == True\nassert is_sender_line(\"Please read this\") == False\nassert is_sender_line(\"\") == False\n",
+    "difficulty": "hard",
+    "topic": "strip / startswith / lower",
+    "hints": [
+      "Użyj `strip()` żeby usunąć białe znaki.",
+      "Użyj `lower()` i `startswith()` do sprawdzenia prefiksu."
     ]
   }
 ]

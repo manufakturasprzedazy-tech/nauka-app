@@ -127,6 +127,14 @@ Generate a MIX of these question types:
 4. WHAT HAPPENS: "Co się stanie gdy wywołamy `X` na pustej liście?"
 5. CONCEPT: "Jaka jest różnica między X a Y?" / "Która metoda służy do X?"
 
+CODE EMBEDDING RULES (CRITICAL — MUST FOLLOW):
+- For types 1 (CODE OUTPUT), 2 (FIND THE BUG), and 3 (WHICH VERSION): the code MUST be directly in the "question" field
+- Use TRIPLE backticks (```python ... ```) for any code that is 2+ lines
+- Example: "Co wypisze ten kod?\n\n```python\nx = [1, 2, 3]\nprint(x[1])\n```"
+- NEVER write "Co zwróci ten kod?" without the actual code in the question
+- NEVER wrap multi-line code in single backticks — ALWAYS use ```python
+- Single backticks ONLY for short inline references like `len()` or `x = 5`
+
 CRITICAL RULES:
 - NEVER copy examples from the material — create NEW variables, NEW values, NEW scenarios
 - BAD: "Co zwróci friends[0] jeśli friends = ['Joseph', 'Glenn']?" (copied from lesson!)
@@ -235,7 +243,15 @@ def process_material(filepath: str, api_key: str, max_retries: int = 2) -> dict:
                 continue
             else:
                 raise ValueError("API returned empty response after all retries")
-        data = parse_response(response_text)
+        try:
+            data = parse_response(response_text)
+        except ValueError as e:
+            if attempt < max_retries:
+                print(f"  Parse failed (attempt {attempt + 1}): {e}")
+                time.sleep(2)
+                continue
+            else:
+                raise
 
         # Validate completeness
         issues = validate_data(data)
@@ -293,6 +309,15 @@ def validate_data(data: dict) -> list[str]:
     quizzes = data.get('quizzes', [])
     if len(quizzes) < 5:
         issues.append(f'too few quizzes ({len(quizzes)})')
+
+    # Validate quiz code blocks — quizzes referencing code must include ```code blocks
+    code_phrases = ['co zwróci ten kod', 'co wypisze ten kod', 'co wydrukuje ten kod',
+                    'co zwróci poniższy kod', 'co wypisze poniższy kod']
+    missing_code = sum(1 for q in quizzes
+                       if any(p in q.get('question', '').lower() for p in code_phrases)
+                       and '```' not in q.get('question', ''))
+    if missing_code > 0:
+        issues.append(f'{missing_code} quiz(es) reference code but lack code blocks')
 
     exercises = data.get('exercises', [])
     if len(exercises) < 3:

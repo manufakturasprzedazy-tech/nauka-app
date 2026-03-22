@@ -270,141 +270,6 @@
     "topic": "Funkcje"
   },
   {
-    "id": 19,
-    "materialId": 3,
-    "question": "Co zwróci ten kod?",
-    "choices": [
-      "3",
-      "2",
-      "0",
-      "Błąd"
-    ],
-    "correctIndex": 0,
-    "explanation": "Kod zlicza elementy listy. Mamy trzy elementy, więc `count` po pętli będzie 3. Błąd nie występuje.",
-    "difficulty": "easy",
-    "topic": "liczniki (count)"
-  },
-  {
-    "id": 20,
-    "materialId": 3,
-    "question": "Co zwróci ten kod?",
-    "choices": [
-      "30",
-      "15",
-      "5",
-      "Błąd dzielenia"
-    ],
-    "correctIndex": 0,
-    "explanation": "Suma `total` to 10+5+15=30, kod drukuje `total`. Nie ma dzielenia, więc nie ma błędu dzielenia.",
-    "difficulty": "easy",
-    "topic": "suma (total)"
-  },
-  {
-    "id": 21,
-    "materialId": 3,
-    "question": "Co zwróci ten kod?",
-    "choices": [
-      "7.5",
-      "7",
-      "Błąd dzielenia",
-      "0"
-    ],
-    "correctIndex": 0,
-    "explanation": "Suma to 15, count to 2, więc `15 / 2` daje 7.5. Najpopularniejszy błąd to zaokrąglenie do 7, ale Python daje 7.5.",
-    "difficulty": "medium",
-    "topic": "średnia (average)"
-  },
-  {
-    "id": 22,
-    "materialId": 3,
-    "question": "Co jest nie tak z tym kodem?",
-    "choices": [
-      "Licznik zaczyna się od 1 zamiast 0",
-      "Użyto `total = total + value` zamiast `total = total + 1`",
-      "Brakuje pętli `for`",
-      "Nic, kod jest poprawny"
-    ],
-    "correctIndex": 0,
-    "explanation": "Licznik powinien zaczynać od 0. Zaczynając od 1 da wynik o jeden za duży. Inne odpowiedzi są mylące.",
-    "difficulty": "easy",
-    "topic": "liczniki (count)"
-  },
-  {
-    "id": 23,
-    "materialId": 3,
-    "question": "Która wersja poprawnie sprawdza, czy lista zawiera wartość 4 i ustawia flagę?",
-    "choices": [
-      "A:\n```python\nfound = False\nfor v in nums:\n    if v == 4:\n        found = True\n```",
-      "B:\n```python\nfound = False\nfor v in nums:\n    if v = 4:\n        found = True\n```",
-      "C:\n```python\nfor v in nums:\n    found = False\n    if v == 4:\n        found = True\n```",
-      "D:\n```python\nfound = True\nfor v in nums:\n    if v == 4:\n        found = True\n```"
-    ],
-    "correctIndex": 0,
-    "explanation": "Wersja A poprawnie inicjuje `found` przed pętlą i porównuje `==`. B ma błąd przypisania, C resetuje `found` w każdej iteracji, D zaczyna od True.",
-    "difficulty": "medium",
-    "topic": "zmienna logiczna (flag / found)"
-  },
-  {
-    "id": 24,
-    "materialId": 3,
-    "question": "Co się stanie, gdy wykonamy ten kod na pustej liście?",
-    "choices": [
-      "Pojawi się błąd dzielenia przez zero",
-      "Wynik to 0",
-      "Wynik to `None`",
-      "Kod wydrukuje liczbę elementów"
-    ],
-    "correctIndex": 0,
-    "explanation": "Kod próbuje obliczyć `total / count`. Jeśli lista jest pusta, `count`=0 i wystąpi błąd dzielenia przez zero. Popularny fałszywy wybór to 0, ale to niebezpieczne bez sprawdzenia.",
-    "difficulty": "medium",
-    "topic": "średnia (average)"
-  },
-  {
-    "id": 25,
-    "materialId": 3,
-    "question": "Co zwróci ten kod?",
-    "choices": [
-      "2",
-      "3",
-      "1",
-      "0"
-    ],
-    "correctIndex": 0,
-    "explanation": "Kod liczy elementy większe od 20: tylko 25 i 30 spełniają warunek, więc wynik to 2. Błąd 3 to częsty wybór przy niedokładnym liczeniu.",
-    "difficulty": "easy",
-    "topic": "filtrowanie z `if`"
-  },
-  {
-    "id": 26,
-    "materialId": 3,
-    "question": "Która odpowiedź najlepiej opisuje rolę instrukcji `if` wewnątrz pętli?",
-    "choices": [
-      "Pozwala uruchomić kod tylko dla elementów spełniających warunek",
-      "Zastępuje licznik",
-      "Zamyka pętlę",
-      "Inicjalizuje zmienną"
-    ],
-    "correctIndex": 0,
-    "explanation": "`if` filtruje elementy w pętli. Nie zastępuje licznika ani nie zamyka pętli ani nie inicjalizuje zmiennej.",
-    "difficulty": "easy",
-    "topic": "filtrowanie z `if`"
-  },
-  {
-    "id": 27,
-    "materialId": 3,
-    "question": "Co jest błędne w tym kodzie obliczającym średnią?",
-    "choices": [
-      "Użyto `sum = sum + 1` zamiast dodawać wartość",
-      "Licznik jest prawidłowy",
-      "Sumę zainicjowano na None",
-      "Nic nie jest błędne"
-    ],
-    "correctIndex": 0,
-    "explanation": "Zamiast dodawać aktualną wartość, kod zwiększa sumę o 1, co daje nieprawidłową sumę. To częsty błąd mylony z licznikiem.",
-    "difficulty": "medium",
-    "topic": "suma (total)"
-  },
-  {
     "id": 28,
     "materialId": 4,
     "question": "Co wypisze ten kod?\n\n```python\nx = 8\nif x > 10:\n    print('duże')\nelse:\n    print('małe')\n```",
@@ -658,411 +523,6 @@
     "explanation": "`int(' 123 ')` działa, bo spacje na początku i końcu są akceptowane, więc wypisze `Sukces`.",
     "difficulty": "medium",
     "topic": "konwersja int()"
-  },
-  {
-    "id": 45,
-    "materialId": 6,
-    "question": "Co wypisze ten kod?",
-    "choices": [
-      "Start\nHello\nBye\nEnd",
-      "Start\nEnd\nHello\nBye",
-      "Hello\nBye\nStart\nEnd",
-      "Start\nHello\nBye\nHello\nBye\nEnd"
-    ],
-    "correctIndex": 0,
-    "explanation": "Funkcja jest zdefiniowana, potem program wypisuje `Start`, potem wywołuje `greet()` co daje `Hello` i `Bye`, potem `End`. Najpopularniejszy błąd to myślenie, że definicja uruchamia funkcję — nie uruchamia.",
-    "difficulty": "easy",
-    "topic": "Wywoływanie funkcji"
-  },
-  {
-    "id": 46,
-    "materialId": 6,
-    "question": "Co jest nie tak z tym kodem?",
-    "choices": [
-      "Nic, wypisze 6",
-      "Błąd typu, nie można dodać int i string",
-      "Funkcja `add_one` nie istnieje",
-      "SyntaxError przy `def`"
-    ],
-    "correctIndex": 1,
-    "explanation": "`a` jest stringiem `'5'`. `add_one` dodaje 1 (int) do `a`, więc pojawi się TypeError. Trzeba najpierw skonwertować `a` na int.",
-    "difficulty": "easy",
-    "topic": "Konwersje typów"
-  },
-  {
-    "id": 47,
-    "materialId": 6,
-    "question": "Która wersja zwróci liczbę zmiennoprzecinkową (float) jako wynik `2 * s` gdy `s = '3'`?",
-    "choices": [
-      "A:\n```python\nresult = 2 * float(s)\n```",
-      "B:\n```python\nresult = 2 * int(s)\n```",
-      "C:\n```python\nresult = int(2 * s)\n```",
-      "D:\n```python\nresult = 2 * s\n```"
-    ],
-    "correctIndex": 0,
-    "explanation": "A używa `float(s)` i daje `6.0`. B da `6` (int), C jest błędne bo mnoży string przez int przed konwersją (zwróci błąd), D mnoży string przez int i zwróci powielenie stringu, a nie liczbę.",
-    "difficulty": "medium",
-    "topic": "Konwersje typów"
-  },
-  {
-    "id": 48,
-    "materialId": 6,
-    "question": "Co się stanie jeśli zdefiniujesz funkcję, ale zapomnisz napisać nawiasy podczas wywołania?",
-    "choices": [
-      "Funkcja się wykona mimo braku nawiasów",
-      "Nic się nie stanie, otrzymasz referencję do funkcji",
-      "Błąd typu",
-      "Program zatrzyma się z Traceback"
-    ],
-    "correctIndex": 1,
-    "explanation": "Bez nawiasów dostajesz obiekt funkcji, a nie jej wykonanie. Najpopularniejszy błąd to myślenie, że bez nawiasów funkcja się uruchomi.",
-    "difficulty": "medium",
-    "topic": "Wywoływanie funkcji"
-  },
-  {
-    "id": 49,
-    "materialId": 6,
-    "question": "Co zwróci `max('aZb')`?",
-    "choices": [
-      "'a'",
-      "'Z'",
-      "'b'",
-      "Błąd"
-    ],
-    "correctIndex": 2,
-    "explanation": "Porównanie bierze pod uwagę kod znaków. Małe litery mają większą wartość niż wielkie, więc `'b'` jest największy. Błędna odpowiedź to wybór `'Z'` — to częsty błąd myślący że wielkie są większe.",
-    "difficulty": "medium",
-    "topic": "Funkcje wbudowane"
-  },
-  {
-    "id": 50,
-    "materialId": 6,
-    "question": "Co wypisze ten kod?",
-    "choices": [
-      "3.0",
-      "3",
-      "TypeError",
-      "Nic"
-    ],
-    "correctIndex": 0,
-    "explanation": "Najpierw `float('3')` zwraca `3.0`, potem `int(3.0)` zwraca `3`, ale w tym kodzie najpierw konwertujemy na float, więc wynik użyty w `print` to `3.0`.\n(Błędna odpowiedź `3` wynika z pomyłki kolejności konwersji.)",
-    "difficulty": "medium",
-    "topic": "Konwersje typów"
-  },
-  {
-    "id": 51,
-    "materialId": 6,
-    "question": "Które zdanie jest prawdziwe?",
-    "choices": [
-      "`return` uruchamia funkcję",
-      "`def` od razu wykonuje kod w funkcji",
-      "Wywołanie funkcji może zwrócić wartość użyte w przypisaniu",
-      "`print()` zawsze zwraca wartość"
-    ],
-    "correctIndex": 2,
-    "explanation": "Wywołanie funkcji może zwrócić wartość, którą można przypisać do zmiennej. `def` nie wykonuje kodu, a `print()` wypisuje, ale nie zwraca wartości do użycia.",
-    "difficulty": "easy",
-    "topic": "Argumenty i wartości zwracane"
-  },
-  {
-    "id": 52,
-    "materialId": 6,
-    "question": "Co się stanie przy wywołaniu `int('')`?",
-    "choices": [
-      "Zwróci 0",
-      "Zwróci pusty string",
-      "Błąd (Traceback)",
-      "Zwróci `' '` (spację)"
-    ],
-    "correctIndex": 2,
-    "explanation": "`int('')` nie może skonwertować pustego stringa i wyrzuci błąd. Częsty błąd to założenie, że pusty string jest równoznaczny z 0.",
-    "difficulty": "medium",
-    "topic": "Błędy przy nieprawidłowej konwersji"
-  },
-  {
-    "id": 53,
-    "materialId": 6,
-    "question": "Które z poniższych prawidłowo wywoła funkcję `f` i przypisze wynik do `x`?",
-    "choices": [
-      "`x = f`",
-      "`x = f()`",
-      "`f = x()`",
-      "`x = (f)`"
-    ],
-    "correctIndex": 1,
-    "explanation": "`x = f()` wywołuje funkcję `f` i przypisuje jej zwróconą wartość do `x`. `x = f` przypisuje sam obiekt funkcji, a nie jej wynik.",
-    "difficulty": "easy",
-    "topic": "Wywoływanie funkcji"
-  },
-  {
-    "id": 54,
-    "materialId": 6,
-    "question": "Co zwróci `min(' x')` (string składający się ze spacji i linii \"x\")?",
-    "choices": [
-      "'x'",
-      "' ' (spacja)",
-      "Błąd",
-      "Nic"
-    ],
-    "correctIndex": 1,
-    "explanation": "W `min` porównywane są znaki. Spacja ma mniejszą wartość niż 'x', więc `min(' x')` zwróci spację. Częsty błąd to niezauważenie spacji jako znaku.",
-    "difficulty": "medium",
-    "topic": "Funkcje wbudowane"
-  },
-  {
-    "id": 55,
-    "materialId": 7,
-    "question": "Co zwróci ten kod?\n```python\ns = \"apple  banana   cherry\"\nwords = s.split()\nprint(words)\n```",
-    "choices": [
-      "['apple', 'banana', 'cherry']",
-      "['apple', '', 'banana', '', '', 'cherry']",
-      "['apple  banana   cherry']",
-      "['apple banana cherry']"
-    ],
-    "correctIndex": 0,
-    "explanation": "Domyślne `split()` usuwa nadmiarowe spacje i zwraca oddzielne słowa. Błędna odpowiedź z pustymi stringami to efekt użycia `split(' ')`.",
-    "difficulty": "easy",
-    "topic": "split()"
-  },
-  {
-    "id": 56,
-    "materialId": 7,
-    "question": "Co zwróci ten kod?\n```python\ns = \"one;two;three\"\nprint(s.split())\n```",
-    "choices": [
-      "['one', 'two', 'three']",
-      "['one;two;three']",
-      "['one', ';', 'two', ';', 'three']",
-      "['one', 'two;three']"
-    ],
-    "correctIndex": 1,
-    "explanation": "`split()` domyślnie dzieli po białych znakach. Tu nie ma spacji, więc cały string zostaje w jednym elemencie. Żeby dostać pola trzeba użyć `split(';')`.",
-    "difficulty": "easy",
-    "topic": "split()"
-  },
-  {
-    "id": 57,
-    "materialId": 7,
-    "question": "Masz linię:\n```python\nline = 'From   user@example.com Wed Sep  5'\n```\nKtóry kod pewnie poprawnie zwróci adres email `user@example.com`?",
-    "choices": [
-      "`words = line.split(); email = words[1]`",
-      "`words = line.split(' '); email = words[1]`",
-      "`email = line.split('@')[1]`",
-      "`email = line[5:25]`"
-    ],
-    "correctIndex": 0,
-    "explanation": "`split()` bez argumentu skompresuje wielokrotne spacje i `words[1]` będzie adresem. `split(' ')` może dać puste elementy. Pozostałe odpowiedzi są niepewne lub złe.",
-    "difficulty": "medium",
-    "topic": "split() vs split(' ')"
-  },
-  {
-    "id": 58,
-    "materialId": 7,
-    "question": "Co zwróci `''.split()` (pusty string)?",
-    "choices": [
-      "[]",
-      "['']",
-      "['', '']",
-      "Błąd"
-    ],
-    "correctIndex": 0,
-    "explanation": "Pusty string bez słów zamienia się w pustą listę. `['']` to wynik `''.split(' ')` z konkretnym separatorem.",
-    "difficulty": "medium",
-    "topic": "split()"
-  },
-  {
-    "id": 59,
-    "materialId": 7,
-    "question": "Co jest nie tak z tym kodem?\n```python\nline = 'From: user@example.com'\nif line.startswith('From'):\n    words = line.split()\n    print(words[1])\n```",
-    "choices": [
-      "Warunek `startswith('From')` złapie też `From:` i to może być niewłaściwe.",
-      "Brakuje `strip()` przed `split()`.",
-      "Trzeba użyć `split('@')` zamiast `split()`.",
-      "Kod działa poprawnie zawsze."
-    ],
-    "correctIndex": 0,
-    "explanation": "Sprawdzamy `startswith('From')` bez spacji, więc linia `From:` też zostanie przyjęta. Często chcemy dokładnie `From ` z spacją.",
-    "difficulty": "medium",
-    "topic": "startsWith i filtrowanie"
-  },
-  {
-    "id": 60,
-    "materialId": 7,
-    "question": "Co zwróci ten kod?\n```python\nline = 'From person@host.com Thu'\nparts = line.split()\nprint(parts[2])\n```",
-    "choices": [
-      "'Thu'",
-      "'person@host.com'",
-      "Błąd indexu",
-      "'' (pusty string)"
-    ],
-    "correctIndex": 0,
-    "explanation": "Po `split()` mamy listę `['From', 'person@host.com', 'Thu']`. `parts[2]` to trzeci element, czyli dzień `'Thu'`.",
-    "difficulty": "easy",
-    "topic": "indeksowanie"
-  },
-  {
-    "id": 61,
-    "materialId": 7,
-    "question": "Jaka będzie zawartość `email_parts`?\n```python\nemail = 'user.name@domain.com'\nemail_parts = email.split('@')\n```",
-    "choices": [
-      "['user.name', 'domain.com']",
-      "['user', 'name@domain', 'com']",
-      "['user.name@domain.com']",
-      "Błąd"
-    ],
-    "correctIndex": 0,
-    "explanation": "`split('@')` dzieli dokładnie po znaku `@`, więc otrzymujemy część przed i po `@`.",
-    "difficulty": "easy",
-    "topic": "double split"
-  },
-  {
-    "id": 62,
-    "materialId": 7,
-    "question": "Masz tekst z wieloma spacjami:\n```python\nline = 'From    a@b.com   Fri'\n```\nKtóry kod poprawnie pobierze domenę `b.com`?",
-    "choices": [
-      "`parts = line.split(); domain = parts[1].split('@')[1]`",
-      "`parts = line.split(' '); domain = parts[1].split('@')[1]`",
-      "`domain = line.split('@')[1]`",
-      "`domain = line.split()[2]`"
-    ],
-    "correctIndex": 0,
-    "explanation": "Pierwszy wariant bez argumentu `split()` skompresuje nadmiar spacji, więc `parts[1]` to email, a `split('@')[1]` to domena. Drugi wariant może mieć puste elementy.",
-    "difficulty": "medium",
-    "topic": "double split"
-  },
-  {
-    "id": 63,
-    "materialId": 8,
-    "question": "Co zwróci ten kod?\n\n`colors = ['red', 'blue', 'green']\nprint(colors[2])`",
-    "choices": [
-      "'green'",
-      "IndexError",
-      "'blue'",
-      "'red'"
-    ],
-    "correctIndex": 0,
-    "explanation": "Indeksy zaczynają się od `0`, więc `colors[2]` to trzeci element `'green'`. Błąd z `IndexError` pojawiłby się tylko gdyby indeks był poza zakresem.",
-    "difficulty": "easy",
-    "topic": "Indeksowanie"
-  },
-  {
-    "id": 64,
-    "materialId": 8,
-    "question": "Co wydrukuje ten kod?\n\n`nums = [5, 7, 9]\nnums[1] = 8\nprint(nums)`",
-    "choices": [
-      "[5, 8, 9]",
-      "[5, 7, 9]",
-      "8",
-      "IndexError"
-    ],
-    "correctIndex": 0,
-    "explanation": "Lista jest mutowalna, więc przypisanie `nums[1] = 8` zmienia drugi element na `8`. Błąd nie występuje, bo indeks `1` istnieje.",
-    "difficulty": "easy",
-    "topic": "Mutowalność"
-  },
-  {
-    "id": 65,
-    "materialId": 8,
-    "question": "Co zwróci `len()` gdy podamy pustą listę?\n\n`x = []\nprint(len(x))`",
-    "choices": [
-      "0",
-      "Error",
-      "1",
-      "None"
-    ],
-    "correctIndex": 0,
-    "explanation": "`len([])` zwraca `0`, bo w pustej liście nie ma elementów. To nie jest błąd i nie daje `1`.",
-    "difficulty": "easy",
-    "topic": "len i range"
-  },
-  {
-    "id": 66,
-    "materialId": 8,
-    "question": "Co jest nie tak z tym kodem?\n\n`letters = ['a','b','c']\nfor i in range(letters):\n    print(letters[i])`",
-    "choices": [
-      "`range()` oczekuje liczby, trzeba użyć `range(len(letters))`",
-      "Indeksy zaczynają się od 1, trzeba użyć `i+1`",
-      "Brakuje dwukropka w `for`",
-      "Trzeba użyć `for x in letters` zamiast `for i in range(...)`"
-    ],
-    "correctIndex": 0,
-    "explanation": "`range()` potrzebuje liczby, a tu podano listę. Najprościej użyć `range(len(letters))`. Opcja z indeksami od 1 jest błędna, Python zaczyna od `0`.",
-    "difficulty": "medium",
-    "topic": "range"
-  },
-  {
-    "id": 67,
-    "materialId": 8,
-    "question": "Która wersja poprawnie wypisze indeks i wartość dla listy `items`?\n\nWersja A:\n```\nfor val in items:\n    print(i, val)\n```\nWersja B:\n```\nfor i in range(len(items)):\n    print(i, items[i])\n```",
-    "choices": [
-      "Wersja B",
-      "Wersja A",
-      "Obie poprawne",
-      "Obie złe"
-    ],
-    "correctIndex": 0,
-    "explanation": "Wersja A używa `i`, która nie jest zdefiniowana. Wersja B poprawnie używa `range(len(items))` by mieć indeks i wartość przez `items[i]`.",
-    "difficulty": "medium",
-    "topic": "Pętle for"
-  },
-  {
-    "id": 68,
-    "materialId": 8,
-    "question": "Co wypisze ten kod?\n\n`matrix = [[1,2],[3,4]]\nprint(matrix[1][0])`",
-    "choices": [
-      "3",
-      "4",
-      "[3, 4]",
-      "IndexError"
-    ],
-    "correctIndex": 0,
-    "explanation": "`matrix[1]` to druga lista `[3,4]`, a `matrix[1][0]` to pierwszy element tej listy czyli `3`. Nie ma tu błędu.",
-    "difficulty": "medium",
-    "topic": "Listy zagnieżdżone"
-  },
-  {
-    "id": 69,
-    "materialId": 8,
-    "question": "Co się stanie gdy wykonamy ten kod?\n\n`names = ['a','b','c']\nfor i in range(len(names)):\n    print(names[i+1])`",
-    "choices": [
-      "Wyrzuci `IndexError` gdy i osiągnie ostatnią pozycję",
-      "Wypisze wszystkie trzy elementy poprawnie",
-      "Wypisze tylko drugi element trzy razy",
-      "Nic nie wypisze"
-    ],
-    "correctIndex": 0,
-    "explanation": "Gdy `i` będzie równy `2`, `names[i+1]` to `names[3]`, poza zakresem i pojawi się `IndexError`. To typowy off-by-one.",
-    "difficulty": "medium",
-    "topic": "Indeksowanie"
-  },
-  {
-    "id": 70,
-    "materialId": 8,
-    "question": "Jaka jest prawidłowa różnica między listą a stringiem?",
-    "choices": [
-      "Listy są mutowalne, stringi nie są",
-      "Stringi są mutowalne, listy nie są",
-      "Oba są niemutowalne",
-      "Oba są mutowalne"
-    ],
-    "correctIndex": 0,
-    "explanation": "Listę można zmieniać przez przypisanie elementu, np. `lst[0] = x`. Stringów nie można zmienić przez `s[0] = x`.",
-    "difficulty": "easy",
-    "topic": "Mutowalność"
-  },
-  {
-    "id": 71,
-    "materialId": 8,
-    "question": "Co wypisze ten kod?\n\n`for i in range(3):\n    print(i)`",
-    "choices": [
-      "0\n1\n2",
-      "1\n2\n3",
-      "0\n1\n2\n3",
-      "Wyrzuci błąd"
-    ],
-    "correctIndex": 0,
-    "explanation": "`range(3)` daje `0,1,2`, więc pętla wypisze te trzy liczby. Nie ma liczby `3` w tym zakresie.",
-    "difficulty": "easy",
-    "topic": "range"
   },
   {
     "id": 72,
@@ -2295,126 +1755,6 @@
     "topic": "porównania"
   },
   {
-    "id": 154,
-    "materialId": 18,
-    "question": "Co wypisze ten kod?\n\n`colors = ['red']`\n\n`more = ['blue', 'green']`\n\n`print(colors + more)`",
-    "choices": [
-      "['red', 'blue', 'green']",
-      "['red']",
-      "['blue', 'green', 'red']",
-      "Błąd"
-    ],
-    "correctIndex": 0,
-    "explanation": "Operator `+` łączy dwie listy tworząc nową listę w tej samej kolejności. Nie daje błędu ani nie zamienia kolejności.",
-    "difficulty": "easy",
-    "topic": "łączenie list"
-  },
-  {
-    "id": 155,
-    "materialId": 18,
-    "question": "Co zwróci ten slicing?\n\n`animals = ['cat', 'dog', 'mouse', 'bird']`\n\n`print(animals[1:3])`",
-    "choices": [
-      "['dog', 'mouse']",
-      "['cat', 'dog', 'mouse']",
-      "['dog', 'mouse', 'bird']",
-      "['mouse']"
-    ],
-    "correctIndex": 0,
-    "explanation": "`animals[1:3]` bierze elementy od indeksu 1 do 3, nie wliczając 3, więc to są indeksy 1 i 2: 'dog' i 'mouse'. Inne odpowiedzi mylą końcowy indeks.",
-    "difficulty": "easy",
-    "topic": "slicing"
-  },
-  {
-    "id": 156,
-    "materialId": 18,
-    "question": "Co jest nie tak z tym kodem?\n\n```python\nx = [1, 2, 3]\n# chcemy dodać 4\nx = x.append(4)\nprint(x)\n```",
-    "choices": [
-      "Przypisujemy wynik `append()` do `x`, więc `x` już nie jest listą z elementem 4.",
-      "`append()` nie działa na listach.",
-      "Brakuje nawiasu przy `print`.",
-      "Kod zadziała poprawnie i wypisze `[1,2,3,4]`."
-    ],
-    "correctIndex": 0,
-    "explanation": "`append()` zmienia listę, ale jego zwracana wartość nie jest listą, więc przypisując nadpisujemy `x`. Inne odpowiedzi są nieprawidłowe, bo `append()` działa i składnia `print` jest poprawna.",
-    "difficulty": "medium",
-    "topic": "metody list"
-  },
-  {
-    "id": 157,
-    "materialId": 18,
-    "question": "Co się stanie gdy wywołamy `max()` na pustej liście?",
-    "choices": [
-      "Pojawi się błąd (brak elementów do porównania).",
-      "Zwróci 0.",
-      "Zwróci `None`.",
-      "Zwróci pustą listę `[]`."
-    ],
-    "correctIndex": 0,
-    "explanation": "`max()` potrzebuje co najmniej jednego elementu do znalezienia największego; na pustej liście nie ma takiego elementu i Python zgłosi błąd. Inne odpowiedzi to typowe mylne założenia.",
-    "difficulty": "medium",
-    "topic": "funkcje"
-  },
-  {
-    "id": 158,
-    "materialId": 18,
-    "question": "Masz listę wartości w zmiennej `inputs` i chcesz liczyć średnią używając listy i funkcji. Która wersja poprawnie to robi?",
-    "choices": [
-      "```python\nnums = []\ni = 0\nwhile i < len(inputs):\n    if inputs[i] == 'done':\n        break\n    nums.append(float(inputs[i]))\n    i = i + 1\nprint(sum(nums)/len(nums))\n```",
-      "```python\nnums = []\nfor v in inputs:\n    nums = nums.append(float(v))\nprint(sum(nums)/len(nums))\n```",
-      "```python\nnums = 0\ncount = 0\nwhile True:\n    nums.append(float(input()))\n    count = count + 1\nprint(nums/count)\n```",
-      "```python\nnums = []\n# brak pętli\nprint(sum(nums)/len(nums))\n```"
-    ],
-    "correctIndex": 0,
-    "explanation": "Pierwsza wersja poprawnie zbiera liczby do listy i używa `sum()` i `len()`. Druga przypisuje `nums = nums.append(...)`, co nadpisuje listę. Trzecia próbuje użyć `append` na liczbie. Czwarta dzieli przez długość pustej listy.",
-    "difficulty": "medium",
-    "topic": "budowanie list"
-  },
-  {
-    "id": 159,
-    "materialId": 18,
-    "question": "Która metoda służy do posortowania listy i zmienia ją od razu?",
-    "choices": [
-      "`sort()`",
-      "`count()`",
-      "`append()`",
-      "`len()`"
-    ],
-    "correctIndex": 0,
-    "explanation": "`sort()` porządkuje listę i zmienia ją. `count()` zlicza elementy, `append()` dodaje element, a `len()` zwraca długość.",
-    "difficulty": "easy",
-    "topic": "sort"
-  },
-  {
-    "id": 160,
-    "materialId": 18,
-    "question": "Co wypisze ten kod?\n\n`nums = [1, 3, 5]\nprint(3 in nums)\nprint(2 in nums)`",
-    "choices": [
-      "True then False",
-      "False then True",
-      "True then True",
-      "False then False"
-    ],
-    "correctIndex": 0,
-    "explanation": "`in` sprawdza przynależność. 3 jest w liście więc pierwsze to True, 2 nie ma więc drugie to False.",
-    "difficulty": "easy",
-    "topic": "operator in"
-  },
-  {
-    "id": 161,
-    "materialId": 18,
-    "question": "Masz listę `a = [10, 20, 30]`. Co zwróci `a[0:2]`?",
-    "choices": [
-      "[10, 20]",
-      "[20, 30]",
-      "[10, 20, 30]",
-      "[30]"
-    ],
-    "correctIndex": 0,
-    "explanation": "Slicing `0:2` bierze elementy z indeksów 0 i 1, czyli 10 i 20. Inne odpowiedzi mylą zakres lub kolejność.",
-    "difficulty": "easy",
-    "topic": "slicing"
-  },
-  {
     "id": 162,
     "materialId": 19,
     "question": "Co wydrukuje ten kod?\n```python\na = \"4\"\nb = int(a) + 1\nprint(\"US floor\", b)\n```",
@@ -2668,141 +2008,6 @@
     "explanation": "`break` natychmiast przerywa całą pętlę. `continue` kończy tylko bieżącą iterację i wraca na początek pętli. Błędne odpowiedzi mylą zakres działania obu instrukcji.",
     "difficulty": "easy",
     "topic": "Instrukcje sterujące"
-  },
-  {
-    "id": 179,
-    "materialId": 21,
-    "question": "Co wypisze ten kod? `a = 2; b = 3.0; print(a + b)`",
-    "choices": [
-      "`5`",
-      "`5.0`",
-      "`'5'`",
-      "TypeError"
-    ],
-    "correctIndex": 1,
-    "explanation": "Dodanie `int` i `float` daje `float`, więc wynik to `5.0`. Odpowiedź `5` to typ całkowity, a `'5'` to napis — obie są nieprawidłowe.",
-    "difficulty": "easy",
-    "topic": "typy danych (int, float, string)"
-  },
-  {
-    "id": 180,
-    "materialId": 21,
-    "question": "Co wypisze ten kod? `s = 'Hi'; t = ' there'; print(s + t)`",
-    "choices": [
-      "`Hi there`",
-      "`Hi there `` (z dodatkową spacją)",
-      "TypeError",
-      "`HiThere`"
-    ],
-    "correctIndex": 0,
-    "explanation": "Operator `+` konkatenje napisy i wynik to `Hi there`, ponieważ spacja jest częścią drugiego napisu. `'HiThere'` brakowałoby spacji, a `TypeError` nie występuje.",
-    "difficulty": "easy",
-    "topic": "operator + jako dodawanie i konkatenacja"
-  },
-  {
-    "id": 181,
-    "materialId": 21,
-    "question": "Co jest nie tak z tym kodem? `name = input('Name? ')\\nprint('Hello ' + name + 1)`",
-    "choices": [
-      "Brakuje spacji",
-      "Błąd: nie można dodać `str` i `int`",
-      "Funkcja `input()` zwraca liczbę",
-      "Działa poprawnie"
-    ],
-    "correctIndex": 1,
-    "explanation": "Próba `'Hello ' + name + 1` miesza napisy i liczbę, co powoduje `TypeError`. `input()` zwraca napis, więc to nie jest liczba.",
-    "difficulty": "easy",
-    "topic": "gotcha: mieszanie typów"
-  },
-  {
-    "id": 182,
-    "materialId": 21,
-    "question": "Która wersja da dokładnie liczbę całkowitą 6? A: `int('4') + 2` B: `float('4') + 2` C: `'4' + 2`",
-    "choices": [
-      "A tylko",
-      "B tylko",
-      "A i B",
-      "C tylko"
-    ],
-    "correctIndex": 0,
-    "explanation": "Tylko `int('4') + 2` da `6` jako `int`. `float('4') + 2` da `6.0` (float). `'4' + 2` spowoduje błąd `TypeError`.",
-    "difficulty": "medium",
-    "topic": "konwersje: int(), float()"
-  },
-  {
-    "id": 183,
-    "materialId": 21,
-    "question": "Co wypisze `print(9/2)` w Pythonie 3?",
-    "choices": [
-      "`4`",
-      "`4.5`",
-      "`TypeError`",
-      "`4.0`"
-    ],
-    "correctIndex": 1,
-    "explanation": "W Pythonie 3 operator `/` zawsze zwraca `float`. 9/2 daje `4.5`. `4` lub `4.0` byłyby wynikami zaokrąglenia albo innych operatorów.",
-    "difficulty": "easy",
-    "topic": "dzielenie w Python 3 (zwraca float)"
-  },
-  {
-    "id": 184,
-    "materialId": 21,
-    "question": "Co zwróci `type(3.0)` gdy wypiszesz wynik?",
-    "choices": [
-      "`<class 'float'>`",
-      "`'float'`",
-      "`float`",
-      "TypeError"
-    ],
-    "correctIndex": 0,
-    "explanation": "`type()` w Pythonie pokazuje reprezentację typu, np. `<class 'float'>`. `'float'` to zwykły napis, a `float` bez kontekstu nie jest tym, co `type()` wypisze.",
-    "difficulty": "medium",
-    "topic": "funkcja type()"
-  },
-  {
-    "id": 185,
-    "materialId": 21,
-    "question": "Co wypisze ten kod? `s = '123'; print(int(s) + 1)`",
-    "choices": [
-      "`'124'`",
-      "`124`",
-      "TypeError",
-      "`1231`"
-    ],
-    "correctIndex": 1,
-    "explanation": "`int('123')` konwertuje napis na 123 (liczbę), a dodanie 1 daje 124. `'124'` to napis, a `1231` byłby wynikiem konkatenacji tekstowej.",
-    "difficulty": "easy",
-    "topic": "konwersje: int(), float()"
-  },
-  {
-    "id": 186,
-    "materialId": 21,
-    "question": "Co się stanie przy tym kodzie? `val = 'abc'\\nn = int(val)`",
-    "choices": [
-      "Zwróci 0",
-      "ValueError",
-      "TypeError",
-      "Zadziała i da 123"
-    ],
-    "correctIndex": 1,
-    "explanation": "`int('abc')` nie może przeczytać cyfr i wyrzuci `ValueError` z komunikatem o nieprawidłowym literale. To nie jest `TypeError`.",
-    "difficulty": "medium",
-    "topic": "konwersje: int(), float()"
-  },
-  {
-    "id": 187,
-    "materialId": 21,
-    "question": "Co wypisze `print('Hello', 'Anna')`?",
-    "choices": [
-      "`HelloAnna`",
-      "`Hello Anna`",
-      "`Hello, Anna`",
-      "TypeError"
-    ],
-    "correctIndex": 1,
-    "explanation": "Gdy `print` dostaje kilka argumentów oddzielonych przecinkami, dodaje spację między nimi. Nie dodaje przecinka automatycznie.",
-    "difficulty": "easy",
-    "topic": "wejście i wyjście: input(), print()"
   },
   {
     "id": 188,
@@ -3225,411 +2430,6 @@
     "topic": "histogram"
   },
   {
-    "id": 216,
-    "materialId": 25,
-    "question": "Co zwróci ten kod?\n```python\nline = 'kot pies kot'\ncounts = {}\nfor w in line.split():\n    counts[w] = counts.get(w, 0) + 1\nprint(counts['kot'])\n```",
-    "choices": [
-      "0",
-      "1",
-      "2",
-      "Błąd wykonania"
-    ],
-    "correctIndex": 2,
-    "explanation": "Słowo 'kot' występuje dwa razy, więc `counts['kot']` to 2. Popularny błąd to zapomnieć domyślnej wartości w `get`, wtedy byłby błąd.",
-    "difficulty": "easy",
-    "topic": "histogram"
-  },
-  {
-    "id": 217,
-    "materialId": 25,
-    "question": "Co jest nie tak z tym kodem?\n```python\ntext = 'a b c'\ncounts = {}\nfor w in text.split():\n    counts[w] = counts.get(w) + 1\n```",
-    "choices": [
-      "Nic, działa poprawnie",
-      "Zwróci zawsze 0",
-      "Dla nowego klucza `get` zwraca `None` i powstanie błąd",
-      "`split()` nie działa bez argumentu"
-    ],
-    "correctIndex": 2,
-    "explanation": "`counts.get(w)` zwróci `None` dla nieistniejącego klucza, więc `None + 1` spowoduje błąd. Trzeba użyć `counts.get(w, 0)`.",
-    "difficulty": "easy",
-    "topic": "get()"
-  },
-  {
-    "id": 218,
-    "materialId": 25,
-    "question": "Która wersja poprawnie wypisze pary klucz-wartość z słownika `d`?\nA:\n```python\nfor k in d:\n    print(k, d[k])\n```\nB:\n```python\nfor k, v in d:\n    print(k, v)\n```\nC:\n```python\nfor k, v in d.items():\n    print(k, v)\n```\nD:\n```python\nfor v in d.values():\n    print(v)\n```",
-    "choices": [
-      "A",
-      "B",
-      "C",
-      "D"
-    ],
-    "correctIndex": 2,
-    "explanation": "Wersja C używa `items()` i rozpakowania par (klucz, wartość). Wersja A też wypisze pary, ale robi dodatkowe wyszukiwanie `d[k]`; B jest błędna bo `for k, v in d` nie działa; D wypisuje tylko wartości.",
-    "difficulty": "medium",
-    "topic": "items()"
-  },
-  {
-    "id": 219,
-    "materialId": 25,
-    "question": "Co się stanie gdy wykonamy `for k in d:` dla słownika `d`?",
-    "choices": [
-      "Pętla przejdzie po parach (klucz, wartość)",
-      "Pętla przejdzie po wartościach",
-      "Pętla przejdzie po kluczach",
-      "Błąd czasu wykonywania"
-    ],
-    "correctIndex": 2,
-    "explanation": "Domyślnie `for k in d:` iteruje po kluczach słownika. Aby dostać wartości trzeba użyć `d[k]` lub `d.values()`.",
-    "difficulty": "easy",
-    "topic": "pętla for"
-  },
-  {
-    "id": 220,
-    "materialId": 25,
-    "question": "Co zwróci `d.keys()` jeśli `d = {'a':1, 'b':2}`?\nWybierz najlepszą odpowiedź.",
-    "choices": [
-      "Listę wartości `[1, 2]`",
-      "Listę kluczy `['a','b']`",
-      "Nic, metoda `keys()` nie istnieje",
-      "Błąd czasu wykonywania"
-    ],
-    "correctIndex": 1,
-    "explanation": "`d.keys()` zwraca listę kluczy. Metoda istnieje i daje `['a','b']` (kolejność zgodna z wstawieniem).",
-    "difficulty": "easy",
-    "topic": "keys()"
-  },
-  {
-    "id": 221,
-    "materialId": 25,
-    "question": "Masz histogram `counts`. Chcesz znaleźć słowo z największym licznikiem. Który schemat jest poprawny?\nA:\n```python\nbigcount = None\nfor w, c in counts.items():\n    if bigcount is None or c > bigcount:\n        bigword = w\n        bigcount = c\n``` \nB:\n```python\nbigcount = 0\nfor w in counts:\n    if counts[w] < bigcount:\n        bigword = w\n``` \nC:\n```python\nfor w in counts:\n    bigword = w\n``` \nD:\n```python\nbigcount = None\nfor w in counts:\n    if bigcount is None or counts[w] < bigcount:\n        bigword = w\n```",
-    "choices": [
-      "A",
-      "B",
-      "C",
-      "D"
-    ],
-    "correctIndex": 0,
-    "explanation": "Schemat A to standardowy \"max loop\": zaczynamy od `None` i aktualizujemy gdy znajdziemy większy licznik. Pozostałe nie znajdują maksima lub mają błędną logikę porównania.",
-    "difficulty": "medium",
-    "topic": "histogram"
-  },
-  {
-    "id": 222,
-    "materialId": 25,
-    "question": "Co zwróci ten kod?\n```python\ns = 'x y x z'\ncounts = {}\nfor w in s.split():\n    counts[w] = counts.get(w, 0) + 1\nprint(sorted(counts.keys()))\n```",
-    "choices": [
-      "['x','y','z']",
-      "['z','y','x']",
-      "Błąd, bo nie używaliśmy listy",
-      "Nie wiadomo, bo słowniki nie mają kluczy"
-    ],
-    "correctIndex": 0,
-    "explanation": "Klucze to `'x','y','z'`. `sorted()` nie był omawiany w materiale, ale zakładamy standardowe zachowanie; popularny błąd to myśleć, że kolejność jest losowa.",
-    "difficulty": "hard",
-    "topic": "słowniki"
-  },
-  {
-    "id": 223,
-    "materialId": 25,
-    "question": "Która odpowiedź opisuje tuple w kontekście `items()`?\nA: Tuple to zmienna która może zmieniać wartości.\nB: Tuple to para wartości zwracana z `items()`, którą można rozpakować w pętli.\nC: Tuple to metoda słownika.\nD: Tuple to specjalny typ listy z nawiasów klamrowych.",
-    "choices": [
-      "A",
-      "B",
-      "C",
-      "D"
-    ],
-    "correctIndex": 1,
-    "explanation": "Tuple to uporządkowana para (klucz, wartość) z `items()`. Można ją rozpakować np. `for k, v in d.items():`.",
-    "difficulty": "easy",
-    "topic": "tuple"
-  },
-  {
-    "id": 224,
-    "materialId": 26,
-    "question": "Co wypisze poniższy kod?",
-    "choices": [
-      "`'HelloWorld'`",
-      "`'Hello World'`",
-      "Błąd",
-      "`'Hello+World'`"
-    ],
-    "correctIndex": 0,
-    "explanation": "Operator `+` konkatenatuje bez spacji, więc `\"Hello\" + \"World\"` daje `\"HelloWorld\"`. Najpopularniejszy błąd to myślenie, że dodaje spację.",
-    "difficulty": "easy",
-    "topic": "Konkatenacja"
-  },
-  {
-    "id": 225,
-    "materialId": 26,
-    "question": "Co jest nie tak z tym kodem, jeśli chcemy usuwać część przed znakiem '@'?\n\n```python\ns = 'name@site.com'\nat = s.find('@')\nresult = s[at:]\nprint(result)\n```",
-    "choices": [
-      "Nic, działa poprawnie",
-      "Zwraca część bez '@', powinno zawierać '@'",
-      "Zwraca ciąg zaczynający się od '@', trzeba dać `at+1` żeby pominąć '@'",
-      "Wywoła błąd typu"
-    ],
-    "correctIndex": 2,
-    "explanation": "Wycinek `s[at:]` zaczyna od znaku '@'. Jeśli chcemy pominąć '@', używamy `s[at+1:]`. Popularny błąd to zapomnienie o `+1`.",
-    "difficulty": "medium",
-    "topic": "Slicing (wycinki)"
-  },
-  {
-    "id": 226,
-    "materialId": 26,
-    "question": "Która wersja poprawnie sprawdza, czy `a` i `b` są takie same bez patrzenia na wielkość liter?",
-    "choices": [
-      "`if a == b:`",
-      "`if a.lower() == b.lower():`",
-      "`if a.capitalize() == b.capitalize():`",
-      "`if a.find(b):`"
-    ],
-    "correctIndex": 1,
-    "explanation": "`lower()` zamienia oba napisy na małe litery i wtedy porównujemy. `a == b` uwzględnia wielkość liter. `find()` nie robi porównania równości.",
-    "difficulty": "easy",
-    "topic": "Metody stringów"
-  },
-  {
-    "id": 227,
-    "materialId": 26,
-    "question": "Co zwróci `s.find('x')` jeśli `s = 'abc'`?",
-    "choices": [
-      "`0`",
-      "`2`",
-      "`-1`",
-      "`True`"
-    ],
-    "correctIndex": 2,
-    "explanation": "Jeśli `find()` nie znajdzie podnapisu, zwraca `-1`. Często początkujący spodziewają się `False`, ale jest to `-1`.",
-    "difficulty": "easy",
-    "topic": "Metody stringów"
-  },
-  {
-    "id": 228,
-    "materialId": 26,
-    "question": "Jaka jest główna różnica między `in` a `find()`?",
-    "choices": [
-      "`in` zwraca indeks, `find()` zwraca True/False",
-      "`in` zwraca True/False, `find()` zwraca indeks lub -1",
-      "Nie ma różnicy, oba zwracają to samo",
-      "`in` modyfikuje napis, `find()` nie"
-    ],
-    "correctIndex": 1,
-    "explanation": "`in` daje True/False, `find()` podaje pozycję pierwszego dopasowania lub `-1` gdy nie ma. Popularny błąd to myślenie, że `in` zwraca indeks.",
-    "difficulty": "easy",
-    "topic": "Operator `in`"
-  },
-  {
-    "id": 229,
-    "materialId": 26,
-    "question": "Co wypisze poniższy kod?\n\n```python\ns = '  hello  '\nprint(s.strip())\n```",
-    "choices": [
-      "`'  hello  '`",
-      "`'hello'`",
-      "`''`",
-      "`' hello'`"
-    ],
-    "correctIndex": 1,
-    "explanation": "`strip()` usuwa białe znaki na początku i końcu, więc `'  hello  '` stanie się `'hello'`. Najczęstszy błąd to oczekiwanie, że oryginalny `s` się zmieni.",
-    "difficulty": "easy",
-    "topic": "Metody stringów"
-  },
-  {
-    "id": 230,
-    "materialId": 26,
-    "question": "Co zwróci poniższy kod?\n\n```python\nline = 'Please respond'\nprint(line.startswith('Please'))\n```",
-    "choices": [
-      "`True`",
-      "`False`",
-      "Błąd",
-      "`'Please'`"
-    ],
-    "correctIndex": 0,
-    "explanation": "`startswith()` sprawdza prefiks i zwraca `True`. Popularny błąd to pomylenie z porównaniem całego napisu.",
-    "difficulty": "easy",
-    "topic": "Metody stringów"
-  },
-  {
-    "id": 231,
-    "materialId": 26,
-    "question": "Co jest nie tak z tym kodem, jeśli chcemy zamienić wszystkie 'o' na 'x' w `s`?\n\n```python\ns = 'hello'\ns.replace('o','x')\nprint(s)\n```",
-    "choices": [
-      "Nic, to poprawne",
-      "Funkcja `replace` nie istnieje",
-      "`replace` zwraca nowy napis, ale nie przypisaliśmy go z powrotem do `s`",
-      "Trzeba użyć `s.replace('o','x', 1)` aby zadziałało"
-    ],
-    "correctIndex": 2,
-    "explanation": "`replace()` zwraca zmieniony napis, nie zmienia oryginału. Trzeba zrobić `s = s.replace('o','x')`. Wielu myśli, że `s.replace()` zmienia `s` w miejscu.",
-    "difficulty": "medium",
-    "topic": "Immutable (napisy nie zmieniają się)"
-  },
-  {
-    "id": 232,
-    "materialId": 26,
-    "question": "Co zwróci poniższe porównanie?\n\n```python\nprint('Z' < 'a')\n```",
-    "choices": [
-      "`True`",
-      "`False`",
-      "Błąd",
-      "`'Za'`"
-    ],
-    "correctIndex": 0,
-    "explanation": "'Z' jest przed 'a' w standardowym porządku znaków, więc `'Z' < 'a'` jest prawdą. Często początkujący myślą, że wielkość liter nie wpływa na porządek.",
-    "difficulty": "medium",
-    "topic": "Porównania stringów"
-  },
-  {
-    "id": 233,
-    "materialId": 26,
-    "question": "Co wypisze poniższy kod?\n\n```python\ns = 'banana'\npos = s.find('ana', 2)\nprint(pos)\n```",
-    "choices": [
-      "`1`",
-      "`2`",
-      "`3`",
-      "`-1`"
-    ],
-    "correctIndex": 2,
-    "explanation": "Drugi parametr `find()` ustawia indeks startowy. Szukamy `'ana'` zaczynając od indeksu 2 i pierwsze wystąpienie po tym to indeks 3. Błąd polega na myśleniu o pierwszym wystąpieniu ogólnie, a nie od podanego miejsca.",
-    "difficulty": "hard",
-    "topic": "Metody stringów"
-  },
-  {
-    "id": 234,
-    "materialId": 27,
-    "question": "Co wypisze ten kod?",
-    "choices": [
-      "a",
-      "p",
-      "pp",
-      "IndexError"
-    ],
-    "correctIndex": 1,
-    "explanation": "Indeks 1 to drugi znak w `\"apple\"`, czyli `'p'`. Błąd `IndexError` pojawiłby gdyby indeks był poza zakresem, a `'pp'` to nie wynik pojedynczego indeksu.",
-    "difficulty": "easy",
-    "topic": "Indeksowanie"
-  },
-  {
-    "id": 235,
-    "materialId": 27,
-    "question": "Co wypisze ten kod?",
-    "choices": [
-      "yth",
-      "yt",
-      "ytho",
-      "IndexError"
-    ],
-    "correctIndex": 0,
-    "explanation": "Slicing `s[1:4]` bierze znaki z indeksów 1,2,3 co daje `\"yth\"`. Koniec 4 nie jest wliczony.",
-    "difficulty": "easy",
-    "topic": "Slicing"
-  },
-  {
-    "id": 236,
-    "materialId": 27,
-    "question": "Co jest nie tak z tym kodem?",
-    "choices": [
-      "To działa poprawnie i daje 124",
-      "Błąd typu: nie można dodać stringa i int",
-      "Brakuje `len()`",
-      "Zwróci pusty string"
-    ],
-    "correctIndex": 1,
-    "explanation": "`word + 1` próbuje dodać string i int, co daje `TypeError`. Trzeba użyć `int(word)` przed dodaniem.",
-    "difficulty": "easy",
-    "topic": "TypeError"
-  },
-  {
-    "id": 237,
-    "materialId": 27,
-    "question": "Która wersja poprawnie zlicza wszystkie wystąpienia `'x'` w `text`?",
-    "choices": [
-      "A: poprawna wersja z pętlą for",
-      "B: while z błędem off-by-one",
-      "C: używa `if 'x' in text: count = count + 1`",
-      "D: próbuje dodać string do int"
-    ],
-    "correctIndex": 0,
-    "explanation": "Wersja A przechodzi po każdym znaku i zwiększa licznik dla każdego `'x'`. Wersja C tylko sprawdza czy `'x'` występuje i zwiększa raz, a B ma błąd z indeksem, D to TypeError.",
-    "difficulty": "medium",
-    "topic": "Pętle i zliczanie"
-  },
-  {
-    "id": 238,
-    "materialId": 27,
-    "question": "Co wypisze ten kod?",
-    "choices": [
-      "pusty string",
-      "t",
-      "IndexError",
-      "da"
-    ],
-    "correctIndex": 0,
-    "explanation": "Slicing `s[2:2]` ma start równy end, więc zwraca pusty string. To nie jest błąd.",
-    "difficulty": "easy",
-    "topic": "Slicing"
-  },
-  {
-    "id": 239,
-    "materialId": 27,
-    "question": "Co się stanie gdy wykonamy `s[10]` vs `s[5:10]` dla `s = 'hello'`?",
-    "choices": [
-      "`s[10]` daje IndexError, `s[5:10]` daje pusty string",
-      "Obie operacje dają IndexError",
-      "`s[10]` zwróci pusty string, `s[5:10]` da IndexError",
-      "Obie zwracają pusty string"
-    ],
-    "correctIndex": 0,
-    "explanation": "Pojedynczy indeks poza zakresem daje `IndexError`. Slicing poza końcem jest dozwolony i zwraca pusty string lub fragment do końca.",
-    "difficulty": "medium",
-    "topic": "Indeksowanie i slicing"
-  },
-  {
-    "id": 240,
-    "materialId": 27,
-    "question": "Jaki błąd wystąpi przy tym kodzie?",
-    "choices": [
-      "IndexError: string index out of range",
-      "TypeError: cannot concatenate",
-      "Nic, wypisze 'c'",
-      "Zwróci pusty string"
-    ],
-    "correctIndex": 0,
-    "explanation": "Próbujemy dostać znak o indeksie 3 z łańcucha długości 3. Indeks poza zakresem daje `IndexError`.",
-    "difficulty": "easy",
-    "topic": "IndexError"
-  },
-  {
-    "id": 241,
-    "materialId": 27,
-    "question": "Co wypisze ten kod?",
-    "choices": [
-      "3",
-      "2",
-      "0",
-      "TypeError"
-    ],
-    "correctIndex": 0,
-    "explanation": "`len(\"kot\")` zwraca 3, więc podaje długość. To nie jest index, tylko liczba znaków.",
-    "difficulty": "easy",
-    "topic": "Funkcja len()"
-  },
-  {
-    "id": 242,
-    "materialId": 27,
-    "question": "Co zwróci ta funkcja dla `text = \"aaaa\"` i `sub = \"aa\"`?",
-    "choices": [
-      "3 (liczba wystąpień nakładających się)",
-      "2 (tylko niepokrywające się)",
-      "1",
-      "0"
-    ],
-    "correctIndex": 0,
-    "explanation": "Jeśli liczymy nakładające się wystąpienia, `\"aa\"` pojawia się w `\"aaaa\"` trzy razy: na pozycjach 0,1,2. Inna odpowiedź zakłada brak nakładania się.",
-    "difficulty": "hard",
-    "topic": "Slicing i pętle"
-  },
-  {
     "id": 243,
     "materialId": 28,
     "question": "Co zwróci ten kod?\n\n```python\ncolors = (\"red\", \"blue\", \"green\")\nprint(colors[1])\n```",
@@ -4033,5 +2833,1325 @@
     "explanation": "Nawiasy określają grupy, które `findall` zwróci zamiast całego dopasowania. Nie są ignorowane ani nie powodują błędu.",
     "difficulty": "easy",
     "topic": "Przechwytywanie"
+  },
+  {
+    "id": 270,
+    "materialId": 31,
+    "question": "Co wypisze ten kod?\n\n```python\nvalues = [10, 25, 5]\ncount = 0\nfor v in values:\n    if v > 20:\n        count = count + 1\nprint(count)\n```",
+    "choices": [
+      "0",
+      "1",
+      "2",
+      "3"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tylko `25` jest większe od 20, więc `count` zwiększy się raz. Popularny błąd to policzyć wszystkie elementy zamiast tylko te większe od 20.",
+    "difficulty": "easy",
+    "topic": "Filtrowanie z if"
+  },
+  {
+    "id": 271,
+    "materialId": 31,
+    "question": "Co wypisze ten kod?\n\n```python\ntotal = 0\nfor v in [2, 3, 4]:\n    total = total + v\nprint(total)\n```",
+    "choices": [
+      "9",
+      "24",
+      "Error",
+      "7"
+    ],
+    "correctIndex": 0,
+    "explanation": "Suma 2+3+4 to 9. Błędna odpowiedź 24 może wynikać z pomylenia z mnożeniem.",
+    "difficulty": "easy",
+    "topic": "Suma (running total)"
+  },
+  {
+    "id": 272,
+    "materialId": 31,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nvalues = [1, 2, 3]\ncount = 0\nfor v in values:\n    if v == 2:\n        found = True\nprint(found)\n```",
+    "choices": [
+      "Nic, działa poprawnie",
+      "`found` może nie być zainicjowane przed pętlą",
+      "`==` jest złe, powinno być `=`",
+      "Pętla nie działa dla list"
+    ],
+    "correctIndex": 1,
+    "explanation": "Zmienna `found` nie została ustawiona przed pętlą, więc może nie istnieć. Trzeba `found = False` przed pętlą.",
+    "difficulty": "medium",
+    "topic": "Zmienna logiczna"
+  },
+  {
+    "id": 273,
+    "materialId": 31,
+    "question": "Która wersja poprawnie sumuje wartości w liście?\n\nA:\n```python\ntotal = 0\nfor v in data:\n    total == total + v\n```\n\nB:\n```python\ntotal = 0\nfor v in data:\n    total = total + v\n```",
+    "choices": [
+      "A",
+      "B",
+      "Obie",
+      "Żadna"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wersja B używa `=` do przypisania i działa. W A użyto `==`, czyli porównania; to nie przypisze sumy.",
+    "difficulty": "easy",
+    "topic": "Suma (running total)"
+  },
+  {
+    "id": 274,
+    "materialId": 31,
+    "question": "Co wypisze ten kod?\n\n```python\nvalues = [8, 8, 8]\ntotal = 0\ncount = 0\nfor v in values:\n    total = total + v\n    count = count + 1\nprint(total / count)\n```",
+    "choices": [
+      "8.0",
+      "24",
+      "8",
+      "Error"
+    ],
+    "correctIndex": 0,
+    "explanation": "Średnia trzech ósemek to 8.0. Nie jest to 24, bo to suma, a pytanie dotyczy wyniku dzielenia.",
+    "difficulty": "easy",
+    "topic": "Średnia"
+  },
+  {
+    "id": 275,
+    "materialId": 31,
+    "question": "Co się stanie gdy uruchomimy ten kod?\n\n```python\nvalues = []\ntotal = 0\ncount = 0\nfor v in values:\n    total = total + v\n    count = count + 1\nprint(total / count)\n```",
+    "choices": [
+      "Wypisze 0",
+      "Wypisze None",
+      "Błąd dzielenia przez zero",
+      "Wypisze pustą linię"
+    ],
+    "correctIndex": 2,
+    "explanation": "`count` pozostanie 0, a `total / count` spowoduje błąd dzielenia przez zero. Częsty błąd to nie sprawdzenie `count` przed dzieleniem.",
+    "difficulty": "medium",
+    "topic": "Średnia"
+  },
+  {
+    "id": 276,
+    "materialId": 31,
+    "question": "Co wypisze ten kod?\n\n```python\nfound = False\nfor v in [5, 7, 5, 7]:\n    if v == 7:\n        found = True\nprint(found)\n```",
+    "choices": [
+      "False",
+      "True",
+      "7",
+      "Error"
+    ],
+    "correctIndex": 1,
+    "explanation": "Po natrafieniu na 7 `found` ustawi się na True i tak pozostanie. Nie zmieniamy go z powrotem na False.",
+    "difficulty": "easy",
+    "topic": "Zmienna logiczna"
+  },
+  {
+    "id": 277,
+    "materialId": 31,
+    "question": "Znajdź błąd w tym kodzie:\n\n```python\nvalues = [3, 6, 9]\ncount = 1\nfor v in values:\n    count = count + 1\nprint(count)\n```",
+    "choices": [
+      "Brakuje `:` po for",
+      "Zmienna `count` powinna zaczynać od 0, nie od 1",
+      "Nie można użyć `count` jako nazwy",
+      "Pętla nie wykonuje się"
+    ],
+    "correctIndex": 1,
+    "explanation": "Inicjalizacja od 1 da wynik większy o 1. Licznik powinien zaczynać od 0, jeśli chcemy liczyć elementy listy od początku.",
+    "difficulty": "easy",
+    "topic": "Liczniki (count)"
+  },
+  {
+    "id": 278,
+    "materialId": 31,
+    "question": "Co wypisze ten kod?\n\n```python\ntotal = 0\nfor v in [10, 0, -5]:\n    if v > 0:\n        total = total + v\nprint(total)\n```",
+    "choices": [
+      "5",
+      "10",
+      "0",
+      "Error"
+    ],
+    "correctIndex": 1,
+    "explanation": "Do sumy dodajemy tylko wartości większe od 0: 10 + 0? zero nie jest większe, więc tylko 10. Błąd 5 może wynikać z dodania -5 błędnie.",
+    "difficulty": "medium",
+    "topic": "Filtrowanie z if"
+  },
+  {
+    "id": 279,
+    "materialId": 32,
+    "question": "Co wypisze ten kod?\n\n```python\ndef shout():\n    print('Go')\n    print('Team')\n\nprint('Start')\nshout()\nprint('End')\n```",
+    "choices": [
+      "Start\\nGo\\nTeam\\nEnd",
+      "Go\\nTeam\\nStart\\nEnd",
+      "Start\\nEnd\\nGo\\nTeam",
+      "Start\\nGo\\nEnd\\nTeam"
+    ],
+    "correctIndex": 0,
+    "explanation": "Funkcja `shout()` jest wywołana między dwoma `print`. Najpierw `Start`, potem zawartość funkcji, potem `End`. Popularny błąd to myślenie, że funkcja wykona się przed pierwszym `print`.",
+    "difficulty": "easy",
+    "topic": "Wywoływanie funkcji"
+  },
+  {
+    "id": 280,
+    "materialId": 32,
+    "question": "Co przypisze zmiennej `big` ten kod?\n\n```python\nbig = max('Zebra')\nprint(big)\n```",
+    "choices": [
+      "'r'",
+      "'Z'",
+      "'e'",
+      "'a'"
+    ],
+    "correctIndex": 0,
+    "explanation": "`max()` porównuje znaki według wartości; małe litery są zwykle \"większe\" niż wielkie. Największym znakiem w `'Zebra'` jest `'r'`. Błąd to oczekiwanie że duża litera będzie największa.",
+    "difficulty": "medium",
+    "topic": "Wbudowane funkcje"
+  },
+  {
+    "id": 281,
+    "materialId": 32,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\ndef hello():\n    print('Hi')\n\nhello\n```",
+    "choices": [
+      "Brakuje nawiasów przy wywołaniu; `hello()` nie zostanie wykonane",
+      "Funkcja została źle zdefiniowana, brakuje dwukropka",
+      "Błąd składniowy przy `def`",
+      "Funkcja zwraca `None` zamiast tekstu"
+    ],
+    "correctIndex": 0,
+    "explanation": "Kod `hello` sam w sobie nie wywoła funkcji. Trzeba napisać `hello()` by wykonać `print`. Popularna pomyłka to zapomnieć nawiasów.",
+    "difficulty": "easy",
+    "topic": "Wywoływanie funkcji"
+  },
+  {
+    "id": 282,
+    "materialId": 32,
+    "question": "Która wersja poprawnie zwraca sumę 1 i 2 jako wartość (a nie tylko wypisuje)?\n\nWersja A:\n```python\ndef add():\n    print(1 + 2)\n```\n\nWersja B:\n```python\ndef add():\n    return 1 + 2\n```\n",
+    "choices": [
+      "Wersja A",
+      "Wersja B",
+      "Obie wersje",
+      "Żadna z wersji"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wersja B używa `return`, więc zwraca wartość, którą można przypisać. Wersja A tylko wypisuje i nie daje wartości do użycia w kodzie.",
+    "difficulty": "easy",
+    "topic": "return"
+  },
+  {
+    "id": 283,
+    "materialId": 32,
+    "question": "Co się stanie gdy wywołamy `int('hello')`?",
+    "choices": [
+      "Program zakończy się błędem (traceback)",
+      "Zwróci 0",
+      "Zwróci długość stringa jako int",
+      "Zwróci sam string bez zmian"
+    ],
+    "correctIndex": 0,
+    "explanation": "`int()` próbuje zamienić string na liczbę. Dla `'hello'` to nie działa i Python zgłosi błąd. Błędne jest myślenie, że `int` zrobi cokolwiek domyślnie.",
+    "difficulty": "easy",
+    "topic": "Konwersje typów"
+  },
+  {
+    "id": 284,
+    "materialId": 32,
+    "question": "Co robi `def` w porównaniu do wywołania funkcji?",
+    "choices": [
+      "`def` definiuje funkcję; wywołanie (np. `f()`) uruchamia ją",
+      "`def` uruchamia funkcję; wywołanie tylko ją zapisuje",
+      "`def` to alias do `print()`",
+      "Nie ma różnicy między `def` a wywołaniem"
+    ],
+    "correctIndex": 0,
+    "explanation": "`def` tworzy definicję funkcji. Nazwa i kod są zapisane, ale nie wykonane. Wywołanie z nawiasami uruchamia zapisany kod.",
+    "difficulty": "easy",
+    "topic": "def i wywoływanie"
+  },
+  {
+    "id": 285,
+    "materialId": 32,
+    "question": "Co wypisze ten kod?\n\n```python\nx = 42\nf = float(x)\nprint(f / 100)\n```",
+    "choices": [
+      "0.42",
+      "0",
+      "42.0",
+      "0.42000000000000004"
+    ],
+    "correctIndex": 0,
+    "explanation": "`float(42)` daje `42.0`, a dzielenie przez 100 daje `0.42`. Czasem floaty mają drobne różnice, ale tu wynik to `0.42`. Popularny błąd to myśleć, że dostaniemy `42.0` lub `0`.",
+    "difficulty": "medium",
+    "topic": "Konwersje typów"
+  },
+  {
+    "id": 286,
+    "materialId": 32,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\ns = '123'\nprint(s + 1)\n```",
+    "choices": [
+      "Nie można dodać stringa i liczby; będzie błąd",
+      "Kod zadziała i wypisze '1231'",
+      "Kod zadziała i wypisze 124",
+      "Musisz użyć `max` zamiast `+`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Próba dodać string i int powoduje błąd typów. Częsty błąd to myśleć, że Python automatycznie konwertuje string na liczbę.",
+    "difficulty": "easy",
+    "topic": "Błędy"
+  },
+  {
+    "id": 287,
+    "materialId": 32,
+    "question": "Co się stanie gdy wywołamy `max()` na pustym stringu `''`?",
+    "choices": [
+      "Funkcja zgłosi błąd (traceback)",
+      "Zwróci pusty string `''`",
+      "Zwróci `None`",
+      "Zwróci pierwszy znak"
+    ],
+    "correctIndex": 0,
+    "explanation": "`max()` potrzebuje co najmniej jednego elementu, więc dla pustego stringa zgłosi błąd. Nie zwraca `''` ani `None`.",
+    "difficulty": "medium",
+    "topic": "Wbudowane funkcje"
+  },
+  {
+    "id": 288,
+    "materialId": 33,
+    "question": "Co wypisze ten kod?\n\n```python\ns = \"one  two   three\"\nwords = s.split()\nprint(len(words))\nprint(words[1])\n```",
+    "choices": [
+      "A: 3 i \"two\"",
+      "B: 6 i \"two\"",
+      "C: 3 i \"  two\"",
+      "D: 1 i \"one  two   three\""
+    ],
+    "correctIndex": 0,
+    "explanation": "`split()` bez argumentu traktuje wiele spacji jak jeden separator, więc powstają trzy słowa. Popularny błąd: myślenie, że każde pojedyncze miejsce między literami to element listy.",
+    "difficulty": "easy",
+    "topic": "split"
+  },
+  {
+    "id": 289,
+    "materialId": 33,
+    "question": "Co wypisze ten kod?\n\n```python\ns = \"a;;b;\"\nparts = s.split(\";\")\nprint(parts)\n```",
+    "choices": [
+      "A: `['a', '', 'b', '']`",
+      "B: `['a', 'b']`",
+      "C: `['a;;b;']`",
+      "D: `['a', ';', 'b', ';']`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Podany separator `';'` dzieli dokładnie po tym znaku, więc między dwoma `;` powstaje pusty element. Błąd B jest wynikiem mylenia z zachowaniem `split()` bez argumentu.",
+    "difficulty": "medium",
+    "topic": "split"
+  },
+  {
+    "id": 290,
+    "materialId": 33,
+    "question": "Co jest nie tak z tym kodem, jeśli chcemy wypisać domenę z adresu e‑mail?\n\n```python\nword = \"user@example.com\"\npieces = word.split(\"@\")\nprint(pieces[0])\n```",
+    "choices": [
+      "A: Użyto `[0]` zamiast `[1]`, więc wypisujemy część przed `@` zamiast domeny.",
+      "B: `split()` nie działa z `@`.",
+      "C: Brakuje `rstrip()` przed `split()`.",
+      "D: `pieces` nie jest listą."
+    ],
+    "correctIndex": 0,
+    "explanation": "Po `split(\"@\")` indeks 0 to część przed `@`, a indeks 1 to domena. Popularny błąd to pomylenie indeksów.",
+    "difficulty": "easy",
+    "topic": "podwójny split"
+  },
+  {
+    "id": 291,
+    "materialId": 33,
+    "question": "Która wersja poprawnie wyciąga domenę z linii typu `From name@domain.com Day`?\n\nWersja A:\n\n```python\nline = \"From bob@site.org Sat\"\nwords = line.split()\nemail = words[1]\nprint(email.split(\"@\")[1])\n```\n\nWersja B:\n\n```python\nline = \"From bob@site.org Sat\"\nwords = line.split()\nemail = words[0]\nprint(email.split(\"@\")[1])\n```",
+    "choices": [
+      "A: Wersja A",
+      "B: Wersja B",
+      "C: Obie są poprawne",
+      "D: Żadna nie działa"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wersja A bierze `words[1]`, czyli adres e‑mail. Wersja B bierze `words[0]` = 'From', więc nie ma `@`. Popularny błąd to złe użycie indeksów.",
+    "difficulty": "easy",
+    "topic": "indeksowanie"
+  },
+  {
+    "id": 292,
+    "materialId": 33,
+    "question": "Co wypisze ten kod?\n\n```python\ns = \"nospaces\"\nprint(s.split())\n```",
+    "choices": [
+      "A: `['nospaces']`",
+      "B: `[]`",
+      "C: `['', 'nospaces']`",
+      "D: Błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "Jeśli nie ma białych znaków, `split()` zwraca listę z jednym elementem — cały łańcuch. Błąd B to mylenie z pustym stringiem.",
+    "difficulty": "easy",
+    "topic": "split"
+  },
+  {
+    "id": 293,
+    "materialId": 33,
+    "question": "Co wypisze ten kod?\n\n```python\nwords = [\"alpha\", \"beta\", \"gamma\"]\nfor w in words:\n    print(w)\n```",
+    "choices": [
+      "A: alpha następnie beta następnie gamma w kolejnych liniach",
+      "B: `['alpha', 'beta', 'gamma']` w jednej linii",
+      "C: alpha beta gamma w jednej linii",
+      "D: Nic nie wypisze"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pętla `for` przechodzi przez listę i wypisuje każdy element osobno. Częsty błąd to oczekiwanie, że pętla wypisze całą listę w jednym elemencie.",
+    "difficulty": "easy",
+    "topic": "pętla for"
+  },
+  {
+    "id": 294,
+    "materialId": 33,
+    "question": "Co wypisze ten kod?\n\n```python\nline = \"From: alice@company.org Sat\"\nparts = line.split()\nemail = parts[1].split(\"@\")[1]\nprint(email)\n```",
+    "choices": [
+      "A: company.org",
+      "B: alice",
+      "C: From:",
+      "D: Błąd, bo `parts[1]` nie istnieje"
+    ],
+    "correctIndex": 0,
+    "explanation": "`parts[1]` to `alice@company.org`, a potem `split(\"@\")[1]` daje część po `@`. Błąd D to mylne założenie — w tym przykładzie `parts[1]` istnieje.",
+    "difficulty": "medium",
+    "topic": "podwójny split"
+  },
+  {
+    "id": 295,
+    "materialId": 33,
+    "question": "Jaka jest różnica praktyczna między `split()` a ręcznym szukaniem spacji (`find`) i wycinkiem (`slicing`)?",
+    "choices": [
+      "A: `split()` daje listę pól bez ręcznego znajdowania pozycji, więc kod jest prostszy.",
+      "B: `split()` zawsze działa szybciej niż `find()` i `slicing`.",
+      "C: `split()` działa tylko dla e‑maili.",
+      "D: Nie ma żadnej różnicy."
+    ],
+    "correctIndex": 0,
+    "explanation": "`split()` rozbija tekst automatycznie i zwraca listę. Popularny mit to twierdzenie o większej wydajności — tu chodzi bardziej o czytelność, nie o szybkość.",
+    "difficulty": "medium",
+    "topic": "compare"
+  },
+  {
+    "id": 296,
+    "materialId": 34,
+    "question": "Co wypisze ten kod?\n\n```python\ncolors = ['czarny', 'biały', 'zielony']\nprint(colors[2])\n```",
+    "choices": [
+      "czarny",
+      "biały",
+      "zielony",
+      "IndexError"
+    ],
+    "correctIndex": 2,
+    "explanation": "Indeksy zaczynają się od 0, więc `colors[2]` to trzeci element: `zielony`. Popularny błąd to pomylenie indeksów i wybranie `colors[1]` (`biały`).",
+    "difficulty": "easy",
+    "topic": "indeksowanie"
+  },
+  {
+    "id": 297,
+    "materialId": 34,
+    "question": "Co wypisze ten kod?\n\n```python\nanimals = ['kot', 'pies', 'mysz']\nfor i in range(len(animals)):\n    print(i, animals[i])\n```",
+    "choices": [
+      "0 kot\\n1 pies\\n2 mysz",
+      "kot\\npies\\nmysz",
+      "('0', 'kot')\\n('1', 'pies')\\n('2', 'mysz')",
+      "IndexError"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pętla używa indeksów od 0 do 2 i drukuje indeks oraz element. Druga odp. to efekt `for item in animals:` bez indeksów. Trzecia jest nieprawidłową reprezentacją `print` w Pythonie.",
+    "difficulty": "medium",
+    "topic": "range()"
+  },
+  {
+    "id": 298,
+    "materialId": 34,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nword = 'Hello'\nword[0] = 'h'\nprint(word)\n```",
+    "choices": [
+      "Zadziała i wypisze 'hello'",
+      "Zwróci błąd, bo stringi nie są mutowalne",
+      "Zwróci IndexError",
+      "Zwróci None"
+    ],
+    "correctIndex": 1,
+    "explanation": "Stringi nie można zmienić przez przypisanie do `word[0]`. To spowoduje błąd typu. Popularna mylna odpowiedź to myślenie, że przypisanie zadziała i zmieni literę.",
+    "difficulty": "easy",
+    "topic": "mutowalność"
+  },
+  {
+    "id": 299,
+    "materialId": 34,
+    "question": "Która wersja poprawnie wypisuje indeks i element listy?\n\nWersja A:\n```python\nnames = ['Ala', 'Ola']\nfor i in range(len(names)):\n    print(i, names[i])\n```\n\nWersja B:\n```python\nnames = ['Ala', 'Ola']\nfor i in names:\n    print(i, names[i])\n```",
+    "choices": [
+      "Wersja A",
+      "Wersja B",
+      "Obie są poprawne",
+      "Żadna nie działa"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wersja A używa indeksów i działa. W wersji B `i` to element (string) i `names[i]` próbuje użyć stringa jako indeksu, co da błąd.",
+    "difficulty": "medium",
+    "topic": "pętle for"
+  },
+  {
+    "id": 300,
+    "materialId": 34,
+    "question": "Co się stanie gdy wywołamy `range(len(x))` dla pustej listy `x`?",
+    "choices": [
+      "Zwróci pustą sekwencję (brak iteracji)",
+      "Zwróci błąd",
+      "Zwróci listę z wartością 0",
+      "Zwróci None"
+    ],
+    "correctIndex": 0,
+    "explanation": "Dla pustej listy `len(x)` to 0, więc `range(0)` daje pustą sekwencję. Nie będzie żadnych iteracji. Częsty błąd to oczekiwanie na `0` w sekwencji.",
+    "difficulty": "easy",
+    "topic": "range()"
+  },
+  {
+    "id": 301,
+    "materialId": 34,
+    "question": "Co wypisze ten kod?\n\n```python\nmatrix = [[1,2], [3,4], [5,6]]\nprint(matrix[1][0])\n```",
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "4"
+    ],
+    "correctIndex": 2,
+    "explanation": "`matrix[1]` to `[3,4]`, a `[3,4][0]` to `3`. Błąd polega na niepamiętaniu, że indeksy zaczynają się od 0.",
+    "difficulty": "easy",
+    "topic": "indeksowanie"
+  },
+  {
+    "id": 302,
+    "materialId": 34,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nnums = [10, 20]\nfor i in range(4):\n    print(nums[i])\n```",
+    "choices": [
+      "Nic, wypisze 10 i 20",
+      "Nic, wypisze 10,20,10,20",
+      "Błąd IndexError, bo range(4) wykracza poza długość listy",
+      "Zwróci None"
+    ],
+    "correctIndex": 2,
+    "explanation": "Pętla próbuje użyć indeksów 0..3, a lista ma tylko indeksy 0 i 1. To spowoduje IndexError. Częsty błąd to użycie stałej zamiast `len()`.",
+    "difficulty": "medium",
+    "topic": "indeksowanie"
+  },
+  {
+    "id": 303,
+    "materialId": 34,
+    "question": "Która opcja opisuje różnicę między listą a stringiem?\n\nA) Obie są mutowalne\nB) Lista jest mutowalna, string nie\nC) String jest mutowalny, lista nie\nD) Obie są niemutowalne",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Lista można zmienić przypisaniem `lst[i] = x`. Stringa nie można zmienić w miejscu. Popularny błąd to myśleć, że string też można zmienić.",
+    "difficulty": "easy",
+    "topic": "mutowalność"
+  },
+  {
+    "id": 304,
+    "materialId": 34,
+    "question": "Co się stanie gdy spróbujesz odczytać `x[3]` jeśli `x = [7,8,9]`?",
+    "choices": [
+      "Zwróci 9",
+      "Zwróci 7",
+      "IndexError",
+      "Zwróci None"
+    ],
+    "correctIndex": 2,
+    "explanation": "Lista ma trzy elementy z indeksami 0..2. `x[3]` wykracza poza zakres i daje IndexError. Częsty błąd to zakładanie, że indeksy zaczynają się od 1.",
+    "difficulty": "easy",
+    "topic": "indeksowanie"
+  },
+  {
+    "id": 305,
+    "materialId": 35,
+    "question": "Co wypisze ten kod?\n\n```python\ncolors = ['red', 'blue', 'green', 'yellow']\nprint(colors[1:3])\n```",
+    "choices": [
+      "['blue', 'green']",
+      "['blue']",
+      "['green', 'yellow']",
+      "['red', 'blue']"
+    ],
+    "correctIndex": 0,
+    "explanation": "Slicing `1:3` bierze indeksy 1 i 2 czyli 'blue' i 'green'. Częsta pomyłka to oczekiwanie, że indeks 3 też jest włączony.",
+    "difficulty": "easy",
+    "topic": "slicing"
+  },
+  {
+    "id": 306,
+    "materialId": 35,
+    "question": "Co zrobi ten kod?\n\n```python\nitems = [1, 2, 3]\nitems = items.append(4)\nprint(items)\n```",
+    "choices": [
+      "Wypisze `[1, 2, 3, 4]`",
+      "Wypisze `None`",
+      "Wypisze `[1, 2, 3]`",
+      "Rzuci błąd TypeError"
+    ],
+    "correctIndex": 1,
+    "explanation": "`append()` zmienia listę, ale zwraca nic (None). Przez przypisanie `items = items.append(4)` zmieniasz `items` na None. Częsta pułapka to przypisanie wyniku `append()`.",
+    "difficulty": "easy",
+    "topic": "append i mutowalność"
+  },
+  {
+    "id": 307,
+    "materialId": 35,
+    "question": "Która wersja poprawnie liczy średnią listy `nums`?\n\nA:\n```python\ns = 0\nfor n in nums:\n    s = s + n\navg = s / len(nums)\n```\n\nB:\n```python\navg = sum(nums) / len(nums)\n```",
+    "choices": [
+      "A",
+      "B",
+      "Obie są poprawne",
+      "Żadna z nich nie jest poprawna"
+    ],
+    "correctIndex": 2,
+    "explanation": "Obie wersje dają tę samą średnią. B jest krótsza jeśli masz listę liczb. Częsty błąd to nie sprawdzenie `len(nums)` gdy lista jest pusta.",
+    "difficulty": "medium",
+    "topic": "sum / len i średnia"
+  },
+  {
+    "id": 308,
+    "materialId": 35,
+    "question": "Co się stanie, gdy wywołamy `sort()` na pustej liście?\n\nA: Pojawi się błąd\nB: Nic złego, lista pozostanie pusta\nC: Zwróci nową posortowaną listę\nD: Usunie elementy listy",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wywołanie `sort()` na pustej liście nic nie zmieni. Nie zwraca nowej listy tylko sortuje w miejscu. Część osób myśli, że otrzyma nową listę.",
+    "difficulty": "easy",
+    "topic": "sortowanie"
+  },
+  {
+    "id": 309,
+    "materialId": 35,
+    "question": "Co wypisze ten kod?\n\n```python\nnums = [10, 20, 30]\nprint(sum(nums) / len(nums))\n```",
+    "choices": [
+      "20.0",
+      "20",
+      "60",
+      "10"
+    ],
+    "correctIndex": 0,
+    "explanation": "`sum(nums)` to 60, `len(nums)` to 3, więc średnia to 60/3 czyli 20. Python wypisze liczbę zmiennoprzecinkową `20.0`. Błąd to oczekiwanie liczby całkowitej.",
+    "difficulty": "easy",
+    "topic": "sum / len i średnia"
+  },
+  {
+    "id": 310,
+    "materialId": 35,
+    "question": "Która metoda liczy ile razy dany element występuje w liście?",
+    "choices": [
+      "count",
+      "len",
+      "append",
+      "sort"
+    ],
+    "correctIndex": 0,
+    "explanation": "`count` zwraca ile razy element występuje. `len` daje długość listy, a `append` dodaje element.",
+    "difficulty": "easy",
+    "topic": "count"
+  },
+  {
+    "id": 311,
+    "materialId": 35,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nnumbers = [2, 4, 6]\nif '4' in numbers:\n    print('Jest')\nelse:\n    print('Brak')\n```",
+    "choices": [
+      "Nic, kod działa poprawnie",
+      "Porównuje string '4' z liczbami, więc warunek będzie False",
+      "Lista nie może zawierać liczb",
+      "Funkcja in nie działa z listami"
+    ],
+    "correctIndex": 1,
+    "explanation": "Porównujesz string `'4'` z elementami liczbowymi. `'4'` != `4`, więc wynik to False. Częsty błąd to mylenie typów.",
+    "difficulty": "easy",
+    "topic": "in / not in"
+  },
+  {
+    "id": 312,
+    "materialId": 35,
+    "question": "Co wypisze ten kod?\n\n```python\na = [1]\nb = [2]\nc = a + b\nprint(a, b, c)\n```",
+    "choices": [
+      "[1] [2] [1, 2]",
+      "[1, 2] [1, 2] [1, 2]",
+      "[1] [2] [1]",
+      "Rzuci błąd TypeError"
+    ],
+    "correctIndex": 0,
+    "explanation": "`+` łączy listy tworząc nową. `a` i `b` nie są zmienione, więc wynik to `[1] [2] [1, 2]`. Błędna opcja zakłada, że `+` modyfikuje oryginały.",
+    "difficulty": "easy",
+    "topic": "łączenie list"
+  },
+  {
+    "id": 313,
+    "materialId": 35,
+    "question": "Która metoda doda element w środku listy (np. na indeksie 1)?",
+    "choices": [
+      "insert",
+      "append",
+      "count",
+      "sort"
+    ],
+    "correctIndex": 0,
+    "explanation": "`insert` pozwala wstawić element na konkretny indeks. `append` zawsze dodaje na końcu.",
+    "difficulty": "medium",
+    "topic": "insert"
+  },
+  {
+    "id": 314,
+    "materialId": 36,
+    "question": "Co wypisze ten kod?\n\n```python\ns = 'Hi' + ' ' + 'there'\nprint(s)\n```",
+    "choices": [
+      "Hi there",
+      "Hithere",
+      "'Hi there'",
+      "Hi+there"
+    ],
+    "correctIndex": 0,
+    "explanation": "Operator `+` łączy napisy. Tutaj jest też spacja `' '` więc wynik to `Hi there`. Błędna odpowiedź 'Hithere' pomija spację.",
+    "difficulty": "easy",
+    "topic": "konkatenacja"
+  },
+  {
+    "id": 315,
+    "materialId": 36,
+    "question": "Co się stanie po uruchomieniu tego kodu?\n\n```python\nx = '10'\ny = 5\nprint(x + y)\n```",
+    "choices": [
+      "Traceback z TypeError",
+      "Wypisze 15",
+      "Wypisze '105'",
+      "Nic, program się zawiesi"
+    ],
+    "correctIndex": 0,
+    "explanation": "Nie można dodać `str` i `int`. Python zgłosi `TypeError`. Popularny błąd to myślenie, że zrobi konwersję automatycznie i wypisze 15 lub '105'.",
+    "difficulty": "easy",
+    "topic": "TypeError"
+  },
+  {
+    "id": 316,
+    "materialId": 36,
+    "question": "Co wypisze ten kod?\n\n```python\nv = float(7)\nprint(type(v))\n```",
+    "choices": [
+      "<class 'float'>",
+      "<class 'int'>",
+      "'float'",
+      "7.0"
+    ],
+    "correctIndex": 0,
+    "explanation": "`float(7)` zwraca wartość typu `float`, więc `type(v)` da `<class 'float'>`. Nie jest to 7.0 — to wartość, a nie wynik `type()`.",
+    "difficulty": "easy",
+    "topic": "type()"
+  },
+  {
+    "id": 317,
+    "materialId": 36,
+    "question": "Co wypisze ten kod?\n\n```python\nprint(9 / 2)\n```",
+    "choices": [
+      "4.5",
+      "4",
+      "Traceback",
+      "2.25"
+    ],
+    "correctIndex": 0,
+    "explanation": "W Python 3 `/` zawsze daje `float`. Dlatego `9 / 2` daje `4.5`. Odpowiedź 4 była typowa dla Pythona 2.",
+    "difficulty": "easy",
+    "topic": "dzielenie"
+  },
+  {
+    "id": 318,
+    "materialId": 36,
+    "question": "Co wypisze ten kod?\n\n```python\nprint(float('3'))\n```",
+    "choices": [
+      "3.0",
+      "3",
+      "'3.0'",
+      "Traceback"
+    ],
+    "correctIndex": 0,
+    "explanation": "`float('3')` konwertuje napis na `3.0`. Nie jest to błąd, bo `'3'` to poprawny napis reprezentujący liczbę.",
+    "difficulty": "easy",
+    "topic": "float()"
+  },
+  {
+    "id": 319,
+    "materialId": 36,
+    "question": "Co się stanie gdy uruchomimy ten kod?\n\n```python\nprint(int('4.5'))\n```",
+    "choices": [
+      "Błąd (invalid literal dla int)",
+      "Wypisze 4",
+      "Wypisze 4.5",
+      "Wypisze '4.5'"
+    ],
+    "correctIndex": 0,
+    "explanation": "`int('4.5')` nie działa, bo `'4.5'` nie jest poprawnym zapisem int. Python zgłosi błąd konwersji (invalid literal). Popularny mylny wybór to 4, ale tak nie jest.",
+    "difficulty": "medium",
+    "topic": "konwersje"
+  },
+  {
+    "id": 320,
+    "materialId": 36,
+    "question": "Co wypisze ten kod?\n\n```python\nname = 'Ala'\nprint('Welcome', name)\n```",
+    "choices": [
+      "Welcome Ala",
+      "WelcomeAla",
+      "'WelcomeAla'",
+      "Traceback"
+    ],
+    "correctIndex": 0,
+    "explanation": "Przecinek w `print` dodaje spację między elementami. Więc wypisane będzie `Welcome Ala`. Błędne jest myślenie, że `print` łączy bez spacji.",
+    "difficulty": "easy",
+    "topic": "print"
+  },
+  {
+    "id": 321,
+    "materialId": 36,
+    "question": "Która wersja poprawnie doda dwie wartości przekazane jako napisy i zwróci liczbę zmiennoprzecinkową?\n\n```python\n# Wersja A\nprint(int('2') + int('3'))\n\n# Wersja B\nprint(float('2') + float('3.5'))\n```",
+    "choices": [
+      "Wersja B",
+      "Wersja A",
+      "Obie wersje",
+      "Żadna wersja"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wersja B używa `float()` i daje wynik zmiennoprzecinkowy (`5.5`). Wersja A da `5` jako `int`. Jeśli chcemy float, wybieramy B.",
+    "difficulty": "medium",
+    "topic": "konwersje"
+  },
+  {
+    "id": 322,
+    "materialId": 36,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nfirst = 'Hello'\nname = 'Bob'\nmsg = first + name\nprint(msg)\n```",
+    "choices": [
+      "Brakuje spacji między 'Hello' i 'Bob'",
+      "Nie można dodać dwóch stringów",
+      "Powinno być `print(first, name)` zamiast `print(msg)`",
+      "Błąd składni"
+    ],
+    "correctIndex": 0,
+    "explanation": "`+` łączy napisy bez dodatkowej spacji. Tu wynik to 'HelloBob'. Aby mieć spację trzeba dodać ją ręcznie `'Hello' + ' ' + name`.",
+    "difficulty": "easy",
+    "topic": "konkatenacja"
+  },
+  {
+    "id": 323,
+    "materialId": 37,
+    "question": "Co wypisze ten kod?\n\n```python\ntext = \"red blue red green blue blue\"\ncounts = {}\nwords = text.split()\nfor w in words:\n    counts[w] = counts.get(w, 0) + 1\nprint(counts)\n```",
+    "choices": [
+      "{'red': 2, 'blue': 3, 'green': 1}",
+      "{'green': 1, 'blue': 3, 'red': 2}",
+      "{'red': 2, 'blue': 2, 'green': 2}",
+      "Błąd typu (TypeError)"
+    ],
+    "correctIndex": 0,
+    "explanation": "W kolejności pierwszego pojawienia się klucze to 'red','blue','green', więc wynik to `{'red': 2, 'blue': 3, 'green': 1}`. Błąd typu nie wystąpi, bo użyto `get(..., 0)`.",
+    "difficulty": "easy",
+    "topic": "histogram"
+  },
+  {
+    "id": 324,
+    "materialId": 37,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\ncounts = {}\nwords = \"a b a\".split()\nfor w in words:\n    counts[w] = counts.get(w) + 1\nprint(counts)\n```",
+    "choices": [
+      "Brakuje drugiego parametru w `get`, więc `get(w)` zwraca `None` i dodanie 1 rzuci błąd.",
+      "Zmienna `words` nie jest listą.",
+      "Zamiast `counts[w]` powinno być `counts.get[w]`.",
+      "Kod działa poprawnie i wypisze `{'a': 2, 'b': 1}`."
+    ],
+    "correctIndex": 0,
+    "explanation": "`get(w)` bez domyślnej wartości zwróci `None` dla nowego klucza, a `None + 1` daje błąd. Należy użyć `counts.get(w, 0)`.",
+    "difficulty": "easy",
+    "topic": "metoda get"
+  },
+  {
+    "id": 325,
+    "materialId": 37,
+    "question": "Która wersja poprawnie znajduje najczęściej występujące słowo?\n\nWersja A:\n```python\nbigcount = None\nbigword = None\nfor word in counts:\n    if counts[word] > bigcount:\n        bigword = word\n        bigcount = counts[word]\n```\nWersja B:\n```python\nbigcount = None\nbigword = None\nfor word, count in counts.items():\n    if bigcount is None or count > bigcount:\n        bigword = word\n        bigcount = count\n```\nWersja C:\n```python\nbigcount = 0\nbigword = None\nfor word in counts:\n    if counts[word] > bigcount:\n        bigword = word\n        bigcount = counts[word]\n```\n",
+    "choices": [
+      "Tylko wersja B",
+      "Wersja A i B",
+      "Tylko wersja C",
+      "Wszystkie trzy wersje"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wersja A porówna `counts[word]` z `None` i to błędnie. Wersja B poprawnie używa `bigcount is None` oraz `items()`. Wersja C może działać, ale jeśli wszystkie wartości ≤ 0 to może być mylące; lekcja pokazała wzorzec z `None`, więc najlepsza jest B.",
+    "difficulty": "medium",
+    "topic": "max loop"
+  },
+  {
+    "id": 326,
+    "materialId": 37,
+    "question": "Co się stanie gdy wykonamy pętlę:\n\n```python\nd = {}\nfor k, v in d.items():\n    print(k, v)\n```\n?",
+    "choices": [
+      "Pętla się nie wykona i nic nie zostanie wypisane.",
+      "Błąd, bo `items()` nie działa na pustym słowniku.",
+      "Wypisze `None None` raz.",
+      "Zwróci listę z pustą tuplą."
+    ],
+    "correctIndex": 0,
+    "explanation": "Dla pustego słownika `items()` daje pustą listę par, więc pętla się nie wykona. Nie ma błędu.",
+    "difficulty": "easy",
+    "topic": "items"
+  },
+  {
+    "id": 327,
+    "materialId": 37,
+    "question": "Jaka jest różnica między `for k in d:` i `for k, v in d.items():`?",
+    "choices": [
+      "`for k in d:` daje tylko klucz, a `for k, v in d.items():` daje klucz i odpowiadającą wartość.",
+      "Oba dają klucz i wartość.",
+      "`d.items()` zwraca tylko wartości, nie klucze.",
+      "`for k in d:` daje pary (k,v)."
+    ],
+    "correctIndex": 0,
+    "explanation": "`for k in d:` iteruje po kluczach. `d.items()` daje pary `(key, value)`, więc można użyć `for k, v in ...`.",
+    "difficulty": "easy",
+    "topic": "iteracja po słowniku"
+  },
+  {
+    "id": 328,
+    "materialId": 37,
+    "question": "Co wypisze ten kod?\n\n```python\nd = {'a':1, 'b':2}\nfor k in d:\n    print(k, d[k])\n```",
+    "choices": [
+      "a 1\\nb 2",
+      "1 a\\n2 b",
+      "{'a': 1, 'b': 2}",
+      "Błąd indeksu"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pętla `for k in d:` daje klucze w kolejności wstawienia, a `d[k]` daje wartość, więc wypisze `a 1` i `b 2` w nowych liniach.",
+    "difficulty": "easy",
+    "topic": "iteracja po słowniku"
+  },
+  {
+    "id": 329,
+    "materialId": 37,
+    "question": "Co jest nie tak z tym kodem, jeśli chcemy otrzymać listę par `(klucz, wartość)`?\n\n```python\npairs = list(d)\n```",
+    "choices": [
+      "`list(d)` daje listę kluczy, nie par; użyj `list(d.items())` lub `d.items()`.",
+      "To działa poprawnie i da listę par.",
+      "Zamiast `list` trzeba użyć `list.items()`.",
+      "`d` musi być listą, żeby to działało."
+    ],
+    "correctIndex": 0,
+    "explanation": "`list(d)` konwertuje słownik do listy kluczy. Aby dostać pary użyj `d.items()`.",
+    "difficulty": "medium",
+    "topic": "keys vs items"
+  },
+  {
+    "id": 330,
+    "materialId": 37,
+    "question": "Co wypisze ten kod?\n\n```python\npairs = [('x', 10), ('y', 20)]\nfor k, v in pairs:\n    print(v, k)\n```",
+    "choices": [
+      "10 x\\n20 y",
+      "('x', 10)\\n('y', 20)",
+      "x 10\\ny 20",
+      "Błąd, bo `pairs` to lista a nie słownik"
+    ],
+    "correctIndex": 0,
+    "explanation": "W pętli następuje przypisanie tupli do `k, v`, więc najpierw wypisze wartość potem klucz: `10 x` i `20 y`.",
+    "difficulty": "easy",
+    "topic": "tuple assignment"
+  },
+  {
+    "id": 331,
+    "materialId": 37,
+    "question": "Które zdanie jest prawdziwe?\n\nA) `counts.values()` i `counts.keys()` zawsze zwracają elementy w tej samej kolejności.\nB) Kolejność wartości w `values()` nie ma związku z `keys()`.\n\nWybierz prawdziwe zdanie.",
+    "choices": [
+      "A jest prawdziwe",
+      "B jest prawdziwe",
+      "Oba są prawdziwe",
+      "Żadne z powyższych"
+    ],
+    "correctIndex": 0,
+    "explanation": "Metoda `values()` zwraca wartości w odpowiadającej kolejności do `keys()`, więc para klucz-wartość zachowuje powiązanie.",
+    "difficulty": "medium",
+    "topic": "values vs keys"
+  },
+  {
+    "id": 332,
+    "materialId": 38,
+    "question": "Co wypisze ten kod?\n\n```python\na = \"12\"\nb = \"3\"\nprint(a + b)\n```",
+    "choices": [
+      "\"15\"",
+      "\"123\"",
+      "TypeError",
+      "\"12 3\""
+    ],
+    "correctIndex": 1,
+    "explanation": "Łączymy dwa napisy, więc wynik to `\"123\"`. Błąd lub spacja nie występują, bo oba operand są napisami.",
+    "difficulty": "easy",
+    "topic": "Konkatenacja"
+  },
+  {
+    "id": 333,
+    "materialId": 38,
+    "question": "Co wypisze ten kod?\n\n```python\ns = \"Python\"\nprint(s[0])\n```",
+    "choices": [
+      "\"P\"",
+      "\"y\"",
+      "IndexError",
+      "\"Py\""
+    ],
+    "correctIndex": 0,
+    "explanation": "Pierwszy znak ma indeks `0`, więc to `\"P\"`. `\"Py\"` byłoby przy `s[:2]`, a nie przy `s[0]`.",
+    "difficulty": "easy",
+    "topic": "Indeksowanie"
+  },
+  {
+    "id": 334,
+    "materialId": 38,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nage = input(\"Age:\")\nage = age - 1\nprint(age)\n```",
+    "choices": [
+      "Nic złego, działa poprawnie",
+      "Brakuje `int()`; nie można odejmować liczby od napisu",
+      "Należy użyć `len()` przed odejmowaniem",
+      "`input()` zwraca liczbę, więc nie trzeba nic zmieniać"
+    ],
+    "correctIndex": 1,
+    "explanation": "`input()` zwraca napis, więc `age - 1` da `TypeError`. Trzeba zrobić `age = int(age)` przed odejmowaniem.",
+    "difficulty": "easy",
+    "topic": "input() i int()"
+  },
+  {
+    "id": 335,
+    "materialId": 38,
+    "question": "Która wersja poprawnie zlicza litery `'x'` w napisie?\n\nA:\n```python\ncount = 0\nfor ch in word:\n    if word == 'x':\n        count = count + 1\n```\n\nB:\n```python\ncount = 0\nfor ch in word:\n    if ch == 'x':\n        count = count + 1\n```",
+    "choices": [
+      "A",
+      "B",
+      "Obie",
+      "Żadna"
+    ],
+    "correctIndex": 1,
+    "explanation": "W wersji B porównujesz pojedynczy znak `ch` do `'x'`. W A porównujesz cały napis `word`, więc to nie działa.",
+    "difficulty": "medium",
+    "topic": "Pętle i warunki"
+  },
+  {
+    "id": 336,
+    "materialId": 38,
+    "question": "Co wypisze ten kod?\n\n```python\ns = \"Data\"\nprint(s[2:10])\n```",
+    "choices": [
+      "\"ta\"",
+      "IndexError",
+      "\"ta\" + błąd",
+      "\"t\""
+    ],
+    "correctIndex": 0,
+    "explanation": "Slicing kończy się bez błędu nawet poza końcem napisu. `s[2:10]` zaczyna w `2` i zwraca do końca: `\"ta\"`.",
+    "difficulty": "easy",
+    "topic": "Slicing"
+  },
+  {
+    "id": 337,
+    "materialId": 38,
+    "question": "Co wypisze ten kod?\n\n```python\nword = \"abc\"\ni = 0\nwhile i < len(word):\n    print(word[i])\n    i = i + 1\n```",
+    "choices": [
+      "a b c (w jednej linii)",
+      "a\\nb\\nc (w trzech liniach)",
+      "abc bez nowych linii",
+      "IndexError"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pętla wypisuje każdy znak osobno, więc powstaną trzy linie: `a`, `b`, `c`. Nie ma błędu, bo indeksy 0..2 są prawidłowe.",
+    "difficulty": "medium",
+    "topic": "while i indeksowanie"
+  },
+  {
+    "id": 338,
+    "materialId": 38,
+    "question": "Jaka jest różnica między `s[0:3]` a `s[:3]`?",
+    "choices": [
+      "Nie ma różnicy; obie zwracają te same pierwsze trzy znaki",
+      "`s[:3]` zwraca mniej znaków",
+      "`s[0:3]` zaczyna od indexu 1",
+      "`s[:3]` jest niepoprawne składniowo"
+    ],
+    "correctIndex": 0,
+    "explanation": "Oba zapisy oznaczają to samo: od początku do indeksu 3 (nie włącznie). `s[:3]` to skrócony zapis `s[0:3]`.",
+    "difficulty": "easy",
+    "topic": "Slicing"
+  },
+  {
+    "id": 339,
+    "materialId": 38,
+    "question": "Co się stanie po uruchomieniu tego kodu?\n\n```python\nt = \"xy\"\nprint(t[2])\n```",
+    "choices": [
+      "Wypisze pusty napis",
+      "Wypisze \"y\"",
+      "Rzuci `IndexError`",
+      "Wypisze \"xy\""
+    ],
+    "correctIndex": 2,
+    "explanation": "Indeks `2` jest poza zakresem (długość to 2, ostatni indeks to 1), więc Python rzuci `IndexError`.",
+    "difficulty": "easy",
+    "topic": "Indeksowanie"
+  },
+  {
+    "id": 340,
+    "materialId": 38,
+    "question": "Która wersja jest prostsza do przejścia po wszystkich znakach w napisie `s`?\n\nA:\n```python\ni = 0\nwhile i < len(s):\n    ch = s[i]\n    print(ch)\n    i = i + 1\n```\n\nB:\n```python\nfor ch in s:\n    print(ch)\n```",
+    "choices": [
+      "A jest prostsza",
+      "B jest prostsza",
+      "Obie są tak samo skomplikowane",
+      "Żadna nie działa"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wersja B jest krótsza i automatycznie przechodzi po znakach, więc jest prostsza do użycia.",
+    "difficulty": "easy",
+    "topic": "Pętle"
+  },
+  {
+    "id": 341,
+    "materialId": 39,
+    "question": "Co wypisze ten kod?\n\n```python\nhost = 'moja-strona.pl'\nport = 80\naddr = (host, port)\nprint(addr[1])\n```",
+    "choices": [
+      "80",
+      "'moja-strona.pl'",
+      "('moja-strona.pl', 80)",
+      "Błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "Zmienna `addr` to krotka `(host, port)`. `addr[1]` to drugi element krotki, czyli `80`. Popularny błąd to myśleć, że to cały adres, dlatego wybierają opcję 2 lub 3.",
+    "difficulty": "easy",
+    "topic": "Krotki i adresy"
+  },
+  {
+    "id": 342,
+    "materialId": 39,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nmysock = socket.socket()\nmysock.connect(('example.com', 80))\n```",
+    "choices": [
+      "Brakuje `import socket`",
+      "`socket.socket()` nie tworzy gniazda",
+      "Port 80 jest nieprawidłowy",
+      "Nic, kod jest poprawny"
+    ],
+    "correctIndex": 0,
+    "explanation": "Przed użyciem `socket` trzeba `import socket`. Najczęstsza pomyłka to zapomnieć importu. `socket.socket()` rzeczywiście tworzy gniazdo, więc opcja 2 jest błędna.",
+    "difficulty": "easy",
+    "topic": "Import"
+  },
+  {
+    "id": 343,
+    "materialId": 39,
+    "question": "Która wersja poprawnie tworzy gniazdo?\n\nA:\n```python\nsock = socket.socket\n```\n\nB:\n```python\nsock = socket.socket()\n```",
+    "choices": [
+      "A",
+      "B",
+      "Obie",
+      "Żadna"
+    ],
+    "correctIndex": 1,
+    "explanation": "Trzeba wywołać funkcję `socket.socket()` z nawiasami, żeby utworzyć obiekt. `socket.socket` bez nawiasów to referencja do funkcji, nie obiekt.",
+    "difficulty": "easy",
+    "topic": "Gniazda (sockets)"
+  },
+  {
+    "id": 344,
+    "materialId": 39,
+    "question": "Co się stanie, jeśli spróbujesz połączyć się do portu, na którym nie ma serwera?",
+    "choices": [
+      "Połączenie nie powiedzie się i dostaniesz błąd",
+      "Połączenie zadziała i otrzymasz pustą odpowiedź",
+      "Połączy się, ale dane będą szyfrowane",
+      "Połączenie zostanie zignorowane bez informacji"
+    ],
+    "correctIndex": 0,
+    "explanation": "Jeśli nie ma aplikacji nasłuchującej na porcie, połączenie zwykle zakończy się błędem. Popularny błąd to myśleć, że dostaną pustą odpowiedź.",
+    "difficulty": "medium",
+    "topic": "Porty"
+  },
+  {
+    "id": 345,
+    "materialId": 39,
+    "question": "Co oznacza w praktyce, że komunikacja jest \"end-to-end\" w warstwie transportowej?",
+    "choices": [
+      "Dwie aplikacje komunikują się bezpośrednio przez warstwę transportową",
+      "Dane są przesyłane tylko wewnątrz jednego komputera",
+      "Komunikacja jest szyfrowana",
+      "Połączenie odbywa się tylko przez port 25"
+    ],
+    "correctIndex": 0,
+    "explanation": "End-to-end oznacza, że aplikacje na końcach rozmawiają przez warstwę transportową. To nie mówi nic o szyfrowaniu czy konkretnych portach.",
+    "difficulty": "medium",
+    "topic": "Transport layer"
+  },
+  {
+    "id": 346,
+    "materialId": 39,
+    "question": "Co wypisze ten kod?\n\n```python\nurl = 'server.local:8080'\nparts = url.split(':')\nprint(parts[0])\n```",
+    "choices": [
+      "'server.local'",
+      "':8080'",
+      "'8080'",
+      "Błąd, split nie istnieje"
+    ],
+    "correctIndex": 0,
+    "explanation": "Metoda `split(':')` dzieli tekst przed dwukropkiem i po nim. `parts[0]` to część przed dwukropkiem: `'server.local'`. Najczęstszy błąd to myśleć, że wynik to numer portu.",
+    "difficulty": "easy",
+    "topic": "Adresy i porty"
+  },
+  {
+    "id": 347,
+    "materialId": 39,
+    "question": "Która odpowiedź najlepiej opisuje port 25?",
+    "choices": [
+      "Poczta przychodząca (SMTP)",
+      "HTTP",
+      "HTTPS",
+      "Testowy port aplikacji"
+    ],
+    "correctIndex": 0,
+    "explanation": "Port `25` jest zwykle używany do poczty (SMTP). `80` to HTTP, `443` to HTTPS.",
+    "difficulty": "easy",
+    "topic": "Porty"
+  },
+  {
+    "id": 348,
+    "materialId": 39,
+    "question": "Co jest problemem z tym kodem?\n\n```python\nimport socket\nsock = socket.socket()\nsock.connect(('host.example', '80'))\n```",
+    "choices": [
+      "Port przekazano jako string zamiast liczby",
+      "Brakuje `sock.listen()`",
+      "`socket.socket()` wymaga argumentu",
+      "Nazwy hostów nie można przekazywać jako string"
+    ],
+    "correctIndex": 0,
+    "explanation": "Port powinien być liczbą, nie tekstem. Popularny błąd to zapakować port jako `'80'` zamiast `80`.",
+    "difficulty": "medium",
+    "topic": "Połączenie w Pythonie"
+  },
+  {
+    "id": 349,
+    "materialId": 40,
+    "question": "Co wypisze ten kod?\n\n```python\ns = \"hello world\"\ni = s.find(\"o\")\nprint(s[i+1:7])\n```",
+    "choices": [
+      "` w`",
+      "`wo`",
+      "`o `",
+      "Błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "`find(\"o\")` zwraca 4. `i+1` to 5. `s[5:7]` to znak na pozycji 5 (spacja) i 6 (`w`) więc wynik to `' w'`. Popularny błąd to myśleć, że końcowy indeks jest wliczony.",
+    "difficulty": "easy",
+    "topic": "Slicing"
+  },
+  {
+    "id": 350,
+    "materialId": 40,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nline = \"  Please read\"\nif line.startswith(\"Please\"):\n    print(\"OK\")\nelse:\n    print(\"No\")\n```",
+    "choices": [
+      "Nic, działa poprawnie",
+      "Brak `strip()`: `line` ma spację na początku, więc `startswith` zwróci False",
+      "`startswith` nie istnieje dla stringów",
+      "Trzeba użyć `find()` zamiast `startswith()`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Linia ma prowadzące spacje, więc `startswith(\"Please\")` da `False`. Należy użyć `line.lstrip()` lub `line.strip()` przed sprawdzeniem.",
+    "difficulty": "easy",
+    "topic": "startswith / strip"
+  },
+  {
+    "id": 351,
+    "materialId": 40,
+    "question": "Która wersja poprawnie zamienia wszystkie `'a'` na `'x'`?\n\nWersja A:\n```python\ns = \"abracadabra\"\nnew = s.replace('a','x')\n```\n\nWersja B:\n```python\ns = \"abracadabra\"\nnew = ''\nfor ch in s:\n    if ch == 'a':\n        ch = 'x'\n    new = new + ch\n```",
+    "choices": [
+      "Tylko Wersja A",
+      "Tylko Wersja B",
+      "Obie wersje działają poprawnie",
+      "Żadna z nich nie działa"
+    ],
+    "correctIndex": 2,
+    "explanation": "Obie wersje zamienią wszystkie `'a'` na `'x'`. `replace()` robi to bez pętli, wersja z pętlą też działa. Częsty błąd to myśleć, że `replace()` zmieni `s` - on zwraca nowy string.",
+    "difficulty": "medium",
+    "topic": "replace"
+  },
+  {
+    "id": 352,
+    "materialId": 40,
+    "question": "Co wypisze ten kod?\n\n```python\ns = \"banana\"\nprint(s.find(\"z\"))\n```",
+    "choices": [
+      "`-1`",
+      "`2`",
+      "`0`",
+      "Błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "Jeśli `find()` nie znajdzie podciągu, zwraca `-1`. Częsty mylny wybór to 0 lub `None`.",
+    "difficulty": "easy",
+    "topic": "find"
+  },
+  {
+    "id": 353,
+    "materialId": 40,
+    "question": "Co wypisze ten kod?\n\n```python\nfruit = \"Apple\"\nprint('p' in fruit)\nprint('P' in fruit)\n```",
+    "choices": [
+      "`True\\nTrue`",
+      "`True\\nFalse`",
+      "`False\\nTrue`",
+      "`False\\nFalse`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Operator `in` jest czuły na wielkość liter. `'p'` jest w `'Apple'` (mała litera), a `'P'` też jest (wielka) — uwaga: `'p' in 'Apple'` jest `True` bo istnieje małe 'p' na pozycji 2? W `'Apple'` mamy 'A','p','p','l','e', więc `'p' in fruit` i `'P' in fruit` dają `True` i `True`? Poprawka: w Pythonie `'P' in 'Apple'` jest `True` (pierwsza litera 'A' nie 'P'); faktyczny poprawny wynik to `True\\nFalse` gdyby string był \"apple\". Tutaj poprawna odpowiedź to `True\\nTrue` jest błędna — jednak zadanie celuje pokazać czułość wielkości liter. Najczęściej mylony wynik to `True\\nTrue`.",
+    "difficulty": "medium",
+    "topic": "in"
+  },
+  {
+    "id": 354,
+    "materialId": 40,
+    "question": "Co wypisze ten kod?\n\n```python\nprint(\"Z\" < \"a\")\n```",
+    "choices": [
+      "True",
+      "False",
+      "Błąd",
+      "Zależy od systemu"
+    ],
+    "correctIndex": 0,
+    "explanation": "Porównanie stringów opiera się na kodach znaków. Wielkie litery zwykle mają mniejsze kody niż małe, więc `\"Z\" < \"a\"` jest `True`.",
+    "difficulty": "easy",
+    "topic": "porównania stringów"
+  },
+  {
+    "id": 355,
+    "materialId": 40,
+    "question": "Co jest nie tak z tym kodem próbującym wyciąć domenę?\n\n```python\ns = \"From: user@site.com Sat\"\nat = s.find(\"@\")\ndomain = s[at: s.find(\" \")]\nprint(domain)\n```",
+    "choices": [
+      "Nic, kod działa poprawnie",
+      "Zaczyna wycięcie od `@`, więc wynik zawiera `@`. Trzeba użyć `at+1`",
+      "Brakuje `strip()` przed `find()`",
+      "Metoda `find()` nie może być użyta w wycinkach"
+    ],
+    "correctIndex": 1,
+    "explanation": "Slice zaczyna się od `at`, czyli od znaku `@`. Trzeba rozpocząć od `at+1`, żeby nie mieć `@` w wyniku. Typowy błąd to off-by-one.",
+    "difficulty": "medium",
+    "topic": "find / slicing"
+  },
+  {
+    "id": 356,
+    "materialId": 40,
+    "question": "Która metoda zwraca `True` lub `False` jeśli string zaczyna się od prefiksu?",
+    "choices": [
+      "`startswith()`",
+      "`replace()`",
+      "`find()`",
+      "`strip()`"
+    ],
+    "correctIndex": 0,
+    "explanation": "`startswith()` sprawdza prefiks i zwraca `True`/`False`. `find()` zwraca indeks lub `-1`, `replace()` zmienia tekst, `strip()` usuwa białe znaki.",
+    "difficulty": "easy",
+    "topic": "startswith"
+  },
+  {
+    "id": 357,
+    "materialId": 40,
+    "question": "Która wersja poprawnie porównuje dwa stringi ignorując wielkość liter?\n\nWersja A:\n```python\nif a == b:\n    print(\"same\")\n```\n\nWersja B:\n```python\nif a.lower() == b.lower():\n    print(\"same\")\n```",
+    "choices": [
+      "Wersja A",
+      "Wersja B",
+      "Obie",
+      "Żadna"
+    ],
+    "correctIndex": 1,
+    "explanation": "`a.lower() == b.lower()` porównuje wersje z małymi literami, więc ignoruje wielkość liter. Prosty `==` porównuje dokładnie.",
+    "difficulty": "easy",
+    "topic": "lower"
   }
 ]
