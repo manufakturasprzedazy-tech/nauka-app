@@ -593,5 +593,25 @@
     "flashcardCount": 12,
     "quizCount": 9,
     "exerciseCount": 4
+  },
+  {
+    "id": 41,
+    "courseId": "python",
+    "filename": "Protokół przesyłania hipertekstu (HTTP).md",
+    "title": "HTTP i cykl żądanie-odpowiedź z użyciem socketów",
+    "summary": "Lekcja wyjaśnia, jak działa warstwa aplikacji HTTP i jak przez socket wysłać żądanie GET oraz odebrać odpowiedź. Pokazuje też, co to jest URL, nagłówki i ciało odpowiedzi oraz rolę `encode()`/`decode()` przy wysyłaniu i odbiorze danych.",
+    "topics": [
+      "warstwa aplikacji",
+      "HTTP",
+      "URL",
+      "żądanie GET",
+      "sockety w Pythonie",
+      "nagłówki i treść odpowiedzi",
+      "encode/decode"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: pokazuje jak z poziomu aplikacji za pomocą socketów wysłać żądanie HTTP i odebrać odpowiedź. Pokazuje też strukturę URL i zasadę nagłówków oraz treści rozdzielonych pustą linią.\n\n## Kluczowe pojęcia\n### Warstwa aplikacji\nTo zbiór reguł, jak rozmawiają programy. HTTP to protokół warstwy aplikacji do pobierania stron.\n\n### URL\n`http://` mówi jaki protokół, `host` mówi na jaki serwer, a `path` mówi jaki dokument pobrać.\n\n### Żądanie GET\nTo linia tekstu wysyłana do serwera, np. `GET /index.html HTTP/1.0` plus dwie kończące nowe linie. Mówi serwerowi, że chcemy dokument.\n\n### Socket w Pythonie\nSocket to obiekt, który tworzy „drzwi” z twojego komputera do serwera. Najpierw robisz socket i `connect`, potem `send` i `recv`, a na końcu `close`.\n\n### Nagłówki i treść\nSerwer odpowiada najpierw nagłówkami (metadata), potem pustą linią, a potem treścią (np. HTML). Pusta linia oddziela nagłówki od ciała.\n\n### `encode()` i `decode()`\nPrzy wysyłaniu konwertujesz tekst na bajty (`encode()`), a przy odbiorze z bajtów robisz tekst (`decode()`).\n\n## Przykłady kodu\n```python\nimport socket\ns = socket.socket()\ns.connect(('example.com', 80))\nreq = 'GET / HTTP/1.0\\r\\n\\r\\n'\ns.send(req.encode())\n```\nPrzykład tworzy socket, łączy się i wysyła prosty request.\n\n```python\ndata = s.recv(512)\ntext = data.decode()\nprint(text)\n```\nOdbieramy do 512 bajtów, dekodujemy i wypisujemy.\n\n## Ważne zasady\n- **Zawsze zakończ żądanie dwiema pustymi liniami** — serwer rozpozna koniec nagłówka.\n- **Najpierw wyślij żądanie, potem czytaj odpowiedź** — to reguła HTTP.\n- **Odbieraj w pętli** — odpowiedź może przyjść w kawałkach, trzeba czytać do końca.\n- **Zamykaj socket po zakończeniu** — `close()` zwalnia zasoby.\n- **Nagłówki i treść oddziela pusty wiersz** — zwykle `\\r\\n\\r\\n`.\n\n## Częste błędy\n- **Brak kończącej pustej linii**: serwer nie zacznie wysyłać odpowiedzi. Dodaj `\\r\\n\\r\\n` na końcu.\n- **Nie dekodowanie bajtów**: jeśli nie użyjesz `decode()`, dostaniesz bajty zamiast tekstu. Użyj `decode()` przed `print()`.\n- **Nie zamykanie socketu**: program może zostawić otwarte połączenia. Zawsze wywołaj `close()`.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
   }
 ]

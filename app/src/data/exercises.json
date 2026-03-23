@@ -1909,5 +1909,65 @@
       "Użyj `strip()` żeby usunąć białe znaki.",
       "Użyj `lower()` i `startswith()` do sprawdzenia prefiksu."
     ]
+  },
+  {
+    "id": 165,
+    "materialId": 41,
+    "title": "Zbuduj prosty żądanie GET",
+    "description": "Napisz funkcję `build_get_request(host, path)` która zwraca poprawny ciąg żądania HTTP zakończony dwiema pustymi liniami (użyj `\\r\\n`).",
+    "starterCode": "# starter code\n\ndef build_get_request(host, path):\n    # TODO: zbuduj i zwróć string żądania\n    return ''\n",
+    "solution": "# full solution\n\ndef build_get_request(host, path):\n    # Linia żądania\n    line = 'GET ' + path + ' HTTP/1.0\\r\\n'\n    # Nagłówek Host\n    host_line = 'Host: ' + host + '\\r\\n'\n    # Pusta linia kończąca nagłówki\n    end = '\\r\\n'\n    return line + host_line + end\n",
+    "testCode": "# tests\nassert build_get_request('site.test', '/index') == 'GET /index HTTP/1.0\\r\\nHost: site.test\\r\\n\\r\\n'\nassert build_get_request('a', '/') == 'GET / HTTP/1.0\\r\\nHost: a\\r\\n\\r\\n'\n# edge case: path może zawierać query, ale funkcja ma je jedynie wstawić\nassert 'GET /path?x=1 HTTP/1.0' in build_get_request('h', '/path?x=1')\n",
+    "difficulty": "easy",
+    "topic": "żądanie GET",
+    "hints": [
+      "Żądanie powinno zawierać linię `GET` i kończyć się `\\r\\n\\r\\n`.",
+      "Dodaj nagłówek `Host:` w nowej linii przed pustą linią."
+    ]
+  },
+  {
+    "id": 166,
+    "materialId": 41,
+    "title": "Wyodrębnij nagłówki i treść",
+    "description": "Napisz funkcję `split_headers_body(raw)` która przyjmie surowy tekst odpowiedzi HTTP i zwróci krotkę `(headers, body)`. Zakładamy, że nagłówki i treść są oddzielone sekwencją `\\r\\n\\r\\n`.",
+    "starterCode": "# starter code\n\ndef split_headers_body(raw):\n    # TODO: rozdziel raw na headers i body\n    return ('', '')\n",
+    "solution": "# full solution\n\ndef split_headers_body(raw):\n    parts = raw.split('\\r\\n\\r\\n', 1)\n    if len(parts) == 1:\n        return (parts[0], '')\n    return (parts[0], parts[1])\n",
+    "testCode": "# tests\nr1 = 'H1: v1\\r\\nH2: v2\\r\\n\\r\\n<body>Hi</body>'\nassert split_headers_body(r1) == ('H1: v1\\r\\nH2: v2', '<body>Hi</body>')\nr2 = 'H: v\\r\\n'\nassert split_headers_body(r2) == ('H: v\\r\\n', '')\nr3 = 'A\\r\\n\\r\\n'\nassert split_headers_body(r3) == ('A', '')\n",
+    "difficulty": "medium",
+    "topic": "nagłówki i treść",
+    "hints": [
+      "Użyj podziału po `\\r\\n\\r\\n` i wykonaj podział tylko raz.",
+      "Zwróć pusty ciąg jako `body`, jeśli brak treści."
+    ]
+  },
+  {
+    "id": 167,
+    "materialId": 41,
+    "title": "Pobierz linię statusu z odpowiedzi",
+    "description": "Napisz funkcję `status_line(raw)` która zwróci pierwszą linię odpowiedzi HTTP (np. `HTTP/1.0 200 OK`) z surowego tekstu odpowiedzi `raw`.",
+    "starterCode": "# starter code\n\ndef status_line(raw):\n    # TODO: zwróć pierwszą linię z raw\n    return ''\n",
+    "solution": "# full solution\n\ndef status_line(raw):\n    headers, _ = raw.split('\\r\\n\\r\\n', 1) if '\\r\\n\\r\\n' in raw else (raw, '')\n    parts = headers.split('\\r\\n')\n    return parts[0]\n",
+    "testCode": "# tests\nr = 'HTTP/1.0 404 Not Found\\r\\nContent-Type: text\\r\\n\\r\\nHello'\nassert status_line(r) == 'HTTP/1.0 404 Not Found'\nr2 = 'NOCRLF'\nassert status_line(r2) == 'NOCRLF'\nr3 = 'LINE1\\r\\nLINE2\\r\\n\\r\\n'\nassert status_line(r3) == 'LINE1'\n",
+    "difficulty": "medium",
+    "topic": "nagłówki i treść",
+    "hints": [
+      "Najpierw wydobądź nagłówki, potem weź pierwszą linię przed `\\r\\n`.",
+      "Jeśli `raw` nie zawiera `\\r\\n`, zwróć cały `raw` jako status."
+    ]
+  },
+  {
+    "id": 168,
+    "materialId": 41,
+    "title": "Sparsuj nagłówki do słownika",
+    "description": "Napisz funkcję `parse_headers(headers)` która przyjmie łańcuch nagłówków (wiele linii: `Klucz: Wartość`) i zwróci słownik {klucz: wartość}. Pomiń puste linie.",
+    "starterCode": "# starter code\n\ndef parse_headers(headers):\n    # TODO: zamień nagłówki na dict\n    return {}\n",
+    "solution": "# full solution\n\ndef parse_headers(headers):\n    result = {}\n    if not headers:\n        return result\n    lines = headers.split('\\r\\n')\n    for line in lines:\n        if not line:\n            continue\n        if ': ' in line:\n            key, val = line.split(': ', 1)\n            result[key] = val\n    return result\n",
+    "testCode": "# tests\nh = 'Content-Type: text/html\\r\\nServer: s1\\r\\n'\nres = parse_headers(h)\nassert res['Content-Type'] == 'text/html'\nassert res['Server'] == 's1'\nassert parse_headers('') == {}\n# linię bez ': ' ignorujemy\nassert parse_headers('BadLine\\r\\nKey: V') == {'Key': 'V'}\n",
+    "difficulty": "hard",
+    "topic": "nagłówki i treść",
+    "hints": [
+      "Podziel `headers` po `\\r\\n` na linie, potem każdą linię podziel po `: `.",
+      "Usuń ewentualne puste linie między nagłówkami."
+    ]
   }
 ]

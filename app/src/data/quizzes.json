@@ -4153,5 +4153,140 @@
     "explanation": "`a.lower() == b.lower()` porównuje wersje z małymi literami, więc ignoruje wielkość liter. Prosty `==` porównuje dokładnie.",
     "difficulty": "easy",
     "topic": "lower"
+  },
+  {
+    "id": 358,
+    "materialId": 41,
+    "question": "Co wypisze ten kod?\n\n```python\nreq = 'GET /page.html HTTP/1.0\\r\\n\\r\\n'\nprint(req.count('\\r\\n'))\n```",
+    "choices": [
+      "2",
+      "1",
+      "0",
+      "4"
+    ],
+    "correctIndex": 0,
+    "explanation": "String zawiera dwa `\\r\\n` kończące żądanie, więc `count('\\r\\n')` zwróci 2. Błędna odpowiedź 4 myśli, że liczymy znaki, a nie sekwencje.",
+    "difficulty": "easy",
+    "topic": "żądanie GET"
+  },
+  {
+    "id": 359,
+    "materialId": 41,
+    "question": "Co jest nie tak z tym kodem, jeśli chcemy wysłać poprawne żądanie HTTP?\n\n```python\nreq = 'GET /index.html HTTP/1.0'\ns.send(req.encode())\n```",
+    "choices": [
+      "Brakuje pustej linii kończącej żądanie",
+      "Nie ma `connect()` przed `send()`",
+      "Nie użyto `decode()` przed wysłaniem",
+      "Zła metoda, trzeba użyć POST"
+    ],
+    "correctIndex": 0,
+    "explanation": "Brakuje `\\r\\n\\r\\n` na końcu żądania. Serwer może nie rozpoznać końca nagłówków. Popularny błąd 1 sugeruje brak `connect()`, ale zakładamy, że socket jest połączony.",
+    "difficulty": "medium",
+    "topic": "żądanie GET"
+  },
+  {
+    "id": 360,
+    "materialId": 41,
+    "question": "Która wersja poprawnie dzieli odpowiedź HTTP na nagłówki i treść?\n\nA:\n```python\nparts = raw.split('\\r\\n\\r\\n', 1)\nheaders = parts[0]\nbody = parts[1]\n```\n\nB:\n```python\nparts = raw.split('\\r\\n')\nheaders = parts[0]\nbody = parts[1]\n```",
+    "choices": [
+      "A",
+      "B",
+      "Obie",
+      "Żadna"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wersja A używa podziału tylko raz po `\\r\\n\\r\\n`, co poprawnie oddziela nagłówki od ciała. Wersja B dzieli każdą linię i nie wydziela całego ciała.",
+    "difficulty": "medium",
+    "topic": "nagłówki i treść"
+  },
+  {
+    "id": 361,
+    "materialId": 41,
+    "question": "Co się stanie, gdy `recv(512)` zwróci pusty bajtowy obiekt `b''` w pętli odbierania?",
+    "choices": [
+      "To znaczy koniec transmisji i powinno się przerwać pętlę",
+      "To znaczy, że dane są niekompletne i trzeba czekać dalej bez przerwy",
+      "To błąd i trzeba ponownie wysłać żądanie",
+      "Oznacza to, że serwer wysłał puste ciało, ale trzeba dalej czytać"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pusty `b''` oznacza EOF / koniec transmisji. Pętla powinna się zakończyć. Błędna odpowiedź 1 myśli, że trzeba czekać dłużej.",
+    "difficulty": "easy",
+    "topic": "sockety"
+  },
+  {
+    "id": 362,
+    "materialId": 41,
+    "question": "Co robi `decode()` po `recv()`?",
+    "choices": [
+      "Zamienia odebrane bajty na tekst",
+      "Zamienia tekst na bajty",
+      "Zamyka połączenie",
+      "Dzieli nagłówki od treści"
+    ],
+    "correctIndex": 0,
+    "explanation": "`recv()` zwraca bajty. `decode()` zamienia je na tekst. Popularny błąd 1 myli `encode()` z `decode()`.",
+    "difficulty": "easy",
+    "topic": "encode/decode"
+  },
+  {
+    "id": 363,
+    "materialId": 41,
+    "question": "Co wypisze ten kod?\n\n```python\nresp = 'HTTP/1.0 200 OK\\r\\nContent-Type: text/html\\r\\n\\r\\n<body>Hi</body>'\nparts = resp.split('\\r\\n\\r\\n', 1)\nprint(parts[0])\n```",
+    "choices": [
+      "HTTP/1.0 200 OK\\r\\nContent-Type: text/html",
+      "<body>Hi</body>",
+      "HTTP/1.0 200 OK",
+      "Content-Type: text/html\\r\\n\\r\\n<body>Hi</body>"
+    ],
+    "correctIndex": 0,
+    "explanation": "Po podziale `parts[0]` to wszystkie nagłówki przed pustą linią. Błędna odpowiedź 2 bierze tylko pierwszą linię nagłówka.",
+    "difficulty": "easy",
+    "topic": "nagłówki i treść"
+  },
+  {
+    "id": 364,
+    "materialId": 41,
+    "question": "Które zdanie jest prawdziwe odnośnie Telnet i HTTP?",
+    "choices": [
+      "Telnet pozwala ręcznie wysłać żądanie GET na port 80",
+      "Telnet automatycznie parsuje HTML",
+      "Telnet szyfruje połączenie domeny HTTP",
+      "Telnet dodaje nagłówki do odpowiedzi"
+    ],
+    "correctIndex": 0,
+    "explanation": "Telnet to narzędzie do łączenia z portami i wysyłania tekstu, więc możesz ręcznie wysłać `GET` na port 80. Inne odpowiedzi są błędne.",
+    "difficulty": "easy",
+    "topic": "Telnet"
+  },
+  {
+    "id": 365,
+    "materialId": 41,
+    "question": "Co jest błędem w tej pętli odbierania?\n\n```python\nwhile True:\n    data = s.recv(512)\n    print(data.decode())\n    if data is None:\n        break\ns.close()\n```",
+    "choices": [
+      "Sprawdzanie `data is None` jest złe; `recv` daje `b''` przy końcu",
+      "Zapomniano `encode()` przed `recv()`",
+      "Brakuje `connect()`",
+      "Nie zamknięto socketu"
+    ],
+    "correctIndex": 0,
+    "explanation": "`recv()` zwraca `b''` przy końcu, nie `None`. Trzeba sprawdzać `if not data: break`. Pozostałe odpowiedzi są nie na miejscu.",
+    "difficulty": "medium",
+    "topic": "sockety"
+  },
+  {
+    "id": 366,
+    "materialId": 41,
+    "question": "Która linia tworzy poprawne proste żądanie HTTP do `/about` hosta `site.com`?\n\nA:\n```python\nr = 'GET /about HTTP/1.0\\r\\nHost: site.com\\r\\n\\r\\n'\n```\n\nB:\n```python\nr = 'GET http://site.com/about HTTP/1.0\\r\\n\\r\\n'\n```",
+    "choices": [
+      "A",
+      "B",
+      "Obie",
+      "Żadna"
+    ],
+    "correctIndex": 0,
+    "explanation": "W żądaniu na połączeniu z serwerem zwykle wysyłamy ścieżkę `/about` i opcjonalnie nagłówek `Host`. Druga wersja podaje pełny URL, co nie jest typowe przy bezpośrednim HTTP/1.0 połączeniu.",
+    "difficulty": "medium",
+    "topic": "żądanie GET"
   }
 ]

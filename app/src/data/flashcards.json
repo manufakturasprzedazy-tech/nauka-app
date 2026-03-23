@@ -2574,5 +2574,89 @@
     "front": "Jaki częsty błąd przy wycinaniu domeny z e-maila?",
     "back": "Użycie `s[at:...]` zamiast `s[at+1:...]` — wtedy w wyniku zostanie znak `@`. Trzeba przesunąć start o 1.",
     "topic": "Gotcha slicing"
+  },
+  {
+    "id": 475,
+    "materialId": 41,
+    "front": "Co to jest warstwa aplikacji?",
+    "back": "To zbiór reguł opisujących, jak programy wymieniają dane. HTTP to przykład protokołu warstwy aplikacji.",
+    "topic": "warstwa aplikacji"
+  },
+  {
+    "id": 476,
+    "materialId": 41,
+    "front": "Co oznacza URL `http://host/page`?",
+    "back": "`http://` mówi, że używamy HTTP, `host` to serwer, a `/page` to dokument do pobrania.",
+    "topic": "URL"
+  },
+  {
+    "id": 477,
+    "materialId": 41,
+    "front": "Co robi `socket.connect()`?",
+    "back": "Nawiązuje połączenie z podanym hostem i portem. Jeśli nie ma serwera, połączenie się nie powiedzie.",
+    "topic": "sockety"
+  },
+  {
+    "id": 478,
+    "materialId": 41,
+    "front": "Jaka jest pierwsza akcja klienta w HTTP?",
+    "back": "Klient wysyła żądanie, np. linię `GET /path HTTP/1.0` zakończoną dwiema pustymi liniami.",
+    "topic": "HTTP"
+  },
+  {
+    "id": 479,
+    "materialId": 41,
+    "front": "Co to jest żądanie GET?",
+    "back": "Prosty tekstowy wiersz mówiący serwerowi, żeby zwrócił dokument, np. `GET /index.html HTTP/1.0`.",
+    "topic": "żądanie GET"
+  },
+  {
+    "id": 480,
+    "materialId": 41,
+    "front": "Co znajdziesz najpierw w odpowiedzi serwera: nagłówki czy treść?",
+    "back": "Najpierw nagłówki (metadata), potem pusta linia, a potem treść (body).",
+    "topic": "nagłówki i treść"
+  },
+  {
+    "id": 481,
+    "materialId": 41,
+    "front": "Dlaczego trzeba użyć `encode()` przed `send()`?",
+    "back": "Sockety wysyłają bajty. `encode()` zamienia tekst na bajty, więc `send()` może je wysłać.",
+    "topic": "encode/decode"
+  },
+  {
+    "id": 482,
+    "materialId": 41,
+    "front": "Dlaczego trzeba użyć `decode()` po `recv()`?",
+    "back": "`recv()` zwraca bajty. `decode()` zamienia bajty na tekst, który można czytać i wypisać.",
+    "topic": "encode/decode"
+  },
+  {
+    "id": 483,
+    "materialId": 41,
+    "front": "Co się stanie gdy nie zamkniesz socketu?",
+    "back": "Połączenie może pozostać otwarte i zużywać zasoby po twojej stronie i po stronie serwera. Użyj `close()`.",
+    "topic": "sockety"
+  },
+  {
+    "id": 484,
+    "materialId": 41,
+    "front": "Jaka jest rola pustej linii `\\r\\n\\r\\n` w HTTP?",
+    "back": "Oddziela nagłówki od treści. Serwer używa jej, żeby wiedzieć, że nagłówki się skończyły.",
+    "topic": "nagłówki i treść"
+  },
+  {
+    "id": 485,
+    "materialId": 41,
+    "front": "Co robi pętla czytająca `recv(512)` aż nie dostanie danych?",
+    "back": "Odbiera kolejne kawałki odpowiedzi, aż serwer zakończy transmisję (recv zwraca 0 bajtów).",
+    "topic": "sockety"
+  },
+  {
+    "id": 486,
+    "materialId": 41,
+    "front": "Jak wygląda typowy cykl żądanie-odpowiedź w Pythonie?",
+    "back": "Tworzysz socket, `connect`, `send` żądanie, w pętli `recv` odbierasz odpowiedź, `decode`, `close`.",
+    "topic": "cykl żądanie-odpowiedź"
   }
 ]
