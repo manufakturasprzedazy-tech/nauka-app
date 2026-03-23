@@ -2658,5 +2658,89 @@
     "front": "Jak wygląda typowy cykl żądanie-odpowiedź w Pythonie?",
     "back": "Tworzysz socket, `connect`, `send` żądanie, w pętli `recv` odbierasz odpowiedź, `decode`, `close`.",
     "topic": "cykl żądanie-odpowiedź"
+  },
+  {
+    "id": 487,
+    "materialId": 42,
+    "front": "Co pokazuje zakładka Network w konsoli deweloperskiej?",
+    "back": "Pokazuje każde żądanie i odpowiedź, ich URL, nagłówki, status i podgląd odpowiedzi.",
+    "topic": "Konsola deweloperska (Network)"
+  },
+  {
+    "id": 488,
+    "materialId": 42,
+    "front": "Co to jest query string w URL?",
+    "back": "To część po `?` z parametrami w formacie `klucz=wartość`, oddzielonymi `&`.",
+    "topic": "Parametry w URL (query string)"
+  },
+  {
+    "id": 489,
+    "materialId": 42,
+    "front": "Co oznacza status `200`?",
+    "back": "`200` oznacza OK. Serwer zwrócił żądany dokument.",
+    "topic": "Kody statusu"
+  },
+  {
+    "id": 490,
+    "materialId": 42,
+    "front": "Co oznacza status `404`?",
+    "back": "`404` oznacza Not Found. Zasób nie istnieje lub nie został znaleziony.",
+    "topic": "Kody statusu"
+  },
+  {
+    "id": 491,
+    "materialId": 42,
+    "front": "Co oznacza status `302` i co robi przeglądarka?",
+    "back": "`302` to redirect. Serwer daje nagłówek `Location`, a przeglądarka żąda nowego URL.",
+    "topic": "Kody statusu"
+  },
+  {
+    "id": 492,
+    "materialId": 42,
+    "front": "Jaka jest różnica między `Content-Type: text/html` a `Content-Type: image/jpeg`?",
+    "back": "`text/html` mówi, że treść jest HTML i ma być renderowana jako strona. `image/jpeg` to obraz i przeglądarka go wyświetli jako grafikę.",
+    "topic": "Content-Type i typy odpowiedzi"
+  },
+  {
+    "id": 493,
+    "materialId": 42,
+    "front": "Co robi nagłówek `Accept-Language` w żądaniu?",
+    "back": "Mówi serwerowi preferowany język klienta. Serwer może zwrócić treść w tym języku.",
+    "topic": "Nagłówki żądania i odpowiedzi"
+  },
+  {
+    "id": 494,
+    "materialId": 42,
+    "front": "Gdzie przeglądarka widzi adres IP serwera?",
+    "back": "W szczegółach żądania w zakładce Network. Tam jest adres IP serwera, z którym się łączy.",
+    "topic": "Konsola deweloperska (Network)"
+  },
+  {
+    "id": 495,
+    "materialId": 42,
+    "front": "Co znajdziesz w nagłówku `Location`?",
+    "back": "Adres, na który należy się przekierować, gdy serwer wysyła status `302`.",
+    "topic": "Nagłówki żądania i odpowiedzi"
+  },
+  {
+    "id": 496,
+    "materialId": 42,
+    "front": "Dlaczego ważne jest najpierw sprawdzić nagłówki, potem treść?",
+    "back": "Bo nagłówki mówią, jak interpretować treść (np. jej typ). Najpierw metadata, potem dane.",
+    "topic": "Nagłówki żądania i odpowiedzi"
+  },
+  {
+    "id": 497,
+    "materialId": 42,
+    "front": "Co to są GET-parameters?",
+    "back": "To parametry przesyłane w URL po `?`. Serwer traktuje je jako pary klucz=wartość.",
+    "topic": "Parametry w URL (query string)"
+  },
+  {
+    "id": 498,
+    "materialId": 42,
+    "front": "Jaki błąd popełniają początkujący przy przekierowaniach?",
+    "back": "Myślą, że dostali treść od pierwszego żądania. W rzeczywistości serwer może wysłać `302` i dopiero kolejne żądanie zwróci treść.",
+    "topic": "Kody statusu"
   }
 ]

@@ -613,5 +613,24 @@
     "flashcardCount": 12,
     "quizCount": 9,
     "exerciseCount": 4
+  },
+  {
+    "id": 42,
+    "courseId": "python",
+    "filename": "Korzystanie z Konsoli programisty do eksploracji protokołu HTTP.md",
+    "title": "Konsola deweloperska i cykl żądanie‑odpowiedź",
+    "summary": "Lekcja pokazuje jak używać konsoli deweloperskiej w przeglądarce, by zobaczyć żądania i odpowiedzi sieciowe. Omawia nagłówki, parametry w adresie (query string) i najważniejsze kody statusu (200, 404, 302).",
+    "topics": [
+      "Konsola deweloperska (Network)",
+      "Cykl żądanie‑odpowiedź",
+      "Nagłówki żądania i odpowiedzi",
+      "Parametry w URL (query string)",
+      "Kody statusu: 200, 404, 302",
+      "Content-Type i typy odpowiedzi"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: jak obserwować komunikację przeglądarki z serwerem przez zakładkę Network w konsoli deweloperskiej. Pokazuje nagłówki, parametry w URL i kody statusu.\n\n## Kluczowe pojęcia\n### Konsola deweloperska (Network)\nTo narzędzie w przeglądarce. Pokazuje każde żądanie i odpowiedź. Możesz zobaczyć URL, nagłówki, status i podgląd odpowiedzi.\n\n### Cykl żądanie‑odpowiedź\nPrzeglądarka wysyła żądanie (np. GET lub POST). Serwer odpowiada nagłówkami i treścią. Najpierw idą nagłówki, potem dane.\n\n### Nagłówki (headers)\nNagłówki mówią o żądaniu i odpowiedzi. Przykłady: `Content-Type`, `ETag`, `Accept-Language`, `Location`.\n\n### Parametry w URL (query string)\nPo znaku `?` w URL mogą być parametry w formacie `klucz=wartość` oddzielone `&`. To są GET-parameters.\n\n### Kody statusu\n- `200` — OK, serwer zwrócił dokument.\n- `404` — Not Found, zasób nie istnieje.\n- `302` — Redirect, serwer wskazuje inny URL w nagłówku `Location`.\n\n### Content-Type\nNagłówek `Content-Type` mówi przeglądarce, jak zinterpretować ciało odpowiedzi, np. `text/html` lub `image/jpeg`.\n\n## Przykłady kodu\n```python\n# rozdzielenie ścieżki od parametrów\nurl = \"page1.html?guess=12&x=5\"\nparts = url.split('?')\npath = parts[0]\nparams = parts[1] if len(parts) > 1 else \"\"\nprint(path)\n```\nTen kod oddziela część przed `?` od parametrów.\n\n```python\n# proste sprawdzenie statusu\nstatus = 404\nif status == 200:\n    print(\"OK\")\nelse:\n    print(\"Błąd\")\n```\nPokazuje jak rozróżnić podstawowe kody statusu.\n\n## Ważne zasady\n- **Nagłówki przychodzą przed danymi** — najpierw metadata, potem treść odpowiedzi.\n- **`Content-Type` mówi jak czytać treść** — HTML, tekst, obraz itp.\n- **Parametry GET znajdują się po `?`** — to para klucz=wartość oddzielona `&`.\n- **302 to przekierowanie** — serwer zwraca `Location`, a przeglądarka żąda nowego URL.\n- **404 oznacza brak zasobu** — serwer nie znalazł żądanego dokumentu.\n\n## Częste błędy\n- **Mylenie adresu i parametrów**: traktowanie całego URL jako ścieżki. Najpierw oddziel `?`.\n- **Ignorowanie nagłówka `Content-Type`**: jeśli go nie sprawdzisz, możesz źle zinterpretować odpowiedź (np. traktować obraz jak tekst).",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 5
   }
 ]

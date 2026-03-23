@@ -1969,5 +1969,81 @@
       "Podziel `headers` po `\\r\\n` na linie, potem każdą linię podziel po `: `.",
       "Usuń ewentualne puste linie między nagłówkami."
     ]
+  },
+  {
+    "id": 169,
+    "materialId": 42,
+    "title": "Oddziel ścieżkę od parametrów w URL",
+    "description": "Napisz funkcję `split_url(url)` która zwraca krotkę `(path, query)` gdzie `path` to część przed `?`, a `query` to część po `?` lub pusty string jeśli parametrów nie ma.",
+    "starterCode": "def split_url(url):\n    # TODO: rozdziel url na część przed '?' i po '?'\n    pass\n",
+    "solution": "def split_url(url):\n    parts = url.split('?')\n    path = parts[0]\n    query = parts[1] if len(parts) > 1 else \"\"\n    return path, query\n",
+    "testCode": "assert split_url('page.html?x=5') == ('page.html', 'x=5')\nassert split_url('img.jpg') == ('img.jpg', '')\nassert split_url('a?b=c&d=1') == ('a', 'b=c&d=1')\n",
+    "difficulty": "easy",
+    "topic": "Parametry w URL (query string)",
+    "hints": [
+      "Użyj `split('?')` i sprawdź długość wyniku.",
+      "Jeśli nie ma `?`, zwróć pusty string jako `query`."
+    ]
+  },
+  {
+    "id": 170,
+    "materialId": 42,
+    "title": "Sparsuj query string do słownika",
+    "description": "Napisz funkcję `parse_qs(qs)` która bierze string jak `\"a=1&b=2\"` i zwraca słownik `{'a':'1','b':'2'}`. Jeśli `qs` jest pusty, zwróć pusty słownik.",
+    "starterCode": "def parse_qs(qs):\n    # TODO: zamień 'a=1&b=2' na {'a':'1', 'b':'2'}\n    pass\n",
+    "solution": "def parse_qs(qs):\n    if not qs:\n        return {}\n    result = {}\n    items = qs.split('&')\n    for it in items:\n        if '=' in it:\n            k, v = it.split('=', 1)\n            result[k] = v\n    return result\n",
+    "testCode": "assert parse_qs('a=1&b=2') == {'a':'1', 'b':'2'}\nassert parse_qs('') == {}\nassert parse_qs('x=10') == {'x':'10'}\n",
+    "difficulty": "medium",
+    "topic": "Parametry w URL (query string)",
+    "hints": [
+      "Najpierw sprawdź, czy `qs` jest pusty.",
+      "Użyj `split('&')` a potem `split('=')` dla każdego elementu."
+    ]
+  },
+  {
+    "id": 171,
+    "materialId": 42,
+    "title": "Prosty opis statusu",
+    "description": "Napisz funkcję `status_message(code)` która dla 200 zwraca `'OK'`, dla 404 `'Not Found'`, dla 302 `'Redirect'`, a dla innych `'Unknown'`.",
+    "starterCode": "def status_message(code):\n    # TODO: zwróć tekst dla kodu statusu\n    pass\n",
+    "solution": "def status_message(code):\n    if code == 200:\n        return 'OK'\n    elif code == 404:\n        return 'Not Found'\n    elif code == 302:\n        return 'Redirect'\n    else:\n        return 'Unknown'\n",
+    "testCode": "assert status_message(200) == 'OK'\nassert status_message(404) == 'Not Found'\nassert status_message(302) == 'Redirect'\nassert status_message(500) == 'Unknown'\n",
+    "difficulty": "easy",
+    "topic": "Kody statusu",
+    "hints": [
+      "Użyj prostych porównań `==` z liczbami.",
+      "Zadbaj o domyślny przypadek `else`."
+    ]
+  },
+  {
+    "id": 172,
+    "materialId": 42,
+    "title": "Śledź proste przekierowanie",
+    "description": "Mamy mapę stron: klucz to URL, wartość to albo zawartość (string), albo słownik `{'redirect': target}`. Napisz `follow(url, pages, max_hops)` który podąża za przekierowaniami do `max_hops` razy i zwraca końcową zawartość lub `None` jeśli nie ma treści.",
+    "starterCode": "def follow(url, pages, max_hops=5):\n    # TODO: śledź redirecty i zwróć końcową zawartość\n    pass\n",
+    "solution": "def follow(url, pages, max_hops=5):\n    current = url\n    for _ in range(max_hops):\n        if current not in pages:\n            return None\n        value = pages[current]\n        # jeśli to przekierowanie\n        if isinstance(value, dict) and 'redirect' in value:\n            current = value['redirect']\n            continue\n        # jeśli to zawartość\n        if isinstance(value, str):\n            return value\n        return None\n    # przekroczenie max_hops\n    return None\n",
+    "testCode": "pages = {\n    'a': {'redirect': 'b'},\n    'b': {'redirect': 'c'},\n    'c': 'Final content',\n    'd': {'redirect': 'e'}\n}\nassert follow('a', pages) == 'Final content'\nassert follow('c', pages) == 'Final content'\nassert follow('d', pages) is None\nassert follow('missing', pages) is None\n",
+    "difficulty": "hard",
+    "topic": "Kody statusu",
+    "hints": [
+      "Użyj pętli for, licznik hopów od 0 do max_hops-1.",
+      "Sprawdź typ wartości w `pages[url]`: jeśli ma klucz `'redirect'`, ustaw nowy url.",
+      "Zwróć None gdy adresu nie ma w `pages` lub nie ma treści."
+    ]
+  },
+  {
+    "id": 173,
+    "materialId": 42,
+    "title": "Pobierz Content-Type z nagłówków",
+    "description": "Napisz funkcję `get_content_type(headers)` gdzie `headers` to lista stringów jak `['Content-Type: text/html', 'ETag: 5']`. Funkcja powinna zwrócić wartość Content-Type bez spacji, np. `'text/html'`, lub `None` jeśli nagłówek nie istnieje.",
+    "starterCode": "def get_content_type(headers):\n    # TODO: znajdź i zwróć wartość Content-Type\n    pass\n",
+    "solution": "def get_content_type(headers):\n    for h in headers:\n        if ':' in h:\n            k, v = h.split(':', 1)\n            if k.strip().lower() == 'content-type':\n                return v.strip()\n    return None\n",
+    "testCode": "assert get_content_type(['Content-Type: text/html', 'ETag: 1']) == 'text/html'\nassert get_content_type(['ETag: 1']) is None\nassert get_content_type(['content-type: image/jpeg']) == 'image/jpeg'\n",
+    "difficulty": "medium",
+    "topic": "Nagłówki żądania i odpowiedzi",
+    "hints": [
+      "Przejdź przez listę i dla każdego elementu użyj `split(':', 1)`.",
+      "Usuń możliwe spacje z wartości za pomocą `strip()`."
+    ]
   }
 ]

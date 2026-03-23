@@ -4288,5 +4288,140 @@
     "explanation": "W żądaniu na połączeniu z serwerem zwykle wysyłamy ścieżkę `/about` i opcjonalnie nagłówek `Host`. Druga wersja podaje pełny URL, co nie jest typowe przy bezpośrednim HTTP/1.0 połączeniu.",
     "difficulty": "medium",
     "topic": "żądanie GET"
+  },
+  {
+    "id": 367,
+    "materialId": 42,
+    "question": "Co wypisze ten kod?\n\n```python\nurl = \"page.html?x=3&y=4\"\nparts = url.split('?')\nprint(parts[1])\n```",
+    "choices": [
+      "page.html",
+      "x=3&y=4",
+      "['page.html', 'x=3&y=4']",
+      "Błąd: index out of range"
+    ],
+    "correctIndex": 1,
+    "explanation": "Metoda `split('?')` dzieli tekst na dwie części. `parts[1]` to część po `?`, czyli `x=3&y=4`. Najpopularniejszy błąd to myślenie, że `parts[1]` to ścieżka; to jest druga część.",
+    "difficulty": "easy",
+    "topic": "Parametry w URL (query string)"
+  },
+  {
+    "id": 368,
+    "materialId": 42,
+    "question": "Co jest nie tak z tym kodem? Znajdź błąd.\n\n```python\nu = \"file.txt\"\nparts = u.split('?')\nquery = parts[1]\nprint(query)\n```",
+    "choices": [
+      "Nic, kod działa zawsze",
+      "Brak sprawdzenia, czy `?` jest w URL; może być index error",
+      "`split` powinno być `split('/')`",
+      "`query` powinno być `parts[0]`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Jeśli w `u` nie ma `?`, to `parts` ma tylko jeden element i `parts[1]` spowoduje błąd. Trzeba sprawdzić długość `parts` przed użyciem `parts[1]`.",
+    "difficulty": "medium",
+    "topic": "Parametry w URL (query string)"
+  },
+  {
+    "id": 369,
+    "materialId": 42,
+    "question": "Która wersja poprawnie zwraca `\"Not Found\"` dla statusu 404?\n\nA:\n```python\nstatus = 404\nif status == 200:\n    print(\"OK\")\nelse:\n    print(\"Not Found\")\n```\n\nB:\n```python\nstatus = 404\nif status == 404:\n    print(\"Not Found\")\nelse:\n    print(\"OK\")\n```\n\nC:\n```python\nstatus = 404\nprint(\"Not Found\")\n```\n\nD:\n```python\nstatus = 404\nif status:\n    print(\"Not Found\")\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wersja B sprawdza konkretnie `status == 404` i wypisuje `Not Found`. A wypisuje `Not Found` dla każdego statusu innego niż 200, co miesza inne kody. C zawsze wypisze `Not Found` niezależnie od statusu, a D wypisze `Not Found` gdy `status` jest traktowane jako prawda (co nie odpowiada logice statusów).",
+    "difficulty": "medium",
+    "topic": "Kody statusu"
+  },
+  {
+    "id": 370,
+    "materialId": 42,
+    "question": "Co wypisze ten kod?\n\n```python\nheaders = [\"Content-Type: text/html\", \"ETag: 123\"]\nfor h in headers:\n    parts = h.split(':')\n    print(parts[0])\n```",
+    "choices": [
+      "text/html\n123",
+      "Content-Type\nETag",
+      "['Content-Type', ' text/html']\n['ETag', ' 123']",
+      "Błąd"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dla każdego nagłówka `split(':')` tworzy listę, gdzie pierwszy element to nazwa nagłówka (`parts[0]`). Kod wypisze nazwy nagłówków. Błąd często popełniany to oczekiwanie, że `parts[1]` jest bez spacji.",
+    "difficulty": "easy",
+    "topic": "Nagłówki żądania i odpowiedzi"
+  },
+  {
+    "id": 371,
+    "materialId": 42,
+    "question": "Co się stanie, gdy serwer zwróci `302`?",
+    "choices": [
+      "Przeglądarka pokaże błąd 302 i zatrzyma się",
+      "Serwer od razu wysyła treść strony zamiast nagłówków",
+      "W nagłówku `Location` będzie adres do którego przeglądarka ma się przekierować",
+      "`302` oznacza, że serwer nie działa"
+    ],
+    "correctIndex": 2,
+    "explanation": "`302` to przekierowanie. Serwer daje nagłówek `Location` z nowym adresem. Częsty błąd to myślenie, że `302` to treść — to tylko informacja o przekierowaniu.",
+    "difficulty": "easy",
+    "topic": "Kody statusu"
+  },
+  {
+    "id": 372,
+    "materialId": 42,
+    "question": "Co wypisze ten kod?\n\n```python\nu = \"img.jpg\"\nif u.endswith('.jpg'):\n    print('image')\nelse:\n    print('other')\n```",
+    "choices": [
+      "image",
+      "other",
+      "Błąd: endswith nie istnieje",
+      "Nic nie wypisze"
+    ],
+    "correctIndex": 0,
+    "explanation": "Metoda `endswith('.jpg')` sprawdza rozszerzenie. Dla `img.jpg` warunek jest prawdziwy, więc wypisze `image`. Popularny błąd to myślenie, że header `Content-Type` nie jest potrzebny do rozpoznania typu, ale tu sprawdzamy nazwę pliku.",
+    "difficulty": "medium",
+    "topic": "Content-Type i typy odpowiedzi"
+  },
+  {
+    "id": 373,
+    "materialId": 42,
+    "question": "Co jest nie tak z tym kodem, jeśli chcemy sparsować parametry `a=1&b=2`?\n\n```python\nqs = \"a=1&b=2\"\nitems = qs.split('&')\nfor it in items:\n    k = it.split('=')\n    print(k)\n```",
+    "choices": [
+      "Nic, to poprawny sposób na rozbicie na pary i ich wypisanie",
+      "Należy użyć `split('?')` zamiast `split('&')`",
+      "`split` nie działa na stringach",
+      "Brakuje sprawdzenia, czy `=` jest w `it`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Kod poprawnie dzieli query string na elementy po `&` i potem na `k` i `v` po `=`. Najczęstsze pomyłki to brak sprawdzenia `=`, ale w tym prostym przykładzie `=` jest zawsze obecne.",
+    "difficulty": "easy",
+    "topic": "Parametry w URL (query string)"
+  },
+  {
+    "id": 374,
+    "materialId": 42,
+    "question": "Co wypisze ten kod?\n\n```python\nurl = \"page\"\nparts = url.split('?')\nprint(len(parts))\n```",
+    "choices": [
+      "0",
+      "1",
+      "2",
+      "Błąd"
+    ],
+    "correctIndex": 1,
+    "explanation": "Jeśli w stringu nie ma `?`, to `split('?')` zwraca listę z jednym elementem (cały string). Dlatego `len(parts)` to 1. Błąd robią osoby, które zakładają zawsze dwa elementy.",
+    "difficulty": "easy",
+    "topic": "Parametry w URL (query string)"
+  },
+  {
+    "id": 375,
+    "materialId": 42,
+    "question": "Które zdanie jest prawdziwe?\n\nA) Nagłówki odpowiedzi przychodzą po treści.\nB) Nagłówki odpowiedzi mówią jak interpretować treść.\nC) Parametry po `?` są wysyłane tylko w POST.\nD) `404` oznacza powodzenie.",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "B jest prawdziwe: nagłówki mówią jak czytać treść (np. `Content-Type`). A jest fałszem (nagłówki przed treścią), C jest fałszem (parametry po `?` to GET), D jest fałszem (404 to błąd).",
+    "difficulty": "easy",
+    "topic": "Nagłówki żądania i odpowiedzi"
   }
 ]
