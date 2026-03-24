@@ -2165,5 +2165,65 @@
       "Użyj `extract_links` z poprzedniego zadania, a potem `count_words`.",
       "Sprawdzaj, czy link jest kluczem w `pages` zanim go przetworzysz."
     ]
+  },
+  {
+    "id": 182,
+    "materialId": 45,
+    "title": "Wyciągnij linki ze listy tagów (łatwe)",
+    "description": "Masz listę tagów reprezentowanych jako słowniki. Napisz funkcję `extract_hrefs(tags)` która zwraca listę wartości `href` w tej samej kolejności. Jeśli `href` nie istnieje, do listy dodaj `None`.",
+    "starterCode": "```python\ndef extract_hrefs(tags):\n    # TODO: zwróć listę href z każdego tagu\n    pass\n```",
+    "solution": "```python\ndef extract_hrefs(tags):\n    hrefs = []\n    for tag in tags:\n        hrefs.append(tag.get('href'))\n    return hrefs\n```",
+    "testCode": "```python\n# tests\nassert extract_hrefs([{'href':'a.html'}, {'href':'b.html'}]) == ['a.html', 'b.html']\nassert extract_hrefs([{}, {'href':'x'}]) == [None, 'x']\nassert extract_hrefs([]) == []\n```",
+    "difficulty": "easy",
+    "topic": "BeautifulSoup",
+    "hints": [
+      "Użyj pętli `for` by przejść przez każdy tag.",
+      "Do pobrania atrybutu użyj `tag.get('href')`."
+    ]
+  },
+  {
+    "id": 183,
+    "materialId": 45,
+    "title": "Policz prawidłowe linki (średnie)",
+    "description": "Napisz funkcję `count_valid_hrefs(tags)` która liczy ile tagów ma nie-pusty `href` (czyli `tag.get('href')` jest różne od `None` i nie jest pustym stringiem). Zwróć liczbę.",
+    "starterCode": "```python\ndef count_valid_hrefs(tags):\n    # TODO: policz tagi z prawidłowym href\n    pass\n```",
+    "solution": "```python\ndef count_valid_hrefs(tags):\n    count = 0\n    for tag in tags:\n        href = tag.get('href')\n        if href is not None and href != '':\n            count += 1\n    return count\n```",
+    "testCode": "```python\n# tests\nassert count_valid_hrefs([{'href':'a'}, {'href':''}, {}, {'href':'b'}]) == 2\nassert count_valid_hrefs([{}, {}]) == 0\nassert count_valid_hrefs([]) == 0\n```",
+    "difficulty": "medium",
+    "topic": "Tag i get",
+    "hints": [
+      "Sprawdź wartość zwróconą przez `tag.get('href')` przed zliczaniem.",
+      "Użyj prostej pętli `for` i warunku `if`."
+    ]
+  },
+  {
+    "id": 184,
+    "materialId": 45,
+    "title": "Filtruj i zwróć tylko linki (średnie)",
+    "description": "Napisz `filter_hrefs(tags)` która zwraca listę tylko tych `href`, które są nie-puste (nie `None` i nie pusty string). Zachowaj kolejność.",
+    "starterCode": "```python\ndef filter_hrefs(tags):\n    # TODO: zwróć listę tylko nie-pustych href\n    pass\n```",
+    "solution": "```python\ndef filter_hrefs(tags):\n    result = []\n    for tag in tags:\n        href = tag.get('href')\n        if href is not None and href != '':\n            result.append(href)\n    return result\n```",
+    "testCode": "```python\n# tests\nassert filter_hrefs([{'href':'1.html'}, {'href':''}, {}, {'href':'2.html'}]) == ['1.html', '2.html']\nassert filter_hrefs([{}, {}]) == []\nassert filter_hrefs([]) == []\n```",
+    "difficulty": "medium",
+    "topic": "Tag i get",
+    "hints": [
+      "Dodawaj elementy do listy tylko jeśli spełniają warunek.",
+      "Możesz korzystać z tej samej logiki co w poprzednim zadaniu."
+    ]
+  },
+  {
+    "id": 185,
+    "materialId": 45,
+    "title": "Prosty symulator crawlera (trudne)",
+    "description": "Napisz funkcję `simple_crawl(pages, start)` gdzie `pages` to słownik odwzorowujący URL na listę tagów (słowników z `href`). Funkcja powinna zacząć od `start` i zebrać do listy wszystkie linki bez powtórek, które występują bezpośrednio na stronie startowej oraz na stronach, do których prowadzą linki z tej strony (czyli 2 poziomy: start i linki z start). Zwróć listę znalezionych URL-i.",
+    "starterCode": "```python\ndef simple_crawl(pages, start):\n    # pages: {'site.html': [ {'href':'a.html'}, ... ], ...}\n    # TODO: zwróć listę unikalnych linków z poziomu start i poziomu 1\n    pass\n```",
+    "solution": "```python\ndef simple_crawl(pages, start):\n    found = []\n    # linki z poziomu start\n    start_tags = pages.get(start, [])\n    for tag in start_tags:\n        href = tag.get('href')\n        if href is not None and href != '' and href not in found:\n            found.append(href)\n    # linki z poziomu 1 (strony, do których prowadzą linki start)\n    for link in list(found):\n        tags = pages.get(link, [])\n        for tag in tags:\n            href = tag.get('href')\n            if href is not None and href != '' and href not in found:\n                found.append(href)\n    return found\n```",
+    "testCode": "```python\n# tests\npages = {\n    'home.html': [{'href':'a.html'}, {'href':'b.html'}, {'href':''}],\n    'a.html': [{'href':'c.html'}, {'href':'b.html'}],\n    'b.html': [{'href':'d.html'}],\n    'c.html': []\n}\nassert simple_crawl(pages, 'home.html') == ['a.html', 'b.html', 'c.html', 'd.html']\nassert simple_crawl(pages, 'a.html') == ['c.html', 'b.html', 'd.html']\nassert simple_crawl({}, 'home.html') == []\n```",
+    "difficulty": "hard",
+    "topic": "Crawling / spidering",
+    "hints": [
+      "Użyj listy lub słownika, by śledzić już zobaczone linki.",
+      "Najpierw zbierz linki ze strony startowej, potem z każdej znalezionej strony (jeśli istnieje w `pages`)."
+    ]
   }
 ]

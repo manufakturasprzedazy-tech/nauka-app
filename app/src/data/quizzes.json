@@ -4678,5 +4678,141 @@
     "explanation": "A najpierw `decode()` zamienia bajty na string, potem `rstrip()` usuwa znaki końca linii. B i D są błędne kolejnością lub składnią.",
     "difficulty": "easy",
     "topic": "bajty vs łańcuchy znaków"
+  },
+  {
+    "id": 393,
+    "materialId": 45,
+    "question": "Co wypisze ten kod?\n\n```python\ntags = [ {'href':'a.html'}, {'href':'b.html'}, {'href':None} ]\nfor tag in tags:\n    print(tag.get('href'))\n```",
+    "choices": [
+      "a.html\nb.html\nNone",
+      "a.html\nb.html\n",
+      "['a.html', 'b.html', None]",
+      "Nic, błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pętla wypisuje wartość `href` dla każdego słownika; ostatni ma `None`, więc wypisze `None`. Popularny błąd to myśleć, że `None` nie zostanie wypisane.",
+    "difficulty": "easy",
+    "topic": "BeautifulSoup"
+  },
+  {
+    "id": 394,
+    "materialId": 45,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\ntags = [ {'href':'x.html'}, {} ]\nfor tag in tags:\n    print(tag.href)\n```",
+    "choices": [
+      "Nic, działa poprawnie",
+      "Błąd: słowniki nie mają atrybutu `href`, trzeba użyć `get`",
+      "Drugi element nie ma `href`, więc pętla pominie go",
+      "Zwróci `None` za drugi element bez błędu"
+    ],
+    "correctIndex": 1,
+    "explanation": "Słowniki nie mają właściwości `href`. Trzeba użyć `tag.get('href')`. Popularny mylny wybór to myśleć, że `tag.href` zadziała jak `get`.",
+    "difficulty": "easy",
+    "topic": "Tag i get"
+  },
+  {
+    "id": 395,
+    "materialId": 45,
+    "question": "Która wersja poprawnie zbiera linki do listy `links`?\n\nA:\n```python\nlinks = []\nfor tag in tags:\n    links = tag.get('href')\n```\n\nB:\n```python\nlinks = []\nfor tag in tags:\n    links.append(tag.get('href'))\n```\n\nC:\n```python\nlinks = tag.get('href')\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "Żadna",
+      "B"
+    ],
+    "correctIndex": 1,
+    "explanation": "W wersji B używamy `append` aby dodać każdy link do listy. A nadpisuje `links`, C robi to poza pętlą. Popularny błąd to nadpisanie zmiennej zamiast dodania.",
+    "difficulty": "medium",
+    "topic": "Listy i pętle"
+  },
+  {
+    "id": 396,
+    "materialId": 45,
+    "question": "Co zrobi `.read()` gdy odpowiedź serwera jest pusta?\n\n```python\nresponse = ''\n# symulacja: content = response.read()\ncontent = response\nprint(content)\n```",
+    "choices": [
+      "Wypisze pusty string (nic nie widać)",
+      "Zwróci `None`",
+      "Pojawi się błąd",
+      "Zwróci listę linii"
+    ],
+    "correctIndex": 0,
+    "explanation": "`.read()` zwraca string. Jeśli odpowiedź jest pusta, to pusty string. Częsty błąd to oczekiwać `None` lub listy.",
+    "difficulty": "easy",
+    "topic": "HTTP i .read()"
+  },
+  {
+    "id": 397,
+    "materialId": 45,
+    "question": "Co najlepiej zrobić, jeśli `from bs4 import BeautifulSoup` nie działa?",
+    "choices": [
+      "Ignorować i dalej próbować parsować regexem",
+      "Zainstalować lub wypakować folder `bs4` obok skryptu",
+      "Zrobić `print('błąd')` i zakończyć program",
+      "Zmienić nazwę pliku na `BeautifulSoup.py`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Trzeba poprawnie zainstalować bibliotekę lub wypakować folder `bs4`. Popularny zły pomysł to obchodzić problem regexem.",
+    "difficulty": "easy",
+    "topic": "Instalacja"
+  },
+  {
+    "id": 398,
+    "materialId": 45,
+    "question": "Co najpewniej się stanie, jeśli użyjesz regexa do parsowania wielu stron HTML?",
+    "choices": [
+      "Zadziała zawsze szybko i poprawnie",
+      "Może działać dla kilku stron, potem pęknie na nietypowym HTML",
+      "Zwróci uporządkowane drzewo jak BeautifulSoup",
+      "Regex automatycznie naprawi błędy HTML"
+    ],
+    "correctIndex": 1,
+    "explanation": "Regex często pęka przy różnych wariantach HTML. BeautifulSoup jest napisany, by radzić sobie z błędami. Popularny błąd to ufać regexom dla całego internetu.",
+    "difficulty": "medium",
+    "topic": "Parsing HTML"
+  },
+  {
+    "id": 399,
+    "materialId": 45,
+    "question": "Co zwróci poniższy kod?\n\n```python\n# symulujemy find_all zwracające pustą listę\ntags = []\nfor tag in tags:\n    print(tag.get('href'))\nprint('done')\n```",
+    "choices": [
+      "Nic, program się zawiesi",
+      "Wypisze 'done' i zakończy",
+      "Błąd, bo `tag` nie istnieje",
+      "Wypisze `None` i 'done'"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pętla nie wykona się gdy lista jest pusta; program przejdzie dalej i wypisze 'done'. Błąd to myślenie, że pętla wyrzuci wyjątek.",
+    "difficulty": "easy",
+    "topic": "Pętle"
+  },
+  {
+    "id": 400,
+    "materialId": 45,
+    "question": "Która odpowiedź opisuje etyczny problem scrapingu?",
+    "choices": [
+      "Scraping zawsze jest legalny",
+      "Możesz naruszyć regulamin sklepu i zostać zablokowanym",
+      "Scraping przyspieszy stronę docelową",
+      "Nie trzeba nigdy sprawdzać regulaminu"
+    ],
+    "correctIndex": 1,
+    "explanation": "Serwisy mogą zablokować konto lub IP jeśli scrapujesz niezgodnie z regulaminem. Często ludzie popełniają błąd ignorując zasady.",
+    "difficulty": "easy",
+    "topic": "Etyka i prawa"
+  },
+  {
+    "id": 401,
+    "materialId": 45,
+    "question": "Co robi `tag.get('href')` gdy atrybut istnieje?",
+    "choices": [
+      "Zwraca wartość atrybutu jako string",
+      "Zwraca listę wszystkich atrybutów",
+      "Usuwa ten atrybut z taga",
+      "Zwraca obiekt tagu"
+    ],
+    "correctIndex": 0,
+    "explanation": "`get` zwraca wartość danego atrybutu. Mylny wybór to myśleć, że zwraca listę lub modyfikuje tag.",
+    "difficulty": "easy",
+    "topic": "Tag i get"
   }
 ]

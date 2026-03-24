@@ -2910,5 +2910,89 @@
     "front": "Jak najlepiej obcinać końce linii z odszyfrowanego `text`?",
     "back": "Użyć `text.rstrip()` aby usunąć znaki końca linii z prawej strony.",
     "topic": "uchwyt pliku z sieci"
+  },
+  {
+    "id": 523,
+    "materialId": 45,
+    "front": "Co to jest web scraping?",
+    "back": "To program, który udaje przeglądarkę, wysyła żądania GET i pobiera strony, by wyciągnąć z nich dane.",
+    "topic": "Web scraping"
+  },
+  {
+    "id": 524,
+    "materialId": 45,
+    "front": "Co oznacza \"crawling\" lub \"spidering\"?",
+    "back": "Automatyczne przechodzenie po linkach z jednej strony do drugiej, jak pająk przeszukujący sieć.",
+    "topic": "Crawling / spidering"
+  },
+  {
+    "id": 525,
+    "materialId": 45,
+    "front": "Co robi metoda `.read()` gdy używamy jej do pobrania strony?",
+    "back": "Czyta całą odpowiedź i zwraca ją jako jeden duży string z nowymi liniami, nie jako iterator.",
+    "topic": "HTTP i .read()"
+  },
+  {
+    "id": 526,
+    "materialId": 45,
+    "front": "Do czego służy `BeautifulSoup`?",
+    "back": "Parsuje surowy HTML i tworzy obiekt (np. `soup`), który ułatwia znajdowanie tagów i atrybutów.",
+    "topic": "BeautifulSoup"
+  },
+  {
+    "id": 527,
+    "materialId": 45,
+    "front": "Jak wyciągnąć atrybut `href` z tagu?",
+    "back": "Użyj `tag.get('href')`. Zwróci wartość lub `None` jeśli atrybutu brak.",
+    "topic": "BeautifulSoup"
+  },
+  {
+    "id": 528,
+    "materialId": 45,
+    "front": "Jaka jest przewaga BeautifulSoup nad zwykłym użyciem regexów?",
+    "back": "BeautifulSoup radzi sobie z błędnym HTML i wieloma wariacjami, regex często pęka przy nietypowej składni.",
+    "topic": "Parsing HTML"
+  },
+  {
+    "id": 529,
+    "materialId": 45,
+    "front": "Co się stanie jeśli `from bs4 import BeautifulSoup` nie działa?",
+    "back": "Import się nie wykona i program się zatrzyma. Trzeba zainstalować bs4 lub wypakować folder `bs4` obok skryptu.",
+    "topic": "Instalacja"
+  },
+  {
+    "id": 530,
+    "materialId": 45,
+    "front": "Dlaczego `tag.get('href')` może zwracać `None`?",
+    "back": "Bo nie każdy tag ma atrybut `href`. `get` zwraca `None` gdy klucz nie istnieje.",
+    "topic": "Tag i get"
+  },
+  {
+    "id": 531,
+    "materialId": 45,
+    "front": "Kiedy lepiej nie scrapować danej strony?",
+    "back": "Gdy regulamin strony zabrania scrapingu lub możesz naruszyć czyjeś prawa. Sprawdź zasady serwisu.",
+    "topic": "Etyka i prawa"
+  },
+  {
+    "id": 532,
+    "materialId": 45,
+    "front": "Jaki problem rozwiązuje parsowanie HTML przez BeautifulSoup?",
+    "back": "Usuwa błędy i niespójności w HTML, tworzy uporządkowaną strukturę do dalszych zapytań.",
+    "topic": "Parsing HTML"
+  },
+  {
+    "id": 533,
+    "materialId": 45,
+    "front": "Co oznacza, że tagi są \"jak słownik\"?",
+    "back": "Że możesz użyć `tag.get('klucz')`, podobnie jak `dict.get('klucz')`, by pobrać atrybut.",
+    "topic": "Tag i get"
+  },
+  {
+    "id": 534,
+    "materialId": 45,
+    "front": "Jaki jest typowy pierwszy krok przy scrapingu?",
+    "back": "Pobrać stronę (żądanie GET) i użyć `.read()` by dostać cały HTML jako string.",
+    "topic": "Proces scrapingu"
   }
 ]

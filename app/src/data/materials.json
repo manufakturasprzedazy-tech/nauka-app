@@ -671,5 +671,23 @@
     "flashcardCount": 12,
     "quizCount": 9,
     "exerciseCount": 4
+  },
+  {
+    "id": 45,
+    "courseId": "python",
+    "filename": "Analizowanie stron internetowych.md",
+    "title": "Wprowadzenie do web scrapingu i BeautifulSoup",
+    "summary": "Web scraping to pisanie programu, który udaje przeglądarkę i pobiera strony. BeautifulSoup to biblioteka, która parsuje HTML i ułatwia wyciąganie linków i innych elementów.",
+    "topics": [
+      "Web scraping",
+      "Crawling / spidering",
+      "HTTP i .read()",
+      "BeautifulSoup i parsowanie HTML",
+      "Instalacja bs4 i import"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko o web scrapingu: program udaje przeglądarkę, pobiera strony i wyciąga z nich informacje. Pokazano też jak `BeautifulSoup` pomaga parsować brzydki HTML.\n\n## Kluczowe pojęcia\n### Web scraping\nTo pisanie programu, który wysyła żądania GET i pobiera strony tak jak przeglądarka. Program może potem wyciągać dane lub linki.\n\n### Crawling / spidering\nTo automatyczne przechodzenie po linkach z jednej strony do drugiej. Nazwy mówią o „pełzaniu” lub „sieci pająka”.\n\n### HTTP i `.read()`\nPo nawiązaniu połączenia i wysłaniu żądania, metoda `.read()` czyta całą odpowiedź jako jeden duży ciąg znaków (string) z nowymi liniami.\n\n### BeautifulSoup\nBiblioteka, która bierze surowy HTML i tworzy z niego obiekt (np. `soup`). Ułatwia znajdowanie tagów i wyciąganie atrybutów.\n\n### Tag i `tag.get('href')`\nWynik `find_all` to lista tagów. Tag działa podobnie do słownika i ma metodę `get`, np. `tag.get('href')` zwraca wartość atrybutu `href` lub `None`.\n\n## Przykłady kodu\n```python\n# przykład pobrania i parsowania (schemat)\nhtml = '<a href=\"x.html\">link</a>'\n# soup = BeautifulSoup(html, 'html.parser')\n# tags = soup.find_all('a')\n```\nTen kod pokazuje schemat: mamy `html`, tworzymy `soup`, potem listę tagów.\n\n```python\n# iterowanie po tagach (schemat)\n# for tag in tags:\n#     href = tag.get('href')\n#     print(href)\n```\nPętla przechodzi po każdym tagu i wyciąga atrybut `href`.\n\n## Ważne zasady\n- **Nie parsuj HTML tylko regexem** — HTML na stronie może mieć dziwne białe znaki. Użyj parsera jak BeautifulSoup.\n- **Zainstaluj bs4 poprawnie** — import `from bs4 import BeautifulSoup` musi działać. Możesz wypakować folder `bs4` obok skryptu, jeśli nie możesz instalować globalnie.\n- **`.read()` zwraca cały tekst** — nie iteruje po liniach. Daje jeden duży string.\n- **Tagi mogą nie mieć `href`** — `tag.get('href')` może zwrócić `None`.\n- **Szanuj zasady serwisów** — sprawdź regulaminy i nie scrapuj treści, które są zabronione.\n\n## Częste błędy\n- **Używanie zwykłych wyrażeń do całej strony**: działa na kilku stronach, potem pęka. Unikaj tego.\n- **Brak obsługi `None`**: zakładanie, że `tag.get('href')` zawsze zwróci string. Sprawdź przed użyciem.\n- **Import bs4 nie działa**: zapominasz wypakować folder `bs4` lub nie zainstalowałeś biblioteki. Sprawdź import i strukturę folderów.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
   }
 ]
