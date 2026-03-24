@@ -632,5 +632,24 @@
     "flashcardCount": 12,
     "quizCount": 9,
     "exerciseCount": 5
+  },
+  {
+    "id": 43,
+    "courseId": "python",
+    "filename": "Znaki i ciągi znaków UnicodeStatus.md",
+    "title": "Teksty, bajty i kodowanie (ASCII, Unicode, UTF-8) w Pythonie",
+    "summary": "Lekcja wyjaśnia, jak komputery reprezentują znaki jako liczby. Omawia `ASCII`, `Unicode`, oraz dlaczego UTF-8 jest powszechny. Pokazuje różnicę między wewnętrznymi łańcuchami znaków a bajtami oraz jak używać `encode()` i `decode()`.",
+    "topics": [
+      "ASCII i ord()",
+      "Unicode",
+      "UTF-8, UTF-16, UTF-32",
+      "Str i bytes w Python 3",
+      "Metody `encode()` i `decode()`",
+      "Prefiks `b` dla bajtów"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: komputery przechowują znaki jako liczby. Istnieją różne schematy mapowania znaków, np. `ASCII` i `Unicode`. W praktyce używa się UTF-8 do przesyłania danych.\n\n## Kluczowe pojęcia\n### `ord()`\nFunkcja `ord()` zwraca liczbę (kod) odpowiadającą jednemu znakowi. Na przykład `ord('H')` daje liczbę.\n\n### ASCII\nTo stary standard z 128 znakami. Każdy znak ma przypisaną liczbę od 0 do 127. Nowe języki potrzebowały większej przestrzeni.\n\n### Unicode\nTo uniwersalna mapa znaków dla wielu alfabetów. `Unicode` zawiera dużo więcej znaków niż ASCII.\n\n### UTF-8, UTF-16, UTF-32\nTo sposoby zapisu `Unicode` w bajtach. `UTF-8` jest zmiennobajtowy (1–4 bajty) i jest zgodny z ASCII. Dlatego jest powszechny.\n\n### `str` vs `bytes` w Python 3\nW Pythonie 3 wewnętrzne łańcuchy to Unicode (`str`). `bytes` to surowe bajty z zewnątrz. Bajty poprzedza się literą `b`, np. `b'abc'`.\n\n### `encode()` i `decode()`\nAby wysłać tekst na zewnątrz zamieniamy `str` na `bytes` przez `encode()`. Aby dostać tekst z zewnątrz zamieniamy `bytes` na `str` przez `decode()`.\n\n## Przykłady kodu\n```python\n# zamiana znaku na jego kod\nprint(ord('A'))\n\n# zamiana tekstu na bajty i z powrotem\nb = 'hello'.encode()\ns = b.decode()\n```\nPrzykład pokazuje `ord`, `encode()` i `decode()` w praktyce.\n\n## Ważne zasady\n- **Zasada 1** — `ord()` działa na pojedynczym znaku i zwraca jego kod liczbowy.\n- **Zasada 2** — W Pythonie 3 `str` to Unicode, więc wewnątrz programu mamy znakowy tekst.\n- **Zasada 3** — `bytes` to surowe dane z zewnątrz. Używaj `decode()` po odebraniu i `encode()` przed wysłaniem.\n- **Zasada 4** — UTF-8 jest kompatybilny z ASCII. Jeśli tekst jest tylko ASCII, `encode()` zazwyczaj nic nie zmienia widocznie.\n\n## Częste błędy\n- **Błąd 1**: Próba wywołania `decode()` na `str`. Dostaniesz błąd, bo `decode()` jest metodą bajtów. Upewnij się, że masz `bytes`.\n- **Błąd 2**: Nie zakodowanie tekstu przed wysłaniem na sieć. Trzeba zrobić `text.encode()` przed wysłaniem. \n",
+    "flashcardCount": 12,
+    "quizCount": 8,
+    "exerciseCount": 4
   }
 ]

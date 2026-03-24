@@ -2742,5 +2742,89 @@
     "front": "Jaki błąd popełniają początkujący przy przekierowaniach?",
     "back": "Myślą, że dostali treść od pierwszego żądania. W rzeczywistości serwer może wysłać `302` i dopiero kolejne żądanie zwróci treść.",
     "topic": "Kody statusu"
+  },
+  {
+    "id": 499,
+    "materialId": 43,
+    "front": "Co zwraca funkcja `ord()`?",
+    "back": "Zwraca liczbę (kod) odpowiadającą pojedynczemu znakowi, np. `ord('A')` daje kod znaku.",
+    "topic": "ASCII i ord()"
+  },
+  {
+    "id": 500,
+    "materialId": 43,
+    "front": "Co to jest ASCII?",
+    "back": "Stary standard mapowania znaków. Ma 128 znaków z kodami 0–127.",
+    "topic": "ASCII i ord()"
+  },
+  {
+    "id": 501,
+    "materialId": 43,
+    "front": "Co to jest Unicode?",
+    "back": "Uniwersalny zbiór znaków dla wielu alfabetów. Pozwala reprezentować znaki z różnych języków.",
+    "topic": "Unicode"
+  },
+  {
+    "id": 502,
+    "materialId": 43,
+    "front": "Jaka jest różnica między `str` a `bytes` w Python 3?",
+    "back": "`str` to tekst (Unicode). `bytes` to surowe bajty. Aby zamienić `str` na `bytes` używamy `encode()`, a odwrotnie `decode()`.",
+    "topic": "Str vs Bytes"
+  },
+  {
+    "id": 503,
+    "materialId": 43,
+    "front": "Co robi metoda `encode()`?",
+    "back": "`encode()` zmienia `str` (tekst) na `bytes`, zwykle w UTF-8, np. `'hi'.encode()`.",
+    "topic": "encode/decode"
+  },
+  {
+    "id": 504,
+    "materialId": 43,
+    "front": "Co robi metoda `decode()`?",
+    "back": "`decode()` zmienia `bytes` na `str`. Np. `b'hello'.decode()` daje `'hello'`.",
+    "topic": "encode/decode"
+  },
+  {
+    "id": 505,
+    "materialId": 43,
+    "front": "Co oznacza prefiks `b` przed stringiem, np. `b'abc'`?",
+    "back": "Prefiks `b` oznacza, że to obiekt `bytes`, czyli surowe bajty, a nie tekst `str`.",
+    "topic": "Prefiks b"
+  },
+  {
+    "id": 506,
+    "materialId": 43,
+    "front": "Dlaczego UTF-8 jest często używany zamiast UTF-16 lub UTF-32?",
+    "back": "UTF-8 jest zmiennobajtowy i zgodny z ASCII. Daje oszczędność miejsca dla tekstów używających głównie ASCII i ułatwia wymianę danych.",
+    "topic": "UTF-8"
+  },
+  {
+    "id": 507,
+    "materialId": 43,
+    "front": "Co się stanie, jeśli wywołasz `decode()` na obiekcie `str`?",
+    "back": "Dostaniesz błąd, bo `decode()` jest metodą `bytes`, nie `str`.\nUpewnij się, że masz `bytes` przed `decode()`.",
+    "topic": "Gotcha"
+  },
+  {
+    "id": 508,
+    "materialId": 43,
+    "front": "Kiedy trzeba użyć `encode()` i kiedy `decode()`?",
+    "back": "Przed wysłaniem na zewnątrz (sieć/plik) użyj `encode()`; po odebraniu danych z zewnątrz użyj `decode()`.",
+    "topic": "When to use"
+  },
+  {
+    "id": 509,
+    "materialId": 43,
+    "front": "Jaki jest związek między ASCII a UTF-8?",
+    "back": "ASCII to podzbiór UTF-8. Bajty ASCII są takie same w UTF-8, więc pliki ASCII są poprawnym UTF-8.",
+    "topic": "ASCII i UTF-8"
+  },
+  {
+    "id": 510,
+    "materialId": 43,
+    "front": "Dlaczego nie zawsze używać UTF-32?",
+    "back": "UTF-32 używa 4 bajtów na znak, co zajmuje dużo miejsca. UTF-8 jest zazwyczaj bardziej oszczędny.",
+    "topic": "UTF-32 vs UTF-8"
   }
 ]

@@ -2045,5 +2045,65 @@
       "Przejdź przez listę i dla każdego elementu użyj `split(':', 1)`.",
       "Usuń możliwe spacje z wartości za pomocą `strip()`."
     ]
+  },
+  {
+    "id": 174,
+    "materialId": 43,
+    "title": "Kod znaku (proste użycie `ord()`)",
+    "description": "Napisz funkcję `char_code(ch)` która zwraca liczbę kodu dla pojedynczego znaku `ch` używając `ord()`.",
+    "starterCode": "def char_code(ch):\n    # TODO: zwróć kod liczbowy znaku ch\n    pass\n",
+    "solution": "def char_code(ch):\n    # zakładamy, że ch jest pojedynczym znakiem\n    return ord(ch)\n",
+    "testCode": "assert char_code('A') == 65\nassert char_code('\\n') == 10\nassert char_code('z') == ord('z')\n",
+    "difficulty": "easy",
+    "topic": "ASCII i ord()",
+    "hints": [
+      "Funkcja `ord()` zwraca kod dla jednego znaku.",
+      "Upewnij się, że argument to pojedynczy znak."
+    ]
+  },
+  {
+    "id": 175,
+    "materialId": 43,
+    "title": "Dekoduj bajty do tekstu",
+    "description": "Napisz funkcję `bytes_to_text(b)` która przyjmuje obiekt `bytes` i zwraca `str` po `decode()`.",
+    "starterCode": "def bytes_to_text(b):\n    # TODO: zdekoduj bajty do tekstu i zwróć tekst\n    pass\n",
+    "solution": "def bytes_to_text(b):\n    # dekodujemy przy użyciu domyślnego kodowania (UTF-8)\n    return b.decode()\n",
+    "testCode": "assert bytes_to_text(b'hello') == 'hello'\nassert bytes_to_text(b'') == ''\nassert bytes_to_text(b'\\n') == '\\n'\n",
+    "difficulty": "easy",
+    "topic": "encode/decode",
+    "hints": [
+      "Użyj metody `decode()` na obiekcie `bytes`.",
+      "Pusty obiekt `b''` powinien zwrócić pusty łańcuch."
+    ]
+  },
+  {
+    "id": 176,
+    "materialId": 43,
+    "title": "Zakoduj tekst na bajty",
+    "description": "Napisz funkcję `text_to_bytes(s)` która przyjmuje `str` i zwraca `bytes` używając `encode()`.",
+    "starterCode": "def text_to_bytes(s):\n    # TODO: zamień tekst na bajty i zwróć\n    pass\n",
+    "solution": "def text_to_bytes(s):\n    # kodowanie domyślne to UTF-8\n    return s.encode()\n",
+    "testCode": "assert text_to_bytes('ok') == b'ok'\nassert text_to_bytes('') == b''\nassert text_to_bytes('Hi') == b'Hi'\n",
+    "difficulty": "easy",
+    "topic": "encode/decode",
+    "hints": [
+      "Użyj metody `encode()` na `str`.",
+      "Testuj z pustym łańcuchem."
+    ]
+  },
+  {
+    "id": 177,
+    "materialId": 43,
+    "title": "Symulacja przesyłu: encode → decode",
+    "description": "Napisz funkcję `roundtrip_list(strings)` która przyjmuje listę `strings`. Dla każdego elementu najpierw zamienia na bajty (`encode()`), a potem z powrotem na tekst (`decode()`) i zwraca nową listę wyników.",
+    "starterCode": "def roundtrip_list(strings):\n    # TODO: dla każdego elementu zrób encode() i potem decode(), zwróć listę wyników\n    result = []\n    # TODO: uzupełnij pętlę\n    return result\n",
+    "solution": "def roundtrip_list(strings):\n    result = []\n    for s in strings:\n        b = s.encode()   # tekst -> bajty\n        t = b.decode()    # bajty -> tekst\n        result.append(t)\n    return result\n",
+    "testCode": "assert roundtrip_list(['a','b']) == ['a','b']\nassert roundtrip_list(['','test','\\n']) == ['','test','\\n']\nassert roundtrip_list(['ż','lambda']) == ['ż','lambda']\n",
+    "difficulty": "medium",
+    "topic": "encode/decode",
+    "hints": [
+      "Dla każdego tekstu wykonaj `s.encode()` a potem `.decode()` na wyniku.",
+      "Utwórz nową listę wyników i do niej dodawaj przekształcone elementy."
+    ]
   }
 ]

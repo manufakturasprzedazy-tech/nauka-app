@@ -4423,5 +4423,125 @@
     "explanation": "B jest prawdziwe: nagłówki mówią jak czytać treść (np. `Content-Type`). A jest fałszem (nagłówki przed treścią), C jest fałszem (parametry po `?` to GET), D jest fałszem (404 to błąd).",
     "difficulty": "easy",
     "topic": "Nagłówki żądania i odpowiedzi"
+  },
+  {
+    "id": 376,
+    "materialId": 43,
+    "question": "Co wypisze ten kod?\n\n```python\nch = 'Z'\nprint(ord(ch))\n```",
+    "choices": [
+      "90",
+      "'Z'",
+      "1",
+      "Error"
+    ],
+    "correctIndex": 0,
+    "explanation": "`ord('Z')` zwraca kod liczbowy znaku 'Z', który to 90. Popularny błąd to myśleć, że `ord` zwraca znak lub długość.",
+    "difficulty": "easy",
+    "topic": "ASCII i ord()"
+  },
+  {
+    "id": 377,
+    "materialId": 43,
+    "question": "Co wypisze ten kod?\n\n```python\nb = b'hello'\ntext = b.decode()\nprint(type(text))\n```",
+    "choices": [
+      "<class 'str'>",
+      "<class 'bytes'>",
+      "b'hello'",
+      "Error"
+    ],
+    "correctIndex": 0,
+    "explanation": "`b.decode()` zmienia `bytes` na `str`, więc typ to `str`. Błędne odpowiedzi mylą wynik z oryginalnymi bajtami lub spodziewają się błędu.",
+    "difficulty": "easy",
+    "topic": "encode/decode"
+  },
+  {
+    "id": 378,
+    "materialId": 43,
+    "question": "Która wersja poprawnie zamienia tekst na bajty?\n\nA:\n```python\ns = 'ok'\nb = s\n```\n\nB:\n```python\ns = 'ok'\nb = s.encode()\n```\n\nC:\n```python\ns = 'ok'\nb = b'ok'\n```\n\nD:\n```python\ns = 'ok'\nb = s.decode()\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wersja B używa `encode()` i tworzy `bytes` z `str`. Wersja C tworzy też `bytes`, ale nie zamienia istniejącego `s` - to inny sposób, niekoniecznie zamiana. A nie zmienia typu, D jest błędem bo `str` nie ma `decode()`.",
+    "difficulty": "medium",
+    "topic": "encode/decode"
+  },
+  {
+    "id": 379,
+    "materialId": 43,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\ndata = b'a'\nprint(ord(data))\n```",
+    "choices": [
+      "`ord()` wymaga pojedynczego znaku `str`, nie `bytes`",
+      "To poprawne, wypisze 97",
+      "`b'a'` nie istnieje",
+      "`ord()` działa tylko na liczbach"
+    ],
+    "correctIndex": 0,
+    "explanation": "`ord()` oczekuje znaku `str` (np. `'a'`). Dla `bytes` trzeba najpierw zdekodować lub indeksować, stąd błąd. Popularny mylny wybór to sądzić, że `ord` przyjmie `bytes` bez problemu.",
+    "difficulty": "medium",
+    "topic": "Gotcha"
+  },
+  {
+    "id": 380,
+    "materialId": 43,
+    "question": "Co się stanie, gdy wykonamy ten kod?\n\n```python\ns = 'abc'\nprint(s.decode())\n```",
+    "choices": [
+      "Błąd: `str` nie ma metody `decode()`",
+      "Wypisze 'abc'",
+      "Wypisze b'abc'",
+      "Zwróci `None`"
+    ],
+    "correctIndex": 0,
+    "explanation": "W Pythonie 3 `decode()` jest metodą `bytes`, nie `str`. Próba wywołania `decode()` na `str` powoduje błąd. Częsty błąd to myśleć że `decode` zawsze działa.",
+    "difficulty": "easy",
+    "topic": "encode/decode"
+  },
+  {
+    "id": 381,
+    "materialId": 43,
+    "question": "Które zdanie najlepiej opisuje UTF-8?\n\nA: UTF-8 używa zawsze 4 bajtów na znak.\nB: UTF-8 jest zgodny wstecz z ASCII.\nC: UTF-8 to to samo co ASCII.\nD: UTF-8 nie obsługuje znaków spoza łacińskiego alfabetu.",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "UTF-8 to kodowanie zmiennobajtowe i jest kompatybilne z ASCII. A jest nieprawdziwe (1-4 bajty), C myli pojęcia, D jest błędne bo UTF-8 obsługuje wiele alfabetów.",
+    "difficulty": "medium",
+    "topic": "UTF-8"
+  },
+  {
+    "id": 382,
+    "materialId": 43,
+    "question": "Co wypisze ten kod?\n\n```python\nprint(ord('\\n'))\n```",
+    "choices": [
+      "10",
+      "'\\n'",
+      "0",
+      "Error"
+    ],
+    "correctIndex": 0,
+    "explanation": "Nowa linia to pojedynczy znak o kodzie 10. Nie jest to błąd ani długość, więc 10 jest poprawne.",
+    "difficulty": "easy",
+    "topic": "ASCII i ord()"
+  },
+  {
+    "id": 383,
+    "materialId": 43,
+    "question": "Który fragment poprawnie zamienia odebrane bajty na tekst?\n\nA:\n```python\nreceived = b'data'\ntext = received.decode()\n```\n\nB:\n```python\nreceived = 'data'\ntext = received.decode()\n```\n\nC:\n```python\nreceived = b'data'\ntext = received.encode()\n```\n\nD:\n```python\nreceived = 'data'\ntext = received.encode()\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 0,
+    "explanation": "Odebrane bajty to `bytes`, więc używamy `decode()` (A). B wywołuje `decode()` na `str` co daje błąd. C i D używają `encode()` zamiast `decode()`.",
+    "difficulty": "easy",
+    "topic": "encode/decode"
   }
 ]
