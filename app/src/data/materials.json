@@ -651,5 +651,25 @@
     "flashcardCount": 12,
     "quizCount": 8,
     "exerciseCount": 4
+  },
+  {
+    "id": 44,
+    "courseId": "python",
+    "filename": "Pobieranie stron internetowych.md",
+    "title": "Pobieranie i czytanie stron WWW za pomocą `urllib`",
+    "summary": "Pokazano, jak użyć `urllib.request.urlopen` do otwarcia adresu URL i traktowania odpowiedzi jak pliku. Wyjaśniono różnicę między bajtami a tekstem i konieczność użycia `decode()` przed operacjami na stringach.",
+    "topics": [
+      "urllib i urlopen",
+      "uchwyt pliku z sieci",
+      "bajty vs łańcuchy znaków",
+      "`decode()`",
+      "iteracja po liniach",
+      "dzielenie tekstu i zliczanie słów",
+      "wyszukiwanie linków (href)"
+    ],
+    "notes": "## O czym jest ta lekcja\nKilka linijek kodu potrafi pobrać stronę WWW i traktować ją jak plik. Używamy `urllib.request.urlopen` aby otrzymać uchwyt, a potem czytamy linie.\n\n## Kluczowe pojęcia\n### `urllib.request.urlopen`\nTa funkcja otwiera URL i zwraca obiekt podobny do pliku. Nie czyta od razu całości — daje uchwyt, po którym możemy iterować.\n\n### Uchwyt pliku z sieci\nPo otwarciu URL dostajemy obiekt, po którym można zrobić `for line in handle`. To działa jak czytanie pliku linia po linii.\n\n### Bajty vs łańcuchy znaków\nLinie z sieci są w postaci bajtów (byte string). To nie jest zwykły tekst. Aby pracować ze stringami, trzeba użyć `decode()` na każdej linii.\n\n### `decode()`\n`decode()` zamienia bajty na Unicode string. Zazwyczaj robimy to raz, gdy pierwszy raz odczytujemy dane i potem używamy zwykłych metod tekstowych.\n\n### Podział tekstu i zliczanie\nPo `decode()` możemy użyć `split()` aby dostać listę słów. Potem można zliczać słowa tworząc słownik i zwiększając licznik dla każdego słowa.\n\n### Szukanie linków\nHTML można przeszukać prostymi operacjami tekstowymi. Na przykład szukamy `href=\"` i wyciągamy tekst między cudzysłowami.\n\n## Przykłady kodu\n```python\nimport urllib.request\nhandle = urllib.request.urlopen('http://example.com')\nfor line in handle:\n    text = line.decode()  # zamiana bajtów na tekst\n    print(text.rstrip())\n```\nPrzykład pokazuje otwarcie URL, dekodowanie i wypisanie linii.\n\n```python\n# liczenie słów z uchwytu (schemat)\ncounts = {}\nfor line in handle:\n    text = line.decode()\n    words = text.split()\n    for w in words:\n        if w in counts:\n            counts[w] = counts[w] + 1\n        else:\n            counts[w] = 1\n```\nPrzykład pokazuje dekodowanie, dzielenie i zliczanie słów.\n\n## Ważne zasady\n- **Dekoduj raz** — zamień bajty na tekst przy pierwszym użyciu. Potem używaj metod tekstowych.\n- **Uchwyt działa jak plik** — można użyć `for line in handle` tak jak przy zwykłym pliku.\n- **Nagłówki są dostępne** — `urlopen` ma informacje o nagłówkach, ale iteracja po liniach daje tylko treść.\n- **Proste wyszukiwanie** — do znalezienia linków można użyć prostych operacji tekstowych jak `find` i `split`.\n\n## Częste błędy\n- **Pominięcie `decode()`**: wtedy `split()` lub inne operacje tekstowe nie zadziałają na bajtach. Zawsze najpierw `decode()`.\n- **Mylenie nagłówków z treścią**: `for line in handle` daje tylko treść. Nagłówki trzeba pobrać osobno, jeśli są potrzebne.",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
   }
 ]

@@ -2105,5 +2105,65 @@
       "Dla każdego tekstu wykonaj `s.encode()` a potem `.decode()` na wyniku.",
       "Utwórz nową listę wyników i do niej dodawaj przekształcone elementy."
     ]
+  },
+  {
+    "id": 178,
+    "materialId": 44,
+    "title": "Dekoduj i usuń końce linii",
+    "description": "Napisz funkcję `decode_lines(handle)` która przyjmuje listę bajtowych linii (np. z `urlopen`) i zwraca listę zdekodowanych i obciętych (`rstrip()`) linii jako zwykłe stringi.",
+    "starterCode": "```python\n# starter code\n\ndef decode_lines(handle):\n    # TODO: zwróć listę zdekodowanych, obciętych linii\n    pass\n```",
+    "solution": "```python\n# full solution\n\ndef decode_lines(handle):\n    result = []\n    for line in handle:\n        text = line.decode()\n        result.append(text.rstrip())\n    return result\n```",
+    "testCode": "```python\n# tests\nassert decode_lines([b'Hello\\n', b'World\\n']) == ['Hello', 'World']\nassert decode_lines([]) == []\nassert decode_lines([b'Line with space  \\n']) == ['Line with space']\n```",
+    "difficulty": "easy",
+    "topic": "bajty vs łańcuchy znaków",
+    "hints": [
+      "Użyj pętli `for line in handle`.",
+      "Najpierw `decode()`, potem `rstrip()`."
+    ]
+  },
+  {
+    "id": 179,
+    "materialId": 44,
+    "title": "Zlicz słowa z uchwytu",
+    "description": "Napisz funkcję `count_words(handle)` która przyjmuje listę bajtowych linii i zwraca słownik z liczbą wystąpień każdego słowa. Podział na słowa zrób przez `split()` po `decode()`.",
+    "starterCode": "```python\n# starter code\n\ndef count_words(handle):\n    # TODO: zwróć słownik {word: count}\n    pass\n```",
+    "solution": "```python\n# full solution\n\ndef count_words(handle):\n    counts = {}\n    for line in handle:\n        text = line.decode()\n        words = text.split()\n        for w in words:\n            if w in counts:\n                counts[w] = counts[w] + 1\n            else:\n                counts[w] = 1\n    return counts\n```",
+    "testCode": "```python\n# tests\nassert count_words([b'a b a']) == {'a': 2, 'b': 1}\nassert count_words([]) == {}\nassert count_words([b'one\\ntwo', b'one']) == {'one': 2, 'two': 1}\n```",
+    "difficulty": "medium",
+    "topic": "dzielenie tekstu i zliczanie",
+    "hints": [
+      "Po `decode()` użyj `split()` aby dostać listę słów.",
+      "Zwiększaj licznik w słowniku używając `if key in dict`."
+    ]
+  },
+  {
+    "id": 180,
+    "materialId": 44,
+    "title": "Wyciągnij linki `href` z linii",
+    "description": "Napisz funkcję `extract_links(handle)` która szuka w każdej zdekodowanej linii fragmentów `href=\"...\"` i zwraca listę znalezionych linków (ciągów między cudzysłowami). Zakładaj, że linky nie łamią się na kilka linii.",
+    "starterCode": "```python\n# starter code\n\ndef extract_links(handle):\n    # TODO: zwróć listę linków jako stringi\n    pass\n```",
+    "solution": "```python\n# full solution\n\ndef extract_links(handle):\n    links = []\n    for line in handle:\n        text = line.decode()\n        start = text.find('href=\"')\n        while start != -1:\n            start_link = start + len('href=\"')\n            end = text.find('\"', start_link)\n            if end == -1:\n                break\n            link = text[start_link:end]\n            links.append(link)\n            start = text.find('href=\"', end)\n    return links\n```",
+    "testCode": "```python\n# tests\nassert extract_links([b'<a href=\"a.html\">']) == ['a.html']\nassert extract_links([b'no links here']) == []\nassert extract_links([b'<a href=\"one.html\">', b'<a href=\"two.html\">']) == ['one.html', 'two.html']\n```",
+    "difficulty": "medium",
+    "topic": "wyszukiwanie linków",
+    "hints": [
+      "Użyj `line.find('href=\"')` aby znaleźć początek.",
+      "Użyj drugiego `find` aby znaleźć końcowy `\"` i wytnij tekst między nimi."
+    ]
+  },
+  {
+    "id": 181,
+    "materialId": 44,
+    "title": "Policz słowa na stronie i na jej linkach (jedno poziom)",
+    "description": "Masz słownik `pages` gdzie kluczem jest URL (string), a wartością lista bajtowych linii tej strony. Napisz funkcję `count_one_level(start, pages)` która zliczy słowa na stronie `start` i na wszystkich linkach znalezionych w tej stronie (tylko linki, które występują jako klucze w `pages`). Zwróć słownik z liczbą słów.",
+    "starterCode": "```python\n# starter code\n\ndef count_one_level(start, pages):\n    # pages: {url: [byte lines]}\n    # TODO: policz słowa na start i na bezpośrednio podlinkowanych stronach\n    pass\n```",
+    "solution": "```python\n# full solution\n\ndef count_one_level(start, pages):\n    total = {}\n    if start not in pages:\n        return total\n    # policz dla start\n    start_counts = count_words(pages[start])\n    for k, v in start_counts.items():\n        if k in total:\n            total[k] = total[k] + v\n        else:\n            total[k] = v\n    # wyciągnij linki z start i policz te które są w pages\n    links = extract_links(pages[start])\n    for link in links:\n        if link in pages:\n            c = count_words(pages[link])\n            for k, v in c.items():\n                if k in total:\n                    total[k] = total[k] + v\n                else:\n                    total[k] = v\n    return total\n```",
+    "testCode": "```python\n# tests\npages = {\n    'a': [b'hello world', b'link <a href=\"b\">'],\n    'b': [b'world again']\n}\nres = count_one_level('a', pages)\nassert res.get('hello', 0) == 1\nassert res.get('world', 0) == 2\nassert res.get('again', 0) == 1\n# start not in pages\nassert count_one_level('z', pages) == {}\n```",
+    "difficulty": "hard",
+    "topic": "web crawler",
+    "hints": [
+      "Użyj `extract_links` z poprzedniego zadania, a potem `count_words`.",
+      "Sprawdzaj, czy link jest kluczem w `pages` zanim go przetworzysz."
+    ]
   }
 ]

@@ -4543,5 +4543,140 @@
     "explanation": "Odebrane bajty to `bytes`, więc używamy `decode()` (A). B wywołuje `decode()` na `str` co daje błąd. C i D używają `encode()` zamiast `decode()`.",
     "difficulty": "easy",
     "topic": "encode/decode"
+  },
+  {
+    "id": 384,
+    "materialId": 44,
+    "question": "Co wypisze ten kod?\n\n```python\nlines = [b'Hello\\n', b'World\\n']\nfor line in lines:\n    text = line.decode()\n    print(text.rstrip())\n```",
+    "choices": [
+      "Hello\\nWorld\\n",
+      "Hello World",
+      "Hello\\nWorld",
+      "Hello\\n\\nWorld\\n\\n"
+    ],
+    "correctIndex": 2,
+    "explanation": "Każda linia jest `decode()` i `rstrip()` usuwa końce linii; `print` dodaje nową linię, więc wynik to dwie linie: `Hello` i `World`.",
+    "difficulty": "easy",
+    "topic": "bajty vs łańcuchy znaków"
+  },
+  {
+    "id": 385,
+    "materialId": 44,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport urllib.request\nhandle = urllib.request.urlopen('http://example.com')\nfor line in handle:\n    words = line.split()\n    print(words)\n```",
+    "choices": [
+      "Brakuje `decode()`, `line` jest bajtowy i `split()` da listę bajtów, nie tekstu.",
+      "Nie można iterować po `handle` z `urlopen`.",
+      "Funkcja `urlopen` nie zwraca żadnych danych bez `read()`.",
+      "Trzeba użyć `rstrip()` przed `split()`."
+    ],
+    "correctIndex": 0,
+    "explanation": "`line` jest w bajtach, więc trzeba `decode()` zanim użyjemy metod tekstowych; `split()` na bajtach nie daje tekstu.",
+    "difficulty": "easy",
+    "topic": "bajty vs łańcuchy znaków"
+  },
+  {
+    "id": 386,
+    "materialId": 44,
+    "question": "Która wersja poprawnie wyciąga link po `href=\"` z jednej linii?\n\nA:\n```python\nline = '... href=\"link.html\" ...'\nstart = line.find('href=')\nlink = line[start+6:]\n```\n\nB:\n```python\nline = '... href=\"link.html\" ...'\nstart = line.find('href=\"')\nend = line.find('\"', start+6)\nlink = line[start+6:end]\n```\n\nC:\n```python\nline = '... href=\"link.html\" ...'\nlink = line.split('href=')[1]\n```\n\nD:\n```python\nline = '... href=\"link.html\" ...'\nlink = line.split('\"')[1]\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "B szuka dokładnie `href=\"`, znajduje koniec pierwszym `find` i wycina między cudzysłowami; inne wersje są nieprecyzyjne lub zwracają dodatkowy tekst.",
+    "difficulty": "medium",
+    "topic": "wyszukiwanie linków"
+  },
+  {
+    "id": 387,
+    "materialId": 44,
+    "question": "Co się stanie gdy wykonamy ten kod?\n\n```python\ncounts = {}\nwords = ['a', 'b', 'a']\nfor w in words:\n    if w in counts:\n        counts[w] = counts[w] + 1\n    else:\n        counts[w] = 1\nprint(counts)\n```",
+    "choices": [
+      "{'a': 2, 'b': 1}",
+      "{'a': 1, 'b': 1}",
+      "Nie zadziała, bo `counts` jest pusty",
+      "Błąd typów przy `counts[w] + 1`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Kod poprawnie zlicza wystąpienia: 'a' dwa razy, 'b' raz. Pusty słownik jest poprawny startem.",
+    "difficulty": "easy",
+    "topic": "dzielenie tekstu i zliczanie"
+  },
+  {
+    "id": 388,
+    "materialId": 44,
+    "question": "Co wypisze ten kod?\n\n```python\ndata = [b'one two', b'three']\nall = ''\nfor line in data:\n    text = line.decode()\n    all = all + text\nprint(all)\n```",
+    "choices": [
+      "'one twothree'",
+      "'one two three'",
+      "'one two\\nthree'",
+      "Błąd, nie można dodać stringów"
+    ],
+    "correctIndex": 0,
+    "explanation": "Dekodujemy i łączymy teksty bez dodatkowych spacji, więc wynik to 'one twothree'.",
+    "difficulty": "medium",
+    "topic": "bajty vs łańcuchy znaków"
+  },
+  {
+    "id": 389,
+    "materialId": 44,
+    "question": "Co jest nie tak z tym kodem, jeśli chcemy dostać tylko treść, nie nagłówki?\n\n```python\nimport urllib.request\nh = urllib.request.urlopen('http://example.com')\nprint(h)\nfor line in h:\n    print(line)\n```",
+    "choices": [
+      "Kod wypisze obiekt `h` i potem bajtowe linie; nic nie filtruje nagłówków, ale `for line in h` daje treść.",
+      "Trzeba najpierw wywołać `h.read()` żeby dostać treść.",
+      "`h` nie ma metody `read`, więc to się nie wykona.",
+      "Nagłówki będą wypisane razem z treścią."
+    ],
+    "correctIndex": 0,
+    "explanation": "Wypisanie `h` daje reprezentację obiektu, a `for line in h` iteruje po treści; nagłówki nie są wypisywane w pętli linii.",
+    "difficulty": "easy",
+    "topic": "uchwyt pliku z sieci"
+  },
+  {
+    "id": 390,
+    "materialId": 44,
+    "question": "Co zwróci ten kod?\n\n```python\nline = b'<a href=\"page.html\">'\nprint(line.decode().split())\n```",
+    "choices": [
+      "['<a', 'href=\"page.html\">']",
+      "['<a href=\"page.html\">']",
+      "['<a', 'href=page.html']",
+      "Błąd dekodowania"
+    ],
+    "correctIndex": 0,
+    "explanation": "Po `decode()` mamy tekst, `split()` dzieli po białych znakach, więc są dwa elementy: '<a' i 'href=\"page.html\">'.",
+    "difficulty": "medium",
+    "topic": "dzielenie tekstu i zliczanie"
+  },
+  {
+    "id": 391,
+    "materialId": 44,
+    "question": "Co jest nie tak z tym fragmentem, jeśli chcemy wyciąć link między cudzysłowami?\n\n```python\nline = '... href=\"a.html\" ...'\nstart = line.find('href=\"')\nlink = line[start:]\n```",
+    "choices": [
+      "Zaczyna od `href=\"` ale nie wycina części po cudzysłowie; trzeba znaleźć koniec i użyć zakresu.",
+      "`find` nie działa na stringach.",
+      "Brakuje `decode()`.",
+      "To poprawny sposób, nic nie jest nie tak."
+    ],
+    "correctIndex": 0,
+    "explanation": "Kod znajduje start, ale nie znajduje końca (drugi cudzysłów) i nie wycina samego linku.",
+    "difficulty": "easy",
+    "topic": "wyszukiwanie linków"
+  },
+  {
+    "id": 392,
+    "materialId": 44,
+    "question": "Który fragment poprawnie dekoduje linie i usuwa końce linii?\n\nA:\n```python\ntext = line.decode().rstrip()\n```\n\nB:\n```python\ntext = line.rstrip().decode()\n```\n\nC:\n```python\ntext = decode(line).rstrip()\n```\n\nD:\n```python\ntext = line.decode.rstrip()\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 0,
+    "explanation": "A najpierw `decode()` zamienia bajty na string, potem `rstrip()` usuwa znaki końca linii. B i D są błędne kolejnością lub składnią.",
+    "difficulty": "easy",
+    "topic": "bajty vs łańcuchy znaków"
   }
 ]

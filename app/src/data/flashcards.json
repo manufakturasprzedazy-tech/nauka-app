@@ -2826,5 +2826,89 @@
     "front": "Dlaczego nie zawsze używać UTF-32?",
     "back": "UTF-32 używa 4 bajtów na znak, co zajmuje dużo miejsca. UTF-8 jest zazwyczaj bardziej oszczędny.",
     "topic": "UTF-32 vs UTF-8"
+  },
+  {
+    "id": 511,
+    "materialId": 44,
+    "front": "Co robi `urllib.request.urlopen`?",
+    "back": "Otwiera adres URL i zwraca obiekt podobny do pliku, po którym można iterować liniami.",
+    "topic": "urllib i urlopen"
+  },
+  {
+    "id": 512,
+    "materialId": 44,
+    "front": "Co otrzymamy gdy iterujemy `for line in handle` z `urlopen`?",
+    "back": "Dostajemy kolejne linie odpowiedzi jako bajtowe ciągi (byte strings).",
+    "topic": "uchwyt pliku z sieci"
+  },
+  {
+    "id": 513,
+    "materialId": 44,
+    "front": "Dlaczego trzeba użyć `decode()` po pobraniu linii z sieci?",
+    "back": "Bo linia jest w bajtach, a `decode()` zamienia bajty na tekst (Unicode), na którym działają metody stringów.",
+    "topic": "bajty vs łańcuchy znaków"
+  },
+  {
+    "id": 514,
+    "materialId": 44,
+    "front": "Jaka jest różnica między bajtami a stringiem w tym kontekście?",
+    "back": "Bajty to `byte string` z sieci. String to tekst. Metody tekstowe wymagają stringa po `decode()`.",
+    "topic": "bajty vs łańcuchy znaków"
+  },
+  {
+    "id": 515,
+    "materialId": 44,
+    "front": "Co zrobić, gdy chcesz policzyć słowa z odpowiedzi HTTP?",
+    "back": "Iterować linie, wykonać `decode()`, użyć `split()` i zwiększać liczniki w słowniku.",
+    "topic": "dzielenie tekstu i zliczanie"
+  },
+  {
+    "id": 516,
+    "materialId": 44,
+    "front": "Kiedy lepiej użyć `urlopen` zamiast ręcznych socketów?",
+    "back": "Gdy chcesz prosto pobrać stronę bez pisania niskopoziomowego kodu socketów. `urlopen` robi to za ciebie.",
+    "topic": "urllib i urlopen"
+  },
+  {
+    "id": 517,
+    "materialId": 44,
+    "front": "Co się stanie jeśli pominiesz `rstrip()` przy wypisywaniu linii?",
+    "back": "Wypisane linie będą zawierać końce linii, więc output może mieć dodatkowe puste linie. `rstrip()` usuwa końcowy znak nowej linii.",
+    "topic": "uchwyt pliku z sieci"
+  },
+  {
+    "id": 518,
+    "materialId": 44,
+    "front": "Jak znaleźć prosty link `href` w linii HTML bez regexów?",
+    "back": "Szukaj `href=\"`, znajdź pozycję startu, potem znajdź kolejny `\"` i wytnij tekst między nimi.",
+    "topic": "wyszukiwanie linków"
+  },
+  {
+    "id": 519,
+    "materialId": 44,
+    "front": "Co to znaczy, że `urlopen` zwraca obiekt „podobny do pliku”?",
+    "back": "Możesz po nim iterować `for line in handle` i czytać linie tak jak z normalnego pliku.",
+    "topic": "uchwyt pliku z sieci"
+  },
+  {
+    "id": 520,
+    "materialId": 44,
+    "front": "Jaki częsty błąd zliczając słowa może robić początkujący?",
+    "back": "Nie dekodować linii lub modyfikować kluczy w słowniku bez sprawdzenia, czy już istnieją. Trzeba użyć `if key in dict` przed inkrementacją.",
+    "topic": "dzielenie tekstu i zliczanie"
+  },
+  {
+    "id": 521,
+    "materialId": 44,
+    "front": "Czy `urlopen` od razu zwraca nagłówki i treść razem?",
+    "back": "Nagłówki są dostępne, ale zwykła pętla po liniach zwraca tylko treść. Nagłówki trzeba pobrać osobno.",
+    "topic": "urllib i urlopen"
+  },
+  {
+    "id": 522,
+    "materialId": 44,
+    "front": "Jak najlepiej obcinać końce linii z odszyfrowanego `text`?",
+    "back": "Użyć `text.rstrip()` aby usunąć znaki końca linii z prawej strony.",
+    "topic": "uchwyt pliku z sieci"
   }
 ]
