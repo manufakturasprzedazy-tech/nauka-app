@@ -2225,5 +2225,246 @@
       "Użyj listy lub słownika, by śledzić już zobaczone linki.",
       "Najpierw zbierz linki ze strony startowej, potem z każdej znalezionej strony (jeśli istnieje w `pages`)."
     ]
+  },
+  {
+    "id": 186,
+    "materialId": 46,
+    "title": "Prosta serializacja słownika",
+    "description": "Napisz funkcję `serialize_simple(d)` która przyjmuje słownik z prostymi wartościami (stringi) i zwraca łańcuch w formacie `key:value` oddzielony przecinkami. Kolejność par może być dowolna.",
+    "starterCode": "def serialize_simple(d):\n    # TODO: zbuduj tekst z par klucz:wartość oddzielonych przecinkami\n    return \"\"\n",
+    "solution": "def serialize_simple(d):\n    # Zbieramy pary w listę tekstów\n    parts = []\n    for k in d:\n        parts.append(k + \":\" + d[k])\n    # Łączymy listę przecinkiem\n    result = \",\".join(parts)\n    return result\n",
+    "testCode": "def test_serialize_simple():\n    assert serialize_simple({\"a\":\"1\"}) in (\"a:1\", \"a:1\")\n    s = serialize_simple({\"x\":\"x\",\"y\":\"y\"})\n    # sprawdzamy, że oba klucze pojawiają się\n    assert \"x:x\" in s and \"y:y\" in s\n    assert serialize_simple({}) == \"\"\n\n# uruchom test\ntest_serialize_simple()\n",
+    "difficulty": "easy",
+    "topic": "Serializacja i deserializacja",
+    "hints": [
+      "Użyj pętli `for` do przejścia przez klucze słownika",
+      "Łącz części w jedną zmienną typu tekstowego"
+    ]
+  },
+  {
+    "id": 187,
+    "materialId": 46,
+    "title": "Deserializacja prostego formatu",
+    "description": "Napisz funkcję `deserialize_simple(s)` która przyjmuje łańcuch w formacie `key:value` oddzielony przecinkami i zwraca słownik. Dla pustego łańcucha funkcja powinna zwrócić pusty słownik.",
+    "starterCode": "def deserialize_simple(s):\n    # TODO: zamień tekst na słownik\n    return {}\n",
+    "solution": "def deserialize_simple(s):\n    if s == \"\":\n        return {}\n    result = {}\n    parts = s.split(',')\n    for p in parts:\n        if p == \"\":\n            continue\n        kv = p.split(':')\n        if len(kv) == 2:\n            k, v = kv[0], kv[1]\n            result[k] = v\n    return result\n",
+    "testCode": "def test_deserialize_simple():\n    assert deserialize_simple(\"\") == {}\n    assert deserialize_simple(\"a:1\") == {\"a\": \"1\"}\n    assert deserialize_simple(\"x:10,y:20\") == {\"x\":\"10\",\"y\":\"20\"}\n    # test z pustą częścią\n    assert deserialize_simple(\",\") == {}\n\n# uruchom test\ntest_deserialize_simple()\n",
+    "difficulty": "medium",
+    "topic": "Serializacja i deserializacja",
+    "hints": [
+      "Sprawdź najpierw, czy `s` jest pusty",
+      "Użyj `split(',')` a potem `split(':')` dla każdej pary"
+    ]
+  },
+  {
+    "id": 188,
+    "materialId": 46,
+    "title": "Serializacja do prostego XML",
+    "description": "Napisz funkcję `dict_to_xml(tag, d)` która zamienia słownik `d` w prosty XML otoczony tagiem `tag`. Dla `tag='person'` i `d={'name':'Ewa','phone':'222'}` wynik powinien być: `<person><name>Ewa</name><phone>222</phone></person>`",
+    "starterCode": "def dict_to_xml(tag, d):\n    # TODO: zbuduj prosty XML z par klucz:wartość\n    return \"\"\n",
+    "solution": "def dict_to_xml(tag, d):\n    parts = [\"<\" + tag + \">\"]\n    for k in d:\n        parts.append(\"<\" + k + \">\" + d[k] + \"</\" + k + \">\")\n    parts.append(\"</\" + tag + \">\")\n    return \"\".join(parts)\n",
+    "testCode": "def test_dict_to_xml():\n    assert dict_to_xml(\"person\", {\"name\":\"Ewa\",\"phone\":\"222\"}) == \"<person><name>Ewa</name><phone>222</phone></person>\"\n    assert dict_to_xml(\"x\", {}) == \"<x></x>\"\n\n# uruchom test\ntest_dict_to_xml()\n",
+    "difficulty": "medium",
+    "topic": "XML i JSON",
+    "hints": [
+      "Zbuduj wynik jako łańcuch, doklejając otwierające i zamykające tagi",
+      "Użyj pętli `for` po kluczach słownika"
+    ]
+  },
+  {
+    "id": 189,
+    "materialId": 46,
+    "title": "Wybór formatu (XML czy prosty tekst)",
+    "description": "Napisz funkcję `format_choice(d, use_xml)` która zwraca XML gdy `use_xml` jest True, a prosty `key:value` tekst gdy False. Użyj poprzednich funkcji `dict_to_xml` i `serialize_simple`.",
+    "starterCode": "def format_choice(d, use_xml):\n    # TODO: zwróć XML gdy use_xml True, inaczej tekst key:value\n    return \"\"\n",
+    "solution": "def format_choice(d, use_xml):\n    if use_xml:\n        return dict_to_xml(\"root\", d)\n    else:\n        return serialize_simple(d)\n",
+    "testCode": "def test_format_choice():\n    d = {\"a\":\"1\"}\n    assert format_choice(d, True) == \"<root><a>1</a></root>\"\n    assert format_choice(d, False) == \"a:1\"\n    assert format_choice({}, True) == \"<root></root>\"\n\n# uruchom test\n# UWAGA: test wymaga wcześniej zdefiniowanych funkcji\nserialize_simple = None\ndeserialize_simple = None\n# Dla poprawnego testu zdefiniuj funkcje z poprzednich zadań\n\n",
+    "difficulty": "hard",
+    "topic": "XML i JSON",
+    "hints": [
+      "Sprawdź wartość `use_xml` i zwróć odpowiedni wynik",
+      "Możesz wywołać istniejące funkcje w rozwiązaniu"
+    ]
+  },
+  {
+    "id": 190,
+    "materialId": 47,
+    "title": "Pobierz imię z prostego XML",
+    "description": "Dostań `xml_string` z jednym tagiem `person`. Zwróć tekst z tagu `name`.",
+    "starterCode": "# starter code\nimport xml.etree.ElementTree as ET\n\ndef get_name(xml_string):\n    # TODO: sparsuj xml i zwróć tekst z tagu 'name'\n    pass\n",
+    "solution": "# full solution\nimport xml.etree.ElementTree as ET\n\ndef get_name(xml_string):\n    tree = ET.fromstring(xml_string)\n    e = tree.find('name')\n    if e is None:\n        return None\n    return e.text\n",
+    "testCode": "# tests\nxml1 = \"\"\"<person><name>Ola</name></person>\"\"\"\nxml2 = \"\"\"<person></person>\"\"\"\nxml3 = \"\"\"<person><name></name></person>\"\"\"\nassert get_name(xml1) == 'Ola'\nassert get_name(xml2) is None\nassert get_name(xml3) == ''\n",
+    "difficulty": "easy",
+    "topic": "Element.find",
+    "hints": [
+      "Użyj `ET.fromstring` aby mieć drzewo.",
+      "Użyj `find('name')` i `.text`."
+    ]
+  },
+  {
+    "id": 191,
+    "materialId": 47,
+    "title": "Wypisz wszystkie id użytkowników",
+    "description": "Dostaniesz XML z wieloma `user` pod `users`. Zwróć listę wartości atrybutu `id` dla każdego `user` w tej kolejności.",
+    "starterCode": "# starter code\nimport xml.etree.ElementTree as ET\n\ndef list_user_ids(xml_string):\n    # TODO: zwróć listę id jako stringi\n    return []\n",
+    "solution": "# full solution\nimport xml.etree.ElementTree as ET\n\ndef list_user_ids(xml_string):\n    root = ET.fromstring(xml_string)\n    users = root.findall('users/user')\n    ids = []\n    for u in users:\n        ids.append(u.get('id'))\n    return ids\n",
+    "testCode": "# tests\nxml = \"\"\"\n<root>\n  <users>\n    <user id=\"10\"/>\n    <user id=\"20\"/>\n    <user id=\"30\"/>\n  </users>\n</root>\n\"\"\"\nassert list_user_ids(xml) == ['10', '20', '30']\n# brak users\nxml2 = \"\"\"<root></root>\"\"\"\nassert list_user_ids(xml2) == []\n# puste id\nxml3 = \"\"\"<root><users><user id=\"\"/></users></root>\"\"\"\nassert list_user_ids(xml3) == ['']\n",
+    "difficulty": "medium",
+    "topic": "Element.findall",
+    "hints": [
+      "Użyj `findall('users/user')` aby dostać listę elementów.",
+      "Dla każdego elementu użyj `.get('id')`."
+    ]
+  },
+  {
+    "id": 192,
+    "materialId": 47,
+    "title": "Suma wieku z listy osób",
+    "description": "Dostaniesz XML z wieloma `person` elementami. Każdy `person` ma tag `age` z liczbą jako tekst. Zwróć sumę wszystkich wieków jako liczbę całkowitą.",
+    "starterCode": "# starter code\nimport xml.etree.ElementTree as ET\n\ndef sum_ages(xml_string):\n    # TODO: policz sumę wieków\n    return 0\n",
+    "solution": "# full solution\nimport xml.etree.ElementTree as ET\n\ndef sum_ages(xml_string):\n    root = ET.fromstring(xml_string)\n    people = root.findall('person')\n    total = 0\n    for p in people:\n        a = p.find('age')\n        if a is None or a.text is None or a.text == '':\n            continue\n        total += int(a.text)\n    return total\n",
+    "testCode": "# tests\nxml = \"\"\"\n<data>\n  <person><age>20</age></person>\n  <person><age>30</age></person>\n  <person><age>0</age></person>\n</data>\n\"\"\"\nassert sum_ages(xml) == 50\n# brak person\nassert sum_ages('<data></data>') == 0\n# brak age w jednym\nxml2 = \"\"\"<data><person></person><person><age>5</age></person></data>\"\"\"\nassert sum_ages(xml2) == 5\n",
+    "difficulty": "hard",
+    "topic": "Element.find / Element.findall",
+    "hints": [
+      "Użyj `findall` by dostać listę `person`.",
+      "Dla każdego `person` weź `find('age').text` i zamień na int."
+    ]
+  },
+  {
+    "id": 193,
+    "materialId": 47,
+    "title": "Znajdź wartość atrybutu lub domyślną",
+    "description": "Dostaniesz element `entry` z opcjonalnym atrybutem `hide`. Zwróć wartość `hide` jeśli istnieje, inaczej zwróć `'no'` jako domyślną.",
+    "starterCode": "# starter code\nimport xml.etree.ElementTree as ET\n\ndef hide_value(xml_string):\n    # TODO: zwróć wartość atrybutu hide lub 'no'\n    pass\n",
+    "solution": "# full solution\nimport xml.etree.ElementTree as ET\n\ndef hide_value(xml_string):\n    root = ET.fromstring(xml_string)\n    e = root.find('entry')\n    if e is None:\n        return 'no'\n    val = e.get('hide')\n    if val is None:\n        return 'no'\n    return val\n",
+    "testCode": "# tests\nxml1 = \"\"\"<root><entry hide=\"yes\"/></root>\"\"\"\nxml2 = \"\"\"<root><entry/></root>\"\"\"\nxml3 = \"\"\"<root></root>\"\"\"\nxml4 = \"\"\"<root><entry hide=\"\"/></root>\"\"\"\nassert hide_value(xml1) == 'yes'\nassert hide_value(xml2) == 'no'\nassert hide_value(xml3) == 'no'\nassert hide_value(xml4) == ''\n",
+    "difficulty": "medium",
+    "topic": "Element.get",
+    "hints": [
+      "Użyj `.get('hide')` i sprawdź wynik.",
+      "Jeśli `.get` zwróci `None`, zwróć `'no'`.",
+      "Pamiętaj, że atrybut może być pustym stringiem."
+    ]
+  },
+  {
+    "id": 194,
+    "materialId": 48,
+    "title": "Sprawdź rozszerzenie pliku XML/XSD",
+    "description": "Napisz funkcję `is_schema(filename)` która zwraca `True` jeśli nazwa pliku kończy się na `.xsd`, a `False` w przeciwnym razie.",
+    "starterCode": "def is_schema(filename):\n    # TODO: zwróć True jeśli filename kończy się na '.xsd'\n    pass\n",
+    "solution": "def is_schema(filename):\n    # Proste sprawdzenie końcówki pliku\n    return filename.endswith('.xsd')\n",
+    "testCode": "def test_is_schema():\n    assert is_schema('person.xsd') is True\n    assert is_schema('data.xml') is False\n    assert is_schema('schema.XSD') is False  # wielkość liter ma znaczenie w tym zadaniu\n\n# Uruchom testy\ntest_is_schema()\n",
+    "difficulty": "easy",
+    "topic": "XSD",
+    "hints": [
+      "Sprawdź końcówkę nazwy pliku.",
+      "Porównuj literami i kropką, np. `.xsd`."
+    ]
+  },
+  {
+    "id": 195,
+    "materialId": 48,
+    "title": "Sprawdź wartość w `enumeration`",
+    "description": "Napisz funkcję `is_allowed_country(xml_fragment, allowed)` która sprawdza, czy wartość w tagu `<country>` występuje w liście `allowed`.\nPrzykład fragmentu: `'<country>UK</country>'`.",
+    "starterCode": "def is_allowed_country(xml_fragment, allowed):\n    # TODO: zwróć True jeśli wartość tagu <country> jest w allowed\n    pass\n",
+    "solution": "def is_allowed_country(xml_fragment, allowed):\n    # Znajdź początek i koniec zawartości tagu\n    start = xml_fragment.find('>') + 1\n    end = xml_fragment.find('</', start)\n    if start == 0 or end == -1:\n        return False\n    value = xml_fragment[start:end]\n    return value in allowed\n",
+    "testCode": "def test_is_allowed_country():\n    allowed = ['UK', 'US', 'FR']\n    assert is_allowed_country('<country>UK</country>', allowed) is True\n    assert is_allowed_country('<country>DE</country>', allowed) is False\n    assert is_allowed_country('<country></country>', allowed) is False\n\n# Uruchom testy\ntest_is_allowed_country()\n",
+    "difficulty": "medium",
+    "topic": "enumeration",
+    "hints": [
+      "Wyciągnij wartość między `>...<` dla tagu `country`.",
+      "Porównaj wynik z listą `allowed`."
+    ]
+  },
+  {
+    "id": 196,
+    "materialId": 48,
+    "title": "Policz wystąpienia elementu",
+    "description": "Napisz funkcję `count_tag(xml_text, tag)` która zwraca ile razy w tekście `xml_text` pojawia się element otwierający określony `tag`, np. `'<full_name>'`.",
+    "starterCode": "def count_tag(xml_text, tag):\n    # TODO: zwróć liczbę wystąpień otwierającego taga, np. '<full_name>'\n    pass\n",
+    "solution": "def count_tag(xml_text, tag):\n    # Liczymy bez analizy XML, tylko wyszukiwanie podciągu\n    return xml_text.count(tag)\n",
+    "testCode": "def test_count_tag():\n    xml = '<person><full_name>Anna</full_name><full_name>Jan</full_name></person>'\n    assert count_tag(xml, '<full_name>') == 2\n    assert count_tag(xml, '<age>') == 0\n    assert count_tag('', '<full_name>') == 0\n\n# Uruchom testy\ntest_count_tag()\n",
+    "difficulty": "medium",
+    "topic": "minOccurs / maxOccurs",
+    "hints": [
+      "Policz wystąpienia podciągu otwierającego taga.",
+      "Użyj prostego zliczania tekstu."
+    ]
+  },
+  {
+    "id": 197,
+    "materialId": 48,
+    "title": "Prosta walidacja dokumentu 'person'",
+    "description": "Napisz funkcję `validate_person(xml)` która sprawdza prosty dokument `person`.\nWarunki:\n- musi zawierać tagi w tej kolejności: `<lastname>`, `<age>`, `<dateborn>`\n- `age` musi być liczbą całkowitą (same cyfry)\n- `dateborn` musi być w formacie `YYYY-MM-DD` (cztery cyfry, myślnik, dwie cyfry, myślnik, dwie cyfry)\nFunkcja zwraca `True` lub `False`.",
+    "starterCode": "def validate_person(xml):\n    # TODO: prosty sprawdzacz kolejności i formatu pól\n    pass\n",
+    "solution": "def _get_text_between(xml, open_tag, close_tag):\n    start = xml.find(open_tag)\n    if start == -1:\n        return None\n    start += len(open_tag)\n    end = xml.find(close_tag, start)\n    if end == -1:\n        return None\n    return xml[start:end]\n\n\ndef validate_person(xml):\n    # Sprawdź, że tagi istnieją\n    lastname = _get_text_between(xml, '<lastname>', '</lastname>')\n    age = _get_text_between(xml, '<age>', '</age>')\n    dateborn = _get_text_between(xml, '<dateborn>', '</dateborn>')\n    if lastname is None or age is None or dateborn is None:\n        return False\n    # Sprawdź kolejność: indexy otwierających tagów\n    i_last = xml.find('<lastname>')\n    i_age = xml.find('<age>')\n    i_date = xml.find('<dateborn>')\n    if not (i_last < i_age < i_date):\n        return False\n    # age: tylko cyfry\n    if not age.isdigit():\n        return False\n    # dateborn: format YYYY-MM-DD (proste sprawdzenie długości i myślników)\n    if len(dateborn) != 10 or dateborn[4] != '-' or dateborn[7] != '-':\n        return False\n    y, m, d = dateborn.split('-')\n    if not (y.isdigit() and m.isdigit() and d.isdigit()):\n        return False\n    return True\n",
+    "testCode": "def test_validate_person():\n    good = '<person><lastname>Kowalski</lastname><age>30</age><dateborn>1990-05-20</dateborn></person>'\n    bad_order = '<person><age>30</age><lastname>Kowalski</lastname><dateborn>1990-05-20</dateborn></person>'\n    bad_age = '<person><lastname>Kowalski</lastname><age>thirty</age><dateborn>1990-05-20</dateborn></person>'\n    bad_date = '<person><lastname>Kowalski</lastname><age>30</age><dateborn>05/20/1990</dateborn></person>'\n    assert validate_person(good) is True\n    assert validate_person(bad_order) is False\n    assert validate_person(bad_age) is False\n    assert validate_person(bad_date) is False\n    assert validate_person('') is False\n\n# Uruchom testy\ntest_validate_person()\n",
+    "difficulty": "hard",
+    "topic": "walidacja",
+    "hints": [
+      "Sprawdź, czy tagi występują i w jakim są położeniu w tekście.",
+      "Sprawdź `age` czy zawiera tylko cyfry, a `dateborn` czy ma format z myślnikami i odpowiednią długość."
+    ]
+  },
+  {
+    "id": 198,
+    "materialId": 49,
+    "title": "Sprawdź czy tag jest self-closing",
+    "description": "Napisz funkcję `is_self_closing(tag)` która zwraca True jeśli podany fragment tagu jest self-closing, np. `\"<note />\"` zwraca True. Inne formy, np. `\"<note></note>\"` zwracają False.",
+    "starterCode": "def is_self_closing(tag):\n    # TODO: zwróć True jeśli tag jest self-closing\n    pass\n",
+    "solution": "def is_self_closing(tag):\n    # usuń końcowe i początkowe spacje\n    t = tag.strip()\n    # sprawdź czy kończy się na '/>'\n    return t.endswith('/>')\n",
+    "testCode": "assert is_self_closing('<note />') == True\nassert is_self_closing('  <img src=\"x\"/>') == True\nassert is_self_closing('<p></p>') == False\nassert is_self_closing('<br>') == False\n",
+    "difficulty": "easy",
+    "topic": "self-closing",
+    "hints": [
+      "Sprawdź, czy tag kończy się na `/>`.",
+      "Pamiętaj, że tag może mieć spacje przed `/>`."
+    ]
+  },
+  {
+    "id": 199,
+    "materialId": 49,
+    "title": "Wyciągnij tekst z prostego elementu",
+    "description": "Napisz funkcję `extract_text(xml, tag)` która zwraca tekst pierwszego wystąpienia elementu `tag`. Dla `xml = \"<root><name>Ada</name></root>\"` i `tag='name'` zwróć `\"Ada\"`. Jeśli element nie istnieje, zwróć pusty string.",
+    "starterCode": "def extract_text(xml, tag):\n    # TODO: zwróć tekst pierwszego elementu tag\n    pass\n",
+    "solution": "def extract_text(xml, tag):\n    open_tag = '<' + tag + '>'\n    close_tag = '</' + tag + '>'\n    i = xml.find(open_tag)\n    if i == -1:\n        return ''\n    start = i + len(open_tag)\n    j = xml.find(close_tag, start)\n    if j == -1:\n        return ''\n    return xml[start:j]\n",
+    "testCode": "assert extract_text('<root><name>Ada</name></root>', 'name') == 'Ada'\nassert extract_text('<a><b>Hi</b></a>', 'b') == 'Hi'\nassert extract_text('<a></a>', 'b') == ''\nassert extract_text('<x><name></name></x>', 'name') == ''\n",
+    "difficulty": "medium",
+    "topic": "elementy i węzły",
+    "hints": [
+      "Szukaj `'<tag>'` i `'</tag>'` w tekście.",
+      "Użyj `find()` i indeksów, by wyciąć tekst między tagami."
+    ]
+  },
+  {
+    "id": 200,
+    "materialId": 49,
+    "title": "Policz wystąpienia tagu",
+    "description": "Napisz `count_tags(xml, tag)` które liczy, ile razy występuje dany start tag. Dla `'<r><item/><item></item></r>'` i `tag='item'` zwróć 2.",
+    "starterCode": "def count_tags(xml, tag):\n    # TODO: policz wystąpienia start tagu\n    pass\n",
+    "solution": "def count_tags(xml, tag):\n    needle = '<' + tag\n    return xml.count(needle)\n",
+    "testCode": "assert count_tags('<r><item/><item></item></r>', 'item') == 2\nassert count_tags('<a><b></b><b/></a>', 'b') == 2\nassert count_tags('', 'x') == 0\nassert count_tags('<x></x><y></y>', 'y') == 1\n",
+    "difficulty": "medium",
+    "topic": "znaczniki",
+    "hints": [
+      "Szukaj substringu `'<'+tag` aby znaleźć zarówno self-closing jak i otwierające tagi.",
+      "Użyj `count()` lub pętli z `find()`."
+    ]
+  },
+  {
+    "id": 201,
+    "materialId": 49,
+    "title": "Prosta walidacja poprawności tagów (bez atrybutów)",
+    "description": "Napisz `is_well_formed(xml)` która sprawdza, czy każdy start tag ma odpowiadający end tag i że tagi są poprawnie zagnieżdżone. Zakładamy, że tagi nie mają atrybutów (np. `'<a><b>t</b></a>'`). Nie trzeba obsługiwać self-closing dla uproszczenia.",
+    "starterCode": "def is_well_formed(xml):\n    # TODO: prosty parser walidujący zagnieżdżenie tagów\n    pass\n",
+    "solution": "def is_well_formed(xml):\n    stack = []\n    i = 0\n    while True:\n        start = xml.find('<', i)\n        if start == -1:\n            break\n        end = xml.find('>', start)\n        if end == -1:\n            return False\n        tag = xml[start+1:end].strip()\n        if not tag:\n            return False\n        if tag.startswith('/'):\n            name = tag[1:]\n            if not stack or stack[-1] != name:\n                return False\n            stack.pop()\n        else:\n            # pomijamy self-closing tutaj (zakładamy brak)\n            stack.append(tag)\n        i = end + 1\n    return len(stack) == 0\n",
+    "testCode": "assert is_well_formed('<a><b></b></a>') == True\nassert is_well_formed('<a><b></a></b>') == False\nassert is_well_formed('') == True\nassert is_well_formed('<a><b></b>') == False\n",
+    "difficulty": "hard",
+    "topic": "znaczniki",
+    "hints": [
+      "Użyj stosu (listy) do śledzenia otwartych tagów.",
+      "Przeszukuj tekst i znajdź kolejne `'<...>'`, rozróżniaj start i end tag."
+    ]
   }
 ]

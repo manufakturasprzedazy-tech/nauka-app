@@ -2994,5 +2994,327 @@
     "front": "Jaki jest typowy pierwszy krok przy scrapingu?",
     "back": "Pobrać stronę (żądanie GET) i użyć `.read()` by dostać cały HTML jako string.",
     "topic": "Proces scrapingu"
+  },
+  {
+    "id": 535,
+    "materialId": 46,
+    "front": "Co to jest serializacja?",
+    "back": "To zamiana wewnętrznej struktury (np. `dict`) na tekstowy format, który można wysłać przez sieć.",
+    "topic": "Serializacja i deserializacja"
+  },
+  {
+    "id": 536,
+    "materialId": 46,
+    "front": "Co to jest deserializacja?",
+    "back": "To zamiana odebranego tekstu z powrotem na strukturę wewnętrzną programu.",
+    "topic": "Serializacja i deserializacja"
+  },
+  {
+    "id": 537,
+    "materialId": 46,
+    "front": "Co to jest \"wire protocol\"?",
+    "back": "To ustalony format zapisu danych wysyłanych po sieci, zrozumiały dla różnych języków.",
+    "topic": "Wire protocol"
+  },
+  {
+    "id": 538,
+    "materialId": 46,
+    "front": "Jaka jest różnica między `XML` a `JSON`?",
+    "back": "`XML` jest starszy i bardziej rozbudowany. `JSON` jest lżejszy i prostszy do czytania.",
+    "topic": "XML i JSON"
+  },
+  {
+    "id": 539,
+    "materialId": 46,
+    "front": "Dlaczego nie można wysyłać surowych obiektów Pythona przez sieć?",
+    "back": "Bo format pamięciowy jest specyficzny dla języka i maszyn. Inny program go nie zrozumie. Trzeba serializować do tekstu.",
+    "topic": "Serializacja i deserializacja"
+  },
+  {
+    "id": 540,
+    "materialId": 46,
+    "front": "Co robi API w kontekście wymiany danych?",
+    "back": "Ustala zasady komunikacji i format danych między programami.",
+    "topic": "API"
+  },
+  {
+    "id": 541,
+    "materialId": 46,
+    "front": "Kiedy lepiej użyć `JSON` zamiast `XML`?",
+    "back": "Gdy chcesz prosty i lekki format. `JSON` jest mniej rozbudowany i szybszy do czytania.",
+    "topic": "XML i JSON"
+  },
+  {
+    "id": 542,
+    "materialId": 46,
+    "front": "Co oznacza, że format jest niezależny od języka?",
+    "back": "Że zapis danych jest tekstowy i każdy język może go odczytać i zamienić na własne struktury.",
+    "topic": "Wire protocol"
+  },
+  {
+    "id": 543,
+    "materialId": 46,
+    "front": "Jaki jest efekt deserializacji po otrzymaniu tekstu?",
+    "back": "Tekst staje się strukturą w programie, np. `dict` w Pythonie.",
+    "topic": "Serializacja i deserializacja"
+  },
+  {
+    "id": 544,
+    "materialId": 46,
+    "front": "Jaki częsty błąd popełniają początkujący przy wymianie danych?",
+    "back": "Myślą, że wysłanie wewnętrznego obiektu wystarczy. Zapominają o serializacji do wspólnego formatu.",
+    "topic": "Gotchas"
+  },
+  {
+    "id": 545,
+    "materialId": 46,
+    "front": "Co to jest request/response?",
+    "back": "To cykl: klient wysyła żądanie, serwer odpowiada. Służy też do przesyłu danych między programami.",
+    "topic": "Request/response i HTTP"
+  },
+  {
+    "id": 546,
+    "materialId": 46,
+    "front": "Co zrobić przed wysłaniem `dict` przez sieć?",
+    "back": "Zamienić go na tekst zgodny z ustalonym formatem, czyli zserializować.",
+    "topic": "Serializacja i deserializacja"
+  },
+  {
+    "id": 547,
+    "materialId": 47,
+    "front": "Co robi `ET.fromstring()`?",
+    "back": "Bierze tekst XML w stringu i tworzy strukturę drzewa elementów, którą można przeszukiwać.",
+    "topic": "ET.fromstring"
+  },
+  {
+    "id": 548,
+    "materialId": 47,
+    "front": "Jak dostać tekst wewnątrz tagu `name`?",
+    "back": "Znajdź element i weź `.text`, np. `tree.find('name').text`.",
+    "topic": "Element.find"
+  },
+  {
+    "id": 549,
+    "materialId": 47,
+    "front": "Co zwróci `findall('users/user')`?",
+    "back": "Listę wszystkich elementów `user`, które są pod `users` jako obiekty elementów.",
+    "topic": "Element.findall"
+  },
+  {
+    "id": 550,
+    "materialId": 47,
+    "front": "Jaka jest różnica między `find` a `findall`?",
+    "back": "`find` zwraca pierwszy pasujący element. `findall` zwraca listę wszystkich pasujących elementów.",
+    "topic": "Porównanie"
+  },
+  {
+    "id": 551,
+    "materialId": 47,
+    "front": "Co robi metoda `.get('attr')`?",
+    "back": "Zwraca wartość atrybutu `attr` z danego elementu, np. `element.get('id')`.",
+    "topic": "Element.get"
+  },
+  {
+    "id": 552,
+    "materialId": 47,
+    "front": "Dlaczego używamy aliasu `ET` po imporcie?",
+    "back": "Aby nie pisać długiej nazwy `xml.etree.ElementTree` za każdym razem. Np. `import xml.etree.ElementTree as ET`.",
+    "topic": "ET.fromstring"
+  },
+  {
+    "id": 553,
+    "materialId": 47,
+    "front": "Co to jest triple-quoted string i do czego służy?",
+    "back": "To `\"\"\"...\"\"\"`, czyli wieloliniowy string. Przydatny do trzymania XML w kodzie.",
+    "topic": "Triple-quoted strings"
+  },
+  {
+    "id": 554,
+    "materialId": 47,
+    "front": "Jak bezpiecznie pobrać tekst z elementu, który może nie istnieć?",
+    "back": "Sprawdź najpierw wynik `find`, np. `e = tree.find('tag')` i potem `if e is not None: text = e.text`.",
+    "topic": "GOTCHA"
+  },
+  {
+    "id": 555,
+    "materialId": 47,
+    "front": "Co się stanie gdy użyjesz złej nazwy atrybutu w `.get()`?",
+    "back": "Metoda zwróci `None`. Nie dostaniesz błędu, ale wartość będzie pusta.",
+    "topic": "GOTCHA"
+  },
+  {
+    "id": 556,
+    "materialId": 47,
+    "front": "Kiedy użyć `findall` zamiast `find`?",
+    "back": "Gdy oczekujesz wielu elementów o tym samym tagu i chcesz po nich iterować.",
+    "topic": "WHEN TO USE"
+  },
+  {
+    "id": 557,
+    "materialId": 47,
+    "front": "Czy `tree.find('email').get('hide')` działa, jeśli `email` to tag zamknięty sam w sobie?",
+    "back": "Tak. Jeśli `email` istnieje i ma atrybut `hide`, `.get('hide')` zwróci jego wartość, nawet gdy `email` nie ma tekstu.",
+    "topic": "Element.get"
+  },
+  {
+    "id": 558,
+    "materialId": 47,
+    "front": "Co to znaczy, że `findall` zwraca listę \"tagów\"?",
+    "back": "To lista obiektów elementów XML. Każdy element ma metody `find`, `get`, `.text`.",
+    "topic": "Element.findall"
+  },
+  {
+    "id": 559,
+    "materialId": 48,
+    "front": "Co to jest walidacja XML?",
+    "back": "Walidacja to sprawdzenie, czy dokument XML spełnia reguły zdefiniowane w schemacie XSD. To potwierdzenie, że format danych jest zgodny z kontraktem.",
+    "topic": "walidacja"
+  },
+  {
+    "id": 560,
+    "materialId": 48,
+    "front": "Do czego służy plik z rozszerzeniem `.xsd`?",
+    "back": "Plik `.xsd` to schemat XML. Opisuje strukturę i typy danych, które musi mieć poprawny dokument XML.",
+    "topic": "XSD"
+  },
+  {
+    "id": 561,
+    "materialId": 48,
+    "front": "Co to jest element złożony (complexType)?",
+    "back": "Element złożony to element, który może mieć pod-elementy. W XSD oznacza się go przez `xs:complexType`.",
+    "topic": "elementy proste i złożone"
+  },
+  {
+    "id": 562,
+    "materialId": 48,
+    "front": "Co to jest element prosty?",
+    "back": "Element prosty nie ma pod-elementów i zawiera tylko wartość, np. `string` lub `integer`.",
+    "topic": "elementy proste i złożone"
+  },
+  {
+    "id": 563,
+    "materialId": 48,
+    "front": "Co robi `xs:sequence`?",
+    "back": "`xs:sequence` wymusza określoną kolejność pod-elementów. Elementy muszą wystąpić w tej samej kolejności.",
+    "topic": "xs:sequence"
+  },
+  {
+    "id": 564,
+    "materialId": 48,
+    "front": "Co oznaczają `minOccurs` i `maxOccurs`?",
+    "back": "`minOccurs` to minimalna liczba wystąpień elementu. `maxOccurs` to maksymalna liczba. `maxOccurs=\"unbounded\"` = dowolna liczba.",
+    "topic": "minOccurs / maxOccurs"
+  },
+  {
+    "id": 565,
+    "materialId": 48,
+    "front": "Jaki format ma typ `date` w XSD?",
+    "back": "Format `date` to cztery cyfry roku, myślnik, dwie cyfry miesiąca, myślnik, dwie cyfry dnia: `YYYY-MM-DD`.",
+    "topic": "typy danych"
+  },
+  {
+    "id": 566,
+    "materialId": 48,
+    "front": "Co robi `enumeration` w XSD?",
+    "back": "`enumeration` ogranicza wartość elementu do listy dopuszczalnych napisów. Tylko te wartości są poprawne.",
+    "topic": "enumeration"
+  },
+  {
+    "id": 567,
+    "materialId": 48,
+    "front": "Kiedy użyć `maxOccurs=\"unbounded\"`?",
+    "back": "Kiedy chcesz pozwolić na dowolną liczbę wystąpień danego elementu. Np. lista adresów o dowolnej długości.",
+    "topic": "minOccurs / maxOccurs"
+  },
+  {
+    "id": 568,
+    "materialId": 48,
+    "front": "Jaka jest różnica między `integer` a `decimal` w XSD?",
+    "back": "`integer` to liczba całkowita bez części dziesiętnej. `decimal` może mieć część dziesiętną.",
+    "topic": "typy danych"
+  },
+  {
+    "id": 569,
+    "materialId": 48,
+    "front": "Co oznacza `use=\"required\"` przy atrybucie?",
+    "back": "Oznacza, że atrybut musi być obecny w elemencie. Brak takiego atrybutu to błąd walidacji.",
+    "topic": "atrybuty"
+  },
+  {
+    "id": 570,
+    "materialId": 48,
+    "front": "Co się stanie, jeśli dokument XML ma element w złej kolejności względem `xs:sequence`?",
+    "back": "Walidator zgłosi błąd. `xs:sequence` wymaga konkretnej kolejności elementów.",
+    "topic": "xs:sequence"
+  },
+  {
+    "id": 571,
+    "materialId": 49,
+    "front": "Co to jest `XML`?",
+    "back": "To Extensible Markup Language. Służy do wymiany ustrukturyzowanych danych między programami.",
+    "topic": "XML"
+  },
+  {
+    "id": 572,
+    "materialId": 49,
+    "front": "Co robi start tag i end tag? Podaj przykład.",
+    "back": "Start tag zaczyna element, end tag go kończy. Przykład: ` <name>Jan</name>` — `<name>` to start, `</name>` to end.",
+    "topic": "znaczniki"
+  },
+  {
+    "id": 573,
+    "materialId": 49,
+    "front": "Jaka jest różnica między prostym a złożonym elementem?",
+    "back": "Prosty element ma tylko tekst między tagami, np. `<title>Hi</title>`. Złożony ma inne elementy jako dzieci, np. `<book><title>Hi</title></book>`.",
+    "topic": "elementy i węzły"
+  },
+  {
+    "id": 574,
+    "materialId": 49,
+    "front": "Gdzie wstawiamy atrybuty i jak się je zapisuje?",
+    "back": "Atrybuty są w start tagu i zapisujemy je jako pary `klucz=\"wartość\"`, np. `<phone type=\"intl\">`.",
+    "topic": "atrybuty"
+  },
+  {
+    "id": 575,
+    "materialId": 49,
+    "front": "Co to jest self-closing tag i kiedy go użyć?",
+    "back": "To skrócony pusty element zapisany jako `<tag />`. Używamy, gdy element nie ma tekstu ani dzieci.",
+    "topic": "self-closing"
+  },
+  {
+    "id": 576,
+    "materialId": 49,
+    "front": "Jak XML traktuje białe znaki (whitespace)?",
+    "back": "Białe znaki poza tekstem elementów zwykle nie mają znaczenia. W środku tekstu znaczenie ma spacja i nowa linia.",
+    "topic": "znaczniki"
+  },
+  {
+    "id": 577,
+    "materialId": 49,
+    "front": "Co to jest węzeł (node) w XML?",
+    "back": "Węzeł to element dokumentu. Węzeł może mieć dzieci: inne elementy, tekst i atrybuty (modelowane jako dzieci).",
+    "topic": "elementy i węzły"
+  },
+  {
+    "id": 578,
+    "materialId": 49,
+    "front": "Co oznacza ścieżka `/a/b` w kontekście XML?",
+    "back": "To droga od korzenia do elementu: najpierw element `a`, potem jego dziecko `b`. Pokazuje, gdzie znajduje się tekst lub element.",
+    "topic": "drzewo i ścieżki"
+  },
+  {
+    "id": 579,
+    "materialId": 49,
+    "front": "Co to jest serializacja i deserializacja?",
+    "back": "Serializacja: zamiana wewnętrznej struktury na XML do wysłania. Deserializacja: odczytanie XML i odtworzenie struktury po stronie odbiorcy.",
+    "topic": "serializacja i deserializacja"
+  },
+  {
+    "id": 580,
+    "materialId": 49,
+    "front": "Co robi XML Schema?",
+    "back": "XML Schema określa reguły i format danych. Pomaga ustalić, czy otrzymany XML ma oczekowaną strukturę.",
+    "topic": "XML Schema"
   }
 ]

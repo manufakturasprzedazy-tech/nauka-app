@@ -689,5 +689,85 @@
     "flashcardCount": 12,
     "quizCount": 9,
     "exerciseCount": 4
+  },
+  {
+    "id": 46,
+    "courseId": "python",
+    "filename": "Dane w sieci.md",
+    "title": "Usługi sieciowe i serializacja danych",
+    "summary": "Lekcja wyjaśnia, jak programy wymieniają dane przez sieć. Omawia pojęcia serializacji, deserializacji i formaty pośrednie: XML i JSON.",
+    "topics": [
+      "Request/response i HTTP",
+      "API (interfejsy)",
+      "Serializacja i deserializacja",
+      "Wire protocol",
+      "XML vs JSON"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: jak programy wysyłają dane przez sieć i jak się porozumiewają. Pokazano potrzebę formatu pośredniego, który nie zależy od języka.\n\n## Kluczowe pojęcia\n### Request/response\nTo cykl wysyłania żądania i otrzymywania odpowiedzi przez sieć. Początkowo służył do dokumentów, teraz też do danych.\n\n### API\nAPI to umowa między programami, jak wysyłać i odbierać dane. API używa formatu wymiany danych.\n\n### Serializacja\nTo zamiana wewnętrznej struktury (np. `dict`) na tekstowy format, który można wysłać po sieci.\n\n### Deserializacja\nTo zamiana odebranego tekstu z powrotem na wewnętrzną strukturę w programie docelowym.\n\n### Wire protocol\nTo ustalony format zapisu danych \"na drucie\". Musi być zrozumiały niezależnie od języka.\n\n### XML i JSON\nDwa popularne formaty. `XML` jest starszy i bardziej rozbudowany. `JSON` jest nowszy i lżejszy.\n\n## Przykłady kodu\n```python\n# przykład serializacji prostego słownika do tekstu\nperson = {\"name\": \"Ala\", \"phone\": \"123\"}\nwire = \"name:\" + person[\"name\"] + \",phone:\" + person[\"phone\"]\n```\nTo pokazuje tworzenie tekstowego formatu z `dict`.\n\n```python\n# przykład deserializacji prostego tekstu do słownika\ns = \"name:Ala,phone:123\"\nparts = s.split(',')\n# dalej rozbijamy każdą część po ':'\n```\nTo pokazuje pomysł odwrócenia serializacji.\n\n## Ważne zasady\n- **Porozumienie formatu** — obie strony muszą zgodzić się na format wymiany danych.\n- **Serializuj przed wysłaniem** — dane wewnętrzne trzeba zamienić na tekst.\n- **Deserializuj po otrzymaniu** — tekst trzeba zamienić z powrotem na strukturę.\n- **Wybierz format mądry dla zadania** — `JSON` dla lekkości, `XML` gdy potrzebna większa struktura.\n- **Format musi być niezależny od języka** — nie wysyłaj surowych obiektów z pamięci.\n\n## Częste błędy\n- **Wysyłanie obiektu języka**: wysyłanie natywnego obiektu (np. wewnętrznego zapisu) uniemożliwia odczyt w innym języku. Zawsze serializuj.\n- **Brak ustalonego formatu**: jeśli strony nie mają tej samej umowy, dane będą niezrozumiałe. Zdefiniuj protokół wymiany.\n- **Zakładanie, że tekst to pełne API**: tekst to tylko zawartość, potrzebny jest też sposób żądania i odpowiedzi (request/response).\n",
+    "flashcardCount": 12,
+    "quizCount": 8,
+    "exerciseCount": 4
+  },
+  {
+    "id": 47,
+    "courseId": "python",
+    "filename": "Parsowanie XML.md",
+    "title": "Parsowanie XML w Pythonie",
+    "summary": "Lekcja pokazuje jak czytać i przetwarzać XML w Pythonie za pomocą modułu `xml.etree.ElementTree`. Uczymy się używać `ET.fromstring`, `find`, `findall`, `.text` i `.get` oraz jak iterować po wynikach.",
+    "topics": [
+      "ET.fromstring",
+      "Element.find",
+      "Element.findall",
+      "Element.get",
+      "Triple-quoted strings",
+      "Pętle i listy tagów"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: jak przenieść tekst XML do Pythona i jak z niego wydobywać dane.\n\n## Kluczowe pojęcia\n### `ET.fromstring`\nFunkcja, która bierze tekst XML w postaci stringa i tworzy z niego drzewo elementów. Używamy aliasu `ET` po `import xml.etree.ElementTree as ET`.\n\n### `Element.find`\nMetoda, która znajduje pierwszy pod-element o podanym tagu. Zwraca obiekt elementu lub `None`. Aby dostać zawartość tekstową używamy `.text`.\n\n### `Element.findall`\nMetoda, która zwraca listę wszystkich pasujących pod-elementów. Przydatna gdy tag występuje wiele razy.\n\n### `.text` i `.get`\n`.text` zwraca tekst wewnątrz tagu. `.get('attr')` zwraca wartość atrybutu elementu.\n\n### Triple-quoted string\nW Pythonie `\"\"\" ... \"\"\"` pozwala zapisać tekst wieloliniowy, np. surowe XML w kodzie.\n\n## Przykłady kodu\n```python\nimport xml.etree.ElementTree as ET\nxml = \"\"\"<root><name>Anna</name></root>\"\"\"\ntree = ET.fromstring(xml)\nprint(tree.find('name').text)\n```\nTen przykład tworzy drzewo i wypisuje `Anna`.\n\n```python\nxml = \"\"\"<x><users><user id=\"1\"/><user id=\"2\"/></users></x>\"\"\"\ntree = ET.fromstring(xml)\nlst = tree.findall('users/user')\nfor item in lst:\n    print(item.get('id'))\n```\nPrzykład pokazuje `findall` i pobieranie atrybutu.\n\n## Ważne zasady\n- **Parsuj tylko poprawny XML** — `ET.fromstring` zwróci błąd, jeśli XML jest źle zbudowany.\n- **Używaj `.text` do treści** — `tree.find('tag').text` daje tekst między tagami.\n- **Używaj `.get` do atrybutów** — `element.get('attr')` zwróci wartość atrybutu.\n- **`find` vs `findall`** — `find` daje pierwszy element, `findall` listę wszystkich.\n- **Sprawdzaj wynik `find`** — element może być `None`, więc użyj sprawdzenia, zanim sięgniesz po `.text`.\n\n## Częste błędy\n- **Błąd na brakującym tagu**: Jeśli `find` zwróci `None`, to `None.text` spowoduje błąd. Sprawdzaj wynik.\n- **Złe nazwy atrybutów**: `get('hide')` zwróci `None`, gdy atrybut ma inną nazwę. Sprawdź literówki.",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 48,
+    "courseId": "python",
+    "filename": "Schemat XML.md",
+    "title": "Walidacja XML i schematy XSD",
+    "summary": "Lekcja wyjaśnia, czym jest walidacja XML i po co są schematy XSD. Pokazuje podstawowe pojęcia: elementy proste i złożone, `xs:sequence`, typy danych oraz atrybuty `minOccurs` i `maxOccurs`.",
+    "topics": [
+      "XML",
+      "XSD",
+      "walidacja",
+      "elementy proste i złożone",
+      "xs:sequence",
+      "typy danych",
+      "minOccurs / maxOccurs",
+      "enumeration",
+      "atrybuty"
+    ],
+    "notes": "## O czym jest ta lekcja\nTa lekcja opowiada o tym, jak dwie aplikacje uzgadniają format danych przez schemat XML (XSD). Walidacja sprawdza, czy dokument XML spełnia ten kontrakt.\n\n## Kluczowe pojęcia\n### Walidacja\nWalidacja to sprawdzenie, czy dokument XML ma poprawny format zgodny ze schematem. To nie jest przesyłanie ani deserializacja — to tylko sprawdzenie formatu.\n\n### Schemat XSD\nSchemat XSD to plik XML, który opisuje reguły dla innego dokumentu XML. Zwykle ma rozszerzenie `.xsd`.\n\n### Elementy proste i złożone\nElement z dziećmi to element złożony (`complexType`). Element bez dzieci to element prosty (`simple`).\n\n### Sekwencja i porządek\n`xs:sequence` mówi, że elementy wewnątrz muszą być w określonej kolejności. Kolejność ma znaczenie.\n\n### `minOccurs` i `maxOccurs`\n`minOccurs` określa ile razy element musi się pojawić minimalnie. `maxOccurs` mówi ile razy maksymalnie. `maxOccurs=\"unbounded\"` oznacza dowolną liczbę.\n\n### Typy danych\nXSD rozróżnia typy: `string`, `integer`, `decimal`, `date`, `dateTime`, `positiveInteger` itp. `date` ma format `YYYY-MM-DD`.\n\n### Wyliczenie (enumeration)\nMożna ograniczyć wartość elementu do listy dopuszczalnych napisów przez `enumeration`.\n\n## Przykłady kodu\n```python\n# Przykład plików\n# dokument: person.xml\n# schemat: person.xsd\n```\nJeden plik to XML (`.xml`), drugi to schemat (`.xsd`).\n\n## Ważne zasady\n- **Walidacja to kontrakt** — daje jasne zasady między aplikacjami.\n- **Kolejność w `xs:sequence` ma znaczenie** — elementy muszą być w ustalonej kolejności.\n- **`minOccurs`/`maxOccurs` kontrolują ilość** — 0 oznacza opcjonalny element.\n- **Typy danych są istotne** — data ma format `YYYY-MM-DD`, integer to liczba całkowita.\n- **`enumeration` ogranicza wartości** — element musi być jedną z dopuszczalnych wartości.\n\n## Częste błędy\n- **Brak zgodności kolejności**: elementy są w złej kolejności, więc walidator zgłasza błąd. Trzymaj kolejność z `xs:sequence`.\n- **Zły format daty**: użycie lokalnego formatu (np. `9/24/2002`) zamiast `YYYY-MM-DD` spowoduje błąd. Używaj `2002-09-24`.\n- **Nieodpowiednia liczba elementów**: gdy `minOccurs=\"1\"`, brak elementu to błąd. Sprawdź `minOccurs`/`maxOccurs`.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 49,
+    "courseId": "python",
+    "filename": "eXtensible Markup Language (XML).md",
+    "title": "Podstawy XML: znaczniki, atrybuty i struktura",
+    "summary": "XML to język znaczników do wymiany danych. Lekcja tłumaczy znaczniki start/koniec, elementy proste i złożone, atrybuty, self-closing oraz model drzewa i ścieżki.",
+    "topics": [
+      "XML",
+      "znaczniki",
+      "atrybuty",
+      "elementy i węzły",
+      "drzewo i ścieżki",
+      "serializacja i deserializacja",
+      "self-closing",
+      "XML Schema"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko o tym, czym jest XML i jak reprezentuje struktury danych. Omówione są znaczniki, atrybuty, elementy proste i złożone oraz sposób patrzenia na dokument jak na drzewo.\n\n## Kluczowe pojęcia\n### XML\n`XML` to Extensible Markup Language. Służy do wymiany ustrukturyzowanych danych między aplikacjami.\n\n### Znaczniki start i end\nElementy mają start tag, np. `<person>`, i end tag, np. `</person>`. End tag ma ukośnik `/`.\n\n### Element prosty i złożony\nProsty element ma tylko tekst między tagami, np. `<name>Jan</name>`. Złożony element ma inne elementy jako dzieci, np. `<person><name>Jan</name></person>`.\n\n### Atrybuty\nAtrybuty są zawsze w start tagu jako pary klucz=\"wartość\", np. `<phone type=\"intl\">`. Zawsze używamy podwójnych cudzysłowów.\n\n### Self-closing\nSelf-closing to skrócony zapis pustego elementu, np. `<note />`. To jak gdyby miał pusty end tag.\n\n### Drzewo i ścieżki\nDokument XML można wyobrazić jako drzewo. Elementy to węzły. Ścieżkę zapisujemy jak `/root/child` i wtedy wskazujemy miejsce w drzewie.\n\n### Serializacja i deserializacja\nSerializacja to zamiana wewnętrznej struktury na XML do wysłania. Deserializacja to odczytanie XML i przywrócenie struktury po drugiej stronie.\n\n## Przykłady kodu\n```python\n# prosty element z atrybutem i self-closing\nxml = \"<people><person id=\\\"1\\\"><name>Ada</name></person><note /></people>\"\n```\nPrzykład pokazuje start i end tag, atrybut oraz self-closing.\n\n## Ważne zasady\n- **Jedno zewnętrzne drzewo** — dokument ma dokładnie jeden zewnętrzny (root) element.\n- **Atrybuty w start tagu** — wszystkie atrybuty zapisujemy w otwierającym tagu jako `key=\"value\"`.\n- **End tag z ukośnikiem** — kończący tag zawsze ma `/` przed nazwą, np. `</tag>`.\n- **Whitespace** — spacje poza tekstem elementów zwykle nie mają znaczenia, ale w środku tekstu mają znaczenie.\n- **Self-closing** — `<tag />` oznacza pusty element, równoważny z `<tag></tag>`.\n\n## Częste błędy\n- **Brak zamknięcia tagu**: np. `<a><b>tekst</a>` — powoduje niepoprawne drzewo. Sprawdź, czy każdy start ma end.\n- **Atrybut bez cudzysłowu**: np. `<x id=1>` — w XML atrybuty muszą mieć podwójne cudzysłowy: `id=\"1\"`.\n",
+    "flashcardCount": 10,
+    "quizCount": 9,
+    "exerciseCount": 4
   }
 ]

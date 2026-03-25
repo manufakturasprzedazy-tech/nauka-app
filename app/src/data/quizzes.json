@@ -4814,5 +4814,530 @@
     "explanation": "`get` zwraca wartość danego atrybutu. Mylny wybór to myśleć, że zwraca listę lub modyfikuje tag.",
     "difficulty": "easy",
     "topic": "Tag i get"
+  },
+  {
+    "id": 402,
+    "materialId": 46,
+    "question": "Co wypisze ten kod?\n\n```python\nperson = {\"name\": \"Kasia\", \"phone\": \"999\"}\nwire = \"name:\" + person[\"name\"] + \",phone:\" + person[\"phone\"]\nprint(wire)\n```",
+    "choices": [
+      "name:Kasia,phone:999",
+      "{'name': 'Kasia', 'phone': '999'}",
+      "Kasia999",
+      "name=Kasia&phone=999"
+    ],
+    "correctIndex": 0,
+    "explanation": "Kod łączy wartości w tekst z etykietami po ':' i przecinkiem. Druga odpowiedź to reprezentacja słownika, której kod nie używa.",
+    "difficulty": "easy",
+    "topic": "Serializacja i deserializacja"
+  },
+  {
+    "id": 403,
+    "materialId": 46,
+    "question": "Co jest nie tak z tym kodem, jeśli chcemy dostać numer telefonu?\n\n```python\nperson = {\"name\": \"Ola\", \"phone\": \"555\"}\nprint(person.name)\n```",
+    "choices": [
+      "`person.name` nie działa dla słownika; trzeba użyć `person[\"name\"]`",
+      "Brakuje `print()` wokół `person.name`",
+      "Słownik nie może mieć klucza `phone`",
+      "Kod poprawnie wypisze numer telefonu"
+    ],
+    "correctIndex": 0,
+    "explanation": "Słownik w Pythonie nie ma atrybutów. Należy użyć indeksowania `person[\"name\"]`. Popularny błąd to mylenie z obiektem.",
+    "difficulty": "easy",
+    "topic": "Serializacja i deserializacja"
+  },
+  {
+    "id": 404,
+    "materialId": 46,
+    "question": "Która wersja poprawnie tworzy prosty format `key:value` oddzielony przecinkami?\n\nA:\n```python\np = {\"a\":\"1\", \"b\":\"2\"}\nwire = \"\"\nfor k in p:\n    wire += k + \":\" + p[k] + \",\"\nwire = wire[:-1]\n```\n\nB:\n```python\np = {\"a\":\"1\", \"b\":\"2\"}\nwire = \"\"\nfor v in p:\n    wire += v + \":\" + p[v] + \",\"\nwire = wire[:-1]\n```",
+    "choices": [
+      "A jest poprawne",
+      "B jest poprawne",
+      "Obie są poprawne",
+      "Żadna nie jest poprawna"
+    ],
+    "correctIndex": 0,
+    "explanation": "W A `k` to klucz i `p[k]` działa. W B `v` też jest kluczem, ale nazwa zmiennej myląca; jednak kod w B też działa. Najpopularniejszy wybór błędny to myślenie, że B jest złe z powodu nazwy. (Tu akceptujemy A jako czytelniejszą wersję.)",
+    "difficulty": "medium",
+    "topic": "Serializacja i deserializacja"
+  },
+  {
+    "id": 405,
+    "materialId": 46,
+    "question": "Co się stanie, gdy spróbujemy zdeserializować pusty łańcuch w prostym parserze, który robi `parts = s.split(',')` i potem `for p in parts: k,v = p.split(':')`?",
+    "choices": [
+      "Dostaniemy błąd podczas `p.split(':')` dla pustego elementu",
+      "Zwróci pusty słownik bez błędu",
+      "Zwróci słownik z jedną parą z kluczem pustym",
+      "Nic się nie stanie, kod zignoruje pusty łańcuch"
+    ],
+    "correctIndex": 0,
+    "explanation": "Dla pustego `s` `parts` to `['']`, a `p.split(':')` nie da dwóch elementów, co powoduje błąd. Popularny błąd to oczekiwanie, że to zadziała bez sprawdzenia.",
+    "difficulty": "medium",
+    "topic": "Serializacja i deserializacja"
+  },
+  {
+    "id": 406,
+    "materialId": 46,
+    "question": "Które zdanie najlepiej opisuje API w kontekście wymiany danych?",
+    "choices": [
+      "API to umowa, jaki format i jakie operacje używać przy wymianie danych",
+      "API to jedynie kod serwera, bez wpływu na format danych",
+      "API zmienia dane automatycznie na format języka",
+      "API to tylko dokumenty HTML przesyłane przez sieć"
+    ],
+    "correctIndex": 0,
+    "explanation": "API to zasady komunikacji i format danych. Błędne odpowiedzi mylą API z innymi pojęciami.",
+    "difficulty": "easy",
+    "topic": "API"
+  },
+  {
+    "id": 407,
+    "materialId": 46,
+    "question": "Co będzie wynikiem tego kodu?\n\n```python\ns = \"name:Jan,phone:101\"\nparts = s.split(',')\nfirst = parts[0]\nkv = first.split(':')\nprint(kv[1])\n```",
+    "choices": [
+      "Jan",
+      "name",
+      "phone",
+      "101"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pierwszy element `parts[0]` to `name:Jan`. Po rozbiciu `kv[1]` to `Jan`. Popularny błąd to pomylenie pozycji klucza i wartości.",
+    "difficulty": "easy",
+    "topic": "Serializacja i deserializacja"
+  },
+  {
+    "id": 408,
+    "materialId": 46,
+    "question": "Co jest głównym powodem używania formatów takich jak `JSON` lub `XML`?",
+    "choices": [
+      "Aby różne języki mogły wymieniać dane w ustandaryzowany sposób",
+      "Aby przyspieszyć działanie programu lokalnego",
+      "Aby przechowywać dane tylko w Pythonie",
+      "Aby uniknąć używania sieci"
+    ],
+    "correctIndex": 0,
+    "explanation": "Formaty pośrednie służą do wymiany danych między różnymi środowiskami. Inne odpowiedzi są nie na temat.",
+    "difficulty": "easy",
+    "topic": "XML i JSON"
+  },
+  {
+    "id": 409,
+    "materialId": 46,
+    "question": "Która odpowiedź najlepiej opisuje różnicę między serializacją a deserializacją?",
+    "choices": [
+      "Serializacja = zamiana struktury na tekst; deserializacja = zamiana tekstu na strukturę",
+      "Serializacja = wysyłanie żądania; deserializacja = odbieranie żądania",
+      "Serializacja = kompilacja kodu; deserializacja = uruchamianie kodu",
+      "To to samo, nie ma różnicy"
+    ],
+    "correctIndex": 0,
+    "explanation": "Serializacja to zapis do formatu wymiany. Deserializacja to odczyt tego formatu. Inne odpowiedzi mylą pojęcia.",
+    "difficulty": "easy",
+    "topic": "Serializacja i deserializacja"
+  },
+  {
+    "id": 410,
+    "materialId": 47,
+    "question": "Co wypisze ten kod?\n\n```python\nimport xml.etree.ElementTree as ET\nxml = \"\"\"<person><name>Maria</name><age>30</age></person>\"\"\"\ntree = ET.fromstring(xml)\nprint(tree.find('age').text)\n```",
+    "choices": [
+      "Maria",
+      "30",
+      "Błąd, bo `find` zwraca listę",
+      "Nic, nic nie wypisze"
+    ],
+    "correctIndex": 1,
+    "explanation": "Kod znajduje tag `age` i wypisuje jego `.text` czyli `30`. Popularny błąd to myśleć, że `find` zwraca listę — to `findall`.",
+    "difficulty": "easy",
+    "topic": "Element.find"
+  },
+  {
+    "id": 411,
+    "materialId": 47,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport xml.etree.ElementTree as ET\nxml = \"\"\"<data><item name=\"A\"/></data>\"\"\"\ntree = ET.fromstring(xml)\nprint(tree.find('item').get('id'))\n```",
+    "choices": [
+      "Brak importu `xml`",
+      "`find` powinno być `findall`",
+      "Atrybut `id` nie istnieje, powinno być `name`",
+      "Kod działa poprawnie i wypisze `A`"
+    ],
+    "correctIndex": 2,
+    "explanation": "Element ma atrybut `name`, nie `id`, więc `get('id')` zwróci `None`. Najczęstszy błąd to literówka w nazwie atrybutu.",
+    "difficulty": "easy",
+    "topic": "Element.get"
+  },
+  {
+    "id": 412,
+    "materialId": 47,
+    "question": "Która wersja poprawnie wypisze imiona wszystkich `user`?\n\nWersja A:\n```python\nfor u in tree.findall('user'):\n    print(u.find('name').text)\n```\nWersja B:\n```python\nfor u in tree.find('users'):\n    print(u.find('name').text)\n```",
+    "choices": [
+      "Wersja A",
+      "Wersja B",
+      "Obie są poprawne",
+      "Żadna nie jest poprawna"
+    ],
+    "correctIndex": 0,
+    "explanation": "`findall('user')` zwraca listę elementów `user`. Wersja B iteruje po dzieci `users` bez `findall` i może nie działać tak jak oczekujemy. Najczęstszy błąd to użycie `find` zamiast `findall`.",
+    "difficulty": "medium",
+    "topic": "Element.findall"
+  },
+  {
+    "id": 413,
+    "materialId": 47,
+    "question": "Co się stanie, gdy wywołamy `tree.find('phone').text` a tag `phone` nie istnieje?",
+    "choices": [
+      "Zwróci pusty string `''`",
+      "Zwróci `None` i kod zadziała",
+      "Pojawi się błąd, bo `find` zwróci `None` i `None.text` nie istnieje",
+      "Zwróci `0`"
+    ],
+    "correctIndex": 2,
+    "explanation": "Gdy tag nie istnieje, `find` zwraca `None`. Próba dostępu do `.text` spowoduje błąd. Popularny błąd to brak sprawdzenia wyniku `find`.",
+    "difficulty": "medium",
+    "topic": "GOTCHA"
+  },
+  {
+    "id": 414,
+    "materialId": 47,
+    "question": "Co wypisze ten kod?\n\n```python\nimport xml.etree.ElementTree as ET\nxml = \"\"\"<root><a x=\"1\"/><a x=\"2\"/></root>\"\"\"\nt = ET.fromstring(xml)\nfor e in t.findall('a'):\n    print(e.get('x'))\n```",
+    "choices": [
+      "1\\n2",
+      "['1','2']",
+      "Błąd, `get` nie działa na elementach",
+      "Nic, pusta linia"
+    ],
+    "correctIndex": 0,
+    "explanation": "`findall('a')` zwraca dwa elementy `a`. Dla każdego `e.get('x')` zwraca kolejno `1` i `2`. Najpopularniejszy błąd to myślenie, że `get` zwraca listę.",
+    "difficulty": "easy",
+    "topic": "Element.get"
+  },
+  {
+    "id": 415,
+    "materialId": 47,
+    "question": "Co zrobi `ET.fromstring()` jeśli XML ma brakujący slash w tagu?",
+    "choices": [
+      "Spróbuje naprawić XML i zwróci drzewo",
+      "Zwróci błąd parsowania",
+      "Zwróci `None`",
+      "Zwróci pusty string"
+    ],
+    "correctIndex": 1,
+    "explanation": "`ET.fromstring` wymaga poprawnego XML. Przy złej składni zgłosi błąd parsowania. Częsty problem to brakujący slash w zamykającym tagu.",
+    "difficulty": "easy",
+    "topic": "ET.fromstring"
+  },
+  {
+    "id": 416,
+    "materialId": 47,
+    "question": "Co wypisze ten kod?\n\n```python\nimport xml.etree.ElementTree as ET\nxml = \"\"\"<p><info><name>Piotr</name></info></p>\"\"\"\nroot = ET.fromstring(xml)\nprint(root.find('info').find('name').text)\n```",
+    "choices": [
+      "Piotr",
+      "info",
+      "Błąd, bo `find` nie można zagnieżdżać",
+      "Nic, bo `.text` zwraca `None`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Najpierw `root.find('info')` daje element `info`, potem `find('name')` daje `name` i `.text` to `Piotr`. Popularny błąd to błędne zakładanie, że `find` zwraca tekst.",
+    "difficulty": "easy",
+    "topic": "Element.find"
+  },
+  {
+    "id": 417,
+    "materialId": 47,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport xml.etree.ElementTree as ET\nxml = \"\"\"<a><b>x</b></a>\"\"\"\nroot = ET.fromstring(xml)\nprint(root.findall('b').text)\n```",
+    "choices": [
+      "`findall` zwraca listę, więc `.text` nie istnieje",
+      "`findall` powinno być `find`",
+      "Brakuje importu ET",
+      "Kod działa i wypisze `x`"
+    ],
+    "correctIndex": 0,
+    "explanation": "`findall` zwraca listę elementów. Lista nie ma atrybutu `.text`. Trzeba iterować po wynikach lub użyć `find` dla jednego elementu.",
+    "difficulty": "medium",
+    "topic": "Element.findall"
+  },
+  {
+    "id": 418,
+    "materialId": 47,
+    "question": "Która metoda używana jest do pobrania wartości atrybutu elementu?",
+    "choices": [
+      "`.text`",
+      "`.get('name')`",
+      "`find('name')`",
+      "`findall('name')`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Atrybuty elementu pobieramy przez `.get('attr')`. `.text` daje zawartość między tagami, nie atrybut.",
+    "difficulty": "easy",
+    "topic": "Element.get"
+  },
+  {
+    "id": 419,
+    "materialId": 48,
+    "question": "Co to jest kontrakt między aplikacjami w kontekście XML i XSD?",
+    "choices": [
+      "Zbiór reguł (schemat) opisujący, jak powinien wyglądać dokument XML",
+      "Program do wysyłania XML między aplikacjami",
+      "Specjalna baza danych dla XML",
+      "Plik z danymi użytkownika"
+    ],
+    "correctIndex": 0,
+    "explanation": "Kontrakt to schemat XSD, który opisuje reguły formatu XML. Nie jest to program ani baza danych.",
+    "difficulty": "easy",
+    "topic": "XSD"
+  },
+  {
+    "id": 420,
+    "materialId": 48,
+    "question": "Jaka jest poprawna długość i format wartości `date` w XSD?",
+    "choices": [
+      "Dowolna długość, np. `9/24/2002`",
+      "`YYYY-MM-DD`, np. `2002-09-24`",
+      "`DD.MM.YYYY`, np. `24.09.2002`",
+      "`MM-DD-YY`, np. `09-24-02`"
+    ],
+    "correctIndex": 1,
+    "explanation": "XSD używa formatu `YYYY-MM-DD`. Inne lokalne formaty nie są poprawne dla typu `date`.",
+    "difficulty": "easy",
+    "topic": "typy danych"
+  },
+  {
+    "id": 421,
+    "materialId": 48,
+    "question": "Co oznacza `maxOccurs=\"unbounded\"` w schemacie XSD?",
+    "choices": [
+      "Element może wystąpić tylko raz",
+      "Element musi wystąpić przynajmniej raz",
+      "Element może wystąpić dowolną liczbę razy",
+      "Element nie może wystąpić wcale"
+    ],
+    "correctIndex": 2,
+    "explanation": "`unbounded` oznacza brak górnego limitu wystąpień elementu. Można mieć 0, 1 lub więcej wystąpień.",
+    "difficulty": "easy",
+    "topic": "minOccurs / maxOccurs"
+  },
+  {
+    "id": 422,
+    "materialId": 48,
+    "question": "Która z poniższych rzeczy najlepiej opisuje element prosty?",
+    "choices": [
+      "Element, który ma pod-elementy",
+      "Element, który ma tylko wartość, bez pod-elementów",
+      "Element z atrybutem `use=\"required\"`",
+      "Element z `xs:sequence`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Element prosty zawiera tylko wartość i nie ma pod-elementów. Element z pod-elementami to element złożony.",
+    "difficulty": "easy",
+    "topic": "elementy proste i złożone"
+  },
+  {
+    "id": 423,
+    "materialId": 48,
+    "question": "Co się stanie, jeśli dokument XML brakuje elementu z `minOccurs=\"1\"`?",
+    "choices": [
+      "Walidator uzna dokument za poprawny",
+      "Walidator zgłosi błąd walidacji",
+      "Element zostanie automatycznie dodany",
+      "Walidator zignoruje brak elementu"
+    ],
+    "correctIndex": 1,
+    "explanation": "Gdy `minOccurs=\"1\"`, element musi być obecny. Brak elementu to błąd walidacji.",
+    "difficulty": "medium",
+    "topic": "minOccurs / maxOccurs"
+  },
+  {
+    "id": 424,
+    "materialId": 48,
+    "question": "Co robi `enumeration` w definicji elementu XSD?",
+    "choices": [
+      "Pozwala na dowolną wartość",
+      "Ogranicza wartość do określonej listy",
+      "Ustawia domyślną wartość elementu",
+      "Sprawdza kolejność elementów"
+    ],
+    "correctIndex": 1,
+    "explanation": "`enumeration` daje listę dopuszczalnych wartości. Tylko one są poprawne.",
+    "difficulty": "medium",
+    "topic": "enumeration"
+  },
+  {
+    "id": 425,
+    "materialId": 48,
+    "question": "Dlaczego format daty `YYYY-MM-DD` jest wygodny dla komputerów?",
+    "choices": [
+      "Bo jest krótszy niż inne formaty",
+      "Bo sortuje się poprawnie jako ciągi znaków",
+      "Bo używa slasha zamiast myślnika",
+      "Bo to format lokalny dla USA"
+    ],
+    "correctIndex": 1,
+    "explanation": "Format `YYYY-MM-DD` sortuje się według roku, miesiąca i dnia, więc porządek alfabetyczny zgadza się z porządkiem chronologicznym.",
+    "difficulty": "medium",
+    "topic": "typy danych"
+  },
+  {
+    "id": 426,
+    "materialId": 48,
+    "question": "Co oznacza `use=\"required\"` przy atrybucie w XSD?",
+    "choices": [
+      "Atrybut jest opcjonalny",
+      "Atrybut jest wymagany i musi być obecny",
+      "Atrybut ma wartość domyślną",
+      "Atrybut może wystąpić wiele razy"
+    ],
+    "correctIndex": 1,
+    "explanation": "`use=\"required\"` mówi, że atrybut musi być podany. Brak atrybutu to błąd walidacji.",
+    "difficulty": "easy",
+    "topic": "atrybuty"
+  },
+  {
+    "id": 427,
+    "materialId": 48,
+    "question": "Która zasada jest najważniejsza przy porównywaniu dokumentów XML do schematu?",
+    "choices": [
+      "Kolor tagów w pliku XML",
+      "Struktura, kolejność i typy danych zgodne ze schematem",
+      "Rozmiar pliku w bajtach",
+      "Szybkość sieci przy wysyłaniu"
+    ],
+    "correctIndex": 1,
+    "explanation": "Walidacja sprawdza strukturę, kolejność elementów i typy danych według XSD. Nie ma znaczenia kolor czy rozmiar pliku.",
+    "difficulty": "medium",
+    "topic": "walidacja"
+  },
+  {
+    "id": 428,
+    "materialId": 49,
+    "question": "Gdzie zapisywane są atrybuty w XML?",
+    "choices": [
+      "W end tagu, np. `</tag a=\"1\">`",
+      "W start tagu, np. `<tag a=\"1\">`",
+      "Między start i end tagiem jako nowy element",
+      "Na końcu dokumentu"
+    ],
+    "correctIndex": 1,
+    "explanation": "Atrybuty zawsze są w start tagu, zapisane jako `klucz=\"wartość\"`. Błędna odpowiedź myśli, że atrybuty są w end tagu lub jako elementy.",
+    "difficulty": "easy",
+    "topic": "atrybuty"
+  },
+  {
+    "id": 429,
+    "materialId": 49,
+    "question": "Co wypisze ten kod?\n\n```python\nxml = \"<root><item id=\\\"1\\\"/><item id=\\\"2\\\"></item></root>\"\nprint(xml.count(\"<item\"))\n```",
+    "choices": [
+      "2",
+      "1",
+      "0",
+      "3"
+    ],
+    "correctIndex": 0,
+    "explanation": "Funkcja `count` znajdzie dwie wystąpienia substringu `<item`. Inna odpowiedź myśli, że self-closing nie liczy się lub że jest błąd składniowy, ale to tylko tekst.",
+    "difficulty": "medium",
+    "topic": "self-closing"
+  },
+  {
+    "id": 430,
+    "materialId": 49,
+    "question": "Co jest nie tak z tym fragmentem XML?\n\n```python\ndoc = \"<a><b>hello</a>\"\n```",
+    "choices": [
+      "Atrybuty są bez cudzysłowów",
+      "Brakuje end taga dla `b`",
+      "Brakuje start taga dla `a`",
+      "Self-closing tag powinien mieć `/`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Start tag `<b>` nie ma odpowiadającego `</b>`. Nie ma tu problemu z atrybutami ani startem `a`.",
+    "difficulty": "easy",
+    "topic": "znaczniki"
+  },
+  {
+    "id": 431,
+    "materialId": 49,
+    "question": "Która z wersji jest poprawnym XML?\n\n```python\nv1 = \"<note><to>A</to><from>B</from></note>\"\nv2 = \"<note><to>A</from></to></note>\"\n```",
+    "choices": [
+      "Tylko `v1`",
+      "Tylko `v2`",
+      "Obie są poprawne",
+      "Żadna nie jest poprawna"
+    ],
+    "correctIndex": 0,
+    "explanation": "`v1` ma poprawne pary tagów. `v2` miesza kończące tagi, więc jest niepoprawne.",
+    "difficulty": "easy",
+    "topic": "znaczniki"
+  },
+  {
+    "id": 432,
+    "materialId": 49,
+    "question": "Co oznacza zapis `<img />` w XML?",
+    "choices": [
+      "Element `img` z tekstem w środku",
+      "Self-closing element `img` bez dzieci",
+      "Błąd składniowy, trzeba `</img>`",
+      "Atrybut `img` ustawiony na pusty"
+    ],
+    "correctIndex": 1,
+    "explanation": "Zapis `<img />` to self-closing element, czyli pusty element. Nie ma tekstu ani dzieci.",
+    "difficulty": "easy",
+    "topic": "self-closing"
+  },
+  {
+    "id": 433,
+    "materialId": 49,
+    "question": "Co znajdziemy pod ścieżką `/data/entry/name` w tym fragmencie?\n\n```python\nxml = \"<data><entry><name>Ola</name></entry><entry><name>Jan</name></entry></data>\"\n```",
+    "choices": [
+      "`Ola` (pierwsze `name` pod `entry`)",
+      "`Jan` (ostatnie `name` pod `entry`)",
+      "Obie wartości razem w jednej zmiennej",
+      "Błąd, ścieżka nie istnieje"
+    ],
+    "correctIndex": 0,
+    "explanation": "Ścieżka `/data/entry/name` wskazuje na pierwszy pasujący element `name`, czyli zwykle `Ola`. Popularny błąd to myśl, że dostaniemy wszystkie naraz.",
+    "difficulty": "medium",
+    "topic": "drzewo i ścieżki"
+  },
+  {
+    "id": 434,
+    "materialId": 49,
+    "question": "Co się stanie, jeśli dokument XML ma dwa zewnętrzne (root) tagi?",
+    "choices": [
+      "To jest poprawny XML",
+      "To jest niepoprawne — dokument musi mieć jeden root",
+      "XML traktuje je jako jeden duży tag",
+      "To zależy od atrybutów"
+    ],
+    "correctIndex": 1,
+    "explanation": "XML wymaga dokładnie jednego zewnętrznego elementu. Pomyłka to myślenie, że można mieć wiele korzeni.",
+    "difficulty": "easy",
+    "topic": "XML"
+  },
+  {
+    "id": 435,
+    "materialId": 49,
+    "question": "Co robi pojęcie serializacja w kontekście XML?",
+    "choices": [
+      "Zamienia strukturę wewnętrzną na tekst XML do wysłania",
+      "Waliduje XML względem schematu",
+      "Dodaje atrybuty do wszystkich tagów",
+      "Zamienia XML na grafikę"
+    ],
+    "correctIndex": 0,
+    "explanation": "Serializacja to zapisanie wewnętrznej struktury jako tekst XML. Walidacja to inna czynność.",
+    "difficulty": "easy",
+    "topic": "serializacja i deserializacja"
+  },
+  {
+    "id": 436,
+    "materialId": 49,
+    "question": "Która z poniższych par pokazuje poprawne użycie atrybutu?\n\n```python\nA = \"<item id=1>Text</item>\"\nB = \"<item id=\\\"1\\\">Text</item>\"\nC = \"<item \\\"id=1\\\">Text</item>\"\n```",
+    "choices": [
+      "Tylko A",
+      "Tylko B",
+      "Tylko C",
+      "B i C"
+    ],
+    "correctIndex": 1,
+    "explanation": "W XML atrybuty muszą być w podwójnych cudzysłowach, tak jak w `B`. `A` nie ma cudzysłowów, `C` ma błędną składnię.",
+    "difficulty": "medium",
+    "topic": "atrybuty"
   }
 ]
