@@ -769,5 +769,100 @@
     "flashcardCount": 10,
     "quizCount": 9,
     "exerciseCount": 4
+  },
+  {
+    "id": 50,
+    "courseId": "python",
+    "filename": "Działający przykład API OpenStreetMap.md",
+    "title": "Geokodowanie i parsowanie JSON z API",
+    "summary": "Lekcja pokazuje, jak zamienić tekstowy adres na współrzędne (geokodowanie) używając serwisu OpenStreetMap przez proxy. Pokazuje też jak pobrać dane z sieci, rozkodować je z UTF-8 i sparsować JSON, a potem wydobyć `lat` i `lon` z zagnieżdżonej struktury.",
+    "topics": [
+      "Geokodowanie",
+      "URL i kodowanie zapytań",
+      "Pobieranie danych HTTP",
+      "Dekodowanie UTF-8",
+      "Parsowanie JSON",
+      "Dostęp do zagnieżdżonych słowników i list",
+      "Proxy i rate limiting"
+    ],
+    "notes": "## O czym jest ta lekcja\nTa lekcja pokazuje, jak zamienić adres tekstowy na współrzędne (geokodowanie). Używa proxy API i pokazuje kroki: zbudowanie URL, pobranie danych, dekodowanie i parsowanie JSON.\n\n## Kluczowe pojęcia\n### Geokodowanie\nGeokodowanie to zamiana tekstowego adresu na pozycję na mapie. W lekcji użyto API opartego na danych OpenStreetMap.\n\n### Budowanie zapytania HTTP i `urlencode`\nAby przesłać parametry w adresie, tworzymy słownik `parms` i wywołujemy `urllib.parse.urlencode(parms)`. To koduje spacje i znaki specjalne w bezpieczny sposób.\n\n### Proxy i rate limiting\nAutor używa proxy `py4e-data.dr-chuck.net/opengeo?` by uniknąć potrzeby klucza API. Proxy ma ograniczenia szybkości (rate limiting), więc kolejne zapytania mogą być spowolnione.\n\n### Pobieranie, dekodowanie i parsowanie\nDane pobieramy przez `urllib.request.urlopen(url, context=ctx)` (gdzie `ctx` wyłącza sprawdzanie certyfikatów w tym ćwiczeniu). Wynik to bajty, więc używamy `data.decode()` (UTF-8) by dostać `str`. Potem używamy `json.loads()` by dostać słowniki i listy Pythona.\n\n### Nawigacja po zagnieżdżonym JSON\nPo sparsowaniu mamy obiekt `js` (słownik). Typowa ścieżka do współrzędnych wygląda tak: `js['features'][0]['properties']['lat']` i `js['features'][0]['properties']['lon']`.\n\n## Przykłady kodu\n```python\n# przykład dekodowania i parsowania\ndata = response.read()\ntext = data.decode()\njs = json.loads(text)\nprint(js['features'][0]['properties']['lat'])\n```\nTen przykład pokazuje kroki: czytanie bajtów, dekodowanie, parsowanie i dostęp do `lat`.\n\n```python\n# przykład budowania zapytania\nparms = dict()\nparms['q'] = 'Warsaw, Poland'\nurl = 'py4e-data.dr-chuck.net/opengeo?' + urllib.parse.urlencode(parms)\nprint(url)\n```\nTo pokazuje użycie `urlencode` do bezpiecznego osadzenia parametrów w URL.\n\n## Ważne zasady\n- **Zawsze dekoduj bajty** — użyj `data.decode()` przed `json.loads()`.\n- **Użyj `urlencode`** — nie ręcznie zamieniaj spacji i przecinków, bo to łatwo zepsuć.\n- **Sprawdź strukturę JSON przed dostępem** — upewnij się, że klucz `features` istnieje, zanim indeksujesz.\n- **Proxy może rate limitować** — powtórne zapytania mogą być wolniejsze.\n- **Pretty print** — `json.dumps(js, indent=4)` pomaga czytać strukturę.\n\n## Częste błędy\n- **Błąd klucza (KeyError)**: próba `js['features']['lat']` zamiast `js['features'][0]['properties']['lat']`. Zawsze sprawdź, że jesteś na właściwym poziomie zagnieżdżenia.\n- **Nie zdekodowane bajty**: wywołanie `json.loads()` na bajtach zamiast na `str` może nie działać przewidywalnie. Najpierw `data.decode()`.\n- **Ręczne kodowanie URL**: ręczna zamiana spacji i przecinków prowadzi do błędów. Lepiej użyć `urllib.parse.urlencode()`.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 51,
+    "courseId": "python",
+    "filename": "Działający przykład JSON.md",
+    "title": "Wprowadzenie do JSON i `json.loads()`",
+    "summary": "Lekcja wyjaśnia, czym jest JSON i jak zamienić tekst JSON na obiekty Pythona. Pokazuje, że obiekty JSON stają się słownikami, a tablice JSON stają się listami w Pythonie.",
+    "topics": [
+      "JSON",
+      "json.loads",
+      "Słowniki",
+      "Listy",
+      "Parsowanie",
+      "Błędy składniowe"
+    ],
+    "notes": "## O czym jest ta lekcja\nJSON to prosty format danych podobny do słowników i list w Pythonie. Lekcja pokazuje jak użyć `import json` i `json.loads()` do zamiany tekstu JSON na struktury Pythona.\n\n## Kluczowe pojęcia\n### JSON\n`JSON` to tekstowy format danych z kluczami i wartościami. Wygląda podobnie do składni Pythona, ale to tekst do parsowania.\n\n### `import json`\nPolecenie `import json` ładuje bibliotekę JSON w Pythonie. Bez tego nie można użyć `json.loads()`.\n\n### `json.loads()`\nFunkcja `json.loads()` bierze string z JSON i zwraca strukturę Pythona. Obiekty JSON zamienia na `dict`, a tablice JSON na `list`.\n\n### Słowniki i zagnieżdżenie\nPo zparsowaniu możesz sięgnąć do wartości przez indeksowanie: `data['klucz']['podklucz']` dla zagnieżdżonych obiektów.\n\n### Tablice JSON -> listy Pythona\nGdy JSON zawiera `[...]`, po `json.loads()` dostaniesz listę. Możesz po niej iterować pętlą `for`.\n\n## Przykłady kodu\n```python\nimport json\ns = '{\"user\": {\"name\": \"Ala\", \"email\": \"ala@example.com\"}}'\ndata = json.loads(s)\nprint(data['user']['email'])\n```\nTo parsuje obiekt i wypisuje adres email.\n\n```python\nimport json\ns = '[{\"name\":\"Tom\"}, {\"name\":\"Ewa\"}]'\ndata = json.loads(s)\nfor item in data:\n    print(item['name'])\n```\nTo parsuje listę obiektów i wypisuje imiona.\n\n## Ważne zasady\n- **Import** — zawsze użyj `import json` zanim wywołasz `json.loads()`.\n- **Parsowanie** — `json.loads()` zamienia tekst JSON w strukturę Pythona (`dict`/`list`).\n- **Dostęp** — sięgaj po wartości bezpośrednio: `data['key']` lub `data[0]` dla listy.\n- **Zagnieżdżenie** — JSON może mieć obiekty w obiektach; użyj wielokrotnego indeksowania.\n- **Błędy składniowe** — brak nawiasów lub złe cudzysłowy spowodują błąd przy `json.loads()`.\n\n## Częste błędy\n- **Błąd 1**: Brak nawiasu `}` lub `]` w tekście JSON. `json.loads()` zgłosi błąd parsowania. Sprawdź pary nawiasów.\n- **Błąd 2**: Użycie pojedynczych apostrofów dla kluczy (`{'a':1}`) to nieprawidłowy JSON. JSON wymaga podwójnych cudzysłowów.\n- **Błąd 3**: Odwołanie do nieistniejącego klucza przez `data['x']` spowoduje błąd podczas dostępu. Upewnij się, że klucz istnieje.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 52,
+    "courseId": "python",
+    "filename": "JavaScript Object Notation (JSON).md",
+    "title": "Wprowadzenie do JSON i mapowanie na struktury Pythona",
+    "summary": "Lekcja wyjaśnia, czym jest JSON i jak w Pythonie zamienić tekst JSON na listy i słowniki. Pokazuje `json.loads()` i sposób dostępu do zagnieżdżonych wartości przez nawiasy.",
+    "topics": [
+      "Co to jest JSON",
+      "Importowanie biblioteki json",
+      "`json.loads()`",
+      "Mapowanie na listy i słowniki",
+      "Zagnieżdżone struktury i dostęp przez nawiasy",
+      "Błędy składniowe JSON"
+    ],
+    "notes": "## O czym jest ta lekcja\nJSON to prosty format do zapisu danych. Tekst JSON można wczytać w Pythonie i otrzymać zwykłe `list` i `dict`.\n\n## Kluczowe pojęcia\n### JSON\nJSON to tekstowy format opisujący dane. Używa `{}` dla obiektów i `[]` dla list.\n\n### `json.loads()`\nFunkcja z biblioteki `json`, która zamienia tekst JSON na struktury Pythona. Używamy `import json` i potem `json.loads(json_text)`.\n\n### Mapowanie na typy Pythona\nObiekty JSON (z klamrami) stają się `dict`, a tablice JSON (z nawiasami kwadratowymi) stają się `list`.\n\n### Zagnieżdżone struktury\nJSON może mieć słowniki w słownikach i listy ze słownikami. W Pythonie dostęp do wartości robimy przez nawiasy, np. `data['key']` lub `data[0]`.\n\n## Przykłady kodu\n```python\nimport json\njson_text = '{\"name\":\"Anna\",\"phone\":{\"type\":\"home\",\"number\":\"123\"}}'\ndata = json.loads(json_text)\nprint(data['name'])\nprint(data['phone']['number'])\n```\nTo pokazuje wczytanie i dostęp do zagnieżdżonej wartości.\n\n```python\nimport json\njson_text = '[{\"id\":1,\"name\":\"A\"},{\"id\":2,\"name\":\"B\"}]'\nitems = json.loads(json_text)\nprint(len(items))\nfor item in items:\n    print(item['name'])\n```\nPrzykład listy słowników oraz iteracji pętlą `for`.\n\n## Ważne zasady\n- **Import** — zawsze użyj `import json` przed wywołaniem `json.loads()`.\n- **Typy** — `{}` → `dict`, `[]` → `list` w Pythonie.\n- **Dostęp** — do pól używaj nawiasów: `obj['key']` lub `list[0]`.\n- **Zagnieżdżenie** — możesz łączyć `list` i `dict` dowolnie.\n- **Błędy składniowe** — niepoprawny JSON spowoduje błąd przy `json.loads()` i otrzymasz traceback.\n\n## Częste błędy\n- **Brak cudzysłowów przy kluczach**: JSON wymaga podwójnych cudzysłowów dla kluczy; ich brak spowoduje błąd przy `json.loads()`.\n- **Mylenie typów**: spodziewasz się `dict`, a otrzymujesz `list` (np. JSON zaczyna się od `[`); najpierw sprawdź pierwszy znak.\n",
+    "flashcardCount": 10,
+    "quizCount": 8,
+    "exerciseCount": 5
+  },
+  {
+    "id": 53,
+    "courseId": "python",
+    "filename": "Korzystanie z interfejsów Application Programming Interface.md",
+    "title": "API i geokodowanie (OpenStreetMap)",
+    "summary": "Lekcja opisuje, czym są API na przykładzie otwartego serwisu mapowego. Pokazuje pojęcia geokodowania, kluczy API, limitów i buforowania (cache).",
+    "topics": [
+      "API",
+      "OpenStreetMap",
+      "geokodowanie (forward i reverse)",
+      "klucz API i limity",
+      "cache i proxy",
+      "JSON i parsowanie odpowiedzi"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: jak działa API na przykładzie otwartego serwisu mapowego. Pokazano geokodowanie adresu na współrzędne oraz praktyczne problemy jak limity i cache.\n\n## Kluczowe pojęcia\n### API\nAPI to interfejs, który pozwala programom rozmawiać z usługą przez sieć. Przykład: serwis geokodujący adresy.\n\n### OpenStreetMap\nTo otwarta baza mapowa. Dane są darmowe, ale dostęp przez API może wymagać konta.\n\n### Geokodowanie\n`Forward geocoding` zamienia adres tekstowy na współrzędne (longitude i latitude). `Reverse geocoding` robi odwrotnie.\n\n### Klucz API i limity\nWiele usług wymaga `API key` do śledzenia użycia. Są limity. Bez klucza nie zawsze można korzystać.\n\n### Cache i proxy\nWykorzystuje się cache (np. Cloudflare) i proxy, by zmniejszyć liczbę zapytań do głównego API i uniknąć limitów.\n\n### JSON i parsowanie\nOdpowiedź API często jest w `JSON`. W Pythonie używamy `json.loads()` i potem adresujemy słowniki i listy, np. `js['features'][0]['properties']['lat']`.\n\n## Przykłady kodu\n```python\nimport json\ns = '{\"features\": [{\"properties\": {\"formatted\": \"City, Country\", \"lat\": \"12.34\", \"lon\": \"56.78\"}}]}'\njs = json.loads(s)\nprint(js['features'][0]['properties']['lat'])\n```\nTo wyciąga `lat` z pierwszego elementu w `features`.\n\n## Ważne zasady\n- **Zrozum model odpowiedzi** — sprawdź strukturę `JSON` zanim wyciągniesz pola.\n- **Najpierw sprawdź `features[0]`** — to zwykle ten element, który chcesz użyć.\n- **API key i limity** — często trzeba mieć konto i klucz, by śledzić wykorzystanie.\n- **Cache pomaga** — proxy i cache zmniejszają liczbę zapytań do głównego API.\n\n## Częste błędy\n- **Zły klucz w ścieżce**: użycie `js['features'][0]['lat']` zamiast `js['features'][0]['properties']['lat']` powoduje błąd. Sprawdź ścieżkę.\n- **Założenie, że zawsze jest `features[0]`**: czasem lista `features` jest pusta. Potem dostęp do `[0]` się nie powiedzie.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 54,
+    "courseId": "python",
+    "filename": "Podejście zorientowane na usługi.md",
+    "title": "Architektura usług i API",
+    "summary": "Lekcja wyjaśnia, jak różne systemy łączą się przez usługi i API. Pokazuje, dlaczego strony (np. linii lotniczych) używają zewnętrznych serwisów, by pokazać hotele lub samochody.",
+    "topics": [
+      "Architektura usług",
+      "Web serwisy",
+      "API",
+      "Serializacja (JSON/XML)",
+      "Integracja systemów"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: uczymy się, że aplikacje często składają się z wielu małych usług. Każda usługa może udostępniać dane innym przez dobrze opisane API.\n\n## Kluczowe pojęcia\n### Architektura usług\nTo sposób budowy systemu z wielu małych usług, które komunikują się między sobą. Każda usługa wykonuje jedną rolę i może istnieć osobno.\n\n### Web serwisy i API\nWeb serwis to serwer, który daje dane lub funkcje innym programom. `API` to umowa, czyli sposób, w jaki prosisz o dane i jak one wracają.\n\n### Serializacja (JSON i XML)\nTo formaty, w których usługi wymieniają dane. Przykłady to `JSON` i `XML`. Służą do przesyłania ustrukturyzowanych informacji.\n\n### Protokół i integracja\nProtokół to zasady komunikacji między systemami. Gdy wiele usług się łączy, powstaje większy system widoczny dla użytkownika.\n\n## Przykłady kodu\n```python\n# Przykład pseudo-requests: dostajemy dane z serwisu hotelowego\nresponse = '{\"hotel\":\"Hotel X\", \"price\":120}'\nprint(response)\n```\nTo pokazuje, że serwis zwraca tekstowy format danych.\n\n## Ważne zasady\n- **Rozdzielenie zadań** — każda usługa robi jedną rzecz dobrze.\n- **Jasne API** — opisuj, jak prosić o dane i co wróci.\n- **Użyj standardów** — `JSON` lub `XML` ułatwiają wymianę.\n- **Skalowanie** — usługi mogą działać niezależnie i rosnąć osobno.\n\n## Częste błędy\n- **Za duże monolity**: próbujesz zrobić za dużo w jednym systemie. Podziel na usługi.\n- **Brak dokumentacji API**: inne zespoły nie wiedzą jak korzystać z serwisu. Dokumentuj formaty i protokoły.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
   }
 ]

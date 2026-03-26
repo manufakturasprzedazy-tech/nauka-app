@@ -2466,5 +2466,322 @@
       "Użyj stosu (listy) do śledzenia otwartych tagów.",
       "Przeszukuj tekst i znajdź kolejne `'<...>'`, rozróżniaj start i end tag."
     ]
+  },
+  {
+    "id": 202,
+    "materialId": 50,
+    "title": "Wyciągnij `formatted` z JSON",
+    "description": "Napisz funkcję `extract_formatted(json_text)` która przyjmuje tekst JSON i zwraca wartość pola `formatted` z `js['features'][0]['properties']['formatted']`. Jeśli klucz nie istnieje, zwróć `None`.",
+    "starterCode": "# starter code\nimport json\n\ndef extract_formatted(json_text):\n    # TODO: sparsuj json_text i zwróć formatted lub None\n    pass\n",
+    "solution": "# full solution\nimport json\n\ndef extract_formatted(json_text):\n    js = json.loads(json_text)\n    if 'features' not in js:\n        return None\n    if len(js['features']) == 0:\n        return None\n    props = js['features'][0].get('properties') if isinstance(js['features'][0], dict) else None\n    if not props:\n        return None\n    if 'formatted' in props:\n        return props['formatted']\n    return None\n",
+    "testCode": "# tests\njson1 = '{\"features\": [{\"properties\": {\"formatted\": \"Place A\"}}]}'\njson2 = '{\"features\": []}'\njson3 = '{}'\njson4 = '{\"features\": [{\"properties\": {}}]}'\n\nassert extract_formatted(json1) == 'Place A'\nassert extract_formatted(json2) is None\nassert extract_formatted(json3) is None\nassert extract_formatted(json4) is None\n",
+    "difficulty": "easy",
+    "topic": "JSON i parsowanie",
+    "hints": [
+      "Użyj `json.loads()` żeby zamienić tekst na obiekt.",
+      "Sprawdź, czy `'features'` jest w słowniku i czy lista nie jest pusta."
+    ]
+  },
+  {
+    "id": 203,
+    "materialId": 50,
+    "title": "Zbuduj URL z parametrem `q`",
+    "description": "Napisz funkcję `build_url(location)` która tworzy URL: `py4e-data.dr-chuck.net/opengeo?` + zakodowany parametr `q` z użyciem `urllib.parse.urlencode`.",
+    "starterCode": "# starter code\nimport urllib.parse\n\nPREFIX = 'py4e-data.dr-chuck.net/opengeo?'\n\ndef build_url(location):\n    # TODO: zwróć pełny URL z zakodowanym parametrem q\n    pass\n",
+    "solution": "# full solution\nimport urllib.parse\n\nPREFIX = 'py4e-data.dr-chuck.net/opengeo?'\n\ndef build_url(location):\n    parms = dict()\n    parms['q'] = location\n    return PREFIX + urllib.parse.urlencode(parms)\n",
+    "testCode": "# tests\nu1 = build_url('Warsaw Poland')\nassert 'py4e-data.dr-chuck.net/opengeo?' in u1\nassert 'q=Warsaw+Poland' in u1\n\nu2 = build_url('Gdańsk, Poland')\nassert 'q=Gda%C5%84sk%2C+Poland' in u2 or 'q=Gda%C5%84sk%2C+Poland' == u2.split('?')[1]\n",
+    "difficulty": "medium",
+    "topic": "URL i kodowanie zapytań",
+    "hints": [
+      "Stwórz słownik `parms = dict()` i ustaw `parms['q'] = location`.",
+      "Użyj `urllib.parse.urlencode(parms)` do zakodowania."
+    ]
+  },
+  {
+    "id": 204,
+    "materialId": 50,
+    "title": "Dekoduj bajty i zwróć współrzędne",
+    "description": "Dostaniesz bajty z serwera. Napisz `parse_lat_lon(data_bytes)` które dekoduje bajty jako UTF-8, parsuje JSON i zwraca `(lat, lon)` z `properties`. Jeśli coś brak, zwróć `(None, None)`.",
+    "starterCode": "# starter code\nimport json\n\ndef parse_lat_lon(data_bytes):\n    # TODO: dekoduj, parsuj i zwróć (lat, lon) lub (None, None)\n    pass\n",
+    "solution": "# full solution\nimport json\n\ndef parse_lat_lon(data_bytes):\n    try:\n        text = data_bytes.decode()\n    except Exception:\n        return (None, None)\n    js = json.loads(text)\n    if 'features' not in js or len(js['features']) == 0:\n        return (None, None)\n    first = js['features'][0]\n    if not isinstance(first, dict):\n        return (None, None)\n    props = first.get('properties') if 'properties' in first else None\n    if not props:\n        return (None, None)\n    lat = props.get('lat') if 'lat' in props else None\n    lon = props.get('lon') if 'lon' in props else None\n    return (lat, lon)\n",
+    "testCode": "# tests\nb1 = b'{\"features\": [{\"properties\": {\"lat\": 52.2, \"lon\": 21.0}}]}'\nassert parse_lat_lon(b1) == (52.2, 21.0)\n\nb2 = b'{\"features\": []}'\nassert parse_lat_lon(b2) == (None, None)\n\nb3 = b'invalid'\nassert parse_lat_lon(b3) == (None, None)\n",
+    "difficulty": "medium",
+    "topic": "Dekodowanie UTF-8",
+    "hints": [
+      "Użyj `data.decode()` przed `json.loads()`.",
+      "Sprawdź istnienie `features` i `properties` zanim sięgniesz po klucze."
+    ]
+  },
+  {
+    "id": 205,
+    "materialId": 50,
+    "title": "Walidacja i bezpieczne wydobycie współrzędnych",
+    "description": "Napisz `safe_get_lat_lon(json_text)` które przyjmuje tekst JSON. Jeśli struktura jest poprawna i ma `lat` i `lon` w `properties` pierwszego elementu, zwróć tuple `(lat, lon)`. W przeciwnym razie zwróć `None`.",
+    "starterCode": "# starter code\nimport json\n\ndef safe_get_lat_lon(json_text):\n    # TODO: sparsuj i sprawdź strukturę, zwróć (lat, lon) lub None\n    pass\n",
+    "solution": "# full solution\nimport json\n\ndef safe_get_lat_lon(json_text):\n    js = json.loads(json_text)\n    if 'features' not in js:\n        return None\n    if len(js['features']) == 0:\n        return None\n    first = js['features'][0]\n    if not isinstance(first, dict):\n        return None\n    if 'properties' not in first:\n        return None\n    props = first['properties']\n    if 'lat' in props and 'lon' in props:\n        return (props['lat'], props['lon'])\n    return None\n",
+    "testCode": "# tests\nj1 = '{\"features\": [{\"properties\": {\"lat\": 10, \"lon\": 20}}]}'\nj2 = '{\"features\": [{\"properties\": {\"lat\": 10}}]}'\nj3 = '{\"no_features\": []}'\n\nassert safe_get_lat_lon(j1) == (10, 20)\nassert safe_get_lat_lon(j2) is None\nassert safe_get_lat_lon(j3) is None\n",
+    "difficulty": "hard",
+    "topic": "Błędy i walidacja",
+    "hints": [
+      "Użyj `json.loads()` i sprawdzaj istnienie kluczy (`'features'`, indeks, `'properties'`).",
+      "Zwracaj `None` gdy któregoś elementu brakuje."
+    ]
+  },
+  {
+    "id": 206,
+    "materialId": 51,
+    "title": "Wyciągnij email z obiektu JSON",
+    "description": "Napisz funkcję `extract_email(json_str)` która bierze string z JSON zawierający obiekt `{\"user\": {\"email\": ...}}` i zwraca wartość pola `email`.",
+    "starterCode": "```python\n# starter code\nimport json\n\ndef extract_email(json_str):\n    # TODO: sparsuj json_str i zwróć email z data['user']['email']\n    pass\n```",
+    "solution": "```python\n# full solution\nimport json\n\ndef extract_email(json_str):\n    data = json.loads(json_str)\n    return data['user']['email']\n```",
+    "testCode": "```python\n# tests\nassert extract_email('{\"user\": {\"email\": \"a@b.com\"}}') == 'a@b.com'\nassert extract_email('{\"user\": {\"email\": \"x@y.z\"}}') == 'x@y.z'\n# zagnieżdżony przykład\nassert extract_email('{\"user\": {\"email\": \"test@ex.pl\"}}') == 'test@ex.pl'\n```",
+    "difficulty": "easy",
+    "topic": "json.loads",
+    "hints": [
+      "Użyj `import json` i `json.loads()` by zamienić string na strukturę.",
+      "Dostęp do wartości: `data['user']['email']`."
+    ]
+  },
+  {
+    "id": 207,
+    "materialId": 51,
+    "title": "Lista imion z JSON",
+    "description": "Napisz funkcję `names_from_json(json_str)` która bierze string z JSON będący tablicą obiektów z polem `name`, i zwraca listę wszystkich imion.",
+    "starterCode": "```python\n# starter code\nimport json\n\ndef names_from_json(json_str):\n    # TODO: sparsuj json_str i zwróć listę imion\n    pass\n```",
+    "solution": "```python\n# full solution\nimport json\n\ndef names_from_json(json_str):\n    data = json.loads(json_str)\n    result = []\n    for item in data:\n        # dodajemy element przez konkatenację listy\n        result += [item['name']]\n    return result\n```",
+    "testCode": "```python\n# tests\nassert names_from_json('[{\"name\":\"A\"}]') == ['A']\nassert names_from_json('[{\"name\":\"Tom\"},{\"name\":\"Ewa\"}]') == ['Tom', 'Ewa']\n# pusta lista\nassert names_from_json('[]') == []\n```",
+    "difficulty": "medium",
+    "topic": "Listy",
+    "hints": [
+      "Po parsowaniu otrzymasz listę: `data = json.loads(json_str)`.",
+      "Przejdź pętlą `for item in data:` i zbieraj `item['name']`."
+    ]
+  },
+  {
+    "id": 208,
+    "materialId": 51,
+    "title": "Policz użytkowników z id większym niż N",
+    "description": "Napisz funkcję `count_above(json_str, n)` która liczy ile obiektów w tablicy JSON ma pole `id` większe niż `n`.",
+    "starterCode": "```python\n# starter code\nimport json\n\ndef count_above(json_str, n):\n    # TODO: zwróć liczbę elementów z item['id'] > n\n    pass\n```",
+    "solution": "```python\n# full solution\nimport json\n\ndef count_above(json_str, n):\n    data = json.loads(json_str)\n    count = 0\n    for item in data:\n        if item['id'] > n:\n            count += 1\n    return count\n```",
+    "testCode": "```python\n# tests\nassert count_above('[{\"id\":1},{\"id\":5},{\"id\":10}]', 4) == 2\nassert count_above('[]', 0) == 0\nassert count_above('[{\"id\":0},{\"id\":0}]', 0) == 0\n```",
+    "difficulty": "medium",
+    "topic": "Listy",
+    "hints": [
+      "Parsuj JSON do listy, potem iteruj `for item in data:`.",
+      "Porównuj wartości przez `if item['id'] > n:` i zwiększ licznik."
+    ]
+  },
+  {
+    "id": 209,
+    "materialId": 51,
+    "title": "Zbierz maile z zagnieżdżonej struktury",
+    "description": "Napisz funkcję `collect_emails(json_str)` która bierze string z JSON będący tablicą obiektów. Każdy obiekt może mieć pole `contact` które jest obiektem z polem `email`. Zwróć listę wszystkich istniejących emaili (pomiń brakujące).",
+    "starterCode": "```python\n# starter code\nimport json\n\ndef collect_emails(json_str):\n    # TODO: sparsuj json_str i zwróć listę emaili z item['contact']['email'] jeśli istnieje\n    pass\n```",
+    "solution": "```python\n# full solution\nimport json\n\ndef collect_emails(json_str):\n    data = json.loads(json_str)\n    emails = []\n    for item in data:\n        if 'contact' in item and 'email' in item['contact']:\n            emails += [item['contact']['email']]\n    return emails\n```",
+    "testCode": "```python\n# tests\ns = '[{\"contact\": {\"email\":\"a@a.com\"}}, {\"no\":\"x\"}, {\"contact\": {\"email\":\"b@b.com\"}}]'\nassert collect_emails(s) == ['a@a.com', 'b@b.com']\n# brak emaili\nassert collect_emails('[]') == []\n# element bez contact\nassert collect_emails('[{\"name\":\"x\"}]') == []\n```",
+    "difficulty": "hard",
+    "topic": "Słowniki",
+    "hints": [
+      "Po parsowaniu iteruj po liście: `for item in data:`.",
+      "Sprawdź czy `contact` i `email` istnieją zanim spróbujesz je użyć."
+    ]
+  },
+  {
+    "id": 210,
+    "materialId": 52,
+    "title": "Wczytaj JSON i zwróć pole",
+    "description": "Dostałeś tekst JSON z prostym obiektem. Napisz funkcję `get_name(json_text)` która zwraca wartość pola `name` po wczytaniu `json.loads()`.",
+    "starterCode": "# starter code\nimport json\n\ndef get_name(json_text):\n    # TODO: wczytaj json_text i zwróć wartość pola 'name'\n    pass\n",
+    "solution": "# full solution\nimport json\n\ndef get_name(json_text):\n    data = json.loads(json_text)\n    return data['name']\n",
+    "testCode": "# tests\nassert get_name('{\"name\":\"Magda\",\"age\":20}') == 'Magda'\nassert get_name('{\"name\":\"X\",\"other\":null}') == 'X'\n# edge: pole 'name' istnieje w przykładach\n",
+    "difficulty": "easy",
+    "topic": "Podstawy json.loads",
+    "hints": [
+      "Użyj `import json` i `json.loads()`.",
+      "Dostęp do pola przez `data['name']`."
+    ]
+  },
+  {
+    "id": 211,
+    "materialId": 52,
+    "title": "Policz elementy w JSON-owej liście",
+    "description": "Napisz funkcję `count_items(json_text)` która przyjmuje tekst JSON będący listą i zwraca liczbę elementów tej listy.",
+    "starterCode": "# starter code\nimport json\n\ndef count_items(json_text):\n    # TODO: wczytaj tekst i zwróć len(listy)\n    pass\n",
+    "solution": "# full solution\nimport json\n\ndef count_items(json_text):\n    data = json.loads(json_text)\n    return len(data)\n",
+    "testCode": "# tests\nassert count_items('[{\"a\":1},{\"a\":2}]') == 2\nassert count_items('[]') == 0\nassert count_items('[{\"x\":10}]') == 1\n",
+    "difficulty": "easy",
+    "topic": "Listy z JSON",
+    "hints": [
+      "Po `json.loads()` otrzymasz `list` jeśli JSON zaczyna się od `[`.",
+      "Użyj `len()` aby policzyć elementy."
+    ]
+  },
+  {
+    "id": 212,
+    "materialId": 52,
+    "title": "Pobierz zagnieżdżone pole",
+    "description": "Napisz funkcję `get_nested(json_text)` która wczyta JSON i zwróci wartość pod kluczami `contact -> phone -> number`.",
+    "starterCode": "# starter code\nimport json\n\ndef get_nested(json_text):\n    # TODO: wczytaj i zwróć zagnieżdżoną wartość\n    pass\n",
+    "solution": "# full solution\nimport json\n\ndef get_nested(json_text):\n    data = json.loads(json_text)\n    return data['contact']['phone']['number']\n",
+    "testCode": "# tests\njs = '{\"contact\":{\"phone\":{\"number\":\"999\"}}}'\nassert get_nested(js) == '999'\njs2 = '{\"contact\":{\"phone\":{\"number\":\"0\"}}}'\nassert get_nested(js2) == '0'\n# edge: minimalna struktura zakłada istnienie kluczy\n",
+    "difficulty": "medium",
+    "topic": "Zagnieżdżone struktury",
+    "hints": [
+      "Użyj kolejnych nawiasów: `data['contact']['phone']['number']`.",
+      "Zakładamy, że struktura istnieje w podanym tekście."
+    ]
+  },
+  {
+    "id": 213,
+    "materialId": 52,
+    "title": "Lista imion z JSON",
+    "description": "Napisz funkcję `names_from_json(json_text)` która przyjmuje tekst JSON będący listą słowników. Funkcja powinna zwrócić listę imion (`name`) w tej samej kolejności.",
+    "starterCode": "# starter code\nimport json\n\ndef names_from_json(json_text):\n    # TODO: zwróć listę imion z listy słowników\n    pass\n",
+    "solution": "# full solution\nimport json\n\ndef names_from_json(json_text):\n    items = json.loads(json_text)\n    result = []\n    for item in items:\n        result.append(item['name'])\n    return result\n",
+    "testCode": "# tests\njs = '[{\"name\":\"Ala\"},{\"name\":\"Ola\"}]'\nassert names_from_json(js) == ['Ala', 'Ola']\nassert names_from_json('[]') == []\njs2 = '[{\"name\":\"X\"}]'\nassert names_from_json(js2) == ['X']\n",
+    "difficulty": "medium",
+    "topic": "Iteracja i listy",
+    "hints": [
+      "Wczytaj JSON jako listę i użyj `for item in items:` aby iterować.",
+      "Dla każdego `item` dodaj `item['name']` do wyniku."
+    ]
+  },
+  {
+    "id": 214,
+    "materialId": 52,
+    "title": "Uwaga na błędny JSON (trudniejsze)",
+    "description": "Napisz funkcję `safe_load(json_text)` która próbuje wczytać JSON i zwraca `None` gdy `json.loads()` zgłosi błąd. Nie używaj dodatkowych bibliotek, tylko prostą obsługę błędu.",
+    "starterCode": "# starter code\nimport json\n\ndef safe_load(json_text):\n    # TODO: spróbuj wczytać i zwrócić wynik, lub None jeśli błąd\n    pass\n",
+    "solution": "# full solution\nimport json\n\ndef safe_load(json_text):\n    try:\n        return json.loads(json_text)\n    except Exception:\n        return None\n",
+    "testCode": "# tests\nassert safe_load('{\"a\":1}') == {'a': 1}\nassert safe_load('not a json') is None\nassert safe_load('{\"a\":1,}') is None\n",
+    "difficulty": "hard",
+    "topic": "Obsługa błędów",
+    "hints": [
+      "Zauważ lekcja mówi, że `json.loads()` może dać traceback przy błędzie.",
+      "Spróbuj wykonać `json.loads()` i w razie problemu zwróć `None`.",
+      "Możesz użyć prostego `try/except`."
+    ]
+  },
+  {
+    "id": 215,
+    "materialId": 53,
+    "title": "Wyciągnij `lat` z JSON",
+    "description": "Napisz funkcję `get_lat(json_text)` która przyjmuje tekst w formacie JSON z polem `features` i zwraca wartość `lat` z pierwszego elementu (`features[0]['properties']['lat']`). Zakładamy, że JSON ma takie pole.",
+    "starterCode": "import json\n\ndef get_lat(json_text):\n    # TODO: sparsuj json i zwróć js['features'][0]['properties']['lat']\n    pass\n",
+    "solution": "import json\n\ndef get_lat(json_text):\n    # parsujemy tekst JSON\n    js = json.loads(json_text)\n    # zwracamy lat z pierwszego elementu features\n    return js['features'][0]['properties']['lat']\n",
+    "testCode": "import json\n\n# test normalny\ns1 = '{\"features\": [{\"properties\": {\"lat\": \"12.34\", \"lon\": \"56.78\"}}]}'\nassert get_lat(s1) == \"12.34\"\n\n# inna wartość\ns2 = '{\"features\": [{\"properties\": {\"lat\": \"0.0\"}}]}'\nassert get_lat(s2) == \"0.0\"\n\n# większa lista, nadal pierwszy element\ns3 = '{\"features\": [{\"properties\": {\"lat\": \"1\"}}, {\"properties\": {\"lat\": \"2\"}}]}'\nassert get_lat(s3) == \"1\"\n",
+    "difficulty": "easy",
+    "topic": "JSON",
+    "hints": [
+      "Użyj `json.loads()` by zamienić tekst na obiekt Pythona.",
+      "Dostępaj do `features`, potem do `[0]`, potem do `properties` i `lat`."
+    ]
+  },
+  {
+    "id": 216,
+    "materialId": 53,
+    "title": "Lista sformatowanych adresów",
+    "description": "Napisz funkcję `formatted_list(json_texts)` która przyjmuje listę tekstów JSON. Dla każdego tekstu pobierz `formatted` z `features[0]['properties']['formatted']` i zwróć listę tych wartości. Jeśli wejściowa lista jest pusta, zwróć pustą listę.",
+    "starterCode": "import json\n\ndef formatted_list(json_texts):\n    # TODO: dla każdego tekstu JSON pobierz formatted i zwróć listę\n    result = []\n    return result\n",
+    "solution": "import json\n\ndef formatted_list(json_texts):\n    result = []\n    for txt in json_texts:\n        js = json.loads(txt)\n        result.append(js['features'][0]['properties']['formatted'])\n    return result\n",
+    "testCode": "s1 = '{\"features\": [{\"properties\": {\"formatted\": \"Town A\"}}]}'\ns2 = '{\"features\": [{\"properties\": {\"formatted\": \"Town B\"}}]}'\nassert formatted_list([s1, s2]) == [\"Town A\", \"Town B\"]\n\n# pusta lista wejściowa\nassert formatted_list([]) == []\n\n# jeden element\nassert formatted_list([s1]) == [\"Town A\"]\n",
+    "difficulty": "medium",
+    "topic": "Pętle i JSON",
+    "hints": [
+      "Użyj pętli `for` by przejść przez każdy element listy.",
+      "Dla każdego elementu użyj `json.loads()` i ścieżki `features[0]['properties']['formatted']`."
+    ]
+  },
+  {
+    "id": 217,
+    "materialId": 53,
+    "title": "Lista współrzędnych",
+    "description": "Napisz funkcję `coords_list(json_texts)` która przyjmuje listę tekstów JSON i zwraca listę krotek `(lat, lon)` jako teksty, pobrane z `properties` pierwszego `feature` w każdym JSONie.",
+    "starterCode": "import json\n\ndef coords_list(json_texts):\n    # TODO: zwróć listę (lat, lon) dla każdego JSON\n    out = []\n    return out\n",
+    "solution": "import json\n\ndef coords_list(json_texts):\n    out = []\n    for txt in json_texts:\n        js = json.loads(txt)\n        lat = js['features'][0]['properties']['lat']\n        lon = js['features'][0]['properties']['lon']\n        out.append((lat, lon))\n    return out\n",
+    "testCode": "s1 = '{\"features\": [{\"properties\": {\"lat\": \"10\", \"lon\": \"20\"}}]}'\ns2 = '{\"features\": [{\"properties\": {\"lat\": \"30\", \"lon\": \"40\"}}]}'\nassert coords_list([s1, s2]) == [(\"10\", \"20\"), (\"30\", \"40\")]\n\n# pusta lista\nassert coords_list([]) == []\n\n# jeden element\nassert coords_list([s1]) == [(\"10\", \"20\")]\n",
+    "difficulty": "medium",
+    "topic": "JSON",
+    "hints": [
+      "Dla każdego elementu użyj `json.loads()` i pobierz `lat` i `lon` z `properties`.",
+      "Zwracaj krotki w formie `(lat, lon)`, gdzie obie wartości są tekstami tak jak w JSON.",
+      "Pusta lista wejściowa powinna zwrócić pustą listę."
+    ]
+  },
+  {
+    "id": 218,
+    "materialId": 53,
+    "title": "Zlicz znalezione miejsca",
+    "description": "Napisz funkcję `count_found(json_texts)` która przyjmuje listę tekstów JSON. Zlicz i zwróć ile z tych JSONów ma niepustą listę `features` (czyli `len(features) > 0`).",
+    "starterCode": "import json\n\ndef count_found(json_texts):\n    # TODO: policz ile JSONów ma przynajmniej jeden feature\n    count = 0\n    return count\n",
+    "solution": "import json\n\ndef count_found(json_texts):\n    count = 0\n    for txt in json_texts:\n        js = json.loads(txt)\n        if len(js['features']) > 0:\n            count += 1\n    return count\n",
+    "testCode": "s_empty = '{\"features\": []}'\ns_one = '{\"features\": [{\"properties\": {\"lat\": \"1\"}}]}'\nassert count_found([s_empty, s_one, s_one]) == 2\n\n# wszystkie puste\nassert count_found([s_empty, s_empty]) == 0\n\n# pusta lista wejściowa\nassert count_found([]) == 0\n",
+    "difficulty": "hard",
+    "topic": "JSON",
+    "hints": [
+      "Użyj `json.loads()` dla każdego tekstu.",
+      "Sprawdź długość listy `features` aby zdecydować czy liczyć dany element."
+    ]
+  },
+  {
+    "id": 219,
+    "materialId": 54,
+    "title": "Wyświetl nazwę usługi z odpowiedzi",
+    "description": "Dostajesz tekstową odpowiedź serwisu w formacie podobnym do `JSON`. Zwróć nazwę usługi jako string. Nie musisz parsować prawdziwego JSON — szukaj prostego wzorca.",
+    "starterCode": "def extract_name(response):\n    # TODO: znajdź i zwróć wartość pola \"name\" jako string\n    return \"\"\n",
+    "solution": "def extract_name(response):\n    # prosty sposób: szukamy \"name\": i odczytujemy wartość w cudzysłowie\n    key = '\"name\":'\n    i = response.find(key)\n    if i == -1:\n        return ''\n    i = i + len(key)\n    # znajdź pierwszy znak '\"' po kluczu\n    while i < len(response) and response[i] != '\"':\n        i += 1\n    i += 1\n    start = i\n    while i < len(response) and response[i] != '\"':\n        i += 1\n    return response[start:i]\n",
+    "testCode": "assert extract_name('{\"name\":\"ServiceA\",\"price\":10}') == 'ServiceA'\nassert extract_name('{\"price\":5}') == ''\nassert extract_name('{\"name\":\"X\"}') == 'X'\n",
+    "difficulty": "easy",
+    "topic": "Serializacja (JSON/XML)",
+    "hints": [
+      "Użyj `for` do przejścia przez znaki w tekście",
+      "Znajdź fragment między `\"name\":` a następnym przecinkiem lub końcem"
+    ]
+  },
+  {
+    "id": 220,
+    "materialId": 54,
+    "title": "Zlicz, ile serwisów w liście ma cenę powyżej progu",
+    "description": "Dostaniesz listę krótkich tekstów z ofertami, np. `'{\"service\":\"S1\", \"price\":50}'`. Zwróć liczbę ofert, których `price` jest większa niż podany próg.",
+    "starterCode": "def count_expensive(offers, threshold):\n    # TODO: zwróć liczbę ofert z ceną > threshold\n    return 0\n",
+    "solution": "def count_expensive(offers, threshold):\n    count = 0\n    for text in offers:\n        key = '\"price\":'\n        i = text.find(key)\n        if i == -1:\n            continue\n        i = i + len(key)\n        # odczytaj liczbę od tej pozycji\n        num_str = ''\n        while i < len(text) and (text[i].isdigit()):\n            num_str += text[i]\n            i += 1\n        if num_str != '' and int(num_str) > threshold:\n            count += 1\n    return count\n",
+    "testCode": "assert count_expensive(['{\"service\":\"A\",\"price\":10}','{\"service\":\"B\",\"price\":30}'], 20) == 1\nassert count_expensive([], 10) == 0\nassert count_expensive(['{\"service\":\"X\",\"price\":100}'], 50) == 1\n",
+    "difficulty": "medium",
+    "topic": "Serializacja (JSON/XML)",
+    "hints": [
+      "Dla każdego elementu znajdź fragment `\"price\":` i odczytaj liczbę",
+      "Użyj `for` do iteracji po liście"
+    ]
+  },
+  {
+    "id": 221,
+    "materialId": 54,
+    "title": "Mapowanie serwisów na proste słowa",
+    "description": "Dostajesz listę tekstów z nazwami serwisów. Zwróć nową listę z samymi nazwami (bez dodatkowych znaków).",
+    "starterCode": "def extract_services(list_of_texts):\n    # TODO: zwróć listę samych nazw usług\n    return []\n",
+    "solution": "def extract_services(list_of_texts):\n    result = []\n    for text in list_of_texts:\n        key = '\"service\":'\n        i = text.find(key)\n        if i == -1:\n            result.append('')\n            continue\n        i = i + len(key)\n        while i < len(text) and text[i] != '\"':\n            i += 1\n        i += 1\n        start = i\n        while i < len(text) and text[i] != '\"':\n            i += 1\n        result.append(text[start:i])\n    return result\n",
+    "testCode": "assert extract_services(['{\"service\":\"S1\",\"price\":5}','{\"service\":\"S2\",\"price\":6}']) == ['S1','S2']\nassert extract_services(['{}']) == ['']\nassert extract_services([]) == []\n",
+    "difficulty": "medium",
+    "topic": "Serializacja (JSON/XML)",
+    "hints": [
+      "Przechodź po elementach listy za pomocą `for`",
+      "Wyszukaj tekst między pierwszym `\"` a kolejnym `\"` po kluczu"
+    ]
+  },
+  {
+    "id": 222,
+    "materialId": 54,
+    "title": "Sprawdź czy API zwraca pole wymagane",
+    "description": "Dostaniesz tekstową odpowiedź serwisu. Zwróć `True` gdy istnieje pole `\"price\"`, inaczej `False`.",
+    "starterCode": "def has_price(response_text):\n    # TODO: zwróć True jeśli jest '\"price\":' w tekście\n    return False\n",
+    "solution": "def has_price(response_text):\n    return '\"price\":' in response_text\n",
+    "testCode": "assert has_price('{\"price\":10}') == True\nassert has_price('{\"value\":10}') == False\nassert has_price('') == False\n",
+    "difficulty": "easy",
+    "topic": "API",
+    "hints": [
+      "Użyj prostego sprawdzenia, czy ciąg `\"price\":` jest w tekście",
+      "Zwróć wartość logiczną `True` lub `False`"
+    ]
   }
 ]

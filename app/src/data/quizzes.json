@@ -5339,5 +5339,665 @@
     "explanation": "W XML atrybuty muszą być w podwójnych cudzysłowach, tak jak w `B`. `A` nie ma cudzysłowów, `C` ma błędną składnię.",
     "difficulty": "medium",
     "topic": "atrybuty"
+  },
+  {
+    "id": 437,
+    "materialId": 50,
+    "question": "Co wypisze ten kod?\n\n```python\nimport json\ns = '{\"features\": [{\"properties\": {\"lat\": 10, \"lon\": 20}}]}'\njs = json.loads(s)\nprint(js['features'][0]['properties']['lat'])\n```",
+    "choices": [
+      "10",
+      "20",
+      "['lat']",
+      "KeyError"
+    ],
+    "correctIndex": 0,
+    "explanation": "Kod parsuje JSON i sięga do `features[0]['properties']['lat']`, czyli wypisuje 10. Najpopularniejszy błąd to pomylić `lat` z `lon` (odp. 1) lub zapomnieć o `[0]` (KeyError).",
+    "difficulty": "easy",
+    "topic": "JSON i parsowanie"
+  },
+  {
+    "id": 438,
+    "materialId": 50,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport json\ns = '{\"features\": [{\"properties\": {\"lat\": 50}}]}'\njs = json.loads(s)\nprint(js['features']['lat'])\n```",
+    "choices": [
+      "Chcemy użyć indeksu listy, a użyto klucza 'lat' na liście.",
+      "Brakuje `decode()` przed `json.loads()`.",
+      "Zła składnia JSON.",
+      "Brakuje `urllib.parse.urlencode()`."
+    ],
+    "correctIndex": 0,
+    "explanation": "`js['features']` to lista, więc trzeba użyć indeksu, np. `[0]`, zanim sięgniesz po `'lat'`. `decode()` nie dotyczy tu, bo mamy już `str`.",
+    "difficulty": "easy",
+    "topic": "GOTCHA"
+  },
+  {
+    "id": 439,
+    "materialId": 50,
+    "question": "Która wersja poprawnie pobiera `formatted` z pierwszej cechy?\n\nWersja A:\n```python\nval = js['features'][0]['properties']['formatted']\n```\nWersja B:\n```python\nval = js['features'][0]['formatted']\n```",
+    "choices": [
+      "Wersja A",
+      "Wersja B",
+      "Obie są poprawne",
+      "Żadna nie jest poprawna"
+    ],
+    "correctIndex": 0,
+    "explanation": "W danych `formatted` jest wewnątrz `properties`, więc trzeba przejść przez `['properties']`. Wersja B szuka `formatted` w złym miejscu.",
+    "difficulty": "easy",
+    "topic": "Dostęp do zagnieżdżonych danych"
+  },
+  {
+    "id": 440,
+    "materialId": 50,
+    "question": "Co się stanie, gdy wywołamy `data.decode()` na obiekcie `data`, który jest typu `bytes`?",
+    "choices": [
+      "Zwróci `str` z tekstem w UTF-8.",
+      "Zwróci listę bajtów.",
+      "Zwróci `json` obiekt.",
+      "Wywoła `KeyError`."
+    ],
+    "correctIndex": 0,
+    "explanation": "`decode()` konwertuje bajty na `str`. W lekcji dane z sieci są dekodowane z UTF-8 przed `json.loads()`.",
+    "difficulty": "easy",
+    "topic": "Dekodowanie UTF-8"
+  },
+  {
+    "id": 441,
+    "materialId": 50,
+    "question": "Masz kod, który buduje URL ręcznie:\n\n```python\nloc = 'New York, USA'\nurl = 'py4e-data.dr-chuck.net/opengeo?q=' + loc\nprint(url)\n```\nCo jest potencjalnym problemem?",
+    "choices": [
+      "Przecinki i spacje nie są zakodowane i URL może być niepoprawny.",
+      "`json.loads()` nie zadziała bez `decode()`.",
+      "`url` powinno być listą.",
+      "To zawsze będzie działać poprawnie."
+    ],
+    "correctIndex": 0,
+    "explanation": "Ręczne doklejanie parametrów może zostawić spacje i przecinki niezakodowane. Lepiej użyć `urllib.parse.urlencode()`.",
+    "difficulty": "medium",
+    "topic": "URL i kodowanie zapytań"
+  },
+  {
+    "id": 442,
+    "materialId": 50,
+    "question": "Co wypisze ten kod?\n\n```python\nimport json\ns = '{\"features\": []}'\njs = json.loads(s)\nprint('features' in js)\nprint(len(js['features']))\n```",
+    "choices": [
+      "True i 0",
+      "True i 1",
+      "False i error",
+      "False i 0"
+    ],
+    "correctIndex": 0,
+    "explanation": "`'features' in js` jest prawdą, a lista `features` jest pusta, więc `len(js['features'])` to 0.",
+    "difficulty": "easy",
+    "topic": "JSON i parsowanie"
+  },
+  {
+    "id": 443,
+    "materialId": 50,
+    "question": "Co może powodować rate limiting w kontekście tej lekcji?",
+    "choices": [
+      "Za dużo zapytań do proxy w krótkim czasie.",
+      "Brak dekodowania bajtów.",
+      "Błędna ścieżka do `properties`.",
+      "Zła składnia JSON."
+    ],
+    "correctIndex": 0,
+    "explanation": "Rate limiting to ograniczenie liczby zapytań do serwisu. Jeśli wysyłasz za dużo zapytań, proxy cię spowolni.",
+    "difficulty": "medium",
+    "topic": "Proxy i rate limiting"
+  },
+  {
+    "id": 444,
+    "materialId": 50,
+    "question": "Co wypisze ten kod?\n\n```python\nimport json\ns = '{\"features\": [{\"properties\": {\"lat\": \"50.1\"}}]}'\njs = json.loads(s)\nprint(type(js['features'][0]['properties']['lat']))\n```",
+    "choices": [
+      "<class 'str'>",
+      "<class 'int'>",
+      "<class 'float'>",
+      "TypeError"
+    ],
+    "correctIndex": 0,
+    "explanation": "W JSON `\"50.1\"` to string, więc po parsowaniu w Pythonie typ to `str`. Jeśli chcemy liczby, trzeba konwertować ręcznie.",
+    "difficulty": "medium",
+    "topic": "JSON i parsowanie"
+  },
+  {
+    "id": 445,
+    "materialId": 50,
+    "question": "Które z poniższych najlepiej chroni przed KeyError przed sięgnięciem do `lat`?\n\nA:\n```python\nif 'features' in js:\n    print(js['features'][0]['properties']['lat'])\n```\nB:\n```python\nprint(js['features'][0]['properties']['lat'])\n```",
+    "choices": [
+      "A",
+      "B",
+      "Obie",
+      "Żadna"
+    ],
+    "correctIndex": 0,
+    "explanation": "Sprawdzenie `if 'features' in js` pomaga uniknąć KeyError gdy klucz nie istnieje. Warto też sprawdzić długość listy zanim użyjesz `[0]`.",
+    "difficulty": "medium",
+    "topic": "Błędy i walidacja"
+  },
+  {
+    "id": 446,
+    "materialId": 51,
+    "question": "Co wypisze ten kod?\n\n```python\nimport json\ns = '[{\"name\":\"A\",\"id\":1},{\"name\":\"B\",\"id\":2}]'\ndata = json.loads(s)\nprint(data[1]['name'])\n```",
+    "choices": [
+      "A",
+      "B",
+      "1",
+      "2"
+    ],
+    "correctIndex": 1,
+    "explanation": "Po parsowaniu mamy listę dwóch słowników. `data[1]` to drugi element, jego `['name']` to `B`. Błędna odpowiedź 'A' to pierwszy element, a nie drugi.",
+    "difficulty": "easy",
+    "topic": "Listy"
+  },
+  {
+    "id": 447,
+    "materialId": 51,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport json\ns = '{\"user\": {\"name\": \"Ada\", \"email\": \"a@example.com\" }'\ndata = json.loads(s)\nprint(data['user']['name'])\n```",
+    "choices": [
+      "Kod wypisze 'Ada'",
+      "Brakuje zamykającego nawiasu `}` w stringu JSON; `json.loads()` zgłosi błąd parsowania",
+      "Zwróci `None`",
+      "Podczas dostępu wystąpi `KeyError`"
+    ],
+    "correctIndex": 1,
+    "explanation": "W stringu JSON brakuje zamykającego `}` więc `json.loads()` nie może sparsować tekstu. To błąd parsowania, a nie `KeyError` czy `None`.",
+    "difficulty": "easy",
+    "topic": "Błędy składniowe"
+  },
+  {
+    "id": 448,
+    "materialId": 51,
+    "question": "Która wersja poprawnie wypisze id drugiego elementu?\n\n```python\n# Wersja A\nimport json\ns = '[{\"id\":10}, {\"id\":20}]'\ndata = json.loads(s)\nprint(data[1]['id'])\n\n# Wersja B\nimport json\ns = '[{\"id\":10}, {\"id\":20}]'\ndata = json.loads(s)\nprint(data['id'][1])\n\n# Wersja C\nimport json\ns = '[{\"id\":10}, {\"id\":20}]'\ndata = json.loads(s)\nprint(data[2]['id'])\n```",
+    "choices": [
+      "Wersja A",
+      "Wersja B",
+      "Wersja C",
+      "Żadna z powyższych"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wersja A używa `data[1]['id']` co jest poprawne. Wersja B próbuje indeksować słownik jak listę, a wersja C odwołuje się do nieistniejącego indeksu 2.",
+    "difficulty": "medium",
+    "topic": "Listy"
+  },
+  {
+    "id": 449,
+    "materialId": 51,
+    "question": "Co się stanie gdy wywołamy `json.loads('')` (pusty string)?",
+    "choices": [
+      "Zwróci pusty słownik `{}`",
+      "Zwróci pustą listę `[]`",
+      "Zgłosi błąd parsowania",
+      "Zwróci `None`"
+    ],
+    "correctIndex": 2,
+    "explanation": "Pusty string nie jest poprawnym JSON, więc `json.loads()` zgłosi błąd parsowania. Nie zwróci struktur ani `None`.",
+    "difficulty": "easy",
+    "topic": "json.loads"
+  },
+  {
+    "id": 450,
+    "materialId": 51,
+    "question": "Co wypisze ten kod?\n\n```python\nimport json\ns = '{\"a\": {\"b\": {\"c\": 5}}}'\nd = json.loads(s)\nprint(d['a']['b']['c'])\n```",
+    "choices": [
+      "5",
+      "'5'",
+      "KeyError",
+      "IndexError"
+    ],
+    "correctIndex": 0,
+    "explanation": "Po parsowaniu wartości `5` jest liczbą w Pythonie, więc `print(...)` wypisze `5`. Nie ma tu błędu dostępu do klucza.",
+    "difficulty": "easy",
+    "topic": "Słowniki"
+  },
+  {
+    "id": 451,
+    "materialId": 51,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport json\ns = \"{'x': 3}\"\ndata = json.loads(s)\nprint(data['x'])\n```",
+    "choices": [
+      "Wypisze 3",
+      "Błąd parsowania, bo JSON wymaga podwójnych cudzysłowów",
+      "Zwróci `None`",
+      "Zwróci string '3'"
+    ],
+    "correctIndex": 1,
+    "explanation": "String zawiera pojedyncze apostrofy dla kluczy, a to nie jest prawidłowy JSON. `json.loads()` zgłosi błąd parsowania.",
+    "difficulty": "medium",
+    "topic": "Błędy składniowe"
+  },
+  {
+    "id": 452,
+    "materialId": 51,
+    "question": "Co wypisze ten kod?\n\n```python\nimport json\ns = '[{\"name\":\"Tom\"},{\"name\":\"Liz\"}]'\ndata = json.loads(s)\nfor item in data:\n    print(item['name'])\n```",
+    "choices": [
+      "Tom\\nLiz (dwie linie)",
+      "['Tom', 'Liz']",
+      "Tom Liz (jedna linia)",
+      "Błąd wykonania"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pętla `for` wypisuje każdy `item['name']` w osobnej linii. Nie tworzy listy, ani nie łączy nazw w jednej linii.",
+    "difficulty": "easy",
+    "topic": "Listy"
+  },
+  {
+    "id": 453,
+    "materialId": 51,
+    "question": "Co się stanie gdy spróbujemy dostać trzeci element z listy dwuelementowej?\n\n```python\nimport json\ns = '[{\"v\":1},{\"v\":2}]'\ndata = json.loads(s)\nprint(data[2])\n```",
+    "choices": [
+      "Wypisze `{'v':2}`",
+      "Wypisze `None`",
+      "Zgłosi błąd indeksu (IndexError)",
+      "Zwróci 0"
+    ],
+    "correctIndex": 2,
+    "explanation": "Próbujemy dostać `data[2]`, a lista ma tylko indeksy 0 i 1. To spowoduje błąd indeksu. Nie zwróci `None` ani wartości.",
+    "difficulty": "easy",
+    "topic": "Listy"
+  },
+  {
+    "id": 454,
+    "materialId": 51,
+    "question": "Jaka jest główna różnica po parsowaniu: obiekt JSON vs tablica JSON?",
+    "choices": [
+      "Obiekt JSON → `dict`, tablica JSON → `list`",
+      "Obiekt JSON → `list`, tablica JSON → `dict`",
+      "Obiekt JSON staje się stringiem, tablica staje się liczbą",
+      "Po parsowaniu nie ma różnicy"
+    ],
+    "correctIndex": 0,
+    "explanation": "Obiekt JSON to pary klucz-wartość i staje się `dict`. Tablica JSON to uporządkowana lista elementów i staje się `list`. Inne odpowiedzi są błędne.",
+    "difficulty": "easy",
+    "topic": "JSON"
+  },
+  {
+    "id": 455,
+    "materialId": 52,
+    "question": "Co wypisze ten kod?\n\n```python\nimport json\ns = '[{\"name\":\"Kasia\"},{\"name\":\"Olek\"}]'\ndata = json.loads(s)\nprint(data[1]['name'])\n```",
+    "choices": [
+      "Kasia",
+      "Olek",
+      "['Kasia', 'Olek']",
+      "Błąd, nie można indeksować"
+    ],
+    "correctIndex": 1,
+    "explanation": "JSON to lista dwóch słowników. `data[1]` zwraca drugi słownik, a `['name']` jego pole. Popularny błąd to pomylenie indeksu 0/1.",
+    "difficulty": "easy",
+    "topic": "Kod: dostęp"
+  },
+  {
+    "id": 456,
+    "materialId": 52,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport json\ns = '{name: \"Piotr\"}'\nobj = json.loads(s)\n```",
+    "choices": [
+      "Kod działa poprawnie",
+      "Brakuje importu `json`",
+      "Klucze muszą być w podwójnych cudzysłowach, więc JSON jest niepoprawny",
+      "Nie można używać nawiasów klamrowych w JSON"
+    ],
+    "correctIndex": 2,
+    "explanation": "JSON wymaga podwójnych cudzysłowów dla kluczy. Błąd często mylony z brakiem importu.",
+    "difficulty": "easy",
+    "topic": "Błędy składniowe"
+  },
+  {
+    "id": 457,
+    "materialId": 52,
+    "question": "Która wersja poprawnie sprawdza liczbę elementów po wczytaniu JSON?\n\nA:\n```python\nimport json\ns = '[{\"x\":1},{\"x\":2}]'\ndata = json.loads(s)\nprint(len(data))\n```\n\nB:\n```python\nimport json\ns = '{\"x\":1,\"y\":2}'\ndata = json.loads(s)\nprint(len(data))\n```",
+    "choices": [
+      "A poprawna, B niepoprawna",
+      "B poprawna, A niepoprawna",
+      "Obie poprawne i dają ten sam wynik",
+      "Żadna niekompletna"
+    ],
+    "correctIndex": 0,
+    "explanation": "W A `data` to lista i `len` działa. W B `data` to słownik; `len` działa też, ale zwróci liczbę kluczy, nie liczbę elementów listy — więc kontekst A jest poprawny do liczenia elementów listy.",
+    "difficulty": "medium",
+    "topic": "Typy i len()"
+  },
+  {
+    "id": 458,
+    "materialId": 52,
+    "question": "Co wypisze ten kod?\n\n```python\nimport json\ns = '[{\"id\":10} ]'\nitems = json.loads(s)\nfor item in items:\n    print(item['id'])\n```",
+    "choices": [
+      "10",
+      "[10]",
+      "Nic, pusta lista",
+      "Błąd, bo brak indeksu"
+    ],
+    "correctIndex": 0,
+    "explanation": "JSON zawiera listę z jednym słownikiem. Pętla wykona się raz i wypisze wartość pola `id`. Częsty błąd to myślenie, że trzeba indeksować ręcznie.",
+    "difficulty": "easy",
+    "topic": "Iteracja"
+  },
+  {
+    "id": 459,
+    "materialId": 52,
+    "question": "Co się stanie gdy wywołamy `json.loads()` na niepoprawnym tekście:\n\n```python\nimport json\nbad = '{\"a\": 1,}'\njson.loads(bad)\n```",
+    "choices": [
+      "Zwróci `{'a':1}`",
+      "Zwróci pusty słownik",
+      "Podniesie błąd składni i pokaże traceback",
+      "Zignoruje przecinek i zadziała"
+    ],
+    "correctIndex": 2,
+    "explanation": "Dodatkowy przecinek to błąd składni JSON i `json.loads()` zgłosi wyjątek. Początkujący często myśli, że Python naprawi tekst.",
+    "difficulty": "easy",
+    "topic": "Błędy składniowe"
+  },
+  {
+    "id": 460,
+    "materialId": 52,
+    "question": "Co zwróci ten kod?\n\n```python\nimport json\ns = '{\"a\":{\"b\":{\"c\":\"x\"}}}'\nobj = json.loads(s)\nprint(obj['a']['b']['c'])\n```",
+    "choices": [
+      "{'c':'x'}",
+      "x",
+      "['a','b','c']",
+      "Błąd, za dużo zagnieżdżeń"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dostęp przez kolejne klucze sięga do wartości 'x'. Błędna odpowiedź to mylenie słownika z listą.",
+    "difficulty": "medium",
+    "topic": "Dostęp zagnieżdżony"
+  },
+  {
+    "id": 461,
+    "materialId": 52,
+    "question": "Który wariant poprawnie wczyta listę słowników i wypisze imiona?\n\nA:\n```python\nimport json\ns='[{\"name\":\"Ewa\"}]'\nitems = json.loads(s)\nfor i in range(len(items)):\n    print(items[i]['name'])\n```\n\nB:\n```python\nimport json\ns='[{\"name\":\"Ewa\"}]'\nitems = json.loads(s)\nfor item in items:\n    print(item.name)\n```",
+    "choices": [
+      "A poprawny, B błędny",
+      "B poprawny, A błędny",
+      "Oba poprawne",
+      "Oba błędne"
+    ],
+    "correctIndex": 0,
+    "explanation": "W A użyto indeksów i dostępu przez `['name']` — poprawne. W B próbuje się użyć notacji kropkowej `item.name`, która nie działa dla słowników.",
+    "difficulty": "medium",
+    "topic": "Dostęp do pól"
+  },
+  {
+    "id": 462,
+    "materialId": 52,
+    "question": "Co wypisze ten kod?\n\n```python\nimport json\ns = '[]'\ndata = json.loads(s)\nprint(len(data))\n```",
+    "choices": [
+      "0",
+      "1",
+      "Błąd, nie można policzyć",
+      "None"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pusty JSON-owy `[]` daje pustą listę, a `len` tej listy to 0. Częsty błąd to myślenie, że będzie `None`.",
+    "difficulty": "easy",
+    "topic": "Pusty JSON"
+  },
+  {
+    "id": 463,
+    "materialId": 53,
+    "question": "Co wypisze ten kod?\n\n```python\nimport json\ns = '{\"features\": [{\"properties\": {\"formatted\": \"SmallTown\", \"lat\": \"10.0\"}}]}'\njs = json.loads(s)\nprint(js['features'][0]['properties']['formatted'])\n```",
+    "choices": [
+      "SmallTown",
+      "{'formatted': 'SmallTown', 'lat': '10.0'}",
+      "10.0",
+      "Błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "Kod pobiera `formatted` z pierwszego elementu `features`, więc wypisze `SmallTown`. Najpopularniejsza błędna odpowiedź to `10.0`, bo ktoś pomyli `lat` z `formatted`.",
+    "difficulty": "easy",
+    "topic": "JSON"
+  },
+  {
+    "id": 464,
+    "materialId": 53,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport json\ns = '{\"features\": []}'\njs = json.loads(s)\nprint(js['features'][0]['properties']['lat'])\n```",
+    "choices": [
+      "Brak klucza `properties`",
+      "`features` jest pusty, więc `features[0]` nie istnieje",
+      "JSON jest niepoprawny",
+      "Kod zadziała poprawnie i zwróci `lat`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Lista `features` jest pusta, więc nie można brać elementu `[0]`. Błędna odpowiedź: ktoś może myśleć, że brakuje `properties`, ale problem to brak elementu w liście.",
+    "difficulty": "medium",
+    "topic": "Błędy w dostępie do JSON"
+  },
+  {
+    "id": 465,
+    "materialId": 53,
+    "question": "Która wersja poprawnie wyciąga `lat` z odpowiedzi `js`?\n\nA:\n```python\nlat = js['features'][0]['lat']\n```\nB:\n```python\nlat = js['features'][0]['properties']['lat']\n```\nC:\n```python\nlat = js['properties']['features'][0]['lat']\n```\nD:\n```python\nlat = js['features']['properties']['lat']\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Poprawna ścieżka to `features -> 0 -> properties -> lat`. Wariant A pomija `properties`, C i D mają złą kolejność kluczy.",
+    "difficulty": "easy",
+    "topic": "JSON"
+  },
+  {
+    "id": 466,
+    "materialId": 53,
+    "question": "Co wypisze ten kod?\n\n```python\nimport json\ns = '{\"features\": [{\"properties\": {\"lat\": \"1\", \"lon\": \"2\"}}, {\"properties\": {\"lat\": \"3\", \"lon\": \"4\"}}]}'\njs = json.loads(s)\nfor f in js['features']:\n    print(f['properties']['lat'])\n```",
+    "choices": [
+      "1 i 3 w dwóch liniach",
+      "1,3 w jednej linii oddzielone przecinkiem",
+      "2 i 4 w dwóch liniach",
+      "Błąd wykonania"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pętla przechodzi przez każdy element `features` i wypisuje `lat`, czyli kolejno `1` i `3`. Błędna odpowiedź 2 i 4 myli `lat` z `lon`.",
+    "difficulty": "easy",
+    "topic": "Pętle i JSON"
+  },
+  {
+    "id": 467,
+    "materialId": 53,
+    "question": "Co zrobi poniższy kod?\n\n```python\nimport json\ns = '{\"features\": [{\"properties\": {\"formatted\": \"TownA\"}}]}'\njs = json.loads(s)\nprint(len(js['features']))\n```",
+    "choices": [
+      "0",
+      "1",
+      "Błąd, bo `len()` nie działa na liście",
+      "Błąd, bo `features` nie istnieje"
+    ],
+    "correctIndex": 1,
+    "explanation": "`js['features']` ma jeden element, więc `len(...)` zwróci 1. Popularny błąd to myślenie, że `len()` nie działa na listach, ale działa.",
+    "difficulty": "easy",
+    "topic": "JSON"
+  },
+  {
+    "id": 468,
+    "materialId": 53,
+    "question": "Co się stanie, gdy spróbujesz wypisać `js['features'][0]['properties']['lat']`, ale klucz `'lat'` nie istnieje w `properties`?",
+    "choices": [
+      "Zostanie zwrócony pusty string",
+      "Pojawi się błąd przy próbie dostępu do nieistniejącego klucza",
+      "Zwróci `None` automatycznie",
+      "Zwróci `0`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dostęp do nieistniejącego klucza słownika spowoduje błąd przy wykonaniu. Nie zostanie zwrócone `None` ani pusty string automatycznie.",
+    "difficulty": "medium",
+    "topic": "JSON"
+  },
+  {
+    "id": 469,
+    "materialId": 53,
+    "question": "Które zdanie najlepiej opisuje rolę Cloudflare w opisie z lekcji?",
+    "choices": [
+      "Cloudflare przechowuje kopie odpowiedzi blisko użytkowników, by przyspieszyć dostęp",
+      "Cloudflare zastępuje API i tworzy nowe dane mapowe",
+      "Cloudflare usuwa potrzebę posiadania konta u dostawcy API",
+      "Cloudflare generuje klucze API dla użytkowników"
+    ],
+    "correctIndex": 0,
+    "explanation": "Cloudflare działa jako cache na krawędzi sieci, przechowuje kopie odpowiedzi. Nie tworzy danych ani kluczy.",
+    "difficulty": "medium",
+    "topic": "Cache i proxy"
+  },
+  {
+    "id": 470,
+    "materialId": 53,
+    "question": "Co jest prawdą o `formatted` w odpowiedzi geokodera?",
+    "choices": [
+      "Jest to zazwyczaj tekstowy, sformatowany adres do wyświetlenia",
+      "Zawsze zawiera współrzędne jako liczby",
+      "To klucz służący do autoryzacji",
+      "Zwraca surowy JSON"
+    ],
+    "correctIndex": 0,
+    "explanation": "`formatted` to tekstowy opis miejsca. Nie zawiera współrzędnych liczbowych i nie ma związku z autoryzacją.",
+    "difficulty": "easy",
+    "topic": "Geokodowanie"
+  },
+  {
+    "id": 471,
+    "materialId": 53,
+    "question": "Co jest głównym powodem stosowania proxy z wbudowanym kluczem API (jak w lekcji)?",
+    "choices": [
+      "By ukryć klucz i dać studentom dostęp bez własnego konta",
+      "By usunąć wszystkie limity serwera głównego",
+      "By zastąpić JSON XML",
+      "By uniemożliwić korzystanie z usługi"
+    ],
+    "correctIndex": 0,
+    "explanation": "Proxy z kluczem umożliwia korzystanie bez indywidualnego klucza, ukrywając go. Nie usuwa całkowicie limitów i nie zmienia formatu danych.",
+    "difficulty": "medium",
+    "topic": "Proxy i cache"
+  },
+  {
+    "id": 472,
+    "materialId": 54,
+    "question": "Co to jest API?",
+    "choices": [
+      "Zbiór zasad komunikacji między systemami",
+      "Serwer z darmowymi danymi",
+      "Rodzaj bazy danych",
+      "Program instalowany na komputerze"
+    ],
+    "correctIndex": 0,
+    "explanation": "API to zasady komunikacji. Nie jest to baza ani program do instalacji.",
+    "difficulty": "easy",
+    "topic": "API"
+  },
+  {
+    "id": 473,
+    "materialId": 54,
+    "question": "Dlaczego aplikacja lotnicza pokazuje oferty hoteli z innego serwisu?",
+    "choices": [
+      "Bo ma umowę z serwisem hotelowym i pobiera dane przez API",
+      "Bo sama prowadzi wszystkie hotele",
+      "Bo losowo generuje oferty",
+      "Bo hotele wysyłają im maile"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pobiera dane z zewnętrznego serwisu przez API. Nie prowadzi tysiąca hoteli samodzielnie.",
+    "difficulty": "easy",
+    "topic": "Integracja systemów"
+  },
+  {
+    "id": 474,
+    "materialId": 54,
+    "question": "Co oznacza serializacja?",
+    "choices": [
+      "Zamianę danych na format tekstowy do przesyłu",
+      "Wysyłanie e-maili",
+      "Instalacja serwera",
+      "Tworzenie interfejsu graficznego"
+    ],
+    "correctIndex": 0,
+    "explanation": "Serializacja to zamiana danych na np. `JSON` lub `XML`, by je przesłać. Nie dotyczy interfejsów czy serwerów.",
+    "difficulty": "easy",
+    "topic": "Serializacja (JSON/XML)"
+  },
+  {
+    "id": 475,
+    "materialId": 54,
+    "question": "Co stanie się, jeśli API nie jest udokumentowane?",
+    "choices": [
+      "Inne zespoły nie będą wiedzieć jak używać serwisu",
+      "Serwis automatycznie będzie działać szybciej",
+      "Dane zmienią format na `JSON` same",
+      "Nie będzie żadnego efektu"
+    ],
+    "correctIndex": 0,
+    "explanation": "Brak dokumentacji utrudnia korzystanie z API. Nie powoduje automatycznej zmiany formatu ani przyspieszenia.",
+    "difficulty": "medium",
+    "topic": "API"
+  },
+  {
+    "id": 476,
+    "materialId": 54,
+    "question": "Co zwróci następujący kod?\n\n```python\ncities = ['Berlin', 'Warsaw', 'Rome']\nprint(cities[1])\n```",
+    "choices": [
+      "Warsaw",
+      "Berlin",
+      "Rome",
+      "IndexError"
+    ],
+    "correctIndex": 0,
+    "explanation": "Lista zaczyna się od indeksu 0, więc `cities[1]` to drugi element: `Warsaw`. `IndexError` nie wystąpi, bo indeks jest poprawny.",
+    "difficulty": "easy",
+    "topic": "Podstawy list (pokazane przez przykład)"
+  },
+  {
+    "id": 477,
+    "materialId": 54,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nresponse = '{\"hotel\":\"A\", \"price\":100}'\n# chcemy odczytać nazwę hotelu\nprint(response.hotel)\n```",
+    "choices": [
+      "`response` jest tekstem, nie obiektem; nie można użyć `response.hotel`",
+      "`hotel` jest zarezerwowanym słowem w Pythonie",
+      "Brakuje importu `json`",
+      "Nie można mieć dwukropka w stringu"
+    ],
+    "correctIndex": 0,
+    "explanation": "`response` to tekst. Nie ma atrybutu `hotel`. Trzeba go sparsować do struktury danych, by użyć `response['hotel']` lub podobnie.",
+    "difficulty": "medium",
+    "topic": "Serializacja (JSON/XML)"
+  },
+  {
+    "id": 478,
+    "materialId": 54,
+    "question": "Która odpowiedź najlepiej opisuje protokół w kontekście usług?",
+    "choices": [
+      "Zasady wymiany danych między systemami",
+      "Sposób kompresji plików",
+      "Rodzaj serwera WWW",
+      "Typ bazy danych"
+    ],
+    "correctIndex": 0,
+    "explanation": "Protokół to zasady komunikacji. Nie określa kompresji, serwera czy bazy danych.",
+    "difficulty": "easy",
+    "topic": "Protokół i integracja"
+  },
+  {
+    "id": 479,
+    "materialId": 54,
+    "question": "Która wersja poprawnie wypisze pierwszy element listy?\n\nA:\n```python\nitems = ['a','b']\nprint(items[0])\n```\n\nB:\n```python\nitems = ['a','b']\nprint(items[1])\n```",
+    "choices": [
+      "Wersja A",
+      "Wersja B",
+      "Obie",
+      "Żadna"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pierwszy element ma indeks 0, więc wersja A wypisze `'a'`. Wersja B wypisze drugi element.",
+    "difficulty": "easy",
+    "topic": "Podstawy list (pokazane przez przykład)"
+  },
+  {
+    "id": 480,
+    "materialId": 54,
+    "question": "Co się stanie, gdy wiele usług się połączy i zostanie źle zaprojektowane API?",
+    "choices": [
+      "Będą błędy w komunikacji i problemy z integracją",
+      "Wszystko będzie działać szybciej",
+      "Usługi automatycznie się naprawią",
+      "Dane będą szyfrowane bez zmian"
+    ],
+    "correctIndex": 0,
+    "explanation": "Złe API powoduje błędy i trudności z integracją. Nie poprawia to wydajności ani bezpieczeństwa automatycznie.",
+    "difficulty": "medium",
+    "topic": "Integracja systemów"
   }
 ]

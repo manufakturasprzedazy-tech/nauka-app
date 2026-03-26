@@ -3316,5 +3316,411 @@
     "front": "Co robi XML Schema?",
     "back": "XML Schema określa reguły i format danych. Pomaga ustalić, czy otrzymany XML ma oczekowaną strukturę.",
     "topic": "XML Schema"
+  },
+  {
+    "id": 581,
+    "materialId": 50,
+    "front": "Co to jest geokodowanie?",
+    "back": "Geokodowanie to zamiana tekstowego adresu na współrzędne geograficzne (latitude, longitude).",
+    "topic": "Geokodowanie"
+  },
+  {
+    "id": 582,
+    "materialId": 50,
+    "front": "Po co używamy `urllib.parse.urlencode(parms)`?",
+    "back": "Aby zamienić słownik parametrów na bezpieczny ciąg zapytania URL. Przykład: `urllib.parse.urlencode({'q':'New York'})`.",
+    "topic": "URL i kodowanie zapytań"
+  },
+  {
+    "id": 583,
+    "materialId": 50,
+    "front": "Dlaczego najpierw trzeba `decode()` pobrane dane?",
+    "back": "Dane z sieci są bajtami. `data.decode()` konwertuje je z UTF-8 na `str`, co umożliwia użycie `json.loads()`.",
+    "topic": "Dekodowanie UTF-8"
+  },
+  {
+    "id": 584,
+    "materialId": 50,
+    "front": "Co robi `json.loads()`?",
+    "back": "Parsuje tekst JSON (typ `str`) i zamienia go na słowniki i listy Pythona.",
+    "topic": "JSON i parsowanie"
+  },
+  {
+    "id": 585,
+    "materialId": 50,
+    "front": "Jak dostać `lat` z obiektu `js` jeśli struktura to `features -> [0] -> properties -> lat`?",
+    "back": "Użyj: `js['features'][0]['properties']['lat']`.",
+    "topic": "Dostęp do zagnieżdżonych danych"
+  },
+  {
+    "id": 586,
+    "materialId": 50,
+    "front": "Co się stanie gdy spróbujesz `js['features']['lat']`?",
+    "back": "Dostaniesz błąd, bo `js['features']` jest listą, a nie słownikiem. Trzeba użyć indeksu, np. `[0]`.",
+    "topic": "GOTCHA"
+  },
+  {
+    "id": 587,
+    "materialId": 50,
+    "front": "Po co używa się `json.dumps(js, indent=4)`?",
+    "back": "Aby 'pretty print' JSON i łatwiej czytać zagnieżdżone struktury.",
+    "topic": "JSON i parsowanie"
+  },
+  {
+    "id": 588,
+    "materialId": 50,
+    "front": "Co to jest rate limiting (ograniczenie szybkości)?",
+    "back": "To mechanizm, który spowalnia lub blokuje zbyt wiele zapytań do serwisu. Proxy lekcji ma mocne rate limiting.",
+    "topic": "Proxy i rate limiting"
+  },
+  {
+    "id": 589,
+    "materialId": 50,
+    "front": "Dlaczego autor wyłącza sprawdzanie certyfikatów (`context=ctx`)?",
+    "back": "Bo Python nie zawsze ma potrzebne certyfikaty. W lekcji to szybkie obejście, ale nie do użycia w produkcji.",
+    "topic": "Pobieranie danych HTTP"
+  },
+  {
+    "id": 590,
+    "materialId": 50,
+    "front": "Kiedy lepiej użyć `urlencode` zamiast ręcznej zamiany spacji na `+`?",
+    "back": "Zawsze, gdy budujesz URL z wieloma parametrami. `urlencode` poprawnie koduje wszystkie znaki specjalne.",
+    "topic": "URL i kodowanie zapytań"
+  },
+  {
+    "id": 591,
+    "materialId": 50,
+    "front": "Jaki typ danych zwraca `response.read()`?",
+    "back": "Zwraca bajty (`bytes`). Należy użyć `decode()` by dostać `str`.",
+    "topic": "Pobieranie danych HTTP"
+  },
+  {
+    "id": 592,
+    "materialId": 50,
+    "front": "Jaki jest typ pola `features` w API z lekcji?",
+    "back": "`features` to lista (array) obiektów. Należy użyć indeksu, np. `features[0]`, aby dostać pierwszy element.",
+    "topic": "JSON i parsowanie"
+  },
+  {
+    "id": 593,
+    "materialId": 51,
+    "front": "Co to jest `JSON`?",
+    "back": "`JSON` to tekstowy format danych z parami klucz-wartość. Wygląda podobnie do słowników i list w Pythonie.",
+    "topic": "JSON"
+  },
+  {
+    "id": 594,
+    "materialId": 51,
+    "front": "Do czego służy `import json`?",
+    "back": "`import json` ładuje bibliotekę JSON. Dzięki temu możesz użyć `json.loads()` do parsowania tekstu JSON.",
+    "topic": "json.loads"
+  },
+  {
+    "id": 595,
+    "materialId": 51,
+    "front": "Co robi `json.loads()`?",
+    "back": "`json.loads()` bierze string z JSON i zwraca strukturę Pythona: obiekty JSON → `dict`, tablice JSON → `list`.",
+    "topic": "json.loads"
+  },
+  {
+    "id": 596,
+    "materialId": 51,
+    "front": "Jaka jest różnica między obiektem JSON a tablicą JSON?",
+    "back": "Obiekt JSON to para klucz-wartość i staje się `dict`. Tablica JSON to lista elementów i staje się `list` w Pythonie.",
+    "topic": "JSON"
+  },
+  {
+    "id": 597,
+    "materialId": 51,
+    "front": "Jak dostać się do zagnieżdżonej wartości?",
+    "back": "Użyj wielokrotnego indeksowania, np. `data['user']['email']` by dostać email ze zagnieżdżonego obiektu.",
+    "topic": "Słowniki"
+  },
+  {
+    "id": 598,
+    "materialId": 51,
+    "front": "Co się stanie jeśli w JSON zabraknie nawiasu `}`?",
+    "back": "`json.loads()` zgłosi błąd parsowania i program \"się zepsuje\" (nie dostaniesz struktury).",
+    "topic": "Błędy składniowe"
+  },
+  {
+    "id": 599,
+    "materialId": 51,
+    "front": "Co się stanie gdy spróbujesz użyć pojedynczych apostrofów w JSON (`{'a':1}`)?",
+    "back": "To nie jest prawidłowy JSON. `json.loads()` zgłosi błąd, bo JSON wymaga podwójnych cudzysłowów dla kluczy.",
+    "topic": "Błędy składniowe"
+  },
+  {
+    "id": 600,
+    "materialId": 51,
+    "front": "Jak iterować po tablicy JSON po zparsowaniu?",
+    "back": "Po `data = json.loads(...)` użyj `for item in data:` i potem sięgaj do `item['klucz']`.",
+    "topic": "Listy"
+  },
+  {
+    "id": 601,
+    "materialId": 51,
+    "front": "Jaki typ Pythona odpowiada obiektowi JSON?",
+    "back": "Obiekt JSON odpowiada `dict` w Pythonie.",
+    "topic": "JSON"
+  },
+  {
+    "id": 602,
+    "materialId": 51,
+    "front": "Jaki typ Pythona odpowiada tablicy JSON?",
+    "back": "Tablica JSON odpowiada `list` w Pythonie.",
+    "topic": "JSON"
+  },
+  {
+    "id": 603,
+    "materialId": 51,
+    "front": "Co jest częstym błędem początkujących przy dostępie do klucza?",
+    "back": "Wywołanie `data['x']` gdy klucz nie istnieje — to spowoduje błąd podczas wykonania. Sprawdź dane przed dostępem.",
+    "topic": "Słowniki"
+  },
+  {
+    "id": 604,
+    "materialId": 51,
+    "front": "Kiedy lepiej użyć JSON zamiast XML?",
+    "back": "JSON jest prostszy i szybszy do użycia dla prostych struktur danych bez potrzeby dodatkowej złożoności XML.",
+    "topic": "JSON"
+  },
+  {
+    "id": 605,
+    "materialId": 52,
+    "front": "Co to jest JSON?",
+    "back": "Tekstowy format zapisu danych. Używa `{}` dla obiektów i `[]` dla list.",
+    "topic": "Co to jest JSON"
+  },
+  {
+    "id": 606,
+    "materialId": 52,
+    "front": "Do czego służy `json.loads()`?",
+    "back": "Zamienia tekst JSON na struktury Pythona (`list` i `dict`).",
+    "topic": "`json.loads()`"
+  },
+  {
+    "id": 607,
+    "materialId": 52,
+    "front": "Jaka jest różnica między `{}` a `[]` w JSON?",
+    "back": "`{}` reprezentuje obiekt (mapę) i zamieni się w `dict`. `[]` reprezentuje listę i zamieni się w `list`.",
+    "topic": "Mapowanie typów"
+  },
+  {
+    "id": 608,
+    "materialId": 52,
+    "front": "Jak uzyskać wartość pola `name` z wczytanego JSON w zmiennej `data`?",
+    "back": "Użyj nawiasów: `data['name']`.",
+    "topic": "Dostęp do pól"
+  },
+  {
+    "id": 609,
+    "materialId": 52,
+    "front": "Co się stanie, jeśli wejściowy tekst JSON ma brakującą końcową cudzysłów?",
+    "back": "Wywołanie `json.loads()` spowoduje błąd składni i traceback. Napraw tekst JSON.",
+    "topic": "Błędy składniowe"
+  },
+  {
+    "id": 610,
+    "materialId": 52,
+    "front": "Co otrzymasz po `json.loads('[{\"id\":1}]')`?",
+    "back": "Listę z jednym słownikiem: `list` zawierający `dict`.",
+    "topic": "Mapowanie typów"
+  },
+  {
+    "id": 611,
+    "materialId": 52,
+    "front": "Jaki typ Pythona ma obiekt JSON zaczynający się od `{\"a\":1}`?",
+    "back": "To będzie `dict` w Pythonie.",
+    "topic": "Mapowanie typów"
+  },
+  {
+    "id": 612,
+    "materialId": 52,
+    "front": "Jaki częsty błąd robi początkujący przy dostępie do zagnieżdżonych danych?",
+    "back": "Próba użycia kropki jak w XML zamiast nawiasów, np. `data.email.hide` — trzeba użyć `data['email']['hide']`.",
+    "topic": "GOTCHA"
+  },
+  {
+    "id": 613,
+    "materialId": 52,
+    "front": "Kiedy lepiej użyć JSON zamiast XML według lekcji?",
+    "back": "Gdy potrzebujesz prostego, bezpośredniego mapowania na listy i słowniki. JSON jest prostszy i szybszy do użycia.",
+    "topic": "When to use"
+  },
+  {
+    "id": 614,
+    "materialId": 52,
+    "front": "Jak iterować przez listę słowników wczytanych z JSON?",
+    "back": "Użyć pętli `for`, np. `for item in items: print(item['name'])`.",
+    "topic": "Dostęp i iteracja"
+  },
+  {
+    "id": 615,
+    "materialId": 53,
+    "front": "Co to jest API?",
+    "back": "Interfejs, który pozwala programom rozmawiać z usługą przez sieć. Daje umowę, jakie żądania i odpowiedzi działają.",
+    "topic": "API"
+  },
+  {
+    "id": 616,
+    "materialId": 53,
+    "front": "Co robi `json.loads()`?",
+    "back": "Zamienia tekst w formacie `JSON` na obiekty Pythona (słowniki i listy).",
+    "topic": "JSON"
+  },
+  {
+    "id": 617,
+    "materialId": 53,
+    "front": "Co to jest geokodowanie (forward)?",
+    "back": "Zamiana adresu tekstowego na współrzędne (longitude i latitude).",
+    "topic": "Geokodowanie"
+  },
+  {
+    "id": 618,
+    "materialId": 53,
+    "front": "Co to jest reverse geocoding?",
+    "back": "Zamiana współrzędnych na opis miejsca, np. adres.",
+    "topic": "Geokodowanie"
+  },
+  {
+    "id": 619,
+    "materialId": 53,
+    "front": "Dlaczego wiele API wymaga `API key`?",
+    "back": "By śledzić użycie i nałożyć limity. Dzięki temu usługa nie jest nadużywana.",
+    "topic": "Klucz API"
+  },
+  {
+    "id": 620,
+    "materialId": 53,
+    "front": "Jaka jest różnica między API a proxy?",
+    "back": "API to główna usługa. Proxy to pośrednik, który robi zapytania do API i może buforować odpowiedzi.",
+    "topic": "Proxy i cache"
+  },
+  {
+    "id": 621,
+    "materialId": 53,
+    "front": "Co to jest cache (buforowanie) i po co się go używa?",
+    "back": "Cache przechowuje wcześniej pobrane odpowiedzi. Dzięki temu kolejne takie same zapytania są szybkie i nie obciążają API.",
+    "topic": "Proxy i cache"
+  },
+  {
+    "id": 622,
+    "materialId": 53,
+    "front": "Jaki jest typ danych po `json.loads()`?",
+    "back": "Dostajemy słowniki i listy Pythona, które odpowiadają obiektom i tablicom w JSON.",
+    "topic": "JSON"
+  },
+  {
+    "id": 623,
+    "materialId": 53,
+    "front": "Co się stanie, gdy `features` jest pusty, a kod użyje `features[0]`?",
+    "back": "Dostaniesz błąd przy próbie dostępu do elementu, bo indeks 0 nie istnieje.",
+    "topic": "Greaokodowanie i JSON"
+  },
+  {
+    "id": 624,
+    "materialId": 53,
+    "front": "Kiedy warto użyć proxy i cache zamiast bezpośrednich zapytań do API?",
+    "back": "Gdy chcemy uniknąć limitów, przyspieszyć odpowiedzi i zmniejszyć ruch do głównego API.",
+    "topic": "Proxy i cache"
+  },
+  {
+    "id": 625,
+    "materialId": 53,
+    "front": "Co zwraca pole `formatted` w typowej odpowiedzi geokodera?",
+    "back": "Tekstowy opis znalezionego miejsca, np. pełny adres do wyświetlenia.",
+    "topic": "Geokodowanie"
+  },
+  {
+    "id": 626,
+    "materialId": 53,
+    "front": "Jaka jest różnica między REST/JSON a SOAP/XML?",
+    "back": "REST z JSON to nowoczesny i lekki sposób wymiany danych. SOAP z XML jest starszy i cięższy, ale nadal czasem używany.",
+    "topic": "APIs"
+  },
+  {
+    "id": 627,
+    "materialId": 54,
+    "front": "Co to jest architektura usług?",
+    "back": "Sposób budowy systemu z wielu małych usług, które komunikują się między sobą przez jasno określone interfejsy.",
+    "topic": "Architektura usług"
+  },
+  {
+    "id": 628,
+    "materialId": 54,
+    "front": "Co to jest API w kontekście serwisów sieciowych?",
+    "back": "API to umowa dotycząca sposobu proszenia o dane i ich zwracania. Pozwala różnym systemom się porozumiewać.",
+    "topic": "API"
+  },
+  {
+    "id": 629,
+    "materialId": 54,
+    "front": "Co to jest serializacja?",
+    "back": "Zamiana struktury danych na format tekstowy do przesłania, np. `JSON` lub `XML`.",
+    "topic": "Serializacja (JSON/XML)"
+  },
+  {
+    "id": 630,
+    "materialId": 54,
+    "front": "Dlaczego linia lotnicza może pokazywać hotele, mimo że ich nie obsługuje?",
+    "back": "Bo łączy się z zewnętrznymi serwisami hotelowymi przez API i pobiera oferty, które potem pokazuje użytkownikowi.",
+    "topic": "Integracja systemów"
+  },
+  {
+    "id": 631,
+    "materialId": 54,
+    "front": "Jaka jest rola protokołu w komunikacji między systemami?",
+    "back": "Protokół ustala zasady wymiany danych — jak prosić o informacje i w jakim formacie są wysyłane.",
+    "topic": "Protokół i integracja"
+  },
+  {
+    "id": 632,
+    "materialId": 54,
+    "front": "Co robi `JSON` w komunikacji między usługami?",
+    "back": "Jest formatem tekstowym do przesyłania danych. Ułatwia odczyt i przetwarzanie między różnymi systemami.",
+    "topic": "Serializacja (JSON/XML)"
+  },
+  {
+    "id": 633,
+    "materialId": 54,
+    "front": "Jaki jest częsty błąd przy łączeniu wielu serwisów?",
+    "back": "Brak dobrej dokumentacji API — wtedy inne zespoły nie wiedzą jak korzystać z serwisu.",
+    "topic": "Integracja systemów"
+  },
+  {
+    "id": 634,
+    "materialId": 54,
+    "front": "Kiedy warto podzielić system na usługi zamiast trzymać wszystko w jednym?",
+    "back": "Gdy części systemu mogą działać niezależnie i chcesz lepiej skalować lub wymieniać komponenty.",
+    "topic": "Architektura usług"
+  },
+  {
+    "id": 635,
+    "materialId": 54,
+    "front": "Co to znaczy, że usługa ma \"życie własne\"?",
+    "back": "Że działa niezależnie od innych systemów i może być rozwijana lub zastępowana osobno.",
+    "topic": "Architektura usług"
+  },
+  {
+    "id": 636,
+    "materialId": 54,
+    "front": "Jaki problem rozwiązuje użycie standardów jak `JSON`?",
+    "back": "Ułatwia wymianę danych między różnymi technologiami i zespołami, bo wszyscy rozumieją ten format.",
+    "topic": "Serializacja (JSON/XML)"
+  },
+  {
+    "id": 637,
+    "materialId": 54,
+    "front": "Co się dzieje, jeśli API nie jest dobrze zdefiniowane?",
+    "back": "Inne systemy mogą wysyłać złe żądania lub źle interpretować odpowiedzi. Prowadzi to do błędów i problemów z integracją.",
+    "topic": "API"
+  },
+  {
+    "id": 638,
+    "materialId": 54,
+    "front": "Jaki korzyść ma linia lotnicza z pokazywania hoteli przez zewnętrzne usługi?",
+    "back": "Dostaje prowizję lub opłatę za skierowanie klienta. Nie musi sama zarządzać hotelami.",
+    "topic": "Integracja systemów"
   }
 ]
