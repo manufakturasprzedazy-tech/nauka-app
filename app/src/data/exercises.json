@@ -2783,5 +2783,246 @@
       "Użyj prostego sprawdzenia, czy ciąg `\"price\":` jest w tekście",
       "Zwróć wartość logiczną `True` lub `False`"
     ]
+  },
+  {
+    "id": 223,
+    "materialId": 55,
+    "title": "Prosta klasa licznik",
+    "description": "Napisz klasę `Counter`, która w `__init__` ustawia `self.value` na 0. Dodaj metodę `increment`, która zwiększa `self.value` o 1. Zwróć wartość w atrybucie `value`.",
+    "starterCode": "class Counter:\n    def __init__(self):\n        # TODO: ustaw wartość początkową\n        pass\n\n    def increment(self):\n        # TODO: zwiększ wartość o 1\n        pass\n",
+    "solution": "class Counter:\n    def __init__(self):\n        # ustaw wartość początkową\n        self.value = 0\n\n    def increment(self):\n        # zwiększ wartość o 1\n        self.value = self.value + 1\n",
+    "testCode": "c = Counter()\nassert c.value == 0\nc.increment()\nassert c.value == 1\nc.increment()\nassert c.value == 2\n",
+    "difficulty": "easy",
+    "topic": "konstruktor __init__",
+    "hints": [
+      "Użyj `self.value = 0` w `__init__`.",
+      "W metodzie `increment` użyj `self.value = self.value + 1`."
+    ]
+  },
+  {
+    "id": 224,
+    "materialId": 55,
+    "title": "Kilka instancji niezależnych",
+    "description": "Stwórz klasę `Score` z `__init__(self, name)` ustawiającą `self.name` i `self.points = 0`. Dodaj metodę `add_point`, która zwiększa `self.points`. Utwórz dwie instancje i pokaż, że ich `points` są niezależne.",
+    "starterCode": "class Score:\n    def __init__(self, name):\n        # TODO: nadaj name i points\n        pass\n\n    def add_point(self):\n        # TODO: zwiększ points\n        pass\n",
+    "solution": "class Score:\n    def __init__(self, name):\n        self.name = name\n        self.points = 0\n\n    def add_point(self):\n        self.points = self.points + 1\n",
+    "testCode": "a = Score('A')\nb = Score('B')\na.add_point()\nassert a.points == 1\nassert b.points == 0\nb.add_point()\nb.add_point()\nassert b.points == 2\n",
+    "difficulty": "medium",
+    "topic": "wiele instancji",
+    "hints": [
+      "Upewnij się, że używasz `self.points` w konstruktorze.",
+      "Wywołaj metodę `add_point` tylko na jednej instancji w teście."
+    ]
+  },
+  {
+    "id": 225,
+    "materialId": 55,
+    "title": "Konstruktor z parametrem opcjonalnym",
+    "description": "Napisz klasę `User` z `__init__(self, name)` ustawiającą `self.name` i `self.logins = 0`. Dodaj metodę `login` zwiększającą `self.logins`. Przetestuj tworzenie użytkownika z pustym imieniem `''`.",
+    "starterCode": "class User:\n    def __init__(self, name):\n        # TODO: ustaw name i logins\n        pass\n\n    def login(self):\n        # TODO: zwiększ logins\n        pass\n",
+    "solution": "class User:\n    def __init__(self, name):\n        self.name = name\n        self.logins = 0\n\n    def login(self):\n        self.logins = self.logins + 1\n",
+    "testCode": "u = User('')\nassert u.name == ''\nassert u.logins == 0\nu.login()\nassert u.logins == 1\nu.login()\nassert u.logins == 2\n",
+    "difficulty": "medium",
+    "topic": "konstruktor __init__",
+    "hints": [
+      "W `__init__` ustaw `self.logins = 0` zawsze.",
+      "Pamiętaj, że `name` może być pustym stringiem."
+    ]
+  },
+  {
+    "id": 226,
+    "materialId": 55,
+    "title": "Klasa z prostą metodą i sprawdzeniem stanu",
+    "description": "Zadanie: napisz klasę `Device` z `__init__(self, id)` ustawiającą `self.id` i `self.power = 0`. Dodaj metodę `switch_on` która ustawia `self.power = 1` i metodę `switch_off` która ustawia `self.power = 0`. Przetestuj zmianę stanu oraz niezależność instancji.",
+    "starterCode": "class Device:\n    def __init__(self, id):\n        # TODO: ustaw id i power\n        pass\n\n    def switch_on(self):\n        # TODO: ustaw power na 1\n        pass\n\n    def switch_off(self):\n        # TODO: ustaw power na 0\n        pass\n",
+    "solution": "class Device:\n    def __init__(self, id):\n        self.id = id\n        self.power = 0\n\n    def switch_on(self):\n        self.power = 1\n\n    def switch_off(self):\n        self.power = 0\n",
+    "testCode": "d1 = Device('A')\nd2 = Device('B')\nassert d1.power == 0\nassert d2.power == 0\nd1.switch_on()\nassert d1.power == 1\nassert d2.power == 0\nd1.switch_off()\nassert d1.power == 0\n",
+    "difficulty": "hard",
+    "topic": "metody i stan",
+    "hints": [
+      "Używaj `self.power` w konstruktorze i w metodach.",
+      "Stwórz dwie instancje w teście i zmieniaj stan tylko jednej."
+    ]
+  },
+  {
+    "id": 227,
+    "materialId": 56,
+    "title": "Funkcja zamieniająca tekst na wielkie litery",
+    "description": "Napisz funkcję `to_upper(s)`, która zwraca `s` zamieniony na wielkie litery. Użyj metody stringa.",
+    "starterCode": "def to_upper(s):\n    # TODO: zwróć `s` w wielkich literach\n    pass\n",
+    "solution": "def to_upper(s):\n    # używamy metody stringa `upper()`\n    return s.upper()\n",
+    "testCode": "assert to_upper(\"\") == \"\"\nassert to_upper(\"a\") == \"A\"\nassert to_upper(\"Hello World\") == \"HELLO WORLD\"\n",
+    "difficulty": "easy",
+    "topic": "metody",
+    "hints": [
+      "Użyj metody, która zmienia litery na wielkie.",
+      "Zwróć wynik, nie drukuj go."
+    ]
+  },
+  {
+    "id": 228,
+    "materialId": 56,
+    "title": "Lista wielkimi literami",
+    "description": "Napisz funkcję `uppercase_list(lst)`, która dostaje listę stringów i zwraca nową listę z tymi stringami w wielkich literach.",
+    "starterCode": "def uppercase_list(lst):\n    # TODO: utwórz nową listę i wypełnij ją wersjami upper()\n    result = []\n    # ...\n    return result\n",
+    "solution": "def uppercase_list(lst):\n    result = []\n    for item in lst:\n        result.append(item.upper())\n    return result\n",
+    "testCode": "assert uppercase_list([]) == []\nassert uppercase_list([\"a\"]) == [\"A\"]\nassert uppercase_list([\"one\",\"Two\"]) == [\"ONE\",\"TWO\"]\n",
+    "difficulty": "medium",
+    "topic": "metody i listy",
+    "hints": [
+      "Przejdź pętlą po elementach listy.",
+      "Dla każdego elementu użyj `upper()` i dodaj do nowej listy."
+    ]
+  },
+  {
+    "id": 229,
+    "materialId": 56,
+    "title": "Sprawdź i użyj metody `strip`",
+    "description": "Napisz funkcję `safe_strip(s)`, która sprawdza czy obiekt `s` ma metodę `strip`. Jeśli tak, zwraca `s.strip()`, w przeciwnym razie zwraca `s` bez zmian. Użyj `dir()` do sprawdzenia.",
+    "starterCode": "def safe_strip(s):\n    # TODO: jeśli 'strip' w dir(s) to zwróć s.strip(), inaczej s\n    pass\n",
+    "solution": "def safe_strip(s):\n    if 'strip' in dir(s):\n        return s.strip()\n    return s\n",
+    "testCode": "assert safe_strip(\"  hi  \") == \"hi\"\n# liczba nie ma strip -> zwróć oryginał\nassert safe_strip(123) == 123\n# pusty string\nassert safe_strip(\"\") == \"\"\n",
+    "difficulty": "medium",
+    "topic": "dir i metody",
+    "hints": [
+      "Zwróć `s` jeśli `\"strip\"` nie jest w `dir(s)`.",
+      "Jeśli jest, wywołaj `s.strip()`."
+    ]
+  },
+  {
+    "id": 230,
+    "materialId": 56,
+    "title": "Prosty licznik: dodaj 1 do tekstu z liczbą",
+    "description": "Napisz funkcję `increment_text_number(text)`, która dostaje `text` zawierający liczbę w formie tekstu (np. `'42'`). Funkcja konwertuje na liczbę, dodaje 1 i zwraca wynik jako liczbę. Użyj `int()` do konwersji.",
+    "starterCode": "def increment_text_number(text):\n    # TODO: skonwertuj text na int, dodaj 1 i zwróć\n    pass\n",
+    "solution": "def increment_text_number(text):\n    n = int(text)\n    return n + 1\n",
+    "testCode": "assert increment_text_number(\"0\") == 1\nassert increment_text_number(\"9\") == 10\nassert increment_text_number(\"-1\") == 0\n",
+    "difficulty": "hard",
+    "topic": "konwersja i obiekty",
+    "hints": [
+      "Użyj `int(text)` by dostać liczbę.",
+      "Pamiętaj, że zwracasz liczbę, a nie tekst."
+    ]
+  },
+  {
+    "id": 231,
+    "materialId": 57,
+    "title": "Prosty licznik (easy)",
+    "description": "Stwórz klasę `Clicker`. Konstruktor ustawia `count` na 0. Dodaj metodę `click()` która zwiększa `count` o 1.",
+    "starterCode": "class Clicker:\n    def __init__(self):\n        # TODO: ustaw count na 0\n        pass\n\n    def click(self):\n        # TODO: zwiększ count o 1\n        pass\n",
+    "solution": "class Clicker:\n    def __init__(self):\n        # ustawiamy licznik na 0\n        self.count = 0\n\n    def click(self):\n        # zwiększamy licznik o 1\n        self.count += 1\n",
+    "testCode": "c = Clicker()\nassert c.count == 0\nc.click()\nassert c.count == 1\nc.click()\nassert c.count == 2\n",
+    "difficulty": "easy",
+    "topic": "Atrybuty i metody",
+    "hints": [
+      "W konstruktorze ustaw `self.count = 0`.",
+      "Metoda `click` powinna robić `self.count += 1`."
+    ]
+  },
+  {
+    "id": 232,
+    "materialId": 57,
+    "title": "Użytkownik i administrator (medium)",
+    "description": "Zrób klasę `User` z konstruktorem przyjmującym `name` i metodą `greet()` która wypisuje powitanie. Stwórz podklasę `Admin`, która wywołuje `super().__init__(name)` i dodaje atrybut `level` ustawiony na 1. Dodaj metodę `promote()` która zwiększa `level` o 1 i wywołuje `greet()`.",
+    "starterCode": "class User:\n    def __init__(self, name):\n        # TODO: zapisz name\n        pass\n    def greet(self):\n        # TODO: wypisz powitanie\n        pass\n\nclass Admin(User):\n    def __init__(self, name):\n        # TODO: wywołaj konstruktor bazowy i ustaw level\n        pass\n    def promote(self):\n        # TODO: zwiększ level i wywołaj greet\n        pass\n",
+    "solution": "class User:\n    def __init__(self, name):\n        self.name = name\n    def greet(self):\n        print('Cześć', self.name)\n\nclass Admin(User):\n    def __init__(self, name):\n        super().__init__(name)\n        self.level = 1\n    def promote(self):\n        self.level += 1\n        self.greet()\n",
+    "testCode": "u = User('Ola')\n# greet tylko wypisuje, więc sprawdzimy istnienie atrybutu\nassert u.name == 'Ola'\n\na = Admin('Jan')\nassert a.name == 'Jan'\nassert a.level == 1\n# promote zwiększa level\na.promote()\nassert a.level == 2\n",
+    "difficulty": "medium",
+    "topic": "Dziedziczenie",
+    "hints": [
+      "Użyj `super().__init__(name)` w `Admin.__init__`.",
+      "W `promote()` zwiększ `self.level` i potem wywołaj `self.greet()`."
+    ]
+  },
+  {
+    "id": 233,
+    "materialId": 57,
+    "title": "Nadpisanie metody (medium)",
+    "description": "Stwórz klasę `Writer` z metodą `write()` która wypisuje `'pisze'`. Następnie stwórz podklasę `Poet`, która nadpisze `write()` tak, żeby najpierw wypisać `'wiersz'`, a potem wywołać `write()` z klasy bazowej.",
+    "starterCode": "class Writer:\n    def write(self):\n        # TODO: wypisz 'pisze'\n        pass\n\nclass Poet(Writer):\n    def write(self):\n        # TODO: wypisz 'wiersz' i wywołaj metodę z klasy bazowej\n        pass\n",
+    "solution": "class Writer:\n    def write(self):\n        print('pisze')\n\nclass Poet(Writer):\n    def write(self):\n        print('wiersz')\n        super().write()\n",
+    "testCode": "w = Writer()\nw.write()  # wypisze 'pisze'\n\np = Poet()\np.write()  # wypisze najpierw 'wiersz', potem 'pisze'\n# nie ma prostego sposobu na assert dla print, ale sprawdzamy brak błędów i istnienie metod\nassert hasattr(w, 'write')\nassert hasattr(p, 'write')\n",
+    "difficulty": "medium",
+    "topic": "Nadpisywanie",
+    "hints": [
+      "W `Poet.write()` użyj `print('wiersz')` i potem `super().write()`.",
+      "Nie zapomnij, że `write` w klasie bazowej istnieje i można ją wywołać.",
+      ""
+    ]
+  },
+  {
+    "id": 234,
+    "materialId": 57,
+    "title": "Konto oszczędnościowe (hard)",
+    "description": "Zaimplementuj klasę `Account` z konstruktorem przyjmującym `owner` i ustawiającym `balance` na 0. Dodaj metodę `deposit(amount)` która dodaje kwotę do `balance`. Stwórz podklasę `SavingsAccount`, która w konstruktorze wywołuje `super().__init__` i dodatkowo ustawia `interest_rate`. Dodaj metodę `apply_interest()` która zwiększa `balance` o `balance * interest_rate`.",
+    "starterCode": "class Account:\n    def __init__(self, owner):\n        # TODO: ustaw owner i balance\n        pass\n    def deposit(self, amount):\n        # TODO: dodaj amount do balance\n        pass\n\nclass SavingsAccount(Account):\n    def __init__(self, owner, rate):\n        # TODO: wywołaj konstruktor bazowy i ustaw interest_rate\n        pass\n    def apply_interest(self):\n        # TODO: zwiększ balance o balance * interest_rate\n        pass\n",
+    "solution": "class Account:\n    def __init__(self, owner):\n        self.owner = owner\n        self.balance = 0\n    def deposit(self, amount):\n        self.balance += amount\n\nclass SavingsAccount(Account):\n    def __init__(self, owner, rate):\n        super().__init__(owner)\n        self.interest_rate = rate\n    def apply_interest(self):\n        # dodaj odsetki do salda\n        self.balance += self.balance * self.interest_rate\n",
+    "testCode": "a = Account('Ania')\nassert a.owner == 'Ania'\nassert a.balance == 0\n\na.deposit(100)\nassert a.balance == 100\n\ns = SavingsAccount('Marek', 0.1)\nassert s.owner == 'Marek'\nassert s.balance == 0\ns.deposit(200)\nassert s.balance == 200\ns.apply_interest()\n# 10% z 200 to 20, więc saldo powinno być 220\nassert round(s.balance, 5) == 220\n# edge case: zero balance\ns2 = SavingsAccount('Ola', 0.05)\ns2.apply_interest()\nassert s2.balance == 0\n",
+    "difficulty": "hard",
+    "topic": "Dziedziczenie i logika",
+    "hints": [
+      "Użyj `super().__init__(owner)` w podklasie.",
+      "W `apply_interest()` zaktualizuj `self.balance` o `self.balance * self.interest_rate`."
+    ]
+  },
+  {
+    "id": 235,
+    "materialId": 58,
+    "title": "Prosty licznik",
+    "description": "Napisz klasę `Counter` z `__init__` ustawiającym `self.count = 0` i metodą `add(self)`, która zwiększa `self.count` o 1 i drukuje nową wartość.",
+    "starterCode": "# TODO: uzupełnij klasę\nclass Counter:\n    def __init__(self):\n        # TODO: ustaw domyślną wartość\n        pass\n\n    def add(self):\n        # TODO: zwiększ i wydrukuj wartość\n        pass\n",
+    "solution": "# pełne rozwiązanie\nclass Counter:\n    def __init__(self):\n        # tworzymy atrybut instancji\n        self.count = 0\n\n    def add(self):\n        # zwiększamy atrybut i drukujemy\n        self.count = self.count + 1\n        print(self.count)\n",
+    "testCode": "# testy\nc = Counter()\nassert hasattr(c, 'count')\nassert c.count == 0\nc.add()  # wypisze 1\nassert c.count == 1\nc.add()  # wypisze 2\nassert c.count == 2\n",
+    "difficulty": "easy",
+    "topic": "Atrybuty instancji",
+    "hints": [
+      "Ustaw `self.count = 0` w `__init__`.",
+      "W `add` użyj `self.count = self.count + 1` i `print(self.count)`."
+    ]
+  },
+  {
+    "id": 236,
+    "materialId": 58,
+    "title": "Niezależne liczniki",
+    "description": "Napisz klasę `Clicker` z `__init__` ustawiającym `self.clicks = 0` i metodą `click(self)` która zwiększa `clicks` i nic więcej nie robi poza drukiem. Sprawdź, że dwie instancje mają niezależne stany.",
+    "starterCode": "# TODO: uzupełnij klasę Clicker\nclass Clicker:\n    def __init__(self):\n        # TODO: inicjalizacja\n        pass\n\n    def click(self):\n        # TODO: zwiększ i wydrukuj\n        pass\n",
+    "solution": "# rozwiązanie\nclass Clicker:\n    def __init__(self):\n        self.clicks = 0\n\n    def click(self):\n        self.clicks = self.clicks + 1\n        print(self.clicks)\n",
+    "testCode": "# testy\nc1 = Clicker()\nc2 = Clicker()\nassert c1.clicks == 0 and c2.clicks == 0\nc1.click()\nc1.click()\nc2.click()\nassert c1.clicks == 2\nassert c2.clicks == 1\n",
+    "difficulty": "medium",
+    "topic": "Instancje",
+    "hints": [
+      "Każda instancja powinna mieć własne `self.clicks`.",
+      "Utwórz dwie instancje i wywołaj `click()` różną liczbę razy."
+    ]
+  },
+  {
+    "id": 237,
+    "materialId": 58,
+    "title": "Sprawdź typ atrybutu",
+    "description": "Utwórz klasę `Box` z `__init__` ustawiającym `self.x = 10`. Napisz kod, który tworzy instancję i zwraca typ `x` używając `type()`.",
+    "starterCode": "# TODO: uzupełnij klasę i zwróć typ\nclass Box:\n    def __init__(self):\n        # TODO: ustaw x\n        pass\n\n# TODO: utwórz instancję i przypisz do result typ atrybutu x\nresult = None\n",
+    "solution": "# rozwiązanie\nclass Box:\n    def __init__(self):\n        self.x = 10\n\nb = Box()\nresult = type(b.x)\n",
+    "testCode": "# testy\nassert result == type(10)\n# dodatkowe sprawdzenie, że atrybut istnieje\nb2 = Box()\nassert hasattr(b2, 'x') and b2.x == 10\n",
+    "difficulty": "medium",
+    "topic": "Funkcje pomocnicze: dir i type",
+    "hints": [
+      "Ustaw `self.x = 10` w `__init__`.",
+      "Użyj `type(inst.x)` aby dostać typ."
+    ]
+  },
+  {
+    "id": 238,
+    "materialId": 58,
+    "title": "Kilka instancji z własnym stanem (trudniejsze)",
+    "description": "Napisz klasę `Tally` z `__init__` ustawiającym `self.value = 0` i metodą `count(self)` która zwiększa `value` o 1 i drukuje ją. Utwórz trzy różne instancje i wykonaj na nich różne liczby wywołań. Sprawdź końcowe wartości wszystkich instancji.",
+    "starterCode": "# TODO: uzupełnij klasę Tally\nclass Tally:\n    def __init__(self):\n        # TODO: inicjalizacja\n        pass\n\n    def count(self):\n        # TODO: zwiększ i wydrukuj\n        pass\n\n# TODO: utwórz instancje i wykonaj operacje\na = None\nb = None\nc = None\n",
+    "solution": "# rozwiązanie\nclass Tally:\n    def __init__(self):\n        self.value = 0\n\n    def count(self):\n        self.value = self.value + 1\n        print(self.value)\n\n# tworzymy trzy instancje\nA = Tally()\nB = Tally()\nC = Tally()\n# różna liczba wywołań\nA.count()  # 1\nA.count()  # 2\nB.count()  # 1\n# C pozostaje niezmienione\n\na = A\nb = B\nc = C\n",
+    "testCode": "# testy\nassert a.value == 2\nassert b.value == 1\nassert c.value == 0\n# dodatkowy test: kolejne wywołanie zmienia tylko daną instancję\na.count()\nassert a.value == 3\n",
+    "difficulty": "hard",
+    "topic": "Instancje",
+    "hints": [
+      "Każda instancja powinna mieć własne `self.value`.",
+      "Wywołaj `count()` różną liczbę razy dla każdej instancji."
+    ]
   }
 ]

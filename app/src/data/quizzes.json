@@ -5999,5 +5999,530 @@
     "explanation": "Złe API powoduje błędy i trudności z integracją. Nie poprawia to wydajności ani bezpieczeństwa automatycznie.",
     "difficulty": "medium",
     "topic": "Integracja systemów"
+  },
+  {
+    "id": 481,
+    "materialId": 55,
+    "question": "Co wypisze ten kod?\n\n```python\nclass Light:\n    def __init__(self, name):\n        self.name = name\n        self.count = 0\n    def flip(self):\n        self.count = self.count + 1\n\nl = Light('Desk')\nl.flip()\nl.flip()\nprint(l.count)\n```",
+    "choices": [
+      "0",
+      "1",
+      "2",
+      "Desk"
+    ],
+    "correctIndex": 2,
+    "explanation": "Metoda `flip` zwiększa `self.count` o 1 za każdym wywołaniem, więc po dwóch wywołaniach jest 2. Popularny błąd to myśleć, że `name` jest licznikiem.",
+    "difficulty": "easy",
+    "topic": "metody i stan"
+  },
+  {
+    "id": 482,
+    "materialId": 55,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nclass Person:\n    def __init__(self, name):\n        name = name\n    def greet(self):\n        print(self.name)\n\np = Person('Ola')\np.greet()\n```",
+    "choices": [
+      "Brakuje `self` w `greet`",
+      "W `__init__` nie przypisano `self.name`",
+      "Metoda `greet` ma złą składnię",
+      "Nie można przekazywać parametrów do `__init__`"
+    ],
+    "correctIndex": 1,
+    "explanation": "W `__init__` przypisano lokalną zmienną, a nie pole obiektu. Trzeba `self.name = name`. Błąd często mylony z brakiem `self` w definicji metody, ale tam `self` jest obecne.",
+    "difficulty": "easy",
+    "topic": "konstruktor __init__"
+  },
+  {
+    "id": 483,
+    "materialId": 55,
+    "question": "Która wersja poprawnie ustawia `name` i `x` jako pola obiektu?\n\nA:\n```python\nclass C:\n    def __init__(self, name):\n        x = 0\n        self.name = name\n```\n\nB:\n```python\nclass C:\n    def __init__(self, name):\n        self.x = 0\n        self.name = name\n```\n\nC:\n```python\nclass C:\n    def __init__(self, name):\n        self.x = 0\n        name = name\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "Wszystkie są poprawne"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wersja B zapisuje oba pola jako `self.x` i `self.name`. W A `x` jest lokalne, w C `name` jest lokalne.",
+    "difficulty": "medium",
+    "topic": "zmienne instancji"
+  },
+  {
+    "id": 484,
+    "materialId": 55,
+    "question": "Co się stanie, gdy wykonamy `obj = 100` dla zmiennej `obj`, która wcześniej wskazywała obiekt?",
+    "choices": [
+      "Obiekt zostanie natychmiast zniszczony zawsze",
+      "Python nadpisze referencję i obiekt może zostać zebrany",
+      "Nic się nie zmieni; obiekt nadal istnieje",
+      "Wywoła błąd typu"
+    ],
+    "correctIndex": 1,
+    "explanation": "Przypisanie nadpisuje referencję. Obiekt może zostać zbierany, jeśli nie ma innych referencji. Nie zawsze jest natychmiast zniszczony.",
+    "difficulty": "medium",
+    "topic": "garbage collection"
+  },
+  {
+    "id": 485,
+    "materialId": 55,
+    "question": "Co wypisze ten kod?\n\n```python\nclass Bag:\n    def __init__(self, name):\n        self.name = name\n        self.x = 0\n    def add(self):\n        self.x = self.x + 1\n\nb1 = Bag('one')\nb2 = Bag('two')\nb1.add()\nprint(b1.x, b2.x)\n```",
+    "choices": [
+      "1 0",
+      "1 1",
+      "0 1",
+      "b1 b2"
+    ],
+    "correctIndex": 0,
+    "explanation": "Każdy obiekt ma własne `self.x`. Wywołanie `b1.add()` zmienia tylko `b1.x`, więc wynik to `1 0`. Błąd to myśleć, że zmiana dotyczy wszystkich instancji.",
+    "difficulty": "easy",
+    "topic": "wiele instancji"
+  },
+  {
+    "id": 486,
+    "materialId": 55,
+    "question": "Co wypisze ten kod jeśli destruktor ma wydruk?\n\n```python\nclass Temp:\n    def __init__(self):\n        print('init')\n    def __del__(self):\n        print('del')\n\nt = Temp()\nt = 7\nprint(t)\n```",
+    "choices": [
+      "init\\ndel\\n7",
+      "init\\n7\\ndel",
+      "del\\ninit\\n7",
+      "init\\n7\\ninit"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tworzenie obiektu wypisuje `init`. Nadpisanie `t` usuwa referencję i zwykle wywołuje `del` przed drukiem `7`. Popularny błąd to zakładać, że `del` zawsze nastąpi po `print(t)`.",
+    "difficulty": "medium",
+    "topic": "destruktor __del__"
+  },
+  {
+    "id": 487,
+    "materialId": 55,
+    "question": "Co jest nie tak z tym kodem, jeśli chcemy, by `count` działało per-instancja?\n\n```python\nclass Counter:\n    def __init__(self):\n        count = 0\n    def tick(self):\n        self.count = self.count + 1\n```\n",
+    "choices": [
+      "Metoda `tick` powinna być statyczna",
+      "W `__init__` nie ustawiono `self.count`",
+      "`tick` nie może używać `self`",
+      "Zła nazwa klasy"
+    ],
+    "correctIndex": 1,
+    "explanation": "W `__init__` przypisano lokalne `count`, a nie `self.count`. To spowoduje błąd przy pierwszym `tick`. Popularne nieporozumienie to myśleć, że lokalna zmienna staje się polem.",
+    "difficulty": "easy",
+    "topic": "zmienne instancji"
+  },
+  {
+    "id": 488,
+    "materialId": 55,
+    "question": "Które zdanie jest prawdziwe?\n\nA: `__del__` zawsze musi istnieć w klasie.\nB: `__init__` ustawia stan obiektu.\nC: Nadpisanie zmiennej zawsze natychmiast usuwa obiekt z pamięci.\nD: `self` to słowo kluczowe Pythona, które tworzy zmienne globalne.",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "`__init__` służy do ustawienia stanu obiektu. `__del__` nie musi istnieć, nadpisanie nie zawsze usuwa obiekt natychmiast, a `self` to konwencja odnosząca się do instancji.",
+    "difficulty": "easy",
+    "topic": "ogólne pojęcia"
+  },
+  {
+    "id": 489,
+    "materialId": 55,
+    "question": "Co wypisze ten kod?\n\n```python\nclass N:\n    def __init__(self, name):\n        self.name = name\n    def show(self):\n        print(self.name)\n\nn = N('X')\nN.show(n)\n```",
+    "choices": [
+      "X",
+      "n",
+      "show",
+      "Błąd wykonania"
+    ],
+    "correctIndex": 0,
+    "explanation": "Metodę można wywołać przez klasę podając instancję jako argument. `self` zostanie ustawione na `n`, więc wypisze `X`. Błąd to myśleć, że trzeba zawsze używać notacji `n.show()`.",
+    "difficulty": "medium",
+    "topic": "metody i self"
+  },
+  {
+    "id": 490,
+    "materialId": 56,
+    "question": "Co wypisze ten kod?\n\n```python\ns = \"pies\"\nprint(s.upper())\n```",
+    "choices": [
+      "\"PIES\"",
+      "\"pies\"",
+      "Błąd: metoda nie istnieje",
+      "\"Pies\""
+    ],
+    "correctIndex": 0,
+    "explanation": "Metoda `upper()` zamienia wszystkie litery na wielkie, więc `\"pies\"` staje się `\"PIES\"`. Błędna odpowiedź z \"Pies\" ma tylko pierwszą wielką literę, a nie wszystkie.",
+    "difficulty": "easy",
+    "topic": "metody"
+  },
+  {
+    "id": 491,
+    "materialId": 56,
+    "question": "Co zrobi `dir(\"\")` w Pythonie?",
+    "choices": [
+      "Zwróci listę metod i atrybutów dostępnych dla stringa",
+      "Zwróci długość stringa",
+      "Usunie pusty string",
+      "Zwróci typ danych jako 'str'"
+    ],
+    "correctIndex": 0,
+    "explanation": "`dir(\"\")` zwraca listę nazw (metod i atrybutów) dla obiektu string. To nie liczy długości ani nie zmienia obiektu.",
+    "difficulty": "easy",
+    "topic": "dir"
+  },
+  {
+    "id": 492,
+    "materialId": 56,
+    "question": "Która odpowiedź poprawnie opisuje różnicę?\n\nA: Klasa to gotowy obiekt; B: Klasa to wzór do tworzenia obiektów.",
+    "choices": [
+      "B jest poprawne, A jest błędne",
+      "A jest poprawne, B jest błędne",
+      "Oba są poprawne",
+      "Oba są błędne"
+    ],
+    "correctIndex": 0,
+    "explanation": "Klasa to wzór (foremka). Z niej tworzy się obiekty (instancje). Mówienie, że klasa to gotowy obiekt, jest błędem.",
+    "difficulty": "easy",
+    "topic": "klasy vs instancje"
+  },
+  {
+    "id": 493,
+    "materialId": 56,
+    "question": "Co się stanie, gdy spróbujesz wywołać nieistniejącą metodę na obiekcie?",
+    "choices": [
+      "Program zgłosi błąd i zatrzyma się",
+      "Python automatycznie doda metodę",
+      "Nic się nie stanie, zostanie wywołana pusta metoda",
+      "Metoda będzie wykonana na innej klasie"
+    ],
+    "correctIndex": 0,
+    "explanation": "Jeśli metoda nie istnieje, Python zgłosi błąd i program się zatrzyma. Nie tworzy automatycznie metod ani nie zamienia zachowania.",
+    "difficulty": "medium",
+    "topic": "gotcha"
+  },
+  {
+    "id": 494,
+    "materialId": 56,
+    "question": "Co wypisze ten kod?\n\n```python\nitems = [\"a\", \"b\", \"c\"]\nprint(type(items))\n```",
+    "choices": [
+      "Pokaże, że `items` jest jak lista (np. `<class 'list'>`)",
+      "Wypisze zawartość listy: `['a', 'b', 'c']`",
+      "Wypisze `items` bez nawiasów",
+      "Błąd: nie można użyć `type` na liście"
+    ],
+    "correctIndex": 0,
+    "explanation": "Funkcja `type()` zwraca klasę obiektu, więc pokaże, że to `list`. Opcja z wypisaniem zawartości opisuje `print(items)`, nie `print(type(items))`.",
+    "difficulty": "medium",
+    "topic": "typy i klasy"
+  },
+  {
+    "id": 495,
+    "materialId": 56,
+    "question": "Co wypisze ten kod?\n\n```python\ns = \"  hello  \"\nprint(s.strip())\n```",
+    "choices": [
+      "\"hello\"",
+      "\"  hello  \"",
+      "\"hello  \"",
+      "Błąd: `strip` nie istnieje"
+    ],
+    "correctIndex": 0,
+    "explanation": "Metoda `strip()` usuwa spacje po obu stronach stringa, więc wynik to `\"hello\"`. Druga opcja to oryginał, a trzecia usuwa tylko z lewej lub prawej.",
+    "difficulty": "easy",
+    "topic": "metody"
+  },
+  {
+    "id": 496,
+    "materialId": 56,
+    "question": "Która odpowiedź najlepiej opisuje `dir(x)`?",
+    "choices": [
+      "Pokazuje możliwości obiektu `x` (metody i atrybuty)",
+      "Wykonuje wszystkie metody obiektu `x`",
+      "Zmienia klasę obiektu `x`",
+      "Zwraca tylko metody publiczne"
+    ],
+    "correctIndex": 0,
+    "explanation": "`dir(x)` pokazuje nazwy dostępne dla `x` (metody i atrybuty). Nie wykonuje ich ani nie zmienia klasy.",
+    "difficulty": "easy",
+    "topic": "dir"
+  },
+  {
+    "id": 497,
+    "materialId": 56,
+    "question": "Co wypisze ten kod?\n\n```python\nword = \"Py\"\nprint(word + \"thon\")\n```",
+    "choices": [
+      "\"Python\"",
+      "\"Pyython\"",
+      "Błąd: nie można łączyć stringów",
+      "\"Py thon\""
+    ],
+    "correctIndex": 0,
+    "explanation": "Operator `+` łączy stringi, więc `\"Py\" + \"thon\"` daje `\"Python\"`. Błędne odpowiedzi nie poprawiają prostej konkatenacji.",
+    "difficulty": "easy",
+    "topic": "obiekty (string)"
+  },
+  {
+    "id": 498,
+    "materialId": 57,
+    "question": "Co wypisze ten kod?\n\n```python\nclass Animal:\n    def __init__(self, name):\n        self.name = name\n    def greet(self):\n        print('Cześć', self.name)\n\nclass Dog(Animal):\n    def __init__(self, name):\n        super().__init__(name)\n        self.tail = True\n\nd = Dog('Rex')\nd.greet()\nprint(d.tail)\n```",
+    "choices": [
+      "Cześć Rex\nTrue",
+      "Cześć Rex\nFalse",
+      "Cześć\nRex\nTrue",
+      "Błąd: 'Dog' nie ma atrybutu 'tail'"
+    ],
+    "correctIndex": 0,
+    "explanation": "Poprawne: `greet()` wypisze `Cześć Rex`, a `tail` ustawiono na `True`. Najpopularniejszy błąd: wybrać `False` — to by było, gdyby `self.tail` ustawiono na `False`, ale tu ustawiono `True`.",
+    "difficulty": "easy",
+    "topic": "Kod - wyjście"
+  },
+  {
+    "id": 499,
+    "materialId": 57,
+    "question": "Co się stanie po uruchomieniu tego kodu?\n\n```python\nclass Person:\n    def __init__(self, name):\n        self.name = name\n\nclass Student(Person):\n    def __init__(self, name, grade):\n        self.grade = grade\n\ns = Student('Ala', 5)\nprint(s.name)\n```",
+    "choices": [
+      "Wypisze 'Ala'",
+      "Wypisze 'None'",
+      "Błąd: obiekt 'Student' nie ma atrybutu 'name'",
+      "Błąd składniowy"
+    ],
+    "correctIndex": 2,
+    "explanation": "Brak wywołania `super().__init__()` w `Student`, więc `name` nie jest ustawione i dostęp do `s.name` spowoduje błąd. Najpopularniejszy błąd to myśl, że `name` będzie `None`; w rzeczywistości atrybut nie istnieje i Python zgłosi błąd.",
+    "difficulty": "medium",
+    "topic": "Gotcha"
+  },
+  {
+    "id": 500,
+    "materialId": 57,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nclass A:\n    def __init__(self, x):\n        self.x = x\n\nclass B(A):\n    def __init__(self, x, y):\n        super().__init__()  # błąd\n        self.y = y\n```",
+    "choices": [
+      "Brakuje przekazania `x` do `super().__init__()`",
+      "`super()` nie może być użyte w podklasie",
+      "Nie można mieć dwóch parametrów `x` i `y` w konstruktorze",
+      "To działa poprawnie"
+    ],
+    "correctIndex": 0,
+    "explanation": "Trzeba przekazać `x` do `super().__init__(x)`. Popularny błąd to myślenie, że `super()` ustawi wszystko samodzielnie; trzeba przekazać wymagane argumenty.",
+    "difficulty": "easy",
+    "topic": "Znajdź błąd"
+  },
+  {
+    "id": 501,
+    "materialId": 57,
+    "question": "Która wersja poprawnie używa dziedziczenia i wywołuje konstruktor klasy bazowej?\n\nWersja A:\n```python\nclass Base:\n    def __init__(self, name):\n        self.name = name\n\nclass Child(Base):\n    def __init__(self, name, age):\n        super().__init__(name)\n        self.age = age\n```\n\nWersja B:\n```python\nclass Child(Base):\n    def __init__(self, name, age):\n        self.name = name\n        self.age = age\n```",
+    "choices": [
+      "Wersja A",
+      "Wersja B",
+      "Obie poprawne",
+      "Żadna z nich"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wersja A wywołuje `super().__init__(name)` i ponownie używa logiki klasy bazowej. Wersja B kopiuje ustawianie `name` zamiast wywołać konstruktor bazowy, więc nie korzysta z dziedziczenia.",
+    "difficulty": "easy",
+    "topic": "Która wersja"
+  },
+  {
+    "id": 502,
+    "materialId": 57,
+    "question": "Co wypisze ten kod?\n\n```python\nclass Printer:\n    def printit(self):\n        print('bazowe')\n\nclass Special(Printer):\n    def printit(self):\n        print('specjalne')\n\np = Special()\np.printit()\n```",
+    "choices": [
+      "bazowe",
+      "specjalne",
+      "bazowe\\nspecjalne",
+      "Błąd"
+    ],
+    "correctIndex": 1,
+    "explanation": "Podklasa `Special` nadpisuje metodę `printit`, więc wywołanie `p.printit()` użyje wersji `Special`. Najpopularniejszy błąd to oczekiwać obu wersji; to byłoby możliwe gdyby `Special` wywołało `super().printit()`.",
+    "difficulty": "easy",
+    "topic": "Nadpisywanie"
+  },
+  {
+    "id": 503,
+    "materialId": 57,
+    "question": "Co się stanie, gdy podklasa wywoła metodę klasy bazowej w swojej metodzie?\n\n```python\nclass A:\n    def show(self):\n        print('A')\n\nclass B(A):\n    def show(self):\n        print('B')\n        super().show()\n\nb = B()\nb.show()\n```",
+    "choices": [
+      "Wypisze tylko 'B'",
+      "Wypisze 'B'\\n'A'",
+      "Wypisze 'A'\\n'B'",
+      "Błąd"
+    ],
+    "correctIndex": 1,
+    "explanation": "Najpierw wypisze 'B', potem `super().show()` wypisze 'A'. Popularny błąd to myśleć, że kolejność jest odwrotna.",
+    "difficulty": "medium",
+    "topic": "super()"
+  },
+  {
+    "id": 504,
+    "materialId": 57,
+    "question": "Które zdanie najlepiej opisuje 'klasę bazową' i 'podklasę'?",
+    "choices": [
+      "Klasa bazowa (parent) dostarcza wspólne funkcje, podklasa (child) je rozszerza.",
+      "Podklasa zawsze działa niezależnie i nigdy nie używa klasy bazowej.",
+      "Klasa bazowa jest zawsze pusta.",
+      "Podklasa usuwa metody klasy bazowej."
+    ],
+    "correctIndex": 0,
+    "explanation": "Klasa bazowa daje wspólne funkcje, a podklasa może je rozszerzyć. Błędne odpowiedzi to skrajne stwierdzenia, które nie są prawdziwe.",
+    "difficulty": "easy",
+    "topic": "Terminologia"
+  },
+  {
+    "id": 505,
+    "materialId": 57,
+    "question": "Co jest przyczyną błędu, jeśli po stworzeniu obiektu podklasy brakuje atrybutów klasy bazowej?",
+    "choices": [
+      "Nie wywołano `super().__init__()` w konstruktorze podklasy",
+      "Nie zadeklarowano klasy bazowej",
+      "Podklasa nie może mieć atrybutów",
+      "Atrybuty muszą być globalne"
+    ],
+    "correctIndex": 0,
+    "explanation": "Gdy nie wywołasz `super().__init__()`, konstruktor bazowy nie ustawi swoich atrybutów. Inne odpowiedzi są błędne lub nie mają sensu w tym kontekście.",
+    "difficulty": "medium",
+    "topic": "Gotcha"
+  },
+  {
+    "id": 506,
+    "materialId": 57,
+    "question": "Co wypisze ten kod?\n\n```python\nclass X:\n    def __init__(self):\n        self.v = 1\n    def add(self):\n        self.v += 1\n\nclass Y(X):\n    def add(self):\n        self.v += 2\n\ny = Y()\ny.add()\nprint(y.v)\n```",
+    "choices": [
+      "1",
+      "2",
+      "3",
+      "Błąd"
+    ],
+    "correctIndex": 2,
+    "explanation": "Konstruktor X ustawił `v = 1`. Metoda `add` w Y zwiększa o 2, więc wynik to 3. Popularny błąd to pomyśleć, że `add` z X zostanie wywołane, ale Y nadpisało ją.",
+    "difficulty": "medium",
+    "topic": "Nadpisywanie"
+  },
+  {
+    "id": 507,
+    "materialId": 58,
+    "question": "Co wypisze ten kod?\n\n```python\nclass Counter:\n    def __init__(self):\n        self.n = 0\n    def inc(self):\n        self.n = self.n + 1\n        print(self.n)\n\nc = Counter()\nc.inc()\n```",
+    "choices": [
+      "1",
+      "0",
+      "TypeError",
+      "Nic nie wypisze"
+    ],
+    "correctIndex": 0,
+    "explanation": "Metoda `inc` zwiększa `self.n` od 0 do 1 i drukuje 1. Popularny błąd to myśleć, że `__init__` coś drukuje — nie drukuje, jeśli nie ma `print()`.",
+    "difficulty": "easy",
+    "topic": "Metody"
+  },
+  {
+    "id": 508,
+    "materialId": 58,
+    "question": "Co się stanie po uruchomieniu tego kodu?\n\n```python\nclass Bad:\n    def greet():\n        print('Hi')\n\nb = Bad()\nb.greet()\n```",
+    "choices": [
+      "TypeError: greet() missing 1 required positional argument: 'self'",
+      "Wypisze 'Hi'",
+      "Nic się nie stanie",
+      "NameError"
+    ],
+    "correctIndex": 0,
+    "explanation": "Metoda zdefiniowana bez `self` oczekuje innej liczby argumentów. Wywołanie `b.greet()` próbuje przekazać instancję, więc powstaje `TypeError`. Błędna odpowiedź to 'Hi', bo brak `self` blokuje wywołanie.",
+    "difficulty": "medium",
+    "topic": "Parametr self"
+  },
+  {
+    "id": 509,
+    "materialId": 58,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nclass Example:\n    def add(self):\n        self.x = self.x + 1\n\nExample.add()\n```",
+    "choices": [
+      "Metoda została wywołana bez instancji. Brakuje argumentu `self`.",
+      "W `add` nie można używać `self`.",
+      "To poprawny kod, nic nie trzeba zmieniać.",
+      "Brakuje `__init__`."
+    ],
+    "correctIndex": 0,
+    "explanation": "Wywołano `Example.add()` bez instancji; metoda oczekuje `self`. Częsty błąd to myśleć, że metoda klasy może być wywołana bez obiektu.",
+    "difficulty": "medium",
+    "topic": "Metody"
+  },
+  {
+    "id": 510,
+    "materialId": 58,
+    "question": "Która wersja poprawnie ustawia atrybut instancji `x` na 0?\n\nWersja A:\n```python\nclass A:\n    def __init__(self):\n        x = 0\n```\nWersja B:\n```python\nclass B:\n    def __init__(self):\n        self.x = 0\n```",
+    "choices": [
+      "Wersja B",
+      "Wersja A",
+      "Obie są poprawne",
+      "Żadna z nich"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wersja B używa `self.x`, więc tworzy atrybut instancji. Wersja A tworzy lokalną zmienną `x` wewnątrz `__init__` i nie zapisuje jej w obiekcie.",
+    "difficulty": "easy",
+    "topic": "Atrybuty instancji"
+  },
+  {
+    "id": 511,
+    "materialId": 58,
+    "question": "Co wypisze ten kod?\n\n```python\nclass Item:\n    def __init__(self):\n        self.value = 5\n\nit = Item()\nprint(type(it.value))\n```",
+    "choices": [
+      "<class 'int'>",
+      "<class 'str'>",
+      "int",
+      "TypeError"
+    ],
+    "correctIndex": 0,
+    "explanation": "`self.value` ustawiono na 5, czyli typ to integer. `type()` pokazuje `<class 'int'>`. Błędna odpowiedź 'int' to skrócona forma, ale `print(type(...))` wypisze pełny zapis.",
+    "difficulty": "easy",
+    "topic": "Funkcje pomocnicze: dir i type"
+  },
+  {
+    "id": 512,
+    "materialId": 58,
+    "question": "Co wypisze ten kod?\n\n```python\nclass A:\n    def __init__(self):\n        self.count = 0\n    def go(self):\n        self.count = self.count + 1\n\na = A()\na.go()\na.go()\nprint(a.count)\n```",
+    "choices": [
+      "2",
+      "1",
+      "0",
+      "TypeError"
+    ],
+    "correctIndex": 0,
+    "explanation": "Metoda `go` zwiększa `self.count` o 1 przy każdym wywołaniu. Wywołano ją dwukrotnie, więc końcowa wartość to 2. Błędne odpowiedzi to np. 1 — to by było po jednym wywołaniu.",
+    "difficulty": "easy",
+    "topic": "Atrybuty instancji"
+  },
+  {
+    "id": 513,
+    "materialId": 58,
+    "question": "Które stwierdzenie jest prawdziwe?\n\nA) `class` tworzy obiekt od razu.\nB) `class` definiuje szablon; obiekt tworzy `Nazwa()`.\nC) `__init__` wywoływany jest przy każdym wywołaniu metody.\nD) `self` to słowo kluczowe, które musisz zmienić.",
+    "choices": [
+      "B",
+      "A",
+      "C",
+      "D"
+    ],
+    "correctIndex": 0,
+    "explanation": "Poprawne: `class` to szablon, a instancję tworzy `Nazwa()`. `__init__` wywoływany jest przy tworzeniu instancji, nie przy każdej metodzie, a `self` to konwencja, nie zmieniamy jej bez powodu.",
+    "difficulty": "easy",
+    "topic": "Klasy"
+  },
+  {
+    "id": 514,
+    "materialId": 58,
+    "question": "Co wypisze ten kod?\n\n```python\nclass P:\n    def __init__(self):\n        self.x = 1\n    def show(self):\n        print(self.x)\n\np1 = P()\np2 = P()\np1.show()\np1.x = 5\np2.show()\n```",
+    "choices": [
+      "1\n1",
+      "1\n5",
+      "5\n1",
+      "1\n0"
+    ],
+    "correctIndex": 0,
+    "explanation": "Obie instancje otrzymują `x = 1` przy konstrukcji. `p1.show()` wypisze 1. Zmieniono `p1.x` na 5, ale `p2.x` dalej jest 1. Drugi `show()` na `p2` wypisze 1. Popularny błąd to myśleć, że zmiana jednego obiektu zmienia drugi.",
+    "difficulty": "medium",
+    "topic": "Instancje"
+  },
+  {
+    "id": 515,
+    "materialId": 58,
+    "question": "Co się stanie jeśli w klasie zdefiniujesz metodę, ale nigdy nie utworzysz instancji?",
+    "choices": [
+      "Nic nie zostanie wykonane, metoda nie pobiegnie dopóki jej nie wywołasz na instancji",
+      "Metoda zostanie wykonana od razu przy definicji klasy",
+      "Python zgłosi błąd",
+      "Metody klasy są automatycznie wywoływane raz"
+    ],
+    "correctIndex": 0,
+    "explanation": "Definicja klasy tylko rejestruje metodę. Metoda wykonuje się dopiero, gdy stworzysz obiekt i ją wywołasz. Częsty błąd to myśleć, że definicja klasy to wykonanie kodu.",
+    "difficulty": "easy",
+    "topic": "Klasy"
   }
 ]

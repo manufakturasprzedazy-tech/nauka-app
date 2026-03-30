@@ -864,5 +864,83 @@
     "flashcardCount": 12,
     "quizCount": 9,
     "exerciseCount": 4
+  },
+  {
+    "id": 55,
+    "courseId": "python",
+    "filename": "Cykl życia obiektów.md",
+    "title": "Cykl życia obiektów: konstruktory i destruktory",
+    "summary": "Lekcja wyjaśnia, jak powstaje i znika obiekt w Pythonie. Pokazuje rolę konstruktora `__init__` i destruktora `__del__`, oraz jak działa zwalnianie pamięci (garbage collection).",
+    "topics": [
+      "cykl życia obiektu",
+      "garbage collection",
+      "konstruktor __init__",
+      "destruktor __del__",
+      "zmienne instancji (self.x, self.name)",
+      "wiele instancji obiektu"
+    ],
+    "notes": "## O czym jest ta lekcja\nW tej lekcji uczymy się o cyklu życia obiektu w Pythonie. Zobaczysz kiedy obiekt jest tworzony, inicjalizowany i kiedy jest usuwany.\n\n## Kluczowe pojęcia\n### Cykl życia obiektu\nObiekt jest tworzony, używany i potem usuwany. Python automatycznie zbiera nieużywane obiekty (garbage collection).\n\n### Konstruktor `__init__`\nFunkcja w klasie, która ustawia początkowe wartości zmiennych instancji. Definiujesz ją jako `def __init__(self, ...)` i przypisujesz `self.x = ...`.\n\n### Destruktor `__del__`\nMetoda wywoływana gdy obiekt jest zwalniany. Nie zawsze musisz jej używać. Przydaje się, gdy trzeba zwolnić zasoby zewnętrzne.\n\n### Zmienne instancji i `self`\nKażdy obiekt ma swoje zmienne, np. `self.x`, `self.name`. `self` to odwołanie do konkretnego obiektu.\n\n## Przykłady kodu\n```python\nclass Box:\n    def __init__(self, name):\n        self.name = name\n        self.x = 0\n\n    def add(self):\n        self.x = self.x + 1\n```\nTen przykład pokazuje konstruktor, zmienne `self.name` i `self.x`, oraz metodę zmieniającą `self.x`.\n\n## Ważne zasady\n- **Konstruktor ustawia stan obiektu** — użyj `__init__` do nadania wartości początkowych.\n- **Zmienna instancji to `self.name`** — bez `self.` tworzysz lokalną zmienną, a nie pole obiektu.\n- **Destruktor nie zawsze jest potrzebny** — Python sam sprząta pamięć, użyj `__del__` gdy masz zewnętrzne zasoby.\n- **Przypisanie nowej wartości zmiennej usuwa referencję** — gdy zmienna przestaje wskazywać obiekt, obiekt może zostać zebrany.\n\n## Częste błędy\n- **Brak `self.` przy przypisaniu**: wtedy tworzysz lokalną zmienną, a pole obiektu nie zmienia się.\n- **Polecenie `__del__` jako miejsce logiki programu**: nie polegaj na nim, bo wywołanie może być opóźnione.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 56,
+    "courseId": "python",
+    "filename": "Definicje i terminologia Object Oriented.md",
+    "title": "Wprowadzenie do obiektów w Pythonie",
+    "summary": "Lekcja wprowadza podstawowe pojęcia programowania obiektowego: obiekty, klasy, instancje, metody i atrybuty. Pokazuje też ideę abstrakcji i jak `dir()` pomaga zobaczyć możliwości obiektu.",
+    "topics": [
+      "obiekty",
+      "klasy",
+      "instancje",
+      "metody",
+      "atrybuty",
+      "abstrakcja",
+      "składnia kropki",
+      "funkcja `dir`"
+    ],
+    "notes": "## O czym jest ta lekcja\nTa lekcja wyjaśnia, czym są obiekty w Pythonie i jakie pojęcia z tym związane warto znać. Pokazuje też, dlaczego nie musimy znać wszystkich szczegółów działania obiektów.\n\n## Kluczowe pojęcia\n### Obiekt\nObiekt to samodzielna część danych z wnętrzem (kod i dane) i zewnętrzem (to, co widzimy i używamy). Obiekty to np. `string`, `int`, `list`, `dict`.\n\n### Klasa\n`Klasa` to kod, który definiuje zachowanie obiektu. To jak foremka do ciastek. Klasa nie jest samym obiektem.\n\n### Instancja (obiekt)\n`Instancja` to konkretny obiekt stworzony z klasy. To jak pojedyncze ciasteczko z foremki.\n\n### Metoda i atrybut\n`Metoda` to kod wewnątrz klasy, który wykonuje jakąś akcję (jak `upper()` dla stringa). `Atrybut` to wewnętrzne dane dostępne z zewnątrz.\n\n### Abstrakcja\nAbstrakcja to oddzielenie wnętrza od zewnętrza. Używasz obiektu bez patrzenia, jak on działa wewnętrznie.\n\n### Składnia kropki i `dir()`\nKropka `.` służy do dostępu do metod i atrybutów obiektu, np. `s.upper()`. `dir(x)` pokazuje, jakie ma możliwości dany obiekt lub klasa.\n\n## Przykłady kodu\n```python\ns = \"ala\"\nprint(s.upper())  # zamienia tekst na wielkie litery\n```\nTen przykład pokazuje użycie metody obiektu string.\n\n```python\nprint(dir(\"hi\"))  # pokazuje metody i atrybuty obiektu string\n```\nTo pokazuje, że Python wie, jakie metody ma obiekt.\n\n## Ważne zasady\n- **Kropka `.`** — używasz jej, żeby wywołać metodę lub dostać atrybut obiektu.\n- **Klasa vs instancja** — klasa to wzór, instancja to konkretny obiekt z danymi.\n- **Metoda = działanie, atrybut = dane** — metoda robi coś, atrybut przechowuje.\n- **Abstrakcja** — nie musisz znać implementacji, wystarczy interfejs.\n- **`dir()`** — szybki sposób, by sprawdzić, co możesz zrobić z obiektem.\n\n## Częste błędy\n- **Mylenie klasy z instancją**: próbujesz użyć danych z klasy zamiast z instancji. Sprawdź, czy masz obiekt, nie sam wzór.\n- **Zakładanie, że metoda istnieje**: próbujesz wywołać nieistniejącą metodę i program się zatrzyma. Użyj `dir()` lub dokumentacji, by sprawdzić nazwy metod.",
+    "flashcardCount": 12,
+    "quizCount": 8,
+    "exerciseCount": 4
+  },
+  {
+    "id": 57,
+    "courseId": "python",
+    "filename": "Dziedziczenie obiektów.md",
+    "title": "Dziedziczenie klas w Pythonie",
+    "summary": "Lekcja wyjaśnia, jak tworzyć nowe klasy na podstawie istniejących. Pokazuje, jak używać `super().__init__()` do ponownego użycia kodu i jak rozszerzać klasę bazową o nowe atrybuty i metody.",
+    "topics": [
+      "Klasy i obiekty",
+      "Konstruktor `__init__`",
+      "Dziedziczenie (subclass / superclass)",
+      "Wywołanie `super().__init__()`",
+      "Rozszerzanie i ponowne użycie kodu",
+      "Unikanie powtarzania kodu"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko o dziedziczeniu w Pythonie. Pokazano, jak z jednej klasy zrobić drugą, która odziedzicza zachowania i atrybuty.\n\n## Kluczowe pojęcia\n### Klasa\n`class` to szablon. Mówi, jakie atrybuty i metody będzie miał obiekt.\n\n### Obiekt / Instancja\nObiekt to konkretna rzecz stworzona z klasy. Kiedy wywołujemy konstruktor, powstaje obiekt.\n\n### Konstruktor `__init__`\n`__init__` ustawia początkowe wartości atrybutów. To pierwsza rzecz, która działa przy tworzeniu obiektu.\n\n### Dziedziczenie\nKlasa może rozszerzać inną klasę. W zapisie `class Child(Parent):` `Child` dziedziczy metody i atrybuty `Parent`.\n\n### `super().__init__()`\nW konstruktorze klasy pochodnej zwykle wywołujemy `super().__init__(...)`. To uruchamia konstruktor klasy bazowej i ustawia jej atrybuty.\n\n## Przykłady kodu\n```python\nclass Animal:\n    def __init__(self, name):\n        self.name = name\n    def greet(self):\n        print('Cześć', self.name)\n\nclass Dog(Animal):\n    def __init__(self, name):\n        super().__init__(name)\n        self.tail = True\n```\nTen przykład pokazuje dziedziczenie i wywołanie `super().__init__()`.\n\n## Ważne zasady\n- **Używaj dziedziczenia**, gdy chcesz uniknąć kopiowania kodu. Dziedziczysz wspólne rzeczy raz.\n- **Zawsze wywołaj `super().__init__()`** w konstruktorze podklasy, jeśli chcesz, żeby atrybuty klasy bazowej były ustawione.\n- **Podklasa może dodać nowe atrybuty i metody.** To rozszerzanie funkcjonalności.\n- **Podklasa może wywoływać metody z klasy bazowej.** Dzięki temu używasz już napisanego kodu.\n\n## Częste błędy\n- **Zapomnienie `super().__init__()`**: wtedy atrybuty z klasy bazowej nie zostaną ustawione i może być błąd. Unikaj tego, wywołaj konstruktor bazowy.\n- **Powtarzanie kodu zamiast dziedziczenia**: zamiast kopiować ten sam kod w wielu klasach, lepiej zrobić klasę bazową i rozszerzać ją.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 58,
+    "courseId": "python",
+    "filename": "Nasza pierwsza klasa i Object.md",
+    "title": "Wprowadzenie do klas i obiektów",
+    "summary": "Lekcja pokazuje jak tworzyć klasy w Pythonie. Omawia `class`, metody, specjalną metodę `__init__`, parametr `self`, a także tworzenie i użycie instancji oraz sprawdzanie typu i możliwości obiektu (`type`, `dir`).",
+    "topics": [
+      "Klasy",
+      "Metody",
+      "Specjalna metoda __init__",
+      "Parametr self",
+      "Atrybuty instancji",
+      "Funkcje pomocnicze: dir i type"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: jak zdefiniować klasę, jak zbudować obiekt i jak wywoływać metody na tym obiekcie.\n\n## Kluczowe pojęcia\n### Klasa\nKlasa to szablon. Definiujesz go słowem `class` i blokiem z wcięciem. Klasa sama w sobie nie wykonuje kodu.\n\n### Metoda\nMetoda to funkcja zdefiniowana wewnątrz klasy przy pomocy `def`. Każda metoda przyjmuje `self` jako pierwszy parametr.\n\n### `__init__`\nTo specjalna metoda, którą Python wywołuje przy tworzeniu obiektu. Zwykle ustawiasz w niej atrybuty, np. `self.x = 0`.\n\n### `self`\n`self` to odniesienie do konkretnej instancji. W metodzie `self.x` to ten sam `x` co `instancja.x` z zewnątrz.\n\n### Atrybuty instancji\nTworzysz je przypisaniem w metodzie, np. `self.x = 0`. Każda instancja ma swoje wartości tych atrybutów.\n\n### `dir()` i `type()`\n`dir(obiekt)` pokazuje dostępne metody i atrybuty. `type(obiekt)` mówi, jakiego typu jest obiekt.\n\n## Przykłady kodu\n```python\nclass Counter:\n    def __init__(self):\n        self.count = 0\n\n    def add(self):\n        self.count = self.count + 1\n        print(self.count)\n\nc = Counter()\nc.add()\n```\nTen przykład tworzy klasę `Counter`, inicjalizuje `count` i wywołuje metodę `add`.\n\n## Ważne zasady\n- **Definiuj klasę** używając `class Nazwa:` i bloku z wcięciem.\n- **Metody** zawsze mają pierwszy parametr `self`.\n- **Konstruktor** to `def __init__(self):` i tam ustawiasz `self.x = ...`.\n- **Tworzenie instancji**: `inst = Nazwa()` wywołuje `__init__` i zwraca obiekt.\n- **Wywołanie metody**: `inst.metoda()` działa tak, jakby najpierw przekazać `inst` jako pierwszy parametr.\n- **Użyj `dir()` i `type()`** by zobaczyć metody i typ obiektu.\n\n## Częste błędy\n- **Brak `self` w definicji metody**: wywołanie `inst.metoda()` da błąd typu, bo funkcja oczekuje innej liczby parametrów.\n- **Przypisanie `x = 0` zamiast `self.x = 0`** w `__init__`: wtedy nie tworzysz atrybutu instancji.\n- **Mylenie klasy z instancją**: `class Name:` to szablon; `Name()` to tworzony obiekt.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
   }
 ]

@@ -3722,5 +3722,341 @@
     "front": "Jaki korzyść ma linia lotnicza z pokazywania hoteli przez zewnętrzne usługi?",
     "back": "Dostaje prowizję lub opłatę za skierowanie klienta. Nie musi sama zarządzać hotelami.",
     "topic": "Integracja systemów"
+  },
+  {
+    "id": 639,
+    "materialId": 55,
+    "front": "Co robi konstruktor `__init__`?",
+    "back": "Konstruktor ustawia początkowe wartości zmiennych instancji. Przykład:\n```python\nclass A:\n    def __init__(self, name):\n        self.name = name\n        self.x = 0\n```",
+    "topic": "konstruktor __init__"
+  },
+  {
+    "id": 640,
+    "materialId": 55,
+    "front": "Co to jest destruktor `__del__`?",
+    "back": "To metoda wywoływana gdy obiekt jest usuwany. Używamy jej, gdy trzeba zwolnić zasoby zewnętrzne. Często nie jest potrzebna.",
+    "topic": "destruktor __del__"
+  },
+  {
+    "id": 641,
+    "materialId": 55,
+    "front": "Jaka jest różnica między `self.x = 0` a `x = 0` w metodzie?",
+    "back": "`self.x = 0` tworzy pole obiektu. `x = 0` tworzy zmienną lokalną w funkcji i znika po jej zakończeniu.",
+    "topic": "zmienne instancji"
+  },
+  {
+    "id": 642,
+    "materialId": 55,
+    "front": "Co się stanie, gdy nadpiszesz zmienną obiektu liczbową wartością, np. `obj = 5`?",
+    "back": "Przed nadpisaniem stara referencja była do obiektu. Nadpisanie usuwa tę referencję i wtedy obiekt może zostać zebrany przez garbage collector. Zmienna teraz trzyma liczbę.",
+    "topic": "garbage collection"
+  },
+  {
+    "id": 643,
+    "materialId": 55,
+    "front": "Kiedy warto użyć `__del__`?",
+    "back": "Gdy obiekt trzyma zasób zewnętrzny (np. połączenie do bazy). Wtedy w `__del__` można ten zasób zamknąć. W prostych przypadkach nie jest potrzebny.",
+    "topic": "destruktor __del__"
+  },
+  {
+    "id": 644,
+    "materialId": 55,
+    "front": "Co oznacza, że obiekt ma wiele instancji?",
+    "back": "To znaczy, że z jednego szablonu klasy tworzymy wiele obiektów, np. `a = Person('A')` i `b = Person('B')`. Każdy ma własne pola.",
+    "topic": "wiele instancji"
+  },
+  {
+    "id": 645,
+    "materialId": 55,
+    "front": "Dlaczego `self` jest potrzebne?",
+    "back": "`self` to odniesienie do konkretnego obiektu. Dzięki niemu zapisujemy i odczytujemy pola tego obiektu, np. `self.x`.",
+    "topic": "self"
+  },
+  {
+    "id": 646,
+    "materialId": 55,
+    "front": "Co robi metoda w klasie, np. `def party(self): self.x = self.x + 1`?",
+    "back": "Metoda zmienia stan konkretnego obiektu. Tu zwiększa `self.x` o 1 dla tego obiektu.",
+    "topic": "metody i stan"
+  },
+  {
+    "id": 647,
+    "materialId": 55,
+    "front": "Jaki częsty błąd popełniają początkujący z konstruktorami?",
+    "back": "Zapominają dodać `self.` przy przypisaniu w `__init__`. Wtedy pole nie istnieje i obiekt nie ma oczekiwanych wartości.",
+    "topic": "gotcha"
+  },
+  {
+    "id": 648,
+    "materialId": 55,
+    "front": "Co to jest garbage collection w prostych słowach?",
+    "back": "To mechanizm, który odzyskuje pamięć od obiektów, do których nie ma już referencji. Dzieje się to automatycznie.",
+    "topic": "garbage collection"
+  },
+  {
+    "id": 649,
+    "materialId": 55,
+    "front": "Kiedy konstruktor jest wywoływany?",
+    "back": "Konstruktor `__init__` jest wywoływany w momencie tworzenia obiektu, np. `p = Party('Ana')`.",
+    "topic": "konstruktor __init__"
+  },
+  {
+    "id": 650,
+    "materialId": 55,
+    "front": "Czy `__del__` zawsze zostanie od razu wywołany po przypisaniu `obj = 5`?",
+    "back": "Nie zawsze. W CPython często nastąpi natychmiast, ale nie należy polegać na tym. Lepiej jawnie zamykać zasoby.",
+    "topic": "destruktor __del__"
+  },
+  {
+    "id": 651,
+    "materialId": 56,
+    "front": "Co to jest obiekt w Pythonie?",
+    "back": "Obiekt to samodzielna część programu z danymi i kodem wewnątrz. Ma metody i atrybuty, które możesz używać z zewnątrz.",
+    "topic": "obiekty"
+  },
+  {
+    "id": 652,
+    "materialId": 56,
+    "front": "Co to jest klasa?",
+    "back": "Klasa to wzór lub foremka, która definiuje, jak ma zachowywać się obiekt. Sama klasa to nie jest jeszcze obiekt.",
+    "topic": "klasy"
+  },
+  {
+    "id": 653,
+    "materialId": 56,
+    "front": "Jaka jest różnica między klasą a instancją?",
+    "back": "Klasa to opis (wzór). Instancja to konkretny obiekt stworzony z tego wzoru. Klasa = foremka, instancja = ciasteczko.",
+    "topic": "klasy vs instancje"
+  },
+  {
+    "id": 654,
+    "materialId": 56,
+    "front": "Co robi metoda `upper()` na stringu?",
+    "back": "Zwraca nowy string z literami zamienionymi na wielkie, np. `\"ala\".upper()` zwraca `\"ALA\"`.",
+    "topic": "metody"
+  },
+  {
+    "id": 655,
+    "materialId": 56,
+    "front": "Co oznacza kropka `.` w `s.upper()`?",
+    "back": "Kropka mówi: weź obiekt `s` i użyj metody `upper` lub atrybutu, czyli `s` jest właścicielem tej metody.",
+    "topic": "składnia kropki"
+  },
+  {
+    "id": 656,
+    "materialId": 56,
+    "front": "Do czego służy `dir(x)`?",
+    "back": "`dir(x)` pokazuje listę metod i atrybutów dostępnych dla `x`. To szybki sposób, by zobaczyć możliwości obiektu.",
+    "topic": "dir"
+  },
+  {
+    "id": 657,
+    "materialId": 56,
+    "front": "Co to jest metoda, a co atrybut?",
+    "back": "Metoda to kawałek kodu, który robi coś (czasownik). Atrybut to wartość lub pole przechowywane w obiekcie (rzeczownik).",
+    "topic": "metody i atrybuty"
+  },
+  {
+    "id": 658,
+    "materialId": 56,
+    "front": "Co oznacza pojęcie abstrakcja?",
+    "back": "Abstrakcja to ukrycie szczegółów wewnętrznych. Używasz obiektu bez patrzenia, jak on działa w środku.",
+    "topic": "abstrakcja"
+  },
+  {
+    "id": 659,
+    "materialId": 56,
+    "front": "Jaki jest częsty błąd początkujących z obiektami?",
+    "back": "Próba wywołania metody, która nie istnieje. Zwykle program przestaje działać. Sprawdź `dir()` lub dokumentację.",
+    "topic": "gotcha"
+  },
+  {
+    "id": 660,
+    "materialId": 56,
+    "front": "Kiedy lepiej myśleć o metodzie, a kiedy o atrybucie?",
+    "back": "Jeśli chcesz, żeby coś zostało wykonane, to metoda. Jeśli chcesz odczytać jakąś wartość, to atrybut.",
+    "topic": "kiedy użyć"
+  },
+  {
+    "id": 661,
+    "materialId": 56,
+    "front": "Co się stanie jeśli użyjesz `dir()` na klasie zamiast na instancji?",
+    "back": "Dostaniesz listę dostępnych nazw dla tej klasy. `dir()` działa i dla klasy, i dla instancji — pokaże różne, ale powiązane rzeczy.",
+    "topic": "dir"
+  },
+  {
+    "id": 662,
+    "materialId": 56,
+    "front": "Jaki prosty sposób jest, żeby nie myśleć o skomplikowanej implementacji obiektu?",
+    "back": "Użyj abstrakcji: traktuj obiekt przez jego interfejs (metody/atrybuty) i nie wchodź w jego wnętrze.",
+    "topic": "abstrakcja"
+  },
+  {
+    "id": 663,
+    "materialId": 57,
+    "front": "Co to jest klasa w Pythonie?",
+    "back": "Klasa to szablon definiujący atrybuty i metody. Przykład: `class MyClass:`.",
+    "topic": "Klasy i obiekty"
+  },
+  {
+    "id": 664,
+    "materialId": 57,
+    "front": "Co robi `__init__`?",
+    "back": "`__init__` to konstruktor. Ustawia początkowe atrybuty obiektu przy tworzeniu instancji.",
+    "topic": "Konstruktor `__init__`"
+  },
+  {
+    "id": 665,
+    "materialId": 57,
+    "front": "Co oznacza zapis `class Child(Parent):`?",
+    "back": "Oznacza, że `Child` dziedziczy od `Parent`. `Child` będzie miał metody i atrybuty `Parent`.",
+    "topic": "Dziedziczenie"
+  },
+  {
+    "id": 666,
+    "materialId": 57,
+    "front": "Po co wywołujemy `super().__init__(...)` w podklasie?",
+    "back": "Aby uruchomić konstruktor klasy bazowej i ustawić jej atrybuty. Przykład: `super().__init__(name)`.",
+    "topic": "super()"
+  },
+  {
+    "id": 667,
+    "materialId": 57,
+    "front": "Co się stanie jeśli podklasa nie wywoła `super().__init__()`?",
+    "back": "Atrybuty klasy bazowej nie zostaną ustawione. Może to prowadzić do błędów przy dostępie do tych atrybutów.",
+    "topic": "Gotcha"
+  },
+  {
+    "id": 668,
+    "materialId": 57,
+    "front": "Jaka jest różnica między klasą a obiektem?",
+    "back": "Klasa to szablon. Obiekt (instancja) to konkretny egzemplarz tego szablonu utworzony przez wywołanie konstruktora.",
+    "topic": "Klasy i obiekty"
+  },
+  {
+    "id": 669,
+    "materialId": 57,
+    "front": "Jak dodać nowy atrybut w podklasie?",
+    "back": "W konstruktorze podklasy przypisz `self.new_attr = value`. Najpierw możesz wywołać `super().__init__(...)`.",
+    "topic": "Atrybuty"
+  },
+  {
+    "id": 670,
+    "materialId": 57,
+    "front": "Czy podklasa może użyć metody z klasy bazowej?",
+    "back": "Tak. Metody klasy bazowej są dostępne w podklasie i można je wywołać jak `self.method()`.",
+    "topic": "Metody"
+  },
+  {
+    "id": 671,
+    "materialId": 57,
+    "front": "Kiedy lepiej użyć dziedziczenia?",
+    "back": "Gdy kilka klas ma wspólny kod. Wtedy przenieś wspólne rzeczy do klasy bazowej i rozszerzaj ją.",
+    "topic": "Kiedy użyć"
+  },
+  {
+    "id": 672,
+    "materialId": 57,
+    "front": "Jaki częsty błąd popełniają początkujący z dziedziczeniem?",
+    "back": "Kopiują kod zamiast stworzyć klasę bazową. To utrudnia późniejsze zmiany i powoduje duplikację.",
+    "topic": "Gotcha"
+  },
+  {
+    "id": 673,
+    "materialId": 57,
+    "front": "Co to jest podklasa (subclass)?",
+    "back": "Podklasa to klasa, która rozszerza inną klasę. Można ją nazwać 'child' lub 'derived class'.",
+    "topic": "Terminologia"
+  },
+  {
+    "id": 674,
+    "materialId": 57,
+    "front": "Jak podklasa może rozszerzyć zachowanie metody z klasy bazowej?",
+    "back": "Może dodać nową logikę i użyć `super().method()` lub wywołać metodę klasy bazowej przez `self.method()` z odpowiednim kontekstem.",
+    "topic": "Rozszerzanie"
+  },
+  {
+    "id": 675,
+    "materialId": 58,
+    "front": "Co to jest klasa w Pythonie?",
+    "back": "Klasa to szablon do tworzenia obiektów. Tworzysz ją słowem `class` i blokiem kodu.",
+    "topic": "Klasy"
+  },
+  {
+    "id": 676,
+    "materialId": 58,
+    "front": "Do czego służy metoda `__init__`?",
+    "back": "To konstruktor. Python wywołuje `__init__` gdy tworzysz instancję przez `Nazwa()` i tam ustawiasz `self` atrybuty, np. `self.x = 0`.",
+    "topic": "Specjalna metoda __init__"
+  },
+  {
+    "id": 677,
+    "materialId": 58,
+    "front": "Co oznacza `self` w metodzie?",
+    "back": "`self` to referencja do konkretnej instancji. `self.x` i `inst.x` wskazują ten sam atrybut.",
+    "topic": "Parametr self"
+  },
+  {
+    "id": 678,
+    "materialId": 58,
+    "front": "Jak zdefiniować metodę w klasie?",
+    "back": "Użyj `def nazwa(self):` w bloku klasy. Pierwszym parametrem musi być `self`.",
+    "topic": "Metody"
+  },
+  {
+    "id": 679,
+    "materialId": 58,
+    "front": "Co się stanie, jeśli w metodzie zapomnisz `self`?",
+    "back": "Wywołanie `inst.metoda()` zwróci `TypeError` o brakującym argumencie, bo Python i tak przekazuje instancję.",
+    "topic": "GOTCHA"
+  },
+  {
+    "id": 680,
+    "materialId": 58,
+    "front": "Jaka jest różnica między klasą a instancją?",
+    "back": "Klasa to definicja (szablon). Instancja to obiekt stworzony z tej klasy przez `Nazwa()`.",
+    "topic": "Klasy"
+  },
+  {
+    "id": 681,
+    "materialId": 58,
+    "front": "Jak stworzyć atrybut instancji?",
+    "back": "W `__init__` przypisz do `self`, np. `self.x = 0`. To tworzy `x` dla każdej instancji.",
+    "topic": "Atrybuty instancji"
+  },
+  {
+    "id": 682,
+    "materialId": 58,
+    "front": "Kiedy używać `dir()`?",
+    "back": "Gdy chcesz zobaczyć metody i atrybuty obiektu. `dir(obiekt)` zwraca listę nazw.",
+    "topic": "Funkcje pomocnicze: dir i type"
+  },
+  {
+    "id": 683,
+    "materialId": 58,
+    "front": "Co robi `type(obiekt)`?",
+    "back": "`type()` zwraca typ obiektu, np. klasę, z której pochodzi instancja.",
+    "topic": "Funkcje pomocnicze: dir i type"
+  },
+  {
+    "id": 684,
+    "materialId": 58,
+    "front": "Czy definiowanie klasy od razu uruchamia jej metody?",
+    "back": "Nie. Definicja klasy tylko rejestruje szablon. Metody uruchamiają się dopiero po stworzeniu instancji i wywołaniu ich.",
+    "topic": "Klasy"
+  },
+  {
+    "id": 685,
+    "materialId": 58,
+    "front": "Jak wywołać metodę na instancji?",
+    "back": "Użyj `inst.metoda()`. Python automatycznie przekaże `inst` jako `self` do metody.",
+    "topic": "Metody"
+  },
+  {
+    "id": 686,
+    "materialId": 58,
+    "front": "Jaki jest częsty błąd z atrybutami w `__init__`?",
+    "back": "Zapisanie `x = 0` zamiast `self.x = 0`, wtedy atrybut nie zostanie przywiązany do instancji.",
+    "topic": "GOTCHA"
   }
 ]
