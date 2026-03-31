@@ -3024,5 +3024,185 @@
       "Każda instancja powinna mieć własne `self.value`.",
       "Wywołaj `count()` różną liczbę razy dla każdej instancji."
     ]
+  },
+  {
+    "id": 239,
+    "materialId": 59,
+    "title": "Stwórz prostą tabelę w SQLite",
+    "description": "Napisz funkcję `create_table(filename)` która tworzy plik bazy SQLite o nazwie `filename` i w niej tabelę `people(name TEXT)`. Zamknij połączenie.",
+    "starterCode": "```python\n# starter code\nimport sqlite3\n\ndef create_table(filename):\n    # TODO: połącz z bazą o nazwie filename\n    # TODO: utwórz tabelę people(name TEXT)\n    # TODO: zamknij połączenie\n    pass\n```",
+    "solution": "```python\n# full solution\nimport sqlite3\n\ndef create_table(filename):\n    conn = sqlite3.connect(filename)\n    c = conn.cursor()\n    c.execute('CREATE TABLE IF NOT EXISTS people(name TEXT)')\n    conn.commit()\n    conn.close()\n```",
+    "testCode": "```python\n# tests\nimport os\n\nfname = 'test_people.db'\nif os.path.exists(fname):\n    os.remove(fname)\ncreate_table(fname)\nimport sqlite3\nconn = sqlite3.connect(fname)\nc = conn.cursor()\nc.execute(\"SELECT name FROM sqlite_master WHERE type='table' AND name='people'\")\nrows = c.fetchall()\nconn.close()\nassert rows != [], 'Tabela people nie została utworzona'\n# cleanup\nos.remove(fname)\n```",
+    "difficulty": "easy",
+    "topic": "SQLite w Pythonie",
+    "hints": [
+      "Użyj `import sqlite3` i `sqlite3.connect()`.",
+      "Utwórz kursor i wykonaj `CREATE TABLE`."
+    ]
+  },
+  {
+    "id": 240,
+    "materialId": 59,
+    "title": "Wstaw kilka rekordów i zlicz",
+    "description": "Napisz funkcję `insert_and_count(filename, names)` która łączy się z plikiem SQLite `filename`, wstawia każdy element z listy `names` do tabeli `people(name)`, a potem zwraca liczbę rekordów w tabeli.",
+    "starterCode": "```python\n# starter code\nimport sqlite3\n\ndef insert_and_count(filename, names):\n    # TODO: połącz z bazą\n    # TODO: wstaw każdy name do people\n    # TODO: policz i zwróć liczbę rekordów\n    pass\n```",
+    "solution": "```python\n# full solution\nimport sqlite3\n\ndef insert_and_count(filename, names):\n    conn = sqlite3.connect(filename)\n    c = conn.cursor()\n    c.execute('CREATE TABLE IF NOT EXISTS people(name TEXT)')\n    for n in names:\n        c.execute('INSERT INTO people(name) VALUES (?)', (n,))\n    conn.commit()\n    c.execute('SELECT name FROM people')\n    rows = c.fetchall()\n    conn.close()\n    return len(rows)\n```",
+    "testCode": "```python\n# tests\nimport os\nfname = 'test_count.db'\nif os.path.exists(fname):\n    os.remove(fname)\n# empty list\nassert insert_and_count(fname, []) == 0\n# some names\nassert insert_and_count(fname, ['Ala', 'Ola']) == 2\n# duplicates allowed\nassert insert_and_count(fname, ['Ala']) == 3\nos.remove(fname)\n```",
+    "difficulty": "medium",
+    "topic": "SQLite w Pythonie",
+    "hints": [
+      "Użyj pętli `for` by przejść przez `names`.",
+      "Po wstawieniu wszystkich rekordów użyj `SELECT` i `fetchall()` by policzyć wiersze."
+    ]
+  },
+  {
+    "id": 241,
+    "materialId": 59,
+    "title": "Stwórz tabelę książek i pobierz tytuły",
+    "description": "Napisz funkcję `books_titles(filename, rows)` gdzie `rows` to lista krotek `(id, title)`; funkcja tworzy tabelę `books(id INTEGER, title TEXT)`, wstawia rekordy i zwraca listę tytułów z bazy.",
+    "starterCode": "```python\n# starter code\nimport sqlite3\n\ndef books_titles(filename, rows):\n    # rows to lista krotek (id, title)\n    # TODO: stwórz tabelę books\n    # TODO: wstaw wszystkie wiersze\n    # TODO: zwróć listę tytułów\n    pass\n```",
+    "solution": "```python\n# full solution\nimport sqlite3\n\ndef books_titles(filename, rows):\n    conn = sqlite3.connect(filename)\n    c = conn.cursor()\n    c.execute('CREATE TABLE IF NOT EXISTS books(id INTEGER, title TEXT)')\n    for r in rows:\n        c.execute('INSERT INTO books(id, title) VALUES (?, ?)', (r[0], r[1]))\n    conn.commit()\n    c.execute('SELECT title FROM books')\n    fetched = c.fetchall()\n    conn.close()\n    # fetched to lista krotek, zwróć listę samych tytułów\n    return [t[0] for t in fetched]\n```",
+    "testCode": "```python\n# tests\nimport os\nfname = 'test_books.db'\nif os.path.exists(fname):\n    os.remove(fname)\nrows = [(1, 'Python Basics'), (2, 'Dane i bazy')]\nres = books_titles(fname, rows)\nassert res == ['Python Basics', 'Dane i bazy']\n# pusty input\nres2 = books_titles(fname, [])\nassert res2 == ['Python Basics', 'Dane i bazy']\nos.remove(fname)\n```",
+    "difficulty": "medium",
+    "topic": "SQLite w Pythonie",
+    "hints": [
+      "Upewnij się, że wykonujesz `commit()` po wstawieniu.",
+      "Użyj `SELECT title FROM books` i `fetchall()` by pobrać wyniki."
+    ]
+  },
+  {
+    "id": 242,
+    "materialId": 59,
+    "title": "Wczytaj tekst, wyczyść i zapisz do bazy",
+    "description": "Napisz funkcję `clean_and_store(filename, text_lines)` gdzie `text_lines` to lista linii w formacie `'name, age'`. Funkcja powinna: wyczyścić spacje wokół pól, pominąć puste linie, zapisać do tabeli `people(name TEXT, age TEXT)` i zwrócić liczbę zapisanych wierszy.",
+    "starterCode": "```python\n# starter code\nimport sqlite3\n\ndef clean_and_store(filename, text_lines):\n    # TODO: połącz z bazą i utwórz tabelę people(name TEXT, age TEXT)\n    # TODO: dla każdej linii: podziel przez ',' i wyczyść części\n    # TODO: pomin pustą linię\n    # TODO: wstaw do bazy i zwróć liczbę wstawionych wierszy\n    pass\n```",
+    "solution": "```python\n# full solution\nimport sqlite3\n\ndef clean_and_store(filename, text_lines):\n    conn = sqlite3.connect(filename)\n    c = conn.cursor()\n    c.execute('CREATE TABLE IF NOT EXISTS people(name TEXT, age TEXT)')\n    count = 0\n    for line in text_lines:\n        if line.strip() == '':\n            continue\n        parts = line.split(',')\n        if len(parts) < 2:\n            continue\n        name = parts[0].strip()\n        age = parts[1].strip()\n        c.execute('INSERT INTO people(name, age) VALUES (?, ?)', (name, age))\n        count += 1\n    conn.commit()\n    conn.close()\n    return count\n```",
+    "testCode": "```python\n# tests\nimport os\nfname = 'test_clean.db'\nif os.path.exists(fname):\n    os.remove(fname)\nlines = [' Ala , 30', '', 'Ola,25', 'BadLine']\ncount = clean_and_store(fname, lines)\nassert count == 2, 'Powinny być wstawione tylko dwie poprawne linie'\n# sprawdź, że baza istnieje i ma dane\nimport sqlite3\nconn = sqlite3.connect(fname)\nc = conn.cursor()\nc.execute(\"SELECT name, age FROM people ORDER BY name\")\nrows = c.fetchall()\nconn.close()\nassert ('Ala', '30') in rows\nassert ('Ola', '25') in rows\nos.remove(fname)\n```",
+    "difficulty": "hard",
+    "topic": "Przepływ danych",
+    "hints": [
+      "Użyj `split(',')` by podzielić linię i `strip()` by usunąć spacje.",
+      "Pomiń linie, które są puste po `strip()`."
+    ]
+  },
+  {
+    "id": 243,
+    "materialId": 60,
+    "title": "Utwórz tabelę `students`",
+    "description": "Napisz polecenie SQL, które tworzy tabelę `students` z kolumnami `name` (VARCHAR 100) i `email` (VARCHAR 100).",
+    "starterCode": "```python\n# TODO: Napisz polecenie SQL\n\n\n```",
+    "solution": "```python\nCREATE TABLE students (name VARCHAR(100), email VARCHAR(100));\n```",
+    "testCode": "```python\n# Sprawdź wizualnie czy tabela ma nazwę students i dwie kolumny: name, email\n# Oczekiwane: definicja tabeli zawiera 'students' i 'VARCHAR(100)'\n```",
+    "difficulty": "easy",
+    "topic": "CREATE TABLE",
+    "hints": [
+      "Użyj `CREATE TABLE` i podaj kolumny w nawiasach.",
+      "Zapis typu wygląda jak `VARCHAR(100)`."
+    ]
+  },
+  {
+    "id": 244,
+    "materialId": 60,
+    "title": "Wstaw trzy rekordy do `students`",
+    "description": "Napisz trzy polecenia `INSERT` aby dodać trzy różne osoby do tabeli `students` (użyj dowolnych imion i emaili).",
+    "starterCode": "```python\n# TODO: 3 polecenia INSERT\n\n\n```",
+    "solution": "```python\nINSERT INTO students (name, email) VALUES ('Kasia','kasia@ex.pl');\nINSERT INTO students (name, email) VALUES ('Adam','adam@ex.pl');\nINSERT INTO students (name, email) VALUES ('Lena','lena@ex.pl');\n```",
+    "testCode": "```python\n# Sprawdź, że są trzy nowe wiersze z podanymi emailami\n# Oczekiwane: występowanie 'kasia@ex.pl', 'adam@ex.pl', 'lena@ex.pl'\n```",
+    "difficulty": "easy",
+    "topic": "INSERT",
+    "hints": [
+      "Składnia: `INSERT INTO tabela (kol1, kol2) VALUES ('a','b')`.",
+      "Każde polecenie to osobny wiersz."
+    ]
+  },
+  {
+    "id": 245,
+    "materialId": 60,
+    "title": "Usuń wybrany rekord",
+    "description": "Napisz polecenie `DELETE`, które usunie wiersz z `students` gdzie `email` to `adam@ex.pl`.",
+    "starterCode": "```python\n# TODO: polecenie DELETE\n\n\n```",
+    "solution": "```python\nDELETE FROM students WHERE email='adam@ex.pl';\n```",
+    "testCode": "```python\n# Sprawdź, że 'adam@ex.pl' nie występuje już w tabeli\n# Oczekiwane: brak wiersza z tym emailem\n```",
+    "difficulty": "medium",
+    "topic": "DELETE",
+    "hints": [
+      "Użyj formy `DELETE FROM <tabela> WHERE ...`.",
+      "Pamiętaj o cudzysłowach przy wartości tekstowej."
+    ]
+  },
+  {
+    "id": 246,
+    "materialId": 60,
+    "title": "Wyszukaj i posortuj",
+    "description": "Napisz polecenie `SELECT`, które wybierze wszystkie kolumny z `students` i posortuje wyniki po `name`.",
+    "starterCode": "```python\n# TODO: SELECT z ORDER BY\n\n\n```",
+    "solution": "```python\nSELECT * FROM students ORDER BY name;\n```",
+    "testCode": "```python\n# Sprawdź, że polecenie zawiera 'SELECT * FROM students' i 'ORDER BY name'\n```",
+    "difficulty": "medium",
+    "topic": "SELECT/ORDER BY",
+    "hints": [
+      "Użyj `SELECT * FROM <tabela> ORDER BY <kolumna>`.",
+      "Nie potrzebujesz `WHERE` jeśli chcesz wszystkie wiersze."
+    ]
+  },
+  {
+    "id": 247,
+    "materialId": 61,
+    "title": "Rozwiń skrót CRUD",
+    "description": "Napisz funkcję `crud_expand()` która zwraca listę czterech słów: `['create','read','update','delete']`.",
+    "starterCode": "def crud_expand():\n    # TODO: zwróć listę ['create','read','update','delete']\n    pass\n",
+    "solution": "def crud_expand():\n    # Zwracamy cztery operacje CRUD jako lista\n    return ['create', 'read', 'update', 'delete']\n",
+    "testCode": "assert crud_expand() == ['create','read','update','delete']\n# dodatkowe proste sprawdzenia\nres = crud_expand()\nassert isinstance(res, list)\nassert len(res) == 4\n",
+    "difficulty": "easy",
+    "topic": "CRUD",
+    "hints": [
+      "Zwróć listę z czterema elementami.",
+      "Użyj słów dokładnie tak jak w opisie: `create`, `read`, `update`, `delete`."
+    ]
+  },
+  {
+    "id": 248,
+    "materialId": 61,
+    "title": "Pobierz kolumnę z tabeli",
+    "description": "Napisz funkcję `get_column(rows, index)` która przyjmuje listę wierszy (pierwszy wiersz to nagłówek) i zwraca listę wartości z danej kolumny, pomijając nagłówek.",
+    "starterCode": "def get_column(rows, index):\n    # rows to lista list, np. [[\"title\",\"artist\"],[\"A\",\"X\"],[\"B\",\"Y\"]]\n    # TODO: zwrócić listę wartości z kolumny 'index' bez nagłówka\n    pass\n",
+    "solution": "def get_column(rows, index):\n    result = []\n    # jeśli brak wierszy lub tylko nagłówek, zwracamy pustą listę\n    if len(rows) <= 1:\n        return result\n    for i in range(1, len(rows)):\n        row = rows[i]\n        # jeśli wiersz jest krótki, pomiń go\n        if index < len(row):\n            result.append(row[index])\n    return result\n",
+    "testCode": "data = [[\"title\",\"artist\"],[\"Song\",\"Alice\"],[\"Book\",\"Bob\"]]\nassert get_column(data, 0) == ['Song','Book']\nassert get_column(data, 1) == ['Alice','Bob']\n# pusta tabela\nassert get_column([['title','artist']], 0) == []\n# indeks poza zakresem nie zwraca błędu\nassert get_column(data, 5) == []\n",
+    "difficulty": "medium",
+    "topic": "Tabela, wiersz, kolumna",
+    "hints": [
+      "Użyj pętli `for` żeby przejść po wierszach.",
+      "Pominięcie nagłówka: zacznij od drugiego wiersza."
+    ]
+  },
+  {
+    "id": 249,
+    "materialId": 61,
+    "title": "Unikalni wykonawcy",
+    "description": "Masz listę wierszy z kolumną `artist`. Napisz funkcję `unique_artists(rows)` która zwraca listę unikalnych nazw wykonawców (kolejność pierwszego wystąpienia). Pierwszy wiersz to nagłówek.",
+    "starterCode": "def unique_artists(rows):\n    # rows: [[\"title\",\"artist\"],[\"A\",\"X\"],[\"B\",\"X\"],[\"C\",\"Y\"]]\n    # TODO: zwrócić ['X','Y']\n    pass\n",
+    "solution": "def unique_artists(rows):\n    artists = []\n    if len(rows) <= 1:\n        return artists\n    for i in range(1, len(rows)):\n        row = rows[i]\n        if len(row) >= 2:\n            artist = row[1]\n            if artist not in artists:\n                artists.append(artist)\n    return artists\n",
+    "testCode": "data = [[\"title\",\"artist\"],[\"S1\",\"A\"],[\"S2\",\"A\"],[\"S3\",\"B\"]]\nassert unique_artists(data) == ['A','B']\n# tylko nagłówek\nassert unique_artists([['title','artist']]) == []\n# wiersz bez artysty jest ignorowany\ndata2 = [['title','artist'], ['X'], ['Y','C']]\nassert unique_artists(data2) == ['C']\n",
+    "difficulty": "medium",
+    "topic": "Normalizacja",
+    "hints": [
+      "Użyj listy wynikowej i sprawdź czy wartość już w niej jest.",
+      "Pamiętaj o pominięciu nagłówka."
+    ]
+  },
+  {
+    "id": 250,
+    "materialId": 61,
+    "title": "Proste sprawdzenie zgodności typu (tekst/liczba)",
+    "description": "Napisz funkcję `validate_row_types(header_types, row)` gdzie `header_types` to lista typów jako stringy: `['str','int']`. Funkcja ma zwrócić `True` jeśli wartości w `row` pasują do tych typów (dla `int` sprawdź, czy tekst zawiera tylko cyfry), inaczej `False`.",
+    "starterCode": "def validate_row_types(header_types, row):\n    # header_types: ['str','int']\n    # row: ['Title','12']\n    # TODO: zwrócić True lub False\n    pass\n",
+    "solution": "def validate_row_types(header_types, row):\n    if len(row) != len(header_types):\n        return False\n    for i in range(len(header_types)):\n        t = header_types[i]\n        val = row[i]\n        if t == 'str':\n            # każda wartość traktujemy jako string, więc OK\n            continue\n        elif t == 'int':\n            # sprawdzamy czy tekst to liczba całkowita\n            if not isinstance(val, str) or not val.isdigit():\n                return False\n        else:\n            # nieznany typ w nagłówku - uznajemy za niezgodność\n            return False\n    return True\n",
+    "testCode": "assert validate_row_types(['str','int'], ['Song','10']) is True\nassert validate_row_types(['str','int'], ['Song','a']) is False\n# zła długość\nassert validate_row_types(['str','int'], ['OnlyOne']) is False\n# inny nieobsługiwany typ\nassert validate_row_types(['str','float'], ['X','1.2']) is False\n",
+    "difficulty": "hard",
+    "topic": "Schemat",
+    "hints": [
+      "Dla `int` użyj metody `isdigit()` na ciągu znaków.",
+      "Pamiętaj sprawdzić długość list, jeśli `row` ma mniej elementów niż `header_types` zwróć False."
+    ]
   }
 ]

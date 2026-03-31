@@ -6524,5 +6524,425 @@
     "explanation": "Definicja klasy tylko rejestruje metodę. Metoda wykonuje się dopiero, gdy stworzysz obiekt i ją wywołasz. Częsty błąd to myśleć, że definicja klasy to wykonanie kodu.",
     "difficulty": "easy",
     "topic": "Klasy"
+  },
+  {
+    "id": 516,
+    "materialId": 59,
+    "question": "Co to jest główna różnica między rolą programisty aplikacji a DBA?",
+    "choices": [
+      "Programista pisze kod aplikacji, DBA zarządza i monitoruje bazę",
+      "DBA zawsze pisze interfejs użytkownika, programista tylko zarządza danymi",
+      "Programista instaluje serwer bazy, DBA tylko pisze SQL",
+      "Nie ma różnicy — to ta sama rola"
+    ],
+    "correctIndex": 0,
+    "explanation": "Programista tworzy aplikację i wysyła zapytania SQL. DBA monitoruje, optymalizuje i ma dostęp produkcyjny; to oddzielne role. Popularny błąd to myślenie, że role są identyczne.",
+    "difficulty": "easy",
+    "topic": "Rola DBA"
+  },
+  {
+    "id": 517,
+    "materialId": 59,
+    "question": "Która baza jest najlżejsza i najczęściej wbudowana w aplikacje?",
+    "choices": [
+      "SQLite",
+      "Oracle",
+      "SQL Server",
+      "Postgres"
+    ],
+    "correctIndex": 0,
+    "explanation": "SQLite jest zaprojektowane jako mała, wbudowana baza. Oracle, SQL Server i Postgres to większe systemy serwerowe.",
+    "difficulty": "easy",
+    "topic": "SQLite"
+  },
+  {
+    "id": 518,
+    "materialId": 59,
+    "question": "Co oznacza termin 'schema' w kontekście bazy danych?",
+    "choices": [
+      "Kontrakt opisujący kształt i typy danych",
+      "Nazwa programu do przeglądania bazy",
+      "Plik z kopią zapasową bazy",
+      "Rodzaj serwera sieciowego"
+    ],
+    "correctIndex": 0,
+    "explanation": "Schema to umowa o strukturze danych. Nie jest to program ani plik kopii zapasowej, tylko opis danych.",
+    "difficulty": "easy",
+    "topic": "Schema"
+  },
+  {
+    "id": 519,
+    "materialId": 59,
+    "question": "Co stanie się, jeśli developer bez kontroli będzie miał dostęp do produkcyjnej bazy?",
+    "choices": [
+      "Może przypadkowo uszkodzić dane lub strukturę, dlatego zwykle tego się unika",
+      "Nic złego — developer zawsze wie, co robi",
+      "DBA automatcznie zablokuje każdą zmianę",
+      "To przyspieszy instalację serwera"
+    ],
+    "correctIndex": 0,
+    "explanation": "Praktyka oddzielania ról chroni przed przypadkową utratą danych. Błędne jest zakładanie, że developer zawsze nie popełni błędu.",
+    "difficulty": "medium",
+    "topic": "Bezpieczeństwo ról"
+  },
+  {
+    "id": 520,
+    "materialId": 59,
+    "question": "Co lepiej zrobić najpierw w pracy z surowymi danymi?",
+    "choices": [
+      "Wyczyścić dane przed zapisem do bazy",
+      "Natychmiast zapisać surowe dane do bazy",
+      "Usunąć schema i dopiero potem zapisać",
+      "Wysłać dane do użytkownika bez przetwarzania"
+    ],
+    "correctIndex": 0,
+    "explanation": "Czyszczenie danych przed zapisem zapobiega bałaganowi w bazie. Zapis surowych, nieczyszczonych danych utrudnia późniejszą analizę.",
+    "difficulty": "easy",
+    "topic": "Przepływ danych"
+  },
+  {
+    "id": 521,
+    "materialId": 59,
+    "question": "Co wypisze ten kod?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(':memory:')\nc = conn.cursor()\nc.execute('CREATE TABLE t(x)')\nc.execute(\"INSERT INTO t VALUES ('a')\")\nc.execute(\"SELECT x FROM t\")\nrows = c.fetchall()\nprint(rows)\nconn.close()\n```",
+    "choices": [
+      "[('a',)]",
+      "['a']",
+      "('a',)",
+      "[]"
+    ],
+    "correctIndex": 0,
+    "explanation": "Zapytanie `fetchall()` zwraca listę krotek z wynikami, więc pojawi się `[('a',)]`. Błędne odpowiedzi zakładają inny typ zwracany.",
+    "difficulty": "medium",
+    "topic": "SQLite w Pythonie"
+  },
+  {
+    "id": 522,
+    "materialId": 59,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport sqlite3\nconn = sqlite3.connect('test.db')\nc = conn.cursor()\nc.execute('CREATE TABLE books(id, title)')\nconn.close()\n```",
+    "choices": [
+      "Brakuje `PRIMARY KEY` lub typów kolumn, co może być nieczytelne",
+      "Nie można tworzyć tabel bez `commit()` przed `close()`",
+      "`sqlite3.connect` nie działa z nazwą pliku",
+      "Kod jest idealny i nic nie trzeba zmieniać"
+    ],
+    "correctIndex": 0,
+    "explanation": "Kod tworzy tabelę, ale nie podano typów ani klucza, co utrudnia użycie. Popularny mit to, że trzeba `commit()` — w praktyce dla DDL (CREATE TABLE) SQLite często zapisuje strukturę, ale dobre praktyki to `commit()`; jednak najważniejszy problem to brak typów/klucza.",
+    "difficulty": "medium",
+    "topic": "SQLite w Pythonie"
+  },
+  {
+    "id": 523,
+    "materialId": 59,
+    "question": "Która odpowiedź najlepiej opisuje SQLite?",
+    "choices": [
+      "Baza wbudowana, prosta, do mniejszych danych",
+      "Duży serwer korporacyjny do skali enterprise",
+      "System operacyjny",
+      "Narzędzie do tworzenia grafik"
+    ],
+    "correctIndex": 0,
+    "explanation": "SQLite jest małą, wbudowaną bazą. Nie jest dużym serwerem ani narzędziem graficznym.",
+    "difficulty": "easy",
+    "topic": "SQLite"
+  },
+  {
+    "id": 524,
+    "materialId": 59,
+    "question": "Co wypisze ten kod gdy tabela jest pusta?\n\n```python\nimport sqlite3\nconn = sqlite3.connect(':memory:')\nc = conn.cursor()\nc.execute('CREATE TABLE items(name)')\nc.execute('SELECT name FROM items')\nprint(c.fetchall())\nconn.close()\n```",
+    "choices": [
+      "[]",
+      "[('','')]",
+      "None",
+      "['']"
+    ],
+    "correctIndex": 0,
+    "explanation": "Gdy brak wyników, `fetchall()` zwraca pustą listę `[]`. Inne odpowiedzi sugerują wartości lub `None`, co jest błędne.",
+    "difficulty": "easy",
+    "topic": "SQLite w Pythonie"
+  },
+  {
+    "id": 525,
+    "materialId": 59,
+    "question": "Która baza jest często używana w serwisach WWW jako szybkie i proste rozwiązanie?",
+    "choices": [
+      "MySQL",
+      "SQLite",
+      "Oracle",
+      "Brak baz danych"
+    ],
+    "correctIndex": 0,
+    "explanation": "MySQL jest popularny w aplikacjach webowych ze względu na szybkość i prostotę. SQLite jest wbudowane i użyteczne lokalnie, ale WWW zwykle używa MySQL lub podobnych.",
+    "difficulty": "medium",
+    "topic": "Systemy baz danych"
+  },
+  {
+    "id": 526,
+    "materialId": 60,
+    "question": "Co zwróci ten kod?\n\n```python\nCREATE TABLE contacts (name VARCHAR(50), email VARCHAR(100));\nINSERT INTO contacts (name, email) VALUES ('Maja','maja@x.pl');\nSELECT * FROM contacts WHERE name='Maja';\n```",
+    "choices": [
+      "Wynik z jednym wierszem: `Maja, maja@x.pl`",
+      "Pusty wynik — nic nie zostanie znalezione",
+      "Błąd — nie można użyć `SELECT` po `INSERT`",
+      "Wynik z dwoma kolumnami, ale puste wartości"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wstawiliśmy wiersz z `Maja` i potem selekcjonujemy `WHERE name='Maja'`, więc dostajemy ten wiersz. Popularny błędny wybór to myślenie, że `INSERT` blokuje `SELECT`, ale to nieprawda.",
+    "difficulty": "easy",
+    "topic": "INSERT/SELECT"
+  },
+  {
+    "id": 527,
+    "materialId": 60,
+    "question": "Co jest nie tak z tym poleceniem?\n\n```python\nDELETE FROM members WHERE email=member@example.com;\n```",
+    "choices": [
+      "Brakuje cudzysłowów wokół adresu email",
+      "Nie można użyć `DELETE` z `WHERE`",
+      "Brakuje `TABLE` po `DELETE`",
+      "Polecenie usuwa wszystkie wiersze"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wartość tekstowa musi być w cudzysłowach, np. `email='member@example.com'`. Popularny mylny wybór to brak `TABLE` po `DELETE`, ale składnia używa `DELETE FROM`.",
+    "difficulty": "easy",
+    "topic": "DELETE"
+  },
+  {
+    "id": 528,
+    "materialId": 60,
+    "question": "Która wersja poprawnie zmienia `name` na 'Piotr' tylko dla danego emaila?\n\nA:\n```python\nUPDATE users SET name='Piotr';\n```\n\nB:\n```python\nUPDATE users name='Piotr' WHERE email='p@e.com';\n```\n\nC:\n```python\nUPDATE users SET name='Piotr' WHERE email='p@e.com';\n```\n\nD:\n```python\nUPDATE users SET 'Piotr' WHERE email='p@e.com';\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 2,
+    "explanation": "Poprawna składnia to `UPDATE <tabela> SET kol='wartość' WHERE ...`. Wariant A nie ma `WHERE`, B ma złą składnię `UPDATE users name=...`, D ma złą kolejność `SET 'Piotr'`.",
+    "difficulty": "medium",
+    "topic": "UPDATE"
+  },
+  {
+    "id": 529,
+    "materialId": 60,
+    "question": "Co zrobi to zapytanie?\n\n```python\nSELECT * FROM orders ORDER BY created_at;\n```",
+    "choices": [
+      "Zwróci wszystkie zamówienia posortowane po kolumnie `created_at`",
+      "Zwróci tylko najnowsze zamówienie",
+      "Spowoduje błąd, bo brak `WHERE`",
+      "Usuń kolumnę `created_at` z tabeli"
+    ],
+    "correctIndex": 0,
+    "explanation": "`ORDER BY` sortuje wyniki według podanej kolumny. `WHERE` nie jest wymagane. Popularny błąd to myślenie że `ORDER BY` filtruje, a ono tylko sortuje.",
+    "difficulty": "easy",
+    "topic": "ORDER BY"
+  },
+  {
+    "id": 530,
+    "materialId": 60,
+    "question": "Co zwróci to zapytanie gdy nie ma pasujących wierszy?\n\n```python\nSELECT * FROM books WHERE author='Nieznany';\n```",
+    "choices": [
+      "Pusty zestaw wyników",
+      "Błąd 'no rows found'",
+      "Zwróci pierwszy wiersz tabeli",
+      "Zwróci `NULL`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Jeśli nie ma pasujących wierszy, `SELECT` zwróci pusty wynik. Częsty mylny wybór to oczekiwanie błędu, ale `SELECT` działa poprawnie i po prostu nic nie zwraca.",
+    "difficulty": "easy",
+    "topic": "SELECT"
+  },
+  {
+    "id": 531,
+    "materialId": 60,
+    "question": "Co jest nie tak z tym poleceniem?\n\n```python\nINSERT INTO clients (name, email) VALUES ('Ola');\n```",
+    "choices": [
+      "Brakuje drugiej wartości w `VALUES`",
+      "`INSERT INTO` wymaga `WHERE`",
+      "Nie można użyć `INSERT` bez `CREATE TABLE`",
+      "Kolumny muszą być w cudzysłowach"
+    ],
+    "correctIndex": 0,
+    "explanation": "Określiliśmy dwie kolumny, ale podaliśmy tylko jedną wartość; trzeba podać odpowiadającą liczbę wartości. Błędne jest też myślenie, że `INSERT` zawsze wymaga `WHERE`.",
+    "difficulty": "medium",
+    "topic": "INSERT"
+  },
+  {
+    "id": 532,
+    "materialId": 60,
+    "question": "Które zapytanie zwróci wszystkie kolumny i posortuje po `name`?\n\nA:\n```python\nSELECT name FROM people ORDER BY name;\n```\n\nB:\n```python\nSELECT * FROM people ORDER BY name;\n```\n\nC:\n```python\nSELECT * FROM people SORT BY name;\n```\n\nD:\n```python\nSELECT name FROM people SORT name;\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Poprawne jest `SELECT * FROM people ORDER BY name`. Wariant A wybiera tylko kolumnę `name`. `SORT BY` nie jest poprawnym słowem kluczowym.",
+    "difficulty": "easy",
+    "topic": "SELECT/ORDER BY"
+  },
+  {
+    "id": 533,
+    "materialId": 60,
+    "question": "Co się stanie jeśli spróbujesz wstawić string z 200 znakami do kolumny `title VARCHAR(100)`?",
+    "choices": [
+      "Zależnie od DB: błąd lub obcięcie, bo przekroczono `VARCHAR`",
+      "Wartość zostanie przyjęta bez problemu",
+      "Tabela zostanie usunięta",
+      "Zostanie utworzona nowa kolumna"
+    ],
+    "correctIndex": 0,
+    "explanation": "`VARCHAR(100)` ogranicza długość. Jeśli podasz więcej znaków, baza może zgłosić błąd lub obciąć tekst. Popularny mylny wybór to przekonanie, że baza automatycznie zwiększy rozmiar.",
+    "difficulty": "medium",
+    "topic": "VARCHAR/schema"
+  },
+  {
+    "id": 534,
+    "materialId": 60,
+    "question": "Co zrobi to polecenie?\n\n```python\nUPDATE items SET price='0' WHERE price='10';\n```",
+    "choices": [
+      "Zastąpi `price` równe '10' wartością '0'",
+      "Usunie wszystkie wiersze z `price='10'`",
+      "Doda nowy wiersz z ceną '0'",
+      "Zwróci błąd składniowy"
+    ],
+    "correctIndex": 0,
+    "explanation": "`UPDATE` zmienia pola w istniejących wierszach, więc ceny '10' staną się '0'. Popularny błąd to myślenie, że `UPDATE` usuwa wiersze.",
+    "difficulty": "easy",
+    "topic": "UPDATE"
+  },
+  {
+    "id": 535,
+    "materialId": 61,
+    "question": "Co wypisze ten kod?\n\n```python\nrows = [[\"id\",\"title\"], [1,\"Piosenka\"], [2,\"Książka\"]]\nprint(rows[1][1])\n```",
+    "choices": [
+      "Piosenka",
+      "id",
+      "Książka",
+      "1"
+    ],
+    "correctIndex": 0,
+    "explanation": "`rows[1]` to drugi wiersz, a `[1]` to druga kolumna w tym wierszu, czyli `\"Piosenka\"`. Błędna odpowiedź `id` bierze pierwszy wiersz, a `1` to pierwsza kolumna tego wiersza.",
+    "difficulty": "easy",
+    "topic": "Tabela, wiersz, kolumna"
+  },
+  {
+    "id": 536,
+    "materialId": 61,
+    "question": "Co jest nie tak z tym kodem, jeśli chcemy wypisać tylko tytuły (bez nagłówka)?\n\n```python\nsheet = [[\"title\",\"rating\"], [\"A\",5], [\"B\",4]]\nfor row in sheet:\n    print(row[0])\n```",
+    "choices": [
+      "Nic, działa poprawnie",
+      "Będzie błąd składni",
+      "Wypisze też nagłówek",
+      "Pominięte zostaną wszystkie wiersze z oceną 4"
+    ],
+    "correctIndex": 2,
+    "explanation": "Pętla zaczyna od pierwszego wiersza, który jest nagłówkiem, więc też go wypisze. Trzeba pominąć pierwszy wiersz.",
+    "difficulty": "easy",
+    "topic": "Schemat"
+  },
+  {
+    "id": 537,
+    "materialId": 61,
+    "question": "Która wersja poprawnie skleja prosty SQL do pobrania wszystkich kolumn z tabeli `tracks` dla gatunku 'rock'?\n\nA:\n```python\nq = \"SELECT * FROM tracks WHERE genre = 'rock'\"\n```\n\nB:\n```python\nq = \"SELECT * tracks WHERE genre = 'rock'\"\n```\n\nC:\n```python\nq = \"SELECT FROM tracks WHERE genre = 'rock'\"\n```\n\nD:\n```python\nq = \"SELECT * FROM tracks genre = 'rock'\"\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 0,
+    "explanation": "W SQL poprawna składnia to `SELECT * FROM tabela WHERE ...`, więc A jest poprawne. Pozostałe brakuje słowa `FROM` lub mają błędny porządek.",
+    "difficulty": "medium",
+    "topic": "SQL"
+  },
+  {
+    "id": 538,
+    "materialId": 61,
+    "question": "Co się stanie gdy policzymy ilość wierszy pustej tabeli?\n\n```python\nrows = []\nprint(len(rows))\n```",
+    "choices": [
+      "0",
+      "Błąd",
+      "None",
+      "1"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pusta lista ma długość 0. Nie ma błędu, bo lista istnieje, ale nie ma elementów.",
+    "difficulty": "easy",
+    "topic": "Tabela"
+  },
+  {
+    "id": 539,
+    "materialId": 61,
+    "question": "Co najlepiej opisuje rolę SQL w systemie bazodanowym?",
+    "choices": [
+      "Język do komunikacji z bazą",
+      "Program do czyszczenia danych",
+      "Narzędzie do rysowania tabel",
+      "Rodzaj dysku twardego"
+    ],
+    "correctIndex": 0,
+    "explanation": "SQL jest językiem zapytań do bazy. Nie czyści danych (to zadanie Pythona) ani nie jest sprzętem.",
+    "difficulty": "easy",
+    "topic": "SQL"
+  },
+  {
+    "id": 540,
+    "materialId": 61,
+    "question": "Które stwierdzenie jest prawdziwe?\n\n```python\n# mamy listę wierszy z arkusza\nsheet = [[\"title\",\"artist\"],[\"X\",\"A\"],[\"Y\",\"A\"]]\n``` \nCo pokazuje powtarzające się dane w kolumnie `artist`?",
+    "choices": [
+      "Trzeba normalizować dane",
+      "Dane są już w normalnej formie",
+      "Nie można zapisać tego w bazie",
+      "To znaczy, że SQL nie działa"
+    ],
+    "correctIndex": 0,
+    "explanation": "Powtarzające się wartości sugerują, że warto rozważyć normalizację (osobna tabela artystów), żeby uniknąć duplikatów.",
+    "difficulty": "medium",
+    "topic": "Normalizacja"
+  },
+  {
+    "id": 541,
+    "materialId": 61,
+    "question": "Co się stanie, jeśli opiszesz w schemacie kolumnę jako liczbę, a zapiszesz tam tekst?",
+    "choices": [
+      "Baza może odrzucić lub zgłosić błąd",
+      "Baza automatycznie poprawi tekst na liczbę",
+      "Nic się nigdy nie stanie",
+      "SQL usunie cały wiersz"
+    ],
+    "correctIndex": 0,
+    "explanation": "Schemat narzuca typy. Baza może odrzucić lub zgłosić błąd przy niezgodnym typie. Nie zamieni tekstu magicznie w liczbę.",
+    "difficulty": "medium",
+    "topic": "Schemat"
+  },
+  {
+    "id": 542,
+    "materialId": 61,
+    "question": "Dlaczego warto używać warstwy pośredniej (aplikacji/DB engine) zamiast czytać pliki dyskowe bezpośrednio?",
+    "choices": [
+      "Ukrywa złożoność i daje prosty interfejs",
+      "Zmusza do ręcznego skanowania taśm",
+      "Spowalnia aplikację zawsze",
+      "Zastępuje SQL"
+    ],
+    "correctIndex": 0,
+    "explanation": "Warstwa pośrednia (abstrakcja) ukrywa złożoność i ułatwia pracę aplikacji. Nie zawsze spowalnia i nie zastępuje SQL.",
+    "difficulty": "easy",
+    "topic": "Abstrakcja"
+  },
+  {
+    "id": 543,
+    "materialId": 61,
+    "question": "Co oznacza powiedzenie, że SQL działa dobrze na \"ładnych\" danych?",
+    "choices": [
+      "SQL najlepiej gdy dane są uporządkowane i zgodne ze schematem",
+      "SQL zawsze naprawi brudne dane",
+      "SQL nie potrafi pobrać żadnych danych",
+      "SQL zastępuje Pythona"
+    ],
+    "correctIndex": 0,
+    "explanation": "SQL jest silny przy dobrze ustrukturyzowanych danych. Brudne dane często trzeba oczyścić przed użyciem SQL.",
+    "difficulty": "medium",
+    "topic": "SQL i dane"
   }
 ]

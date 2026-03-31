@@ -4058,5 +4058,257 @@
     "front": "Jaki jest częsty błąd z atrybutami w `__init__`?",
     "back": "Zapisanie `x = 0` zamiast `self.x = 0`, wtedy atrybut nie zostanie przywiązany do instancji.",
     "topic": "GOTCHA"
+  },
+  {
+    "id": 687,
+    "materialId": 59,
+    "front": "Co robi administrator baz danych (DBA)?",
+    "back": "DBA monitoruje i optymalizuje bazę. Ma dostęp do produkcyjnej bazy i uruchamia komendy bezpośrednio na serwerze.",
+    "topic": "Rola DBA"
+  },
+  {
+    "id": 688,
+    "materialId": 59,
+    "front": "Co robi programista aplikacji względem bazy danych?",
+    "back": "Programista pisze kod i interfejs. Wysyła zapytania SQL do bazy i formatuje wyniki dla użytkownika.",
+    "topic": "Rola programisty"
+  },
+  {
+    "id": 689,
+    "materialId": 59,
+    "front": "Co to jest SQLite?",
+    "back": "SQLite to mała, wbudowana baza danych (embedded). Nie wymaga oddzielnego serwera i często jest częścią aplikacji.",
+    "topic": "SQLite"
+  },
+  {
+    "id": 690,
+    "materialId": 59,
+    "front": "Jaka jest różnica między SQLite a Oracle?",
+    "back": "SQLite jest mała i wbudowana. Oracle to duży, komercyjny system serwerowy do dużych zastosowań enterprise.",
+    "topic": "Porównanie baz"
+  },
+  {
+    "id": 691,
+    "materialId": 59,
+    "front": "Co to jest schema (model danych)?",
+    "back": "Schema to kontrakt opisujący kształt i typy danych w bazie. Pomaga bazie zoptymalizować przechowywanie danych.",
+    "topic": "Schema"
+  },
+  {
+    "id": 692,
+    "materialId": 59,
+    "front": "Kiedy lepiej użyć SQLite zamiast MySQL?",
+    "back": "Gdy potrzebujesz prostoty i wbudowania w aplikację, oraz gdy dane nie są bardzo duże — `SQLite` jest lżejsze i łatwiejsze.",
+    "topic": "Kiedy użyć SQLite"
+  },
+  {
+    "id": 693,
+    "materialId": 59,
+    "front": "Dlaczego w dużych projektach developer często nie ma dostępu do produkcyjnej bazy?",
+    "back": "Bo łatwo można ją uszkodzić. Dostęp ma DBA, aby chronić stabilność systemu.",
+    "topic": "Bezpieczeństwo ról"
+  },
+  {
+    "id": 694,
+    "materialId": 59,
+    "front": "Co oznacza, że SQLite jest \"embedded\"?",
+    "back": "Oznacza, że baza działa wewnątrz aplikacji, bez oddzielnego serwera sieciowego.",
+    "topic": "SQLite"
+  },
+  {
+    "id": 695,
+    "materialId": 59,
+    "front": "Co robi się najpierw: czyszczenie danych czy zapis do bazy?",
+    "back": "Najpierw czyścimy dane. Potem zapisujemy je w sensowny sposób do bazy.",
+    "topic": "Przepływ danych"
+  },
+  {
+    "id": 696,
+    "materialId": 59,
+    "front": "Jaki jest typowy cykl pracy z danymi wymieniony w lekcji?",
+    "back": "Czytanie danych, czyszczenie, zapis do bazy, potem analiza i wizualizacja przez inne programy.",
+    "topic": "Przepływ danych"
+  },
+  {
+    "id": 697,
+    "materialId": 59,
+    "front": "Co to znaczy, że Python ma SQLite \"wbudowane\"?",
+    "back": "Oznacza, że możemy użyć `import` w Pythonie, by pracować z SQLite bez instalowania dodatkowego serwera.",
+    "topic": "SQLite"
+  },
+  {
+    "id": 698,
+    "materialId": 59,
+    "front": "Jaki błąd popełniają początkujący przy projektowaniu bazy?",
+    "back": "Nie planują schemy i zapisują dane w nieuporządkowany sposób. Trudno potem analizować takie dane.",
+    "topic": "Częste błędy"
+  },
+  {
+    "id": 699,
+    "materialId": 60,
+    "front": "Co robi polecenie `CREATE TABLE`?",
+    "back": "Tworzy nową tabelę i definiuje jej kolumny oraz typy danych, np. `CREATE TABLE users (name VARCHAR(128), email VARCHAR(128))`.",
+    "topic": "CREATE TABLE"
+  },
+  {
+    "id": 700,
+    "materialId": 60,
+    "front": "Co oznacza `VARCHAR(128)`?",
+    "back": "Typ tekstowy z maksymalnie 128 znakami. To część kontraktu tabeli, np. `name VARCHAR(128)`.",
+    "topic": "VARCHAR i schema"
+  },
+  {
+    "id": 701,
+    "materialId": 60,
+    "front": "Jak wstawisz nowy wiersz do tabeli `people`?",
+    "back": "Użyj `INSERT INTO people (name, email) VALUES ('Imie','mail@example.com')`.",
+    "topic": "INSERT"
+  },
+  {
+    "id": 702,
+    "materialId": 60,
+    "front": "Co robi `DELETE FROM users WHERE email='a@b.com'`?",
+    "back": "Usuwa wszystkie wiersze z tabeli `users`, których kolumna `email` równa się `'a@b.com'`.",
+    "topic": "DELETE"
+  },
+  {
+    "id": 703,
+    "materialId": 60,
+    "front": "Co się stanie jeśli wykonasz `DELETE FROM users` bez `WHERE`?",
+    "back": "Usunie wszystkie wiersze z tabeli `users`. To często niezamierzony błąd.",
+    "topic": "GOTCHA"
+  },
+  {
+    "id": 704,
+    "materialId": 60,
+    "front": "Jak zmienisz imię użytkownika o danym emailu?",
+    "back": "Użyj `UPDATE users SET name='Nowe' WHERE email='x@y.com'`.",
+    "topic": "UPDATE"
+  },
+  {
+    "id": 705,
+    "materialId": 60,
+    "front": "Czym jest `SELECT * FROM users`?",
+    "back": "Polecenie które zwraca wszystkie kolumny i wszystkie wiersze z tabeli `users`.",
+    "topic": "SELECT"
+  },
+  {
+    "id": 706,
+    "materialId": 60,
+    "front": "Dlaczego warto używać `ORDER BY`?",
+    "back": "Bo baza szybko posortuje wyniki i zwróci je w zadanej kolejności, np. `ORDER BY email`.",
+    "topic": "ORDER BY"
+  },
+  {
+    "id": 707,
+    "materialId": 60,
+    "front": "Jaka jest różnica między `DELETE` a `UPDATE`?",
+    "back": "`DELETE` usuwa całe wiersze, a `UPDATE` zmienia wartości w istniejących wierszach.",
+    "topic": "COMPARISON"
+  },
+  {
+    "id": 708,
+    "materialId": 60,
+    "front": "Kiedy użyć `SELECT *` zamiast `SELECT kol1, kol2`?",
+    "back": "Gdy chcesz wszystkie kolumny tabeli. Dla mniejszych wyników wybierz konkretne kolumny.",
+    "topic": "WHEN TO USE"
+  },
+  {
+    "id": 709,
+    "materialId": 60,
+    "front": "Co oznacza 'schemat' tabeli?",
+    "back": "Definicja kolumn i ich typów. To kontrakt mówiący co i jak można przechowywać.",
+    "topic": "Concept"
+  },
+  {
+    "id": 710,
+    "materialId": 60,
+    "front": "Jaki błąd popełniają początkujący przy `UPDATE`?",
+    "back": "Zapominają `WHERE` i aktualizują wszystkie wiersze zamiast wybranych.",
+    "topic": "GOTCHA"
+  },
+  {
+    "id": 711,
+    "materialId": 61,
+    "front": "Co to jest relacyjna baza danych?",
+    "back": "System przechowywania danych w tabelach, gdzie dane są powiązane przez kolumny i wiersze.",
+    "topic": "Relacyjne bazy danych"
+  },
+  {
+    "id": 712,
+    "materialId": 61,
+    "front": "Co oznaczają słowa: `table`, `row`, `column`?",
+    "back": "`table` to tabela danych, `row` to pojedynczy wiersz (rekord), `column` to kolumna (pole) w tabeli.",
+    "topic": "Tabela, wiersz, kolumna"
+  },
+  {
+    "id": 713,
+    "materialId": 61,
+    "front": "Co to jest schemat (`schema`)?",
+    "back": "Umowa o kształcie tabeli: nazwy kolumn i reguły (np. typy i długości).",
+    "topic": "Schemat"
+  },
+  {
+    "id": 714,
+    "materialId": 61,
+    "front": "Co to jest SQL?",
+    "back": "Język do rozmowy z bazą danych. Używa się go do pobierania i modyfikacji danych.",
+    "topic": "SQL"
+  },
+  {
+    "id": 715,
+    "materialId": 61,
+    "front": "Co oznacza skrót CRUD?",
+    "back": "Create, Read, Update, Delete — cztery podstawowe operacje na danych.",
+    "topic": "CRUD"
+  },
+  {
+    "id": 716,
+    "materialId": 61,
+    "front": "Jaka jest różnica między arkuszem kalkulacyjnym a bazą danych?",
+    "back": "Arkusz jest prosty i luźny. Baza ma schemat, reguły i jest szybsza przy dużych zbiorach danych.",
+    "topic": "Porównanie"
+  },
+  {
+    "id": 717,
+    "materialId": 61,
+    "front": "Kiedy lepiej użyć Pythona zamiast tylko SQL?",
+    "back": "Gdy dane są nieuporządkowane lub trzeba je oczyścić. Python lepiej radzi z brudnymi danymi.",
+    "topic": "Kiedy użyć Pythona"
+  },
+  {
+    "id": 718,
+    "materialId": 61,
+    "front": "Co to jest abstrakcja w kontekście baz danych?",
+    "back": "Warstwa, która ukrywa złożoność bazy i daje prosty interfejs do użycia.",
+    "topic": "Abstrakcja"
+  },
+  {
+    "id": 719,
+    "materialId": 61,
+    "front": "Co to jest API bazy danych?",
+    "back": "Standard komunikacji między aplikacją a bazą, np. SQL jest częścią takiego interfejsu.",
+    "topic": "API"
+  },
+  {
+    "id": 720,
+    "materialId": 61,
+    "front": "Jaki problem rozwiązuje indeksowanie i losowy dostęp?",
+    "back": "Pozwala znaleźć dane szybko bez czytania całego dysku sekwencyjnie.",
+    "topic": "Wydajność"
+  },
+  {
+    "id": 721,
+    "materialId": 61,
+    "front": "Co często jest źródłem powtarzania danych w arkuszu?",
+    "back": "Brak normalizacji i brak osobnych tabel dla powtarzających się informacji.",
+    "topic": "Normalizacja"
+  },
+  {
+    "id": 722,
+    "materialId": 61,
+    "front": "Jaki błąd popełniają początkujący przy imporcie arkusza do bazy?",
+    "back": "Traktują pierwszy wiersz (nagłówki) jako dane zamiast jako nazwy kolumn.",
+    "topic": "Gotcha"
   }
 ]

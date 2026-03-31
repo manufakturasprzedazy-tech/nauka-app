@@ -942,5 +942,65 @@
     "flashcardCount": 12,
     "quizCount": 9,
     "exerciseCount": 4
+  },
+  {
+    "id": 59,
+    "courseId": "python",
+    "filename": "Korzystanie z baz danych.md",
+    "title": "Rola baz danych i SQLite w środowisku programistycznym",
+    "summary": "Lekcja opisuje, jak baza danych i oprogramowanie bazodanowe pasują do projektu. Omawia role programisty i administratora baz danych oraz wyjaśnia, dlaczego użyjemy SQLite i jak wygląda typowy przepływ pracy: czytanie, czyszczenie, zapis i odczyt danych.",
+    "topics": [
+      "Role: programista vs administrator baz danych",
+      "Systemy baz danych: Oracle, MySQL, MariaDB, Postgres, SQL Server, SQLite",
+      "SQLite jako baza wbudowana",
+      "Model danych i schema",
+      "Przepływ pracy: czyszczenie, zapis, analiza"
+    ],
+    "notes": "## O czym jest ta lekcja\nLekcja tłumaczy, jak baza danych i jej oprogramowanie wpasowują się w projekt. Pokazuje dwie główne role: programistę aplikacji i administratora baz danych.\n\n## Kluczowe pojęcia\n### Programista aplikacji\nTo osoba, która pisze kod i interfejs dla użytkownika. Programista wysyła zapytania SQL do bazy i formatuje dane dla użytkownika.\n\n### Administrator baz danych (DBA)\nTo osoba, która zarządza bazą, monitoruje ją i optymalizuje. DBA ma często bezpośredni dostęp do produkcyjnej bazy.\n\n### SQLite\nTo mała, wbudowana baza danych. Jest „embedded” — można ją włączyć bez oddzielnego serwera. Python ma SQLite w środku i używa się go przez `import`.\n\n### Schema (model danych)\nTo kontrakt opisujący, jak będą wyglądać dane. Schema pomaga bazie zoptymalizować przechowywanie.\n\n### Przepływ pracy danych\nTypowy proces: przeczytać dane, wyczyścić je, zapisać do bazy, a potem napisać programy do analizy i wizualizacji.\n\n## Przykłady kodu\n```python\n# przykład: import SQLite w Pythonie (symbolicznie)\nimport sqlite3\n```\nTo pokazuje, że Python ma wbudowany moduł do pracy z SQLite.\n\n## Ważne zasady\n- **Rola rozdzielona** — w dużych projektach DBA i programista mają oddzielne zadania.\n- **SQLite jest wbudowane** — nie wymaga oddzielnego serwera i jest proste do użycia w Pythonie.\n- **Schema to kontrakt** — dobrze zaprojektowana schema ułatwia pracę z danymi.\n- **Najpierw czyszczenie** — dane często trzeba przygotować przed zapisaniem do bazy.\n- **Te same dane, różne użycia** — te same dane można później analizować, wizualizować lub wysyłać dalej.\n\n## Częste błędy\n- **Mylenie ról**: pozwalanie developerowi bez kontroli na modyfikowanie produkcyjnej bazy. Unikaj tego przez separację ról.\n- **Brak schemy**: zapisywanie danych bez umowy o formacie prowadzi do bałaganu. Zdefiniuj schema przed masowym zapisem.\n- **Użycie niewłaściwej bazy**: wybieranie ciężkiego serwera gdy wystarcza SQLite. Wybierz narzędzie adekwatne do rozmiaru projektu.\n",
+    "flashcardCount": 12,
+    "quizCount": 10,
+    "exerciseCount": 4
+  },
+  {
+    "id": 60,
+    "courseId": "python",
+    "filename": "Pojedyncza tabela CRUD.md",
+    "title": "Podstawy SQL: tworzenie i operacje na jednej tabeli",
+    "summary": "Lekcja uczy podstaw SQL na jednej tabeli. Pokazuje jak tworzyć tabelę, wstawiać, usuwać, aktualizować i odczytywać dane oraz jak użyć klauzul `WHERE` i `ORDER BY`.",
+    "topics": [
+      "CREATE TABLE",
+      "VARCHAR i schemat (schema)",
+      "INSERT INTO ... VALUES",
+      "DELETE FROM ... WHERE",
+      "UPDATE ... SET ... WHERE",
+      "SELECT ... FROM ... WHERE",
+      "ORDER BY",
+      "Plik bazy danych SQLite"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: uczymy się pisać podstawowe polecenia SQL i tworzyć prostą tabelę w pliku bazy SQLite.\n\n## Kluczowe pojęcia\n### Tworzenie tabeli\nUżywamy `CREATE TABLE <nazwa>(kol1 TYPE, kol2 TYPE)` aby zdefiniować strukturę. To jest kontrakt. Przykład: `VARCHAR(128)` określa max długość.\n\n### Typy i kontrakt (schema)\n`VARCHAR(128)` mówi, ile znaków maksymalnie można przechować. Baza wymaga tej informacji, by szybciej zapisywać i czytać dane.\n\n### Wstawianie danych\n`INSERT INTO <tabela>(kol1, kol2) VALUES('A', 'B')` dodaje nowy wiersz. Kolejność kolumn musi odpowiadać wartościom.\n\n### Usuwanie danych\n`DELETE FROM <tabela> WHERE warunek` usuwa tylko te wiersze, dla których warunek jest prawdziwy. Bez `WHERE` usunie wszystko.\n\n### Aktualizacja danych\n`UPDATE <tabela> SET kol1='nowa' WHERE warunek` zmienia wartości w istniejących wierszach. Bez `WHERE` zmieni wszystkie wiersze.\n\n### Odczyt danych\n`SELECT kol1, kol2 FROM <tabela> WHERE warunek ORDER BY kol` czyta wiersze. `SELECT *` wybiera wszystkie kolumny. `ORDER BY` sortuje wyniki.\n\n## Przykłady kodu\n```python\nCREATE TABLE people (name VARCHAR(128), email VARCHAR(128));\n```\nTworzy tabelę `people` z dwiema kolumnami.\n\n```python\nINSERT INTO people (name, email) VALUES ('Anna','anna@example.com');\n```\nWstawia nowy wiersz.\n\n```python\nSELECT * FROM people WHERE email='anna@example.com' ORDER BY name;\n```\nWybiera i sortuje wiersze.\n\n## Ważne zasady\n- **Zawsze definiuj schemat** — określ kolumny i typy (`VARCHAR(128)`).\n- **Używaj `WHERE` przy DELETE i UPDATE** — bez tego zmienisz lub usuniesz wszystkie wiersze.\n- **`SELECT *` pokazuje wszystkie kolumny** — używaj, gdy chcesz pełne wiersze.\n- **`ORDER BY` sortuje wynik** — baza szybko zrobi sortowanie za ciebie.\n\n## Częste błędy\n- **Brak `WHERE` przy UPDATE/DELETE**: usuwa lub zmienia wszystkie wiersze. Zawsze sprawdź warunek.\n- **Wartość dłuższa niż `VARCHAR`**: baza odrzuci lub obetnie dane w zależności od ustawień. Ustal odpowiednią długość.",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 61,
+    "courseId": "python",
+    "filename": "Relacyjne bazy danych.md",
+    "title": "Wstęp do baz danych i SQL",
+    "summary": "Lekcja wyjaśnia, dlaczego używamy baz danych przy analizie danych. Omawia podstawowe pojęcia: tabele, wiersze, kolumny, schematy, SQL i CRUD oraz rolę Pythona przy przygotowaniu danych.",
+    "topics": [
+      "Relacyjne bazy danych",
+      "Tabela, wiersz, kolumna",
+      "Schemat (schema)",
+      "SQL jako język zapytań",
+      "CRUD: create/read/update/delete",
+      "Rola Pythona z SQL",
+      "Abstrakcja i API dla baz danych",
+      "Porównanie arkuszy kalkulacyjnych i baz danych"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: dlaczego używamy baz danych przy pracy z danymi i jak one przyspieszają analizę. Dowiesz się też, co to jest SQL i CRUD.\n\n## Kluczowe pojęcia\n### Relacyjna baza danych\nTo sposób przechowywania danych w tabelach. Programiści mówią o `table`, `row` i `column`. Matematycy mówią `relation`, `tuple`, `attribute`.\n\n### Tabela, wiersz, kolumna\nTabela to zbiór wierszy. Każdy wiersz to jeden rekord. Każda kolumna określa typ danych dla pól w wierszu. My będziemy myśleć w prosty sposób: `tabela = wiersze + kolumny`.\n\n### Schemat (schema)\nSchemat to umowa o kształcie tabeli. Np. pierwsza kolumna to `title`, druga to `rating`, a `rating` ma być liczbą całkowitą. Schemat pomaga uniknąć błędów.\n\n### SQL i CRUD\nSQL to język, który służy do rozmowy z różnymi bazami danych. CRUD to cztery podstawowe działania: `create`, `read`, `update`, `delete`.\n\n### Abstrakcja i API\nZamiast czytać pliki dyskowe bezpośrednio, aplikacja rozmawia z silnikiem bazy przez standard (API). Dzięki temu aplikacja może działać z różnymi bazami: Oracle, MySQL itp.\n\n### Rola Pythona\nPython często przygotowuje i oczyszcza dane. SQL dobrze przechowuje i szybko zwraca już \"ładne\" dane. Razem są silnym zestawem.\n\n## Przykłady kodu\n```python\n# Przykładowe operacje opisane słownie\n# CRUD: create, read, update, delete\n# SQL (słownie): SELECT kolumny FROM tabela WHERE warunek\n```\nTen przykład pokazuje, że SQL opisuje co chcesz pobrać, a Python przygotowuje dane.\n\n## Ważne zasady\n- **Używaj schematu** — ustalaj jakie kolumny i typy będą w tabeli.\n- **Normalizuj dane** — unikaj powtarzania tych samych informacji w wielu miejscach.\n- **Używaj SQL do szybkiego pobierania** — bazy są zoptymalizowane na szybkość wyszukiwania.\n- **Używaj Pythona do czyszczenia** — Python poradzi sobie z danymi nieidealnymi.\n- **Testuj wynik** — sprawdź, czy w bazie są oczekiwane kolumny i rekordy.\n\n## Częste błędy\n- **Traktowanie arkusza jako bazy**: arkusz może zawierać powtórzenia i brak reguł — lepiej przenieść dane do bazy.\n- **Brak schematu**: bez schematu dane bywają niejednorodne. Ustal reguły przed zapisem.\n- **Mylenie pojęć**: `relation` = `table`, `tuple` = `row`, `attribute` = `column`.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
   }
 ]
