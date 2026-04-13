@@ -3204,5 +3204,231 @@
       "Dla `int` użyj metody `isdigit()` na ciągu znaków.",
       "Pamiętaj sprawdzić długość list, jeśli `row` ma mniej elementów niż `header_types` zwróć False."
     ]
+  },
+  {
+    "id": 251,
+    "materialId": 62,
+    "title": "Reprezentacja pojedynczego utworu",
+    "description": "Napisz funkcję `make_track(title, length, plays)` która zwraca słownik z trzema polami: `title`, `length`, `plays`. To prosta reprezentacja rekordu w tabeli `tracks`.",
+    "starterCode": "def make_track(title, length, plays):\n    # TODO: zwróć słownik reprezentujący utwór\n    pass\n",
+    "solution": "def make_track(title, length, plays):\n    # Zwracamy prosty słownik jako rekord\n    return {\"title\": title, \"length\": length, \"plays\": plays}\n",
+    "testCode": "def test_make_track():\n    t = make_track(\"Song\", 210, 5)\n    assert t[\"title\"] == \"Song\"\n    assert t[\"length\"] == 210\n    assert t[\"plays\"] == 5\n    # edge case: puste tytuły\n    t2 = make_track(\"\", 0, 0)\n    assert t2[\"title\"] == \"\"\n    assert t2[\"length\"] == 0\n\n# Uruchom test\ntest_make_track()\n",
+    "difficulty": "easy",
+    "topic": "tabele",
+    "hints": [
+      "Funkcja powinna zwrócić słownik z kluczami `title`, `length`, `plays`.",
+      "Użyj składni: `return {\"title\": title, ...}`"
+    ]
+  },
+  {
+    "id": 252,
+    "materialId": 62,
+    "title": "Normalizacja: wydziel artystów",
+    "description": "Masz listę utworów, gdzie `artist` jest powielany jako tekst. Napisz funkcję `normalize_artists(tracks)` która:\n- przyjmuje listę słowników z polami `title` i `artist` (tekst),\n- zwraca krotkę `(artists, norm_tracks)` gdzie `artists` to słownik mapujący id -> name, a `norm_tracks` to lista utworów z polem `artist_id` zamiast `artist`.\nZadanie: usuń powielone nazwy artystów przez nadanie im unikalnych id.",
+    "starterCode": "def normalize_artists(tracks):\n    # tracks: [{\"title\": ..., \"artist\": ...}, ...]\n    # TODO: zwróć (artists, norm_tracks)\n    pass\n",
+    "solution": "def normalize_artists(tracks):\n    artists = {}\n    name_to_id = {}\n    next_id = 1\n    norm_tracks = []\n    for t in tracks:\n        name = t.get(\"artist\")\n        if name not in name_to_id:\n            name_to_id[name] = next_id\n            artists[next_id] = name\n            next_id += 1\n        artist_id = name_to_id[name]\n        norm_tracks.append({\"title\": t.get(\"title\"), \"artist_id\": artist_id})\n    return artists, norm_tracks\n",
+    "testCode": "def test_normalize_artists():\n    tracks = [\n        {\"title\": \"A\", \"artist\": \"Band\"},\n        {\"title\": \"B\", \"artist\": \"Band\"},\n        {\"title\": \"C\", \"artist\": \"Solo\"}\n    ]\n    artists, norm = normalize_artists(tracks)\n    # sprawdź liczbę artystów\n    assert len(artists) == 2\n    # sprawdź, że oba utwory pierwszego artysty mają ten sam id\n    assert norm[0][\"artist_id\"] == norm[1][\"artist_id\"]\n    # edge: pusta lista\n    a2, n2 = normalize_artists([])\n    assert a2 == {}\n    assert n2 == []\n\n# Uruchom test\ntest_normalize_artists()\n",
+    "difficulty": "medium",
+    "topic": "normalizacja",
+    "hints": [
+      "Utwórz pusty słownik dla `artists` i licznik id zaczynający od 1.",
+      "Dla każdego utworu sprawdź, czy artysta już istnieje, jeśli nie, dodaj go."
+    ]
+  },
+  {
+    "id": 253,
+    "materialId": 62,
+    "title": "Znormalizuj artystów i gatunki (hard)",
+    "description": "Masz listę utworów z polami `title`, `artist`, `genre`. Napisz funkcję `normalize(tracks)` która zwraca trzy struktury: `artists`, `genres`, `norm_tracks`. `artists` i `genres` to słowniki id->nazwa. `norm_tracks` to lista utworów z `artist_id` i `genre_id` zamiast tekstów. Zachowaj spójność id (te same nazwy -> to samo id).",
+    "starterCode": "def normalize(tracks):\n    # tracks: [{\"title\":..., \"artist\":..., \"genre\":...}, ...]\n    # TODO: zwróć (artists, genres, norm_tracks)\n    pass\n",
+    "solution": "def normalize(tracks):\n    artists = {}\n    genres = {}\n    artist_name_to_id = {}\n    genre_name_to_id = {}\n    next_artist_id = 1\n    next_genre_id = 1\n    norm_tracks = []\n    for t in tracks:\n        a_name = t.get(\"artist\")\n        g_name = t.get(\"genre\")\n        if a_name not in artist_name_to_id:\n            artist_name_to_id[a_name] = next_artist_id\n            artists[next_artist_id] = a_name\n            next_artist_id += 1\n        if g_name not in genre_name_to_id:\n            genre_name_to_id[g_name] = next_genre_id\n            genres[next_genre_id] = g_name\n            next_genre_id += 1\n        norm_tracks.append({\n            \"title\": t.get(\"title\"),\n            \"artist_id\": artist_name_to_id[a_name],\n            \"genre_id\": genre_name_to_id[g_name]\n        })\n    return artists, genres, norm_tracks\n",
+    "testCode": "def test_normalize():\n    tracks = [\n        {\"title\":\"T1\",\"artist\":\"Band\",\"genre\":\"rock\"},\n        {\"title\":\"T2\",\"artist\":\"Band\",\"genre\":\"rock\"},\n        {\"title\":\"T3\",\"artist\":\"Solo\",\"genre\":\"pop\"}\n    ]\n    artists, genres, norm = normalize(tracks)\n    assert len(artists) == 2\n    assert len(genres) == 2\n    # sprawdź, że dwa pierwsze mają ten sam artist_id i genre_id\n    assert norm[0][\"artist_id\"] == norm[1][\"artist_id\"]\n    assert norm[0][\"genre_id\"] == norm[1][\"genre_id\"]\n    # edge: pusty input\n    a2, g2, n2 = normalize([])\n    assert a2 == {}\n    assert g2 == {}\n    assert n2 == []\n\n# Uruchom test\ntest_normalize()\n",
+    "difficulty": "hard",
+    "topic": "normalizacja",
+    "hints": [
+      "Użyj podobnego podejścia jak przy normalizacji artystów. Trzymaj dwa mapowania `name_to_id`.",
+      "Zwróć puste struktury, gdy wejście jest puste."
+    ]
+  },
+  {
+    "id": 254,
+    "materialId": 63,
+    "title": "Połącz książki z ich autorami",
+    "description": "Masz dwie tabele: `Book(title, author_id)` i `Author(id, name)`. Napisz zapytanie, które zwraca tytuł książki i nazwisko autora.",
+    "starterCode": "```python\n-- TODO: uzupełnij zapytanie\nSELECT Book.title, Author.name\nFROM Book JOIN Author\nON -- TODO: wpisz warunek\n```\n",
+    "solution": "```python\nSELECT Book.title, Author.name\nFROM Book JOIN Author\nON Book.author_id = Author.id;\n```\n",
+    "testCode": "```python\n# tests\nexpected = \"SELECT Book.title, Author.name\\nFROM Book JOIN Author\\nON Book.author_id = Author.id;\\n\"\nuser = expected\nassert expected == user\nassert \"JOIN\" in user\nassert \"ON Book.author_id = Author.id\" in user\n```",
+    "difficulty": "easy",
+    "topic": "JOIN",
+    "hints": [
+      "Użyj `JOIN` między `Book` i `Author`.",
+      "Warunek łączenia to `Book.author_id = Author.id`."
+    ]
+  },
+  {
+    "id": 255,
+    "materialId": 63,
+    "title": "Piosenki, albumy i wykonawcy",
+    "description": "Masz tabele: `Song(title, album_id, style_id)`, `Album(id, title, singer_id)`, `Singer(id, name)`, `Style(id, name)`. Napisz zapytanie, które zwraca `Song.title`, `Singer.name`, `Album.title`, `Style.name`.",
+    "starterCode": "```python\n-- TODO: zbuduj zapytanie\nSELECT Song.title, Singer.name, Album.title, Style.name\nFROM Song\nJOIN Album ON -- TODO\nJOIN Singer ON -- TODO\nJOIN Style ON -- TODO\n```\n",
+    "solution": "```python\nSELECT Song.title, Singer.name, Album.title, Style.name\nFROM Song\nJOIN Album ON Song.album_id = Album.id\nJOIN Singer ON Album.singer_id = Singer.id\nJOIN Style ON Song.style_id = Style.id;\n```\n",
+    "testCode": "```python\n# tests\nquery = \"SELECT Song.title, Singer.name, Album.title, Style.name\\nFROM Song\\nJOIN Album ON Song.album_id = Album.id\\nJOIN Singer ON Album.singer_id = Singer.id\\nJOIN Style ON Song.style_id = Style.id;\\n\"\nassert \"JOIN Album ON Song.album_id = Album.id\" in query\nassert \"JOIN Singer ON Album.singer_id = Singer.id\" in query\nassert \"JOIN Style ON Song.style_id = Style.id\" in query\n```",
+    "difficulty": "medium",
+    "topic": "Łączenie wielu tabel",
+    "hints": [
+      "Połącz `Song` z `Album` przez `album_id`, potem `Album` z `Singer` przez `singer_id` i `Song` z `Style` przez `style_id`.",
+      "Prefiksuj kolumny nazwami tabel, np. `Album.title`."
+    ]
+  },
+  {
+    "id": 256,
+    "materialId": 63,
+    "title": "Unikaj iloczynu kartezjańskiego",
+    "description": "Masz tabele `Item(id, name, category_id)` i `Category(id, name)`. Napisz zapytanie, które zwraca `Item.name` i `Category.name` tylko dla dopasowanych kategorii. Upewnij się, że nie dostaniesz wszystkich kombinacji.",
+    "starterCode": "```python\nSELECT Item.name, Category.name\nFROM Item JOIN Category\nON -- TODO: warunek łączenia\n```\n",
+    "solution": "```python\nSELECT Item.name, Category.name\nFROM Item JOIN Category\nON Item.category_id = Category.id;\n```\n",
+    "testCode": "```python\n# tests\nq = \"SELECT Item.name, Category.name\\nFROM Item JOIN Category\\nON Item.category_id = Category.id;\\n\"\nassert \"Item.category_id = Category.id\" in q\nassert q.count(\"JOIN\") == 1\nassert \"SELECT Item.name, Category.name\" in q\n```",
+    "difficulty": "medium",
+    "topic": "ON clause",
+    "hints": [
+      "Dodaj warunek łączenia `Item.category_id = Category.id` w `ON`.",
+      "Nie zostawiaj `JOIN` bez `ON`."
+    ]
+  },
+  {
+    "id": 257,
+    "materialId": 63,
+    "title": "Filtrowanie po stylu (zaawansowane)",
+    "description": "Masz `Song(title, style_id, album_id)`, `Style(id, name)`, `Album(id, title, singer_id)`, `Singer(id, name)`. Napisz zapytanie, które zwraca `Song.title`, `Singer.name`, `Album.title` tylko dla stylu o nazwie `'Rock'`.",
+    "starterCode": "```python\n-- TODO: napisz zapytanie\nSELECT Song.title, Singer.name, Album.title\nFROM Song\nJOIN Style ON -- TODO\nJOIN Album ON -- TODO\nJOIN Singer ON -- TODO\nWHERE -- TODO\n```\n",
+    "solution": "```python\nSELECT Song.title, Singer.name, Album.title\nFROM Song\nJOIN Style ON Song.style_id = Style.id\nJOIN Album ON Song.album_id = Album.id\nJOIN Singer ON Album.singer_id = Singer.id\nWHERE Style.name = 'Rock';\n```\n",
+    "testCode": "```python\n# tests\nq = \"SELECT Song.title, Singer.name, Album.title\\nFROM Song\\nJOIN Style ON Song.style_id = Style.id\\nJOIN Album ON Song.album_id = Album.id\\nJOIN Singer ON Album.singer_id = Singer.id\\nWHERE Style.name = 'Rock';\\n\"\nassert \"WHERE Style.name = 'Rock'\" in q\nassert q.count(\"JOIN\") == 3\nassert \"Song.style_id = Style.id\" in q\n```",
+    "difficulty": "hard",
+    "topic": "Łączenie i filtrowanie",
+    "hints": [
+      "Dołącz tabele przez właściwe `ON`.",
+      "Wykorzystaj `WHERE` aby wybrać tylko `Style.name = 'Rock'`."
+    ]
+  },
+  {
+    "id": 258,
+    "materialId": 64,
+    "title": "Utwórz tabelę Artist",
+    "description": "Napisz instrukcję `CREATE TABLE` dla tabeli `Artist` z kolumnami: `id` (primary key, autoincrement) i `name` (`TEXT`).",
+    "starterCode": "```python\n-- TODO: Napisz CREATE TABLE dla Artist\n```",
+    "solution": "```python\nCREATE TABLE Artist (\n    id   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    name TEXT\n)\n```",
+    "testCode": "```python\n# tests\nexpected = '''CREATE TABLE Artist (\n    id   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    name TEXT\n)'''\n# assert sql.strip() == expected.strip()\n```",
+    "difficulty": "easy",
+    "topic": "CREATE TABLE",
+    "hints": [
+      "Primary key zwykle ma zapis `INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE`",
+      "Tekstowe pola użyj `TEXT`"
+    ]
+  },
+  {
+    "id": 259,
+    "materialId": 64,
+    "title": "Album z foreign key",
+    "description": "Utwórz tabelę `Album` z kolumnami: `id` (primary key autoincrement), `title` (`TEXT`) i `artist_id` (`INTEGER`) jako foreign key wskazujący na `Artist`.",
+    "starterCode": "```python\n-- TODO: CREATE TABLE Album\n```",
+    "solution": "```python\nCREATE TABLE Album (\n    id        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    title     TEXT,\n    artist_id INTEGER\n)\n```",
+    "testCode": "```python\n# tests\nexpected = '''CREATE TABLE Album (\n    id        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    title     TEXT,\n    artist_id INTEGER\n)'''\n# assert sql.strip() == expected.strip()\n```",
+    "difficulty": "medium",
+    "topic": "Foreign key",
+    "hints": [
+      "Nazwij pole `artist_id` aby było jasne, do czego się odnosi",
+      "Foreign key możesz zapisać jako `INTEGER` (bez constraintów na razie)"
+    ]
+  },
+  {
+    "id": 260,
+    "materialId": 64,
+    "title": "Track z dwoma foreign key i logical key",
+    "description": "Utwórz tabelę `Track` z: `id` (primary key autoincrement), `title` (`TEXT`, logical key), `album_id` (`INTEGER`), `genre_id` (`INTEGER`) oraz `length` (`INTEGER`).",
+    "starterCode": "```python\n-- TODO: CREATE TABLE Track\n```",
+    "solution": "```python\nCREATE TABLE Track (\n    id       INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    title    TEXT,\n    album_id INTEGER,\n    genre_id INTEGER,\n    length   INTEGER\n)\n```",
+    "testCode": "```python\n# tests\nexpected = '''CREATE TABLE Track (\n    id       INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    title    TEXT,\n    album_id INTEGER,\n    genre_id INTEGER,\n    length   INTEGER\n)'''\n# assert sql.strip() == expected.strip()\n```",
+    "difficulty": "medium",
+    "topic": "Logical key",
+    "hints": [
+      "Logical key to pole typu `TEXT`, np. `title`",
+      "Dodaj `album_id` i `genre_id` jako pola typu `INTEGER`"
+    ]
+  },
+  {
+    "id": 261,
+    "materialId": 64,
+    "title": "Z mapy do CREATE TABLE (kilka tabel)",
+    "description": "Masz model: `Genre` (id, name), `Artist` (id, name), `Album` (id, title, artist_id), `Track` (id, title, album_id, genre_id). Napisz `CREATE TABLE` dla wszystkich tabel. Twórz tabele w rozsądnej kolejności.",
+    "starterCode": "```python\n-- TODO: CREATE TABLE Genre\n-- TODO: CREATE TABLE Artist\n-- TODO: CREATE TABLE Album\n-- TODO: CREATE TABLE Track\n```",
+    "solution": "```python\nCREATE TABLE Genre (\n    id   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    name TEXT\n)\n\nCREATE TABLE Artist (\n    id   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    name TEXT\n)\n\nCREATE TABLE Album (\n    id        INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    title     TEXT,\n    artist_id INTEGER\n)\n\nCREATE TABLE Track (\n    id       INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    title    TEXT,\n    album_id INTEGER,\n    genre_id INTEGER\n)\n```",
+    "testCode": "```python\n# tests\n# Sprawdź, czy każde CREATE TABLE zawiera oczekiwane nazwy kolumn.\n# assert 'CREATE TABLE Genre' in sql_all\n# assert 'CREATE TABLE Artist' in sql_all\n# assert 'album_id INTEGER' in sql_all\n```",
+    "difficulty": "hard",
+    "topic": "Kolejność tworzenia tabel",
+    "hints": [
+      "Twórz najpierw tabele bez zależności (`Genre`, `Artist`), potem `Album`, na końcu `Track`",
+      "Stosuj konwencję `id` i `table_id`"
+    ]
+  },
+  {
+    "id": 262,
+    "materialId": 65,
+    "title": "Dodaj nowy styl",
+    "description": "Dodaj do tabeli `Style` nowy wiersz z nazwą `Reggae`. Pole `id` jest auto-generowane, więc go nie podawaj.",
+    "starterCode": "```python\n-- TODO: wstaw tutaj SQL\n\n```",
+    "solution": "```python\nINSERT INTO Style (name) VALUES ('Reggae');\n```",
+    "testCode": "```python\n# tests\nsql = \"INSERT INTO Style (name) VALUES ('Reggae');\"\nassert \"INSERT INTO Style\" in sql\nassert \"VALUES ('Reggae')\" in sql\nassert \"id\" not in sql.lower()\n```",
+    "difficulty": "easy",
+    "topic": "INSERT INTO",
+    "hints": [
+      "Użyj `INSERT INTO` i `VALUES`.",
+      "Nie podawaj kolumny `id` jeśli baza ją generuje."
+    ]
+  },
+  {
+    "id": 263,
+    "materialId": 65,
+    "title": "Dodaj wykonawców i album",
+    "description": "Masz dwóch wykonawców już wstawionych: `Band` z id 1 to 'Red Band', id 2 to 'Green Band'. Wstaw nowy album o tytule 'Road Trip' i przypisz go do `Green Band` używając `band_id`.",
+    "starterCode": "```python\n-- TODO: wstaw jeden INSERT do tabeli Album\n\n```",
+    "solution": "```python\nINSERT INTO Album (title, band_id) VALUES ('Road Trip', 2);\n```",
+    "testCode": "```python\n# tests\nsql = \"INSERT INTO Album (title, band_id) VALUES ('Road Trip', 2);\"\nassert \"INSERT INTO Album\" in sql\nassert \"'Road Trip'\" in sql\nassert \", 2)\" in sql\n```",
+    "difficulty": "medium",
+    "topic": "klucz obcy (foreign key)",
+    "hints": [
+      "Znasz `band_id` = 2 dla 'Green Band'.",
+      "Pamiętaj, że `id` albumu jest auto-generowane."
+    ]
+  },
+  {
+    "id": 264,
+    "materialId": 65,
+    "title": "Dodaj utwory z odwołaniem do albumu i stylu",
+    "description": "W tabeli `Album` istnieje rekord z `id` = 5. W tabeli `Style` istnieje `id` = 3. Wstaw trzy utwory do tabeli `Song` z kolumnami: `title`, `length`, `album_id`, `style_id` używając odpowiednich numerów. Nie podawaj `id` utworu.",
+    "starterCode": "```python\n-- TODO: wstaw trzy polecenia INSERT do Song\n\n```",
+    "solution": "```python\nINSERT INTO Song (title, length, album_id, style_id) VALUES ('Morning Sun', 210, 5, 3);\nINSERT INTO Song (title, length, album_id, style_id) VALUES ('Highway', 185, 5, 3);\nINSERT INTO Song (title, length, album_id, style_id) VALUES ('Evening Ride', 240, 5, 3);\n```",
+    "testCode": "```python\n# tests\nsql = \"\"\"\nINSERT INTO Song (title, length, album_id, style_id) VALUES ('Morning Sun', 210, 5, 3);\nINSERT INTO Song (title, length, album_id, style_id) VALUES ('Highway', 185, 5, 3);\nINSERT INTO Song (title, length, album_id, style_id) VALUES ('Evening Ride', 240, 5, 3);\n\"\"\"\nassert sql.count('INSERT INTO Song') == 3\nassert \"'Morning Sun'\" in sql\nassert \", 5, 3)\" in sql\n```",
+    "difficulty": "medium",
+    "topic": "łączenie tabel",
+    "hints": [
+      "Każdy INSERT ma podać `album_id` = 5 i `style_id` = 3.",
+      "Użyj nazwy i długości jako wartości tekstowych/liczbowych zgodnie z przykładem."
+    ]
+  },
+  {
+    "id": 265,
+    "materialId": 65,
+    "title": "Normalizacja przed wstawieniem wielu utworów (trudniejsze)",
+    "description": "Masz listę utworów z nazwą stylu powtarzającą się często. Najpierw wstaw brakujące style do `Style` (unikalne nazwy), potem wstaw utwory do `Song` używając `style_id`. Poniżej są przykładowe nowe style: 'Indie', 'Ambient'. Zakładaj, że `Style` nie ma jeszcze tych nazw i że `Album` z `id` = 10 istnieje.",
+    "starterCode": "```python\n-- TODO: wstaw style, potem trzy piosenki przypisane do album_id = 10\n\n```",
+    "solution": "```python\nINSERT INTO Style (name) VALUES ('Indie');\nINSERT INTO Style (name) VALUES ('Ambient');\n\n-- Zakładamy, że Indie dostało id = 7, Ambient id = 8\nINSERT INTO Song (title, length, album_id, style_id) VALUES ('Street Light', 200, 10, 7);\nINSERT INTO Song (title, length, album_id, style_id) VALUES ('Soft Wave', 260, 10, 8);\nINSERT INTO Song (title, length, album_id, style_id) VALUES ('Back Alley', 195, 10, 7);\n```",
+    "testCode": "```python\n# tests\nsql = \"\"\"\nINSERT INTO Style (name) VALUES ('Indie');\nINSERT INTO Style (name) VALUES ('Ambient');\nINSERT INTO Song (title, length, album_id, style_id) VALUES ('Street Light', 200, 10, 7);\nINSERT INTO Song (title, length, album_id, style_id) VALUES ('Soft Wave', 260, 10, 8);\nINSERT INTO Song (title, length, album_id, style_id) VALUES ('Back Alley', 195, 10, 7);\n\"\"\"\n# sprawdź, że najpierw są wpisy do Style\nassert sql.strip().startswith('INSERT INTO Style')\nassert \"VALUES ('Indie')\" in sql\nassert sql.count('INSERT INTO Song') == 3\n```",
+    "difficulty": "hard",
+    "topic": "normalizacja i FK",
+    "hints": [
+      "Wstaw style pojedynczo do `Style` najpierw.",
+      "Potem użyj znanych `style_id` (np. 7 i 8) przy wstawianiu utworów.",
+      "Możesz wykonać kilka poleceń oddzielonych średnikiem."
+    ]
   }
 ]

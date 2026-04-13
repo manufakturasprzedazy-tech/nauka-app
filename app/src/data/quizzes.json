@@ -6944,5 +6944,515 @@
     "explanation": "SQL jest silny przy dobrze ustrukturyzowanych danych. Brudne dane często trzeba oczyścić przed użyciem SQL.",
     "difficulty": "medium",
     "topic": "SQL i dane"
+  },
+  {
+    "id": 544,
+    "materialId": 62,
+    "question": "Co wypisze ten kod?\n\n```python\ndata = [\"rock\", \"jazz\", \"pop\"]\nprint(data[1])\n```",
+    "choices": [
+      "rock",
+      "jazz",
+      "pop",
+      "Błąd indeksu"
+    ],
+    "correctIndex": 1,
+    "explanation": "Indeksy w listach zaczynają się od zera, więc `data[1]` to drugi element, czyli `jazz`. Błąd byłby przy indeksie poza zakresem.",
+    "difficulty": "easy",
+    "topic": "podstawy danych"
+  },
+  {
+    "id": 545,
+    "materialId": 62,
+    "question": "Co wypisze ten kod?\n\n```python\nartists = {1: \"AC/DC\", 2: \"Black Sabbath\"}\ntracks = [{\"title\":\"Song1\",\"artist\":1}, {\"title\":\"Song2\",\"artist\":2}]\nprint(artists[tracks[1][\"artist\"]])\n```",
+    "choices": [
+      "AC/DC",
+      "Black Sabbath",
+      "Song2",
+      "KeyError"
+    ],
+    "correctIndex": 1,
+    "explanation": "`tracks[1]` to drugi element, ma `artist` równy 2. `artists[2]` to `Black Sabbath`. Popularny błąd to myśleć, że indeksy zaczynają się od 1.",
+    "difficulty": "medium",
+    "topic": "relacje"
+  },
+  {
+    "id": 546,
+    "materialId": 62,
+    "question": "Co jest problemem w tym kodzie projektowym?\n\n```python\ntracks = [{\"title\":\"A\",\"artist\":\"Black Sabbath\"}, {\"title\":\"B\",\"artist\":\"Black Sabbath\"}]\n# Później zmieniamy nazwę artysty\ntracks[0][\"artist\"] = \"BS\"\n```",
+    "choices": [
+      "Kod jest poprawny, nic złego się nie dzieje",
+      "Zmieniamy nazwę tylko dla jednego rekordu, a nie globalnie",
+      "Błąd typu, `artist` powinien być liczbą",
+      "Lista `tracks` jest pusta"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tutaj nazwa artysty jest powielona w wielu rekordach. Zmiana jednego rekordu nie zmienia pozostałych. Lepiej trzymać artystę w osobnej tabeli i używać `artist_id`.",
+    "difficulty": "easy",
+    "topic": "unikalność danych"
+  },
+  {
+    "id": 547,
+    "materialId": 62,
+    "question": "Która z opcji najlepiej opisuje decyzję: umieścić `genre` przy `track` czy przy `album`?",
+    "choices": [
+      "Jeśli zmiana gatunku ma dotyczyć tylko jednego utworu, przypisz `genre` do `track`",
+      "Zawsze przypisz `genre` do `album`, bo albumy mają gatunek",
+      "Zawsze przypisz `genre` do `artist`, bo artysta definiuje gatunek",
+      "Nie ma różnicy praktycznej"
+    ],
+    "correctIndex": 0,
+    "explanation": "Jeśli chcesz, by zmiana gatunku dotyczyła pojedynczego utworu, musi być to atrybut `track`. Inne wybory mogą zmieniać wiele rekordów naraz.",
+    "difficulty": "medium",
+    "topic": "modelowanie"
+  },
+  {
+    "id": 548,
+    "materialId": 62,
+    "question": "Co się stanie, gdy trzymasz tę samą nazwę artysty w wielu miejscach i chcesz ją zmienić?",
+    "choices": [
+      "Zmiana jednej wartości automatycznie zmieni wszystkie kopie",
+      "Musisz zmienić każdą kopię ręcznie, co jest podatne na błąd",
+      "Baza danych zablokuje takie działanie",
+      "Nie można zmienić wartości, bo to jest stała"
+    ],
+    "correctIndex": 1,
+    "explanation": "Powielone wartości trzeba zmieniać wszędzie, co jest kłopotliwe. Normalizacja rozwiązuje ten problem przez jedną tabelę z identyfikatorami.",
+    "difficulty": "easy",
+    "topic": "unikalność danych"
+  },
+  {
+    "id": 549,
+    "materialId": 62,
+    "question": "Która opcja najlepiej opisuje \"mapowanie logiczne na fizyczne\"?",
+    "choices": [
+      "Rysowanie tabel i relacji, a potem tworzenie ich w bazie danych",
+      "Zamiana wszystkich tekstów na liczby",
+      "Usuwanie interfejsu użytkownika",
+      "Tworzenie kopii zapasowych bazy"
+    ],
+    "correctIndex": 0,
+    "explanation": "Najpierw tworzysz model logiczny (rysunek), potem przenosisz go do struktury bazy (tabele, kolumny, klucze).",
+    "difficulty": "easy",
+    "topic": "mapowanie"
+  },
+  {
+    "id": 550,
+    "materialId": 62,
+    "question": "Co jest błędem projektowym?\n\n```python\nalbums = [{\"title\":\"Best\",\"genre\":\"rock\"}, {\"title\":\"Hits\",\"genre\":\"pop\"}]\n# Chcemy zmienić gatunek konkretnego utworu w albumie, ale album ma tylko jeden gatunek\n```",
+    "choices": [
+      "Brak tabeli track",
+      "Trzymanie `genre` na poziomie albumu uniemożliwia różne gatunki dla utworów",
+      "Użycie słownika zamiast listy jest złe",
+      "Nie zainicjalizowano zmiennej `artist`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Jeśli utwory z albumu mają różne gatunki, trzymanie `genre` przy `album` jest ograniczeniem. Lepsze to mieć `genre` przy `track` lub osobną tabelę.",
+    "difficulty": "medium",
+    "topic": "modelowanie"
+  },
+  {
+    "id": 551,
+    "materialId": 62,
+    "question": "Co zwróci ten kod?\n\n```python\ngenres = {1: \"metal\", 2: \"pop\"}\ntracks = [{\"title\":\"X\",\"genre_id\":2}, {\"title\":\"Y\",\"genre_id\":2}]\nprint(genres[tracks[0][\"genre_id\"]])\n```",
+    "choices": [
+      "metal",
+      "pop",
+      "Y",
+      "TypeError"
+    ],
+    "correctIndex": 1,
+    "explanation": "`tracks[0][\"genre_id\"]` to 2, a `genres[2]` to `pop`. Błąd typu byłby, gdyby klucz nie istniał.",
+    "difficulty": "easy",
+    "topic": "relacje"
+  },
+  {
+    "id": 552,
+    "materialId": 63,
+    "question": "Co zwróci to zapytanie, jeśli tabela `A` ma 3 wiersze, a tabela `B` ma 4 wiersze?\n\n```python\n-- A ma 3 wiersze, B ma 4 wiersze\nSELECT * FROM A JOIN B;\n```",
+    "choices": [
+      "3",
+      "4",
+      "7",
+      "12"
+    ],
+    "correctIndex": 3,
+    "explanation": "Bez `ON` `JOIN` tworzy wszystkie kombinacje: 3 * 4 = 12. Błędna odpowiedź 7 to suma wierszy, nie iloczyn.",
+    "difficulty": "easy",
+    "topic": "Iloczyn kartezjański"
+  },
+  {
+    "id": 553,
+    "materialId": 63,
+    "question": "Co stanie się, gdy nie ma dopasowań między kolumnami w `ON`?\n\n```python\nSELECT Book.title, Author.name\nFROM Book JOIN Author\nON Book.author_id = Author.id\nWHERE Author.id = 9999;\n```",
+    "choices": [
+      "Zwróci wszystkie wiersze z Book",
+      "Zwróci puste wyniki (0 wierszy)",
+      "Zwróci błąd składni",
+      "Połączy wszystkie wiersze z Book i Author"
+    ],
+    "correctIndex": 1,
+    "explanation": "Gdy nie ma dopasowań i dodatkowo filtr `WHERE` nie pasuje do żadnego autora, wynik ma 0 wierszy. Błędna popularna odpowiedź 'połączy wszystkie' dotyczy braku `ON`, tu `ON` jest, ale nie ma dopasowań.",
+    "difficulty": "easy",
+    "topic": "ON clause"
+  },
+  {
+    "id": 554,
+    "materialId": 63,
+    "question": "Która wersja poprawnie łączy `Book` z `Author` i wybiera tytuł i imię?\n\n```python\n-- Wersja 1\nSELECT title, name\nFROM Book JOIN Author\nON Book.id = Author.id;\n\n-- Wersja 2\nSELECT Book.title, Author.name\nFROM Book JOIN Author\nON Book.author_id = Author.id;\n```",
+    "choices": [
+      "Wersja 1",
+      "Wersja 2",
+      "Obie poprawne",
+      "Żadna poprawna"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wersja 2 używa `Book.author_id = Author.id`, czyli klucz obcy do klucza głównego. Wersja 1 porównuje `id` obu tabel, co zwykle nie jest poprawne i da złe dopasowania.",
+    "difficulty": "medium",
+    "topic": "FIND THE BUG"
+  },
+  {
+    "id": 555,
+    "materialId": 63,
+    "question": "Co jest nie tak z tym zapytaniem?\n\n```python\nSELECT Song.title, Style.name\nFROM Song JOIN Style\nON Song.style = Style.id;\n```",
+    "choices": [
+      "Brakuje `WHERE`",
+      "Kolumna w `ON` prawdopodobnie ma złą nazwę",
+      "Brakuje `FROM`",
+      "Użyto złego słowa kluczowego zamiast `JOIN`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Prawdopodobny błąd to nazwa kolumny `Song.style` – zwykle klucz obcy ma nazwę `style_id`. Trzeba sprawdzić nazwy kolumn. Brak `WHERE` nie jest błędem.",
+    "difficulty": "easy",
+    "topic": "Błędy"
+  },
+  {
+    "id": 556,
+    "materialId": 63,
+    "question": "Które zapytanie usunie wszystkie niepasujące kombinacje zamiast ich zostawienia?\n\n```python\n-- A\nSELECT * FROM A JOIN B;\n\n-- B\nSELECT * FROM A JOIN B ON A.key = B.id;\n```",
+    "choices": [
+      "A",
+      "B",
+      "Oba",
+      "Żaden"
+    ],
+    "correctIndex": 1,
+    "explanation": "B używa `ON`, które wybiera tylko dopasowane pary. A bez `ON` daje wszystkie kombinacje.",
+    "difficulty": "easy",
+    "topic": "ON clause"
+  },
+  {
+    "id": 557,
+    "materialId": 63,
+    "question": "Co zwróci to zapytanie, jeśli `Album` ma 2 wiersze, `Artist` ma 1 wiersz i `Album.artist_id` = `Artist.id` dla obu albumów?\n\n```python\nSELECT Album.title, Artist.name\nFROM Album JOIN Artist\nON Album.artist_id = Artist.id;\n```",
+    "choices": [
+      "1 wiersz",
+      "2 wiersze",
+      "3 wiersze",
+      "0 wierszy"
+    ],
+    "correctIndex": 1,
+    "explanation": "Oba albumy mają `artist_id` wskazujące na tego samego artystę, więc każde dopasowanie daje wiersz — razem 2. Błędna odpowiedź 1 myli liczbę unikalnych artystów z liczbą wyników.",
+    "difficulty": "easy",
+    "topic": "JOIN"
+  },
+  {
+    "id": 558,
+    "materialId": 63,
+    "question": "Jakie będzie prawidłowe zakończenie łańcucha JOIN, aby pobrać `Song.title`, `Singer.name`, `Album.title` i `Style.name`?\n\n```python\nSELECT Song.title, Singer.name, Album.title, Style.name\nFROM Song\nJOIN Album ON Song.album_id = Album.id\nJOIN Singer ON Album.singer_id = Singer.id\nJOIN Style ON Song.style_id = Style.id;\n```",
+    "choices": [
+      "Brakuje `WHERE`",
+      "To zapytanie jest poprawne",
+      "Trzeba dodać `GROUP BY`",
+      "Należy zamienić kolejne JOINy na pojedynczy JOIN"
+    ],
+    "correctIndex": 1,
+    "explanation": "Zapytanie pokazuje poprawny wzorzec wielokrotnych JOINów: łączymy tabelę po tabeli z właściwymi `ON`. `WHERE` nie jest konieczne tutaj.",
+    "difficulty": "medium",
+    "topic": "Łączenie wielu tabel"
+  },
+  {
+    "id": 559,
+    "materialId": 63,
+    "question": "Co jest główną różnicą, gdy warunek łączenia napiszesz w `WHERE` zamiast w `ON`?\n\n```python\n-- Option A\nSELECT * FROM A JOIN B ON A.x = B.y WHERE A.z = 1;\n\n-- Option B\nSELECT * FROM A JOIN B WHERE A.x = B.y AND A.z = 1;\n```",
+    "choices": [
+      "A i B zawsze dają inny wynik",
+      "A i B są często równoważne dla wewnętrznego JOIN",
+      "B jest szybsze",
+      "A jest błędne składniowo"
+    ],
+    "correctIndex": 1,
+    "explanation": "Dla zwykłego (wewnętrznego) JOIN zapis w `ON` vs `WHERE` często daje ten sam wynik. Różnica pojawia się w innych typach JOIN, ale dla podstawowych zapytań są równoważne.",
+    "difficulty": "medium",
+    "topic": "ON vs WHERE"
+  },
+  {
+    "id": 560,
+    "materialId": 63,
+    "question": "Który wynik jest najbardziej prawdopodobny, jeśli zapytanie łączy cztery tabele bez `ON` dla żadnego z nich?\n\n```python\nSELECT * FROM A JOIN B JOIN C JOIN D;\n```",
+    "choices": [
+      "Wynik będzie pusty",
+      "Wynik będzie iloczynem kartezjańskim wszystkich tabel",
+      "Złączenie wykona się tylko dla pierwszych dwóch tabel",
+      "Zwróci tylko wiersze z pasującymi kluczami"
+    ],
+    "correctIndex": 1,
+    "explanation": "Brak `ON` powoduje, że każde JOIN dodaje wszystkie kombinacje, więc wynik to iloczyn kartezjański wszystkich tabel. To może dać ogromne liczby wierszy.",
+    "difficulty": "hard",
+    "topic": "Iloczyn kartezjański"
+  },
+  {
+    "id": 561,
+    "materialId": 64,
+    "question": "Co wypisze ten kod?\n\n```python\nCREATE TABLE Singer (\n    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    name TEXT\n)\n\n-- Jakie kolumny ma tabela Singer?\n```",
+    "choices": [
+      "Tylko `id`",
+      "`id` i `name`",
+      "`name` i `id_name`",
+      "Tylko `name`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tabela ma dwie kolumny: `id` i `name`. Popularny błąd to myślenie, że `AUTOINCREMENT` tworzy inną kolumnę — nie, dotyczy `id`.",
+    "difficulty": "easy",
+    "topic": "CREATE TABLE"
+  },
+  {
+    "id": 562,
+    "materialId": 64,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nCREATE TABLE Album (\n    id INTEGER PRIMARY KEY,\n    artistId TEXT\n)\n```\n",
+    "choices": [
+      "Brakuje `AUTOINCREMENT` przy `id`",
+      "`artistId` powinno być `artist_id` i typ powinien być liczbowy",
+      "Nie można używać `TEXT` w tabeli Album",
+      "`id` nie może być PRIMARY KEY"
+    ],
+    "correctIndex": 1,
+    "explanation": "Lepsza konwencja to `artist_id` i typ liczbowy (`INTEGER`), bo to foreign key wskazujące `id` innej tabeli. `AUTOINCREMENT` nie jest zawsze wymagane.",
+    "difficulty": "medium",
+    "topic": "Konwencje nazewnictwa"
+  },
+  {
+    "id": 563,
+    "materialId": 64,
+    "question": "Która wersja poprawnie tworzy tabelę Track z dwoma foreign key `album_id` i `genre_id`?\n\nA:\n```python\nCREATE TABLE Track (\n    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    title TEXT,\n    album_id INTEGER,\n    genre_id INTEGER\n)\n```\n\nB:\n```python\nCREATE TABLE Track (\n    id INTEGER,\n    title INTEGER,\n    album INTEGER,\n    genre INTEGER\n)\n```",
+    "choices": [
+      "A",
+      "B",
+      "Obie",
+      "Żadna"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wersja A używa `id` jako primary key i ma `album_id` oraz `genre_id` jako liczbowe pola do wskazywania innych tabel. Wersja B używa złych typów i nazw.",
+    "difficulty": "easy",
+    "topic": "Foreign key"
+  },
+  {
+    "id": 564,
+    "materialId": 64,
+    "question": "Co się stanie, jeśli nie dodasz `PRIMARY KEY` do tabeli?",
+    "choices": [
+      "Baza odrzuci tworzenie tabeli",
+      "Nie będzie łatwego sposobu na jednoznaczne wskazanie wierszy",
+      "Dane będą automatycznie indeksowane po `name`",
+      "Tabela nie będzie mogła mieć żadnych kolumn"
+    ],
+    "correctIndex": 1,
+    "explanation": "Bez `PRIMARY KEY` brak jednoznacznego identyfikatora wiersza. Niektóre bazy pozwolą utworzyć tabelę, ale operacje będą trudniejsze.",
+    "difficulty": "easy",
+    "topic": "Primary key"
+  },
+  {
+    "id": 565,
+    "materialId": 64,
+    "question": "Co wypisze ten kod?\n\n```python\nCREATE TABLE Category (\n    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    name TEXT\n)\n\nCREATE TABLE Item (\n    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    name TEXT,\n    category_id INTEGER\n)\n\n-- Jaką rolę pełni `category_id` w tabeli Item?\n```",
+    "choices": [
+      "Jest to primary key tabeli Item",
+      "Jest to logical key tabeli Item",
+      "Wskazuje na `id` w tabeli Category (foreign key)",
+      "Jest to alias dla `name`"
+    ],
+    "correctIndex": 2,
+    "explanation": "`category_id` to foreign key wskazujący na `id` w `Category`. Błąd to myśleć, że to primary key.",
+    "difficulty": "easy",
+    "topic": "Foreign key"
+  },
+  {
+    "id": 566,
+    "materialId": 64,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nCREATE TABLE Band (\n    band_id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    name TEXT\n)\n\nCREATE TABLE Album (\n    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    band_id INTEGER\n)\n```\n",
+    "choices": [
+      "Nie ma błędu, wszystko jest w porządku",
+      "Niezgodna konwencja: `band_id` i `id` różnie nazwane primary key",
+      "`band_id` musi być TEXT, nie INTEGER",
+      "`Album` nie może mieć `band_id`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Konwencja mówi, że primary key nazywa się zwykle `id`. Tu użyto `band_id` jako primary key w `Band`, co może mylić. Lepsza spójność to `id` w `Band` i `band_id` w `Album`.",
+    "difficulty": "medium",
+    "topic": "Konwencje nazewnictwa"
+  },
+  {
+    "id": 567,
+    "materialId": 64,
+    "question": "Które pole najczęściej jest logical key (do wyszukiwania) w tabeli z albumami?",
+    "choices": [
+      "`id`",
+      "`title` lub `name`",
+      "`AUTOINCREMENT`",
+      "`INTEGER`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Logical key to pole typu tekstowego, po którym ludzie będą szukać, np. `title`. `id` to identyfikator wewnętrzny.",
+    "difficulty": "easy",
+    "topic": "Logical key"
+  },
+  {
+    "id": 568,
+    "materialId": 64,
+    "question": "Co wypisze ten kod?\n\n```python\nCREATE TABLE A (\n    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    name TEXT\n)\n\nCREATE TABLE B (\n    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    a_id INTEGER\n)\n\n-- Czy możemy stworzyć tabelę B zanim stworzymy tabelę A?\n```",
+    "choices": [
+      "Nie, najpierw trzeba stworzyć A",
+      "Tak, kolejność nie ma znaczenia w prostym SQL bez constraintów",
+      "Nie można w ogóle stworzyć B",
+      "Tylko jeśli użyjemy FOREIGN KEY"
+    ],
+    "correctIndex": 1,
+    "explanation": "W wielu prostych przypadkach można stworzyć B przed A, bo `a_id` to tylko kolumna liczbowa. Jednak lepiej tworzyć tabele \"liści\" najpierw. Popularny błąd to myśleć, że SQL wymusi kolejność.",
+    "difficulty": "medium",
+    "topic": "Kolejność tworzenia tabel"
+  },
+  {
+    "id": 569,
+    "materialId": 64,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nCREATE TABLE Song (\n    id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    title INTEGER,\n    album_id INTEGER\n)\n```\n",
+    "choices": [
+      "`title` powinno być `TEXT`, nie `INTEGER`",
+      "`id` nie może być AUTOINCREMENT",
+      "`album_id` powinno być TEXT",
+      "Brakuje `UNIQUE` przy `title`"
+    ],
+    "correctIndex": 0,
+    "explanation": "`title` to tekst, więc powinno być `TEXT`. Błąd często pojawia się przez złe przypisanie typu.",
+    "difficulty": "easy",
+    "topic": "Gotcha"
+  },
+  {
+    "id": 570,
+    "materialId": 65,
+    "question": "Co oznacza poniższe polecenie?\n\n```python\nINSERT INTO Style (name) VALUES ('Pop');\n```",
+    "choices": [
+      "Dodaje nowy wiersz do tabeli `Style` z `name` = 'Pop'.",
+      "Tworzy nową tabelę `Style` i dodaje kolumnę `name`.",
+      "Zastępuje wszystkie nazwy w tabeli `Style` na 'Pop'.",
+      "Usuwa tabelę `Style`."
+    ],
+    "correctIndex": 0,
+    "explanation": "To polecenie dodaje nowy rekord. Nie tworzy tabeli ani nie usuwa danych; nie nadpisuje istniejących wierszy.",
+    "difficulty": "easy",
+    "topic": "INSERT INTO"
+  },
+  {
+    "id": 571,
+    "materialId": 65,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nINSERT INTO Record (title, band_id) VALUES ('Night', 'Blue');\n```",
+    "choices": [
+      "Podano string zamiast numeru dla `band_id`.",
+      "Brakuje średnika na końcu.",
+      "`title` nie może być tekstem.",
+      "Pole `band_id` musi być puste."
+    ],
+    "correctIndex": 0,
+    "explanation": "`band_id` jest kluczem obcym i powinien zawierać numer `id` z tabeli wykonawców, a nie tekst.",
+    "difficulty": "medium",
+    "topic": "klucz obcy (foreign key)"
+  },
+  {
+    "id": 572,
+    "materialId": 65,
+    "question": "Która wersja poprawnie wstawia dwa style na raz?",
+    "choices": [
+      "```python\nINSERT INTO Style (name) VALUES ('Funk');\nINSERT INTO Style (name) VALUES ('Soul');\n```",
+      "```python\nINSERT INTO Style (name) VALUES ('Funk'), ('Soul');\n```",
+      "```python\nINSERT INTO Style name VALUES 'Funk';\n```",
+      "Wszystkie powyższe"
+    ],
+    "correctIndex": 0,
+    "explanation": "W wielu prostych interfejsach można wykonać dwa polecenia po kolei (pierwsza opcja). Druga składnia nie była omawiana w lekcji.",
+    "difficulty": "medium",
+    "topic": "wielokrotne polecenia"
+  },
+  {
+    "id": 573,
+    "materialId": 65,
+    "question": "Co się stanie jeśli wykonasz `INSERT INTO Band (name) VALUES ('Sun');` i pole `id` jest auto-generowane?",
+    "choices": [
+      "Baza przypisze nowy numer `id` automatycznie i wstawi wiersz.",
+      "Musisz podać `id` ręcznie, inaczej operacja się nie wykona.",
+      "Pole `id` zostanie ustawione na NULL.",
+      "Wiersz zostanie wstawiony, ale bez `name`."
+    ],
+    "correctIndex": 0,
+    "explanation": "Pole auto-generowane jest ustawiane przez bazę. Nie trzeba podawać `id` w `INSERT`.",
+    "difficulty": "easy",
+    "topic": "pole auto-generowane (id)"
+  },
+  {
+    "id": 574,
+    "materialId": 65,
+    "question": "Masz tabelę `Album` z kolumną `band_id`. Które działanie jest dobre?",
+    "choices": [
+      "Najpierw wstawić `Band`, zapamiętać jego `id`, potem wstawić `Album` z `band_id` = ten numer.",
+      "Najpierw wstawić `Album` z `band_id` = nazwa wykonawcy.",
+      "Zawsze wpisywać `band_id` = 0.",
+      "Wstawiać `Album` jako string zawierający nazwę wykonawcy zamiast `band_id`."
+    ],
+    "correctIndex": 0,
+    "explanation": "Najpierw trzeba mieć `id` wykonawcy, by prawidłowo ustawić `band_id`. Inne opcje łamią spójność danych.",
+    "difficulty": "easy",
+    "topic": "kolejność wstawiania danych"
+  },
+  {
+    "id": 575,
+    "materialId": 65,
+    "question": "Co jest problemem w tym przykładzie?\n\n```python\nINSERT INTO Style (name) VALUES ('Jazz');\nINSERT INTO Style (name) VALUES ('Jazz');\n```",
+    "choices": [
+      "Powtarzamy ten sam string, tworząc duplikat stylu.",
+      "To jest poprawne i jedyny sposób wstawiania.",
+      "Pierwsze INSERT blokuje drugie.",
+      "Nazwy muszą być unikalne i program podmieni drugie."
+    ],
+    "correctIndex": 0,
+    "explanation": "Ten kod doda dwa identyczne wiersze. Lepiej wstawić styl raz i potem używać jego `id`.",
+    "difficulty": "easy",
+    "topic": "powtarzanie danych"
+  },
+  {
+    "id": 576,
+    "materialId": 65,
+    "question": "Dlaczego w bazie lepiej trzymać `style.name` raz, a w `Song` tylko `style_id`?",
+    "choices": [
+      "Bo zmniejsza to ilość przechowywanego tekstu i przyspiesza wyszukiwanie.",
+      "Bo kolumny liczbowe są szybsze do odczytu, ale zajmują więcej miejsca.",
+      "Bo teksty nie mogą się powtarzać w żadnej tabeli.",
+      "Bo wtedy nie trzeba używać `INSERT`."
+    ],
+    "correctIndex": 0,
+    "explanation": "Zamiast powtarzać długi tekst wiele razy, używamy krótkiego numeru, co oszczędza miejsce i przyspiesza operacje.",
+    "difficulty": "medium",
+    "topic": "optimizacja danych"
+  },
+  {
+    "id": 577,
+    "materialId": 65,
+    "question": "Która odpowiedź opisuje zachowanie słów kluczowych SQL?",
+    "choices": [
+      "`INSERT INTO` nie rozróżnia wielkości liter.",
+      "`VALUES` musi być pisane wielkimi literami.",
+      "`insert into` działa inaczej niż `INSERT INTO`.",
+      "Dane wpisane do `VALUES` są ignorowane jeśli są małymi literami."
+    ],
+    "correctIndex": 0,
+    "explanation": "Słowa kluczowe SQL są zwykle niewrażliwe na wielkość liter. Dane tekstowe mogą być czułe.",
+    "difficulty": "easy",
+    "topic": "sql case sensitivity"
   }
 ]

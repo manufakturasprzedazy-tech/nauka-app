@@ -58,7 +58,8 @@
       "Bash(curl -s \"https://manufakturasprzedazy-tech.github.io/nauka-app/assets/index-BeCeMOES.js\" 2>&1 | grep -c \"courseId\")",
       "Bash(curl -s \"https://manufakturasprzedazy-tech.github.io/nauka-app/assets/index-BeCeMOES.js\" 2>&1 | grep -oP '\"notes\":\"[^\"]{0,50}' | head -3)",
       "Bash(python -c \":*)",
-      "Bash(npm run:*)"
+      "Bash(npm run:*)",
+      "Bash(cmd //c \"scripts\\\\deploy.bat\")"
     ]
   }
 }

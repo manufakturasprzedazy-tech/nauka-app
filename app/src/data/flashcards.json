@@ -4310,5 +4310,327 @@
     "front": "Jaki błąd popełniają początkujący przy imporcie arkusza do bazy?",
     "back": "Traktują pierwszy wiersz (nagłówki) jako dane zamiast jako nazwy kolumn.",
     "topic": "Gotcha"
+  },
+  {
+    "id": 723,
+    "materialId": 62,
+    "front": "Co to jest `tabela` w kontekście bazy danych?",
+    "back": "To miejsce, gdzie przechowujemy jeden rodzaj danych. Każdy wiersz to jeden rekord, a kolumny to cechy rekordu.",
+    "topic": "tabele"
+  },
+  {
+    "id": 724,
+    "materialId": 62,
+    "front": "Co to jest `relacja` między tabelami?",
+    "back": "To powiązanie między danymi w dwóch tabelach. Zamiast kopiować tekst, używamy identyfikatora z jednej tabeli w drugiej.",
+    "topic": "relacje"
+  },
+  {
+    "id": 725,
+    "materialId": 62,
+    "front": "Dlaczego nie warto powielać tej samej nazwy artysty w wielu wierszach?",
+    "back": "Powielanie zajmuje miejsce i utrudnia zmianę. Lepiej mieć tabelę `artists` i odwoływać się przez `artist_id`.",
+    "topic": "unikalność danych"
+  },
+  {
+    "id": 726,
+    "materialId": 62,
+    "front": "Jak wybrać, co ma być tabelą, a co kolumną?",
+    "back": "Zadaj pytanie: czy to jest rzecz sama w sobie czy tylko cecha? Jeśli będzie powtarzane i ma własne właściwości, zrób tabelę.",
+    "topic": "modelowanie"
+  },
+  {
+    "id": 727,
+    "materialId": 62,
+    "front": "Co to jest `schema` (schemat)?",
+    "back": "To rysunek lub opis, jak tabele i kolumny są ułożone i jak się łączą. To kontrakt aplikacji z bazą.",
+    "topic": "schema"
+  },
+  {
+    "id": 728,
+    "materialId": 62,
+    "front": "Jaka jest główna zasada dla tekstów powtarzanych w tabeli?",
+    "back": "Nie umieszczaj tego samego tekstu dwa razy. Zamiast tego stwórz oddzielną tabelę i użyj identyfikatora.",
+    "topic": "unikalność danych"
+  },
+  {
+    "id": 729,
+    "materialId": 62,
+    "front": "Co zrobić najpierw podczas projektowania bazy dla aplikacji?",
+    "back": "Zacznij od najważniejszego bytu aplikacji, narysuj jego tabelę, a potem dodawaj powiązania do innych tabel.",
+    "topic": "projektowanie"
+  },
+  {
+    "id": 730,
+    "materialId": 62,
+    "front": "Co się stanie, jeśli przypiszesz `genre` do `album` zamiast do `track`?",
+    "back": "Zmiana gatunku na poziomie albumu zmieni gatunek dla wszystkich utworów z tego albumu, co może być niepożądane.",
+    "topic": "gotcha"
+  },
+  {
+    "id": 731,
+    "materialId": 62,
+    "front": "Kiedy lepiej zrobić tabelę `genre` zamiast kolumny `genre` w `track`?",
+    "back": "Gdy gatunki będą powtarzane i chcemy je normalizować lub przechowywać dodatkowe informacje o gatunku, np. opis.",
+    "topic": "when to use"
+  },
+  {
+    "id": 732,
+    "materialId": 62,
+    "front": "Co oznacza „mapowanie logiczne na fizyczne”?",
+    "back": "To proces przeniesienia rysunku relacji (modelu) do rzeczywistej struktury bazy danych i tabel.",
+    "topic": "mapowanie"
+  },
+  {
+    "id": 733,
+    "materialId": 62,
+    "front": "Jaki problem rozwiązuje odwoływanie się przez `artist_id`?",
+    "back": "Zamiast powtarzać długie nazwy artystów, trzymamy krótkie liczby, co oszczędza miejsce i ułatwia aktualizacje.",
+    "topic": "relacje"
+  },
+  {
+    "id": 734,
+    "materialId": 62,
+    "front": "Czym grozi trzymanie tego samego pola na poziomie artysty i utworu jednocześnie?",
+    "back": "Może to powodować niejasności i sprzeczne dane gdy jedno pole wymaga różnej wartości dla różnych kontekstów.",
+    "topic": "gotcha"
+  },
+  {
+    "id": 735,
+    "materialId": 63,
+    "front": "Co to jest `JOIN` w SQL?",
+    "back": "Operacja łącząca wiersze z więcej niż jednej tabeli, tworząc wynik z kolumn z obu tabel.",
+    "topic": "JOIN"
+  },
+  {
+    "id": 736,
+    "materialId": 63,
+    "front": "Do czego służy klauzula `ON`?",
+    "back": "Mówi kiedy połączyć wiersz z jednej tabeli z wierszem z drugiej, np. `A.b_id = B.id`.",
+    "topic": "ON clause"
+  },
+  {
+    "id": 737,
+    "materialId": 63,
+    "front": "Co to jest klucz obcy?",
+    "back": "Kolumna w jednej tabeli, która wskazuje na `id` (klucz główny) w innej tabeli. Np. `book.author_id` wskazuje na `author.id`.",
+    "topic": "Klucze"
+  },
+  {
+    "id": 738,
+    "materialId": 63,
+    "front": "Jaka jest różnica między `JOIN ... ON` a `JOIN` bez `ON`?",
+    "back": "`JOIN ... ON` łączy tylko pasujące wiersze. `JOIN` bez `ON` daje wszystkie kombinacje wierszy (iloczyn kartezjański).",
+    "topic": "Porównanie"
+  },
+  {
+    "id": 739,
+    "materialId": 63,
+    "front": "Jak zapisać kolumnę `title` z tabeli `Book`?",
+    "back": "Użyj prefiksu: `Book.title` — to pokazuje tabelę i kolumnę.",
+    "topic": "Składnia"
+  },
+  {
+    "id": 740,
+    "materialId": 63,
+    "front": "Kiedy użyć `WHERE` zamiast `ON`?",
+    "back": "Można filtrować wynik po dołączeniu tabel. `ON` określa warunek łączenia, `WHERE` dodatkowo filtruje wynik. Obie metody czasem dają ten sam efekt.",
+    "topic": "Kiedy użyć"
+  },
+  {
+    "id": 741,
+    "materialId": 63,
+    "front": "Co się stanie, jeśli w `ON` porównasz złe kolumny?",
+    "back": "Nie znajdziesz dopasowań lub dostaniesz błąd. Sprawdź nazwy kolumn i ich role (klucz obcy vs klucz główny).",
+    "topic": "Błędy"
+  },
+  {
+    "id": 742,
+    "materialId": 63,
+    "front": "Dlaczego normalizujemy dane i potem używamy `JOIN`?",
+    "back": "Żeby przechowywać dane bez duplikatów i odbudować zduplikowany widok tylko w zapytaniu. To oszczędza miejsce i ułatwia skalowanie.",
+    "topic": "Koncepcja"
+  },
+  {
+    "id": 743,
+    "materialId": 63,
+    "front": "Co to jest iloczyn kartezjański w kontekście JOIN?",
+    "back": "Wynik wszystkich możliwych par wierszy z dwóch tabel, powstaje gdy brakuje `ON` przy `JOIN`.",
+    "topic": "JOIN"
+  },
+  {
+    "id": 744,
+    "materialId": 63,
+    "front": "Jaki częsty błąd popełniają początkujący z `JOIN`?",
+    "back": "Zapominają `ON` i dostają ogromną liczbę rekordów (wszystkie kombinacje), zamiast dopasowanych par.",
+    "topic": "Gotcha"
+  },
+  {
+    "id": 745,
+    "materialId": 63,
+    "front": "Jak łączyć trzy tabele po kolei?",
+    "back": "Dołącz jedną tabelę do drugiej, potem wynik do trzeciej, z poprawnymi `ON` dla każdego kroku, np. `A JOIN B ON ... JOIN C ON ...`.",
+    "topic": "Łączenie wielu tabel"
+  },
+  {
+    "id": 746,
+    "materialId": 63,
+    "front": "Czy `JOIN` modyfikuje dane w tabelach?",
+    "back": "Nie. `JOIN` tylko tworzy wynik zapytania. Dane w tabelach pozostają bez zmian.",
+    "topic": "Koncepcja"
+  },
+  {
+    "id": 747,
+    "materialId": 64,
+    "front": "Co to jest `primary key`?",
+    "back": "To unikalna kolumna, która identyfikuje każdy wiersz. Często nazywamy ją `id` i dajemy `INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE`.",
+    "topic": "Primary key"
+  },
+  {
+    "id": 748,
+    "materialId": 64,
+    "front": "Co robi `AUTOINCREMENT` przy `id`?",
+    "back": "`AUTOINCREMENT` sprawia, że baza sama przypisuje kolejne liczby (1,2,3...) dla `id` przy dodawaniu wierszy.",
+    "topic": "Primary key"
+  },
+  {
+    "id": 749,
+    "materialId": 64,
+    "front": "Co to jest `foreign key`?",
+    "back": "To kolumna, która wskazuje na `primary key` innej tabeli. Zwykle nazwiesz ją `table_id`, np. `artist_id`.",
+    "topic": "Foreign key"
+  },
+  {
+    "id": 750,
+    "materialId": 64,
+    "front": "Jaka jest różnica między `primary key` a `foreign key`?",
+    "back": "`primary key` kończy strzałkę (to cel). `foreign key` zaczyna strzałkę (to odniesienie do innej tabeli).",
+    "topic": "Comparison"
+  },
+  {
+    "id": 751,
+    "materialId": 64,
+    "front": "Co to jest `logical key`?",
+    "back": "To pole, po którym będziemy wyszukiwać dane z zewnątrz, np. `title` lub `name`. To nie zawsze jest `id`.",
+    "topic": "Logical key"
+  },
+  {
+    "id": 752,
+    "materialId": 64,
+    "front": "Dlaczego warto stosować konwencję nazewnictwa `table_id`?",
+    "back": "Ułatwia czytanie i rozumienie relacji między tabelami. Dzięki temu od razu widać na co wskazuje kolumna.",
+    "topic": "Konwencje nazewnictwa"
+  },
+  {
+    "id": 753,
+    "materialId": 64,
+    "front": "Kiedy dodać `foreign key` do tabeli?",
+    "back": "Gdy tabela ma wskazywać na wiersz innej tabeli. To jest początek strzałki relacji, np. `album_id` w `Track`.",
+    "topic": "Foreign key"
+  },
+  {
+    "id": 754,
+    "materialId": 64,
+    "front": "Co zrobi baza, jeśli nie podasz `id` dla wiersza z `AUTOINCREMENT`?",
+    "back": "Baza sama przypisze kolejny numer `id`, więc nie musisz podawać go ręcznie.",
+    "topic": "AUTOINCREMENT"
+  },
+  {
+    "id": 755,
+    "materialId": 64,
+    "front": "Jaki typ danych wybierasz dla `title` lub `name`?",
+    "back": "Dla tekstów używamy `TEXT`.",
+    "topic": "Logical key"
+  },
+  {
+    "id": 756,
+    "materialId": 64,
+    "front": "Dlaczego tworzy się najpierw tabele \"liści\"?",
+    "back": "Bo tabele bez zależności nie potrzebują foreign key do istniejących tabel. To pozwala potem od razu wskazać na nie z innych tabel.",
+    "topic": "Kolejność tworzenia tabel"
+  },
+  {
+    "id": 757,
+    "materialId": 64,
+    "front": "Jaki jest częsty błąd z nazewnictwem kluczy?",
+    "back": "Używanie nieczytelnych lub niespójnych nazw (np. `pTrackId`). Powoduje to zamieszanie. Lepiej używać `id` i `table_id`.",
+    "topic": "Gotcha"
+  },
+  {
+    "id": 758,
+    "materialId": 64,
+    "front": "Czy `logical key` musi być unikalny?",
+    "back": "Nie musi, ale często jest unikalny jeśli służy do szukania rekordów. Jeśli ma być unikalny, można to oznaczyć przy tworzeniu tabeli.",
+    "topic": "Logical key"
+  },
+  {
+    "id": 759,
+    "materialId": 65,
+    "front": "Co robi `INSERT INTO`?",
+    "back": "Dodaje nowy wiersz do tabeli. Przykład: `INSERT INTO Table (col) VALUES ('val');`",
+    "topic": "INSERT INTO"
+  },
+  {
+    "id": 760,
+    "materialId": 65,
+    "front": "Co to jest pole auto-generowane (`id`)?",
+    "back": "To pole, które baza sama przypisuje liczbą przy wstawianiu. Nie trzeba go podawać w `INSERT`.",
+    "topic": "pole auto-generowane (id)"
+  },
+  {
+    "id": 761,
+    "materialId": 65,
+    "front": "Co to jest klucz obcy (foreign key)?",
+    "back": "Kolumna przechowująca numer (`id`) z innej tabeli. Łączy wiersze między tabelami.",
+    "topic": "klucz obcy (foreign key)"
+  },
+  {
+    "id": 762,
+    "materialId": 65,
+    "front": "Jaka jest różnica między kluczem głównym a obcym?",
+    "back": "Klucz główny (`id`) identyfikuje wiersz w tej tabeli. Klucz obcy to numer odwołujący się do `id` w innej tabeli.",
+    "topic": "primary vs foreign"
+  },
+  {
+    "id": 763,
+    "materialId": 65,
+    "front": "Czy trzeba podawać `id` gdy jest auto-generowane?",
+    "back": "Nie. Baza ustawi `id` automatycznie. W `INSERT` pomiń to pole.",
+    "topic": "pole auto-generowane (id)"
+  },
+  {
+    "id": 764,
+    "materialId": 65,
+    "front": "Dlaczego lepiej używać numerów (FK) zamiast powtarzać nazwy?",
+    "back": "Bo numer zajmuje mniej miejsca i baza szybciej skanuje i indeksuje kolumny niż długie teksty.",
+    "topic": "optimizacja danych"
+  },
+  {
+    "id": 765,
+    "materialId": 65,
+    "front": "Co się stanie, jeśli spróbujesz wstawić `album` z nieistniejącym `artist_id`?",
+    "back": "Baza może odrzucić operację lub powstanie niespójny rekord. Najpierw dodaj artystę, potem album.",
+    "topic": "kolejność wstawiania danych"
+  },
+  {
+    "id": 766,
+    "materialId": 65,
+    "front": "Kiedy można dodać kilka poleceń jednocześnie?",
+    "back": "Gdy oddzielisz polecenia średnikiem `;` i uruchomisz je razem. Uważaj, by nie wykonać dwukrotnie tego samego.",
+    "topic": "wielokrotne polecenia"
+  },
+  {
+    "id": 767,
+    "materialId": 65,
+    "front": "Czy `INSERT INTO` rozróżnia wielkość liter w słowach kluczowych?",
+    "back": "Nie. `INSERT INTO` i `insert into` działają tak samo. Dane tekstowe są czułe na wielkość liter.",
+    "topic": "sql case sensitivity"
+  },
+  {
+    "id": 768,
+    "materialId": 65,
+    "front": "Jaki częsty błąd popełniają początkujący z FK?",
+    "back": "Dają string zamiast numeru, albo zapominają, że trzeba najpierw wstawić rekord docelowy, by znać `id`.",
+    "topic": "gotcha FK"
   }
 ]

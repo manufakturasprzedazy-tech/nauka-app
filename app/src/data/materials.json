@@ -1002,5 +1002,82 @@
     "flashcardCount": 12,
     "quizCount": 9,
     "exerciseCount": 4
+  },
+  {
+    "id": 62,
+    "courseId": "python",
+    "filename": "Projektowanie modelu danych.md",
+    "title": "Projektowanie baz danych: tabele i relacje",
+    "summary": "Lekcja wyjaśnia jak projektować wiele tabel i łączyć je ze sobą. Pokazuje, dlaczego nie warto powielać tych samych danych i jak wybrać, co jest tabelą, a co atrybutem.",
+    "topics": [
+      "tabele",
+      "kolumny",
+      "relacje",
+      "unikalność danych",
+      "modelowanie domeny",
+      "mapowanie logiczne -> fizyczne"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: uczymy się łączyć wiele tabel i projektować bazę dla aplikacji. Pokazujemy, jak unikać powtarzania tych samych danych.\n\n## Kluczowe pojęcia\n### Tabela\n`Tabela` to miejsce, gdzie przechowujemy jeden rodzaj rzeczy. Każdy wiersz to jeden element.\n\n### Kolumna\n`Kolumna` to pojedyncza cecha tej rzeczy, np. `title` dla utworu.\n\n### Relacja\n`Relacja` łączy dwie tabele. Zamiast powtarzać długi tekst, łączymy wiersze przez identyfikatory.\n\n### Unikanie powielania danych\nZasada: nie wpisuj tego samego tekstu wielokrotnie. Zamiast tego stwórz osobną tabelę i odnoś się przez identyfikator.\n\n### Modelowanie rzeczywistości\nZacznij od najważniejszej rzeczy dla aplikacji. Dla sklepu z muzyką to `track` (utwór). Później zdecyduj, co jest osobną tabelą: `artist`, `album`, `genre`.\n\n## Przykłady kodu\n```python\n# Przykład logiczny: track z odwołaniem do artist_id\ntrack = {\"title\": \"Hit\", \"artist_id\": 1}\n```\nTo pokazuje, że zamiast powtarzać nazwę artysty, trzymamy `artist_id`.\n\n```python\n# Mała reprezentacja tabel\nartists = {1: \"Black Sabbath\"}\ntracks = [{\"title\": \"Paranoid\", \"artist_id\": 1}]\n```\nTutaj `tracks` odwołuje się do `artists` przez `artist_id`.\n\n## Ważne zasady\n- **Nie powtarzaj tego samego tekstu** — jeśli ta sama nazwa pojawia się wiele razy, rozważ osobną tabelę.\n- **Zacznij od najważniejszej rzeczy** — narysuj najpierw tabelę, która jest sercem aplikacji.\n- **Zastanów się: to rzecz czy atrybut?** — jeśli pole będzie powtarzane dla wielu wierszy, może być osobną tabelą.\n- **Model decyduje o funkcjach aplikacji** — gdzie umieścisz `genre` wpływa na zachowanie przy zmianie.\n- **Najpierw model logiczny, potem fizyczny** — najpierw rysujesz relacje, potem tworzysz strukturę bazy.\n\n## Częste błędy\n- **Powielanie tekstu**: trzymanie tej samej nazwy artysty w wielu wierszach. Skutek: zajmuje miejsca i utrudnia zmiany. Rozwiązanie: tabela `artists`.\n- **Zła decyzja gdzie umieścić atrybut**: np. `genre` na poziomie albumu zamiast utworu. Może to nie chcieć się zgadzać z interfejsem użytkownika.\n- **Brak ustalonej centralnej tabeli**: zacznij od niewłaściwej rzeczy i potem rysunek jest trudniejszy do uporządkowania.",
+    "flashcardCount": 12,
+    "quizCount": 8,
+    "exerciseCount": 3
+  },
+  {
+    "id": 63,
+    "courseId": "python",
+    "filename": "Rekonstrukcja danych za pomocą JOIN.md",
+    "title": "Łączenie tabel za pomocą JOIN",
+    "summary": "Lekcja wyjaśnia, jak łączyć dane z wielu tabel w relacyjnej bazie danych za pomocą operacji `JOIN`. Pokazuje rolę kluczy głównych i obcych oraz sens klauzuli `ON` i co się stanie, gdy jej zabraknie (iloczyn kartezjański).",
+    "topics": [
+      "JOIN",
+      "ON clause",
+      "klucz główny (primary key)",
+      "klucz obcy (foreign key)",
+      "iloczyn kartezjański (brak ON)",
+      "łączenie wielu tabel"
+    ],
+    "notes": "## O czym jest ta lekcja\n1-2 zdania: Ta lekcja pokazuje, jak rekonstruować dane z rozbitych tabel za pomocą `JOIN`. Uczymy się, jak łączyć wiersze z różnych tabel na podstawie kluczy.\n\n## Kluczowe pojęcia\n### JOIN\n`JOIN` łączy wiersze z więcej niż jednej tabeli. Tworzy „super-wiersze”, które zawierają kolumny z obu tabel.\n\n### ON\n`ON` mówi, kiedy połączyć konkretny wiersz z jednej tabeli z wierszem z drugiej. Zwykle porównujemy klucz obcy do klucza głównego, np. `A.b_id = B.id`.\n\n### Klucz główny i klucz obcy\n`id` w jednej tabeli to klucz główny. `something_id` w innej tabeli to klucz obcy. Klucz obcy wskazuje na `id` w tabeli docelowej.\n\n### Brak `ON` — iloczyn kartezjański\nJeśli zrobisz `FROM A JOIN B` bez `ON`, otrzymasz wszystkie kombinacje wierszy z A i z B. Jeśli A ma 3 wiersze, a B ma 4, wynik ma 12 wierszy.\n\n## Przykłady kodu\n```python\nSELECT Book.title, Author.name\nFROM Book JOIN Author\nON Book.author_id = Author.id;\n```\nTo wybiera tytuły książek i nazwiska autorów z dwóch tabel.\n\n```python\nSELECT Song.title, Style.name\nFROM Song JOIN Style\nON Song.style_id = Style.id;\n```\nŁączy piosenki z ich gatunkami.\n\n## Ważne zasady\n- **Zawsze określ warunek łączenia** — użyj `ON` z porównaniem klucza obcego do klucza głównego.\n- **Prefiksuj kolumny** gdy ta sama nazwa występuje w wielu tabelach, np. `Book.title` i `Author.name`.\n- **JOIN nie kopiuje danych** — wyniki łączą kolumny tylko w zapytaniu, dane są przechowywane znormalizowane.\n- **Kilkukrotne JOINy** — łącz tabelę z tabelą, idąc od miejsca gdzie masz klucz obcy.\n\n## Częste błędy\n- **Brak `ON`**: dostaniesz wszystkie kombinacje wierszy. Unikaj, jeśli chcesz tylko dopasowane pary.\n- **Zła nazwa kolumny w `ON`**: jeśli odwołasz się do nieistniejącej kolumny, zapytanie zgłosi błąd. Sprawdź nazwy kolumn.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 64,
+    "courseId": "python",
+    "filename": "Reprezentowanie modelu danych w tabelach.md",
+    "title": "Mapowanie modelu logicznego na model fizyczny bazy danych",
+    "summary": "Lekcja wyjaśnia jak przenieść model logiczny danych do fizycznej bazy danych. Omówione są klucze: primary key, foreign key i logical key oraz podstawowe polecenie `CREATE TABLE` i konwencje nazewnictwa.",
+    "topics": [
+      "Model logiczny vs fizyczny",
+      "Primary key (id)",
+      "Foreign key (table_id)",
+      "Logical key",
+      "CREATE TABLE i AUTOINCREMENT",
+      "Konwencje nazewnictwa",
+      "Kolejność tworzenia tabel"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: jak z diagramu danych zrobić tabele w bazie. Uczymy się dodawać kolumny, klucze i nazwy.\n\n## Kluczowe pojęcia\n### Model logiczny i fizyczny\nModel logiczny to rysunek tabel i relacji. Model fizyczny to konkretne tabele i kolumny w bazie. Mapowanie to przepisanie rysunku do `CREATE TABLE`.\n\n### Primary key\n`primary key` to kolumna, która identyfikuje każdy wiersz. Często nazywamy ją `id` i robimy `INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE`.\n\n### Foreign key\n`foreign key` to kolumna, która wskazuje na `primary key` innej tabeli. Często nazywamy ją `table_id`, np. `artist_id`.\n\n### Logical key\n`logical key` to kolumna, po której będziemy wyszukiwać dane (np. `title` lub `name`). To nie musi być liczba, może to być `TEXT`.\n\n### Konwencja nazewnictwa\nDobra nazwa to `id` dla primary key i `table_id` dla foreign key, np. `album_id`. Konwencja ułatwia czytanie i pracę zespołową.\n\n## Przykłady kodu\n```python\nCREATE TABLE Artist (\n    id   INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    name TEXT\n)\n```\nTo tworzy tabelę `Artist` z `id` i `name`.\n\n```python\nCREATE TABLE Track (\n    id       INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT UNIQUE,\n    title    TEXT,\n    album_id INTEGER,\n    genre_id INTEGER,\n    length   INTEGER\n)\n```\nPrzykład tabeli `Track` z dwoma foreign key: `album_id` i `genre_id`.\n\n## Ważne zasady\n- **Zawsze dodaj primary key** — ułatwia wskazywanie wierszy.\n- **Nazwaj foreign key jako `table_id`** — to jasny i czytelny zwyczaj.\n- **Twórz tabele od „liści” do „korka”** — czyli najpierw te bez zależności, potem te z foreign key.\n- **Logical key to pole do wyszukiwania** — wybierz kolumnę, po której użytkownik będzie szukać.\n- **Używaj `AUTOINCREMENT`** kiedy chcesz, by baza sama ustawiła numer id.\n\n## Częste błędy\n- **Brak primary key**: trudno potem wskazać konkretny wiersz. Zawsze dodaj `id`.\n- **Złe nazwy kolumn**: mylące nazwy utrudniają czytanie modelu. Stosuj spójną konwencję.\n",
+    "flashcardCount": 12,
+    "quizCount": 9,
+    "exerciseCount": 4
+  },
+  {
+    "id": 65,
+    "courseId": "python",
+    "filename": "Wstawianie danych relacyjnych.md",
+    "title": "Wstawianie danych do bazy: INSERT INTO, klucze główne i obce",
+    "summary": "Lekcja tłumaczy jak wstawiać dane do tabel przy pomocy `INSERT INTO`. Pokazuje rolę pól auto-generowanych (id), kluczy głównych (primary key) i obcych (foreign key), oraz kolejność wstawiania danych.",
+    "topics": [
+      "INSERT INTO",
+      "pole auto-generowane (id)",
+      "klucz główny (primary key)",
+      "klucz obcy (foreign key)",
+      "kolejność wstawiania danych",
+      "uniknięcie powtarzania długich stringów"
+    ],
+    "notes": "## O czym jest ta lekcja\nKrótko: jak wstawiać dane do tabel i jak łączyć tabele przez numery (klucze). Uczymy się nie powtarzać długich tekstów, lecz używać liczb jako odwołań.\n\n## Kluczowe pojęcia\n### `INSERT INTO`\nSłuży do dodawania nowych wierszy do tabeli. Zwykle podajesz nazwy kolumn i wartości po `VALUES`.\n\n### Pole auto-generowane (`id`)\nTo pole, które baza sama wypełnia numerem. Nie trzeba go podawać w `INSERT`, baza przypisze wartość.\n\n### Klucz główny (primary key)\nUnikalny identyfikator wiersza, często to auto-generowane `id`. Służy do jednoznacznego wskazania rekordu.\n\n### Klucz obcy (foreign key)\nTo kolumna, która przechowuje numer wskazujący na `id` innej tabeli. Trzyma połączenia między tabelami.\n\n### Kolejność wstawiania danych\nNajpierw wstawiamy tabele „zewnętrzne” (np. gatunki, wykonawcy), potem tabele „wewnętrzne” (np. albumy, utwory), żeby mieć numery do kluczy obcych.\n\n## Przykłady kodu\n```python\nINSERT INTO Style (name) VALUES ('Jazz');\nINSERT INTO Band (name) VALUES ('Blue Trio');\n```\nPrzykład dodaje styl i wykonawcę bez podawania `id`.\n\n```python\nINSERT INTO Record (title, band_id) VALUES ('Live Show', 2);\n```\nTu podajemy `band_id` jako liczbę wskazującą istniejący rekord z tabeli `Band`.\n\n## Ważne zasady\n- **Nie podawaj id, które jest auto-generowane** — baza da je sama.  \n- **Kolejność ma znaczenie** — wstaw najpierw tabele, które będą wskazywane przez obce klucze.  \n- **Słowa kluczowe SQL nie są czułe na wielkość liter** (`INSERT INTO` = `insert into`).  \n- **Dane (stringi) są czułe na wielkość liter** — to twoje wartości.  \n- **Możesz wykonać kilka poleceń naraz** oddzielając je średnikiem (`;`).\n\n## Częste błędy\n- **Wstawienie albumu zanim istnieje wykonawca**: wtedy nie masz poprawnego `artist_id`. Najpierw dodaj wykonawcę.  \n- **Podawanie stringa zamiast id w kolumnie FK**: jeśli kolumna oczekuje liczby, podanie tekstu łamie spójność. Użyj numeru, nie powtarzaj nazwy.\n",
+    "flashcardCount": 10,
+    "quizCount": 8,
+    "exerciseCount": 4
   }
 ]
