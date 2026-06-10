@@ -6,8 +6,13 @@ import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { FormattedText } from '@/components/ui/FormattedText';
-import { db, getOrCreateTodayActivity, getSetting } from '@/db/database';
+import { db, getOrCreateTodayActivity } from '@/db/database';
+import { getApiKey } from '@/services/cryptoService';
 import { getCodingXP } from '@/services/gamification';
+import { reportQuestEvent } from '@/services/questService';
+import { checkProgressEvents } from '@/services/achievementService';
+import { sounds } from '@/services/soundService';
+import { haptics } from '@/services/haptics';
 import { compareCode, type CodeComparisonResult } from '@/services/codeComparison';
 import { evaluateCode } from '@/services/aiService';
 import { runPython, preload } from '@/services/pythonRunner';
@@ -34,7 +39,7 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
     exercise.difficulty === 'medium' ? 'warning' : 'danger';
 
   useEffect(() => {
-    getSetting('claude_api_key', '').then(key => {
+    getApiKey('claude_api_key').then(key => {
       if (key) setApiKey(key);
     });
     preload();
@@ -111,6 +116,17 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
       codingCompleted: activity.codingCompleted + 1,
       xpEarned: activity.xpEarned + xp,
     });
+
+    if (result.score >= 4) {
+      sounds.success();
+      haptics.success();
+    } else if (result.score <= 2) {
+      sounds.error();
+      haptics.error();
+    }
+    await reportQuestEvent('coding');
+    await reportQuestEvent('xp', xp);
+    await checkProgressEvents();
 
     setPhase('reviewed');
 

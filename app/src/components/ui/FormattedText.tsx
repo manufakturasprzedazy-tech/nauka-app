@@ -37,6 +37,25 @@ function isCodeBlock(block: string): boolean {
   return codeLineCount / lines.length >= 0.4;
 }
 
+/** Premium code block with language label bar */
+function CodeBlock({ lang, code }: { lang: string; code: string }) {
+  return (
+    <div className="my-3 overflow-hidden rounded-xl border border-slate-400/10 bg-[#0c0c14]">
+      <div className="flex items-center justify-between border-b border-slate-400/10 bg-white/[0.03] px-3 py-1.5">
+        <div className="flex items-center gap-1.5">
+          <span className="h-2 w-2 rounded-full bg-rose-500/60" />
+          <span className="h-2 w-2 rounded-full bg-amber-500/60" />
+          <span className="h-2 w-2 rounded-full bg-emerald-500/60" />
+        </div>
+        <span className="text-[10px] font-medium uppercase tracking-wider text-slate-500">{lang}</span>
+      </div>
+      <pre className="overflow-x-auto p-3 font-mono text-[13px] leading-relaxed text-emerald-300 whitespace-pre">
+        {code}
+      </pre>
+    </div>
+  );
+}
+
 /** Parse inline formatting: `code` and **bold** */
 function renderInlineFormatting(text: string, keyPrefix: string): ReactNode[] {
   const parts = text.split(/(`[^`\n]+`|\*\*[^*]+\*\*)/g);
@@ -97,15 +116,10 @@ function renderMarkdown(text: string, className: string) {
     if (!part) continue;
 
     // Triple-backtick code block
-    const codeBlockMatch = part.match(/^```(?:\w*)\n([\s\S]*?)```$/);
+    const codeBlockMatch = part.match(/^```(\w*)\n([\s\S]*?)```$/);
     if (codeBlockMatch) {
       elements.push(
-        <pre
-          key={i}
-          className="bg-slate-800/60 rounded-lg p-3 my-2 overflow-x-auto font-mono text-sm text-emerald-300 leading-relaxed whitespace-pre"
-        >
-          {codeBlockMatch[1].trimEnd()}
-        </pre>
+        <CodeBlock key={i} lang={codeBlockMatch[1] || 'python'} code={codeBlockMatch[2].trimEnd()} />
       );
       continue;
     }
@@ -192,14 +206,7 @@ function renderAutoDetect(text: string, className: string) {
         if (!trimmed) return null;
 
         if (isCodeBlock(trimmed)) {
-          return (
-            <pre
-              key={i}
-              className="bg-slate-800/60 rounded-lg p-3 my-2 overflow-x-auto font-mono text-sm text-emerald-300 leading-relaxed whitespace-pre"
-            >
-              {trimmed}
-            </pre>
-          );
+          return <CodeBlock key={i} lang="python" code={trimmed} />;
         }
 
         return (

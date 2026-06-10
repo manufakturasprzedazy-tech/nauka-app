@@ -3,7 +3,8 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { SimilarityFeedback } from './SimilarityFeedback';
-import { db, getOrCreateTodayActivity, getSetting } from '@/db/database';
+import { db, getOrCreateTodayActivity } from '@/db/database';
+import { getApiKey } from '@/services/cryptoService';
 import { getExplanationXP } from '@/services/gamification';
 import { calculateSimilarity, type SimilarityResult } from '@/services/textSimilarity';
 import { evaluateExplanation } from '@/services/aiService';
@@ -28,7 +29,7 @@ export function ExplanationExercise({ explanation, onNext }: ExplanationExercise
   const canSubmit = userAnswer.trim().length >= 50;
 
   useEffect(() => {
-    getSetting('claude_api_key', '').then(key => {
+    getApiKey('claude_api_key').then(key => {
       if (key) setApiKey(key);
     });
   }, []);

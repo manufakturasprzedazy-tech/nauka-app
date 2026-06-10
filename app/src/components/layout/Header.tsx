@@ -10,13 +10,14 @@ export function Header({ title, showBack, right }: HeaderProps) {
   const navigate = useNavigate();
 
   return (
-    <header className="sticky top-0 z-30 bg-slate-950/90 backdrop-blur-lg border-b border-slate-800/50">
+    <header className="sticky top-0 z-30 glass border-x-0 border-t-0">
       <div className="flex items-center justify-between h-14 px-4 max-w-lg mx-auto">
         <div className="flex items-center gap-2 min-w-0">
           {showBack && (
             <button
               onClick={() => navigate(-1)}
-              className="p-1.5 -ml-1.5 text-slate-400 hover:text-white transition-colors"
+              className="p-2 -ml-2 text-slate-400 hover:text-white transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label="Wstecz"
             >
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M15.75 19.5L8.25 12l7.5-7.5" />

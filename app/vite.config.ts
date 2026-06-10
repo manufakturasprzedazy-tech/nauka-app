@@ -1,14 +1,40 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { VitePWA } from 'vite-plugin-pwa';
 import path from 'path';
+
+// CSP injected only in production builds (the Vite dev server needs ws:// for HMR).
+// Note: 'unsafe-inline' styles are required by framer-motion/CodeMirror; wasm + jsdelivr by Pyodide.
+const CSP = [
+  "default-src 'self'",
+  "script-src 'self' 'wasm-unsafe-eval' https://cdn.jsdelivr.net",
+  "style-src 'self' 'unsafe-inline' https://fonts.googleapis.com",
+  "font-src https://fonts.gstatic.com",
+  "img-src 'self' data: blob:",
+  "connect-src 'self' https://api.anthropic.com https://api.openai.com https://cdn.jsdelivr.net https://fonts.googleapis.com https://fonts.gstatic.com",
+  "worker-src 'self' blob:",
+].join('; ');
+
+function cspPlugin(): Plugin {
+  return {
+    name: 'inject-csp',
+    apply: 'build',
+    transformIndexHtml(html) {
+      return html.replace(
+        '<meta charset="UTF-8" />',
+        `<meta charset="UTF-8" />\n    <meta http-equiv="Content-Security-Policy" content="${CSP}" />`,
+      );
+    },
+  };
+}
 
 export default defineConfig({
   base: '/nauka-app/',
   plugins: [
     react(),
     tailwindcss(),
+    cspPlugin(),
     VitePWA({
       registerType: 'prompt',
       includeAssets: ['icons/*'],
@@ -16,8 +42,8 @@ export default defineConfig({
         name: 'NaukaApp',
         short_name: 'Nauka',
         description: 'Aplikacja do nauki programowania',
-        theme_color: '#0f172a',
-        background_color: '#0f172a',
+        theme_color: '#09090f',
+        background_color: '#09090f',
         display: 'standalone',
         orientation: 'portrait',
         start_url: '/nauka-app/',

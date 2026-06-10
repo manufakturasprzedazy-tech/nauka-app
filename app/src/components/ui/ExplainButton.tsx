@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Card } from '@/components/ui/Card';
 import { FormattedText } from '@/components/ui/FormattedText';
 import { useToast } from '@/components/ui/Toast';
-import { getSetting } from '@/db/database';
+import { getApiKey } from '@/services/cryptoService';
 import { explainContent } from '@/services/openaiService';
 
 interface ExplainButtonProps {
@@ -19,7 +19,7 @@ export function ExplainButton({ content, context }: ExplainButtonProps) {
   const { showToast } = useToast();
 
   useEffect(() => {
-    getSetting('openai_api_key', '').then(setApiKey);
+    getApiKey('openai_api_key').then(setApiKey);
   }, []);
 
   // Defensive: if state is 'done' but explanation is empty, reset to error

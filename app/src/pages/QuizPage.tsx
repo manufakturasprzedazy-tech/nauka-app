@@ -1,12 +1,14 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useSearchParams, useNavigate } from 'react-router-dom';
 import { Header } from '@/components/layout/Header';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
-import { Badge } from '@/components/ui/Badge';
 import { QuizSession } from '@/components/quiz/QuizSession';
 import { QuizResults } from '@/components/quiz/QuizResults';
+import { ComboCounter } from '@/components/feedback/ComboCounter';
+import { XPFloat, useXPFloat } from '@/components/feedback/XPFloat';
 import { useQuiz } from '@/hooks/useQuiz';
+import { useSessionStore } from '@/stores/sessionStore';
 import { useContentStore } from '@/stores/contentStore';
 import type { QuizQuestion } from '@/types/content';
 
@@ -18,9 +20,21 @@ export function QuizPage() {
 
   const store = useContentStore();
   const quiz = useQuiz();
+  const combo = useSessionStore(s => s.combo);
+  const bestCombo = useSessionStore(s => s.bestCombo);
+  const { items, spawn } = useXPFloat();
+  const lastSpawnedRef = useRef<unknown>(null);
   const [started, setStarted] = useState(false);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [questionCount, setQuestionCount] = useState(10);
+
+  // Spawn "+XP" float when a correct answer lands
+  useEffect(() => {
+    if (quiz.lastXP && quiz.lastXP !== lastSpawnedRef.current) {
+      lastSpawnedRef.current = quiz.lastXP;
+      spawn(quiz.lastXP.amount, quiz.lastXP.multiplier);
+    }
+  }, [quiz.lastXP, spawn]);
 
   // Get available questions
   let availableQuestions: QuizQuestion[];
@@ -41,35 +55,38 @@ export function QuizPage() {
     setStarted(true);
   };
 
+  const pill = (active: boolean) =>
+    `px-3.5 py-2 rounded-xl text-xs font-semibold transition-all border min-h-[40px] ${
+      active
+        ? 'bg-indigo-600 border-indigo-500 text-white shadow-[0_0_16px_rgba(99,102,241,0.35)]'
+        : 'bg-white/[0.03] border-slate-400/10 text-slate-400'
+    }`;
+
   // Launcher
   if (!started) {
     return (
       <div>
         <Header title="Quiz" showBack />
-        <div className="px-4 py-6 space-y-6">
+        <div className="px-4 py-6 space-y-5">
           <div className="text-center">
-            <div className="text-5xl mb-4">❓</div>
-            <h2 className="text-xl font-bold text-white mb-2">Quiz</h2>
-            <p className="text-slate-400 text-sm">{availableQuestions.length} pytań dostępnych</p>
+            <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-3xl bg-emerald-500/10 border border-emerald-500/25 text-4xl shadow-[0_0_24px_rgba(16,185,129,0.2)]">
+              ❓
+            </div>
+            <h2 className="text-xl font-extrabold text-white mb-1">Quiz</h2>
+            <p className="text-slate-400 text-sm tnum">{availableQuestions.length} pytań dostępnych</p>
           </div>
 
           {/* Difficulty filter */}
-          <Card variant="outlined">
+          <Card variant="default">
             <p className="text-sm text-slate-400 mb-2">Poziom trudności</p>
-            <div className="flex gap-2">
+            <div className="flex gap-2 flex-wrap">
               {[
                 { val: 'all', label: 'Wszystkie' },
                 { val: 'easy', label: 'Łatwe' },
                 { val: 'medium', label: 'Średnie' },
                 { val: 'hard', label: 'Trudne' },
               ].map(d => (
-                <button
-                  key={d.val}
-                  onClick={() => setSelectedDifficulty(d.val)}
-                  className={`px-3 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    selectedDifficulty === d.val ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400'
-                  }`}
-                >
+                <button key={d.val} onClick={() => setSelectedDifficulty(d.val)} className={pill(selectedDifficulty === d.val)}>
                   {d.label}
                 </button>
               ))}
@@ -77,17 +94,11 @@ export function QuizPage() {
           </Card>
 
           {/* Question count */}
-          <Card variant="outlined">
+          <Card variant="default">
             <p className="text-sm text-slate-400 mb-2">Liczba pytań</p>
             <div className="flex gap-2">
               {[5, 10, 15, 20].map(n => (
-                <button
-                  key={n}
-                  onClick={() => setQuestionCount(n)}
-                  className={`px-4 py-1.5 rounded-lg text-xs font-medium transition-colors ${
-                    questionCount === n ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400'
-                  }`}
-                >
+                <button key={n} onClick={() => setQuestionCount(n)} className={pill(questionCount === n)}>
                   {n}
                 </button>
               ))}
@@ -115,6 +126,8 @@ export function QuizPage() {
         <QuizResults
           score={quiz.score}
           total={quiz.total}
+          xpEarned={quiz.xpEarned}
+          bestCombo={bestCombo}
           onRetry={handleStart}
           onBack={() => navigate(-1)}
         />
@@ -128,6 +141,8 @@ export function QuizPage() {
   return (
     <div>
       <Header title="Quiz" showBack />
+      <ComboCounter combo={combo} />
+      <XPFloat items={items} />
       <QuizSession
         question={quiz.currentQuestion}
         questionIndex={quiz.currentIndex}

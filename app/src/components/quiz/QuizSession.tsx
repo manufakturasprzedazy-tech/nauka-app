@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { cn } from '@/utils/cn';
 import { Button } from '@/components/ui/Button';
@@ -5,6 +6,8 @@ import { Card } from '@/components/ui/Card';
 import { ProgressBar } from '@/components/ui/ProgressBar';
 import { FormattedText } from '@/components/ui/FormattedText';
 import { ExplainButton } from '@/components/ui/ExplainButton';
+import { sounds } from '@/services/soundService';
+import { haptics } from '@/services/haptics';
 import type { QuizQuestion } from '@/types/content';
 
 interface QuizSessionProps {
@@ -22,11 +25,26 @@ export function QuizSession({
   question, questionIndex, total, selectedAnswer,
   showExplanation, isCorrect, onAnswer, onNext,
 }: QuizSessionProps) {
+  const playedFor = useRef<number | null>(null);
+
+  useEffect(() => {
+    if (showExplanation && isCorrect !== null && playedFor.current !== question.id) {
+      playedFor.current = question.id;
+      if (isCorrect) {
+        sounds.success();
+        haptics.success();
+      } else {
+        sounds.error();
+        haptics.error();
+      }
+    }
+  }, [showExplanation, isCorrect, question.id]);
+
   return (
     <div className="px-4 py-4 space-y-4">
       {/* Progress */}
       <div className="flex items-center gap-3">
-        <span className="text-sm text-slate-400 whitespace-nowrap">
+        <span className="text-sm text-slate-400 whitespace-nowrap tnum">
           {questionIndex + 1} / {total}
         </span>
         <ProgressBar value={(questionIndex + 1) / total} size="sm" />
@@ -50,31 +68,37 @@ export function QuizSession({
             {question.choices.map((choice, i) => {
               const isSelected = selectedAnswer === i;
               const isRight = i === question.correctIndex;
-              let bg = 'bg-slate-800/80 border-slate-700/50';
+              let bg = 'bg-[#10101a] border-slate-400/15';
               if (showExplanation) {
-                if (isRight) bg = 'bg-emerald-900/40 border-emerald-500/50';
-                else if (isSelected && !isRight) bg = 'bg-red-900/40 border-red-500/50';
+                if (isRight) bg = 'bg-emerald-500/10 border-emerald-500/40 shadow-[0_0_16px_rgba(16,185,129,0.15)]';
+                else if (isSelected && !isRight) bg = 'bg-rose-500/10 border-rose-500/40';
+                else bg = 'bg-[#10101a] border-slate-400/10 opacity-60';
               } else if (isSelected) {
-                bg = 'bg-blue-900/40 border-blue-500/50';
+                bg = 'bg-indigo-500/10 border-indigo-500/40';
               }
 
               return (
                 <button
                   key={i}
-                  onClick={() => !showExplanation && onAnswer(i)}
+                  onClick={() => {
+                    if (!showExplanation) {
+                      haptics.tap();
+                      onAnswer(i);
+                    }
+                  }}
                   disabled={showExplanation}
                   className={cn(
-                    'w-full text-left p-4 rounded-xl border transition-all',
+                    'w-full text-left p-4 rounded-xl border transition-all min-h-[52px]',
                     bg,
-                    !showExplanation && 'active:scale-[0.98]',
+                    !showExplanation && 'active:scale-[0.98] active:border-indigo-500/30',
                   )}
                 >
                   <div className="flex items-start gap-3">
                     <span className={cn(
-                      'flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold',
-                      showExplanation && isRight ? 'bg-emerald-500 text-white' :
-                      showExplanation && isSelected ? 'bg-red-500 text-white' :
-                      'bg-slate-700 text-slate-300'
+                      'flex-shrink-0 w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold border',
+                      showExplanation && isRight ? 'bg-emerald-500 border-emerald-400 text-white' :
+                      showExplanation && isSelected ? 'bg-rose-500 border-rose-400 text-white' :
+                      'bg-white/5 border-slate-400/20 text-slate-300'
                     )}>
                       {String.fromCharCode(65 + i)}
                     </span>
@@ -96,12 +120,12 @@ export function QuizSession({
                 variant="outlined"
                 className={cn(
                   'border-l-4',
-                  isCorrect ? 'border-l-emerald-500' : 'border-l-red-500'
+                  isCorrect ? 'border-l-emerald-500 bg-emerald-500/5' : 'border-l-rose-500 bg-rose-500/5'
                 )}
               >
                 <div className="flex items-center gap-2 mb-2">
-                  <span className={cn('text-sm font-bold', isCorrect ? 'text-emerald-400' : 'text-red-400')}>
-                    {isCorrect ? 'Poprawnie!' : 'Niepoprawnie'}
+                  <span className={cn('text-sm font-bold', isCorrect ? 'text-emerald-400' : 'text-rose-400')}>
+                    {isCorrect ? '✓ Poprawnie!' : '✗ Niepoprawnie'}
                   </span>
                 </div>
                 <FormattedText text={question.explanation} className="text-sm text-slate-300" />

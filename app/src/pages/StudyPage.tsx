@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom';
+import { motion } from 'framer-motion';
 import { Header } from '@/components/layout/Header';
 import { Card } from '@/components/ui/Card';
 import { useFlashcards } from '@/hooks/useFlashcards';
@@ -15,7 +16,8 @@ export function StudyPage() {
       title: 'Fiszki',
       description: 'Spaced repetition — ucz się efektywnie',
       stat: `${dueCards.length + newCards.length} do nauki`,
-      gradient: 'from-blue-600/20 to-blue-800/20',
+      box: 'bg-indigo-500/15 border-indigo-500/25',
+      statColor: 'text-indigo-300',
     },
     {
       to: '/quiz',
@@ -23,7 +25,8 @@ export function StudyPage() {
       title: 'Quiz',
       description: 'Wielokrotny wybór — sprawdź wiedzę',
       stat: `${quizzes.length} pytań`,
-      gradient: 'from-emerald-600/20 to-emerald-800/20',
+      box: 'bg-emerald-500/15 border-emerald-500/25',
+      statColor: 'text-emerald-300',
     },
     {
       to: '/kodowanie',
@@ -31,7 +34,17 @@ export function StudyPage() {
       title: 'Kodowanie',
       description: 'Pisz kod — ćwicz praktycznie',
       stat: `${exercises.length} ćwiczeń`,
-      gradient: 'from-amber-600/20 to-amber-800/20',
+      box: 'bg-amber-500/15 border-amber-500/25',
+      statColor: 'text-amber-300',
+    },
+    {
+      to: '/powtorka',
+      icon: '🔄',
+      title: 'Powtórka błędów',
+      description: 'Wróć do pytań, które poszły źle',
+      stat: 'Utrwal słabe punkty',
+      box: 'bg-rose-500/15 border-rose-500/25',
+      statColor: 'text-rose-300',
     },
   ];
 
@@ -39,22 +52,31 @@ export function StudyPage() {
     <div>
       <Header title="Nauka" />
       <div className="px-4 py-4 space-y-3">
-        {modes.map(mode => (
-          <Link key={mode.to} to={mode.to}>
-            <Card variant="default" className={`bg-gradient-to-br ${mode.gradient} active:scale-[0.98] transition-transform mb-3`}>
-              <div className="flex items-center gap-4">
-                <div className="text-3xl">{mode.icon}</div>
-                <div className="flex-1 min-w-0">
-                  <h3 className="text-white font-bold text-base">{mode.title}</h3>
-                  <p className="text-slate-400 text-sm">{mode.description}</p>
-                  <p className="text-xs text-blue-400 mt-1">{mode.stat}</p>
+        {modes.map((mode, i) => (
+          <motion.div
+            key={mode.to}
+            initial={{ opacity: 0, y: 12 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: i * 0.05 }}
+          >
+            <Link to={mode.to}>
+              <Card variant="elevated" className="active:scale-[0.98] transition-transform">
+                <div className="flex items-center gap-4">
+                  <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl border text-2xl ${mode.box}`}>
+                    {mode.icon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="text-white font-bold text-base">{mode.title}</h3>
+                    <p className="text-slate-400 text-sm">{mode.description}</p>
+                    <p className={`text-xs mt-1 font-medium ${mode.statColor}`}>{mode.stat}</p>
+                  </div>
+                  <svg className="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
+                  </svg>
                 </div>
-                <svg className="w-5 h-5 text-slate-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M8.25 4.5l7.5 7.5-7.5 7.5" />
-                </svg>
-              </div>
-            </Card>
-          </Link>
+              </Card>
+            </Link>
+          </motion.div>
         ))}
       </div>
     </div>

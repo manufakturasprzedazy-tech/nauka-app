@@ -13,9 +13,11 @@ except ImportError:
     raise
 
 
-NOTES_SYSTEM_PROMPT = """You are an expert Python teacher creating condensed study notes for a mobile learning app.
+NOTES_SYSTEM_PROMPT = """You are an expert Python teacher writing a COMPLETE, self-contained mobile lesson.
 
+The student reads ONLY this lesson — they have no other source. Nothing can be left implicit or "to be guessed".
 Write in simple, everyday Polish. Short sentences. No fancy words. Explain like talking to a friend who just started coding.
+Every code example MUST be followed by what it prints/returns, so the student never has to guess the result.
 
 Use markdown formatting:
 - ## for section headers
@@ -167,40 +169,48 @@ Rules:
 - Remember: the student understands concepts but struggles to write code from scratch
 
 ========================================
-NOTES RULES (condensed study notes, 300-600 words)
+NOTES RULES (full self-contained lesson, 600-1200 words)
 ========================================
-Generate a condensed summary of the lesson in markdown. Structure:
+This is the MAIN lesson the student reads BEFORE flashcards/quiz/coding. It must teach
+the topic completely — the student has no transcript, no video, nothing else. Structure:
 
 ## O czym jest ta lekcja
-1-2 sentence intro.
+2-3 sentences: what the student will be able to DO after this lesson and why it matters
+in real programs. Optionally a simple real-life analogy.
 
-## Kluczowe pojęcia
-### Concept Name
-2-3 sentences explaining the concept with `inline code`.
-(repeat for 3-6 key concepts from the material)
-
-## Przykłady kodu
+## [Concept Name — one section per concept, 3-6 sections]
+For EACH key concept from the material:
+1. Plain-Polish explanation (2-4 short sentences). Use an everyday analogy when helpful.
+2. A minimal code example:
 ```python
-# key example with comments
+# code with short Polish comments
 ```
-1 sentence explaining the example.
-(1-3 code examples)
+3. DIRECTLY under each code block, show the result — e.g. "Wynik: `42`" or
+   "To wypisze: `cześć`" — the student must NEVER guess what code does.
+4. If the concept has a gotcha, add "⚠️ Uwaga:" with one sentence.
+
+## Krok po kroku: typowy przykład
+One slightly bigger example combining the lesson's concepts, explained line by line
+(numbered list: line — what it does). End with the full expected output.
 
 ## Ważne zasady
-- **Rule 1** — explanation
-- **Rule 2** — explanation
+- **Rule** — explanation
 (3-6 rules)
 
 ## Częste błędy
-- **Mistake 1**: what happens and how to avoid it
-- **Mistake 2**: what happens and how to avoid it
-(2-4 common mistakes)
+- **Mistake**: what the student typically writes, what error/wrong result appears
+  (show the actual error message if relevant), and how to fix it
+(2-4 mistakes)
+
+## Szybka powtórka
+3-5 one-line bullet points — the absolute essence to remember.
 
 Rules:
-- Write in simple Polish — short sentences, no jargon
-- Use `backticks` for all code references
+- Write in simple Polish — short sentences, no jargon; explain any technical term in parentheses
+- Use `backticks` for all code references, ```python blocks for code
+- ALWAYS show outputs/results of examples — never leave the reader guessing
 - Only cover concepts from the material — nothing extra
-- Keep it practical and useful as a quick review reference
+- Prefer concrete numbers/strings in examples over abstract foo/bar
 
 ========================================
 GENERAL
@@ -351,11 +361,19 @@ def generate_notes(filepath: str, title: str, api_key: str, max_retries: int = 2
 MATERIAL:
 {content}
 
-Generate a JSON object with a single key "notes" containing markdown-formatted study notes in Polish.
-The notes should be 300-600 words and follow this structure:
+Generate a JSON object with a single key "notes" containing a COMPLETE markdown lesson in Polish.
+The lesson should be 600-1200 words, fully self-contained (the student reads only this),
+and follow this structure:
 
 ## O czym jest ta lekcja
-1-2 sentence intro.
+2-3 sentences: what the student will be able to DO and why it matters. Simple analogy welcome.
+
+## [One section per key concept, 3-6 sections]
+Plain explanation (2-4 sentences) + minimal ```python example + the printed/returned
+result directly under it (e.g. "Wynik: `42`") + optional "⚠️ Uwaga:" gotcha.
+
+## Krok po kroku: typowy przykład
+A bigger example combining concepts, explained line by line, with full expected output.
 
 ## Kluczowe pojęcia
 ### Concept Name
@@ -376,13 +394,17 @@ The notes should be 300-600 words and follow this structure:
 - **Mistake**: explanation
 (2-4 mistakes)
 
+## Szybka powtórka
+3-5 one-line bullets with the essence.
+
 Write in simple Polish. Use `backticks` for code. Only concepts from the material.
+ALWAYS show the output of every code example — the student must never guess.
 Respond with JSON only: {{"notes": "markdown string"}}"""
 
     for attempt in range(max_retries + 1):
         response = client.chat.completions.create(
             model="gpt-5-mini",
-            max_completion_tokens=4096,
+            max_completion_tokens=8192,
             messages=[
                 {"role": "system", "content": NOTES_SYSTEM_PROMPT},
                 {"role": "user", "content": prompt},

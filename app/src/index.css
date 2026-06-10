@@ -2,19 +2,45 @@
 
 @theme {
   --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
-  --color-primary-50: #eff6ff;
-  --color-primary-100: #dbeafe;
-  --color-primary-200: #bfdbfe;
-  --color-primary-300: #93c5fd;
-  --color-primary-400: #60a5fa;
-  --color-primary-500: #3b82f6;
-  --color-primary-600: #2563eb;
-  --color-primary-700: #1d4ed8;
-  --color-primary-800: #1e40af;
-  --color-primary-900: #1e3a8a;
+  --font-mono: 'JetBrains Mono', 'Fira Code', ui-monospace, monospace;
+
+  /* Primary — electric indigo-blue */
+  --color-primary-50: #eef2ff;
+  --color-primary-100: #e0e7ff;
+  --color-primary-200: #c7d2fe;
+  --color-primary-300: #a5b4fc;
+  --color-primary-400: #818cf8;
+  --color-primary-500: #6366f1;
+  --color-primary-600: #4f46e5;
+  --color-primary-700: #4338ca;
+  --color-primary-800: #3730a3;
+  --color-primary-900: #312e81;
+
+  /* Accent — violet */
+  --color-accent-300: #c4b5fd;
   --color-accent-400: #a78bfa;
   --color-accent-500: #8b5cf6;
   --color-accent-600: #7c3aed;
+
+  /* Surface ramp — near-black depth layers */
+  --color-surface-0: #09090f;
+  --color-surface-1: #10101a;
+  --color-surface-2: #181826;
+  --color-surface-3: #1f1f30;
+
+  /* Hairline borders — the Linear/Vercel look */
+  --color-border-subtle: rgba(148, 163, 184, 0.08);
+  --color-border-strong: rgba(148, 163, 184, 0.18);
+
+  /* Shadows & glows */
+  --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.35);
+  --shadow-glow-sm: 0 0 12px rgba(99, 102, 241, 0.25);
+  --shadow-glow-md: 0 0 24px rgba(99, 102, 241, 0.35);
+  --shadow-glow-lg: 0 0 48px rgba(99, 102, 241, 0.45);
+
+  /* Radii */
+  --radius-card: 1.25rem;
+  --radius-control: 0.875rem;
 }
 
 /* Dark mode defaults */
@@ -34,7 +60,7 @@ html.light {
   background: transparent;
 }
 ::-webkit-scrollbar-thumb {
-  background: #334155;
+  background: #2a2a3d;
   border-radius: 2px;
 }
 
@@ -44,6 +70,55 @@ body {
   padding-bottom: env(safe-area-inset-bottom);
   -webkit-tap-highlight-color: transparent;
   overscroll-behavior-y: contain;
+  background-color: #09090f;
+}
+
+/* Ambient top glow — fixed radial gradient behind everything */
+.ambient-glow::before {
+  content: '';
+  position: fixed;
+  top: -180px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 640px;
+  height: 480px;
+  background: radial-gradient(ellipse at center, rgba(99, 102, 241, 0.16) 0%, rgba(139, 92, 246, 0.08) 40%, transparent 70%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Glassmorphism */
+.glass {
+  background: rgba(16, 16, 26, 0.72);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(148, 163, 184, 0.08);
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, #818cf8 0%, #a78bfa 50%, #c4b5fd 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* Tabular numbers for stats */
+.tnum {
+  font-feature-settings: "tnum";
+  font-variant-numeric: tabular-nums;
+}
+
+/* Skeleton shimmer */
+@keyframes shimmer {
+  0% { background-position: -400px 0; }
+  100% { background-position: 400px 0; }
+}
+.skeleton {
+  background: linear-gradient(90deg, #181826 25%, #1f1f30 50%, #181826 75%);
+  background-size: 800px 100%;
+  animation: shimmer 1.4s ease-in-out infinite;
 }
 
 /* 3D flip card */
@@ -83,10 +158,36 @@ body {
   animation: fire-pulse 1.5s ease-in-out infinite;
 }
 
+/* Pulsing glow ring — current path node */
+@keyframes glow-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(99, 102, 241, 0.45); }
+  50% { box-shadow: 0 0 0 10px rgba(99, 102, 241, 0); }
+}
+.glow-pulse {
+  animation: glow-pulse 2s ease-in-out infinite;
+}
+
+/* Combo counter pop */
+@keyframes combo-pop {
+  0% { transform: scale(1); }
+  40% { transform: scale(1.25); }
+  100% { transform: scale(1); }
+}
+.combo-pop {
+  animation: combo-pop 0.3s ease-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .glow-pulse, .fire-animate, .skeleton, .combo-pop {
+    animation: none;
+  }
+}
+
 /* CodeMirror mobile fixes */
 .cm-editor {
   font-size: 14px !important;
 }
 .cm-editor .cm-scroller {
   overflow: auto !important;
+  font-family: 'JetBrains Mono', ui-monospace, monospace !important;
 }

@@ -2,16 +2,17 @@ import { cn } from '@/utils/cn';
 
 interface BadgeProps {
   children: React.ReactNode;
-  variant?: 'default' | 'success' | 'warning' | 'danger' | 'info';
+  variant?: 'default' | 'success' | 'warning' | 'danger' | 'info' | 'accent';
   size?: 'sm' | 'md';
 }
 
 const variants = {
-  default: 'bg-slate-700 text-slate-300',
-  success: 'bg-emerald-900/50 text-emerald-400 border border-emerald-700/50',
-  warning: 'bg-amber-900/50 text-amber-400 border border-amber-700/50',
-  danger: 'bg-red-900/50 text-red-400 border border-red-700/50',
-  info: 'bg-blue-900/50 text-blue-400 border border-blue-700/50',
+  default: 'bg-white/5 text-slate-300 border border-slate-400/15',
+  success: 'bg-emerald-500/10 text-emerald-400 border border-emerald-500/25',
+  warning: 'bg-amber-500/10 text-amber-400 border border-amber-500/25',
+  danger: 'bg-rose-500/10 text-rose-400 border border-rose-500/25',
+  info: 'bg-indigo-500/10 text-indigo-300 border border-indigo-500/25',
+  accent: 'bg-violet-500/10 text-violet-300 border border-violet-500/25',
 };
 
 export function Badge({ children, variant = 'default', size = 'sm' }: BadgeProps) {

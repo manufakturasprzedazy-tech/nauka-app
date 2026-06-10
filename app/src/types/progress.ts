@@ -58,4 +58,13 @@ export interface Achievement {
   unlockedAt?: string;
 }
 
+export interface DailyQuest {
+  id?: number;
+  date: string; // YYYY-MM-DD
+  questId: string;
+  progress: number;
+  target: number;
+  completed: boolean;
+}
+
 export type Level = 'Junior' | 'Regular' | 'Senior' | 'Lead' | 'Architect';

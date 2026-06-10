@@ -3,6 +3,8 @@ import { db, getOrCreateTodayActivity } from '@/db/database';
 import { useContentStore } from '@/stores/contentStore';
 import { calculateSM2, buttonToQuality, SM2_DEFAULTS } from '@/services/sm2';
 import { XP } from '@/services/gamification';
+import { reportQuestEvent } from '@/services/questService';
+import { checkProgressEvents } from '@/services/achievementService';
 import type { Flashcard } from '@/types/content';
 import type { FlashcardReview } from '@/types/progress';
 import { todayString } from '@/utils/formatters';
@@ -101,14 +103,9 @@ export function useFlashcards(courseId?: string, materialId?: number) {
 
     setReviewCount(c => c + 1);
 
-    // Check first flashcard achievement
-    const totalReviews = await db.flashcardReviews.count();
-    if (totalReviews === 1) {
-      const exists = await db.achievements.get('first_flashcard');
-      if (!exists) {
-        await db.achievements.add({ id: 'first_flashcard', unlockedAt: now });
-      }
-    }
+    await reportQuestEvent('flashcard');
+    await reportQuestEvent('xp', xp);
+    await checkProgressEvents();
 
     return xp;
   }, []);

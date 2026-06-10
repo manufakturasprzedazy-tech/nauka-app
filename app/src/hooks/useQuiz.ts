@@ -1,6 +1,9 @@
 import { useState, useCallback } from 'react';
 import { db, getOrCreateTodayActivity } from '@/db/database';
 import { XP } from '@/services/gamification';
+import { useSessionStore, getComboMultiplier } from '@/stores/sessionStore';
+import { reportQuestEvent } from '@/services/questService';
+import { checkProgressEvents, registerPerfectQuiz } from '@/services/achievementService';
 import type { QuizQuestion } from '@/types/content';
 import { shuffleArray } from '@/utils/formatters';
 
@@ -11,6 +14,8 @@ interface QuizState {
   showExplanation: boolean;
   finished: boolean;
   score: number;
+  xpEarned: number;
+  lastXP: { amount: number; multiplier: number } | null;
 }
 
 export function useQuiz() {
@@ -21,11 +26,14 @@ export function useQuiz() {
     showExplanation: false,
     finished: false,
     score: 0,
+    xpEarned: 0,
+    lastXP: null,
   });
 
   const startQuiz = useCallback((questions: QuizQuestion[], count?: number) => {
     const shuffled = shuffleArray(questions);
     const selected = shuffled.slice(0, count ?? shuffled.length);
+    useSessionStore.getState().resetCombo();
     setState({
       questions: selected,
       currentIndex: 0,
@@ -33,6 +41,8 @@ export function useQuiz() {
       showExplanation: false,
       finished: false,
       score: 0,
+      xpEarned: 0,
+      lastXP: null,
     });
   }, []);
 
@@ -51,13 +61,25 @@ export function useQuiz() {
       completedAt: new Date().toISOString(),
     });
 
-    // XP for correct answer
+    // Combo + multiplied XP for correct answer
+    const combo = useSessionStore.getState().registerAnswer(isCorrect);
+    let lastXP: QuizState['lastXP'] = null;
+
     if (isCorrect) {
+      const multiplier = getComboMultiplier(combo);
+      const xp = Math.round(XP.QUIZ_CORRECT * multiplier);
+      lastXP = { amount: xp, multiplier };
+
       const activity = await getOrCreateTodayActivity();
       await db.dailyActivity.update(activity.id!, {
         quizAnswered: activity.quizAnswered + 1,
-        xpEarned: activity.xpEarned + XP.QUIZ_CORRECT,
+        xpEarned: activity.xpEarned + xp,
       });
+
+      await reportQuestEvent('quiz_correct');
+      await reportQuestEvent('xp', xp);
+      if (combo >= 2) await reportQuestEvent('combo', combo);
+      await checkProgressEvents();
     }
 
     setState(s => ({
@@ -65,6 +87,8 @@ export function useQuiz() {
       answers: newAnswers,
       showExplanation: true,
       score: s.score + (isCorrect ? 1 : 0),
+      xpEarned: s.xpEarned + (lastXP?.amount ?? 0),
+      lastXP,
     }));
   }, [state.questions, state.currentIndex, state.answers]);
 
@@ -72,6 +96,11 @@ export function useQuiz() {
     setState(s => {
       const nextIndex = s.currentIndex + 1;
       if (nextIndex >= s.questions.length) {
+        // Session finished — perfect-quiz tracking (min 5 questions)
+        if (s.questions.length >= 5 && s.score === s.questions.length) {
+          reportQuestEvent('perfect_quiz');
+          registerPerfectQuiz();
+        }
         return { ...s, finished: true, showExplanation: false };
       }
       return { ...s, currentIndex: nextIndex, showExplanation: false };
