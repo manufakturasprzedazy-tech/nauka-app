@@ -12,6 +12,9 @@ import { Modal } from '@/components/ui/Modal';
 import { useToast } from '@/components/ui/Toast';
 import { useProgress, useAchievements } from '@/hooks/useProgress';
 import { useStreak } from '@/hooks/useStreak';
+import { useMaterialProgress } from '@/hooks/useMaterialProgress';
+import { useContentStore } from '@/stores/contentStore';
+import { MLOpsRoadmap } from '@/components/profile/MLOpsRoadmap';
 import { useAppStore } from '@/stores/appStore';
 import { getLevelProgress, getLevelColor, ACHIEVEMENTS } from '@/services/gamification';
 import { testConnection } from '@/services/aiService';
@@ -42,6 +45,18 @@ export function ProfilePage() {
   const fileInputRef = useRef<HTMLInputElement>(null);
 
   const levelInfo = getLevelProgress(totalXP);
+  const { courses } = useContentStore();
+  const { progressList: pythonList } = useMaterialProgress('python');
+  const { progressList: mlopsList } = useMaterialProgress('mlops');
+  const avg = (list: { percent: number }[]) =>
+    list.length > 0 ? list.reduce((s, p) => s + p.percent, 0) / list.length : undefined;
+  const stageProgress: (number | undefined)[] = [
+    avg(pythonList) ?? 0,
+    courses.some(c => c.id === 'mlops') ? (avg(mlopsList) ?? 0) : undefined,
+    undefined,
+    undefined,
+    undefined,
+  ];
 
   useEffect(() => {
     getApiKey('claude_api_key').then(setClaudeKey);
@@ -141,6 +156,9 @@ export function ProfilePage() {
             </Card>
           </Link>
         </div>
+
+        {/* MLOps career roadmap */}
+        <MLOpsRoadmap stageProgress={stageProgress} />
 
         {/* Today stats */}
         {todayActivity && (

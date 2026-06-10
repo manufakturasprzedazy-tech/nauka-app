@@ -1,5 +1,5 @@
 const API_URL = 'https://api.openai.com/v1/chat/completions';
-const MODEL = 'gpt-5-mini';
+const MODEL = 'gpt-5.4-mini';
 
 const SYSTEM_PROMPT = `Jesteś cierpliwym nauczycielem Pythona. Wyjaśniasz pojęcia osobie, która DOPIERO zaczyna programować.
 

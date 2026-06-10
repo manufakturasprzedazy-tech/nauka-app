@@ -9,17 +9,17 @@ export const XP = {
   EXPLANATION_BASE: 15,
 } as const;
 
-// Level thresholds
+// Level thresholds — career ladder toward MLOps
 const LEVEL_THRESHOLDS: { level: Level; minXP: number }[] = [
-  { level: 'Junior', minXP: 0 },
-  { level: 'Regular', minXP: 500 },
-  { level: 'Senior', minXP: 2000 },
-  { level: 'Lead', minXP: 5000 },
-  { level: 'Architect', minXP: 10000 },
+  { level: 'Skrypciarz', minXP: 0 },
+  { level: 'Pythonista', minXP: 500 },
+  { level: 'Automatyk', minXP: 2000 },
+  { level: 'ML Engineer', minXP: 5000 },
+  { level: 'MLOps Architect', minXP: 10000 },
 ];
 
 export function getLevel(totalXP: number): Level {
-  let current: Level = 'Junior';
+  let current: Level = 'Skrypciarz';
   for (const t of LEVEL_THRESHOLDS) {
     if (totalXP >= t.minXP) current = t.level;
   }
@@ -67,14 +67,16 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   { id: 'quiz_ace', name: 'As quizu', description: '10 quizów z wynikiem 100%', icon: '⭐' },
   { id: 'century', name: 'Setka', description: '100 fiszek powtórzonych', icon: '💯' },
   { id: 'coder', name: 'Koder', description: '5 ćwiczeń kodowania rozwiązanych', icon: '💻' },
+  { id: 'sprinter', name: 'Sprinter', description: '50 poprawnych odpowiedzi w sprintach', icon: '⏱️' },
+  { id: 'puzzle_master', name: 'Mistrz puzzli', description: '10 puzzli z kodu ułożonych', icon: '🧩' },
 ];
 
 export function getLevelColor(level: Level): string {
   switch (level) {
-    case 'Junior': return '#94a3b8';
-    case 'Regular': return '#3b82f6';
-    case 'Senior': return '#8b5cf6';
-    case 'Lead': return '#f59e0b';
-    case 'Architect': return '#ef4444';
+    case 'Skrypciarz': return '#94a3b8';
+    case 'Pythonista': return '#6366f1';
+    case 'Automatyk': return '#8b5cf6';
+    case 'ML Engineer': return '#f59e0b';
+    case 'MLOps Architect': return '#f43f5e';
   }
 }

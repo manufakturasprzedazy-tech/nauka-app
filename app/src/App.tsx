@@ -16,6 +16,8 @@ import { ProfilePage } from '@/pages/ProfilePage';
 import { QuizReviewPage } from '@/pages/QuizReviewPage';
 import { StatsPage } from '@/pages/StatsPage';
 import { OnboardingPage } from '@/pages/OnboardingPage';
+import { SprintPage } from '@/pages/SprintPage';
+import { PuzzlePage } from '@/pages/PuzzlePage';
 import { getSetting } from '@/db/database';
 import { useAppStore } from '@/stores/appStore';
 
@@ -47,6 +49,8 @@ export default function App() {
             <Route path="/fiszki" element={<FlashcardsPage />} />
             <Route path="/nauka" element={<StudyPage />} />
             <Route path="/quiz" element={<QuizPage />} />
+            <Route path="/sprint" element={<SprintPage />} />
+            <Route path="/puzzle" element={<PuzzlePage />} />
             <Route path="/kodowanie" element={<CodingPage />} />
             <Route path="/kodowanie/:id" element={<CodingExercisePage />} />
             <Route path="/profil" element={<ProfilePage />} />

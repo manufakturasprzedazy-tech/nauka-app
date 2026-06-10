@@ -29,6 +29,15 @@ export function StudyPage() {
       statColor: 'text-emerald-300',
     },
     {
+      to: '/sprint',
+      icon: '⏱️',
+      title: 'Sprint 60s',
+      description: 'Blitz na czas — nabijaj combo i XP',
+      stat: 'Pobij swój rekord',
+      box: 'bg-orange-500/15 border-orange-500/25',
+      statColor: 'text-orange-300',
+    },
+    {
       to: '/kodowanie',
       icon: '💻',
       title: 'Kodowanie',
@@ -36,6 +45,15 @@ export function StudyPage() {
       stat: `${exercises.length} ćwiczeń`,
       box: 'bg-amber-500/15 border-amber-500/25',
       statColor: 'text-amber-300',
+    },
+    {
+      to: '/puzzle',
+      icon: '🧩',
+      title: 'Puzzle z kodu',
+      description: 'Ułóż linie programu w dobrej kolejności',
+      stat: 'Struktura bez frustracji',
+      box: 'bg-violet-500/15 border-violet-500/25',
+      statColor: 'text-violet-300',
     },
     {
       to: '/powtorka',

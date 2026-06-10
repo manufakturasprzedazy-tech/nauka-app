@@ -15,15 +15,23 @@ def export():
 
     cur = conn.cursor()
 
-    # 1. Courses (hardcoded for now — single Python course)
+    # 1. Courses — materials map to a course by filename prefix (mlops_* → mlops)
     courses = [
         {
             "id": "python",
-            "name": "Python",
+            "name": "Python — fundamenty",
             "icon": "🐍",
             "color": "#3B82F6",
             "description": "Podstawy programowania w Pythonie — zmienne, pętle, funkcje, pliki",
             "order": 1
+        },
+        {
+            "id": "mlops",
+            "name": "Python dla MLOps i AI",
+            "icon": "🚀",
+            "color": "#8B5CF6",
+            "description": "Praktyczny Python pod automatyzację i AI — JSON, API, sekrety, testy, LLM",
+            "order": 2
         }
     ]
     write_json('courses.json', courses)
@@ -46,7 +54,7 @@ def export():
 
         materials.append({
             "id": r['id'],
-            "courseId": "python",
+            "courseId": "mlops" if (r['filename'] or '').startswith('mlops_') else "python",
             "filename": r['filename'],
             "title": r['title'],
             "summary": r['summary'],

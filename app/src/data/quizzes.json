@@ -7454,5 +7454,2015 @@
     "explanation": "Słowa kluczowe SQL są zwykle niewrażliwe na wielkość liter. Dane tekstowe mogą być czułe.",
     "difficulty": "easy",
     "topic": "sql case sensitivity"
+  },
+  {
+    "id": 578,
+    "materialId": 66,
+    "question": "Co zwróci ten kod?\n\n```python\nscores = [1, 4, 2, 5]\nresult = [x + 1 for x in scores]\nprint(result)\n```",
+    "choices": [
+      "[2, 5, 3, 6]",
+      "[1, 4, 2, 5]",
+      "[2, 4, 2, 5]",
+      "[2, 5, 6]"
+    ],
+    "correctIndex": 0,
+    "explanation": "Każdy element jest zwiększony o `1`, więc powstaje nowa lista z czterema wartościami. Odpowiedź `[1, 4, 2, 5]` jest zła, bo kod nie zostawia listy bez zmian.",
+    "difficulty": "easy",
+    "topic": "komprehensja listy"
+  },
+  {
+    "id": 579,
+    "materialId": 66,
+    "question": "Co zwróci ten kod?\n\n```python\nages = [9, 14, 7, 18]\nadults = [age for age in ages if age >= 10]\nprint(adults)\n```",
+    "choices": [
+      "[14, 18]",
+      "[9, 14, 7, 18]",
+      "[10, 10]",
+      "[]"
+    ],
+    "correctIndex": 0,
+    "explanation": "Warunek `if age >= 10` przepuszcza tylko większe liczby. Zła odpowiedź z pełną listą ignoruje filtr.",
+    "difficulty": "easy",
+    "topic": "filtrowanie w komprehensji"
+  },
+  {
+    "id": 580,
+    "materialId": 66,
+    "question": "Co zwróci ten kod?\n\n```python\npoints = [3, 0, 8]\nlabels = [\"plus\" if p > 0 else \"zero\" for p in points]\nprint(labels)\n```",
+    "choices": [
+      "['plus', 'zero', 'plus']",
+      "['plus', 'plus', 'plus']",
+      "['zero', 'plus', 'zero']",
+      "[3, 0, 8]"
+    ],
+    "correctIndex": 0,
+    "explanation": "Każdy element dostaje nową etykietę zależnie od warunku. Najczęstszy błąd to mylenie tego z filtrowaniem, ale tu nic nie znika z listy.",
+    "difficulty": "medium",
+    "topic": "if/else w komprehensji"
+  },
+  {
+    "id": 581,
+    "materialId": 66,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\npeople = [\n    {\"name\": \"Ala\", \"age\": 20},\n    {\"name\": \"Ola\", \"age\": 17},\n]\nresult = {p[\"name\"], p[\"age\"] for p in people}\n```",
+    "choices": [
+      "Brakuje dwukropka między kluczem a wartością",
+      "Trzeba użyć nawiasów okrągłych",
+      "`for` nie działa w komprehensji",
+      "Kod jest poprawny"
+    ],
+    "correctIndex": 0,
+    "explanation": "W słowniku musi być zapis `klucz: wartość`. Przecinek nie tworzy słownika, tylko prowadzi do złego wyniku albo błędu.",
+    "difficulty": "medium",
+    "topic": "komprehensja słownikowa"
+  },
+  {
+    "id": 582,
+    "materialId": 66,
+    "question": "Co zwróci ten kod?\n\n```python\nwords = [\"aa\", \"bb\", \"aa\", \"cc\"]\nunique = {w for w in words}\nprint(sorted(unique))\n```",
+    "choices": [
+      "['aa', 'bb', 'cc']",
+      "['aa', 'aa', 'bb', 'cc']",
+      "{'aa', 'bb', 'aa', 'cc'}",
+      "['bb', 'cc']"
+    ],
+    "correctIndex": 0,
+    "explanation": "Zbiór usuwa duplikaty, więc zostają tylko unikalne wartości. Odpowiedź z powtórzonym `aa` jest błędna, bo zbiór nie trzyma duplikatów.",
+    "difficulty": "easy",
+    "topic": "komprehensja zbioru"
+  },
+  {
+    "id": 583,
+    "materialId": 66,
+    "question": "Co zwróci ten kod?\n\n```python\nnums = [2, 3, 4]\nresult = sum(n * n for n in nums)\nprint(result)\n```",
+    "choices": [
+      "29",
+      "[4, 9, 16]",
+      "30",
+      "9"
+    ],
+    "correctIndex": 0,
+    "explanation": "To jest generator w środku `sum()`, więc suma kwadratów to `4 + 9 + 16 = 29`. Odpowiedź `30` jest częstym błędem rachunkowym.",
+    "difficulty": "medium",
+    "topic": "wyrażenie generatorowe"
+  },
+  {
+    "id": 584,
+    "materialId": 66,
+    "question": "Co się stanie po drugim wywołaniu?\n\n```python\ng = (x for x in [1, 2])\nprint(list(g))\nprint(list(g))\n```",
+    "choices": [
+      "Pierwszy raz: `[1, 2]`, drugi raz: `[]`",
+      "Oba razy: `[1, 2]`",
+      "Oba razy: `[]`",
+      "Pierwszy raz: `[]`, drugi raz: `[1, 2]`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Generator można przeczytać tylko raz. Drugie `list(g)` dostaje już pusty wynik, bo dane zostały zużyte.",
+    "difficulty": "hard",
+    "topic": "wyrażenie generatorowe"
+  },
+  {
+    "id": 585,
+    "materialId": 66,
+    "question": "Która wersja poprawnie tworzy słownik z nazwą jako kluczem i ceną jako wartością?",
+    "choices": [
+      "```python\nitems = [{\"name\": \"a\", \"price\": 2}]\nresult = {i[\"name\"]: i[\"price\"] for i in items}\n```",
+      "```python\nitems = [{\"name\": \"a\", \"price\": 2}]\nresult = {i[\"name\"], i[\"price\"] for i in items}\n```",
+      "```python\nitems = [{\"name\": \"a\", \"price\": 2}]\nresult = [i[\"name\"]: i[\"price\"] for i in items]\n```",
+      "```python\nitems = [{\"name\": \"a\", \"price\": 2}]\nresult = {i[\"name\"] for i in items}\n```"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tylko pierwsza wersja używa poprawnie dwukropka `:` między kluczem i wartością. Pozostałe wersje mają zły zapis albo tworzą inną kolekcję.",
+    "difficulty": "medium",
+    "topic": "komprehensja słownikowa"
+  },
+  {
+    "id": 586,
+    "materialId": 66,
+    "question": "Co zwróci ten kod?\n\n```python\nnums = [0, 5, 0, 7]\nresult = [n for n in nums if n]\nprint(result)\n```",
+    "choices": [
+      "[5, 7]",
+      "[0, 5, 0, 7]",
+      "[0, 0]",
+      "[5, 0, 7]"
+    ],
+    "correctIndex": 0,
+    "explanation": "W komprehensji `if n` zostawia tylko wartości uznane za prawdziwe, więc zera odpadają. Najbardziej myląca jest odpowiedź z pełną listą, bo filtr usuwa elementy.",
+    "difficulty": "hard",
+    "topic": "filtrowanie w komprehensji"
+  },
+  {
+    "id": 587,
+    "materialId": 66,
+    "question": "Co jest lepsze, gdy chcesz tylko policzyć sumę wielu liczb i nie potrzebujesz całej listy po drodze?",
+    "choices": [
+      "Generator w nawiasach okrągłych",
+      "Komprehensja listy",
+      "Zbiór",
+      "Słownik"
+    ],
+    "correctIndex": 0,
+    "explanation": "Generator nie buduje całej listy w pamięci, więc pasuje do `sum()`. Komprehensja listy tworzy całą listę od razu.",
+    "difficulty": "easy",
+    "topic": "wyrażenie generatorowe"
+  },
+  {
+    "id": 588,
+    "materialId": 67,
+    "question": "Co wypisze ten kod?\n\n```python\nimport math\n\nprint(math.sqrt(49))\n```",
+    "choices": [
+      "7.0",
+      "49",
+      "8.0",
+      "Błąd, bo `sqrt()` nie działa"
+    ],
+    "correctIndex": 0,
+    "explanation": " `math.sqrt(49)` liczy pierwiastek z 49, więc wynik to `7.0`. Odpowiedź `49` jest zła, bo kod nie wypisuje liczby wejściowej, tylko wynik działania.",
+    "difficulty": "easy",
+    "topic": "import"
+  },
+  {
+    "id": 589,
+    "materialId": 67,
+    "question": "Co wypisze ten kod?\n\n```python\nfrom math import pi\n\nprint(pi)\n```",
+    "choices": [
+      "3.141592653589793",
+      "math.pi",
+      "pi",
+      "Błąd, bo `pi` nie można importować"
+    ],
+    "correctIndex": 0,
+    "explanation": "Po `from math import pi` nazwa `pi` działa od razu. Odpowiedź `math.pi` jest zła, bo tu nie używasz prefiksu `math`.",
+    "difficulty": "easy",
+    "topic": "import"
+  },
+  {
+    "id": 590,
+    "materialId": 67,
+    "question": "Co wypisze ten kod?\n\n```python\nimport json as j\n\ndane = j.loads('{\"a\": \"b\"}')\nprint(dane)\n```",
+    "choices": [
+      "{'a': 'b'}",
+      "{\"a\": \"b\"}",
+      "j.loads('{\"a\": \"b\"}')",
+      "Błąd, bo `as` nie działa z `import`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Funkcja `loads()` zamienia napis JSON na słownik Pythona. Odpowiedź z napisem w cudzysłowie jest zła, bo `print(dane)` wypisuje już gotowy słownik.",
+    "difficulty": "medium",
+    "topic": "alias `as`"
+  },
+  {
+    "id": 591,
+    "materialId": 67,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nif __name__ == \"main\":\n    print(\"start\")\n```",
+    "choices": [
+      "Brakuje dwóch podkreślników: powinno być `\"__main__\"`",
+      "Trzeba dodać `import main`",
+      "`print()` nie działa w `if`",
+      "Kod jest poprawny"
+    ],
+    "correctIndex": 0,
+    "explanation": "Strażnik musi mieć dokładnie `\"__main__\"`. Bez podkreślników warunek nigdy nie będzie prawdziwy, więc `print()` się nie wykona.",
+    "difficulty": "easy",
+    "topic": "if __name__ == \"__main__\""
+  },
+  {
+    "id": 592,
+    "materialId": 67,
+    "question": "Co się stanie przy imporcie tego pliku?\n\n```python\n# plik: demo.py\n\ndef pokaz():\n    return \"OK\"\n\nprint(pokaz())\n```",
+    "choices": [
+      "Wypisze `OK`",
+      "Nic się nie stanie",
+      "Dostaniesz `ModuleNotFoundError`",
+      "Python automatycznie ukryje `print()` przy imporcie"
+    ],
+    "correctIndex": 0,
+    "explanation": "Import uruchamia cały kod pliku, więc `print(pokaz())` też się wykona. Odpowiedź „Nic się nie stanie” jest zła, bo właśnie przy imporcie kod działa.",
+    "difficulty": "medium",
+    "topic": "import"
+  },
+  {
+    "id": 593,
+    "materialId": 67,
+    "question": "Która wersja poprawnie chroni kod startowy przed uruchomieniem przy imporcie?",
+    "choices": [
+      "```python\ndef main():\n    print(\"start\")\n\nif __name__ == \"__main__\":\n    main()\n```",
+      "```python\ndef main():\n    print(\"start\")\n\nif __name__ == \"main\":\n    main()\n```",
+      "```python\ndef main():\n    print(\"start\")\n\nmain()\n```",
+      "```python\nprint(\"start\")\n```"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tylko pierwsza wersja ma poprawnego strażnika i woła `main()` we właściwym miejscu. Wersja z `\"main\"` jest zła, bo brakuje podkreślników.",
+    "difficulty": "medium",
+    "topic": "funkcja `main()`"
+  },
+  {
+    "id": 594,
+    "materialId": 67,
+    "question": "Co wypisze ten kod?\n\n```python\n# plik: narzedzia.py\nDOMYSLNY_MODEL = \"gpt-mini\"\n\n# plik: start.py\nfrom narzedzia import DOMYSLNY_MODEL\n\nprint(DOMYSLNY_MODEL)\n```",
+    "choices": [
+      "gpt-mini",
+      "DOMYSLNY_MODEL",
+      "narzedzia.DMYSLNY_MODEL",
+      "Błąd, bo stałych nie można importować"
+    ],
+    "correctIndex": 0,
+    "explanation": "Stałą można importować tak samo jak funkcję. Odpowiedź `DOMYSLNY_MODEL` jako tekst jest zła, bo `print()` wypisuje jej wartość.",
+    "difficulty": "easy",
+    "topic": "własny moduł"
+  },
+  {
+    "id": 595,
+    "materialId": 67,
+    "question": "Co jest problemem w takim projekcie?\n\n```python\n# plik: json.py\nimport json\n```",
+    "choices": [
+      "Plik ma tę samą nazwę co biblioteka i Python może zaimportować zły plik",
+      "Trzeba użyć `as`",
+      "`import` działa tylko w `main.py`",
+      "To zawsze działa poprawnie"
+    ],
+    "correctIndex": 0,
+    "explanation": "Nazwa pliku taka jak nazwa biblioteki robi bałagan. Python może wziąć twój plik zamiast gotowej biblioteki.",
+    "difficulty": "medium",
+    "topic": "częste błędy przy importach"
+  },
+  {
+    "id": 596,
+    "materialId": 67,
+    "question": "Co zwróci `srednia([])` dla takiej funkcji?\n\n```python\ndef srednia(liczby: list) -> float:\n    return sum(liczby) / len(liczby)\n```",
+    "choices": [
+      "Błąd",
+      "0.0",
+      "None",
+      "[]"
+    ],
+    "correctIndex": 0,
+    "explanation": "Dla pustej listy `len(liczby)` daje `0`, więc dzielenie nie zadziała. Odpowiedź `0.0` jest kusząca, ale tej wartości tu nie ma.",
+    "difficulty": "hard",
+    "topic": "funkcja `main()`"
+  },
+  {
+    "id": 597,
+    "materialId": 67,
+    "question": "Która wersja poprawnie importuje tylko `sqrt` i `pi` z modułu `math`?",
+    "choices": [
+      "```python\nfrom math import sqrt, pi\n```",
+      "```python\nimport math from sqrt, pi\n```",
+      "```python\nimport sqrt, pi from math\n```",
+      "```python\nfrom math import *\n```"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pierwsza wersja bierze dokładnie te dwie rzeczy z modułu. `from math import *` też technicznie wciąga wiele nazw, ale to właśnie rozwiązanie, którego lepiej unikać.",
+    "difficulty": "easy",
+    "topic": "import"
+  },
+  {
+    "id": 598,
+    "materialId": 68,
+    "question": "Co wypisze ten kod?\n\n```python\nitems = \"alpha==1.0.0\\nbeta==2.1.0\"\ncount = 0\nfor line in items.split(\"\\n\"):\n    count = count + 1\nprint(count)\n```",
+    "choices": [
+      "2",
+      "3",
+      "1",
+      "Błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "Są dwie linie, więc pętla wykona się dwa razy i `count` będzie równe `2`. Odpowiedź `1` jest błędna, bo liczy tylko jedną linię.",
+    "difficulty": "easy",
+    "topic": "`requirements.txt`"
+  },
+  {
+    "id": 599,
+    "materialId": 68,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\n# pip install requests\nimport requests\nprint(requests.__version__)\n```",
+    "choices": [
+      "Nic, kod jest poprawny tylko wtedy, gdy środowisko jest aktywne.",
+      "Trzeba najpierw użyć `pip freeze`.",
+      "Brakuje `import pip`.",
+      "Pakiet `requests` nie da się importować."
+    ],
+    "correctIndex": 0,
+    "explanation": "Kod może działać, ale tylko jeśli pakiet został zainstalowany w aktywnym środowisku. Najczęstszy błąd to instalacja poza `.venv`, a nie sam import.",
+    "difficulty": "medium",
+    "topic": "pip i instalowanie pakietów"
+  },
+  {
+    "id": 600,
+    "materialId": 68,
+    "question": "Która wersja poprawnie zapisuje pakiety do pliku `requirements.txt`?\n\nA.\n```python\n# pip freeze > requirements.txt\n```\nB.\n```python\n# pip install -r requirements.txt\n```\nC.\n```python\n# python -m venv requirements.txt\n```\nD.\n```python\n# pip show requirements.txt\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 0,
+    "explanation": "To `pip freeze > requirements.txt` tworzy zapis wszystkich pakietów z wersjami. `pip install -r requirements.txt` robi coś odwrotnego: instaluje pakiety z pliku.",
+    "difficulty": "easy",
+    "topic": "`requirements.txt`"
+  },
+  {
+    "id": 601,
+    "materialId": 68,
+    "question": "Co wypisze ten kod?\n\n```python\npath = \"C:\\\\proj\\\\demo\\\\.venv\\\\Scripts\\\\python.exe\"\nif \".venv\" in path:\n    print(\"tak\")\nelse:\n    print(\"nie\")\n```",
+    "choices": [
+      "tak",
+      "nie",
+      "Błąd",
+      "Nic"
+    ],
+    "correctIndex": 0,
+    "explanation": "W ścieżce jest tekst `.venv`, więc warunek jest prawdziwy. Odpowiedź `nie` byłaby dobra tylko wtedy, gdyby `.venv` nie było w ścieżce.",
+    "difficulty": "easy",
+    "topic": "sprawdzanie środowiska"
+  },
+  {
+    "id": 602,
+    "materialId": 68,
+    "question": "Która komenda aktywuje środowisko na Linux/Mac?",
+    "choices": [
+      "source .venv/bin/activate",
+      ".venv\\Scripts\\activate",
+      ".venv\\Scripts\\Activate.ps1",
+      "deactivate"
+    ],
+    "correctIndex": 0,
+    "explanation": "Na Linux i Mac używa się `source .venv/bin/activate`. Pozostałe komendy są dla Windows albo służą do wyjścia ze środowiska.",
+    "difficulty": "easy",
+    "topic": "aktywacja środowiska"
+  },
+  {
+    "id": 603,
+    "materialId": 68,
+    "question": "Co zwróci ten kod?\n\n```python\ntext = \"red==1\\nblue==2\\ngreen==3\"\npackages = {}\nfor line in text.split(\"\\n\"):\n    name, version = line.split(\"==\")\n    packages[name] = version\nprint(packages[\"blue\"])\n```",
+    "choices": [
+      "2",
+      "blue",
+      "green",
+      "Błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "Do słownika trafia para `blue: 2`, więc odczyt `packages[\"blue\"]` zwróci `2`. Odpowiedź `blue` jest błędna, bo to klucz, a nie wartość.",
+    "difficulty": "medium",
+    "topic": "`requirements.txt`"
+  },
+  {
+    "id": 604,
+    "materialId": 68,
+    "question": "Co jest największym problemem, gdy zapomnisz dodać `.venv/` do `.gitignore`?",
+    "choices": [
+      "Do repo może trafić duży, lokalny folder środowiska.",
+      "Python przestanie działać.",
+      "`pip freeze` przestanie działać.",
+      "Nie da się użyć `requirements.txt`."
+    ],
+    "correctIndex": 0,
+    "explanation": "Folder `.venv` jest duży i zależy od komputera, więc nie powinien iść do gita. `requirements.txt` wystarczy, żeby ktoś odtworzył środowisko.",
+    "difficulty": "easy",
+    "topic": "`.venv` w `.gitignore`"
+  },
+  {
+    "id": 605,
+    "materialId": 68,
+    "question": "Co się stanie, gdy po aktywacji wpiszesz `pip uninstall requests`?",
+    "choices": [
+      "Pakiet `requests` zostanie usunięty z aktywnego środowiska.",
+      "Pakiet zostanie zainstalowany jeszcze raz.",
+      "Zostanie utworzony plik `requirements.txt`.",
+      "Środowisko samo się wyłączy."
+    ],
+    "correctIndex": 0,
+    "explanation": "`pip uninstall` służy do usuwania pakietu. Nie tworzy pliku i nie wyłącza środowiska.",
+    "difficulty": "easy",
+    "topic": "pip i instalowanie pakietów"
+  },
+  {
+    "id": 606,
+    "materialId": 68,
+    "question": "Który błąd najczęściej oznacza, że pakiet nie został zainstalowany w tym środowisku, którego używa projekt?",
+    "choices": [
+      "ModuleNotFoundError: No module named 'requests'",
+      "cannot be loaded because running scripts is disabled on this system",
+      "SyntaxError: invalid syntax",
+      "TypeError: unsupported operand type"
+    ],
+    "correctIndex": 0,
+    "explanation": "Ten błąd mówi, że Python nie znalazł modułu. Często dzieje się tak, gdy `pip install` poszło poza aktywnym `.venv`.",
+    "difficulty": "medium",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 607,
+    "materialId": 69,
+    "question": "Co wypisze ten kod?\n\n```python\nclass Box:\n    def __init__(self, name):\n        self.name = name\n\nb = Box(\"A\")\nprint(b.name)\n```",
+    "choices": [
+      "A",
+      "Box",
+      "name",
+      "Błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "Obiekt `b` ma pole `name` ustawione na `\"A\"`, więc `print(b.name)` wypisze `A`. Odpowiedź `Błąd` jest zła, bo kod ma poprawny `__init__` i `self`.",
+    "difficulty": "easy",
+    "topic": "obiekty"
+  },
+  {
+    "id": 608,
+    "materialId": 69,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nclass Item:\n    def show():\n        return \"ok\"\n\nx = Item()\nprint(x.show())\n```",
+    "choices": [
+      "Nic nie jest nie tak",
+      "Brakuje `self` w `show()`",
+      "Trzeba dodać `return` do `__init__`",
+      "Trzeba użyć `Optional`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Metoda `show()` musi mieć `self` jako pierwszy parametr. Bez tego Python próbuje przekazać obiekt i pojawia się błąd. Odpowiedź o `return` i `Optional` nie pasuje do tego problemu.",
+    "difficulty": "medium",
+    "topic": "metody"
+  },
+  {
+    "id": 609,
+    "materialId": 69,
+    "question": "Która wersja poprawnie tworzy klasę z polem `count` i metodą `add`? \n\nA.\n```python\nclass Counter:\n    def __init__(self, count):\n        self.count = count\n\n    def add(self):\n        self.count = self.count + 1\n```\n\nB.\n```python\nclass Counter:\n    def init(self, count):\n        self.count = count\n\n    def add(self):\n        self.count = self.count + 1\n```\n\nC.\n```python\nclass Counter:\n    def __init__(self, count):\n        count = count\n\n    def add(self):\n        self.count = self.count + 1\n```\n\nD.\n```python\nclass Counter:\n    def __init__(count):\n        self.count = count\n```\n",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tylko wersja A ma poprawne `__init__` z `self` i zapisuje wartość do `self.count`. Wersja B ma złą nazwę `init`, a w D brakuje `self`.",
+    "difficulty": "medium",
+    "topic": "`self`"
+  },
+  {
+    "id": 610,
+    "materialId": 69,
+    "question": "Co zwróci ten kod?\n\n```python\ndef suma(liczby: list[int]) -> int:\n    return len(liczby)\n\nprint(suma([5, 7, 9, 1]))\n```",
+    "choices": [
+      "4",
+      "22",
+      "9",
+      "Błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "Funkcja zwraca `len(liczby)`, czyli liczbę elementów na liście. Odpowiedź `22` jest błędna, bo kod nic nie dodaje.",
+    "difficulty": "easy",
+    "topic": "type hints"
+  },
+  {
+    "id": 611,
+    "materialId": 69,
+    "question": "Co zwróci ten kod?\n\n```python\nfrom typing import Optional\n\ndef znajdz(text: str) -> Optional[str]:\n    for word in text.split():\n        if \"#\" in word:\n            return word\n    return None\n\nprint(znajdz(\"brak znaku\"))\n```",
+    "choices": [
+      "None",
+      "\"\"",
+      "Błąd",
+      "\"#\""
+    ],
+    "correctIndex": 0,
+    "explanation": "W tekście nie ma słowa z `#`, więc funkcja dojdzie do końca i zwróci `None`. Odpowiedź `\"\"` jest zła, bo kod nigdzie nie zwraca pustego tekstu.",
+    "difficulty": "medium",
+    "topic": "`Optional`"
+  },
+  {
+    "id": 612,
+    "materialId": 69,
+    "question": "Co wypisze ten kod?\n\n```python\nclass Job:\n    def __init__(self, title):\n        self.title = title\n        self.done = False\n\n    def finish(self):\n        self.done = True\n\nj = Job(\"demo\")\nj.finish()\nprint(j.done)\n```",
+    "choices": [
+      "False",
+      "True",
+      "demo",
+      "Błąd"
+    ],
+    "correctIndex": 1,
+    "explanation": "Metoda `finish()` zmienia `self.done` na `True`, więc `print(j.done)` wypisze `True`. Odpowiedź `False` jest typowym błędem, gdy ktoś nie zauważy wywołania metody.",
+    "difficulty": "easy",
+    "topic": "metody"
+  },
+  {
+    "id": 613,
+    "materialId": 69,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nclass Flow:\n    steps = []\n\n    def add(self, step):\n        self.steps.append(step)\n```",
+    "choices": [
+      "Nic nie jest nie tak",
+      "Lista `steps` będzie wspólna dla wszystkich obiektów",
+      "`append` nie działa na listach",
+      "Trzeba dodać `Optional`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`steps = []` jest na poziomie klasy, więc wszystkie obiekty mogą widzieć tę samą listę. Lepsze jest `self.steps = []` w `__init__`.",
+    "difficulty": "hard",
+    "topic": "błędy i pułapki"
+  },
+  {
+    "id": 614,
+    "materialId": 69,
+    "question": "Która wersja poprawnie opisuje funkcję, która zwraca słownik z licznikami?\n\nA.\n```python\ndef count(items: list[int]) -> dict[int, int]:\n    return {}\n```\n\nB.\n```python\ndef count(items: dict[int, int]) -> list[int]:\n    return {}\n```\n\nC.\n```python\ndef count(items: list[int]) -> Optional[str]:\n    return {}\n```\n\nD.\n```python\ndef count(items: int) -> dict[int, int]:\n    return {}\n```\n",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tylko A ma wejście jako lista liczb i wynik jako słownik `dict[int, int]`. Pozostałe wersje mają zły typ wejścia albo zły typ wyniku.",
+    "difficulty": "medium",
+    "topic": "type hints"
+  },
+  {
+    "id": 615,
+    "materialId": 69,
+    "question": "Co wypisze ten kod?\n\n```python\nfrom dataclasses import dataclass\n\n@dataclass\nclass Point:\n    x: int\n    y: int\n\np1 = Point(1, 2)\np2 = Point(1, 2)\nprint(p1 == p2)\n```",
+    "choices": [
+      "True",
+      "False",
+      "(1, 2)",
+      "Błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "`@dataclass` daje porównywanie obiektów po polach, więc dwa takie same obiekty są równe. W zwykłej klasie bez `@dataclass` wynik często byłby `False`.",
+    "difficulty": "medium",
+    "topic": "`@dataclass`"
+  },
+  {
+    "id": 616,
+    "materialId": 69,
+    "question": "Co zwróci ten kod?\n\n```python\ndef first_or_none(text: str) -> Optional[str]:\n    parts = text.split()\n    if parts:\n        return parts[0]\n    return None\n\nprint(first_or_none(\"\"))\n```",
+    "choices": [
+      "None",
+      "\"\"",
+      "Błąd",
+      "0"
+    ],
+    "correctIndex": 0,
+    "explanation": "Dla pustego tekstu `split()` daje pustą listę, więc warunek `if parts` nie wejdzie i funkcja zwróci `None`. Odpowiedź `\"\"` jest zła, bo kod nie zwraca pustego tekstu.",
+    "difficulty": "medium",
+    "topic": "`Optional`"
+  },
+  {
+    "id": 617,
+    "materialId": 70,
+    "question": "Co zwróci ten kod?\n\n```python\nimport json\n\ntekst = '{\"x\": 2, \"y\": 3}'\ndane = json.loads(tekst)\nprint(dane[\"x\"] + dane[\"y\"])\n```",
+    "choices": [
+      "5",
+      "23",
+      "Błąd, bo `loads()` nie działa",
+      "2"
+    ],
+    "correctIndex": 0,
+    "explanation": "`json.loads()` zamienia tekst na słownik, więc można dodać `2` i `3`. Odpowiedź `23` jest błędna, bo to nie jest sklejanie tekstu.",
+    "difficulty": "easy",
+    "topic": "json.loads"
+  },
+  {
+    "id": 618,
+    "materialId": 70,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport json\n\ntekst = \"{'a': 1}\"\ndane = json.loads(tekst)\n```",
+    "choices": [
+      "Nic, kod jest poprawny",
+      "JSON ma pojedyncze cudzysłowy",
+      "Brakuje `import json`",
+      "`loads()` działa tylko na listach"
+    ],
+    "correctIndex": 1,
+    "explanation": "JSON wymaga podwójnych cudzysłowów. Pojedyncze cudzysłowy są poprawne w Pythonie, ale nie w JSON-ie.",
+    "difficulty": "medium",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 619,
+    "materialId": 70,
+    "question": "Co zwróci ten kod?\n\n```python\nimport json\n\nwartosc = json.dumps({\"miasto\": \"Łódź\"})\nprint(wartosc)\n```",
+    "choices": [
+      "`{\"miasto\": \"Łódź\"}`",
+      "`{\"miasto\": \"\\u0141\\u00f3d\\u017a\"}`",
+      "`{'miasto': 'Łódź'}`",
+      "Błąd, bo `dumps()` nie przyjmuje słownika"
+    ],
+    "correctIndex": 1,
+    "explanation": "Domyślnie `dumps()` ucieka znaki spoza ASCII. Odpowiedź z normalnym `Łódź` pojawi się dopiero przy `ensure_ascii=False`.",
+    "difficulty": "medium",
+    "topic": "json.dumps"
+  },
+  {
+    "id": 620,
+    "materialId": 70,
+    "question": "Która wersja poprawnie zamienia słownik na tekst JSON z polskimi znakami?\n\nA.\n```python\njson.dumps(dane)\n```\nB.\n```python\njson.dumps(dane, ensure_ascii=False)\n```\nC.\n```python\njson.loads(dane)\n```\nD.\n```python\njson.dumps(dane, indent=2)\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "`ensure_ascii=False` zostawia polskie znaki. `loads()` działa w drugą stronę, a `indent=2` tylko formatuje wynik.",
+    "difficulty": "easy",
+    "topic": "json.dumps"
+  },
+  {
+    "id": 621,
+    "materialId": 70,
+    "question": "Co zwróci ten kod?\n\n```python\nimport json\n\ntekst = '{\"user\": {\"name\": \"Ala\"}, \"scores\": [4, 6]}'\ndane = json.loads(tekst)\nprint(dane[\"scores\"][1])\n```",
+    "choices": [
+      "4",
+      "6",
+      "[4, 6]",
+      "Błąd, bo lista nie ma indeksu"
+    ],
+    "correctIndex": 1,
+    "explanation": "`dane[\"scores\"]` to lista, a `[1]` oznacza drugi element, czyli `6`. `4` to pierwszy element, więc to częsty błąd.",
+    "difficulty": "easy",
+    "topic": "zagnieżdżone dane"
+  },
+  {
+    "id": 622,
+    "materialId": 70,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\ntekst = '{\"status\": \"ok\"}'\nprint(tekst[\"status\"])\n```",
+    "choices": [
+      "Nic, kod jest poprawny",
+      "String można indeksować tylko liczbą",
+      "Brakuje `json.dumps()`",
+      "`status` powinno być w `get()`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`tekst` jest zwykłym stringiem, więc nie da się brać z niego pola jak ze słownika. Najpierw trzeba zrobić `json.loads(tekst)`.",
+    "difficulty": "medium",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 623,
+    "materialId": 70,
+    "question": "Która wersja bezpiecznie odczyta opcjonalne pole `error`?\n\nA.\n```python\ndane[\"error\"]\n```\nB.\n```python\ndane.get(\"error\")\n```\nC.\n```python\ndane.loads(\"error\")\n```\nD.\n```python\ndane.dumps(\"error\")\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "`.get()` nie wywali błędu, gdy pola nie ma. `[...]` może dać błąd.",
+    "difficulty": "easy",
+    "topic": ".get()"
+  },
+  {
+    "id": 624,
+    "materialId": 70,
+    "question": "Co zwróci ten kod?\n\n```python\nimport json\n\ntekst = '{\"a\": 1, \"b\": 2}'\ndane = json.loads(tekst)\nprint(type(dane))\n```",
+    "choices": [
+      "`<class 'list'>`",
+      "`<class 'dict'>`",
+      "`<class 'str'>`",
+      "`<class 'int'>`"
+    ],
+    "correctIndex": 1,
+    "explanation": "JSON z obiektem zamienia się na `dict`. To nie jest lista ani string.",
+    "difficulty": "easy",
+    "topic": "json.loads"
+  },
+  {
+    "id": 625,
+    "materialId": 70,
+    "question": "Co się stanie, gdy wywołamy `dane.get(\"x\", \"brak\")` na słowniku bez klucza `x`?",
+    "choices": [
+      "Dostaniemy błąd",
+      "Dostaniemy `None`",
+      "Dostaniemy `brak`",
+      "Dostaniemy `0`"
+    ],
+    "correctIndex": 2,
+    "explanation": "Drugi argument w `.get()` to wartość domyślna. Jeśli klucza nie ma, dostaniesz właśnie ją.",
+    "difficulty": "easy",
+    "topic": ".get()"
+  },
+  {
+    "id": 626,
+    "materialId": 70,
+    "question": "Co jest lepsze dla pola obowiązkowego, którego brak ma być błędem?",
+    "choices": [
+      "`dane.get(\"pole\")`",
+      "`dane[\"pole\"]`",
+      "`json.dumps(pole)`",
+      "`json.loads(pole)`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`[...]` od razu pokaże błąd, gdy pola nie ma. To dobre dla danych, które muszą być obecne.",
+    "difficulty": "medium",
+    "topic": "zagnieżdżone dane"
+  },
+  {
+    "id": 627,
+    "materialId": 70,
+    "question": "Co zwróci ten kod?\n\n```python\nimport json\n\ntekst = '[10, 20, 30]'\ndane = json.loads(tekst)\nprint(dane[0] + dane[2])\n```",
+    "choices": [
+      "20",
+      "30",
+      "40",
+      "Błąd, bo JSON jest listą"
+    ],
+    "correctIndex": 2,
+    "explanation": "`dane` to lista, więc `[0]` to `10`, a `[2]` to `30`. Razem daje `40`.",
+    "difficulty": "easy",
+    "topic": "json.loads"
+  },
+  {
+    "id": 628,
+    "materialId": 71,
+    "question": "Co wypisze ten kod?\n\n```python\nimport requests\n\nresponse = requests.get(\"https://api.example.com/info\", timeout=10)\nprint(response.status_code)\n```",
+    "choices": [
+      "200",
+      "404",
+      "500",
+      "Nie da się tego sprawdzić"
+    ],
+    "correctIndex": 0,
+    "explanation": "`response.status_code` wypisuje kod odpowiedzi serwera. W zadaniu chodzi o samą wartość, więc poprawna jest odpowiedź z kodem sukcesu. Odpowiedź `404` byłaby błędem, a nie zwykłym wynikiem tego kodu.",
+    "difficulty": "easy",
+    "topic": "requests.get"
+  },
+  {
+    "id": 629,
+    "materialId": 71,
+    "question": "Co wypisze ten kod?\n\n```python\ndane = {\"users\": [{\"name\": \"Ola\"}, {\"name\": \"Marek\"}]}\nimiona = [u[\"name\"] for u in dane[\"users\"]]\nprint(imiona)\n```",
+    "choices": [
+      "['Ola', 'Marek']",
+      "['users']",
+      "['name', 'name']",
+      "[Ola, Marek]"
+    ],
+    "correctIndex": 0,
+    "explanation": "Lista składana bierze każde `u` z `dane[\"users\"]` i wybiera `u[\"name\"]`. Odpowiedź bez cudzysłowów jest zła, bo Python pokazuje napisy jako tekst.",
+    "difficulty": "medium",
+    "topic": "JSON i słowniki"
+  },
+  {
+    "id": 630,
+    "materialId": 71,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport requests\n\nresponse = requests.post(\n    \"https://api.example.com/run\",\n    data={\"prompt\": \"hej\"},\n    timeout=30,\n)\n```",
+    "choices": [
+      "Nic, to jest poprawne do wysyłania JSON do API",
+      "Powinno być `json=...`, a nie `data=...`",
+      "Brakuje `GET` zamiast `POST`",
+      "`timeout` nie wolno używać z `POST`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Do API z JSON-em zwykle używa się `json=...`. `data=` wysyła dane jako formularz, więc serwer może tego nie zrozumieć. `POST` jest tu poprawne, a `timeout` też wolno używać.",
+    "difficulty": "medium",
+    "topic": "requests.post"
+  },
+  {
+    "id": 631,
+    "materialId": 71,
+    "question": "Która wersja poprawnie dodaje parametry do żądania `GET`?",
+    "choices": [
+      "```python\nrequests.get(\"https://api.example.com/search?q=koty&limit=5\")\n```",
+      "```python\nrequests.get(\"https://api.example.com/search\", params={\"q\": \"koty\", \"limit\": 5})\n```",
+      "```python\nrequests.post(\"https://api.example.com/search\", params={\"q\": \"koty\", \"limit\": 5})\n```",
+      "```python\nrequests.get(\"https://api.example.com/search\", json={\"q\": \"koty\", \"limit\": 5})\n```"
+    ],
+    "correctIndex": 1,
+    "explanation": "`params=` jest przeznaczone do parametrów w `GET`. Ręczne sklejanie URL-a działa gorzej i łatwo się pomylić. `json=` nie służy do parametrów `GET`.",
+    "difficulty": "medium",
+    "topic": "params"
+  },
+  {
+    "id": 632,
+    "materialId": 71,
+    "question": "Co wypisze ten kod?\n\n```python\ndef obsluz(status_code: int) -> str:\n    if status_code == 404:\n        return \"Nie znaleziono\"\n    if status_code >= 500:\n        return \"Błąd serwera\"\n    return \"OK\"\n\nprint(obsluz(503))\n```",
+    "choices": [
+      "Nie znaleziono",
+      "Błąd serwera",
+      "OK",
+      "503"
+    ],
+    "correctIndex": 1,
+    "explanation": "`503` jest większe lub równe `500`, więc funkcja zwraca tekst o błędzie serwera. Odpowiedź `OK` jest zła, bo ten warunek nie przejdzie.",
+    "difficulty": "easy",
+    "topic": "kody statusu"
+  },
+  {
+    "id": 633,
+    "materialId": 71,
+    "question": "Co się stanie, gdy spróbujesz użyć `response.json()` na odpowiedzi, która nie jest JSON-em?",
+    "choices": [
+      "Python sam zamieni HTML na słownik",
+      "Pojawi się błąd `requests.exceptions.JSONDecodeError`",
+      "Zawsze zwróci pusty słownik",
+      "Kod `status_code` zmieni się na `200`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`json()` oczekuje JSON-a. Jeśli odpowiedź ma zwykły tekst albo HTML, pojawi się błąd parsowania. Dlatego najpierw sprawdza się `status_code`.",
+    "difficulty": "medium",
+    "topic": "response.json"
+  },
+  {
+    "id": 634,
+    "materialId": 71,
+    "question": "Która wersja poprawnie obsługuje problemy z połączeniem?",
+    "choices": [
+      "```python\nresponse = requests.get(url, timeout=10)\nprint(response.json())\n```",
+      "```python\ntry:\n    response = requests.get(url, timeout=10)\nexcept requests.exceptions.RequestException as e:\n    print(f\"Problem z połączeniem: {e}\")\n```",
+      "```python\nresponse = requests.get(url)\nexcept requests.exceptions.RequestException:\n    print(\"Błąd\")\n```",
+      "```python\ntry:\n    response = requests.post(url)\nprint(response.status_code)\n```"
+    ],
+    "correctIndex": 1,
+    "explanation": "`try/except` pozwala złapać błędy sieci. `RequestException` obejmuje wiele problemów z requests. W pozostałych wersjach brakuje poprawnej obsługi błędu albo składnia jest zła.",
+    "difficulty": "hard",
+    "topic": "obsługa błędów"
+  },
+  {
+    "id": 635,
+    "materialId": 71,
+    "question": "Co wypisze ten kod?\n\n```python\ndane = {\"result\": 42}\nprint(dane.get(\"result\", \"brak wyniku\"))\n```",
+    "choices": [
+      "42",
+      "brak wyniku",
+      "result",
+      "None"
+    ],
+    "correctIndex": 0,
+    "explanation": "Klucz `result` istnieje, więc `get()` zwraca jego wartość. Tekst domyślny działa tylko wtedy, gdy klucza nie ma.",
+    "difficulty": "easy",
+    "topic": "słowniki"
+  },
+  {
+    "id": 636,
+    "materialId": 71,
+    "question": "Która sytuacja najbardziej pasuje do kodu `429`?",
+    "choices": [
+      "Zły adres URL",
+      "Brak uprawnień",
+      "Przekroczony limit zapytań",
+      "Błąd składni w Pythonie"
+    ],
+    "correctIndex": 2,
+    "explanation": "`429` oznacza, że wysłano za dużo zapytań. Trzeba poczekać i spróbować ponownie. To nie jest problem składni Pythona.",
+    "difficulty": "easy",
+    "topic": "kody statusu"
+  },
+  {
+    "id": 637,
+    "materialId": 71,
+    "question": "Co jest lepszym powodem do użycia `POST` niż `GET`?",
+    "choices": [
+      "Chcesz pobrać listę stron",
+      "Chcesz wysłać JSON z promptem do API",
+      "Chcesz zobaczyć adres URL w przeglądarce",
+      "Chcesz uniknąć `timeout`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`POST` jest do wysyłania danych w ciele żądania. To pasuje do JSON-a z promptem. `GET` jest bardziej do pobierania danych.",
+    "difficulty": "medium",
+    "topic": "metody HTTP"
+  },
+  {
+    "id": 638,
+    "materialId": 72,
+    "question": "Co zwróci ten kod?\n\n```python\nimport os\n\nprint(os.getenv(\"BRAK_TAKIEJ_ZMIENNEJ\"))\n```",
+    "choices": [
+      "`None`",
+      "`\"\"`",
+      "Błąd `KeyError`",
+      "`0`"
+    ],
+    "correctIndex": 0,
+    "explanation": "`os.getenv()` zwraca `None`, gdy zmiennej nie ma. `KeyError` dotyczy `os.environ[\"NAZWA\"]`, nie `os.getenv()`.",
+    "difficulty": "easy",
+    "topic": "`os.environ` i `os.getenv`"
+  },
+  {
+    "id": 639,
+    "materialId": 72,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport os\n\nklucz = os.getenv(\"OPENAI_API_KEY\")\nprint(klucz)\n```",
+    "choices": [
+      "Nic, kod jest poprawny",
+      "Brakuje `load_dotenv()` przed odczytem, więc z `.env` może wyjść `None`",
+      "Trzeba użyć `os.environ[\"OPENAI_API_KEY\"]` zawsze",
+      "`print()` nie działa ze zmiennymi środowiskowymi"
+    ],
+    "correctIndex": 1,
+    "explanation": "Kod czyta zmienną, ale nie wczytuje `.env`. Bez `load_dotenv()` Python nie zna zawartości tego pliku.",
+    "difficulty": "medium",
+    "topic": "plik `.env`"
+  },
+  {
+    "id": 640,
+    "materialId": 72,
+    "question": "Która wersja poprawnie wczytuje `.env` i potem czyta klucz?\n\nA.\n```python\nimport os\nfrom dotenv import load_dotenv\n\nklucz = os.getenv(\"API_KEY\")\nload_dotenv()\n```\nB.\n```python\nfrom dotenv import load_dotenv\nimport os\n\nload_dotenv()\nklucz = os.getenv(\"API_KEY\")\n```\nC.\n```python\nimport os\n\nklucz = os.getenv(\"API_KEY\")\n```\nD.\n```python\nfrom dotenv import load_dotenv\n\nklucz = load_dotenv(\"API_KEY\")\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Najpierw trzeba wywołać `load_dotenv()`, a dopiero potem robić `os.getenv()`. Wersja A robi to w złej kolejności, a D używa `load_dotenv()` nie tak, jak trzeba.",
+    "difficulty": "easy",
+    "topic": "plik `.env`"
+  },
+  {
+    "id": 641,
+    "materialId": 72,
+    "question": "Co zwróci ten kod?\n\n```python\nimport os\n\nprint(os.getenv(\"TRYB\", \"development\"))\n```",
+    "choices": [
+      "`None`",
+      "`development`",
+      "Błąd `KeyError`",
+      "`TRYB`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Jeśli `TRYB` nie ma, `os.getenv()` zwraca wartość domyślną. `KeyError` byłby przy `os.environ[\"TRYB\"]`.",
+    "difficulty": "easy",
+    "topic": "`os.environ` i `os.getenv`"
+  },
+  {
+    "id": 642,
+    "materialId": 72,
+    "question": "Co jest najlepsze dla klucza API, gdy zmiennej brakuje?",
+    "choices": [
+      "Dać wartość domyślną i iść dalej",
+      "Zignorować problem",
+      "Zgłosić czytelny błąd od razu",
+      "Wypisać `None` i liczyć, że się uda"
+    ],
+    "correctIndex": 2,
+    "explanation": "Dla klucza API brak nie powinien przechodzić cicho. Lepiej przerwać program od razu i powiedzieć, co trzeba naprawić.",
+    "difficulty": "medium",
+    "topic": "brak klucza"
+  },
+  {
+    "id": 643,
+    "materialId": 72,
+    "question": "Co się stanie, gdy użyjemy `os.environ[\"NIE_MA\"]` i zmiennej nie ma?",
+    "choices": [
+      "Zwróci `None`",
+      "Zwróci `\"\"`",
+      "Pojawi się `KeyError`",
+      "Zwróci wartość domyślną"
+    ],
+    "correctIndex": 2,
+    "explanation": "`os.environ[\"NAZWA\"]` nie daje wartości domyślnej. Gdy zmiennej nie ma, program się wywali z `KeyError`.",
+    "difficulty": "easy",
+    "topic": "`os.environ` i `os.getenv`"
+  },
+  {
+    "id": 644,
+    "materialId": 72,
+    "question": "Co jest nie tak z plikiem `.env`?\n\n```text\nAPI_KEY = \"sk-123\"\n```",
+    "choices": [
+      "Nic, to poprawny format",
+      "Są spacje i cudzysłowy, a powinno być `API_KEY=sk-123`",
+      "Powinno być `load_dotenv()` w tym pliku",
+      "Trzeba dodać `print()`"
+    ],
+    "correctIndex": 1,
+    "explanation": "W `.env` nie powinno być spacji wokół `=` ani cudzysłowów. Taki zapis może dać złą wartość.",
+    "difficulty": "medium",
+    "topic": "plik `.env`"
+  },
+  {
+    "id": 645,
+    "materialId": 72,
+    "question": "Która wersja najlepiej sprawdza brak zmiennej na starcie?\n\nA.\n```python\nimport os\n\nklucz = os.getenv(\"DB_PASSWORD\")\nprint(klucz)\n```\nB.\n```python\nimport os\n\ndef pobierz_klucz(nazwa: str) -> str:\n    klucz = os.getenv(nazwa)\n    if not klucz:\n        raise RuntimeError(f\"Brak zmiennej środowiskowej {nazwa}.\")\n    return klucz\n```\nC.\n```python\nimport os\n\nprint(os.getenv(\"DB_PASSWORD\", \"domyslna\"))\n```\nD.\n```python\nimport os\n\nklucz = os.environ[\"DB_PASSWORD\"]\nprint(klucz)\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wersja B daje czytelny błąd od razu. A i C mogą przepuścić problem, a D nie daje własnego komunikatu.",
+    "difficulty": "medium",
+    "topic": "brak klucza"
+  },
+  {
+    "id": 646,
+    "materialId": 72,
+    "question": "Co zwróci ten kod?\n\n```python\ndef wyglada_jak_klucz(wartosc: str) -> bool:\n    return wartosc.startswith(\"sk-\") and len(wartosc) > 10\n\nprint(wyglada_jak_klucz(\"sk-abcde12345\"))\n```",
+    "choices": [
+      "`True`",
+      "`False`",
+      "Błąd `RuntimeError`",
+      "`None`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tekst zaczyna się od `sk-` i ma więcej niż 10 znaków, więc warunek jest spełniony. `False` byłoby złe, bo oba warunki są prawdziwe.",
+    "difficulty": "easy",
+    "topic": "walidacja"
+  },
+  {
+    "id": 647,
+    "materialId": 72,
+    "question": "Co się stanie, jeśli `.env` istnieje, ale nie ma `load_dotenv()`?\n\n```python\nimport os\n\nprint(os.getenv(\"OPENAI_API_KEY\"))\n```",
+    "choices": [
+      "Zawsze wypisze wartość z `.env`",
+      "Wypisze `None`, bo Python nie wczytał pliku `.env`",
+      "Pojawi się `KeyError`",
+      "Kod sam doda zmienną"
+    ],
+    "correctIndex": 1,
+    "explanation": "Sam plik `.env` nie wystarczy. Trzeba go najpierw wczytać przez `load_dotenv()`.",
+    "difficulty": "medium",
+    "topic": "plik `.env`"
+  },
+  {
+    "id": 648,
+    "materialId": 73,
+    "question": "Co wypisze ten kod?\n\n```python\nimport logging\n\nlogging.basicConfig(level=logging.WARNING)\n\nlogging.info(\"start\")\nlogging.warning(\"uwaga\")\n```",
+    "choices": [
+      "Wypisze tylko `WARNING:root:uwaga`",
+      "Wypisze tylko `INFO:root:start`",
+      "Wypisze oba komunikaty",
+      "Nie wypisze nic"
+    ],
+    "correctIndex": 0,
+    "explanation": "Poziom jest ustawiony na `WARNING`, więc `INFO` jest ukryte. Popularny błąd to myślenie, że niższe poziomy też się pokażą.",
+    "difficulty": "easy",
+    "topic": "Poziomy logowania"
+  },
+  {
+    "id": 649,
+    "materialId": 73,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport logging\n\nlogging.basicConfig(level=logging.INF)\n```",
+    "choices": [
+      "Nic, kod jest poprawny",
+      "Powinno być `logging.INFO`, a nie `logging.INF`",
+      "`basicConfig` nie może mieć `level`",
+      "Trzeba użyć `print()` zamiast `logging`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`logging.INF` nie istnieje. Poprawna stała to `logging.INFO`. Najczęstszy błąd to literówka w nazwie poziomu.",
+    "difficulty": "easy",
+    "topic": "Częste błędy"
+  },
+  {
+    "id": 650,
+    "materialId": 73,
+    "question": "Co wypisze ten kod?\n\n```python\nimport logging\n\nlogging.basicConfig(level=logging.INFO, format=\"%(levelname)s: %(message)s\")\nlogger = logging.getLogger(__name__)\n\nlogger.warning(\"brak danych\")\n```",
+    "choices": [
+      "WARNING: brak danych",
+      "INFO: brak danych",
+      "root: brak danych",
+      "Nie wypisze nic"
+    ],
+    "correctIndex": 0,
+    "explanation": "Format pokazuje poziom i wiadomość. `logger.warning(...)` daje poziom `WARNING`, więc taki tekst się pojawi.",
+    "difficulty": "easy",
+    "topic": "`basicConfig`"
+  },
+  {
+    "id": 651,
+    "materialId": 73,
+    "question": "Która wersja poprawnie zapisuje logi do pliku?",
+    "choices": [
+      "```python\nimport logging\n\nlogging.basicConfig(filename=\"log.txt\")\n```",
+      "```python\nimport logging\n\nlogging.basicConfig(file=\"log.txt\")\n```",
+      "```python\nimport logging\n\nlogging.basicConfig(path=\"log.txt\")\n```",
+      "```python\nimport logging\n\nlogging.basicConfig(save=\"log.txt\")\n```"
+    ],
+    "correctIndex": 0,
+    "explanation": "W `basicConfig` używa się `filename`. Pozostałe nazwy nie są pokazane w materiale i nie działają w tym przykładzie.",
+    "difficulty": "medium",
+    "topic": "`basicConfig`"
+  },
+  {
+    "id": 652,
+    "materialId": 73,
+    "question": "Co się stanie po uruchomieniu tego kodu?\n\n```python\nimport logging\n\nlogging.basicConfig(level=logging.INFO)\nlogger = logging.getLogger(__name__)\n\ndane = {}\n\ntry:\n    wartosc = dane[\"x\"]\nexcept KeyError:\n    logger.exception(\"brak klucza\")\n```",
+    "choices": [
+      "Pojawi się komunikat i pełny traceback",
+      "Pojawi się tylko `INFO`",
+      "Nie pojawi się nic",
+      "Pojawi się `NoneType: None` bez komunikatu"
+    ],
+    "correctIndex": 0,
+    "explanation": "`logger.exception()` w `except` zapisuje komunikat i traceback. Najbardziej myląca odpowiedź to `NoneType: None`, bo to dzieje się tylko poza `except`.",
+    "difficulty": "medium",
+    "topic": "Logowanie wyjątków"
+  },
+  {
+    "id": 653,
+    "materialId": 73,
+    "question": "Jaka jest różnica między `logging.info(...)` a `logger.info(...)`?",
+    "choices": [
+      "Nie ma żadnej różnicy",
+      "`logger.info(...)` używa loggera z nazwą modułu",
+      "`logging.info(...)` zawsze zapisuje do pliku",
+      "`logger.info(...)` działa tylko z `print()`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`logger.info(...)` działa przez logger utworzony przez `getLogger(__name__)`. To pomaga zobaczyć, z którego pliku pochodzi log.",
+    "difficulty": "easy",
+    "topic": "Logger z nazwą modułu"
+  },
+  {
+    "id": 654,
+    "materialId": 73,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport logging\n\nlogger = logging.getLogger(__name__)\nlogging.info(\"start\")\nlogging.basicConfig(level=logging.INFO)\n```",
+    "choices": [
+      "Nic, kolejność nie ma znaczenia",
+      "`basicConfig` jest za późno",
+      "`getLogger(__name__)` nie działa",
+      "Trzeba użyć `logger.exception()`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`basicConfig` powinno być na początku. Jeśli najpierw wywołasz `logging.info()`, konfiguracja może zostać zignorowana.",
+    "difficulty": "medium",
+    "topic": "Częste błędy"
+  },
+  {
+    "id": 655,
+    "materialId": 73,
+    "question": "Co wypisze ten kod?\n\n```python\nimport logging\n\nlogging.basicConfig(level=logging.INFO, format=\"%(levelname)s: %(message)s\")\n\nwartosc = 7\nlogging.info(\"liczba %s\", wartosc)\n```",
+    "choices": [
+      "INFO: liczba 7",
+      "INFO: liczba %s",
+      "liczba 7",
+      "DEBUG: liczba 7"
+    ],
+    "correctIndex": 0,
+    "explanation": "Logging sam wstawia wartość zamiast `%s`. Zły wybór to myślenie, że `%s` zostanie wypisane dosłownie.",
+    "difficulty": "medium",
+    "topic": "Logowanie z danymi"
+  },
+  {
+    "id": 656,
+    "materialId": 73,
+    "question": "Kiedy najlepiej użyć `CRITICAL`?",
+    "choices": [
+      "Gdy wszystko działa normalnie",
+      "Gdy coś jest dziwne, ale program działa dalej",
+      "Gdy jest totalna katastrofa i program nie może działać",
+      "Gdy chcesz pokazać szczegóły dla programisty"
+    ],
+    "correctIndex": 2,
+    "explanation": "`CRITICAL` jest dla bardzo poważnych problemów. `WARNING` jest słabsze, bo program może jeszcze działać dalej.",
+    "difficulty": "easy",
+    "topic": "Poziomy logowania"
+  },
+  {
+    "id": 657,
+    "materialId": 73,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport logging\n\nlogging.basicConfig(level=logging.INFO)\nlogger = logging.getLogger(__name__)\n\nlogger.exception(\"błąd\")\n```",
+    "choices": [
+      "Kod jest poprawny i zawsze pokaże traceback",
+      "`logger.exception()` powinno być w `except`",
+      "Trzeba zamiast tego użyć `logging.debug()`",
+      "Nie można używać `getLogger(__name__)`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`logger.exception()` ma sens tylko w `except`. Poza nim nie ma aktywnego wyjątku, więc traceback nie będzie poprawny.",
+    "difficulty": "hard",
+    "topic": "Logowanie wyjątków"
+  },
+  {
+    "id": 658,
+    "materialId": 74,
+    "question": "Co wypisze ten kod?\n\n```python\ndef czy_ponawiac(status: int) -> bool:\n    return status in (429, 500, 502, 503, 504)\n\nprint(czy_ponawiac(503))\n```",
+    "choices": [
+      "True",
+      "False",
+      "503",
+      "błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "503 jest w krotce statusów do ponawiania, więc wynik to `True`. Odpowiedź `False` jest częstym błędem, bo 503 wygląda jak zwykły błąd, ale tu należy do wyjątków.",
+    "difficulty": "easy",
+    "topic": "błędy, których nie trzeba ponawiać"
+  },
+  {
+    "id": 659,
+    "materialId": 74,
+    "question": "Co wypisze ten kod?\n\n```python\nfor attempt in range(4):\n    czas_czekania = 2 ** attempt\n    print(czas_czekania)\n```",
+    "choices": [
+      "1 2 4 8",
+      "0 2 4 6",
+      "2 4 8 16",
+      "1 3 5 7"
+    ],
+    "correctIndex": 0,
+    "explanation": "`2 ** attempt` daje kolejne potęgi dwójki: `1`, `2`, `4`, `8`. Odpowiedź z `0 2 4 6` wynika z pomylenia potęgowania z mnożeniem.",
+    "difficulty": "easy",
+    "topic": "exponential backoff"
+  },
+  {
+    "id": 660,
+    "materialId": 74,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport requests\n\nodpowiedz = requests.get(\"https://api.example.com/dane\")\nprint(odpowiedz.json())\n```",
+    "choices": [
+      "Brakuje `timeout=`",
+      "Brakuje `print()`",
+      "Brakuje `import time`",
+      "Nic nie jest nie tak"
+    ],
+    "correctIndex": 0,
+    "explanation": "W tym kodzie nie ma `timeout=`. Bez niego skrypt może wisieć bardzo długo. `print()` już jest, więc to nie jest problem.",
+    "difficulty": "easy",
+    "topic": "timeout"
+  },
+  {
+    "id": 661,
+    "materialId": 74,
+    "question": "Która wersja poprawnie łapie timeout?\n\nA)\n```python\ntry:\n    odpowiedz = requests.get(url, timeout=10)\nexcept requests.exceptions.Timeout:\n    print(\"timeout\")\n```\n\nB)\n```python\ntry:\n    odpowiedz = requests.get(url)\nexcept:\n    print(\"timeout\")\n```\n\nC)\n```python\ntry:\n    odpowiedz = requests.get(url, timeout=10)\nexcept ValueError:\n    print(\"timeout\")\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "Żadna"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wersja A łapie konkretny wyjątek `requests.exceptions.Timeout`. Wersja B łapie wszystko, a wersja C łapie zły typ błędu.",
+    "difficulty": "medium",
+    "topic": "try/except"
+  },
+  {
+    "id": 662,
+    "materialId": 74,
+    "question": "Co wypisze ten kod?\n\n```python\nmax_prob = 2\n\nfor proba in range(max_prob):\n    print(f\"próba {proba + 1}\")\n    break\nelse:\n    print(\"wyczerpano próby\")\n```",
+    "choices": [
+      "próba 1\nyczerpano próby",
+      "próba 1",
+      "próba 1\npróba 2",
+      "wyczerpano próby"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pętla kończy się od razu przez `break`, więc `else` się nie wykona. Dlatego zostanie wypisane tylko `próba 1`.",
+    "difficulty": "medium",
+    "topic": "retry"
+  },
+  {
+    "id": 663,
+    "materialId": 74,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nfor attempt in range(3):\n    czas_czekania = 2 * attempt\n    print(czas_czekania)\n```",
+    "choices": [
+      "Powinno być `2 ** attempt`",
+      "Powinno być `attempt ** 2`",
+      "Powinno być `2 + attempt`",
+      "Nic nie jest nie tak"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tu użyto mnożenia, a nie potęgowania. Daje to złe czasy czekania, na przykład `0` na pierwszej próbie. W backoff trzeba użyć `2 ** attempt`.",
+    "difficulty": "medium",
+    "topic": "exponential backoff"
+  },
+  {
+    "id": 664,
+    "materialId": 74,
+    "question": "Co zwróci ten kod?\n\n```python\ndef klasyfikuj_status(status: int) -> str:\n    if 200 <= status < 300:\n        return \"sukces\"\n    if status in (429, 500, 502, 503, 504):\n        return \"ponow\"\n    return \"przerwij\"\n\nprint(klasyfikuj_status(401))\n```",
+    "choices": [
+      "sukces",
+      "ponow",
+      "przerwij",
+      "401"
+    ],
+    "correctIndex": 2,
+    "explanation": "401 nie jest ani sukcesem, ani statusem do ponawiania, więc funkcja zwraca `przerwij`. Odpowiedź `ponow` jest błędna, bo 401 należy do błędów klienta.",
+    "difficulty": "medium",
+    "topic": "błędy, których nie trzeba ponawiać"
+  },
+  {
+    "id": 665,
+    "materialId": 74,
+    "question": "Która wersja poprawnie sprawdza, czy status warto ponowić?\n\nA)\n```python\ndef czy_ponawiac(status: int) -> bool:\n    return status in (429, 500, 502, 503, 504)\n```\n\nB)\n```python\ndef czy_ponawiac(status: int) -> bool:\n    return status == 200\n```\n\nC)\n```python\ndef czy_ponawiac(status: int) -> bool:\n    return status >= 400\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "A i C"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tylko A sprawdza dokładnie statusy, które z lekcji warto ponawiać. B sprawdza sukces, a C łapie za dużo statusów, także te, których nie trzeba powtarzać.",
+    "difficulty": "easy",
+    "topic": "błędy, których nie trzeba ponawiać"
+  },
+  {
+    "id": 666,
+    "materialId": 74,
+    "question": "Co stanie się, gdy serwer odpowie statusem 500 w takim kodzie?\n\n```python\nif odpowiedz.status_code in (429, 500, 502, 503, 504):\n    ostatni_blad = f\"status {odpowiedz.status_code}\"\nelif odpowiedz.status_code >= 400:\n    raise ValueError(f\"błąd klienta: {odpowiedz.status_code}\")\nelse:\n    return odpowiedz.json()\n```",
+    "choices": [
+      "Kod od razu zwróci dane",
+      "Kod zapisze `ostatni_blad` i będzie próbował dalej",
+      "Kod podniesie `ValueError`",
+      "Kod zakończy pętlę przez `break`"
+    ],
+    "correctIndex": 1,
+    "explanation": "500 należy do błędów przejściowych, więc kod zapisze błąd i może próbować dalej. `ValueError` jest dla innych błędów `4xx`, więc to nie jest poprawna odpowiedź.",
+    "difficulty": "hard",
+    "topic": "retry"
+  },
+  {
+    "id": 667,
+    "materialId": 74,
+    "question": "Co wypisze ten kod?\n\n```python\ndef czy_ponawiac(status: int) -> bool:\n    return status in (429, 500, 502, 503, 504)\n\nprint(czy_ponawiac(400))\n```",
+    "choices": [
+      "True",
+      "False",
+      "400",
+      "błąd"
+    ],
+    "correctIndex": 1,
+    "explanation": "400 nie jest w krotce statusów do ponawiania, więc wynik to `False`. Częsty błąd to myślenie, że każdy błąd HTTP warto próbować jeszcze raz.",
+    "difficulty": "easy",
+    "topic": "błędy, których nie trzeba ponawiać"
+  },
+  {
+    "id": 668,
+    "materialId": 74,
+    "question": "Która wersja najlepiej pasuje do bezpiecznego pobierania danych z internetu?\n\nA)\n```python\nrequests.get(url)\n```\n\nB)\n```python\ntry:\n    odpowiedz = requests.get(url, timeout=10)\n    odpowiedz.raise_for_status()\nexcept requests.exceptions.Timeout:\n    print(\"timeout\")\n```\n\nC)\n```python\nfor attempt in range(3):\n    print(\"spróbuję\")\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "A i C"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wersja B ma `timeout`, `try/except` i `raise_for_status()`, więc najlepiej pasuje do lekcji. A nie ma `timeout`, a C nie robi pobierania danych.",
+    "difficulty": "medium",
+    "topic": "timeout"
+  },
+  {
+    "id": 669,
+    "materialId": 75,
+    "question": "Co wypisze ten kod?\n\n```python\nassert \"py\" in \"pytest\"\nprint(\"gotowe\")\n```",
+    "choices": [
+      "Wypisze `gotowe`",
+      "Rzuci `AssertionError`",
+      "Nic nie wypisze i zakończy się błędem składni",
+      "Wypisze `pytest`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Warunek jest prawdziwy, bo napis `py` jest w `pytest`. Dlatego kod idzie dalej i `print()` działa. Odpowiedź z `AssertionError` jest zła, bo `assert` nie ma tu powodu, by się wywalić.",
+    "difficulty": "easy",
+    "topic": "assert"
+  },
+  {
+    "id": 670,
+    "materialId": 75,
+    "question": "Co się stanie po uruchomieniu tego kodu?\n\n```python\nassert 5 == 3\n```",
+    "choices": [
+      "Kod przejdzie bez błędu",
+      "Pojawi się `AssertionError`",
+      "Wypisze `False`",
+      "Pytest sam zamieni `5` na `3`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Warunek jest fałszywy, więc `assert` rzuca `AssertionError`. Odpowiedź o `False` jest błędna, bo `assert` nie wypisuje wyniku, tylko sprawdza warunek.",
+    "difficulty": "easy",
+    "topic": "assert"
+  },
+  {
+    "id": 671,
+    "materialId": 75,
+    "question": "Która nazwa pliku i funkcji testowej jest poprawna dla `pytest`?\n\n```python\n# A\npliki.py\ndef sprawdz():\n    assert 1 == 1\n\n# B\ntest_pliki.py\ndef test_sprawdz():\n    assert 1 == 1\n\n# C\ntest_pliki.py\ndef sprawdz():\n    assert 1 == 1\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "Wszystkie trzy"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pytest szuka plików z `test_` na początku i funkcji z `test_` na początku. Wersja B ma oba warunki. Wersja C ma dobry plik, ale złą nazwę funkcji.",
+    "difficulty": "medium",
+    "topic": "Nazwy plików i funkcji testowych"
+  },
+  {
+    "id": 672,
+    "materialId": 75,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\ndef sprawdz_wynik():\n    assert 2 + 2 == 4\n```",
+    "choices": [
+      "Nic, pytest na pewno go znajdzie",
+      "Brakuje `test_` na początku nazwy funkcji",
+      "`assert` działa tylko z napisami",
+      "Trzeba dodać `import pytest`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Funkcja nie zaczyna się od `test_`, więc pytest może ją pominąć. Odpowiedź o `import pytest` jest zła, bo sam `assert` nie wymaga importu.",
+    "difficulty": "easy",
+    "topic": "Nazwy plików i funkcji testowych"
+  },
+  {
+    "id": 673,
+    "materialId": 75,
+    "question": "Co zwróci ten kod?\n\n```python\ndef podwoj(x: int) -> int:\n    return x * 2\n\nprint(podwoj(3))\n```",
+    "choices": [
+      "3",
+      "6",
+      "9",
+      "Błąd, bo `return` nie działa w funkcji"
+    ],
+    "correctIndex": 1,
+    "explanation": "Funkcja mnoży liczbę razy 2, więc dla `3` zwróci `6`. Odpowiedź `3` jest częstym błędem, gdy ktoś patrzy tylko na wejście, a nie na działanie mnożenia.",
+    "difficulty": "easy",
+    "topic": "Funkcje czyste"
+  },
+  {
+    "id": 674,
+    "materialId": 75,
+    "question": "Co się stanie, gdy uruchomisz `pytest` w folderze projektu z poprawnie nazwanymi testami?",
+    "choices": [
+      "Pytest sam znajdzie pliki `test_*.py` i uruchomi testy",
+      "Musisz ręcznie wpisywać każdy test",
+      "Pytest uruchomi tylko pierwszy plik w folderze",
+      "Nic się nie stanie, bo trzeba użyć `print()`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Komenda `pytest` sama szuka plików testowych i odpala testy. Odpowiedź o ręcznym wpisywaniu jest błędna, bo właśnie po to jest `pytest`.",
+    "difficulty": "easy",
+    "topic": "Uruchamianie pytest"
+  },
+  {
+    "id": 675,
+    "materialId": 75,
+    "question": "Co oznacza `F` w raporcie `pytest`?",
+    "choices": [
+      "Test przeszedł",
+      "Test został pominięty",
+      "Test się wywalił",
+      "Test był za krótki"
+    ],
+    "correctIndex": 2,
+    "explanation": "`F` oznacza oblany test. Odpowiedź o zaliczeniu jest zła, bo zaliczony test to zwykle kropka.",
+    "difficulty": "easy",
+    "topic": "Czytanie raportu testów"
+  },
+  {
+    "id": 676,
+    "materialId": 75,
+    "question": "Który fragment najlepiej pasuje do kroku `assert` w układzie arrange–act–assert?",
+    "choices": [
+      "Przygotowanie danych",
+      "Wywołanie funkcji",
+      "Sprawdzenie wyniku",
+      "Importowanie modułu"
+    ],
+    "correctIndex": 2,
+    "explanation": "W kroku `assert` sprawdzasz, czy wynik jest dobry. Przygotowanie danych należy do `arrange`, a wywołanie funkcji do `act`.",
+    "difficulty": "medium",
+    "topic": "Arrange–Act–Assert"
+  },
+  {
+    "id": 677,
+    "materialId": 75,
+    "question": "Co zwróci ten kod?\n\n```python\nimport pytest\n\nassert 0.1 + 0.2 == pytest.approx(0.3)\n```",
+    "choices": [
+      "Pojawi się `AssertionError`",
+      "Test przejdzie",
+      "Wypisze `0.3`",
+      "Pytest usunie przecinek z liczby"
+    ],
+    "correctIndex": 1,
+    "explanation": "`pytest.approx` pozwala porównać liczby z małym błędem zaokrąglenia. Odpowiedź z `AssertionError` jest zła, bo właśnie po to używa się `approx`.",
+    "difficulty": "medium",
+    "topic": "Częste błędy"
+  },
+  {
+    "id": 678,
+    "materialId": 75,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport pytest\n\ndef test_wynik():\n    assert 0.1 + 0.2 == 0.3\n```",
+    "choices": [
+      "Nic, to zawsze działa idealnie",
+      "Porównanie floatów zwykłym `==` może dać błąd",
+      "`assert` nie działa z liczbami",
+      "`import pytest` psuje działanie `assert`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Liczby z przecinkiem mogą mieć małe różnice przez zaokrąglenia. Odpowiedź, że wszystko działa idealnie, jest zła, bo właśnie tu często pojawia się problem.",
+    "difficulty": "medium",
+    "topic": "Częste błędy"
+  },
+  {
+    "id": 679,
+    "materialId": 75,
+    "question": "Która wersja poprawnie sprawdza wiele przypadków bez kopiowania testu?\n\n```python\n# A\nimport pytest\n\n@pytest.mark.parametrize(\"x, wynik\", [(1, 2), (2, 4)])\ndef test_podwoj(x, wynik):\n    assert x * 2 == wynik\n\n# B\nimport pytest\n\ndef test_podwoj(x, wynik):\n    assert x * 2 == wynik\n\n# C\nimport pytest\n\n@pytest.mark.parametrize(\"x, wynik\", [(1, 2), (2, 4)])\ndef podwoj(x, wynik):\n    assert x * 2 == wynik\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "Żadna"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wersja A ma `@pytest.mark.parametrize` i funkcję zaczynającą się od `test_`. Wersja B nie podaje danych do testu, a C nie ma prefiksu `test_`.",
+    "difficulty": "hard",
+    "topic": "parametrize"
+  },
+  {
+    "id": 680,
+    "materialId": 75,
+    "question": "Co się stanie, jeśli wpiszesz `pytest -k spacje`?",
+    "choices": [
+      "Uruchomi wszystkie testy",
+      "Uruchomi tylko testy z `spacje` w nazwie",
+      "Usunie testy z plików",
+      "Pokaże tylko błędy składni"
+    ],
+    "correctIndex": 1,
+    "explanation": "Opcja `-k` filtruje testy po nazwie. Odpowiedź o wszystkich testach jest zła, bo wtedy filtr nie miałby sensu.",
+    "difficulty": "medium",
+    "topic": "Uruchamianie pytest"
+  },
+  {
+    "id": 681,
+    "materialId": 76,
+    "question": "Co zrobi ten kod?\n\n```python\ngit init\n```",
+    "choices": [
+      "Utworzy nowe repozytorium Git w folderze",
+      "Wypisze listę commitów",
+      "Wyśle kod na GitHuba",
+      "Przełączy na gałąź main"
+    ],
+    "correctIndex": 0,
+    "explanation": "`git init` startuje repozytorium. Odpowiedź o commitach jest zła, bo ta komenda nic nie zapisuje.",
+    "difficulty": "easy",
+    "topic": "Podstawowy cykl pracy"
+  },
+  {
+    "id": 682,
+    "materialId": 76,
+    "question": "Co pokazuje `git status` po dodaniu nowego pliku, który jeszcze nie był śledzony?",
+    "choices": [
+      "`Untracked files`",
+      "`Switched to branch`",
+      "`Initialized empty Git repository`",
+      "`[main a1b2c3d]`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Nowy plik bez `git add` jest nieśledzony, więc pojawia się jako `Untracked files`. Pozostałe odpowiedzi pasują do innych komend.",
+    "difficulty": "easy",
+    "topic": "Podstawowy cykl pracy"
+  },
+  {
+    "id": 683,
+    "materialId": 76,
+    "question": "Która wersja poprawnie zapisuje zmiany w gicie?\n\nA.\n```python\ngit add main.py\ngit status\ngit commit -m \"Dodaj parser\"\n```\nB.\n```python\ngit commit -m \"Dodaj parser\"\ngit add main.py\n```\nC.\n```python\ngit status\ngit commit -m \"Dodaj parser\"\n```\nD.\n```python\ngit init\ngit commit -m \"Dodaj parser\"\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 0,
+    "explanation": "Najpierw dodajesz plik, potem sprawdzasz stan i dopiero robisz commit. Wersja B jest zła, bo commit jest przed `git add`.",
+    "difficulty": "medium",
+    "topic": "Podstawowy cykl pracy"
+  },
+  {
+    "id": 684,
+    "materialId": 76,
+    "question": "Co się stanie, jeśli zrobisz `git add main.py`, a potem zmienisz `main.py` przed `git commit`?",
+    "choices": [
+      "Git zapisze tylko starą wersję z poczekalni",
+      "Git automatycznie zapisze nową wersję bez `git add`",
+      "Git usunie plik",
+      "Git przełączy cię na inną gałąź"
+    ],
+    "correctIndex": 0,
+    "explanation": "Git bierze do commita to, co było dodane przez `git add`. Nowa zmiana nie wejdzie sama. Dlatego trzeba zrobić `git add` jeszcze raz.",
+    "difficulty": "medium",
+    "topic": "Podstawowy cykl pracy"
+  },
+  {
+    "id": 685,
+    "materialId": 76,
+    "question": "Która komenda tworzy nową gałąź i od razu na nią przełącza?\n\n```python\ngit checkout -b nowa-funkcja\n```",
+    "choices": [
+      "Tworzy gałąź i przełącza na nią",
+      "Tylko pokazuje listę gałęzi",
+      "Wysyła gałąź na GitHuba",
+      "Scala gałąź z `main`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Ta komenda robi oba kroki naraz. Odpowiedź o scalaniu jest zła, bo do tego służy `git merge`.",
+    "difficulty": "easy",
+    "topic": "Gałęzie"
+  },
+  {
+    "id": 686,
+    "materialId": 76,
+    "question": "Co zrobi ten kod?\n\n```python\ngit branch poprawka\ngit checkout poprawka\n```",
+    "choices": [
+      "Utworzy gałąź i przełączy na nią",
+      "Zapisze commit",
+      "Wypisze historię",
+      "Pobierze zmiany z GitHuba"
+    ],
+    "correctIndex": 0,
+    "explanation": "Najpierw powstaje gałąź, potem następuje przełączenie. To nie jest zapis commitów ani pobieranie zmian.",
+    "difficulty": "easy",
+    "topic": "Gałęzie"
+  },
+  {
+    "id": 687,
+    "materialId": 76,
+    "question": "Co powinno znaleźć się w `.gitignore` w projekcie Pythona?",
+    "choices": [
+      ".venv/, .env, __pycache__/ i *.pyc",
+      "main.py i README.md",
+      "tylko git init",
+      "same commity"
+    ],
+    "correctIndex": 0,
+    "explanation": "To są pliki i foldery, których zwykle nie chcemy w repo. `main.py` to normalny plik kodu, więc nie powinien być ignorowany.",
+    "difficulty": "easy",
+    "topic": "Pliki ignorowane"
+  },
+  {
+    "id": 688,
+    "materialId": 76,
+    "question": "Co zrobi ten kod?\n\n```python\ngit push -u origin main\n```",
+    "choices": [
+      "Wyśle lokalne commity na GitHuba i ustawi śledzenie gałęzi",
+      "Pobierze zmiany z GitHuba",
+      "Utworzy nowy plik `.gitignore`",
+      "Usunie historię commitów"
+    ],
+    "correctIndex": 0,
+    "explanation": "To jest wysyłanie zmian na zdalne repozytorium. Pobieranie zmian robi `git pull`.",
+    "difficulty": "medium",
+    "topic": "GitHub"
+  },
+  {
+    "id": 689,
+    "materialId": 76,
+    "question": "Co oznacza błąd `fatal: unable to auto-detect email address`?",
+    "choices": [
+      "Git nie zna twojej tożsamości",
+      "Git nie widzi pliku `.gitignore`",
+      "Gałąź została scalona",
+      "W repo jest za dużo commitów"
+    ],
+    "correctIndex": 0,
+    "explanation": "Git potrzebuje ustawionego imienia i maila. Bez tego nie wie, kto robi commit.",
+    "difficulty": "medium",
+    "topic": "Częste błędy"
+  },
+  {
+    "id": 690,
+    "materialId": 76,
+    "question": "Która odpowiedź najlepiej opisuje pull request?",
+    "choices": [
+      "Prośba o scalenie gałęzi do `main` z code review",
+      "Komenda do usuwania plików",
+      "Sposób na tworzenie nowego repozytorium",
+      "Polecenie do sprawdzania statusu"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pull request służy do proszenia o połączenie zmian. Odpowiedź o statusie jest zła, bo `git status` robi coś innego.",
+    "difficulty": "medium",
+    "topic": "GitHub"
+  },
+  {
+    "id": 691,
+    "materialId": 76,
+    "question": "Co powinieneś zrobić, gdy `git push` daje błąd `fetch first`?",
+    "choices": [
+      "Najpierw `git pull`, potem `git push`",
+      "Od razu użyć `--force`",
+      "Usunąć `main`",
+      "Zrobić `git init` jeszcze raz"
+    ],
+    "correctIndex": 0,
+    "explanation": "Najpierw trzeba pobrać brakujące zmiany. `--force` na wspólnej gałęzi jest niebezpieczne.",
+    "difficulty": "hard",
+    "topic": "Częste błędy"
+  },
+  {
+    "id": 692,
+    "materialId": 77,
+    "question": "Co wypisze ten kod?\n\n```python\nmessages = [\n    {\"role\": \"system\", \"content\": \"Odpowiadaj krótko.\"},\n    {\"role\": \"user\", \"content\": \"Powiedz dzień dobry\"},\n]\nprint(messages[0][\"content\"])\n```",
+    "choices": [
+      "Odpowiadaj krótko.",
+      "Powiedz dzień dobry",
+      "system",
+      "user"
+    ],
+    "correctIndex": 0,
+    "explanation": "`messages[0]` to pierwsza wiadomość, czyli ta z rolą `system`. `messages[0][\"content\"]` bierze jej treść. Odpowiedź `Powiedz dzień dobry` jest z `messages[1]`, więc to częsty błąd.",
+    "difficulty": "easy",
+    "topic": "struktura `messages`"
+  },
+  {
+    "id": 693,
+    "materialId": 77,
+    "question": "Co się stanie, gdy `os.environ.get(\"OPENAI_API_KEY\")` nie znajdzie zmiennej?",
+    "choices": [
+      "Zwróci pusty napis `\"\"`",
+      "Zwróci `None`",
+      "Zwróci `0`",
+      "Pojawi się zawsze `KeyError`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`os.environ.get(...)` zwraca `None`, gdy zmiennej nie ma. `KeyError` pojawia się przy innym sposobie czytania, nie przy `.get()`.",
+    "difficulty": "easy",
+    "topic": "klucz API i `os.environ`"
+  },
+  {
+    "id": 694,
+    "materialId": 77,
+    "question": "Która wersja poprawnie wyciąga tekst z odpowiedzi API?\n\n```python\n# A\ntext = data[\"message\"][\"content\"]\n\n# B\ntext = data[\"choices\"][0][\"message\"][\"content\"]\n\n# C\ntext = data[\"choices\"][\"content\"]\n\n# D\ntext = data[0][\"message\"][\"content\"]\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tekst jest w `choices[0].message.content`, więc w słowniku zapisanym nawiasami kwadratowymi to `data[\"choices\"][0][\"message\"][\"content\"]`. Pozostałe wersje pomijają ważny poziom albo używają złej ścieżki.",
+    "difficulty": "easy",
+    "topic": "`openai` SDK"
+  },
+  {
+    "id": 695,
+    "materialId": 77,
+    "question": "Co zwróci ten kod?\n\n```python\nimport json\n\nprint(json.loads('{\"a\": 1}')[\"a\"])\n```",
+    "choices": [
+      "`\"a\"`",
+      "`1`",
+      "`{\"a\": 1}`",
+      "Błąd `JSONDecodeError`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`json.loads` zamienia napis JSON na słownik. Potem `[\"a\"]` bierze wartość pod kluczem `a`, czyli `1`. Błąd `JSONDecodeError` byłby tylko wtedy, gdy napis nie byłby poprawnym JSON-em.",
+    "difficulty": "easy",
+    "topic": "JSON z modelu"
+  },
+  {
+    "id": 696,
+    "materialId": 77,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport json\n\nwynik = json.loads(\"Jasne! Oto dane: {...}\")\nprint(wynik)\n```",
+    "choices": [
+      "Nic, kod jest poprawny",
+      "Brakuje `import os`",
+      "Tekst nie jest czystym JSON-em",
+      "`print()` nie może wypisać słownika"
+    ],
+    "correctIndex": 2,
+    "explanation": "`json.loads` oczekuje poprawnego JSON-a, a tutaj jest zwykły tekst z dodatkowymi słowami. Dlatego pojawi się `JSONDecodeError`. `print()` może wypisać słownik bez problemu.",
+    "difficulty": "medium",
+    "topic": "JSON z modelu"
+  },
+  {
+    "id": 697,
+    "materialId": 77,
+    "question": "Co wypisze ten kod?\n\n```python\ndef wyciagnij_tekst(odpowiedz_api: dict) -> str:\n    return odpowiedz_api[\"choices\"][0][\"message\"][\"content\"]\n\ndane = {\n    \"choices\": [{\"message\": {\"content\": \"gotowe\"}}]\n}\nprint(wyciagnij_tekst(dane))\n```",
+    "choices": [
+      "`choices`",
+      "`message`",
+      "`gotowe`",
+      "Błąd `KeyError: 'content'`"
+    ],
+    "correctIndex": 2,
+    "explanation": "Funkcja schodzi do pola `choices[0].message.content`, więc zwraca `gotowe`. Błąd `KeyError` nie wystąpi, bo w danych to pole istnieje.",
+    "difficulty": "easy",
+    "topic": "parsowanie odpowiedzi"
+  },
+  {
+    "id": 698,
+    "materialId": 77,
+    "question": "Która wersja poprawnie obsługuje brak poprawnego JSON-a?",
+    "choices": [
+      "A\n```python\ndef parsuj(tekst):\n    return json.loads(tekst)\n```\n",
+      "B\n```python\ndef parsuj(tekst):\n    try:\n        return json.loads(tekst)\n    except json.JSONDecodeError:\n        return {}\n```\n",
+      "C\n```python\ndef parsuj(tekst):\n    if json.loads(tekst):\n        return tekst\n```\n",
+      "D\n```python\ndef parsuj(tekst):\n    return []\n```"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tylko wersja B łapie `JSONDecodeError` i zwraca `{}`. Wersja A przerwie program błędem, gdy tekst nie jest JSON-em.",
+    "difficulty": "medium",
+    "topic": "JSON z modelu"
+  },
+  {
+    "id": 699,
+    "materialId": 77,
+    "question": "Co wypisze ten kod?\n\n```python\nusage = {\"prompt_tokens\": 2000, \"completion_tokens\": 1000}\n\ndef koszt_wywolania(usage: dict, cena_in: float, cena_out: float) -> float:\n    koszt = (usage[\"prompt_tokens\"] / 1_000_000 * cena_in\n             + usage[\"completion_tokens\"] / 1_000_000 * cena_out)\n    return round(koszt, 6)\n\nprint(koszt_wywolania(usage, 0.5, 1.5))\n```",
+    "choices": [
+      "`0.0025`",
+      "`0.0035`",
+      "`2.5`",
+      "`0.000003`"
+    ],
+    "correctIndex": 0,
+    "explanation": "2000 tokenów wejścia i 1000 tokenów wyjścia dają mały koszt po przeliczeniu na milion tokenów. `0.0035` byłoby zbyt duże, bo tu dzielimy przez `1_000_000`.",
+    "difficulty": "medium",
+    "topic": "tokeny i koszty"
+  },
+  {
+    "id": 700,
+    "materialId": 77,
+    "question": "Co się stanie, jeśli kod spróbuje odczytać `dane[\"choices\"]`, ale odpowiedź API zawiera błąd?",
+    "choices": [
+      "Zawsze zadziała",
+      "Pojawi się `KeyError: 'choices'`",
+      "Zwróci `None`",
+      "Zwróci pustą listę"
+    ],
+    "correctIndex": 1,
+    "explanation": "Gdy API zwraca błąd, odpowiedź może nie mieć pola `choices`. Wtedy Python zgłosi `KeyError: 'choices'`. Dlatego warto najpierw sprawdzić status odpowiedzi.",
+    "difficulty": "medium",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 701,
+    "materialId": 77,
+    "question": "Kiedy najlepiej użyć pola `usage`?",
+    "choices": [
+      "Gdy chcesz zmienić model",
+      "Gdy chcesz policzyć koszt wywołania",
+      "Gdy chcesz zbudować `messages`",
+      "Gdy chcesz ustawić `Authorization`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`usage` mówi, ile tokenów zużyto, więc na jego podstawie można policzyć koszt. Nie służy do budowania wiadomości ani do ustawiania nagłówków.",
+    "difficulty": "easy",
+    "topic": "tokeny i koszty"
+  },
+  {
+    "id": 702,
+    "materialId": 78,
+    "question": "Co zwróci ten kod?\n\n```python\ndef health():\n    return {\"status\": \"ok\"}\n\nprint(health())\n```",
+    "choices": [
+      "{'status': 'ok'}",
+      "ok",
+      "None",
+      "422"
+    ],
+    "correctIndex": 0,
+    "explanation": "Funkcja zwraca słownik, więc `print()` pokaże ten słownik. Odpowiedź `ok` jest zła, bo funkcja nie zwraca samego tekstu.",
+    "difficulty": "easy",
+    "topic": "endpoint `GET`"
+  },
+  {
+    "id": 703,
+    "materialId": 78,
+    "question": "Co zwróci ten kod?\n\n```python\ndef user_info(user_id: int, szczegoly: bool = False):\n    user = {\"id\": user_id}\n    if szczegoly:\n        user[\"role\"] = \"tester\"\n    return user\n\nprint(user_info(3, True))\n```",
+    "choices": [
+      "{'id': 3}",
+      "{'id': 3, 'role': 'tester'}",
+      "{'id': '3', 'role': 'tester'}",
+      "True"
+    ],
+    "correctIndex": 1,
+    "explanation": "Gdy `szczegoly` ma wartość `True`, do słownika dochodzi klucz `role`. Odpowiedź z samym `id` jest zła, bo warunek się wykona.",
+    "difficulty": "easy",
+    "topic": "parametry ścieżki i query"
+  },
+  {
+    "id": 704,
+    "materialId": 78,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nfrom fastapi import FastAPI\n\napp = FastAPI()\n\n@app.get(\"/health\")\ndef health():\n    return {\"status\": \"ok\"}\n\n# uruchomienie w terminalu:\n# uvicorn app:main --reload\n```",
+    "choices": [
+      "Nic, to jest poprawne",
+      "Powinno być `uvicorn main:app --reload`",
+      "Powinno być `uvicorn health:app --reload`",
+      "Powinno być `uvicorn main:health --reload`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Kolejność jest odwrotna. Najpierw idzie nazwa pliku, potem nazwa obiektu, więc poprawnie jest `main:app`. Częsty błąd to zamiana tych dwóch części.",
+    "difficulty": "medium",
+    "topic": "FastAPI i uvicorn"
+  },
+  {
+    "id": 705,
+    "materialId": 78,
+    "question": "Co się stanie, gdy wywołamy ten endpoint?\n\n```python\n@app.get(\"/users/{user_id}\")\ndef get_user(user_id: int):\n    return {\"id\": user_id}\n```\n\n`GET /users/abc`",
+    "choices": [
+      "Zwróci `{'id': 'abc'}`",
+      "Zwróci błąd 422",
+      "Zwróci `None`",
+      "Zostanie zamienione na `0`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`user_id` ma typ `int`, więc tekst `abc` nie pasuje. FastAPI zwróci błąd 422 zamiast zgadywać wartość.",
+    "difficulty": "medium",
+    "topic": "walidacja danych"
+  },
+  {
+    "id": 706,
+    "materialId": 78,
+    "question": "Która wersja poprawnie opisuje dane do `POST`?\n\nA.\n```python\nclass PredictRequest:\n    tekst: str\n```\n\nB.\n```python\nfrom pydantic import BaseModel\n\nclass PredictRequest(BaseModel):\n    tekst: str\n```\n",
+    "choices": [
+      "A",
+      "B",
+      "Obie",
+      "Żadna"
+    ],
+    "correctIndex": 1,
+    "explanation": "W tej lekcji dane do `POST` opisuje klasa dziedzicząca po `BaseModel`. Sama zwykła klasa nie daje tego samego zachowania.",
+    "difficulty": "easy",
+    "topic": "model `BaseModel`"
+  },
+  {
+    "id": 707,
+    "materialId": 78,
+    "question": "Co zwróci ten kod?\n\n```python\ndef oceń_tekst(tekst: str) -> float:\n    spamowe = {\"promocja\", \"gratis\"}\n    slowa = tekst.lower().split()\n    if not slowa:\n        return 0.0\n    trafienia = sum(1 for s in slowa if s.strip(\".,!?\") in spamowe)\n    return round(trafienia / len(slowa), 2)\n\nprint(oceń_tekst(\"Gratis, promocja!\"))\n```",
+    "choices": [
+      "1.0",
+      "0.5",
+      "0.0",
+      "2.0"
+    ],
+    "correctIndex": 0,
+    "explanation": "Oba słowa są na liście `spamowe`, więc trafienia są dwa, a słów też są dwa. `0.5` jest zła, bo dzielimy trafienia przez liczbę słów.",
+    "difficulty": "medium",
+    "topic": "czysta logika i warstwa HTTP"
+  },
+  {
+    "id": 708,
+    "materialId": 78,
+    "question": "Co się stanie z tym kodem?\n\n```python\ndef oceń_tekst(tekst: str) -> float:\n    slowa = tekst.lower().split()\n    if not slowa:\n        return 0.0\n    return round(1 / len(slowa), 2)\n\nprint(oceń_tekst(\"\"))\n```",
+    "choices": [
+      "0.0",
+      "1.0",
+      "Błąd dzielenia przez zero",
+      "None"
+    ],
+    "correctIndex": 0,
+    "explanation": "Dla pustego tekstu lista `slowa` jest pusta, więc funkcja od razu zwraca `0.0`. Błąd dzielenia przez zero nie pojawia się, bo warunek zatrzymuje kod wcześniej.",
+    "difficulty": "medium",
+    "topic": "czysta logika i warstwa HTTP"
+  },
+  {
+    "id": 709,
+    "materialId": 78,
+    "question": "Co zwróci ten kod?\n\n```python\ndef make_answer(prog: float = 0.5):\n    return {\"prog\": prog}\n\nprint(make_answer())\n```",
+    "choices": [
+      "{'prog': 0.5}",
+      "{'prog': None}",
+      "0.5",
+      "Błąd"
+    ],
+    "correctIndex": 0,
+    "explanation": "Gdy nie podasz argumentu, użyje się wartości domyślnej `0.5`. Odpowiedź `None` jest zła, bo taka wartość nie została tu ustawiona.",
+    "difficulty": "easy",
+    "topic": "model `BaseModel`"
+  },
+  {
+    "id": 710,
+    "materialId": 78,
+    "question": "Co jest główną rolą endpointu `/docs`?",
+    "choices": [
+      "Uruchamia serwer",
+      "Pokazuje automatyczną dokumentację API",
+      "Sprawdza typy w `POST`",
+      "Zamienia JSON na słownik"
+    ],
+    "correctIndex": 1,
+    "explanation": "`/docs` pokazuje gotową dokumentację endpointów. Serwer uruchamia `uvicorn`, a nie `/docs`.",
+    "difficulty": "easy",
+    "topic": "automatyczna dokumentacja `/docs`"
+  },
+  {
+    "id": 711,
+    "materialId": 78,
+    "question": "Która odpowiedź najlepiej pasuje do błędu 422?",
+    "choices": [
+      "Serwer nie działa wcale",
+      "Dane wejściowe nie pasują do oczekiwanego formatu",
+      "Port jest zajęty",
+      "Plik nie istnieje"
+    ],
+    "correctIndex": 1,
+    "explanation": "422 oznacza, że request ma złe dane albo brakuje pola. To nie jest błąd portu ani brak pliku.",
+    "difficulty": "medium",
+    "topic": "walidacja danych"
   }
 ]

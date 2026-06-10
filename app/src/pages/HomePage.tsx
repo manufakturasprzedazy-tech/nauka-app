@@ -125,7 +125,9 @@ export function HomePage() {
             accent="indigo"
           />
           <QuickAction to="/quiz" icon="❓" label="Quiz" sublabel="Sprawdź wiedzę" accent="emerald" />
+          <QuickAction to="/sprint" icon="⏱️" label="Sprint 60s" sublabel="Blitz z combo" accent="amber" />
           <QuickAction to="/kodowanie" icon="💻" label="Kodowanie" sublabel="Ćwicz pisanie kodu" accent="amber" />
+          <QuickAction to="/puzzle" icon="🧩" label="Puzzle" sublabel="Ułóż kod" accent="indigo" />
           <QuickAction to="/powtorka" icon="🔄" label="Powtórka" sublabel="Popraw błędy" accent="rose" />
         </div>
       </div>

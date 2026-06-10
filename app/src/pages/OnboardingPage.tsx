@@ -64,8 +64,8 @@ export function OnboardingPage() {
                 Cześć! Jestem <span className="text-gradient">Py</span> 🐍
               </h1>
               <p className="mt-3 max-w-xs text-slate-400 leading-relaxed">
-                Pomogę Ci nauczyć się Pythona — fiszkami, quizami i prawdziwym kodem.
-                Krok po kroku, bez domyślania się.
+                Pomogę Ci przejść drogę od podstaw Pythona do <b className="text-slate-200">MLOps i automatyzacji AI</b> —
+                fiszkami, quizami i prawdziwym kodem. Krok po kroku, bez domyślania się.
               </p>
               <Button size="lg" fullWidth className="mt-10 max-w-xs" onClick={() => setStep(1)}>
                 Zaczynajmy!

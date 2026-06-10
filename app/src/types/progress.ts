@@ -67,4 +67,4 @@ export interface DailyQuest {
   completed: boolean;
 }
 
-export type Level = 'Junior' | 'Regular' | 'Senior' | 'Lead' | 'Architect';
+export type Level = 'Skrypciarz' | 'Pythonista' | 'Automatyk' | 'ML Engineer' | 'MLOps Architect';

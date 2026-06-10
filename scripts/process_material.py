@@ -1,4 +1,4 @@
-#!/usr/bin/env python3
+﻿#!/usr/bin/env python3
 """Process a single markdown material through OpenAI API to generate learning content."""
 
 import json
@@ -236,7 +236,7 @@ def process_material(filepath: str, api_key: str, max_retries: int = 2) -> dict:
 
     for attempt in range(max_retries + 1):
         response = client.chat.completions.create(
-            model="gpt-5-mini",
+            model="gpt-5.4-mini",
             max_completion_tokens=16384,
             messages=[
                 {"role": "system", "content": SYSTEM_PROMPT},
@@ -403,7 +403,7 @@ Respond with JSON only: {{"notes": "markdown string"}}"""
 
     for attempt in range(max_retries + 1):
         response = client.chat.completions.create(
-            model="gpt-5-mini",
+            model="gpt-5.4-mini",
             max_completion_tokens=8192,
             messages=[
                 {"role": "system", "content": NOTES_SYSTEM_PROMPT},

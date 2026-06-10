@@ -3430,5 +3430,1008 @@
       "Potem użyj znanych `style_id` (np. 7 i 8) przy wstawianiu utworów.",
       "Możesz wykonać kilka poleceń oddzielonych średnikiem."
     ]
+  },
+  {
+    "id": 266,
+    "materialId": 66,
+    "title": "Filtruj wysokie wyniki",
+    "description": "Napisz funkcję `high_scores(scores)`, która zwraca nową listę tylko z liczbami większymi lub równymi `50`. Użyj komprehensji listy.",
+    "starterCode": "def high_scores(scores):\n    # TODO: zwróć listę z liczbami >= 50\n    pass\n",
+    "solution": "def high_scores(scores):\n    # Zostaw tylko wyniki 50 i większe\n    return [score for score in scores if score >= 50]\n",
+    "testCode": "assert high_scores([10, 50, 80, 49]) == [50, 80]\nassert high_scores([]) == []\nassert high_scores([50, 50, 51]) == [50, 50, 51]\n",
+    "difficulty": "easy",
+    "topic": "filtrowanie w komprehensji",
+    "hints": [
+      "Przejdź po każdej liczbie w `scores`",
+      "Dodaj warunek `if` na końcu komprehensji"
+    ]
+  },
+  {
+    "id": 267,
+    "materialId": 66,
+    "title": "Zamień statusy na etykiety",
+    "description": "Napisz funkcję `mark_statuses(statuses)`, która zamienia listę liczb na listę tekstów. Jeśli liczba to `200`, wpisz `\"ok\"`. W innym przypadku wpisz `\"blad\"`. Użyj `if/else` w komprehensji.",
+    "starterCode": "def mark_statuses(statuses):\n    # TODO: zwróć listę napisów \"ok\" albo \"blad\"\n    pass\n",
+    "solution": "def mark_statuses(statuses):\n    # Zamień każdą liczbę na tekst\n    return [\"ok\" if status == 200 else \"blad\" for status in statuses]\n",
+    "testCode": "assert mark_statuses([200, 404, 200]) == [\"ok\", \"blad\", \"ok\"]\nassert mark_statuses([]) == []\nassert mark_statuses([500]) == [\"blad\"]\n",
+    "difficulty": "medium",
+    "topic": "if/else w komprehensji",
+    "hints": [
+      "Tu nie filtrujesz danych, tylko zmieniasz wartość",
+      "Pamiętaj, że `if/else` stoi przed `for`"
+    ]
+  },
+  {
+    "id": 268,
+    "materialId": 66,
+    "title": "Zbuduj słownik z cenami",
+    "description": "Napisz funkcję `build_price_map(products)`, która dostaje listę słowników z polami `\"name\"` i `\"price\"`. Funkcja ma zwrócić słownik, gdzie kluczem jest nazwa, a wartością cena.",
+    "starterCode": "def build_price_map(products):\n    # TODO: zwróć słownik name -> price\n    pass\n",
+    "solution": "def build_price_map(products):\n    # Zrób słownik z nazwami jako kluczami\n    return {product[\"name\"]: product[\"price\"] for product in products}\n",
+    "testCode": "assert build_price_map([\n    {\"name\": \"book\", \"price\": 12},\n    {\"name\": \"pen\", \"price\": 3},\n]) == {\"book\": 12, \"pen\": 3}\nassert build_price_map([]) == {}\nassert build_price_map([{\"name\": \"tea\", \"price\": 7}]) == {\"tea\": 7}\n",
+    "difficulty": "medium",
+    "topic": "komprehensja słownikowa",
+    "hints": [
+      "Użyj pary `klucz: wartość`",
+      "Przejdź po każdym słowniku z listy"
+    ]
+  },
+  {
+    "id": 269,
+    "materialId": 66,
+    "title": "Wyciągnij unikalne tagi",
+    "description": "Napisz funkcję `unique_tags(tags)`, która zwraca zbiór z unikalnymi tagami z listy. Potem ten zbiór ma zostać zamieniony na listę posortowaną przez `sorted()`.",
+    "starterCode": "def unique_tags(tags):\n    # TODO: zwróć posortowaną listę unikalnych tagów\n    pass\n",
+    "solution": "def unique_tags(tags):\n    # Zbierz unikalne tagi i posortuj wynik\n    return sorted({tag for tag in tags})\n",
+    "testCode": "assert unique_tags([\"ai\", \"python\", \"ai\"]) == [\"ai\", \"python\"]\nassert unique_tags([]) == []\nassert unique_tags([\"b\", \"a\", \"b\", \"c\"]) == [\"a\", \"b\", \"c\"]\n",
+    "difficulty": "medium",
+    "topic": "komprehensja zbioru",
+    "hints": [
+      "Użyj komprehensji zbioru",
+      "Najpierw zbuduj zbiór, potem wywołaj `sorted()`"
+    ]
+  },
+  {
+    "id": 270,
+    "materialId": 66,
+    "title": "Policz sumę kwadratów",
+    "description": "Napisz funkcję `sum_of_squares(numbers)`, która zwraca sumę kwadratów liczb z listy. Użyj generatora w `sum()`.",
+    "starterCode": "def sum_of_squares(numbers):\n    # TODO: zwróć sumę kwadratów liczb\n    pass\n",
+    "solution": "def sum_of_squares(numbers):\n    # Policz sumę kwadratów bez tworzenia listy\n    return sum(x * x for x in numbers)\n",
+    "testCode": "assert sum_of_squares([1, 2, 3]) == 14\nassert sum_of_squares([]) == 0\nassert sum_of_squares([0, 4]) == 16\n",
+    "difficulty": "hard",
+    "topic": "wyrażenie generatorowe",
+    "hints": [
+      "Nie twórz osobnej listy kwadratów",
+      "W środku `sum()` wpisz generator w nawiasach okrągłych"
+    ]
+  },
+  {
+    "id": 271,
+    "materialId": 67,
+    "title": "Stwórz własny moduł z prostą funkcją",
+    "description": "Napisz funkcję `witaj_imie(imie)`, która zwraca napis `Cześć, <imię>!`, i wywołaj ją dla dwóch różnych imion.\n\nW prawdziwym projekcie taka funkcja trafiłaby do osobnego pliku, np. `narzedzia.py`, a w drugim pliku zaimportowałbyś ją przez `from narzedzia import witaj_imie`. Tutaj piszemy wszystko w jednym pliku, bo tak działa nasz edytor.",
+    "starterCode": "def witaj_imie(imie):\n    # TODO: zwróć napis \"Cześć, <imię>!\"\n    pass\n\n# TODO: wywołaj funkcję dla dwóch imion i wypisz wyniki\n",
+    "solution": "def witaj_imie(imie):\n    return f\"Cześć, {imie}!\"\n\nprint(witaj_imie(\"Ala\"))\nprint(witaj_imie(\"Olek\"))\n",
+    "testCode": "assert witaj_imie(\"Ala\") == \"Cześć, Ala!\"\nassert witaj_imie(\"Olek\") == \"Cześć, Olek!\"\nassert witaj_imie(\"\") == \"Cześć, !\"\n",
+    "difficulty": "easy",
+    "topic": "własny moduł",
+    "hints": [
+      "Użyj f-stringa: `f\"Cześć, {imie}!\"`",
+      "Funkcja ma ZWRACAĆ napis (`return`), a nie tylko go wypisywać"
+    ]
+  },
+  {
+    "id": 272,
+    "materialId": 67,
+    "title": "Policz koszt dla różnych liczb tokenów",
+    "description": "Napisz funkcję `policz_koszt(tokeny, cena_za_1m)`, która zwraca koszt dla podanej liczby tokenów. Potem użyj tej funkcji w `main()` i wypisz wynik.",
+    "starterCode": "def policz_koszt(tokeny: int, cena_za_1m: float) -> float:\n    # TODO\n    pass\n\ndef main():\n    # TODO: użyj funkcji i wypisz wynik\n    pass\n\nif __name__ == \"__main__\":\n    main()\n",
+    "solution": "def policz_koszt(tokeny: int, cena_za_1m: float) -> float:\n    return tokeny / 1_000_000 * cena_za_1m\n\ndef main():\n    wynik = policz_koszt(250_000, 0.4)\n    print(wynik)\n\nif __name__ == \"__main__\":\n    main()\n",
+    "testCode": "assert policz_koszt(0, 0.4) == 0.0\nassert policz_koszt(250_000, 0.4) == 0.1\nassert policz_koszt(1_000_000, 0.25) == 0.25",
+    "difficulty": "easy",
+    "topic": "funkcja `main()`",
+    "hints": [
+      "Wzór masz prosty: liczba tokenów podzielona przez milion razy cena.",
+      "Na końcu schowaj uruchomienie programu za `if __name__ == \"__main__\"`."
+    ]
+  },
+  {
+    "id": 273,
+    "materialId": 67,
+    "title": "Zrób bezpieczny plik do importu",
+    "description": "Masz plik z funkcją `generuj_etykiete(tekst)`, która zwraca napis `Etykieta: <tekst>`. Dodaj kod startowy tak, żeby wypisywał wynik tylko przy bezpośrednim uruchomieniu pliku, a nie przy imporcie.",
+    "starterCode": "def generuj_etykiete(tekst: str) -> str:\n    # TODO\n    pass\n\n# TODO: dodaj kod startowy tak, żeby działał tylko przy uruchomieniu pliku\n",
+    "solution": "def generuj_etykiete(tekst: str) -> str:\n    return f\"Etykieta: {tekst}\"\n\nif __name__ == \"__main__\":\n    print(generuj_etykiete(\"pilne\"))\n",
+    "testCode": "assert generuj_etykiete(\"pilne\") == \"Etykieta: pilne\"\nassert generuj_etykiete(\"\") == \"Etykieta: \"\nassert generuj_etykiete(\"A\") == \"Etykieta: A\"",
+    "difficulty": "medium",
+    "topic": "if __name__ == \"__main__\"",
+    "hints": [
+      "Kod wypisujący przenieś pod strażnika.",
+      "Sprawdź dokładnie zapis `__name__` i `\"__main__\"`."
+    ]
+  },
+  {
+    "id": 274,
+    "materialId": 67,
+    "title": "Ułóż mały plik narzędziowy",
+    "description": "Napisz funkcję `srednia(liczby)`, która zwraca średnią z listy liczb. Dodaj `main()`, w którym tworzysz własną listę i wypisujesz wynik. Pamiętaj o strażniku na końcu.",
+    "starterCode": "def srednia(liczby: list) -> float:\n    # TODO\n    pass\n\ndef main():\n    # TODO: stwórz listę i wypisz średnią\n    pass\n\nif __name__ == \"__main__\":\n    main()\n",
+    "solution": "def srednia(liczby: list) -> float:\n    return sum(liczby) / len(liczby)\n\ndef main():\n    dane = [3, 5, 7]\n    print(srednia(dane))\n\nif __name__ == \"__main__\":\n    main()\n",
+    "testCode": "assert srednia([2, 4, 6]) == 4.0\nassert srednia([1, 2, 3, 4]) == 2.5\nassert srednia([10]) == 10.0",
+    "difficulty": "medium",
+    "topic": "funkcja `main()`",
+    "hints": [
+      "Użyj `sum()` i `len()`.",
+      "Nie rób wszystkiego luzem na poziomie pliku."
+    ]
+  },
+  {
+    "id": 275,
+    "materialId": 67,
+    "title": "Zidentyfikuj i napraw zły strażnik",
+    "description": "Masz kod, który ma działać tylko przy uruchomieniu pliku. Popraw warunek i zachowanie programu tak, żeby kod startowy nie odpalał się przy imporcie.",
+    "starterCode": "def start():\n    print(\"Program działa\")\n\nif __name__ == \"main\":\n    start()\n",
+    "solution": "def start():\n    print(\"Program działa\")\n\nif __name__ == \"__main__\":\n    start()\n",
+    "testCode": "assert \"__main__\" == \"__main__\"\nassert \"main\" != \"__main__\"\nassert True",
+    "difficulty": "hard",
+    "topic": "częste błędy przy importach",
+    "hints": [
+      "Zobacz, czy w warunku są dwa podkreślniki z obu stron.",
+      "Kod startowy może siedzieć w `main()`."
+    ]
+  },
+  {
+    "id": 276,
+    "materialId": 68,
+    "title": "Sprawdź, czy środowisko jest aktywne",
+    "description": "Napisz funkcję `czy_venv_w_sciezce(path)`, która zwraca `True`, jeśli w podanej ścieżce znajduje się tekst `.venv`, a w innym razie `False`.",
+    "starterCode": "def czy_venv_w_sciezce(path):\n    # TODO: zwróć True albo False\n    pass\n",
+    "solution": "def czy_venv_w_sciezce(path):\n    # Sprawdzamy, czy ścieżka zawiera tekst `.venv`\n    return \".venv\" in path\n",
+    "testCode": "assert czy_venv_w_sciezce(\"C:\\\\proj\\\\demo\\\\.venv\\\\Scripts\\\\python.exe\") == True\nassert czy_venv_w_sciezce(\"/home/user/projekt/.venv/bin/python\") == True\nassert czy_venv_w_sciezce(\"/home/user/projekt/bin/python\") == False\nassert czy_venv_w_sciezce(\"\") == False",
+    "difficulty": "easy",
+    "topic": "sprawdzanie środowiska",
+    "hints": [
+      "Użyj sprawdzenia `\".venv\" in path`.",
+      "Zwróć wynik bez `print()`."
+    ]
+  },
+  {
+    "id": 277,
+    "materialId": 68,
+    "title": "Policz linie w `requirements.txt`",
+    "description": "Napisz funkcję `licz_pakiety(tresc)`, która zwraca liczbę pakietów zapisanych w tekście. Każda linia to jeden pakiet.",
+    "starterCode": "def licz_pakiety(tresc):\n    # TODO: policz linie z pakietami\n    pass\n",
+    "solution": "def licz_pakiety(tresc):\n    # Jeśli tekst jest pusty, nie ma żadnych pakietów\n    if tresc == \"\":\n        return 0\n\n    licznik = 0\n    for linia in tresc.split(\"\\n\"):\n        if linia != \"\":\n            licznik = licznik + 1\n    return licznik\n",
+    "testCode": "assert licz_pakiety(\"requests==2.32.3\\npandas==2.2.0\") == 2\nassert licz_pakiety(\"numpy==1.26.4\") == 1\nassert licz_pakiety(\"\") == 0\nassert licz_pakiety(\"a==1\\n\\nb==2\") == 2",
+    "difficulty": "easy",
+    "topic": "`requirements.txt`",
+    "hints": [
+      "Podziel tekst po `\\n`.",
+      "Przejdź przez każdą linię pętlą `for` i zliczaj."
+    ]
+  },
+  {
+    "id": 278,
+    "materialId": 68,
+    "title": "Zbuduj słownik z pliku z pakietami",
+    "description": "Napisz funkcję `zrob_slownik(tresc)`, która zamienia tekst w formacie `nazwa==wersja` na słownik. Kluczem ma być nazwa pakietu, a wartością wersja.",
+    "starterCode": "def zrob_slownik(tresc):\n    # TODO: zamień tekst na słownik\n    pass\n",
+    "solution": "def zrob_slownik(tresc):\n    slownik = {}\n    if tresc == \"\":\n        return slownik\n\n    for linia in tresc.split(\"\\n\"):\n        if linia != \"\":\n            nazwa, wersja = linia.split(\"==\")\n            slownik[nazwa] = wersja\n    return slownik\n",
+    "testCode": "assert zrob_slownik(\"requests==2.32.3\") == {\"requests\": \"2.32.3\"}\nassert zrob_slownik(\"a==1\\nb==2\") == {\"a\": \"1\", \"b\": \"2\"}\nassert zrob_slownik(\"\") == {}\nassert zrob_slownik(\"x==9\\n\\ny==8\") == {\"x\": \"9\", \"y\": \"8\"}",
+    "difficulty": "medium",
+    "topic": "`requirements.txt`",
+    "hints": [
+      "Każdą linię podziel przez `\"==\"`.",
+      "Dodaj parę do słownika w pętli `for`."
+    ]
+  },
+  {
+    "id": 279,
+    "materialId": 68,
+    "title": "Sprawdź, czy projekt ma swoje środowisko",
+    "description": "Napisz funkcję `czy_ma_venv(linia)`, która zwraca `True`, jeśli dana linia wygląda jak wpis do `.gitignore` dla folderu `.venv/`.",
+    "starterCode": "def czy_ma_venv(linia):\n    # TODO: sprawdź, czy linia to `.venv/`\n    pass\n",
+    "solution": "def czy_ma_venv(linia):\n    return linia == \".venv/\"\n",
+    "testCode": "assert czy_ma_venv(\".venv/\") == True\nassert czy_ma_venv(\"venv/\") == False\nassert czy_ma_venv(\".venv\") == False\nassert czy_ma_venv(\"\") == False",
+    "difficulty": "easy",
+    "topic": "`.venv` w `.gitignore`",
+    "hints": [
+      "Porównaj tekst dokładnie z `.venv/`.",
+      "Zwróć wynik logiczny."
+    ]
+  },
+  {
+    "id": 280,
+    "materialId": 68,
+    "title": "Wyciągnij tylko nazwę pakietu",
+    "description": "Napisz funkcję `nazwa_pakietu(linia)`, która z tekstu w stylu `requests==2.32.3` zwraca tylko `requests`.",
+    "starterCode": "def nazwa_pakietu(linia):\n    # TODO: zwróć samą nazwę pakietu\n    pass\n",
+    "solution": "def nazwa_pakietu(linia):\n    nazwa, wersja = linia.split(\"==\")\n    return nazwa\n",
+    "testCode": "assert nazwa_pakietu(\"requests==2.32.3\") == \"requests\"\nassert nazwa_pakietu(\"pandas==2.2.0\") == \"pandas\"\nassert nazwa_pakietu(\"numpy==1.26.4\") == \"numpy\"",
+    "difficulty": "medium",
+    "topic": "`requirements.txt`",
+    "hints": [
+      "Użyj `split(\"==\")`.",
+      "Weź pierwszy element z wyniku."
+    ]
+  },
+  {
+    "id": 281,
+    "materialId": 69,
+    "title": "Klasa dla notatki",
+    "description": "Napisz klasę `Note`, która trzyma tytuł i flagę `done`. Obiekt ma startować z `done = False`, a metoda `finish()` ma zmieniać tę wartość na `True`.",
+    "starterCode": "class Note:\n    # TODO: dodaj __init__\n    # TODO: dodaj finish()\n    pass\n",
+    "solution": "class Note:\n    def __init__(self, title):\n        self.title = title\n        self.done = False\n\n    def finish(self):\n        self.done = True\n",
+    "testCode": "n = Note(\"plan\")\nassert n.title == \"plan\"\nassert n.done == False\nn.finish()\nassert n.done == True\n",
+    "difficulty": "easy",
+    "topic": "klasy",
+    "hints": [
+      "Użyj `__init__`, żeby ustawić pola obiektu.",
+      "Metoda `finish()` ma tylko zmienić `self.done`."
+    ]
+  },
+  {
+    "id": 282,
+    "materialId": 69,
+    "title": "Opis obiektu z type hints",
+    "description": "Napisz funkcję `describe`, która przyjmuje tekst `text: str` i liczbę `count: int`. Funkcja ma zwrócić jeden napis w formie `tekst | count`.",
+    "starterCode": "# TODO: napisz funkcję describe\n",
+    "solution": "def describe(text: str, count: int) -> str:\n    return f\"{text} | {count}\"\n",
+    "testCode": "assert describe(\"abc\", 3) == \"abc | 3\"\nassert describe(\"x\", 0) == \"x | 0\"\nassert describe(\"\", 5) == \" | 5\"\n",
+    "difficulty": "easy",
+    "topic": "type hints",
+    "hints": [
+      "Pamiętaj o type hints w nagłówku funkcji.",
+      "Użyj f-stringa, żeby złożyć wynik w jeden tekst."
+    ]
+  },
+  {
+    "id": 283,
+    "materialId": 69,
+    "title": "Liczenie wystąpień liczb",
+    "description": "Napisz funkcję `count_numbers`, która dostaje listę liczb całkowitych i zwraca słownik. Kluczem ma być liczba, a wartością liczba jej wystąpień.",
+    "starterCode": "# TODO: napisz funkcję count_numbers\n",
+    "solution": "def count_numbers(numbers: list[int]) -> dict[int, int]:\n    result: dict[int, int] = {}\n    for number in numbers:\n        result[number] = result.get(number, 0) + 1\n    return result\n",
+    "testCode": "assert count_numbers([1, 2, 1]) == {1: 2, 2: 1}\nassert count_numbers([]) == {}\nassert count_numbers([5, 5, 5]) == {5: 3}\n",
+    "difficulty": "medium",
+    "topic": "type hints",
+    "hints": [
+      "Zacznij od pustego słownika.",
+      "W pętli użyj `get(..., 0)`, żeby nie zgadywać, czy klucz już istnieje."
+    ]
+  },
+  {
+    "id": 284,
+    "materialId": 69,
+    "title": "Szukaj słowa z małpą",
+    "description": "Napisz funkcję `find_email`, która przegląda tekst i zwraca pierwsze słowo zawierające znak `@`. Jeśli nic nie znajdzie, ma zwrócić `None`.",
+    "starterCode": "from typing import Optional\n\n# TODO: napisz funkcję find_email\n",
+    "solution": "from typing import Optional\n\ndef find_email(text: str) -> Optional[str]:\n    for word in text.split():\n        if \"@\" in word:\n            return word\n    return None\n",
+    "testCode": "assert find_email(\"napisz do anna@dom.pl teraz\") == \"anna@dom.pl\"\nassert find_email(\"brak adresu\") is None\nassert find_email(\"\") is None\n",
+    "difficulty": "medium",
+    "topic": "`Optional`",
+    "hints": [
+      "Przejdź przez słowa z `split()`.",
+      "Jeśli słowo ma `@`, od razu je zwróć. Jeśli nie, na końcu zwróć `None`."
+    ]
+  },
+  {
+    "id": 285,
+    "materialId": 69,
+    "title": "Prosty obiekt z `@dataclass`",
+    "description": "Napisz klasę `Book` jako `@dataclass`. Ma mieć pola `title: str`, `pages: int` i `read: bool = False`. Potem sprawdź, czy dwa takie same obiekty są równe.",
+    "starterCode": "from dataclasses import dataclass\n\n# TODO: napisz klasę Book\n",
+    "solution": "from dataclasses import dataclass\n\n@dataclass\nclass Book:\n    title: str\n    pages: int\n    read: bool = False\n",
+    "testCode": "a = Book(\"A\", 100)\nb = Book(\"A\", 100)\nc = Book(\"B\", 100)\nassert a == b\nassert a != c\nassert a.read == False\n",
+    "difficulty": "hard",
+    "topic": "`@dataclass`",
+    "hints": [
+      "Dodaj dekorator `@dataclass` nad klasą.",
+      "Pamiętaj, że pole `read` ma mieć wartość domyślną."
+    ]
+  },
+  {
+    "id": 286,
+    "materialId": 70,
+    "title": "Sprawdź status odpowiedzi",
+    "description": "Napisz funkcję `pobierz_status`, która dostaje tekst JSON i zwraca wartość pola `status`. Jeśli pole nie istnieje, zwróć `\"brak\"`.",
+    "starterCode": "import json\n\ndef pobierz_status(tekst: str) -> str:\n    # TODO: zamień JSON na dane\n    # TODO: zwróć status albo \"brak\"\n    pass\n",
+    "solution": "import json\n\ndef pobierz_status(tekst: str) -> str:\n    # Zamieniamy tekst JSON na słownik Pythona\n    dane = json.loads(tekst)\n    # Jeśli pola nie ma, zwracamy \"brak\"\n    return dane.get(\"status\", \"brak\")\n",
+    "testCode": "assert pobierz_status('{\"status\": \"ok\"}') == \"ok\"\nassert pobierz_status('{\"x\": 1}') == \"brak\"\nassert pobierz_status('{\"status\": \"alert\"}') == \"alert\"",
+    "difficulty": "easy",
+    "topic": "json.loads",
+    "hints": [
+      "Najpierw zamień tekst na dane przez `json.loads()`.",
+      "Do opcjonalnego pola użyj `.get()` z wartością domyślną."
+    ]
+  },
+  {
+    "id": 287,
+    "materialId": 70,
+    "title": "Wyciągnij imiona z listy użytkowników",
+    "description": "Napisz funkcję `imiona_uzytkownikow`, która dostaje tekst JSON z polem `users`. W środku jest lista słowników. Funkcja ma zwrócić listę imion.",
+    "starterCode": "import json\n\ndef imiona_uzytkownikow(tekst: str) -> list:\n    # TODO: zamień JSON na dane\n    # TODO: zbuduj listę imion\n    pass\n",
+    "solution": "import json\n\ndef imiona_uzytkownikow(tekst: str) -> list:\n    # Zamiana tekstu JSON na dane Pythona\n    dane = json.loads(tekst)\n\n    # Zbieramy imiona do nowej listy\n    imiona = [u[\"name\"] for u in dane[\"users\"]]\n    return imiona\n",
+    "testCode": "assert imiona_uzytkownikow('{\"users\": [{\"name\": \"Ala\"}, {\"name\": \"Bartek\"}]}') == [\"Ala\", \"Bartek\"]\nassert imiona_uzytkownikow('{\"users\": []}') == []\nassert imiona_uzytkownikow('{\"users\": [{\"name\": \"Ola\"}]}') == [\"Ola\"]",
+    "difficulty": "medium",
+    "topic": "zagnieżdżone dane",
+    "hints": [
+      "Najpierw użyj `json.loads()`.",
+      "Potem przejdź po liście w `users` i zbierz `name` do nowej listy."
+    ]
+  },
+  {
+    "id": 288,
+    "materialId": 70,
+    "title": "Policz tokeny z odpowiedzi",
+    "description": "Napisz funkcję `policz_tokeny`, która dostaje tekst JSON z polami `prompt_tokens` i `completion_tokens` w słowniku `usage`. Funkcja ma zwrócić ich sumę.",
+    "starterCode": "import json\n\ndef policz_tokeny(tekst: str) -> int:\n    # TODO: zamień JSON na dane\n    # TODO: policz sumę tokenów\n    pass\n",
+    "solution": "import json\n\ndef policz_tokeny(tekst: str) -> int:\n    # Parsujemy JSON\n    dane = json.loads(tekst)\n\n    # Bierzemy dwa pola i dodajemy je\n    return dane[\"usage\"][\"prompt_tokens\"] + dane[\"usage\"][\"completion_tokens\"]\n",
+    "testCode": "assert policz_tokeny('{\"usage\": {\"prompt_tokens\": 10, \"completion_tokens\": 3}}') == 13\nassert policz_tokeny('{\"usage\": {\"prompt_tokens\": 0, \"completion_tokens\": 0}}') == 0\nassert policz_tokeny('{\"usage\": {\"prompt_tokens\": 7, \"completion_tokens\": 1}}') == 8",
+    "difficulty": "medium",
+    "topic": "zagnieżdżone dane",
+    "hints": [
+      "Schodź po danych krok po kroku.",
+      "Najpierw weź `usage`, potem oba pola w środku."
+    ]
+  },
+  {
+    "id": 289,
+    "materialId": 70,
+    "title": "Zapisz dane do JSON",
+    "description": "Napisz funkcję `zapisz_payload`, która dostaje słownik i zwraca ładny tekst JSON. Tekst ma mieć wcięcia i polskie znaki.",
+    "starterCode": "import json\n\ndef zapisz_payload(payload: dict) -> str:\n    # TODO: zamień słownik na tekst JSON\n    pass\n",
+    "solution": "import json\n\ndef zapisz_payload(payload: dict) -> str:\n    # Zamieniamy dane Pythona na czytelny JSON\n    return json.dumps(payload, ensure_ascii=False, indent=2)\n",
+    "testCode": "wynik1 = zapisz_payload({\"miasto\": \"Łódź\"})\nassert '\"miasto\": \"Łódź\"' in wynik1\nassert \"\\n  \" in wynik1\nwynik2 = zapisz_payload({})\nassert wynik2 == \"{}\"",
+    "difficulty": "easy",
+    "topic": "json.dumps",
+    "hints": [
+      "Użyj `json.dumps()`.",
+      "Dodaj `ensure_ascii=False` i `indent=2`."
+    ]
+  },
+  {
+    "id": 290,
+    "materialId": 70,
+    "title": "Bezpieczne parsowanie zdarzenia",
+    "description": "Napisz funkcję `parsuj_zdarzenie`, która próbuje zamienić tekst na JSON. Jeśli tekst jest zły, zwróć `{\"ok\": False, \"blad\": \"niepoprawny JSON\"}`. Jeśli brakuje pola `event`, zwróć `{\"ok\": False, \"blad\": \"brak pola event\"}`. W innym wypadku zwróć `{\"ok\": True, \"event\": ...}`.",
+    "starterCode": "import json\n\ndef parsuj_zdarzenie(tekst: str) -> dict:\n    # TODO: parsuj JSON i sprawdzaj pola\n    pass\n",
+    "solution": "import json\n\ndef parsuj_zdarzenie(tekst: str) -> dict:\n    try:\n        dane = json.loads(tekst)\n    except json.JSONDecodeError:\n        return {\"ok\": False, \"blad\": \"niepoprawny JSON\"}\n\n    if \"event\" not in dane:\n        return {\"ok\": False, \"blad\": \"brak pola event\"}\n\n    return {\"ok\": True, \"event\": dane[\"event\"]}\n",
+    "testCode": "assert parsuj_zdarzenie('{\"event\": \"deploy\"}') == {\"ok\": True, \"event\": \"deploy\"}\nassert parsuj_zdarzenie('to nie json') == {\"ok\": False, \"blad\": \"niepoprawny JSON\"}\nassert parsuj_zdarzenie('{\"x\": 1}') == {\"ok\": False, \"blad\": \"brak pola event\"}",
+    "difficulty": "hard",
+    "topic": "walidacja JSON",
+    "hints": [
+      "Użyj `try/except` wokół `json.loads()`.",
+      "Potem sprawdź, czy w danych jest klucz `event`."
+    ]
+  },
+  {
+    "id": 291,
+    "materialId": 71,
+    "title": "Sprawdzanie odpowiedzi API",
+    "description": "Napisz funkcję `opis_statusu(status_code)`, która zwraca krótki tekst dla kodu odpowiedzi. Dla `200` zwróć `\"Sukces\"`, dla `404` zwróć `\"Nie znaleziono\"`, dla `429` zwróć `\"Za dużo zapytań\"`, a dla kodów `500` i większych zwróć `\"Błąd serwera\"`. Dla innych kodów zwróć `\"Inny status\"`.",
+    "starterCode": "def opis_statusu(status_code: int) -> str:\n    # TODO: zwróć tekst zależnie od kodu\n    pass\n",
+    "solution": "def opis_statusu(status_code: int) -> str:\n    # Sprawdzamy najpierw konkretne kody\n    if status_code == 200:\n        return \"Sukces\"\n    if status_code == 404:\n        return \"Nie znaleziono\"\n    if status_code == 429:\n        return \"Za dużo zapytań\"\n    if status_code >= 500:\n        return \"Błąd serwera\"\n\n    # Wszystko inne\n    return \"Inny status\"\n",
+    "testCode": "assert opis_statusu(200) == \"Sukces\"\nassert opis_statusu(404) == \"Nie znaleziono\"\nassert opis_statusu(429) == \"Za dużo zapytań\"\nassert opis_statusu(503) == \"Błąd serwera\"\nassert opis_statusu(301) == \"Inny status\"\n",
+    "difficulty": "easy",
+    "topic": "kody statusu",
+    "hints": [
+      "Użyj kilku warunków `if`.",
+      "Pamiętaj, że `status_code >= 500` obejmuje też `503`."
+    ]
+  },
+  {
+    "id": 292,
+    "materialId": 71,
+    "title": "Budowanie listy nazw z danych JSON",
+    "description": "Napisz funkcję `wyciagnij_imiona(dane)`, która dostaje słownik z kluczem `users`. Wartością jest lista słowników, a każdy z nich ma klucz `name`. Funkcja ma zwrócić listę samych imion.",
+    "starterCode": "def wyciagnij_imiona(dane: dict) -> list:\n    # TODO: zwróć listę imion\n    pass\n",
+    "solution": "def wyciagnij_imiona(dane: dict) -> list:\n    imiona = []\n\n    # Przechodzimy po każdym użytkowniku\n    for u in dane[\"users\"]:\n        imiona.append(u[\"name\"])\n\n    return imiona\n",
+    "testCode": "assert wyciagnij_imiona({\"users\": [{\"name\": \"Ala\"}, {\"name\": \"Olek\"}]}) == [\"Ala\", \"Olek\"]\nassert wyciagnij_imiona({\"users\": []}) == []\nassert wyciagnij_imiona({\"users\": [{\"name\": \"Zosia\"}]}) == [\"Zosia\"]\n",
+    "difficulty": "medium",
+    "topic": "JSON i słowniki",
+    "hints": [
+      "Przejdź pętlą `for` po `dane[\"users\"]`.",
+      "Z każdego elementu weź `u[\"name\"]`."
+    ]
+  },
+  {
+    "id": 293,
+    "materialId": 71,
+    "title": "Przygotowanie danych do POST",
+    "description": "Napisz funkcję `przygotuj_payload(tekst, max_tokens)`, która zwraca słownik z kluczami `text` i `max_tokens`. Jeśli `tekst` jest pustym napisem, ustaw `text` na `\"brak tekstu\"`.",
+    "starterCode": "def przygotuj_payload(tekst: str, max_tokens: int) -> dict:\n    # TODO: zwróć słownik do wysłania przez POST\n    pass\n",
+    "solution": "def przygotuj_payload(tekst: str, max_tokens: int) -> dict:\n    # Jeśli tekst jest pusty, daj wartość domyślną\n    if tekst == \"\":\n        tekst = \"brak tekstu\"\n\n    return {\"text\": tekst, \"max_tokens\": max_tokens}\n",
+    "testCode": "assert przygotuj_payload(\"Witaj\", 10) == {\"text\": \"Witaj\", \"max_tokens\": 10}\nassert przygotuj_payload(\"\", 5) == {\"text\": \"brak tekstu\", \"max_tokens\": 5}\nassert przygotuj_payload(\"Hej\", 0) == {\"text\": \"Hej\", \"max_tokens\": 0}\n",
+    "difficulty": "easy",
+    "topic": "requests.post",
+    "hints": [
+      "Sprawdź, czy `tekst == \"\"`.",
+      "Zwróć słownik z dwoma kluczami."
+    ]
+  },
+  {
+    "id": 294,
+    "materialId": 71,
+    "title": "Decyzja po kodzie statusu i danych",
+    "description": "Napisz funkcję `wynik_requestu(status_code, dane)`, która zwraca napis. Dla `200` zwróć `\"OK: <wynik>\"`, gdzie `<wynik>` bierzesz z `dane.get('result', 'brak wyniku')`. Dla `404` zwróć `\"Brak danych\"`. Dla `429` zwróć `\"Spróbuj później\"`. Dla `500` i większych zwróć `\"Błąd serwera\"`. Inne kody mają zwracać `\"Inny problem\"`.",
+    "starterCode": "def wynik_requestu(status_code: int, dane: dict) -> str:\n    # TODO: zwróć opis zależnie od statusu\n    pass\n",
+    "solution": "def wynik_requestu(status_code: int, dane: dict) -> str:\n    if status_code == 200:\n        return f\"OK: {dane.get('result', 'brak wyniku')}\"\n    if status_code == 404:\n        return \"Brak danych\"\n    if status_code == 429:\n        return \"Spróbuj później\"\n    if status_code >= 500:\n        return \"Błąd serwera\"\n    return \"Inny problem\"\n",
+    "testCode": "assert wynik_requestu(200, {\"result\": 42}) == \"OK: 42\"\nassert wynik_requestu(200, {}) == \"OK: brak wyniku\"\nassert wynik_requestu(404, {}) == \"Brak danych\"\nassert wynik_requestu(429, {}) == \"Spróbuj później\"\nassert wynik_requestu(503, {}) == \"Błąd serwera\"\n",
+    "difficulty": "medium",
+    "topic": "obsługa odpowiedzi",
+    "hints": [
+      "Użyj `dane.get(...)` dla kodu `200`.",
+      "Pamiętaj o kolejności sprawdzania warunków."
+    ]
+  },
+  {
+    "id": 295,
+    "materialId": 71,
+    "title": "Łapanie błędów sieci",
+    "description": "API padają przejściowo — ale nie każdy błąd warto ponawiać. Napisz funkcję `czy_ponowic(status, proba, max_prob)`, która zwraca `True`, gdy żądanie POWINNO być ponowione:\n\n- status `429` (rate limit) lub `500` i większy (błąd serwera) → ponawiamy, o ile `proba < max_prob`\n- status `2xx` (sukces) oraz `4xx` inne niż 429 (np. zły klucz `401`, złe żądanie `400`) → NIE ponawiamy\n- gdy `proba >= max_prob` → NIE ponawiamy (limit prób wyczerpany)",
+    "starterCode": "def czy_ponowic(status, proba, max_prob):\n    # TODO: zwróć True tylko gdy warto ponowić żądanie\n    pass\n",
+    "solution": "def czy_ponowic(status, proba, max_prob):\n    # Limit prób wyczerpany — koniec\n    if proba >= max_prob:\n        return False\n    # Rate limit albo błąd serwera — warto spróbować ponownie\n    return status == 429 or status >= 500\n",
+    "testCode": "assert czy_ponowic(500, 0, 3) == True\nassert czy_ponowic(429, 1, 3) == True\nassert czy_ponowic(503, 2, 3) == True\nassert czy_ponowic(200, 0, 3) == False\nassert czy_ponowic(401, 0, 3) == False\nassert czy_ponowic(400, 1, 3) == False\nassert czy_ponowic(500, 3, 3) == False\n",
+    "difficulty": "hard",
+    "topic": "obsługa błędów",
+    "hints": [
+      "Najpierw sprawdź limit prób — jeśli wyczerpany, od razu `False`",
+      "Ponawiamy tylko dla `status == 429` lub `status >= 500`"
+    ]
+  },
+  {
+    "id": 296,
+    "materialId": 72,
+    "title": "Sprawdź, czy zmienna istnieje",
+    "description": "Napisz funkcję `czy_jest_zmienna(nazwa)`, która zwraca `True`, jeśli zmienna środowiskowa istnieje, i `False`, jeśli jej nie ma. Użyj `os.getenv()`.",
+    "starterCode": "import os\n\ndef czy_jest_zmienna(nazwa):\n    # TODO: zwróć True albo False\n    pass\n",
+    "solution": "import os\n\ndef czy_jest_zmienna(nazwa):\n    # Pobieramy wartość zmiennej.\n    wartosc = os.getenv(nazwa)\n    # Jeśli jest, zwracamy True. Jeśli nie ma, False.\n    return wartosc is not None\n",
+    "testCode": "assert czy_jest_zmienna(\"BRAK_TAKIEJ_ZMIENNEJ\") == False\nassert czy_jest_zmienna(\"MOJA_ZMIENNA\") in [True, False]\nassert czy_jest_zmienna(\"\") == False",
+    "difficulty": "easy",
+    "topic": "`os.environ` i `os.getenv`",
+    "hints": [
+      "Pamiętaj, że `os.getenv()` zwraca `None`, gdy czegoś nie ma.",
+      "Wynik porównaj z `None`."
+    ]
+  },
+  {
+    "id": 297,
+    "materialId": 72,
+    "title": "Pobierz wartość albo zgłoś błąd",
+    "description": "Napisz funkcję `wymagaj_zmiennej(nazwa)`, która zwraca wartość zmiennej. Jeśli zmiennej nie ma, ma zgłosić `RuntimeError` z czytelnym komunikatem.",
+    "starterCode": "import os\n\ndef wymagaj_zmiennej(nazwa):\n    # TODO: zwróć wartość albo zgłoś błąd\n    pass\n",
+    "solution": "import os\n\ndef wymagaj_zmiennej(nazwa):\n    # Odczytujemy zmienną.\n    wartosc = os.getenv(nazwa)\n    # Gdy jej nie ma, pokazujemy jasny błąd.\n    if not wartosc:\n        raise RuntimeError(f\"Brak zmiennej środowiskowej {nazwa}.\")\n    return wartosc\n",
+    "testCode": "try:\n    wymagaj_zmiennej(\"BRAK_TAKIEJ_ZMIENNEJ\")\n    assert False\nexcept RuntimeError:\n    assert True\n\nassert wymagaj_zmiennej.__name__ == \"wymagaj_zmiennej\"\nassert callable(wymagaj_zmiennej)",
+    "difficulty": "medium",
+    "topic": "brak klucza",
+    "hints": [
+      "Najpierw użyj `os.getenv()`.",
+      "Jeśli wynik jest pusty, użyj `raise RuntimeError(...)`."
+    ]
+  },
+  {
+    "id": 298,
+    "materialId": 72,
+    "title": "Sprawdź, czy tekst wygląda jak klucz",
+    "description": "Napisz funkcję `wyglada_jak_klucz(wartosc)`, która zwraca `True`, gdy tekst zaczyna się od `sk-` i ma więcej niż 10 znaków. W innym razie zwraca `False`.",
+    "starterCode": "def wyglada_jak_klucz(wartosc):\n    # TODO: zwróć True albo False\n    pass\n",
+    "solution": "def wyglada_jak_klucz(wartosc):\n    # Klucz ma zaczynać się od \"sk-\" i mieć odpowiednią długość.\n    return wartosc.startswith(\"sk-\") and len(wartosc) > 10\n",
+    "testCode": "assert wyglada_jak_klucz(\"sk-abc123xyz\") == True\nassert wyglada_jak_klucz(\"haslo123\") == False\nassert wyglada_jak_klucz(\"sk-\") == False",
+    "difficulty": "easy",
+    "topic": "walidacja",
+    "hints": [
+      "Użyj `startswith(\"sk-\")`.",
+      "Sprawdź też `len(wartosc)`."
+    ]
+  },
+  {
+    "id": 299,
+    "materialId": 72,
+    "title": "Wczytaj `.env` i pobierz klucz",
+    "description": "Plik `.env` to zwykły tekst z liniami `KLUCZ=wartość`. Napisz funkcję `pobierz_klucz(tekst_env, nazwa)`, która:\n\n- parsuje tekst w formacie `.env` (linie `KLUCZ=wartość`; pomija puste linie i komentarze zaczynające się od `#`)\n- zwraca wartość dla podanej nazwy\n- jeśli klucza nie ma — zgłasza `RuntimeError` z czytelnym komunikatem\n\n(Tak pod spodem działa `load_dotenv()` z biblioteki python-dotenv.)",
+    "starterCode": "def pobierz_klucz(tekst_env, nazwa):\n    # TODO: sparsuj linie KLUCZ=wartość i zwróć wartość dla nazwy\n    # TODO: jeśli nazwy nie ma — raise RuntimeError\n    pass\n",
+    "solution": "def pobierz_klucz(tekst_env, nazwa):\n    zmienne = {}\n    for linia in tekst_env.split(\"\\n\"):\n        linia = linia.strip()\n        # Pomijamy puste linie i komentarze\n        if not linia or linia.startswith(\"#\"):\n            continue\n        if \"=\" in linia:\n            klucz, wartosc = linia.split(\"=\", 1)\n            zmienne[klucz.strip()] = wartosc.strip()\n    if nazwa not in zmienne:\n        raise RuntimeError(f\"Brak zmiennej {nazwa} w .env\")\n    return zmienne[nazwa]\n",
+    "testCode": "assert pobierz_klucz(\"OPENAI_API_KEY=sk-123\\nDEBUG=1\", \"OPENAI_API_KEY\") == \"sk-123\"\nassert pobierz_klucz(\"# komentarz\\nTOKEN=abc\", \"TOKEN\") == \"abc\"\nassert pobierz_klucz(\"A=1\\n\\nB=2\", \"B\") == \"2\"\ntry:\n    pobierz_klucz(\"A=1\", \"BRAK\")\n    blad = False\nexcept RuntimeError:\n    blad = True\nassert blad == True\n",
+    "difficulty": "medium",
+    "topic": "plik `.env`",
+    "hints": [
+      "Przejdź po `tekst_env.split(\"\\n\")` i dziel każdą linię przez `split(\"=\", 1)`",
+      "Do zgłoszenia błędu użyj `raise RuntimeError(\"...\")`"
+    ]
+  },
+  {
+    "id": 300,
+    "materialId": 72,
+    "title": "Zbuduj prosty strażnik sekretów",
+    "description": "Napisz funkcję `sprawdz_sekret(nazwa, wartosc)`, która zwraca `True` tylko wtedy, gdy `wartosc` wygląda jak klucz i nie jest pusta. Użyj zasad z lekcji.",
+    "starterCode": "def sprawdz_sekret(nazwa, wartosc):\n    # TODO: zwróć True albo False\n    pass\n",
+    "solution": "def sprawdz_sekret(nazwa, wartosc):\n    # Jeśli nie ma wartości, od razu False.\n    if not wartosc:\n        return False\n    # Sprawdzamy prosty format klucza.\n    return wartosc.startswith(\"sk-\") and len(wartosc) > 10\n",
+    "testCode": "assert sprawdz_sekret(\"API_KEY\", \"sk-abc123xyz\") == True\nassert sprawdz_sekret(\"API_KEY\", \"\") == False\nassert sprawdz_sekret(\"API_KEY\", \"haslo123\") == False",
+    "difficulty": "hard",
+    "topic": "walidacja",
+    "hints": [
+      "Połącz sprawdzenie pustej wartości i formatu.",
+      "Gdy coś nie pasuje, zwróć `False`."
+    ]
+  },
+  {
+    "id": 301,
+    "materialId": 73,
+    "title": "Log dla sprawdzenia danych",
+    "description": "Napisz funkcję `sprawdz_dane`, która dostaje listę słowników z polem `ok`. Funkcja ma policzyć, ile rekordów jest poprawnych, a dla błędnych ma zapisać `warning` z `id` rekordu. Na końcu ma zwrócić liczbę poprawnych rekordów.",
+    "starterCode": "import logging\n\nlogging.basicConfig(level=logging.INFO, format=\"%(levelname)s: %(message)s\")\nlogger = logging.getLogger(__name__)\n\ndef sprawdz_dane(rekordy):\n    # TODO: policz poprawne rekordy\n    # TODO: zaloguj błędne rekordy\n    # TODO: zwróć wynik\n    pass\n",
+    "solution": "import logging\n\nlogging.basicConfig(level=logging.INFO, format=\"%(levelname)s: %(message)s\")\nlogger = logging.getLogger(__name__)\n\ndef sprawdz_dane(rekordy):\n    poprawne = 0\n    for rekord in rekordy:\n        if rekord[\"ok\"]:\n            poprawne += 1\n        else:\n            logger.warning(\"rekord id=%s odrzucony\", rekord[\"id\"])\n    logger.info(\"poprawne rekordy: %s\", poprawne)\n    return poprawne\n",
+    "testCode": "dane1 = [{\"id\": 1, \"ok\": True}, {\"id\": 2, \"ok\": False}, {\"id\": 3, \"ok\": True}]\ndane2 = []\ndane3 = [{\"id\": 9, \"ok\": False}]\n\nassert sprawdz_dane(dane1) == 2\nassert sprawdz_dane(dane2) == 0\nassert sprawdz_dane(dane3) == 0",
+    "difficulty": "easy",
+    "topic": "Logowanie z danymi",
+    "hints": [
+      "Użyj pętli `for`, żeby przejść po każdym rekordzie.",
+      "Do logowania użyj `logger.warning(...)` i `logger.info(...)`."
+    ]
+  },
+  {
+    "id": 302,
+    "materialId": 73,
+    "title": "Opis wyniku zadania",
+    "description": "Napisz funkcję `opisz_wynik`, która przyjmuje nazwę zadania, liczbę poprawnych elementów i liczbę wszystkich elementów. Funkcja ma zwrócić tekst w formacie `nazwa: ok/total (procent%)`. Jeśli `total` to `0`, procent ma być `0`.",
+    "starterCode": "def opisz_wynik(nazwa_zadania, ok, total):\n    # TODO: policz procent\n    # TODO: zwróć ładny opis jako tekst\n    pass\n",
+    "solution": "def opisz_wynik(nazwa_zadania, ok, total):\n    procent = round(100 * ok / total) if total > 0 else 0\n    return f\"{nazwa_zadania}: {ok}/{total} ({procent}%)\"\n",
+    "testCode": "assert opisz_wynik(\"import\", 8, 10) == \"import: 8/10 (80%)\"\nassert opisz_wynik(\"import\", 0, 0) == \"import: 0/0 (0%)\"\nassert opisz_wynik(\"test\", 1, 2) == \"test: 1/2 (50%)\"",
+    "difficulty": "medium",
+    "topic": "Logowanie z danymi",
+    "hints": [
+      "Najpierw policz procent.",
+      "Pamiętaj o przypadku, gdy `total` jest równe `0`."
+    ]
+  },
+  {
+    "id": 303,
+    "materialId": 73,
+    "title": "Bezpieczne czytanie klucza",
+    "description": "Napisz funkcję `pobierz_temperature`, która próbuje odczytać klucz `temperature` ze słownika. Jeśli klucza nie ma, ma użyć `logger.exception()` i zwrócić `None`.",
+    "starterCode": "import logging\n\nlogging.basicConfig(level=logging.INFO)\nlogger = logging.getLogger(__name__)\n\ndef pobierz_temperature(dane):\n    # TODO: spróbuj odczytać klucz \"temperature\"\n    # TODO: obsłuż brak klucza\n    pass\n",
+    "solution": "import logging\n\nlogging.basicConfig(level=logging.INFO)\nlogger = logging.getLogger(__name__)\n\ndef pobierz_temperature(dane):\n    try:\n        return dane[\"temperature\"]\n    except KeyError:\n        logger.exception(\"brak klucza w konfiguracji\")\n        return None\n",
+    "testCode": "assert pobierz_temperature({\"temperature\": 21}) == 21\nassert pobierz_temperature({}) is None\nassert pobierz_temperature({\"temperature\": 0}) == 0",
+    "difficulty": "medium",
+    "topic": "Logowanie wyjątków",
+    "hints": [
+      "Użyj `try` i `except KeyError`.",
+      "W `except` zapisz log przez `logger.exception(...)`."
+    ]
+  },
+  {
+    "id": 304,
+    "materialId": 73,
+    "title": "Konfiguracja logów dla skryptu",
+    "description": "Napisz kod, który ustawi logowanie tak, aby logi trafiały do pliku `wyniki.log`, a poziom był ustawiony na `INFO`. Następnie zaloguj wiadomość `start`.",
+    "starterCode": "import logging\n\n# TODO: ustaw logowanie do pliku `wyniki.log`\n# TODO: zaloguj wiadomość `start`\n",
+    "solution": "import logging\n\nlogging.basicConfig(\n    level=logging.INFO,\n    filename=\"wyniki.log\",\n)\n\nlogging.info(\"start\")\n",
+    "testCode": "import logging\n\n# test sprawdza tylko, czy kod można uruchomić bez błędu\nassert True",
+    "difficulty": "easy",
+    "topic": "`basicConfig`",
+    "hints": [
+      "Użyj `logging.basicConfig(...)` na początku.",
+      "Dodaj `filename` i `level`."
+    ]
+  },
+  {
+    "id": 305,
+    "materialId": 73,
+    "title": "Logger dla modułu",
+    "description": "Napisz funkcję `start_modulu`, która używa loggera utworzonego przez `logging.getLogger(__name__)` i zapisuje komunikat `start modułu`. Funkcja ma nic nie zwracać.",
+    "starterCode": "import logging\n\nlogging.basicConfig(level=logging.INFO, format=\"%(levelname)s: %(message)s\")\n\n# TODO: utwórz logger dla modułu\n\ndef start_modulu():\n    # TODO: zapisz komunikat o starcie\n    pass\n",
+    "solution": "import logging\n\nlogging.basicConfig(level=logging.INFO, format=\"%(levelname)s: %(message)s\")\nlogger = logging.getLogger(__name__)\n\ndef start_modulu():\n    logger.info(\"start modułu\")\n",
+    "testCode": "start_modulu()\nassert True\nassert start_modulu() is None",
+    "difficulty": "easy",
+    "topic": "Logger z nazwą modułu",
+    "hints": [
+      "Najpierw utwórz `logger` na poziomie modułu.",
+      "W środku funkcji użyj `logger.info(...)`."
+    ]
+  },
+  {
+    "id": 306,
+    "materialId": 74,
+    "title": "Sprawdź, czy status warto ponowić",
+    "description": "Napisz funkcję `czy_ponawiac(status)`, która zwraca `True` dla statusów `429`, `500`, `502`, `503` i `504`, a dla innych zwraca `False`.",
+    "starterCode": "def czy_ponawiac(status: int) -> bool:\n    # TODO: zwróć True dla statusów do ponawiania\n    pass\n",
+    "solution": "def czy_ponawiac(status: int) -> bool:\n    # Statusy, które warto ponawiać\n    return status in (429, 500, 502, 503, 504)\n",
+    "testCode": "assert czy_ponawiac(429) is True\nassert czy_ponawiac(503) is True\nassert czy_ponawiac(401) is False\nassert czy_ponawiac(400) is False\nassert czy_ponawiac(200) is False",
+    "difficulty": "easy",
+    "topic": "błędy, których nie trzeba ponawiać",
+    "hints": [
+      "Użyj sprawdzania, czy wartość jest w krotce.",
+      "Zwróć od razu wynik `status in (...)`."
+    ]
+  },
+  {
+    "id": 307,
+    "materialId": 74,
+    "title": "Policz czasy backoff",
+    "description": "Napisz funkcję `czasy_backoff(max_prob)`, która zwraca listę czasów czekania dla kolejnych prób. Dla `max_prob = 4` ma zwrócić czasy: `1`, `2`, `4`, `8`.",
+    "starterCode": "def czasy_backoff(max_prob: int) -> list:\n    # TODO: zwróć listę czasów czekania\n    pass\n",
+    "solution": "def czasy_backoff(max_prob: int) -> list:\n    czasy = []\n    for attempt in range(max_prob):\n        czasy.append(2 ** attempt)\n    return czasy\n",
+    "testCode": "assert czasy_backoff(4) == [1, 2, 4, 8]\nassert czasy_backoff(1) == [1]\nassert czasy_backoff(0) == []\nassert czasy_backoff(2) == [1, 2]",
+    "difficulty": "easy",
+    "topic": "exponential backoff",
+    "hints": [
+      "Użyj pętli `for`.",
+      "Dla każdej próby policz `2 ** attempt`."
+    ]
+  },
+  {
+    "id": 308,
+    "materialId": 74,
+    "title": "Klasyfikuj odpowiedź serwera",
+    "description": "Napisz funkcję `klasyfikuj_status(status)`, która zwraca `\"sukces\"`, `\"ponow\"` albo `\"przerwij\"` według zasad z lekcji.",
+    "starterCode": "def klasyfikuj_status(status: int) -> str:\n    # TODO: zwróć \"sukces\", \"ponow\" albo \"przerwij\"\n    pass\n",
+    "solution": "def klasyfikuj_status(status: int) -> str:\n    if 200 <= status < 300:\n        return \"sukces\"\n    if status in (429, 500, 502, 503, 504):\n        return \"ponow\"\n    return \"przerwij\"\n",
+    "testCode": "assert klasyfikuj_status(200) == \"sukces\"\nassert klasyfikuj_status(204) == \"sukces\"\nassert klasyfikuj_status(503) == \"ponow\"\nassert klasyfikuj_status(401) == \"przerwij\"\nassert klasyfikuj_status(404) == \"przerwij\"",
+    "difficulty": "medium",
+    "topic": "błędy, których nie trzeba ponawiać",
+    "hints": [
+      "Najpierw sprawdź zakres `200 <= status < 300`.",
+      "Potem sprawdź statusy do ponawiania."
+    ]
+  },
+  {
+    "id": 309,
+    "materialId": 74,
+    "title": "Zbuduj prosty plan prób",
+    "description": "Napisz funkcję `plan_prob(max_prob)`, która zwraca listę napisów w stylu: `\"próba 1 z 3\"`, `\"próba 2 z 3\"` i tak dalej.",
+    "starterCode": "def plan_prob(max_prob: int) -> list:\n    # TODO: zwróć listę napisów opisujących próby\n    pass\n",
+    "solution": "def plan_prob(max_prob: int) -> list:\n    plan = []\n    for proba in range(max_prob):\n        plan.append(f\"próba {proba + 1} z {max_prob}\")\n    return plan\n",
+    "testCode": "assert plan_prob(3) == [\"próba 1 z 3\", \"próba 2 z 3\", \"próba 3 z 3\"]\nassert plan_prob(1) == [\"próba 1 z 1\"]\nassert plan_prob(0) == []",
+    "difficulty": "easy",
+    "topic": "retry",
+    "hints": [
+      "W środku pętli użyj `proba + 1`.",
+      "Składaj tekst z `f\"...\"`."
+    ]
+  },
+  {
+    "id": 310,
+    "materialId": 74,
+    "title": "Obsłuż wynik pobierania danych",
+    "description": "Napisz funkcję `czy_sukces(status)`, która zwraca `True` tylko wtedy, gdy status jest w zakresie od `200` do `299`.",
+    "starterCode": "def czy_sukces(status: int) -> bool:\n    # TODO: zwróć True tylko dla statusów 2xx\n    pass\n",
+    "solution": "def czy_sukces(status: int) -> bool:\n    return 200 <= status < 300\n",
+    "testCode": "assert czy_sukces(200) is True\nassert czy_sukces(250) is True\nassert czy_sukces(299) is True\nassert czy_sukces(199) is False\nassert czy_sukces(300) is False",
+    "difficulty": "medium",
+    "topic": "try/except",
+    "hints": [
+      "Pamiętaj o dolnym i górnym limicie.",
+      "Zwróć wynik porównania, a nie napis."
+    ]
+  },
+  {
+    "id": 311,
+    "materialId": 74,
+    "title": "Przygotuj opis końcowego błędu",
+    "description": "Napisz funkcję `opis_bledu(max_prob, ostatni_blad)`, która zwraca napis w stylu: `\"wyczerpano 3 prób, ostatni błąd: timeout\"`.",
+    "starterCode": "def opis_bledu(max_prob: int, ostatni_blad: str) -> str:\n    # TODO: zwróć jeden napis z liczbą prób i opisem błędu\n    pass\n",
+    "solution": "def opis_bledu(max_prob: int, ostatni_blad: str) -> str:\n    return f\"wyczerpano {max_prob} prób, ostatni błąd: {ostatni_blad}\"\n",
+    "testCode": "assert opis_bledu(3, \"timeout\") == \"wyczerpano 3 prób, ostatni błąd: timeout\"\nassert opis_bledu(1, \"status 500\") == \"wyczerpano 1 prób, ostatni błąd: status 500\"\nassert opis_bledu(0, \"brak\") == \"wyczerpano 0 prób, ostatni błąd: brak\"",
+    "difficulty": "hard",
+    "topic": "retry",
+    "hints": [
+      "Użyj `f\"...\"` do złożenia napisu.",
+      "Wstaw do tekstu obie wartości."
+    ]
+  },
+  {
+    "id": 312,
+    "materialId": 75,
+    "title": "Sprawdź prostą sumę",
+    "description": "Napisz funkcję `test_suma_dwoch_liczb`, która sprawdzi, czy suma dwóch małych liczb jest poprawna. Użyj tylko `assert`.",
+    "starterCode": "def test_suma_dwoch_liczb():\n    # TODO: przygotuj dane\n    # TODO: sprawdź wynik\n    pass\n",
+    "solution": "def test_suma_dwoch_liczb():\n    # przygotowanie danych\n    a = 4\n    b = 5\n    # sprawdzenie\n    assert a + b == 9\n",
+    "testCode": "def test_suma_dwoch_liczb():\n    a = 4\n    b = 5\n    assert a + b == 9\n\nassert test_suma_dwoch_liczb() is None",
+    "difficulty": "easy",
+    "topic": "assert",
+    "hints": [
+      "Najpierw policz wynik zwykłym działaniem.",
+      "Potem porównaj go z oczekiwaną wartością."
+    ]
+  },
+  {
+    "id": 313,
+    "materialId": 75,
+    "title": "Test funkcji czystej",
+    "description": "Napisz funkcję `zwieksz_o_jeden`, a potem test `test_zwieksz_o_jeden`, który sprawdzi wynik dla kilku liczb.",
+    "starterCode": "def zwieksz_o_jeden(liczba: int) -> int:\n    # TODO\n    pass\n\ndef test_zwieksz_o_jeden():\n    # TODO\n    pass\n",
+    "solution": "def zwieksz_o_jeden(liczba: int) -> int:\n    return liczba + 1\n\ndef test_zwieksz_o_jeden():\n    assert zwieksz_o_jeden(1) == 2\n    assert zwieksz_o_jeden(0) == 1\n    assert zwieksz_o_jeden(-1) == 0\n",
+    "testCode": "def zwieksz_o_jeden(liczba: int) -> int:\n    return liczba + 1\n\ndef test_zwieksz_o_jeden():\n    assert zwieksz_o_jeden(1) == 2\n    assert zwieksz_o_jeden(0) == 1\n    assert zwieksz_o_jeden(-1) == 0\n\nassert zwieksz_o_jeden(5) == 6\nassert zwieksz_o_jeden(0) == 1\nassert zwieksz_o_jeden(-2) == -1",
+    "difficulty": "easy",
+    "topic": "Funkcje czyste",
+    "hints": [
+      "Funkcja ma zawsze zwracać liczbę większą o 1.",
+      "Sprawdź też przypadek z `0`."
+    ]
+  },
+  {
+    "id": 314,
+    "materialId": 75,
+    "title": "Porównanie wielu przypadków",
+    "description": "Napisz funkcję `czy_ujemna(liczba)`, która zwraca `True` dla liczb mniejszych od zera, a `False` w pozostałych przypadkach. Następnie sprawdź ją na liście przypadków testowych `(wejście, oczekiwany_wynik)` w pętli — dokładnie tak działa idea `@pytest.mark.parametrize`, tylko zapisana zwykłą pętlą (nasz edytor uruchamia czysty Python, bez pytest).",
+    "starterCode": "def czy_ujemna(liczba):\n    # TODO: zwróć True dla liczb ujemnych\n    pass\n\nprzypadki = [(-3, True), (0, False), (7, False)]\n# TODO: w pętli sprawdź każdy przypadek przez assert\n",
+    "solution": "def czy_ujemna(liczba):\n    return liczba < 0\n\n# Parametryzacja \"jak w pytest\" — lista przypadków + pętla\nprzypadki = [(-3, True), (0, False), (7, False)]\nfor liczba, oczekiwane in przypadki:\n    assert czy_ujemna(liczba) == oczekiwane\n",
+    "testCode": "assert czy_ujemna(-1) == True\nassert czy_ujemna(-100) == True\nassert czy_ujemna(0) == False\nassert czy_ujemna(5) == False\n",
+    "difficulty": "medium",
+    "topic": "parametrize",
+    "hints": [
+      "Porównanie `liczba < 0` samo w sobie zwraca True/False",
+      "Przypadki zapisz jako listę krotek: `[(-3, True), (0, False), ...]`"
+    ]
+  },
+  {
+    "id": 315,
+    "materialId": 75,
+    "title": "Sprawdź parser prostego napisu",
+    "description": "Napisz funkcję `wyciagnij_dane`, która bierze napis w stylu `key=value;name=test` i zwraca słownik. Uważaj na spacje wokół kluczy i wartości.",
+    "starterCode": "def wyciagnij_dane(linia: str) -> dict:\n    # TODO\n    pass\n",
+    "solution": "def wyciagnij_dane(linia: str) -> dict:\n    wynik = {}\n    for czesc in linia.split(\";\"):\n        klucz, wartosc = czesc.split(\"=\")\n        wynik[klucz.strip()] = wartosc.strip()\n    return wynik\n",
+    "testCode": "def wyciagnij_dane(linia: str) -> dict:\n    wynik = {}\n    for czesc in linia.split(\";\"):\n        klucz, wartosc = czesc.split(\"=\")\n        wynik[klucz.strip()] = wartosc.strip()\n    return wynik\n\nassert wyciagnij_dane(\"a=1;b=2\") == {\"a\": \"1\", \"b\": \"2\"}\nassert wyciagnij_dane(\" a = 3 ; b = 4 \") == {\"a\": \"3\", \"b\": \"4\"}\nassert wyciagnij_dane(\"x=10\") == {\"x\": \"10\"}",
+    "difficulty": "hard",
+    "topic": "Funkcje czyste",
+    "hints": [
+      "Użyj `split(\";\")` do podziału napisu na części.",
+      "Potem w każdej części użyj `split(\"=\")`."
+    ]
+  },
+  {
+    "id": 316,
+    "materialId": 75,
+    "title": "Cena za milion tokenów",
+    "description": "Napisz funkcję `policz_cene`, która liczy koszt na podstawie liczby tokenów i ceny za 1 milion tokenów. Potem sprawdź ją dla kilku przypadków.",
+    "starterCode": "def policz_cene(tokeny: int, cena_za_1m: float) -> float:\n    # TODO\n    pass\n",
+    "solution": "def policz_cene(tokeny: int, cena_za_1m: float) -> float:\n    return round(tokeny / 1_000_000 * cena_za_1m, 6)\n",
+    "testCode": "def policz_cene(tokeny: int, cena_za_1m: float) -> float:\n    return round(tokeny / 1_000_000 * cena_za_1m, 6)\n\nassert policz_cene(1_000_000, 0.25) == 0.25\nassert policz_cene(500_000, 0.4) == 0.2\nassert policz_cene(0, 10) == 0.0",
+    "difficulty": "medium",
+    "topic": "Arrange–Act–Assert",
+    "hints": [
+      "Pamiętaj o dzieleniu przez `1_000_000`.",
+      "Wynik zaokrąglij do 6 miejsc."
+    ]
+  },
+  {
+    "id": 317,
+    "materialId": 76,
+    "title": "Utwórz prosty plik .gitignore",
+    "description": "Napisz funkcję `build_gitignore()`, która zwraca treść prostego pliku `.gitignore` dla projektu Pythona. W środku mają być dokładnie cztery linie: `.venv/`, `.env`, `__pycache__/` i `*.pyc`.",
+    "starterCode": "def build_gitignore():\n    # TODO: zwróć treść pliku .gitignore\n    pass\n",
+    "solution": "def build_gitignore():\n    # Zwracamy treść pliku .gitignore jako jeden napis\n    return \".venv/\\n.env\\n__pycache__/\\n*.pyc\"\n",
+    "testCode": "assert build_gitignore() == \".venv/\\n.env\\n__pycache__/\\n*.pyc\"\nassert build_gitignore().count(\"\\n\") == 3\nassert \".env\" in build_gitignore()\n",
+    "difficulty": "easy",
+    "topic": "Pliki ignorowane",
+    "hints": [
+      "Zwróć jeden napis z kilkoma liniami.",
+      "Pamiętaj o znakach nowej linii między wpisami."
+    ]
+  },
+  {
+    "id": 318,
+    "materialId": 76,
+    "title": "Sprawdź, czy plik ma być ignorowany",
+    "description": "Napisz funkcję `should_ignore(name)`, która sprawdza, czy nazwa pliku lub folderu powinna trafić do `.gitignore`. Funkcja ma zwrócić `True` dla `.venv/`, `.env`, `__pycache__/` i `*.pyc`, a dla innych nazw `False`.",
+    "starterCode": "def should_ignore(name):\n    # TODO: zwróć True albo False\n    pass\n",
+    "solution": "def should_ignore(name):\n    # Sprawdzamy, czy nazwa pasuje do jednego z wpisów z .gitignore\n    if name == \".venv/\":\n        return True\n    if name == \".env\":\n        return True\n    if name == \"__pycache__/\":\n        return True\n    if name == \"*.pyc\":\n        return True\n    return False\n",
+    "testCode": "assert should_ignore(\".venv/\") is True\nassert should_ignore(\".env\") is True\nassert should_ignore(\"main.py\") is False\nassert should_ignore(\"__pycache__/\") is True\n",
+    "difficulty": "easy",
+    "topic": "Pliki ignorowane",
+    "hints": [
+      "Porównaj nazwę z kilkoma dokładnymi wartościami.",
+      "Zwróć `True`, gdy pasuje jeden z wpisów z lekcji."
+    ]
+  },
+  {
+    "id": 319,
+    "materialId": 76,
+    "title": "Zbuduj prosty opis commita",
+    "description": "Napisz funkcję `commit_message(action, reason)`, która zwraca krótki opis commita w formie `CO - PO CO`. Na przykład dla `action = \"Dodaj timeout\"` i `reason = \"dla requestów\"` ma zwrócić jeden łączony napis.",
+    "starterCode": "def commit_message(action, reason):\n    # TODO: połącz dwa elementy w jeden opis\n    pass\n",
+    "solution": "def commit_message(action, reason):\n    # Łączymy dwa napisy w jeden opis commita\n    return action + \" - \" + reason\n",
+    "testCode": "assert commit_message(\"Dodaj timeout\", \"dla requestów\") == \"Dodaj timeout - dla requestów\"\nassert commit_message(\"Popraw logi\", \"dla debugowania\") == \"Popraw logi - dla debugowania\"\nassert commit_message(\"\", \"test\") == \" - test\"\n",
+    "difficulty": "easy",
+    "topic": "Podstawowy cykl pracy",
+    "hints": [
+      "Połącz dwa napisy w jeden wynik.",
+      "Użyj zwykłego `return`."
+    ]
+  },
+  {
+    "id": 320,
+    "materialId": 76,
+    "title": "Wybierz właściwy krok pracy z gitem",
+    "description": "Napisz funkcję `next_step(has_changes, is_ready)`, która zwraca jeden z napisów: `git status`, `git add`, `git commit` albo `git push`. Użyj prostych zasad: jeśli nie wiesz, co się zmieniło, zwróć `git status`; jeśli zmiany są, ale nie są jeszcze gotowe, zwróć `git add`; jeśli są gotowe lokalnie, zwróć `git commit`; jeśli commit jest już zrobiony i trzeba wysłać go na GitHuba, zwróć `git push`.",
+    "starterCode": "def next_step(has_changes, is_ready):\n    # TODO: wybierz właściwą komendę\n    pass\n",
+    "solution": "def next_step(has_changes, is_ready):\n    # Najpierw sprawdzamy stan, potem decyzję\n    if not has_changes:\n        return \"git status\"\n    if has_changes and not is_ready:\n        return \"git add\"\n    if has_changes and is_ready:\n        return \"git commit\"\n    return \"git push\"\n",
+    "testCode": "assert next_step(False, False) == \"git status\"\nassert next_step(True, False) == \"git add\"\nassert next_step(True, True) == \"git commit\"\n",
+    "difficulty": "medium",
+    "topic": "Podstawowy cykl pracy",
+    "hints": [
+      "Pomyśl o kolejności pracy: najpierw sprawdzenie, potem dodanie, potem zapis, potem wysłanie.",
+      "Użyj `if` i `return`."
+    ]
+  },
+  {
+    "id": 321,
+    "materialId": 76,
+    "title": "Plan pracy na nowej gałęzi",
+    "description": "Napisz funkcję `branch_plan(branch_name)`, która zwraca krótki plan pracy na nowej gałęzi. Wynik ma wyglądać tak: `git checkout -b nazwa` oraz potem informacja, że commity trafią na tę gałąź.",
+    "starterCode": "def branch_plan(branch_name):\n    # TODO: zbuduj krótki plan dla gałęzi\n    pass\n",
+    "solution": "def branch_plan(branch_name):\n    # Tworzymy prosty opis pracy na nowej gałęzi\n    return \"git checkout -b \" + branch_name + \"\\nCommity trafią na gałąź \" + branch_name\n",
+    "testCode": "assert branch_plan(\"fix-timeout\") == \"git checkout -b fix-timeout\\nCommity trafią na gałąź fix-timeout\"\nassert branch_plan(\"nowa-funkcja\").startswith(\"git checkout -b nowa-funkcja\")\nassert \"Commity trafią\" in branch_plan(\"test\")\n",
+    "difficulty": "medium",
+    "topic": "Gałęzie",
+    "hints": [
+      "Wynik ma zawierać nazwę gałęzi.",
+      "Zwróć jeden napis z dwoma zdaniami."
+    ]
+  },
+  {
+    "id": 322,
+    "materialId": 76,
+    "title": "Krótki komunikat o błędzie push",
+    "description": "Napisz funkcję `push_help(error_text)`, która dla tekstu zawierającego `fetch first` zwraca pomoc: najpierw `git pull`, potem `git push`. Dla innych tekstów zwraca `Sprawdź `git status``.",
+    "starterCode": "def push_help(error_text):\n    # TODO: zwróć właściwą podpowiedź\n    pass\n",
+    "solution": "def push_help(error_text):\n    # Pomagamy tylko w jednym znanym błędzie push\n    if \"fetch first\" in error_text:\n        return \"Najpierw `git pull`, potem `git push`\"\n    return \"Sprawdź `git status`\"\n",
+    "testCode": "assert push_help(\"! [rejected] main -> main (fetch first)\") == \"Najpierw `git pull`, potem `git push`\"\nassert push_help(\"inny błąd\") == \"Sprawdź `git status`\"\nassert push_help(\"\") == \"Sprawdź `git status`\"\n",
+    "difficulty": "hard",
+    "topic": "Częste błędy",
+    "hints": [
+      "Sprawdź, czy w tekście jest fragment `fetch first`.",
+      "Zwróć dokładnie dwa możliwe wyniki."
+    ]
+  },
+  {
+    "id": 323,
+    "materialId": 77,
+    "title": "Zbuduj wiadomości do modelu",
+    "description": "Napisz funkcję `zbuduj_messages(instrukcja, tekst_uzytkownika)`, która zwróci listę dwóch słowników. Pierwszy ma rolę `system`, drugi ma rolę `user`. Treść ma trafić do pola `content`.",
+    "starterCode": "def zbuduj_messages(instrukcja: str, tekst_uzytkownika: str) -> list:\n    # TODO: zwróć listę dwóch wiadomości\n    pass\n",
+    "solution": "def zbuduj_messages(instrukcja: str, tekst_uzytkownika: str) -> list:\n    # Pierwsza wiadomość to instrukcja dla modelu.\n    # Druga wiadomość to tekst od użytkownika.\n    return [\n        {\"role\": \"system\", \"content\": instrukcja},\n        {\"role\": \"user\", \"content\": tekst_uzytkownika},\n    ]\n",
+    "testCode": "assert zbuduj_messages(\"Krótko.\", \"Cześć\") == [\n    {\"role\": \"system\", \"content\": \"Krótko.\"},\n    {\"role\": \"user\", \"content\": \"Cześć\"},\n]\nassert zbuduj_messages(\"A\", \"B\")[0][\"role\"] == \"system\"\nassert zbuduj_messages(\"A\", \"B\")[1][\"content\"] == \"B\"\nassert len(zbuduj_messages(\"A\", \"B\")) == 2\n",
+    "difficulty": "easy",
+    "topic": "struktura `messages`",
+    "hints": [
+      "Użyj listy z dwoma słownikami.",
+      "Sprawdź, jakie pola mają mieć wiadomości."
+    ]
+  },
+  {
+    "id": 324,
+    "materialId": 77,
+    "title": "Wyciągnij tekst z odpowiedzi API",
+    "description": "Napisz funkcję `wyciagnij_tekst(odpowiedz_api)`, która zwróci sam tekst z pola `choices[0].message.content`.",
+    "starterCode": "def wyciagnij_tekst(odpowiedz_api: dict) -> str:\n    # TODO: zwróć tekst odpowiedzi modelu\n    pass\n",
+    "solution": "def wyciagnij_tekst(odpowiedz_api: dict) -> str:\n    # Odpowiedź ma listę choices.\n    # W środku jest message, a w nim content.\n    return odpowiedz_api[\"choices\"][0][\"message\"][\"content\"]\n",
+    "testCode": "dane1 = {\"choices\": [{\"message\": {\"content\": \"tak\"}}]}\ndane2 = {\"choices\": [{\"message\": {\"content\": \"nie\"}}]}\ndane3 = {\"choices\": [{\"message\": {\"content\": \"\"}}]}\n\nassert wyciagnij_tekst(dane1) == \"tak\"\nassert wyciagnij_tekst(dane2) == \"nie\"\nassert wyciagnij_tekst(dane3) == \"\"\n",
+    "difficulty": "easy",
+    "topic": "parsowanie odpowiedzi",
+    "hints": [
+      "Wejdź po kolei do `choices`, potem do pierwszego elementu, potem do `message`, potem do `content`.",
+      "Użyj nawiasów kwadratowych do słownika i listy."
+    ]
+  },
+  {
+    "id": 325,
+    "materialId": 77,
+    "title": "Bezpieczne parsowanie JSON-a",
+    "description": "Napisz funkcję `parsuj_json_modelu(tekst)`, która próbuje zamienić tekst na słownik. Jeśli tekst nie jest poprawnym JSON-em albo nie jest słownikiem, zwróć `{}`.",
+    "starterCode": "import json\n\ndef parsuj_json_modelu(tekst: str) -> dict:\n    # TODO: zwróć słownik albo {}\n    pass\n",
+    "solution": "import json\n\ndef parsuj_json_modelu(tekst: str) -> dict:\n    # Próbujemy zamienić napis na dane.\n    try:\n        wynik = json.loads(tekst)\n    except json.JSONDecodeError:\n        return {}\n\n    # Zwracamy tylko słownik.\n    if not isinstance(wynik, dict):\n        return {}\n\n    return wynik\n",
+    "testCode": "assert parsuj_json_modelu('{\"a\": 1}') == {\"a\": 1}\nassert parsuj_json_modelu('\"napis\"') == {}\nassert parsuj_json_modelu('[]') == {}\nassert parsuj_json_modelu('to nie jest json') == {}\n",
+    "difficulty": "medium",
+    "topic": "JSON z modelu",
+    "hints": [
+      "Użyj `json.loads`.",
+      "Dodaj `try/except` dla `json.JSONDecodeError` i sprawdź, czy wynik jest słownikiem."
+    ]
+  },
+  {
+    "id": 326,
+    "materialId": 77,
+    "title": "Policz koszt wywołania",
+    "description": "Napisz funkcję `koszt_wywolania(usage, cena_in, cena_out)`, która liczy koszt na podstawie `prompt_tokens` i `completion_tokens`. Wynik zaokrąglij do 6 miejsc po przecinku.",
+    "starterCode": "def koszt_wywolania(usage: dict, cena_in: float, cena_out: float) -> float:\n    # TODO: policz koszt wywołania\n    pass\n",
+    "solution": "def koszt_wywolania(usage: dict, cena_in: float, cena_out: float) -> float:\n    # Liczymy osobno tokeny wejścia i wyjścia.\n    koszt = (\n        usage[\"prompt_tokens\"] / 1_000_000 * cena_in\n        + usage[\"completion_tokens\"] / 1_000_000 * cena_out\n    )\n    return round(koszt, 6)\n",
+    "testCode": "assert koszt_wywolania({\"prompt_tokens\": 0, \"completion_tokens\": 0}, 1.0, 2.0) == 0.0\nassert koszt_wywolania({\"prompt_tokens\": 1000000, \"completion_tokens\": 0}, 0.5, 2.0) == 0.5\nassert koszt_wywolania({\"prompt_tokens\": 0, \"completion_tokens\": 1000000}, 0.5, 2.0) == 2.0\nassert koszt_wywolania({\"prompt_tokens\": 1200, \"completion_tokens\": 300}, 0.25, 2.00) == 0.0009\n",
+    "difficulty": "medium",
+    "topic": "tokeny i koszty",
+    "hints": [
+      "Pamiętaj, że ceny są podane za 1M tokenów.",
+      "Użyj `round(..., 6)` na końcu."
+    ]
+  },
+  {
+    "id": 327,
+    "materialId": 77,
+    "title": "Przygotuj nagłówki do `requests.post`",
+    "description": "Napisz funkcję `zbuduj_headers(klucz)`, która zwróci słownik nagłówków z `Authorization` i `Content-Type`. Dla klucza `\"abc123\"` nagłówek `Authorization` ma mieć wartość `Bearer abc123`.",
+    "starterCode": "def zbuduj_headers(klucz: str) -> dict:\n    # TODO: zwróć słownik nagłówków\n    pass\n",
+    "solution": "def zbuduj_headers(klucz: str) -> dict:\n    # Budujemy nagłówki do wysłania w POST.\n    return {\n        \"Authorization\": f\"Bearer {klucz}\",\n        \"Content-Type\": \"application/json\",\n    }\n",
+    "testCode": "assert zbuduj_headers(\"abc123\") == {\n    \"Authorization\": \"Bearer abc123\",\n    \"Content-Type\": \"application/json\",\n}\nassert zbuduj_headers(\"\")[\"Authorization\"] == \"Bearer \"\nassert zbuduj_headers(\"x\")[\"Content-Type\"] == \"application/json\"\n",
+    "difficulty": "easy",
+    "topic": "`requests.post`",
+    "hints": [
+      "`Authorization` zaczyna się od słowa `Bearer`.",
+      "`Content-Type` ma mieć wartość `application/json`."
+    ]
+  },
+  {
+    "id": 328,
+    "materialId": 78,
+    "title": "Prosty endpoint z wynikiem stanu",
+    "description": "Napisz funkcję `health_data()`, która zwraca słownik `{\"status\": \"ok\"}`.\n\nW FastAPI podpiąłbyś ją pod endpoint tak:\n```python\n@app.get(\"/health\")\ndef health():\n    return health_data()\n```\nNasz edytor działa offline, więc piszemy (i testujemy) samą logikę — dokładnie tak rozdziela się kod w prawdziwych projektach.",
+    "starterCode": "def health_data():\n    # TODO: zwróć słownik ze statusem ok\n    pass\n",
+    "solution": "def health_data():\n    return {\"status\": \"ok\"}\n",
+    "testCode": "assert health_data() == {\"status\": \"ok\"}\nassert isinstance(health_data(), dict)\nassert health_data()[\"status\"] == \"ok\"\n",
+    "difficulty": "easy",
+    "topic": "endpoint `GET`",
+    "hints": [
+      "Funkcja ma po prostu zwracać słownik — jedna linia z `return`"
+    ]
+  },
+  {
+    "id": 329,
+    "materialId": 78,
+    "title": "Dane użytkownika z parametrem ścieżki",
+    "description": "Napisz funkcję `get_user(user_id)`, która zwraca słownik z polami `id` i `name`, gdzie `name` to `user_` plus numer ID.\n\nW FastAPI to byłby endpoint z parametrem ścieżki:\n```python\n@app.get(\"/users/{user_id}\")\ndef get_user(user_id: int):\n    ...\n```\nMy piszemy samą logikę — dekorator pomijamy, bo edytor działa offline.",
+    "starterCode": "def get_user(user_id):\n    # TODO: zwróć słownik {\"id\": ..., \"name\": \"user_<id>\"}\n    pass\n",
+    "solution": "def get_user(user_id):\n    return {\"id\": user_id, \"name\": f\"user_{user_id}\"}\n",
+    "testCode": "assert get_user(5) == {\"id\": 5, \"name\": \"user_5\"}\nassert get_user(0) == {\"id\": 0, \"name\": \"user_0\"}\nassert get_user(12)[\"name\"] == \"user_12\"\n",
+    "difficulty": "easy",
+    "topic": "parametry ścieżki i query",
+    "hints": [
+      "Użyj f-stringa do zbudowania `name`: `f\"user_{user_id}\"`"
+    ]
+  },
+  {
+    "id": 330,
+    "materialId": 78,
+    "title": "Model danych do `POST`",
+    "description": "Zdefiniuj klasę `PredictRequest` opisującą dane wejściowe z polami `tekst` (napis) i `prog` (liczba, domyślnie `0.5`). Użyj dekoratora `@dataclass`.\n\nW FastAPI użyłbyś `BaseModel` z Pydantic — zapis pól wygląda identycznie, a `@dataclass` (wbudowany w Pythona) pozwala nam przetestować to offline.",
+    "starterCode": "from dataclasses import dataclass\n\n# TODO: zdefiniuj klasę PredictRequest z polami tekst i prog (domyślnie 0.5)\n",
+    "solution": "from dataclasses import dataclass\n\n@dataclass\nclass PredictRequest:\n    tekst: str\n    prog: float = 0.5\n",
+    "testCode": "assert PredictRequest(tekst=\"abc\").prog == 0.5\nassert PredictRequest(tekst=\"abc\").tekst == \"abc\"\nassert PredictRequest(tekst=\"x\", prog=0.7).prog == 0.7\n",
+    "difficulty": "easy",
+    "topic": "model `BaseModel`",
+    "hints": [
+      "Pamiętaj o imporcie: `from dataclasses import dataclass`",
+      "Pole z wartością domyślną: `prog: float = 0.5`"
+    ]
+  },
+  {
+    "id": 331,
+    "materialId": 78,
+    "title": "Prosty licznik spamu w tekście",
+    "description": "Napisz funkcję `oceń_tekst(tekst)`, która liczy udział słów spamowych z zestawu `{\"promocja\", \"gratis\", \"wygrana\", \"kliknij\"}` we wszystkich słowach tekstu (wielkość liter bez znaczenia, znaki `.,!?` na końcach słów ignorujemy). Wynik zaokrąglij do 2 miejsc. Dla pustego tekstu zwróć `0.0`.",
+    "starterCode": "def oceń_tekst(tekst):\n    spamowe = {\"promocja\", \"gratis\", \"wygrana\", \"kliknij\"}\n    # TODO: policz udział słów spamowych\n    pass\n",
+    "solution": "def oceń_tekst(tekst):\n    spamowe = {\"promocja\", \"gratis\", \"wygrana\", \"kliknij\"}\n    slowa = tekst.lower().split()\n    if not slowa:\n        return 0.0\n    trafienia = sum(1 for s in slowa if s.strip(\".,!?\") in spamowe)\n    return round(trafienia / len(slowa), 2)\n",
+    "testCode": "assert oceń_tekst(\"\") == 0.0\nassert oceń_tekst(\"Spotkanie zespołu\") == 0.0\nassert oceń_tekst(\"Kliknij teraz, promocja\") == 0.67\nassert oceń_tekst(\"Gratis dziś\") == 0.5\nassert oceń_tekst(\"PROMOCJA!\") == 1.0\n",
+    "difficulty": "medium",
+    "topic": "czysta logika i warstwa HTTP",
+    "hints": [
+      "Podziel tekst przez `split()` i porównuj `slowo.lower().strip(\".,!?\")`",
+      "Udział = trafienia / liczba wszystkich słów"
+    ]
+  },
+  {
+    "id": 332,
+    "materialId": 78,
+    "title": "Endpoint `POST /predict`",
+    "description": "Połącz wszystko w mini-serwis predykcji spamu (logika endpointu `POST /predict`):\n\n1. `oceń_tekst(tekst)` — udział słów spamowych (jak w poprzednim ćwiczeniu)\n2. `@dataclass PredictRequest` z polami `tekst` i `prog` (domyślnie `0.5`)\n3. `predict(req)` — zwraca `{\"spam\": ..., \"score\": ...}`, gdzie `spam` jest `True`, gdy `score >= req.prog` i `score > 0`\n\nW FastAPI `predict` byłoby pod `@app.post(\"/predict\")` — my testujemy czystą logikę.",
+    "starterCode": "from dataclasses import dataclass\n\ndef oceń_tekst(tekst):\n    # TODO: skopiuj logikę z poprzedniego ćwiczenia\n    pass\n\n# TODO: dataclass PredictRequest (tekst, prog=0.5)\n\n# TODO: def predict(req) -> {\"spam\": bool, \"score\": float}\n",
+    "solution": "from dataclasses import dataclass\n\ndef oceń_tekst(tekst):\n    spamowe = {\"promocja\", \"gratis\", \"wygrana\", \"kliknij\"}\n    slowa = tekst.lower().split()\n    if not slowa:\n        return 0.0\n    trafienia = sum(1 for s in slowa if s.strip(\".,!?\") in spamowe)\n    return round(trafienia / len(slowa), 2)\n\n@dataclass\nclass PredictRequest:\n    tekst: str\n    prog: float = 0.5\n\ndef predict(req):\n    score = oceń_tekst(req.tekst)\n    return {\"spam\": score >= req.prog and score > 0, \"score\": score}\n",
+    "testCode": "assert predict(PredictRequest(tekst=\"Kliknij teraz\")) == {\"spam\": True, \"score\": 0.5}\nassert predict(PredictRequest(tekst=\"Spotkanie jutro\", prog=0.2)) == {\"spam\": False, \"score\": 0.0}\nassert predict(PredictRequest(tekst=\"\")) == {\"spam\": False, \"score\": 0.0}\nassert predict(PredictRequest(tekst=\"gratis gratis\", prog=0.9)) == {\"spam\": True, \"score\": 1.0}\n",
+    "difficulty": "hard",
+    "topic": "endpoint `POST`",
+    "hints": [
+      "`predict` najpierw liczy `score = oceń_tekst(req.tekst)`",
+      "Spam tylko gdy wynik przekracza próg I jest większy od zera"
+    ]
   }
 ]

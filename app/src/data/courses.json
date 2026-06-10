@@ -1,10 +1,18 @@
 [
   {
     "id": "python",
-    "name": "Python",
+    "name": "Python — fundamenty",
     "icon": "🐍",
     "color": "#3B82F6",
     "description": "Podstawy programowania w Pythonie — zmienne, pętle, funkcje, pliki",
     "order": 1
+  },
+  {
+    "id": "mlops",
+    "name": "Python dla MLOps i AI",
+    "icon": "🚀",
+    "color": "#8B5CF6",
+    "description": "Praktyczny Python pod automatyzację i AI — JSON, API, sekrety, testy, LLM",
+    "order": 2
   }
 ]

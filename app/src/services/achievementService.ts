@@ -44,10 +44,15 @@ export async function checkProgressEvents(): Promise<void> {
   const all = await db.dailyActivity.toArray();
   const totalXP = all.reduce((s, a) => s + a.xpEarned, 0);
   const level = getLevel(totalXP);
-  const lastLevel = await getSetting('last_level', 'Junior');
+  // Map pre-rebrand level names so the rename doesn't fire a fake level-up
+  const LEGACY: Record<string, string> = {
+    Junior: 'Skrypciarz', Regular: 'Pythonista', Senior: 'Automatyk', Lead: 'ML Engineer', Architect: 'MLOps Architect',
+  };
+  let lastLevel = await getSetting('last_level', 'Skrypciarz');
+  if (LEGACY[lastLevel]) lastLevel = LEGACY[lastLevel];
   if (level !== lastLevel) {
     await setSetting('last_level', level);
-    if (lastLevel !== 'Junior' || level !== 'Junior') {
+    if (lastLevel !== 'Skrypciarz' || level !== 'Skrypciarz') {
       push({ type: 'levelup', level });
     }
   }
@@ -73,6 +78,10 @@ export async function checkProgressEvents(): Promise<void> {
   ).size;
   if (codingDone >= 5) await unlock('coder');
   if (codingDone >= 10) await unlock('debugger');
+
+  // --- New-mode achievements (counters in userSettings) ---
+  if (Number(await getSetting('sprint_correct_total', '0')) >= 50) await unlock('sprinter');
+  if (Number(await getSetting('puzzles_solved', '0')) >= 10) await unlock('puzzle_master');
 }
 
 /** Call when a quiz session ends with a perfect score. */

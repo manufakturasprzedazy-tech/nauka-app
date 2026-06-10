@@ -4632,5 +4632,1202 @@
     "front": "Jaki częsty błąd popełniają początkujący z FK?",
     "back": "Dają string zamiast numeru, albo zapominają, że trzeba najpierw wstawić rekord docelowy, by znać `id`.",
     "topic": "gotcha FK"
+  },
+  {
+    "id": 769,
+    "materialId": 66,
+    "front": "Co to jest komprehensja listy?",
+    "back": "To krótki zapis pętli, która tworzy nową listę, np. `[x * 2 for x in liczby]`.",
+    "topic": "komprehensja listy"
+  },
+  {
+    "id": 770,
+    "materialId": 66,
+    "front": "Jaka jest różnica między zwykłą pętlą `for` a komprehensją listy?",
+    "back": "Obie mogą zrobić to samo, ale komprehensja jest krótsza. Na przykład zamiast `for` i `append()` możesz napisać jedną linię.",
+    "topic": "komprehensja listy"
+  },
+  {
+    "id": 771,
+    "materialId": 66,
+    "front": "Co robi `if` na końcu komprehensji?",
+    "back": "Filtruje elementy. Do nowej listy trafiają tylko te, które spełniają warunek.",
+    "topic": "filtrowanie w komprehensji"
+  },
+  {
+    "id": 772,
+    "materialId": 66,
+    "front": "Jaka jest różnica między `if` na końcu a `if/else` przed `for`?",
+    "back": "`if` na końcu usuwa część elementów, a `if/else` zmienia wartość dla każdego elementu. Czyli jedno filtruje, a drugie mapuje.",
+    "topic": "if/else w komprehensji"
+  },
+  {
+    "id": 773,
+    "materialId": 66,
+    "front": "Co tworzy komprehensja słownikowa?",
+    "back": "Tworzy nowy słownik. Używa zapisu `{klucz: wartość for ...}`.",
+    "topic": "komprehensja słownikowa"
+  },
+  {
+    "id": 774,
+    "materialId": 66,
+    "front": "Co jest potrzebne w komprehensji słownikowej zamiast samego przecinka?",
+    "back": "Dwukropek `:`. Bez niego nie powstanie poprawny słownik.",
+    "topic": "komprehensja słownikowa"
+  },
+  {
+    "id": 775,
+    "materialId": 66,
+    "front": "Co robi komprehensja zbioru?",
+    "back": "Tworzy zbiór, czyli kolekcję bez duplikatów. Na przykład `{tag for tag in tagi}`.",
+    "topic": "komprehensja zbioru"
+  },
+  {
+    "id": 776,
+    "materialId": 66,
+    "front": "Kiedy lepiej użyć zbioru niż listy?",
+    "back": "Gdy chcesz tylko unikalne wartości. Zbiór sam usuwa powtórki.",
+    "topic": "komprehensja zbioru"
+  },
+  {
+    "id": 777,
+    "materialId": 66,
+    "front": "Co to jest generator?",
+    "back": "To zapis w nawiasach okrągłych, który nie buduje całej listy od razu. Tworzy elementy dopiero wtedy, gdy są potrzebne.",
+    "topic": "wyrażenie generatorowe"
+  },
+  {
+    "id": 778,
+    "materialId": 66,
+    "front": "Kiedy lepiej użyć generatora zamiast listy?",
+    "back": "Gdy wynik od razu trafia do `sum()`, `max()`, `any()` albo `all()`. Wtedy generator oszczędza pamięć.",
+    "topic": "wyrażenie generatorowe"
+  },
+  {
+    "id": 779,
+    "materialId": 66,
+    "front": "Co się stanie, jeśli drugi raz przeczytasz ten sam generator?",
+    "back": "Dostaniesz pusty wynik. Generator jest jednorazowy.",
+    "topic": "wyrażenie generatorowe"
+  },
+  {
+    "id": 780,
+    "materialId": 66,
+    "front": "Kiedy nie warto używać komprehensji?",
+    "back": "Gdy robi się zbyt długa i trudna do czytania. Wtedy lepsza jest zwykła pętla `for`.",
+    "topic": "kiedy nie używać komprehensji"
+  },
+  {
+    "id": 781,
+    "materialId": 66,
+    "front": "Czy komprehensja służy do samego wypisywania danych?",
+    "back": "Nie. Komprehensja służy do budowania kolekcji. Jeśli chcesz tylko coś wypisać, lepsza jest zwykła pętla `for`.",
+    "topic": "kiedy nie używać komprehensji"
+  },
+  {
+    "id": 782,
+    "materialId": 67,
+    "front": "Co to jest moduł w Pythonie?",
+    "back": "To po prostu plik `.py`, który możesz zaimportować w innym pliku.",
+    "topic": "moduły"
+  },
+  {
+    "id": 783,
+    "materialId": 67,
+    "front": "Co daje `import nazwa_modulu`?",
+    "back": "Daje dostęp do rzeczy z modułu przez kropkę, np. `math.sqrt(...)`.",
+    "topic": "import"
+  },
+  {
+    "id": 784,
+    "materialId": 67,
+    "front": "Jaka jest różnica między `import math` a `from math import sqrt`?",
+    "back": "Po `import math` piszesz `math.sqrt(...)`. Po `from math import sqrt` piszesz samo `sqrt(...)`.",
+    "topic": "import"
+  },
+  {
+    "id": 785,
+    "materialId": 67,
+    "front": "Po co używa się `as` przy imporcie?",
+    "back": "Żeby zmienić nazwę na krótszą albo wygodniejszą, np. `import json as j`.",
+    "topic": "alias `as`"
+  },
+  {
+    "id": 786,
+    "materialId": 67,
+    "front": "Czego lepiej nie używać: `from modul import *`?",
+    "back": "Bo wciąga wszystko naraz i potem trudno wiedzieć, skąd pochodzi dana nazwa.",
+    "topic": "import"
+  },
+  {
+    "id": 787,
+    "materialId": 67,
+    "front": "Jak zaimportować własny plik `narzedzia.py`?",
+    "back": "Piszesz nazwę pliku bez `.py`, np. `from narzedzia import policz_koszt`.",
+    "topic": "własny moduł"
+  },
+  {
+    "id": 788,
+    "materialId": 67,
+    "front": "Co się dzieje, gdy importujesz moduł z kodem na dole pliku?",
+    "back": "Python wykonuje cały kod pliku od góry do dołu, więc też ten kod na dole.",
+    "topic": "import"
+  },
+  {
+    "id": 789,
+    "materialId": 67,
+    "front": "Po co jest `if __name__ == \"__main__\"`?",
+    "back": "Żeby kod startowy uruchamiał się tylko przy bezpośrednim starcie pliku, a nie przy imporcie.",
+    "topic": "if __name__ == \"__main__\""
+  },
+  {
+    "id": 790,
+    "materialId": 67,
+    "front": "Kiedy `__name__` ma wartość `\"__main__\"`?",
+    "back": "Gdy uruchamiasz plik bezpośrednio, np. `python raport.py`.",
+    "topic": "if __name__ == \"__main__\""
+  },
+  {
+    "id": 791,
+    "materialId": 67,
+    "front": "Po co robić funkcję `main()`?",
+    "back": "Żeby główny kod był w jednym miejscu, a plik był łatwy do uruchomienia i importu.",
+    "topic": "funkcja `main()`"
+  },
+  {
+    "id": 792,
+    "materialId": 67,
+    "front": "Jaki częsty błąd robią początkujący ze strażnikiem?",
+    "back": "Piszą `if __name__ == \"main\":` zamiast `if __name__ == \"__main__\":`.",
+    "topic": "częste błędy przy importach"
+  },
+  {
+    "id": 793,
+    "materialId": 67,
+    "front": "Dlaczego nie warto trzymać całej logiki luzem w pliku?",
+    "back": "Bo trudno to potem importować, testować i używać w innych miejscach.",
+    "topic": "struktura projektu"
+  },
+  {
+    "id": 794,
+    "materialId": 67,
+    "front": "Kiedy lepiej użyć `from modul import nazwa` zamiast `import modul`?",
+    "back": "Gdy chcesz użyć tylko jednej albo kilku rzeczy i nie chcesz pisać nazwy modułu za każdym razem.",
+    "topic": "import"
+  },
+  {
+    "id": 795,
+    "materialId": 68,
+    "front": "Co to jest wirtualne środowisko `venv`?",
+    "back": "To folder, zwykle `.venv`, z własną kopią Pythona i własnym miejscem na biblioteki. Dzięki temu pakiety jednego projektu nie mieszają się z innym.",
+    "topic": "wirtualne środowisko"
+  },
+  {
+    "id": 796,
+    "materialId": 68,
+    "front": "Po co używa się `python -m venv .venv`?",
+    "back": "Ta komenda tworzy nowe wirtualne środowisko w folderze `.venv`.",
+    "topic": "tworzenie `venv`"
+  },
+  {
+    "id": 797,
+    "materialId": 68,
+    "front": "Co daje aktywacja środowiska?",
+    "back": "Po aktywacji `python` i `pip` działają dla tego jednego projektu. W terminalu zwykle widać `(.venv)`.",
+    "topic": "aktywacja środowiska"
+  },
+  {
+    "id": 798,
+    "materialId": 68,
+    "front": "Jaka jest różnica między instalacją z aktywnym i nieaktywnym `venv`?",
+    "back": "Gdy środowisko jest aktywne, `pip install` dodaje pakiet do `.venv`. Gdy nie jest aktywne, pakiet może trafić globalnie do systemu.",
+    "topic": "pip i instalowanie pakietów"
+  },
+  {
+    "id": 799,
+    "materialId": 68,
+    "front": "Co robi `pip freeze`?",
+    "back": "Wypisuje wszystkie zainstalowane pakiety razem z dokładnymi wersjami.",
+    "topic": "`requirements.txt`"
+  },
+  {
+    "id": 800,
+    "materialId": 68,
+    "front": "Do czego służy `pip install -r requirements.txt`?",
+    "back": "Instaluje pakiety zgodnie z listą i wersjami zapisanymi w `requirements.txt`.",
+    "topic": "`requirements.txt`"
+  },
+  {
+    "id": 801,
+    "materialId": 68,
+    "front": "Dlaczego warto zapisać `requirements.txt` do repozytorium?",
+    "back": "Żeby ktoś inny mógł odtworzyć to samo środowisko i dostać te same wersje bibliotek.",
+    "topic": "`requirements.txt`"
+  },
+  {
+    "id": 802,
+    "materialId": 68,
+    "front": "Dlaczego folder `.venv` nie powinien trafić do gita?",
+    "back": "Jest duży i zależy od twojego komputera. Lepiej trzymać go w `.gitignore`, a w repo mieć tylko `requirements.txt`.",
+    "topic": "`.venv` w `.gitignore`"
+  },
+  {
+    "id": 803,
+    "materialId": 68,
+    "front": "Jaki plik pomaga ukryć `.venv` przed gitem?",
+    "back": "Plik `.gitignore`.",
+    "topic": "`.venv` w `.gitignore`"
+  },
+  {
+    "id": 804,
+    "materialId": 68,
+    "front": "Kiedy lepiej użyć `pip freeze` niż pisać `requirements.txt` ręcznie?",
+    "back": "Gdy chcesz zapisać dokładne wersje wszystkich pakietów z aktualnego środowiska.",
+    "topic": "`requirements.txt`"
+  },
+  {
+    "id": 805,
+    "materialId": 68,
+    "front": "Co sprawdza `import sys` i `print(sys.executable)`?",
+    "back": "Pokazuje, z jakiego Pythona korzystasz. Jeśli ścieżka prowadzi do `.venv`, to środowisko działa dobrze.",
+    "topic": "sprawdzanie środowiska"
+  },
+  {
+    "id": 806,
+    "materialId": 68,
+    "front": "Jak wyjść z aktywnego środowiska?",
+    "back": "Użyj komendy `deactivate`.",
+    "topic": "aktywacja środowiska"
+  },
+  {
+    "id": 807,
+    "materialId": 69,
+    "front": "Co to jest klasa w Pythonie?",
+    "back": "To szablon do tworzenia obiektów. Klasa opisuje, jakie dane i zachowania ma mieć obiekt.",
+    "topic": "klasy"
+  },
+  {
+    "id": 808,
+    "materialId": 69,
+    "front": "Co to jest obiekt?",
+    "back": "To konkretna rzecz zrobiona z klasy. Każdy obiekt ma własne wartości w swoich polach.",
+    "topic": "obiekty"
+  },
+  {
+    "id": 809,
+    "materialId": 69,
+    "front": "Do czego służy `__init__`?",
+    "back": "`__init__` ustawia dane obiektu od razu po jego stworzeniu.",
+    "topic": "metoda `__init__`"
+  },
+  {
+    "id": 810,
+    "materialId": 69,
+    "front": "Co oznacza `self`?",
+    "back": "`self` oznacza bieżący obiekt. Przez `self` zapisujesz i czytasz dane tego obiektu.",
+    "topic": "`self`"
+  },
+  {
+    "id": 811,
+    "materialId": 69,
+    "front": "Jaka jest różnica między klasą a obiektem?",
+    "back": "Klasa to wzór. Obiekt to gotowy egzemplarz z tego wzoru.",
+    "topic": "obiekty"
+  },
+  {
+    "id": 812,
+    "materialId": 69,
+    "front": "Po co dodaje się metody do klasy?",
+    "back": "Żeby obiekt miał własne zachowanie, na przykład zmieniał swój stan albo zwracał opis.",
+    "topic": "metody"
+  },
+  {
+    "id": 813,
+    "materialId": 69,
+    "front": "Co robi `t.opis()` w porównaniu do `t.opis`?",
+    "back": "`t.opis()` wywołuje metodę i daje wynik. `t.opis` to sama metoda bez wywołania.",
+    "topic": "metody"
+  },
+  {
+    "id": 814,
+    "materialId": 69,
+    "front": "Kiedy lepiej użyć klasy zamiast zwykłego słownika?",
+    "back": "Gdy chcesz mieć porządek, własne pola i własne zachowanie. Klasa lepiej pilnuje struktury danych.",
+    "topic": "klasy"
+  },
+  {
+    "id": 815,
+    "materialId": 69,
+    "front": "Co oznacza `tekst: str` w definicji funkcji?",
+    "back": "To podpowiedź, że parametr `tekst` ma być napisem.",
+    "topic": "type hints"
+  },
+  {
+    "id": 816,
+    "materialId": 69,
+    "front": "Co oznacza `-> int` w definicji funkcji?",
+    "back": "To podpowiedź, że funkcja ma zwrócić liczbę całkowitą.",
+    "topic": "type hints"
+  },
+  {
+    "id": 817,
+    "materialId": 69,
+    "front": "Jaka jest różnica między `list[int]` a `dict[int, int]`?",
+    "back": "`list[int]` to lista liczb. `dict[int, int]` to słownik, gdzie klucz i wartość są liczbami.",
+    "topic": "type hints"
+  },
+  {
+    "id": 818,
+    "materialId": 69,
+    "front": "Co oznacza `Optional[str]`?",
+    "back": "To znaczy: tekst albo `None`, jeśli nic nie znaleziono.",
+    "topic": "type hints"
+  },
+  {
+    "id": 819,
+    "materialId": 69,
+    "front": "Po co używa się `@dataclass`?",
+    "back": "Żeby nie pisać ręcznie prostego `__init__`. Dekorator tworzy go za ciebie na podstawie pól.",
+    "topic": "`@dataclass`"
+  },
+  {
+    "id": 820,
+    "materialId": 69,
+    "front": "Jaki częsty błąd jest przy atrybucie listy w klasie?",
+    "back": "Jeśli lista jest na poziomie klasy, może być wspólna dla wszystkich obiektów. Lepiej tworzyć ją w `__init__`.",
+    "topic": "błędy i pułapki"
+  },
+  {
+    "id": 821,
+    "materialId": 70,
+    "front": "Co robi `json.loads()`?",
+    "back": "Zamienia tekst JSON na dane Pythona, na przykład `dict` albo `list`.",
+    "topic": "json.loads"
+  },
+  {
+    "id": 822,
+    "materialId": 70,
+    "front": "Co robi `json.dumps()`?",
+    "back": "Zamienia dane Pythona na tekst JSON.",
+    "topic": "json.dumps"
+  },
+  {
+    "id": 823,
+    "materialId": 70,
+    "front": "Jaka jest różnica między JSON-em a słownikiem Pythona?",
+    "back": "JSON to zwykły string. Słownik Pythona to już struktura danych.",
+    "topic": "co to jest JSON"
+  },
+  {
+    "id": 824,
+    "materialId": 70,
+    "front": "Jakie słowa w JSON-ie odpowiadają `True`, `False` i `None` w Pythonie?",
+    "back": "W JSON-ie są `true`, `false` i `null`.",
+    "topic": "co to jest JSON"
+  },
+  {
+    "id": 825,
+    "materialId": 70,
+    "front": "Kiedy lepiej użyć `json.dumps()`?",
+    "back": "Gdy chcesz przygotować dane do wysłania, na przykład do API.",
+    "topic": "json.dumps"
+  },
+  {
+    "id": 826,
+    "materialId": 70,
+    "front": "Kiedy lepiej użyć `json.loads()`?",
+    "back": "Gdy dostajesz tekst JSON i chcesz go zamienić na dane Pythona.",
+    "topic": "json.loads"
+  },
+  {
+    "id": 827,
+    "materialId": 70,
+    "front": "Co robi `ensure_ascii=False` w `json.dumps()`?",
+    "back": "Zostawia normalne polskie znaki zamiast uciekania ich do dziwnego zapisu.",
+    "topic": "json.dumps"
+  },
+  {
+    "id": 828,
+    "materialId": 70,
+    "front": "Co robi `indent=2` w `json.dumps()`?",
+    "back": "Układa JSON ładnie w kilka linii, żeby był czytelniejszy.",
+    "topic": "json.dumps"
+  },
+  {
+    "id": 829,
+    "materialId": 70,
+    "front": "Jak czytać dane zagnieżdżone w JSON-ie?",
+    "back": "Krok po kroku, łącząc klucze i indeksy, na przykład `dane[\"user\"][\"name\"]`.",
+    "topic": "zagnieżdżone dane"
+  },
+  {
+    "id": 830,
+    "materialId": 70,
+    "front": "Jaka jest różnica między `dane[\"klucz\"]` a `dane.get(\"klucz\")`?",
+    "back": "`[...]` da błąd, gdy klucza nie ma. `.get()` zwróci `None` albo wartość domyślną.",
+    "topic": ".get()"
+  },
+  {
+    "id": 831,
+    "materialId": 70,
+    "front": "Jaki częsty błąd popełniają początkujący z JSON-em?",
+    "back": "Używają pojedynczych cudzysłowów albo zapominają o `json.loads()`.",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 832,
+    "materialId": 70,
+    "front": "Kiedy warto użyć `.get()` zamiast `[...]`?",
+    "back": "Gdy pole może być opcjonalne i nie chcesz błędu, jeśli go nie ma.",
+    "topic": ".get()"
+  },
+  {
+    "id": 833,
+    "materialId": 70,
+    "front": "Co zrobić, gdy JSON z zewnątrz może być błędny?",
+    "back": "Najpierw spróbować `json.loads()` w `try/except`, a potem sprawdzić potrzebne pola.",
+    "topic": "walidacja JSON"
+  },
+  {
+    "id": 834,
+    "materialId": 71,
+    "front": "Co to jest `request` w HTTP?",
+    "back": "To żądanie wysłane do serwera. Skrypt pyta, a serwer odsyła odpowiedź.",
+    "topic": "HTTP"
+  },
+  {
+    "id": 835,
+    "materialId": 71,
+    "front": "Co to jest `response` w HTTP?",
+    "back": "To odpowiedź serwera na żądanie. Zwykle ma kod statusu, nagłówki i ciało.",
+    "topic": "HTTP"
+  },
+  {
+    "id": 836,
+    "materialId": 71,
+    "front": "Jaka jest różnica między `GET` a `POST`?",
+    "back": "`GET` służy do pobierania danych. `POST` służy do wysyłania danych w ciele żądania.",
+    "topic": "metody HTTP"
+  },
+  {
+    "id": 837,
+    "materialId": 71,
+    "front": "Kiedy lepiej użyć `GET`?",
+    "back": "Gdy chcesz tylko pobrać dane. Parametry idą wtedy w URL-u.",
+    "topic": "metody HTTP"
+  },
+  {
+    "id": 838,
+    "materialId": 71,
+    "front": "Kiedy lepiej użyć `POST`?",
+    "back": "Gdy chcesz wysłać dane do serwera. Najczęściej wysyła się JSON w ciele.",
+    "topic": "metody HTTP"
+  },
+  {
+    "id": 839,
+    "materialId": 71,
+    "front": "Co oznacza kod `200`?",
+    "back": "Sukces. Żądanie zostało wykonane poprawnie.",
+    "topic": "kody statusu"
+  },
+  {
+    "id": 840,
+    "materialId": 71,
+    "front": "Co oznacza kod `404`?",
+    "back": "Nie znaleziono zasobu. Adres może być zły albo dane nie istnieją.",
+    "topic": "kody statusu"
+  },
+  {
+    "id": 841,
+    "materialId": 71,
+    "front": "Co oznacza kod `429`?",
+    "back": "Za dużo zapytań. Trzeba zwolnić i spróbować później.",
+    "topic": "kody statusu"
+  },
+  {
+    "id": 842,
+    "materialId": 71,
+    "front": "Co robi `response.json()`?",
+    "back": "Zamienia JSON z odpowiedzi na słownik albo listę w Pythonie.",
+    "topic": "requests.get"
+  },
+  {
+    "id": 843,
+    "materialId": 71,
+    "front": "Jaka jest różnica między `params=` a `json=`?",
+    "back": "`params=` dodaje dane do URL-a przy `GET`. `json=` wysyła JSON w ciele przy `POST`.",
+    "topic": "params i POST"
+  },
+  {
+    "id": 844,
+    "materialId": 71,
+    "front": "Dlaczego `timeout` jest ważny?",
+    "back": "Bez niego skrypt może wisieć bardzo długo, gdy serwer nie odpowiada.",
+    "topic": "timeout"
+  },
+  {
+    "id": 845,
+    "materialId": 71,
+    "front": "Jaki częsty błąd popełniają początkujący z `POST`?",
+    "back": "Używają `data=` zamiast `json=`. Wtedy API może nie zrozumieć danych.",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 846,
+    "materialId": 71,
+    "front": "Co zrobić, zanim użyjesz danych z odpowiedzi?",
+    "back": "Najpierw sprawdź `status_code`. Dopiero potem czytaj `json()`.",
+    "topic": "obsługa odpowiedzi"
+  },
+  {
+    "id": 847,
+    "materialId": 71,
+    "front": "Co łapie `requests.exceptions.RequestException`?",
+    "back": "Łapie błędy połączenia, timeout i inne problemy z requests.",
+    "topic": "obsługa błędów"
+  },
+  {
+    "id": 848,
+    "materialId": 72,
+    "front": "Co to jest hardkodowanie sekretu?",
+    "back": "To wpisanie klucza albo hasła prosto do kodu, na przykład `API_KEY = \"sk-123\"`. To jest niebezpieczne, bo klucz może wyciec do gita.",
+    "topic": "klucze API"
+  },
+  {
+    "id": 849,
+    "materialId": 72,
+    "front": "Dlaczego nie wolno trzymać klucza API w kodzie?",
+    "back": "Bo każdy, kto zobaczy kod albo historię gita, może go skopiować. Potem może używać twoich usług na twój koszt.",
+    "topic": "klucze API"
+  },
+  {
+    "id": 850,
+    "materialId": 72,
+    "front": "Co to jest zmienna środowiskowa?",
+    "back": "To para nazwa=wartość trzymana przez system operacyjny, a nie przez kod. Kod tylko ją odczytuje.",
+    "topic": "zmienne środowiskowe"
+  },
+  {
+    "id": 851,
+    "materialId": 72,
+    "front": "Jaka jest różnica między `os.environ[\"NAZWA\"]` a `os.getenv(\"NAZWA\")`?",
+    "back": "`os.environ[\"NAZWA\"]` wywala błąd, gdy zmiennej nie ma. `os.getenv(\"NAZWA\")` zwraca `None`.",
+    "topic": "`os.environ` i `os.getenv`"
+  },
+  {
+    "id": 852,
+    "materialId": 72,
+    "front": "Kiedy warto użyć `os.getenv(\"NAZWA\", \"domyslna\")`?",
+    "back": "Gdy wartość jest opcjonalna, na przykład tryb programu. Nie używaj tego dla kluczy API, bo brak ma być widoczny.",
+    "topic": "`os.environ` i `os.getenv`"
+  },
+  {
+    "id": 853,
+    "materialId": 72,
+    "front": "Co robi `load_dotenv()`?",
+    "back": "Wczytuje plik `.env` do zmiennych środowiskowych, żeby Python mógł je odczytać.",
+    "topic": "plik `.env`"
+  },
+  {
+    "id": 854,
+    "materialId": 72,
+    "front": "Kiedy trzeba wywołać `load_dotenv()`?",
+    "back": "Na samym początku programu, zanim zrobisz `os.getenv()` albo `os.environ.get()`.",
+    "topic": "plik `.env`"
+  },
+  {
+    "id": 855,
+    "materialId": 72,
+    "front": "Po co jest plik `.env.example`?",
+    "back": "Żeby pokazać, jakie zmienne są potrzebne, ale bez prawdziwych sekretów. Inni mogą go skopiować do `.env`.",
+    "topic": "plik `.env`"
+  },
+  {
+    "id": 856,
+    "materialId": 72,
+    "front": "Dlaczego `.env` musi być w `.gitignore`?",
+    "back": "Bo zawiera sekrety. Jeśli trafi do gita, może wyciec.",
+    "topic": "`.gitignore`"
+  },
+  {
+    "id": 857,
+    "materialId": 72,
+    "front": "Co się stanie, jeśli klucz z `.env` nie zostanie wczytany?",
+    "back": "`os.getenv()` zwróci `None`, a program może działać źle albo wybuchnąć później. Lepiej sprawdzić to od razu.",
+    "topic": "brak klucza"
+  },
+  {
+    "id": 858,
+    "materialId": 72,
+    "front": "Co oznacza zasada `fail fast`?",
+    "back": "Że program ma przerwać działanie od razu, gdy brakuje ważnej rzeczy, i pokazać czytelny błąd.",
+    "topic": "brak klucza"
+  },
+  {
+    "id": 859,
+    "materialId": 72,
+    "front": "Jak rozpoznać, że wartość wygląda jak klucz?",
+    "back": "Można sprawdzić, czy zaczyna się od `sk-` i ma odpowiednią długość, na przykład `wartosc.startswith(\"sk-\") and len(wartosc) > 10`.",
+    "topic": "walidacja"
+  },
+  {
+    "id": 860,
+    "materialId": 73,
+    "front": "Po co używa się `logging` zamiast `print()`?",
+    "back": "`logging` daje więcej kontroli. Pokazuje poziom ważności, może zapisywać do pliku i pomaga znaleźć problem, gdy skrypt działa bez konsoli.",
+    "topic": "Dlaczego `print()` nie wystarcza"
+  },
+  {
+    "id": 861,
+    "materialId": 73,
+    "front": "Co robi `logging.basicConfig()`?",
+    "back": "Ustawia zasady logowania dla całego programu. Możesz w nim podać `level`, `format` i `filename`.",
+    "topic": "`basicConfig`"
+  },
+  {
+    "id": 862,
+    "materialId": 73,
+    "front": "Jaka jest różnica między `DEBUG` i `INFO`?",
+    "back": "`DEBUG` to szczegóły dla programisty. `INFO` to zwykłe, normalne zdarzenia w programie.",
+    "topic": "Poziomy logowania"
+  },
+  {
+    "id": 863,
+    "materialId": 73,
+    "front": "Kiedy lepiej użyć `WARNING`?",
+    "back": "Gdy coś jest dziwne, ale program może działać dalej. To nie jest jeszcze pełna awaria.",
+    "topic": "Poziomy logowania"
+  },
+  {
+    "id": 864,
+    "materialId": 73,
+    "front": "Co daje `filename=\"skrypt.log\"` w `basicConfig`?",
+    "back": "Logi trafiają do pliku zamiast na ekran. To dobre, gdy chcesz potem sprawdzić, co się działo.",
+    "topic": "`basicConfig`"
+  },
+  {
+    "id": 865,
+    "materialId": 73,
+    "front": "Po co używa się `logging.getLogger(__name__)`?",
+    "back": "Żeby dostać logger dla konkretnego modułu. Dzięki temu w logu widać, z którego pliku pochodzi wiadomość.",
+    "topic": "Logger z nazwą modułu"
+  },
+  {
+    "id": 866,
+    "materialId": 73,
+    "front": "Jaka jest różnica między `logging.info(...)` a `logger.info(...)`?",
+    "back": "`logger.info(...)` używa loggera z nazwą modułu. To lepsze w większych projektach, bo łatwiej znaleźć źródło logu.",
+    "topic": "Logger z nazwą modułu"
+  },
+  {
+    "id": 867,
+    "materialId": 73,
+    "front": "Co jest lepsze: ogólny log `błąd` czy `błąd pobierania id=42`?",
+    "back": "Lepszy jest konkretny log z danymi. Taką wiadomość dużo łatwiej zrozumieć i naprawić problem.",
+    "topic": "Logowanie z danymi"
+  },
+  {
+    "id": 868,
+    "materialId": 73,
+    "front": "Jak działa zapis z `%s` w `logger.warning(\"rekord %s\", 5)`?",
+    "back": "Logging sam wstawia wartość w miejsce `%s`. To wygodny sposób na dodawanie danych do komunikatu.",
+    "topic": "Logowanie z danymi"
+  },
+  {
+    "id": 869,
+    "materialId": 73,
+    "front": "Co robi `logger.exception()`?",
+    "back": "Loguje komunikat i pełny traceback. Używa się go w bloku `except`.",
+    "topic": "Logowanie wyjątków"
+  },
+  {
+    "id": 870,
+    "materialId": 73,
+    "front": "Jaki częsty błąd popełniają początkujący z `basicConfig`?",
+    "back": "Wołają je za późno. Jeśli wcześniej padnie `logging.info()`, konfiguracja może zostać zignorowana.",
+    "topic": "Częste błędy"
+  },
+  {
+    "id": 871,
+    "materialId": 73,
+    "front": "Kiedy `logger.exception()` nie ma sensu?",
+    "back": "Poza `except`. Wtedy nie ma aktywnego wyjątku i nie dostaniesz pełnego tracebacku.",
+    "topic": "Częste błędy"
+  },
+  {
+    "id": 872,
+    "materialId": 74,
+    "front": "Co robi `timeout` w `requests.get()`?",
+    "back": "`timeout` ustawia maksymalny czas czekania na odpowiedź. Jeśli serwer nie odpowie na czas, pojawi się błąd `requests.exceptions.Timeout`.",
+    "topic": "timeout"
+  },
+  {
+    "id": 873,
+    "materialId": 74,
+    "front": "Dlaczego warto zawsze ustawiać `timeout`?",
+    "back": "Bez `timeout` skrypt może wisieć bardzo długo albo nawet w nieskończoność. Z `timeout` szybko dowiesz się, że serwer nie odpowiedział.",
+    "topic": "timeout"
+  },
+  {
+    "id": 874,
+    "materialId": 74,
+    "front": "Co robi `try/except` przy wywołaniu sieciowym?",
+    "back": "`try` próbuje wykonać kod, a `except` łapie błąd i pozwala zdecydować, co dalej.",
+    "topic": "try/except"
+  },
+  {
+    "id": 875,
+    "materialId": 74,
+    "front": "Jaka jest różnica między `requests.exceptions.Timeout` a `requests.exceptions.HTTPError`?",
+    "back": "`Timeout` oznacza, że serwer nie odpowiedział na czas. `HTTPError` oznacza, że serwer zwrócił zły status, na przykład `4xx` albo `5xx`.",
+    "topic": "try/except"
+  },
+  {
+    "id": 876,
+    "materialId": 74,
+    "front": "Co robi `raise_for_status()`?",
+    "back": "Zamienia statusy `4xx` i `5xx` na wyjątek. Dzięki temu łatwiej obsłużyć błąd w `try/except`.",
+    "topic": "try/except"
+  },
+  {
+    "id": 877,
+    "materialId": 74,
+    "front": "Kiedy lepiej użyć retry zamiast od razu się poddać?",
+    "back": "Gdy błąd może być chwilowy, na przykład `429`, `500` albo `timeout`. Wtedy druga albo trzecia próba może się udać.",
+    "topic": "retry"
+  },
+  {
+    "id": 878,
+    "materialId": 74,
+    "front": "Co oznacza `for...else` w pętli z próbami?",
+    "back": "`else` wykona się tylko wtedy, gdy pętla skończy się bez `break`. Czyli wtedy, gdy wszystkie próby zawiodły.",
+    "topic": "retry"
+  },
+  {
+    "id": 879,
+    "materialId": 74,
+    "front": "Jaka jest różnica między `time.sleep(2 ** attempt)` a `time.sleep(2 * attempt)`?",
+    "back": "`2 ** attempt` daje coraz dłuższe czasy czekania: `1`, `2`, `4`, `8`. `2 * attempt` daje złe wartości i może dać `0` na początku.",
+    "topic": "exponential backoff"
+  },
+  {
+    "id": 880,
+    "materialId": 74,
+    "front": "Co to jest `exponential backoff`?",
+    "back": "To czekanie coraz dłużej po każdej nieudanej próbie. Dzięki temu nie obciążasz serwera za mocno.",
+    "topic": "exponential backoff"
+  },
+  {
+    "id": 881,
+    "materialId": 74,
+    "front": "Których statusów nie warto ponawiać?",
+    "back": "Zwykle nie warto ponawiać `400`, `401`, `403` i `404`. To są błędy, które zwykle trzeba naprawić, a nie próbować jeszcze raz.",
+    "topic": "błędy, których nie trzeba ponawiać"
+  },
+  {
+    "id": 882,
+    "materialId": 74,
+    "front": "Które statusy warto ponawiać?",
+    "back": "Warto ponawiać `429`, `500`, `502`, `503`, `504` oraz `timeout`.",
+    "topic": "błędy, których nie trzeba ponawiać"
+  },
+  {
+    "id": 883,
+    "materialId": 74,
+    "front": "Co to znaczy, że operacja jest idempotentna?",
+    "back": "To znaczy, że można ją powtórzyć wiele razy i efekt będzie taki sam.",
+    "topic": "idempotencja"
+  },
+  {
+    "id": 884,
+    "materialId": 74,
+    "front": "Dlaczego retry przy nieidempotentnej operacji może być groźny?",
+    "back": "Bo może wykonać akcję kilka razy. Na przykład zamiast jednego zamówienia zrobi dwa albo trzy.",
+    "topic": "idempotencja"
+  },
+  {
+    "id": 885,
+    "materialId": 74,
+    "front": "Po co w funkcji `retry_request` jest `ostatni_blad`?",
+    "back": "Żeby zapamiętać ostatni problem i pokazać go w błędzie na końcu, gdy wszystkie próby się nie udadzą.",
+    "topic": "retry"
+  },
+  {
+    "id": 886,
+    "materialId": 75,
+    "front": "Co robi `assert` w teście?",
+    "back": "Sprawdza, czy warunek jest prawdziwy. Jeśli nie, rzuca `AssertionError`.",
+    "topic": "assert"
+  },
+  {
+    "id": 887,
+    "materialId": 75,
+    "front": "Kiedy test przejdzie, a kiedy się wywali przy `assert`?",
+    "back": "Przejdzie, gdy warunek jest prawdziwy. Wywali się, gdy warunek jest fałszywy i pojawi się `AssertionError`.",
+    "topic": "assert"
+  },
+  {
+    "id": 888,
+    "materialId": 75,
+    "front": "Jaka jest różnica między zwykłym skryptem a `pytest`, gdy `assert` nie przejdzie?",
+    "back": "W zwykłym skrypcie program się kończy. W `pytest` test jest oznaczony jako oblany i pokazuje szczegóły błędu.",
+    "topic": "assert"
+  },
+  {
+    "id": 889,
+    "materialId": 75,
+    "front": "Po czym pytest poznaje pliki z testami?",
+    "back": "Po nazwie pliku. Plik powinien zaczynać się od `test_`, na przykład `test_cos.py`.",
+    "topic": "Nazwy plików i funkcji testowych"
+  },
+  {
+    "id": 890,
+    "materialId": 75,
+    "front": "Po czym pytest poznaje funkcje testowe?",
+    "back": "Po prefiksie `test_` na początku nazwy funkcji.",
+    "topic": "Nazwy plików i funkcji testowych"
+  },
+  {
+    "id": 891,
+    "materialId": 75,
+    "front": "Jaki częsty błąd robią początkujący z nazwą testu?",
+    "back": "Nazywają funkcję bez `test_`, na przykład `sprawdz_dane()`. Pytest może wtedy ją pominąć.",
+    "topic": "Częste błędy"
+  },
+  {
+    "id": 892,
+    "materialId": 75,
+    "front": "Co to jest funkcja czysta?",
+    "back": "To funkcja, która dla tych samych danych zawsze daje ten sam wynik i niczego nie zmienia na zewnątrz.",
+    "topic": "Funkcje czyste"
+  },
+  {
+    "id": 893,
+    "materialId": 75,
+    "front": "Dlaczego funkcje czyste testuje się łatwiej?",
+    "back": "Bo nie trzeba sieci, bazy ani plików. Wystarczy podać dane i sprawdzić wynik.",
+    "topic": "Funkcje czyste"
+  },
+  {
+    "id": 894,
+    "materialId": 75,
+    "front": "Co robi komenda `pytest`?",
+    "back": "Uruchamia testy w plikach `test_*.py` i pokazuje wynik.",
+    "topic": "Uruchamianie pytest"
+  },
+  {
+    "id": 895,
+    "materialId": 75,
+    "front": "Co oznacza kropka w raporcie `pytest`?",
+    "back": "Oznacza zaliczony test.",
+    "topic": "Czytanie raportu testów"
+  },
+  {
+    "id": 896,
+    "materialId": 75,
+    "front": "Co oznacza litera `F` w raporcie `pytest`?",
+    "back": "Oznacza oblany test.",
+    "topic": "Czytanie raportu testów"
+  },
+  {
+    "id": 897,
+    "materialId": 75,
+    "front": "Po co używa się układu arrange–act–assert?",
+    "back": "Żeby test był czytelny. Najpierw przygotowujesz dane, potem wołasz funkcję, a na końcu sprawdzasz wynik.",
+    "topic": "Arrange–Act–Assert"
+  },
+  {
+    "id": 898,
+    "materialId": 75,
+    "front": "Kiedy warto użyć `@pytest.mark.parametrize`?",
+    "back": "Gdy chcesz sprawdzić wiele przypadków tym samym testem, zamiast kopiować kod.",
+    "topic": "parametrize"
+  },
+  {
+    "id": 899,
+    "materialId": 75,
+    "front": "Po co jest `pytest.approx`?",
+    "back": "Do porównywania liczb z przecinkiem, gdy zwykłe `==` może dać fałszywy błąd przez zaokrąglenia.",
+    "topic": "Częste błędy"
+  },
+  {
+    "id": 900,
+    "materialId": 76,
+    "front": "Co robi Git w projekcie Pythona?",
+    "back": "Zapamiętuje kolejne wersje kodu. Dzięki temu możesz wrócić do starszej wersji, jeśli coś zepsujesz.",
+    "topic": "Po co jest kontrola wersji"
+  },
+  {
+    "id": 901,
+    "materialId": 76,
+    "front": "Kiedy używa się `git init`?",
+    "back": "Na początku projektu. Ta komenda tworzy repozytorium i zaczyna śledzenie folderu.",
+    "topic": "Podstawowy cykl pracy"
+  },
+  {
+    "id": 902,
+    "materialId": 76,
+    "front": "Co pokazuje `git status`?",
+    "back": "Pokazuje, co się zmieniło. Widać tam nowe pliki, zmienione pliki i pliki dodane do commita.",
+    "topic": "Podstawowy cykl pracy"
+  },
+  {
+    "id": 903,
+    "materialId": 76,
+    "front": "Jaka jest różnica między `git add` a `git commit`?",
+    "back": "`git add` przenosi plik do poczekalni. `git commit` zapisuje wersję kodu z opisem.",
+    "topic": "Podstawowy cykl pracy"
+  },
+  {
+    "id": 904,
+    "materialId": 76,
+    "front": "Po co robi się małe commity?",
+    "back": "Łatwiej wtedy zrozumieć zmiany i wrócić do konkretnego miejsca. Opis też jest prostszy.",
+    "topic": "Podstawowy cykl pracy"
+  },
+  {
+    "id": 905,
+    "materialId": 76,
+    "front": "Co oznacza gałąź `main`?",
+    "back": "To główna linia rozwoju projektu. Zwykle tam trafia gotowy kod.",
+    "topic": "Gałęzie"
+  },
+  {
+    "id": 906,
+    "materialId": 76,
+    "front": "Po co tworzyć nową gałąź zamiast pracować od razu na `main`?",
+    "back": "Żeby robić nowe rzeczy bez ryzyka zepsucia działającego kodu na `main`.",
+    "topic": "Gałęzie"
+  },
+  {
+    "id": 907,
+    "materialId": 76,
+    "front": "Co robi `git checkout nowa-galaz`?",
+    "back": "Przełącza cię na wybraną gałąź. Od tego momentu commity trafiają na tę gałąź.",
+    "topic": "Gałęzie"
+  },
+  {
+    "id": 908,
+    "materialId": 76,
+    "front": "Do czego służy plik `.gitignore`?",
+    "back": "Mówi gitowi, czego ma nie śledzić. Dzięki temu nie trafiają do repo rzeczy tymczasowe i niebezpieczne.",
+    "topic": "Pliki ignorowane"
+  },
+  {
+    "id": 909,
+    "materialId": 76,
+    "front": "Dlaczego nie wolno commitować pliku `.env`?",
+    "back": "Bo może zawierać sekrety, na przykład klucze API i hasła. Jeśli trafi do historii, samą zmianą pliku tego nie naprawisz.",
+    "topic": "Pliki ignorowane"
+  },
+  {
+    "id": 910,
+    "materialId": 76,
+    "front": "Jaka jest różnica między `git push` a `git pull`?",
+    "back": "`git push` wysyła twoje commity na GitHuba. `git pull` pobiera zmiany z GitHuba na komputer.",
+    "topic": "GitHub"
+  },
+  {
+    "id": 911,
+    "materialId": 76,
+    "front": "Czym jest pull request?",
+    "back": "To prośba o scalenie twojej gałęzi z `main`. Najpierw inni sprawdzają zmiany, potem je akceptują.",
+    "topic": "GitHub"
+  },
+  {
+    "id": 912,
+    "materialId": 76,
+    "front": "Co zrobić, gdy `git push` zostanie odrzucony przez `fetch first`?",
+    "back": "Najpierw zrobić `git pull`, potem rozwiązać konflikty, a dopiero później `git push`.",
+    "topic": "Częste błędy"
+  },
+  {
+    "id": 913,
+    "materialId": 77,
+    "front": "Co to jest `messages` przy wywołaniu modelu LLM?",
+    "back": "To lista wiadomości wysyłanych do modelu. Każda wiadomość ma rolę, na przykład `system` albo `user`.",
+    "topic": "struktura `messages`"
+  },
+  {
+    "id": 914,
+    "materialId": 77,
+    "front": "Do czego służy rola `system`?",
+    "back": "To instrukcja dla modelu. Mówi, kim ma być i jak ma odpowiadać.",
+    "topic": "struktura `messages`"
+  },
+  {
+    "id": 915,
+    "materialId": 77,
+    "front": "Do czego służy rola `user`?",
+    "back": "To tekst od użytkownika albo twoje dane, na których model ma pracować.",
+    "topic": "struktura `messages`"
+  },
+  {
+    "id": 916,
+    "materialId": 77,
+    "front": "Co zwraca `os.environ.get(\"OPENAI_API_KEY\")`, gdy zmiennej nie ma?",
+    "back": "Zwraca `None`. Dzięki temu możesz pokazać własny, czytelny błąd.",
+    "topic": "klucz API i `os.environ`"
+  },
+  {
+    "id": 917,
+    "materialId": 77,
+    "front": "Jaki jest główny plus trzymania klucza API w `os.environ`?",
+    "back": "Klucz nie trafia do kodu. To bezpieczniejsze niż wpisanie go na stałe.",
+    "topic": "klucz API i `os.environ`"
+  },
+  {
+    "id": 918,
+    "materialId": 77,
+    "front": "Jaka jest różnica między `openai` SDK a `requests.post`?",
+    "back": "Oba robią to samo wywołanie. `openai` daje wygodniejsze obiekty, a `requests.post` pokazuje surowy JSON.",
+    "topic": "`openai` SDK"
+  },
+  {
+    "id": 919,
+    "materialId": 77,
+    "front": "Gdzie zwykle jest tekst odpowiedzi modelu?",
+    "back": "W `choices[0].message.content`. To najważniejsza ścieżka do zapamiętania.",
+    "topic": "`openai` SDK"
+  },
+  {
+    "id": 920,
+    "materialId": 77,
+    "front": "Kiedy lepiej użyć `requests.post` zamiast `openai` SDK?",
+    "back": "Gdy chcesz zobaczyć dokładnie, co leci po sieci. Albo gdy chcesz pracować na surowych słownikach.",
+    "topic": "`requests.post`"
+  },
+  {
+    "id": 921,
+    "materialId": 77,
+    "front": "Co robi funkcja `wyciagnij_tekst(odpowiedz_api)`?",
+    "back": "Wyciąga sam tekst z odpowiedzi API z pola `choices[0].message.content`.",
+    "topic": "parsowanie odpowiedzi"
+  },
+  {
+    "id": 922,
+    "materialId": 77,
+    "front": "Jaki częsty błąd popełniają początkujący przy `json.loads`?",
+    "back": "Wywołują `json.loads` na tekście, który nie jest czystym JSON-em. Potem pojawia się `json.decoder.JSONDecodeError`.",
+    "topic": "JSON z modelu"
+  },
+  {
+    "id": 923,
+    "materialId": 77,
+    "front": "Po co wymuszać JSON w odpowiedzi modelu?",
+    "back": "Żeby kod mógł łatwo przetworzyć wynik jako dane, a nie jako luźny tekst.",
+    "topic": "JSON z modelu"
+  },
+  {
+    "id": 924,
+    "materialId": 77,
+    "front": "Co oznacza pole `usage` w odpowiedzi API?",
+    "back": "Pokazuje, ile tokenów zużyto. Dzięki temu można policzyć koszt wywołania.",
+    "topic": "tokeny i koszty"
+  },
+  {
+    "id": 925,
+    "materialId": 77,
+    "front": "Kiedy lepiej dać modelowi krótki prompt?",
+    "back": "Zawsze, gdy się da. Krótszy prompt zwykle oznacza mniej tokenów i mniejszy koszt.",
+    "topic": "tokeny i koszty"
+  },
+  {
+    "id": 926,
+    "materialId": 78,
+    "front": "Co robi `FastAPI()` w prostym serwisie?",
+    "back": "Tworzy obiekt aplikacji, do którego dodajesz endpointy.",
+    "topic": "FastAPI i uvicorn"
+  },
+  {
+    "id": 927,
+    "materialId": 78,
+    "front": "Co oznacza `@app.get(\"/health\")`?",
+    "back": "Mówi, że funkcja ma się uruchomić, gdy przyjdzie `GET` na `/health`.",
+    "topic": "endpoint `GET`"
+  },
+  {
+    "id": 928,
+    "materialId": 78,
+    "front": "Jaka jest różnica między `GET` a `POST` w tej lekcji?",
+    "back": "`GET` służy do pobierania danych, a `POST` do wysyłania danych w body.",
+    "topic": "endpoint `GET` i `POST`"
+  },
+  {
+    "id": 929,
+    "materialId": 78,
+    "front": "Po co jest `uvicorn`?",
+    "back": "To serwer, który uruchamia aplikację FastAPI.",
+    "topic": "FastAPI i uvicorn"
+  },
+  {
+    "id": 930,
+    "materialId": 78,
+    "front": "Co oznacza zapis `main:app`?",
+    "back": "To `app` z pliku `main.py`. Najpierw plik, potem obiekt.",
+    "topic": "FastAPI i uvicorn"
+  },
+  {
+    "id": 931,
+    "materialId": 78,
+    "front": "Co robi flaga `--reload`?",
+    "back": "Restartuje serwer po zmianie kodu. To wygodne przy nauce.",
+    "topic": "FastAPI i uvicorn"
+  },
+  {
+    "id": 932,
+    "materialId": 78,
+    "front": "Jaka jest różnica między parametrem ścieżki a query?",
+    "back": "Parametr ścieżki jest w URL-u w `{}`, a query jest po `?`.",
+    "topic": "parametry ścieżki i query"
+  },
+  {
+    "id": 933,
+    "materialId": 78,
+    "front": "Co się stanie, gdy `user_id` ma typ `int`, a ktoś wyśle `abc`?",
+    "back": "FastAPI zwróci błąd 422, bo oczekuje liczby.",
+    "topic": "walidacja danych"
+  },
+  {
+    "id": 934,
+    "materialId": 78,
+    "front": "Po co używa się `BaseModel`?",
+    "back": "Żeby opisać JSON, który przychodzi w `POST`, i dostać walidację typów.",
+    "topic": "model `BaseModel`"
+  },
+  {
+    "id": 935,
+    "materialId": 78,
+    "front": "Co daje domyślna wartość, np. `prog: float = 0.5`?",
+    "back": "Pole staje się opcjonalne. Gdy klient go nie wyśle, użyje się `0.5`.",
+    "topic": "model `BaseModel`"
+  },
+  {
+    "id": 936,
+    "materialId": 78,
+    "front": "Dlaczego warto trzymać logikę w osobnej funkcji, jak `oceń_tekst()`?",
+    "back": "Bo wtedy łatwo ją testować bez serwera i bez sieci.",
+    "topic": "czysta logika i warstwa HTTP"
+  },
+  {
+    "id": 937,
+    "materialId": 78,
+    "front": "Co zwróci funkcja `oceń_tekst()` dla pustego tekstu?",
+    "back": "`0.0`, bo nie ma żadnych słów do sprawdzenia.",
+    "topic": "czysta logika i warstwa HTTP"
+  },
+  {
+    "id": 938,
+    "materialId": 78,
+    "front": "Po co jest endpoint `/health`?",
+    "back": "To szybki test, czy serwis działa i żyje.",
+    "topic": "endpoint `GET`"
+  },
+  {
+    "id": 939,
+    "materialId": 78,
+    "front": "Kiedy lepiej użyć `POST` niż `GET`?",
+    "back": "Gdy wysyłasz dane w body, na przykład JSON z tekstem do sprawdzenia.",
+    "topic": "endpoint `POST`"
   }
 ]

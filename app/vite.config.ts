@@ -36,7 +36,7 @@ export default defineConfig({
     tailwindcss(),
     cspPlugin(),
     VitePWA({
-      registerType: 'prompt',
+      registerType: 'autoUpdate',
       includeAssets: ['icons/*'],
       manifest: {
         name: 'NaukaApp',
@@ -84,7 +84,7 @@ export default defineConfig({
         manualChunks: {
           'codemirror': ['codemirror', '@codemirror/lang-python', '@codemirror/theme-one-dark', '@codemirror/view', '@codemirror/state'],
           'framer': ['framer-motion'],
-          'data': ['./src/data/flashcards.json', './src/data/quizzes.json', './src/data/exercises.json', './src/data/explanations.json'],
+          'data': ['./src/data/flashcards.json', './src/data/quizzes.json', './src/data/exercises.json', './src/data/explanations.json', './src/data/materials.json'],
         },
       },
     },

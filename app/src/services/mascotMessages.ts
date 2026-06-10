@@ -20,6 +20,8 @@ const MESSAGES: Record<MascotContext, string[]> = {
     'Hej! Gotowy na trochę Pythona?',
     'print("Witaj ponownie!")',
     'Każda lekcja to +1 do skilla 🐍',
+    'MLOps zaczyna się od solidnego Pythona. Działamy!',
+    'Przyszły inżynier AI? Widzę to. Do roboty!',
   ],
   greeting_evening: [
     'Wieczorna sesja? Szanuję!',
@@ -33,6 +35,7 @@ const MESSAGES: Record<MascotContext, string[]> = {
   streak_active: [
     'Seria rośnie! Jestem z Ciebie dumny.',
     'Konsekwencja > motywacja. Dowozisz!',
+    'Tak buduje się karierę w AI — dzień po dniu.',
   ],
   first_run: [
     'Cześć! Jestem Py 🐍 — pomogę Ci ogarnąć Pythona.',
