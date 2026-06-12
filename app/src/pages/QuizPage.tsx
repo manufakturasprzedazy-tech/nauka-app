@@ -10,6 +10,7 @@ import { XPFloat, useXPFloat } from '@/components/feedback/XPFloat';
 import { useQuiz } from '@/hooks/useQuiz';
 import { useSessionStore } from '@/stores/sessionStore';
 import { useContentStore } from '@/stores/contentStore';
+import { getStartedMaterialIds } from '@/services/progressService';
 import type { QuizQuestion } from '@/types/content';
 
 export function QuizPage() {
@@ -27,12 +28,20 @@ export function QuizPage() {
   const [started, setStarted] = useState(false);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string>('all');
   const [questionCount, setQuestionCount] = useState(10);
+  const [startedIds, setStartedIds] = useState<Set<number> | null>(null);
+
+  // Practice draws only from started lessons (unless launched for a specific material/course)
+  useEffect(() => {
+    if (!materialId && !courseId) {
+      getStartedMaterialIds().then(setStartedIds);
+    }
+  }, [materialId, courseId]);
 
   // Spawn "+XP" float when a correct answer lands
   useEffect(() => {
     if (quiz.lastXP && quiz.lastXP !== lastSpawnedRef.current) {
       lastSpawnedRef.current = quiz.lastXP;
-      spawn(quiz.lastXP.amount, quiz.lastXP.multiplier);
+      spawn(quiz.lastXP.amount, quiz.lastXP.bonus);
     }
   }, [quiz.lastXP, spawn]);
 
@@ -43,7 +52,7 @@ export function QuizPage() {
   } else if (courseId) {
     availableQuestions = store.getQuizzesByCourse(courseId);
   } else {
-    availableQuestions = store.quizzes;
+    availableQuestions = startedIds ? store.quizzes.filter(q => startedIds.has(q.materialId)) : [];
   }
 
   if (selectedDifficulty !== 'all') {

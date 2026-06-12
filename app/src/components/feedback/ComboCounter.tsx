@@ -1,5 +1,5 @@
 import { AnimatePresence, motion } from 'framer-motion';
-import { getComboMultiplier } from '@/stores/sessionStore';
+import { getComboBonus } from '@/services/gamification';
 import { cn } from '@/utils/cn';
 
 interface ComboCounterProps {
@@ -8,7 +8,7 @@ interface ComboCounterProps {
 
 /** Floating combo pill — appears from combo 2 up, glow intensifies with combo */
 export function ComboCounter({ combo }: ComboCounterProps) {
-  const multiplier = getComboMultiplier(combo);
+  const bonus = getComboBonus(combo);
   const hot = combo >= 10;
   const warm = combo >= 5;
 
@@ -34,7 +34,7 @@ export function ComboCounter({ combo }: ComboCounterProps) {
           >
             <span className="text-sm">{hot ? '🔥' : '⚡'}</span>
             <span className="text-sm tnum">x{combo}</span>
-            {multiplier > 1 && <span className="text-[10px] opacity-80">XP x{multiplier}</span>}
+            {bonus > 0 && <span className="text-[10px] opacity-80">+{bonus} XP</span>}
           </div>
         </motion.div>
       )}

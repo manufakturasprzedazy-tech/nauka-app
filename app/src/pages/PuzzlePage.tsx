@@ -1,4 +1,4 @@
-import { useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useSearchParams } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Header } from '@/components/layout/Header';
@@ -9,15 +9,14 @@ import { EmptyState } from '@/components/ui/EmptyState';
 import { XPFloat, useXPFloat } from '@/components/feedback/XPFloat';
 import { useContentStore } from '@/stores/contentStore';
 import { buildPuzzle, checkOrder, isPuzzleable, type ParsonsPuzzle, type PuzzleLine } from '@/services/parsons';
-import { db, getOrCreateTodayActivity, getSetting, setSetting } from '@/db/database';
-import { reportQuestEvent } from '@/services/questService';
+import { getSetting, setSetting } from '@/db/database';
+import { XP } from '@/services/gamification';
+import { awardXP } from '@/services/xpService';
+import { getStartedMaterialIds } from '@/services/progressService';
 import { checkProgressEvents } from '@/services/achievementService';
 import { sounds } from '@/services/soundService';
 import { haptics } from '@/services/haptics';
 import { cn } from '@/utils/cn';
-
-const XP_FIRST_TRY = 15;
-const XP_RETRY = 8;
 
 type Phase = 'building' | 'feedback';
 
@@ -27,10 +26,17 @@ export function PuzzlePage() {
   const materialId = searchParams.get('material') ? Number(searchParams.get('material')) : undefined;
   const { exercises } = useContentStore();
   const { items, spawn } = useXPFloat();
+  const [startedIds, setStartedIds] = useState<Set<number> | null>(null);
+
+  useEffect(() => {
+    getStartedMaterialIds().then(setStartedIds);
+  }, []);
 
   const pool = useMemo(
-    () => exercises.filter(ex => (!materialId || ex.materialId === materialId) && isPuzzleable(ex)),
-    [exercises, materialId],
+    () => exercises.filter(ex =>
+      (materialId ? ex.materialId === materialId : startedIds?.has(ex.materialId)) && isPuzzleable(ex),
+    ),
+    [exercises, materialId, startedIds],
   );
 
   const [puzzle, setPuzzle] = useState<ParsonsPuzzle | null>(null);
@@ -72,16 +78,16 @@ export function PuzzlePage() {
     if (allOk) {
       sounds.success();
       haptics.success();
-      const xp = tryNo === 1 ? XP_FIRST_TRY : XP_RETRY;
-      spawn(xp);
-      setXpTotal(t => t + xp);
+      // 5 XP for the first correct arrangement of this puzzle today (ledger-deduped)
+      const xp = await awardXP('puzzle', puzzle.exercise.id, XP.PUZZLE_PASS);
+      if (xp > 0) {
+        spawn(xp);
+        setXpTotal(t => t + xp);
+      }
       setSolvedCount(c => c + 1);
 
-      const activity = await getOrCreateTodayActivity();
-      await db.dailyActivity.update(activity.id!, { xpEarned: activity.xpEarned + xp });
       const solved = Number(await getSetting('puzzles_solved', '0')) + 1;
       await setSetting('puzzles_solved', String(solved));
-      await reportQuestEvent('xp', xp);
       await checkProgressEvents();
     } else {
       sounds.error();
@@ -216,7 +222,7 @@ export function PuzzlePage() {
           <motion.div initial={{ opacity: 0, y: 8 }} animate={{ opacity: 1, y: 0 }} className="space-y-2">
             <Card variant="glow" padding="sm" className="text-center">
               <p className="text-sm font-bold text-emerald-400">
-                ✓ Idealnie! {attempts === 1 ? `Za pierwszym razem (+${XP_FIRST_TRY} XP)` : `(+${XP_RETRY} XP)`}
+                ✓ Idealnie!{attempts === 1 ? ' Za pierwszym razem!' : ''}
               </p>
             </Card>
             <div className="flex gap-2">

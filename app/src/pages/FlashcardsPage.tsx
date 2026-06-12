@@ -20,20 +20,34 @@ export function FlashcardsPage() {
 
   const { dueCards, newCards, loading, reviewCard, reviewCount } = useFlashcards(courseId, materialId);
   const [sessionStarted, setSessionStarted] = useState(false);
+  const [queue, setQueue] = useState<typeof dueCards>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [xpGained, setXpGained] = useState(0);
   const { items, spawn } = useXPFloat();
 
   const allCards = [...dueCards, ...newCards];
 
+  const startSession = () => {
+    setQueue(allCards);
+    setCurrentIndex(0);
+    setXpGained(0);
+    setSessionStarted(true);
+  };
+
   const handleRate = useCallback(async (rating: 'again' | 'hard' | 'good' | 'easy') => {
-    if (currentIndex >= allCards.length) return;
-    const card = allCards[currentIndex];
+    if (currentIndex >= queue.length) return;
+    const card = queue[currentIndex];
     const xp = await reviewCard(card.id, rating);
-    spawn(xp);
-    setXpGained(prev => prev + xp);
+    if (xp > 0) {
+      spawn(xp);
+      setXpGained(prev => prev + xp);
+    }
+    if (rating === 'again') {
+      // Forgotten card re-enters the session queue until passed (learning step)
+      setQueue(prev => [...prev, card]);
+    }
     setCurrentIndex(prev => prev + 1);
-  }, [currentIndex, allCards, reviewCard, spawn]);
+  }, [currentIndex, queue, reviewCard, spawn]);
 
   if (loading) {
     return <div className="flex items-center justify-center h-64 text-slate-400">Ładowanie...</div>;
@@ -57,8 +71,11 @@ export function FlashcardsPage() {
                     ? `${dueCards.length} fiszek do powtórki + ${newCards.length} nowych`
                     : `${newCards.length} nowych fiszek`}
                 </p>
+                <p className="mt-1 text-[11px] text-slate-500">
+                  Nowe karty: max 10 dziennie — tak uczy się skutecznie, nie hurtowo.
+                </p>
               </div>
-              <Button onClick={() => setSessionStarted(true)} fullWidth size="lg">
+              <Button onClick={startSession} fullWidth size="lg">
                 Rozpocznij sesję ({allCards.length})
               </Button>
             </>
@@ -76,7 +93,7 @@ export function FlashcardsPage() {
   }
 
   // Session complete
-  if (currentIndex >= allCards.length) {
+  if (currentIndex >= queue.length) {
     return (
       <div>
         <Header title="Fiszki" showBack />
@@ -100,14 +117,14 @@ export function FlashcardsPage() {
   }
 
   // Active session
-  const card = allCards[currentIndex];
+  const card = queue[currentIndex];
 
   return (
     <div>
-      <Header title={`Fiszki (${currentIndex + 1}/${allCards.length})`} showBack />
+      <Header title={`Fiszki (${currentIndex + 1}/${queue.length})`} showBack />
       <XPFloat items={items} />
       <div className="px-4 py-2">
-        <ProgressBar value={(currentIndex + 1) / allCards.length} size="sm" />
+        <ProgressBar value={(currentIndex + 1) / queue.length} size="sm" />
       </div>
       <div className="py-6">
         <AnimatePresence mode="wait">

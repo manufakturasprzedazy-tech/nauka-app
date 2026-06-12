@@ -1,13 +1,6 @@
 import { create } from 'zustand';
 import { getSetting, setSetting } from '@/db/database';
 
-// Combo multiplier: x1 → x1.5 at combo 5 → x2 at combo 10
-export function getComboMultiplier(combo: number): number {
-  if (combo >= 10) return 2;
-  if (combo >= 5) return 1.5;
-  return 1;
-}
-
 interface SessionState {
   combo: number;
   bestCombo: number;

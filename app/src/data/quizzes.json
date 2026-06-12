@@ -9464,5 +9464,785 @@
     "explanation": "422 oznacza, że request ma złe dane albo brakuje pola. To nie jest błąd portu ani brak pliku.",
     "difficulty": "medium",
     "topic": "walidacja danych"
+  },
+  {
+    "id": 712,
+    "materialId": 79,
+    "question": "Co wypisze ten kod?\n\n```python\nfrom datetime import datetime\n\nmoment = datetime(2027, 2, 3, 7, 8)\nprint(moment.hour)\n```",
+    "choices": [
+      "7",
+      "8",
+      "3",
+      "7:08"
+    ],
+    "correctIndex": 0,
+    "explanation": "Poprawna jest odpowiedź `7`, bo `hour` bierze samą godzinę. `7:08` to cały zapis czasu, a nie wartość pola `hour`.",
+    "difficulty": "easy",
+    "topic": "datetime.now()"
+  },
+  {
+    "id": 713,
+    "materialId": 79,
+    "question": "Co zwróci ten kod?\n\n```python\nfrom datetime import date\n\ndzien = date(2027, 4, 9)\nprint(dzien.weekday())\n```",
+    "choices": [
+      "0",
+      "4",
+      "5",
+      "9"
+    ],
+    "correctIndex": 1,
+    "explanation": "Poprawna jest `4`, bo `weekday()` liczy dni od `0`, a `4` oznacza piątek. `5` to sobota, więc to popularny błąd.",
+    "difficulty": "easy",
+    "topic": "date"
+  },
+  {
+    "id": 714,
+    "materialId": 79,
+    "question": "Co wypisze ten kod?\n\n```python\nfrom datetime import datetime, timedelta\n\nstart = datetime(2027, 1, 10, 10, 0)\nresult = start + timedelta(days=2, minutes=30)\nprint(result)\n```",
+    "choices": [
+      "2027-01-12 10:30:00",
+      "2027-01-12 10:00:00",
+      "2027-01-10 10:30:00",
+      "2027-01-13 10:30:00"
+    ],
+    "correctIndex": 0,
+    "explanation": "Dodajemy 2 dni i 30 minut, więc wynik to `2027-01-12 10:30:00`. Odpowiedź z jedną datą lub bez minut to częsty błąd.",
+    "difficulty": "medium",
+    "topic": "timedelta"
+  },
+  {
+    "id": 715,
+    "materialId": 79,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nfrom datetime import datetime\n\nstart = datetime(2027, 5, 1, 9, 0)\njutro = start + 1\nprint(jutro)\n```",
+    "choices": [
+      "Nic, kod jest poprawny.",
+      "Trzeba użyć `timedelta`, bo nie dodaje się zwykłej liczby do daty.",
+      "Trzeba użyć `weekday()`.",
+      "Trzeba zamienić `datetime` na `date`."
+    ],
+    "correctIndex": 1,
+    "explanation": "Błąd jest w dodawaniu zwykłej liczby do daty. Do tego służy `timedelta`, na przykład `start + timedelta(days=1)`.",
+    "difficulty": "easy",
+    "topic": "timedelta"
+  },
+  {
+    "id": 716,
+    "materialId": 79,
+    "question": "Co zwróci ten kod?\n\n```python\nfrom datetime import datetime\n\nmoment = datetime(2027, 8, 15, 6, 5, 9)\nprint(moment.strftime(\"%d.%m.%Y %H:%M\"))\n```",
+    "choices": [
+      "15.08.2027 06:05",
+      "2027-08-15 06:05:09",
+      "15/08/2027 6:5",
+      "08.15.2027 06:05"
+    ],
+    "correctIndex": 0,
+    "explanation": "Wzorzec mówi: dzień, miesiąc, rok, godzina i minuta. Odpowiedź z kreskami albo z inną kolejnością jest błędna.",
+    "difficulty": "medium",
+    "topic": "strftime"
+  },
+  {
+    "id": 717,
+    "materialId": 79,
+    "question": "Co wypisze ten kod?\n\n```python\nfrom datetime import datetime\n\ntext = \"04.11.2027 18:20\"\nmoment = datetime.strptime(text, \"%d.%m.%Y %H:%M\")\nprint(moment.year)\n```",
+    "choices": [
+      "2027",
+      "11",
+      "4",
+      "18"
+    ],
+    "correctIndex": 0,
+    "explanation": "Tekst pasuje do wzorca, więc `strptime()` tworzy datę, a `year` daje `2027`. Odpowiedź `11` to miesiąc, nie rok.",
+    "difficulty": "medium",
+    "topic": "strptime"
+  },
+  {
+    "id": 718,
+    "materialId": 79,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nfrom datetime import datetime\n\nmoment = datetime.strptime(\"12/06/2027\", \"%d.%m.%Y\")\nprint(moment)\n```",
+    "choices": [
+      "Nic, kod działa.",
+      "Tekst i wzorzec nie pasują, bo w tekście są ukośniki, a we wzorcu kropki.",
+      "Trzeba użyć `weekday()`.",
+      "Trzeba użyć `isoformat()`."
+    ],
+    "correctIndex": 1,
+    "explanation": "Tekst ma znak `/`, a wzorzec oczekuje `.`. Muszą pasować dokładnie, inaczej pojawi się błąd.",
+    "difficulty": "medium",
+    "topic": "strptime"
+  },
+  {
+    "id": 719,
+    "materialId": 79,
+    "question": "Co wypisze ten kod?\n\n```python\nfrom datetime import datetime\n\nmoment = datetime(2027, 9, 2, 14, 30, 15)\nprint(moment.isoformat())\n```",
+    "choices": [
+      "2027-09-02T14:30:15",
+      "02.09.2027 14:30",
+      "2027/09/02 14:30:15",
+      "2027-09-02 14:30:15 UTC"
+    ],
+    "correctIndex": 0,
+    "explanation": "`isoformat()` daje zapis ISO 8601 z literą `T` między datą i czasem. Odpowiedź z kropkami albo spacją nie jest tym formatem.",
+    "difficulty": "easy",
+    "topic": "ISO 8601"
+  },
+  {
+    "id": 720,
+    "materialId": 79,
+    "question": "Co zwróci ten kod?\n\n```python\nfrom datetime import datetime\n\ntext = \"2027-09-02T14:30:15\"\nmoment = datetime.fromisoformat(text)\nprint(moment.hour)\n```",
+    "choices": [
+      "14",
+      "30",
+      "15",
+      "2"
+    ],
+    "correctIndex": 0,
+    "explanation": "`fromisoformat()` czyta zapis ISO i tworzy obiekt `datetime`. Pole `hour` to `14`, a nie minuta ani sekunda.",
+    "difficulty": "medium",
+    "topic": "ISO 8601"
+  },
+  {
+    "id": 721,
+    "materialId": 79,
+    "question": "Co wypisze ten kod?\n\n```python\nfrom datetime import datetime, timezone\n\nmoment = datetime(2027, 12, 1, 9, 0, tzinfo=timezone.utc)\nprint(moment.isoformat())\n```",
+    "choices": [
+      "2027-12-01T09:00:00+00:00",
+      "2027-12-01T09:00:00",
+      "2027-12-01 09:00:00 UTC",
+      "2027-12-01T09:00:00Z"
+    ],
+    "correctIndex": 0,
+    "explanation": "Obiekt ma UTC, więc `isoformat()` pokazuje `+00:00`. Brak końcówki strefy to częsty błąd.",
+    "difficulty": "hard",
+    "topic": "strefy czasowe UTC"
+  },
+  {
+    "id": 722,
+    "materialId": 79,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nfrom datetime import datetime, timezone\n\na = datetime.now(timezone.utc)\nb = datetime(2027, 12, 1, 9, 0)\nprint(a - b)\n```",
+    "choices": [
+      "Nic, kod działa.",
+      "To miesza datę z UTC i bez UTC, więc Python może zgłosić błąd.",
+      "Trzeba użyć `strftime()`.",
+      "Trzeba użyć `weekday()`."
+    ],
+    "correctIndex": 1,
+    "explanation": "Jedna data ma strefę, a druga nie ma. Python nie chce ich odejmować. Najlepiej trzymać wszystko w UTC.",
+    "difficulty": "hard",
+    "topic": "strefy czasowe UTC"
+  },
+  {
+    "id": 723,
+    "materialId": 80,
+    "question": "Co wypisze ten kod?\n\n```python\nimport csv\nimport io\n\ndane = \"\"\"imie,wiek\nOla,14\nJan,11\"\"\"\n\nfor wiersz in csv.reader(io.StringIO(dane)):\n    print(wiersz[0])\n```",
+    "choices": [
+      "imie Ola Jan",
+      "Ola Jan",
+      "['imie', 'Ola', 'Jan']",
+      "['imie', 'Ola'] i potem ['Jan']"
+    ],
+    "correctIndex": 0,
+    "explanation": "Kod wypisuje pierwszy element z każdej listy, więc dostajemy nagłówek i oba imiona. Zła odpowiedź z samymi imionami jest kusząca, ale nagłówek też jest wczytany i też zostaje wypisany.",
+    "difficulty": "easy",
+    "topic": "Czytanie CSV przez `csv.reader`"
+  },
+  {
+    "id": 724,
+    "materialId": 80,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport csv\nimport io\n\ndane = \"\"\"produkt;cena\nKubek;12\"\"\"\n\nwiersz = next(csv.DictReader(io.StringIO(dane)))\nprint(wiersz[\"cena\"])\n```",
+    "choices": [
+      "Brakuje `delimiter=\";\"`.",
+      "Trzeba użyć `csv.reader` zamiast `DictReader`.",
+      "Trzeba zamienić `\"12\"` na `float(\"12\")`.",
+      "Kod jest poprawny."
+    ],
+    "correctIndex": 0,
+    "explanation": "Dane są rozdzielone średnikiem, a nie przecinkiem. Bez `delimiter=\";\"` Python źle odczyta kolumny, więc `wiersz[\"cena\"]` nie zadziała.",
+    "difficulty": "medium",
+    "topic": "Separator średnikowy w polskim Excelu"
+  },
+  {
+    "id": 725,
+    "materialId": 80,
+    "question": "Która wersja poprawnie policzy sumę cen?\n\nA:\n```python\nsuma = 0\nsuma += \"10\"\nsuma += \"5\"\nprint(suma)\n```\nB:\n```python\nsuma = 0\nsuma += int(\"10\")\nsuma += int(\"5\")\nprint(suma)\n```\nC:\n```python\nsuma = \"0\"\nsuma += \"10\"\nsuma += \"5\"\nprint(suma)\n```\nD:\n```python\nsuma = 0\nsuma = \"10\" + \"5\"\nprint(suma)\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tylko wersja B zamienia tekst na liczby przed dodawaniem. Wersje A, C i D sklejają tekst albo mieszają typy.",
+    "difficulty": "easy",
+    "topic": "Konwersja stringów na liczby"
+  },
+  {
+    "id": 726,
+    "materialId": 80,
+    "question": "Co wypisze ten kod?\n\n```python\nimport csv\nimport io\n\ndane = \"\"\"miasto,kraj\nLublin,Polska\"\"\"\n\nfor wiersz in csv.DictReader(io.StringIO(dane)):\n    print(wiersz[\"miasto\"], wiersz[\"kraj\"])\n```",
+    "choices": [
+      "Lublin Polska",
+      "['Lublin', 'Polska']",
+      "miasto kraj",
+      "Lublin,Polska"
+    ],
+    "correctIndex": 0,
+    "explanation": "DictReader zwraca słownik, więc można pobrać wartości po nazwach kolumn. Zła odpowiedź z listą jest myląca, ale to nie `csv.reader`.",
+    "difficulty": "easy",
+    "topic": "Czytanie CSV przez `csv.DictReader`"
+  },
+  {
+    "id": 727,
+    "materialId": 80,
+    "question": "Co się stanie, jeśli w CSV są liczby zapisane jako tekst i zrobisz takie dodawanie?\n\n```python\nsuma = \"7\" + \"8\"\nprint(suma)\n```",
+    "choices": [
+      "Wypisze `15`",
+      "Wypisze `78`",
+      "Dostaniesz `ValueError`",
+      "Dostaniesz `KeyError`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Python sklei dwa teksty i da `78`. Odpowiedź `15` brzmi logicznie, ale bez `int(...)` nie ma tu liczenia.",
+    "difficulty": "easy",
+    "topic": "Konwersja stringów na liczby"
+  },
+  {
+    "id": 728,
+    "materialId": 80,
+    "question": "Co jest wynikiem działania tego kodu?\n\n```python\nimport csv\nimport io\n\nbufor = io.StringIO()\npiszacy = csv.DictWriter(bufor, fieldnames=[\"nazwa\", \"cena\"])\npiszacy.writeheader()\npiszacy.writerow({\"nazwa\": \"Notes\", \"cena\": 9})\n\nprint(bufor.getvalue())\n```",
+    "choices": [
+      "nazwa,cena\nNotes,9\n",
+      "Notes,9\nnazwa,cena\n",
+      "{'nazwa': 'Notes', 'cena': 9}",
+      "nazwa cena Notes 9"
+    ],
+    "correctIndex": 0,
+    "explanation": "Najpierw `writeheader()` zapisuje nagłówek, potem `writerow()` dopisuje wiersz. Zła odpowiedź z odwróconą kolejnością jest częsta, ale najpierw zawsze idzie nagłówek.",
+    "difficulty": "medium",
+    "topic": "Zapisywanie CSV przez `writer` i `DictWriter`"
+  },
+  {
+    "id": 729,
+    "materialId": 80,
+    "question": "Która wersja poprawnie używa średnika jako separatora?\n\nA:\n```python\ncsv.DictReader(io.StringIO(dane))\n```\nB:\n```python\ncsv.DictReader(io.StringIO(dane), delimiter=\";\")\n```\nC:\n```python\ncsv.reader(io.StringIO(dane), delimiter=\",\")\n```\nD:\n```python\ncsv.DictWriter(io.StringIO(dane), delimiter=\";\")\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Tylko wersja B ustawia średnik jako separator przy czytaniu. Wersja A używa domyślnego przecinka, więc nie pasuje do takich danych.",
+    "difficulty": "easy",
+    "topic": "Separator średnikowy w polskim Excelu"
+  },
+  {
+    "id": 730,
+    "materialId": 80,
+    "question": "Co wypisze ten kod?\n\n```python\nimport csv\nimport io\n\ndane = \"\"\"grupa,wartosc\nA,3\nA,2\nB,5\"\"\"\n\nsumy = {}\nfor wiersz in csv.DictReader(io.StringIO(dane)):\n    g = wiersz[\"grupa\"]\n    sumy[g] = sumy.get(g, 0) + int(wiersz[\"wartosc\"])\n\nprint(sumy)\n```",
+    "choices": [
+      "{'A': 5, 'B': 5}",
+      "{'A': 3, 'B': 2}",
+      "{'A': 2, 'B': 5}",
+      "{'A': 8, 'B': 5}"
+    ],
+    "correctIndex": 0,
+    "explanation": "Dwie wartości z grupy A są dodane: 3 i 2, więc razem 5. Odpowiedź 8 wygląda jak suma wszystkich liczb, ale B też ma swoją osobną sumę.",
+    "difficulty": "medium",
+    "topic": "Agregacja danych w słowniku"
+  },
+  {
+    "id": 731,
+    "materialId": 80,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport csv\nimport io\n\ndane = \"\"\"produkt,cena\nKrzeslo,120\"\"\"\n\nwiersz = next(csv.DictReader(io.StringIO(dane)))\nprint(wiersz[\"Cena\"])\n```",
+    "choices": [
+      "Kolumna nazywa się `cena`, nie `Cena`.",
+      "Trzeba użyć `csv.reader`.",
+      "Trzeba dodać `delimiter=\";\"`.",
+      "Kod jest poprawny."
+    ],
+    "correctIndex": 0,
+    "explanation": "Nazwy kluczy muszą pasować dokładnie do nagłówka. Wielkość liter ma znaczenie, więc `Cena` to nie to samo co `cena`.",
+    "difficulty": "medium",
+    "topic": "Częste błędy przy CSV"
+  },
+  {
+    "id": 732,
+    "materialId": 80,
+    "question": "Co się stanie, gdy spróbujesz policzyć `int(\"3 500\")`?",
+    "choices": [
+      "Dostaniesz `ValueError`",
+      "Wypisze `3500`",
+      "Wypisze `3`",
+      "Dostaniesz `KeyError`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Spacja w środku psuje zamianę na liczbę. Najpierw trzeba usunąć spacje, na przykład przez `replace(\" \", \"\")`.",
+    "difficulty": "medium",
+    "topic": "Konwersja stringów na liczby"
+  },
+  {
+    "id": 733,
+    "materialId": 81,
+    "question": "Co zwróci ten kod?\n\n```python\nimport argparse\n\nparser = argparse.ArgumentParser()\nparser.add_argument(\"nazwa\")\nargs = parser.parse_args([\"raport\"])\nprint(args.nazwa)\n```",
+    "choices": [
+      "raport",
+      "nazwa",
+      "ArgumentParser",
+      "Błąd, bo `parse_args()` nie działa z listą"
+    ],
+    "correctIndex": 0,
+    "explanation": "Argument `nazwa` dostaje wartość `raport`, więc `print(args.nazwa)` wypisze `raport`. Odpowiedź `nazwa` jest zła, bo to tylko nazwa atrybutu, nie jego wartość.",
+    "difficulty": "easy",
+    "topic": "argumenty pozycyjne"
+  },
+  {
+    "id": 734,
+    "materialId": 81,
+    "question": "Co zwróci ten kod?\n\n```python\nimport argparse\n\nparser = argparse.ArgumentParser()\nparser.add_argument(\"--dni\", type=int, default=7)\nargs = parser.parse_args([])\nprint(args.dni)\n```",
+    "choices": [
+      "7",
+      "'7'",
+      "0",
+      "Błąd, bo nie podano `--dni`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Nie podano `--dni`, więc użyje się `default=7`. Zła jest odpowiedź `'7'`, bo `default` tutaj daje liczbę, nie tekst.",
+    "difficulty": "easy",
+    "topic": "default i type"
+  },
+  {
+    "id": 735,
+    "materialId": 81,
+    "question": "Co zwróci ten kod?\n\n```python\nimport argparse\n\nparser = argparse.ArgumentParser()\nparser.add_argument(\"--limit\", type=int)\nargs = parser.parse_args([\"--limit\", \"12\"])\nprint(type(args.limit))\n```",
+    "choices": [
+      "<class 'int'>",
+      "<class 'str'>",
+      "<class 'list'>",
+      "<class 'bool'>"
+    ],
+    "correctIndex": 0,
+    "explanation": "Dzięki `type=int` wartość zostaje zamieniona na liczbę. Odpowiedź `str` jest błędna, bo bez `type=int` byłby to tekst.",
+    "difficulty": "easy",
+    "topic": "default i type"
+  },
+  {
+    "id": 736,
+    "materialId": 81,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nimport argparse\n\nparser = argparse.ArgumentParser()\nparser.add_argument(\"--dry-run\", action=\"store_true\")\nargs = parser.parse_args([\"--dry-run\"])\nprint(args.dry-run)\n```",
+    "choices": [
+      "Nic, kod jest poprawny",
+      "Trzeba napisać `args.dry_run`",
+      "Trzeba napisać `args[dry-run]`",
+      "Trzeba usunąć `action=\"store_true\"`"
+    ],
+    "correctIndex": 1,
+    "explanation": "W atrybucie nie używa się myślnika, tylko podkreślnika: `args.dry_run`. `args.dry-run` Python czyta jak odejmowanie, więc to błąd.",
+    "difficulty": "medium",
+    "topic": "flagi `store_true`"
+  },
+  {
+    "id": 737,
+    "materialId": 81,
+    "question": "Która wersja poprawnie ustawia wartość domyślną 5 i typ liczbowy dla argumentu `--ile`?",
+    "choices": [
+      "parser.add_argument(\"--ile\", default=5, type=int)",
+      "parser.add_argument(\"ile\", default=5, type=int)",
+      "parser.add_argument(\"--ile\", default=\"5\")",
+      "parser.add_argument(\"--ile\", action=\"store_true\")"
+    ],
+    "correctIndex": 0,
+    "explanation": "Opcjonalny argument musi mieć `--`, a `default=5` daje wartość domyślną. Odpowiedź z `\"ile\"` jest zła, bo bez `--` byłby to argument pozycyjny.",
+    "difficulty": "medium",
+    "topic": "argumenty opcjonalne"
+  },
+  {
+    "id": 738,
+    "materialId": 81,
+    "question": "Co się stanie, gdy uruchomimy taki kod?\n\n```python\nimport argparse\n\nparser = argparse.ArgumentParser()\nparser.add_argument(\"plik\")\nargs = parser.parse_args([])\n```",
+    "choices": [
+      "Program zwróci `None`",
+      "Program pokaże błąd o brakującym argumencie `plik`",
+      "Program ustawi `args.plik` na pusty napis",
+      "Program sam wstawi nazwę pliku"
+    ],
+    "correctIndex": 1,
+    "explanation": "Argument pozycyjny jest wymagany, więc bez niego `argparse` pokazuje błąd. Pusta wartość nie zostanie wpisana automatycznie.",
+    "difficulty": "medium",
+    "topic": "błędy i walidacja"
+  },
+  {
+    "id": 739,
+    "materialId": 81,
+    "question": "Co zwróci ten kod?\n\n```python\nimport argparse\n\nparser = argparse.ArgumentParser()\nparser.add_argument(\"--format\", default=\"csv\", choices=[\"csv\", \"json\"])\nargs = parser.parse_args([\"--format\", \"json\"])\nprint(args.format)\n```",
+    "choices": [
+      "json",
+      "csv",
+      "choices",
+      "Błąd, bo `json` nie ma cudzysłowów"
+    ],
+    "correctIndex": 0,
+    "explanation": "Podano `--format json`, więc wartość zostanie ustawiona na `json`. `csv` byłoby wynikiem tylko wtedy, gdyby argumentu nie podano.",
+    "difficulty": "easy",
+    "topic": "argumenty opcjonalne"
+  },
+  {
+    "id": 740,
+    "materialId": 81,
+    "question": "Która wersja poprawnie tworzy flagę `--verbose`, która po podaniu daje `True`?",
+    "choices": [
+      "parser.add_argument(\"--verbose\", action=\"store_true\")",
+      "parser.add_argument(\"verbose\", action=\"store_true\")",
+      "parser.add_argument(\"--verbose\", type=int)",
+      "parser.add_argument(\"--verbose\", default=True)"
+    ],
+    "correctIndex": 0,
+    "explanation": "Flaga bez wartości działa przez `action=\"store_true\"`. Wersja bez `--` byłaby argumentem pozycyjnym, a to nie jest flaga.",
+    "difficulty": "medium",
+    "topic": "flagi `store_true`"
+  },
+  {
+    "id": 741,
+    "materialId": 81,
+    "question": "Co jest celem funkcji `main(args)` w tym wzorcu?",
+    "choices": [
+      "Parsowanie argumentów z linii poleceń",
+      "Trzymanie logiki programu osobno od parsowania",
+      "Zastąpienie `ArgumentParser()`",
+      "Wypisywanie `--help`"
+    ],
+    "correctIndex": 1,
+    "explanation": "`main(args)` ma dostać już sparsowane argumenty i wykonać logikę programu. Parsowanie dzieje się wcześniej, więc kod łatwiej testować.",
+    "difficulty": "medium",
+    "topic": "wzorzec `main(args)`"
+  },
+  {
+    "id": 742,
+    "materialId": 81,
+    "question": "Co zwróci ten kod?\n\n```python\nimport argparse\n\nparser = argparse.ArgumentParser()\nparser.add_argument(\"--dni\", type=int, default=7)\nargs = parser.parse_args([\"--dni\", \"30\"])\nprint(args.dni)\n```",
+    "choices": [
+      "30",
+      "7",
+      "'30'",
+      "Błąd, bo `--dni` musi mieć wartość domyślną"
+    ],
+    "correctIndex": 0,
+    "explanation": "Podano `--dni 30`, więc program użyje tej wartości zamiast `default`. Odpowiedź `7` jest zła, bo default działa tylko wtedy, gdy argumentu nie ma.",
+    "difficulty": "easy",
+    "topic": "default i type"
+  },
+  {
+    "id": 743,
+    "materialId": 82,
+    "question": "Co zwróci ten kod?\n\n```python\nexpr = \"0 7 * * *\"\nparts = expr.split()\nprint(len(parts))\n```",
+    "choices": [
+      "5",
+      "4",
+      "6",
+      "0"
+    ],
+    "correctIndex": 0,
+    "explanation": "To wyrażenie ma 5 pól, więc `split()` daje listę długości 5. Odpowiedź `4` byłaby błędna, bo nic nie ginie.",
+    "difficulty": "easy",
+    "topic": "parsowanie cron"
+  },
+  {
+    "id": 744,
+    "materialId": 82,
+    "question": "Co zwróci ten kod?\n\n```python\nprzyklady = {\n    \"*/10 * * * *\": \"co 10 minut\",\n    \"0 9 * * *\": \"codziennie o 9:00\",\n}\nfor wzor, opis in przyklady.items():\n    print(wzor, \"->\", opis)\n```",
+    "choices": [
+      "`*/10 * * * * -> co 10 minut` oraz `0 9 * * * -> codziennie o 9:00`",
+      "Tylko `0 9 * * * -> codziennie o 9:00`",
+      "Tylko `*/10 * * * * -> co 10 minut`",
+      "Błąd, bo `items()` nie działa ze słownikiem"
+    ],
+    "correctIndex": 0,
+    "explanation": "Pętla przechodzi po obu parach ze słownika i wypisuje obie linie. Odpowiedzi z jedną linią są złe, bo pętla działa dwa razy.",
+    "difficulty": "easy",
+    "topic": "składnia cron"
+  },
+  {
+    "id": 745,
+    "materialId": 82,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\nwzor = \"* 6 * * *\"\nprint(wzor)\n```",
+    "choices": [
+      "To znaczy raz o 6:00",
+      "To znaczy co minutę między 6:00 a 6:59",
+      "To znaczy co 5 minut",
+      "To ma 4 pola"
+    ],
+    "correctIndex": 1,
+    "explanation": "Pierwsze pole to minuta, więc `*` oznacza każdą minutę. Najczęstszy błąd to myślenie, że `*` w pierwszym polu znaczy jedną konkretną minutę.",
+    "difficulty": "medium",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 746,
+    "materialId": 82,
+    "question": "Która wersja poprawnie opisuje codzienne uruchomienie o 6:00?",
+    "choices": [
+      "`* 6 * * *`",
+      "`0 6 * * *`",
+      "`6 0 * * *`",
+      "`0 * * * *`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Poprawna jest wersja z minutą `0` i godziną `6`. Wersja z `*` w pierwszym polu odpala się co minutę, a nie raz.",
+    "difficulty": "easy",
+    "topic": "składnia cron"
+  },
+  {
+    "id": 747,
+    "materialId": 82,
+    "question": "Co zwróci ten kod?\n\n```python\ndef wyslij_raport(data, wyslane):\n    if data in wyslane:\n        return \"już było\"\n    wyslane.add(data)\n    return \"wysłano\"\n\nwyslane = set()\nprint(wyslij_raport(\"2026-01-01\", wyslane))\nprint(wyslij_raport(\"2026-01-01\", wyslane))\n```",
+    "choices": [
+      "`wysłano` i `wysłano`",
+      "`już było` i `już było`",
+      "`wysłano` i `już było`",
+      "Błąd, bo `set()` nie działa"
+    ],
+    "correctIndex": 2,
+    "explanation": "Pierwsze wywołanie dodaje datę do zbioru, więc zwraca `wysłano`. Drugie widzi, że data już jest, więc zwraca `już było`.",
+    "difficulty": "medium",
+    "topic": "idempotencja"
+  },
+  {
+    "id": 748,
+    "materialId": 82,
+    "question": "Co się stanie, gdy wywołamy `schedule.run_pending()` w pętli `while True`?",
+    "choices": [
+      "Program będzie cały czas sprawdzał, czy ma coś uruchomić",
+      "Program zakończy działanie po pierwszym sprawdzeniu",
+      "Program usunie wszystkie zaplanowane zadania",
+      "Program zmieni czas na UTC"
+    ],
+    "correctIndex": 0,
+    "explanation": "Ta funkcja ma sprawdzać, czy jest coś zaplanowanego do odpalenia. Zła jest odpowiedź o zakończeniu programu, bo pętla `while True` działa bez końca.",
+    "difficulty": "medium",
+    "topic": "biblioteka schedule"
+  },
+  {
+    "id": 749,
+    "materialId": 82,
+    "question": "Co zwróci ten kod?\n\n```python\nexpr = \"0 6 * *\"\nparts = expr.split()\nprint(len(parts))\n```",
+    "choices": [
+      "5",
+      "4",
+      "3",
+      "Błąd, bo `split()` nie działa"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ten zapis ma tylko 4 części, więc `len(parts)` zwróci `4`. To ważne, bo `cron` wymaga 5 pól.",
+    "difficulty": "easy",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 750,
+    "materialId": 82,
+    "question": "Która wersja poprawnie oznacza dni robocze o 8:30?",
+    "choices": [
+      "`30 8 * * 1-5`",
+      "`8 30 * * 1-5`",
+      "`30 8 1-5 * *`",
+      "`* 8 * * 1-5`"
+    ],
+    "correctIndex": 0,
+    "explanation": "Minuta to `30`, godzina to `8`, a `1-5` w polu dnia tygodnia oznacza dni robocze. Wersja z zamienioną kolejnością pól jest błędna.",
+    "difficulty": "medium",
+    "topic": "składnia cron"
+  },
+  {
+    "id": 751,
+    "materialId": 82,
+    "question": "Jaka jest różnica między `cron` a `schedule`?",
+    "choices": [
+      "`cron` działa tylko w Pythonie, a `schedule` tylko w Linuksie",
+      "`cron` to składnia harmonogramu w systemie, a `schedule` to biblioteka w Pythonie",
+      "To dokładnie to samo",
+      "`schedule` nie pozwala ustawić godziny"
+    ],
+    "correctIndex": 1,
+    "explanation": "`cron` to sposób opisu czasu uruchomienia. `schedule` to biblioteka w Pythonie, która robi podobną rzecz, ale wymaga ciągłego działania programu.",
+    "difficulty": "easy",
+    "topic": "cron w różnych narzędziach"
+  },
+  {
+    "id": 752,
+    "materialId": 82,
+    "question": "Co zwróci ten kod?\n\n```python\ndef opisz(wyrazenie):\n    pola = wyrazenie.split()\n    if len(pola) != 5:\n        return \"błąd\"\n    return \"ok\"\n\nprint(opisz(\"0 6 * * *\"))\nprint(opisz(\"0 6 * *\"))\n```",
+    "choices": [
+      "`ok` i `ok`",
+      "`błąd` i `błąd`",
+      "`ok` i `błąd`",
+      "`błąd` i `ok`"
+    ],
+    "correctIndex": 2,
+    "explanation": "Pierwsze wyrażenie ma 5 pól, więc funkcja zwraca `ok`. Drugie ma 4 pola, więc zwraca `błąd`.",
+    "difficulty": "easy",
+    "topic": "parsowanie cron"
+  },
+  {
+    "id": 753,
+    "materialId": 82,
+    "question": "Co jest największą wadą używania `schedule` w porównaniu z `cron`?",
+    "choices": [
+      "Nie da się ustawić godziny",
+      "Program musi działać cały czas",
+      "Nie można użyć minut",
+      "Nie można uruchomić funkcji"
+    ],
+    "correctIndex": 1,
+    "explanation": "W `schedule` pętla musi cały czas działać, bo inaczej zadania się nie odpalą. To główna wada w produkcji.",
+    "difficulty": "medium",
+    "topic": "biblioteka schedule"
+  },
+  {
+    "id": 754,
+    "materialId": 83,
+    "question": "Co zwróci ten kod?\n\n```python\ndef przetworz(dane):\n    return {\"liczba\": len(dane)}\n\nprint(przetworz([\"a\", \"b\", \"c\"]))\n```",
+    "choices": [
+      "{'liczba': 3}",
+      "{'liczba': 2}",
+      "3",
+      "['a', 'b', 'c']"
+    ],
+    "correctIndex": 0,
+    "explanation": "Lista ma 3 elementy, więc `len(dane)` da 3. Odpowiedź `3` jest zła, bo funkcja zwraca słownik, a nie samą liczbę.",
+    "difficulty": "easy",
+    "topic": "pipeline pobierz → przetworz → zapisz"
+  },
+  {
+    "id": 755,
+    "materialId": 83,
+    "question": "Co jest nie tak z tym kodem?\n\n```python\ndef przetworz(dane):\n    try:\n        return dane[\"zamowienia\"]\n    except Exception:\n        pass\n\nprint(przetworz({}))\n```",
+    "choices": [
+      "Kod jest poprawny, bo `pass` wszystko naprawia",
+      "Funkcja może zwrócić `None`, a błąd zostaje ukryty",
+      "Trzeba dodać `argparse`",
+      "Trzeba użyć `logging.basicConfig()` zamiast `try`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Gdy w słowniku nie ma `zamowienia`, wyjątek zostaje połknięty i funkcja nic nie zwraca. Odpowiedź z `pass` jest zła, bo problem nie znika, tylko się chowa.",
+    "difficulty": "medium",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 756,
+    "materialId": 83,
+    "question": "Która wersja poprawnie robi `dry-run`?\n\n```python\n# A\nif dry_run:\n    return None\n\n# B\nif dry_run:\n    log.info(\"[DRY-RUN] zapisałbym wynik\")\n    return None\n\n# C\nif dry_run:\n    wynik = json.dumps(wynik)\n\n# D\nif dry_run:\n    print(\"Gotowe\")\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Wersja B mówi, co by się stało, i nic nie zapisuje. A jest zbyt cicha, a C dalej coś obrabia bez sensu.",
+    "difficulty": "easy",
+    "topic": "argparse i tryb dry-run"
+  },
+  {
+    "id": 757,
+    "materialId": 83,
+    "question": "Co zwróci ten kod?\n\n```python\nimport json\n\ntekst = '{\"a\": 1, \"b\": 2}'\ndane = json.loads(tekst)\nprint(dane)\n```",
+    "choices": [
+      "{'a': 1, 'b': 2}",
+      "[1, 2]",
+      "\"{\\\"a\\\": 1, \\\"b\\\": 2}\"",
+      "1 2"
+    ],
+    "correctIndex": 0,
+    "explanation": "`json.loads()` zamienia tekst JSON na dane Pythona, więc dostaniesz słownik. Odpowiedź z samym tekstem JSON jest zła, bo to jeszcze nie są dane Pythona.",
+    "difficulty": "easy",
+    "topic": "pipeline pobierz → przetworz → zapisz"
+  },
+  {
+    "id": 758,
+    "materialId": 83,
+    "question": "Która wersja lepiej pasuje do czystej funkcji?\n\n```python\n# A\ndef przetworz(dane):\n    print(dane)\n    return dane\n\n# B\ndef przetworz(dane):\n    return dane\n\n# C\ndef przetworz(dane):\n    log.info(\"Start\")\n    return dane\n\n# D\ndef przetworz(dane):\n    return json.loads(dane)\n```",
+    "choices": [
+      "A",
+      "B",
+      "C",
+      "D"
+    ],
+    "correctIndex": 1,
+    "explanation": "Czysta funkcja ma tylko brać dane i zwracać wynik. Wersja B robi dokładnie to. A i C mieszają logikę z działaniem ubocznym.",
+    "difficulty": "medium",
+    "topic": "czyste funkcje"
+  },
+  {
+    "id": 759,
+    "materialId": 83,
+    "question": "Co się stanie, jeśli uruchomisz taki kod bez `--dry-run`?\n\n```python\nimport argparse\n\nparser = argparse.ArgumentParser()\nparser.add_argument(\"--dry-run\", action=\"store_true\")\nargs = parser.parse_args()\n\nprint(args.dry_run)\n```",
+    "choices": [
+      "Program wypisze `True`",
+      "Program wypisze `False`",
+      "Program się nie uruchomi",
+      "Program zwróci `None`"
+    ],
+    "correctIndex": 1,
+    "explanation": "Jeśli nie podasz `--dry-run`, flaga ma wartość `False`. `True` będzie tylko wtedy, gdy flaga jest wpisana.",
+    "difficulty": "easy",
+    "topic": "argparse i tryb dry-run"
+  },
+  {
+    "id": 760,
+    "materialId": 83,
+    "question": "Co zwróci ten kod?\n\n```python\nimport json\n\nwynik = {\"liczba\": 2}\ntekst = json.dumps(wynik, ensure_ascii=False)\nprint(tekst)\n```",
+    "choices": [
+      "{\"liczba\": 2}",
+      "{'liczba': 2}",
+      "[\"liczba\", 2]",
+      "2"
+    ],
+    "correctIndex": 0,
+    "explanation": "`json.dumps()` zamienia dane Pythona na tekst JSON. Odpowiedź z apostrofami jest zła, bo JSON używa cudzysłowów.",
+    "difficulty": "easy",
+    "topic": "pipeline pobierz → przetworz → zapisz"
+  },
+  {
+    "id": 761,
+    "materialId": 83,
+    "question": "Co jest lepszym powodem użycia retry?\n\n```python\ndef pobierz():\n    ...\n```",
+    "choices": [
+      "Bo sieć czasem zawodzi losowo",
+      "Bo `argparse` działa wolno",
+      "Bo `print` nie pokazuje czasu",
+      "Bo `json.dumps()` zwraca listę"
+    ],
+    "correctIndex": 0,
+    "explanation": "Retry pomaga, gdy błąd jest chwilowy, na przykład przy sieci. Pozostałe odpowiedzi nie mają z retry nic wspólnego.",
+    "difficulty": "easy",
+    "topic": "retry przy błędach sieci"
+  },
+  {
+    "id": 762,
+    "materialId": 83,
+    "question": "Która wersja najlepiej pokazuje błąd z kontekstem?",
+    "choices": [
+      "KeyError",
+      "ValueError: rekord 3 nie ma pola 'cena' — sprawdź eksport z CRM",
+      "pass",
+      "print('błąd')"
+    ],
+    "correctIndex": 1,
+    "explanation": "Ta wersja mówi, co się stało i gdzie szukać problemu. Sam `KeyError` jest za ogólny, a `pass` nic nie wyjaśnia.",
+    "difficulty": "medium",
+    "topic": "czytelne błędy i kod wyjścia"
+  },
+  {
+    "id": 763,
+    "materialId": 83,
+    "question": "Co stanie się przy takim podejściu do wyniku?\n\n```python\nwynik = \"raport_2026-06-12.json\"\nprint(wynik)\n```",
+    "choices": [
+      "Wynik jest przewidywalny i łatwo sprawdzić, czy plik już istnieje",
+      "Wynik zmienia się za każdym razem",
+      "To psuje `logging`",
+      "To robi automatycznie retry"
+    ],
+    "correctIndex": 0,
+    "explanation": "Stała nazwa pliku pomaga w idempotencji. Odpowiedź o zmienianiu się wyniku jest zła, bo tu nazwa jest dokładnie taka sama.",
+    "difficulty": "medium",
+    "topic": "idempotencja"
   }
 ]

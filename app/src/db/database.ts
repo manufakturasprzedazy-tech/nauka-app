@@ -1,5 +1,5 @@
 import Dexie, { type Table } from 'dexie';
-import type { FlashcardReview, QuizAttempt, CodingAttempt, ExplanationAttempt, DailyActivity, UserSettings, DailyQuest } from '@/types/progress';
+import type { FlashcardReview, QuizAttempt, CodingAttempt, ExplanationAttempt, DailyActivity, UserSettings, DailyQuest, XPAward } from '@/types/progress';
 
 export class LearningDatabase extends Dexie {
   flashcardReviews!: Table<FlashcardReview>;
@@ -11,6 +11,7 @@ export class LearningDatabase extends Dexie {
   achievements!: Table<{ id: string; unlockedAt: string }>;
   dailyQuests!: Table<DailyQuest>;
   cryptoKeys!: Table<{ id: string; key: CryptoKey }>;
+  xpAwards!: Table<XPAward>;
 
   constructor() {
     super('LearningDB');
@@ -28,6 +29,9 @@ export class LearningDatabase extends Dexie {
     });
     this.version(3).stores({
       cryptoKeys: 'id',
+    });
+    this.version(4).stores({
+      xpAwards: '++id, date, &[date+kind+itemId]',
     });
   }
 }

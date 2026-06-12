@@ -2,7 +2,8 @@
 // after any learning activity, and pushes celebrations to the queue.
 
 import { db, getSetting, setSetting } from '@/db/database';
-import { getLevel } from '@/services/gamification';
+import { getLevel, XP } from '@/services/gamification';
+import { awardXP } from '@/services/xpService';
 import { useCelebrationStore } from '@/stores/celebrationStore';
 import { todayString } from '@/utils/formatters';
 
@@ -82,6 +83,24 @@ export async function checkProgressEvents(): Promise<void> {
   // --- New-mode achievements (counters in userSettings) ---
   if (Number(await getSetting('sprint_correct_total', '0')) >= 50) await unlock('sprinter');
   if (Number(await getSetting('puzzles_solved', '0')) >= 10) await unlock('puzzle_master');
+
+  // --- Daily goal bonus (+6 XP, once per day) ---
+  try {
+    const raw = await getSetting('daily_goal', '');
+    const goal = raw ? JSON.parse(raw) : { flashcards: 20, quizzes: 5, coding: 2 };
+    const today = all.find(a => a.date === todayString());
+    if (
+      today &&
+      today.flashcardsReviewed >= goal.flashcards &&
+      today.quizAnswered >= goal.quizzes &&
+      today.codingCompleted >= goal.coding
+    ) {
+      const xp = await awardXP('daily_goal', 0, XP.DAILY_GOAL);
+      if (xp > 0) push({ type: 'quest', name: 'Cel dzienny osiągnięty!', xp });
+    }
+  } catch {
+    // corrupted goal setting — skip bonus
+  }
 }
 
 /** Call when a quiz session ends with a perfect score. */

@@ -160,9 +160,14 @@ Rules:
 - Starter code: skeleton with TODO comments (def name(...): # TODO: ...)
 - Solution: complete, readable solution with comments
 - Test code: minimum 3 asserts, including edge cases (empty list, 0, empty string, etc.)
-- Hints: 1-2 guiding hints per exercise — nudge toward solution, do NOT reveal it
-  - GOOD: "Użyj pętli for do przejścia przez każdy element", "Sprawdź co zwraca `split()`"
-  - BAD: "Użyj for i in range(len(lista)): wynik += lista[i]" (that's almost the solution!)
+- Hints: 3-4 PROGRESSIVE micro-hints per exercise, each targeting ONE small step, ordered from gentle nudge to nearly-concrete. They are revealed one at a time in the app.
+  - hint 1: which concept/tool to reach for ("Przyda się pętla `for` po liniach tekstu")
+  - hint 2: shape of the approach ("Zbieraj wyniki do listy i na końcu ją zwróć")
+  - hint 3(-4): the trickiest detail ("Pamiętaj, że `split()` bez argumentu usuwa puste wpisy")
+  - NEVER paste solution lines into a hint
+- Solutions: add SUBGOAL LABELS — short comments naming what each block achieves
+  (e.g. `# 1. Wczytaj dane`, `# 2. Policz wystąpienia`, `# 3. Zwróć wynik`).
+  Research shows subgoal-labeled examples significantly help beginners.
 - NEVER copy examples from the material — create new scenarios
 - ONLY use concepts taught in the material — do NOT require knowledge of functions/syntax not in the lesson
 - Descriptions and hints: plain language, no fancy words

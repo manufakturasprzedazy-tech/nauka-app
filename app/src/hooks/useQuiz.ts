@@ -1,7 +1,8 @@
 import { useState, useCallback } from 'react';
 import { db, getOrCreateTodayActivity } from '@/db/database';
-import { XP } from '@/services/gamification';
-import { useSessionStore, getComboMultiplier } from '@/stores/sessionStore';
+import { XP, getComboBonus } from '@/services/gamification';
+import { useSessionStore } from '@/stores/sessionStore';
+import { awardXP, awardBonusXP } from '@/services/xpService';
 import { reportQuestEvent } from '@/services/questService';
 import { checkProgressEvents, registerPerfectQuiz } from '@/services/achievementService';
 import type { QuizQuestion } from '@/types/content';
@@ -15,7 +16,7 @@ interface QuizState {
   finished: boolean;
   score: number;
   xpEarned: number;
-  lastXP: { amount: number; multiplier: number } | null;
+  lastXP: { amount: number; bonus: number } | null;
 }
 
 export function useQuiz() {
@@ -61,23 +62,27 @@ export function useQuiz() {
       completedAt: new Date().toISOString(),
     });
 
-    // Combo + multiplied XP for correct answer
+    // Combo + XP for correct answer.
+    // Base 10 XP pays only for the FIRST correct answer to this question today;
+    // combo bonus (+1..+5, additive) pays only when the base paid (no farming).
     const combo = useSessionStore.getState().registerAnswer(isCorrect);
     let lastXP: QuizState['lastXP'] = null;
 
     if (isCorrect) {
-      const multiplier = getComboMultiplier(combo);
-      const xp = Math.round(XP.QUIZ_CORRECT * multiplier);
-      lastXP = { amount: xp, multiplier };
+      const base = await awardXP('quiz', q.id, XP.QUIZ_CORRECT);
+      let bonus = 0;
+      if (base > 0) {
+        bonus = await awardBonusXP(getComboBonus(combo));
+      }
+      const xp = base + bonus;
+      if (xp > 0) lastXP = { amount: xp, bonus };
 
       const activity = await getOrCreateTodayActivity();
       await db.dailyActivity.update(activity.id!, {
         quizAnswered: activity.quizAnswered + 1,
-        xpEarned: activity.xpEarned + xp,
       });
 
       await reportQuestEvent('quiz_correct');
-      await reportQuestEvent('xp', xp);
       if (combo >= 2) await reportQuestEvent('combo', combo);
       await checkProgressEvents();
     }

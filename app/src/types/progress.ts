@@ -67,4 +67,12 @@ export interface DailyQuest {
   completed: boolean;
 }
 
+export interface XPAward {
+  id?: number;
+  date: string; // YYYY-MM-DD, or 'ever' for once-per-lifetime awards
+  kind: string;
+  itemId: number;
+  amount: number;
+}
+
 export type Level = 'Skrypciarz' | 'Pythonista' | 'Automatyk' | 'ML Engineer' | 'MLOps Architect';

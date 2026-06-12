@@ -4,7 +4,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 export interface XPFloatItem {
   id: number;
   amount: number;
-  multiplier?: number;
+  bonus?: number;
 }
 
 interface XPFloatProps {
@@ -16,9 +16,9 @@ export function useXPFloat() {
   const [items, setItems] = useState<XPFloatItem[]>([]);
   const counter = useRef(0);
 
-  const spawn = useCallback((amount: number, multiplier?: number) => {
+  const spawn = useCallback((amount: number, bonus?: number) => {
     const id = ++counter.current;
-    setItems(prev => [...prev.slice(-2), { id, amount, multiplier }]);
+    setItems(prev => [...prev.slice(-2), { id, amount, bonus }]);
     setTimeout(() => {
       setItems(prev => prev.filter(i => i.id !== id));
     }, 1000);
@@ -42,8 +42,8 @@ export function XPFloat({ items }: XPFloatProps) {
             className="absolute flex items-center gap-1.5 rounded-full border border-indigo-500/30 bg-[#10101a]/90 px-3.5 py-1.5 shadow-[0_0_20px_rgba(99,102,241,0.4)]"
           >
             <span className="font-mono text-base font-bold text-gradient tnum">+{item.amount} XP</span>
-            {item.multiplier && item.multiplier > 1 && (
-              <span className="font-mono text-xs font-bold text-amber-400">x{item.multiplier}</span>
+            {item.bonus && item.bonus > 0 && (
+              <span className="font-mono text-xs font-bold text-amber-400">⚡combo</span>
             )}
           </motion.div>
         ))}

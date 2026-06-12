@@ -10,6 +10,9 @@ import { FormattedText } from '@/components/ui/FormattedText';
 import { cn } from '@/utils/cn';
 import { useContentStore } from '@/stores/contentStore';
 import { db, getSetting, setSetting } from '@/db/database';
+import { XP } from '@/services/gamification';
+import { awardXP } from '@/services/xpService';
+import { useCelebrationStore } from '@/stores/celebrationStore';
 
 type Tab = 'lesson' | 'flashcards' | 'quiz' | 'coding';
 
@@ -99,6 +102,18 @@ export function MaterialDetailPage() {
   const totalAll = stepList.reduce((s, x) => s + x.total, 0);
   const progress = totalAll > 0 ? totalDone / totalAll : 0;
   const nextStep = stepList.find(s => s.done < s.total);
+
+  // Closing a path node pays +20 XP, once per lesson (lifetime)
+  useEffect(() => {
+    if (totalAll > 0 && !nextStep && material) {
+      awardXP('lesson', material.id, XP.LESSON_COMPLETE, { oncePerLifetime: true }).then(xp => {
+        if (xp > 0) {
+          useCelebrationStore.getState().push({ type: 'quest', name: `Lekcja ukończona: ${material.title}`, xp });
+        }
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [totalAll, nextStep?.key, material?.id]);
 
   const tabs: { key: Tab; label: string; count: number }[] = [
     { key: 'lesson', label: '📖 Lekcja', count: 0 },

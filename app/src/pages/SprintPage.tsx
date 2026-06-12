@@ -8,9 +8,11 @@ import { Confetti } from '@/components/ui/Confetti';
 import { FormattedText } from '@/components/ui/FormattedText';
 import { ComboCounter } from '@/components/feedback/ComboCounter';
 import { useContentStore } from '@/stores/contentStore';
-import { useSessionStore, getComboMultiplier } from '@/stores/sessionStore';
+import { useSessionStore } from '@/stores/sessionStore';
 import { db, getOrCreateTodayActivity, getSetting, setSetting } from '@/db/database';
-import { XP } from '@/services/gamification';
+import { XP, getComboBonus } from '@/services/gamification';
+import { awardXP, awardBonusXP } from '@/services/xpService';
+import { getStartedMaterialIds } from '@/services/progressService';
 import { reportQuestEvent } from '@/services/questService';
 import { checkProgressEvents } from '@/services/achievementService';
 import { sounds } from '@/services/soundService';
@@ -39,10 +41,16 @@ export function SprintPage() {
   const [flash, setFlash] = useState<number | null>(null); // index of just-clicked answer
   const [wrongOnes, setWrongOnes] = useState<QuizQuestion[]>([]);
   const [bestScore, setBestScore] = useState(0);
+  const [pool, setPool] = useState<QuizQuestion[]>([]);
   const lockRef = useRef(false);
 
   useEffect(() => {
     getSetting('sprint_best', '0').then(v => setBestScore(Number(v)));
+    // Sprint pool: only questions from started lessons
+    getStartedMaterialIds().then(started => {
+      setPool(quizzes.filter(q => started.has(q.materialId)));
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // Countdown
@@ -59,7 +67,7 @@ export function SprintPage() {
 
   const start = () => {
     useSessionStore.getState().resetCombo();
-    setQueue(shuffleArray(quizzes));
+    setQueue(shuffleArray(pool));
     setIndex(0);
     setTimeLeft(SPRINT_SECONDS);
     setCorrect(0);
@@ -75,15 +83,14 @@ export function SprintPage() {
     sounds.questDone();
     haptics.celebrate();
 
-    // Persist results in one batch
-    if (xpEarned > 0 || answered > 0) {
+    // XP was already written per-answer through the awardXP ledger;
+    // here only counters and quests
+    if (answered > 0) {
       const activity = await getOrCreateTodayActivity();
       await db.dailyActivity.update(activity.id!, {
         quizAnswered: activity.quizAnswered + correct,
-        xpEarned: activity.xpEarned + xpEarned,
       });
       await reportQuestEvent('quiz_correct', correct);
-      await reportQuestEvent('xp', xpEarned);
 
       const total = Number(await getSetting('sprint_correct_total', '0')) + correct;
       await setSetting('sprint_correct_total', String(total));
@@ -115,9 +122,11 @@ export function SprintPage() {
     if (isCorrect) {
       sounds.comboTick(newCombo);
       haptics.tap();
-      const xp = Math.round(XP.QUIZ_CORRECT * getComboMultiplier(newCombo));
+      // First correct answer to this question today pays; repeats pay 0
+      const base = await awardXP('quiz', q.id, XP.QUIZ_CORRECT);
+      const bonus = base > 0 ? await awardBonusXP(getComboBonus(newCombo)) : 0;
       setCorrect(c => c + 1);
-      setXpEarned(x => x + xp);
+      setXpEarned(x => x + base + bonus);
       setBestComboRun(b => Math.max(b, newCombo));
       if (newCombo >= 2) reportQuestEvent('combo', newCombo);
     } else {

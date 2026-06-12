@@ -6,7 +6,7 @@ let initPromise: Promise<any> | null = null;
 let runTestsFn: any = null;
 
 const RUN_TESTS_CODE = `
-import json, sys, io
+import ast, json, sys, io
 
 def _run_tests(user_code, test_code):
     namespace = {}
@@ -34,32 +34,47 @@ def _run_tests(user_code, test_code):
             "output": captured.getvalue()
         })
 
-    lines = test_code.strip().split('\\n')
-    setup_lines = []
-    assert_lines = []
-    for line in lines:
-        stripped = line.strip()
-        if stripped.startswith('assert '):
-            assert_lines.append(stripped)
-        elif stripped and not stripped.startswith('#'):
-            setup_lines.append(line)
+    # Defensive: legacy content sometimes wraps code in markdown fences
+    test_code = '\\n'.join(l for l in test_code.split('\\n') if not l.strip().startswith('\`\`\`'))
 
-    if setup_lines:
-        try:
-            exec('\\n'.join(setup_lines), namespace)
-        except Exception:
-            pass
-
+    # Execute the test code statement-by-statement IN ORDER (AST-based),
+    # so interleaved setup/assert sequences and multi-line asserts work.
     results = []
-    for assert_line in assert_lines:
+    try:
+        tree = ast.parse(test_code)
+    except SyntaxError as e:
+        sys.stdout = old_stdout
+        return json.dumps({
+            "testResults": [{"test": "(kod testów)", "passed": False, "error": f"Błąd składni testów: linia {e.lineno}: {e.msg}"}],
+            "output": captured.getvalue()
+        })
+
+    aborted = False
+    for node in tree.body:
         try:
-            exec(assert_line, namespace)
-            results.append({"test": assert_line, "passed": True})
+            src = ast.get_source_segment(test_code, node) or ast.unparse(node)
+        except Exception:
+            src = ast.unparse(node)
+        src_short = ' '.join(src.split())
+        if len(src_short) > 160:
+            src_short = src_short[:157] + '...'
+        is_assert = isinstance(node, ast.Assert)
+        if aborted:
+            if is_assert:
+                results.append({"test": src_short, "passed": False, "error": "pominięty (wcześniejszy błąd w testach)"})
+            continue
+        try:
+            stmt = compile(ast.Module(body=[node], type_ignores=[]), '<test>', 'exec')
+            exec(stmt, namespace)
+            if is_assert:
+                results.append({"test": src_short, "passed": True})
         except AssertionError as e:
-            error_msg = str(e) if str(e) else None
-            results.append({"test": assert_line, "passed": False, "error": error_msg})
+            results.append({"test": src_short, "passed": False, "error": (str(e) or None)})
         except Exception as e:
-            results.append({"test": assert_line, "passed": False, "error": f"{type(e).__name__}: {e}"})
+            results.append({"test": src_short, "passed": False, "error": f"{type(e).__name__}: {e}"})
+            if not is_assert:
+                # a broken setup statement invalidates everything after it
+                aborted = True
 
     sys.stdout = old_stdout
     return json.dumps({

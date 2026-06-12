@@ -5829,5 +5829,439 @@
     "front": "Kiedy lepiej użyć `POST` niż `GET`?",
     "back": "Gdy wysyłasz dane w body, na przykład JSON z tekstem do sprawdzenia.",
     "topic": "endpoint `POST`"
+  },
+  {
+    "id": 940,
+    "materialId": 79,
+    "front": "Co zwraca `datetime.now()`?",
+    "back": "Zwraca aktualny moment jako obiekt `datetime`, czyli datę i godzinę razem.",
+    "topic": "datetime.now()"
+  },
+  {
+    "id": 941,
+    "materialId": 79,
+    "front": "Jaka jest różnica między `datetime` a `date`?",
+    "back": "`datetime` ma datę i godzinę, a `date` ma tylko samą datę.",
+    "topic": "date"
+  },
+  {
+    "id": 942,
+    "materialId": 79,
+    "front": "Co robi `weekday()` na obiekcie `date`?",
+    "back": "Zwraca numer dnia tygodnia. `0` to poniedziałek, a `4` to piątek.",
+    "topic": "date"
+  },
+  {
+    "id": 943,
+    "materialId": 79,
+    "front": "Dlaczego nie można zrobić `data + 1`?",
+    "back": "Bo do daty nie dodaje się zwykłej liczby. Trzeba użyć `timedelta`, na przykład `data + timedelta(days=1)`.",
+    "topic": "timedelta"
+  },
+  {
+    "id": 944,
+    "materialId": 79,
+    "front": "Do czego służy `timedelta`?",
+    "back": "To kawałek czasu. Służy do dodawania i odejmowania dni, minut i innych odcinków czasu.",
+    "topic": "timedelta"
+  },
+  {
+    "id": 945,
+    "materialId": 79,
+    "front": "Co zwraca `deadline - teraz`?",
+    "back": "Zwraca `timedelta`, czyli różnicę między dwiema datami.",
+    "topic": "timedelta"
+  },
+  {
+    "id": 946,
+    "materialId": 79,
+    "front": "Do czego służy `strftime()`?",
+    "back": "Zamienia datę na tekst według wzorca, na przykład `\"%Y-%m-%d\"`.",
+    "topic": "strftime"
+  },
+  {
+    "id": 947,
+    "materialId": 79,
+    "front": "Do czego służy `strptime()`?",
+    "back": "Zamienia tekst na obiekt `datetime`, jeśli tekst i wzorzec pasują do siebie.",
+    "topic": "strptime"
+  },
+  {
+    "id": 948,
+    "materialId": 79,
+    "front": "Jaki częsty błąd popełniają początkujący z `strptime()`?",
+    "back": "Dają zły wzorzec. Separator w wzorcu musi pasować do separatora w tekście, na przykład kropki do kropek.",
+    "topic": "strptime"
+  },
+  {
+    "id": 949,
+    "materialId": 79,
+    "front": "Co to jest ISO 8601?",
+    "back": "To standard zapisu daty, na przykład `2026-06-12T14:05:09`.",
+    "topic": "ISO 8601"
+  },
+  {
+    "id": 950,
+    "materialId": 79,
+    "front": "Co robi `isoformat()`?",
+    "back": "Zamienia datę na zapis ISO 8601, czyli tekst łatwy do użycia w API i logach.",
+    "topic": "ISO 8601"
+  },
+  {
+    "id": 951,
+    "materialId": 79,
+    "front": "Kiedy lepiej używać UTC zamiast czasu lokalnego?",
+    "back": "Gdy program działa na wielu maszynach albo w logach i automatyzacjach. UTC jest taki sam wszędzie.",
+    "topic": "strefy czasowe UTC"
+  },
+  {
+    "id": 952,
+    "materialId": 79,
+    "front": "Jaki błąd może się pojawić przy mieszaniu dat z UTC i bez UTC?",
+    "back": "Python może zgłosić błąd przy odejmowaniu: `can't subtract offset-naive and offset-aware datetimes`.",
+    "topic": "strefy czasowe UTC"
+  },
+  {
+    "id": 953,
+    "materialId": 80,
+    "front": "Co to jest CSV i po co się go używa?",
+    "back": "CSV to zwykły tekst z danymi w tabeli. Każda linia to jeden wiersz, a wartości są oddzielone przecinkami albo średnikami. Używa się go do wymiany danych, na przykład z Excelem.",
+    "topic": "Czym jest CSV"
+  },
+  {
+    "id": 954,
+    "materialId": 80,
+    "front": "Co robi `csv.reader`?",
+    "back": "Czyta CSV i zwraca każdy wiersz jako listę stringów, na przykład `['Ala', '12']`.",
+    "topic": "Czytanie CSV przez `csv.reader`"
+  },
+  {
+    "id": 955,
+    "materialId": 80,
+    "front": "Jaka jest różnica między `csv.reader` a `csv.DictReader`?",
+    "back": "`csv.reader` daje listy, a `csv.DictReader` daje słowniki. W `DictReader` możesz pisać `wiersz[\"cena\"]` zamiast `wiersz[2]`.",
+    "topic": "Czytanie CSV przez `csv.DictReader`"
+  },
+  {
+    "id": 956,
+    "materialId": 80,
+    "front": "Dlaczego po wczytaniu CSV liczby trzeba zamieniać ręcznie?",
+    "back": "Bo CSV oddaje wszystko jako stringi. Żeby policzyć sumę, trzeba użyć `int(...)` albo `float(...)`.",
+    "topic": "Konwersja stringów na liczby"
+  },
+  {
+    "id": 957,
+    "materialId": 80,
+    "front": "Co się stanie, jeśli dodasz dwa pola z CSV bez konwersji na liczby?",
+    "back": "Python sklei teksty. Na przykład `\"3500\" + \"89\"` da `350089`, a nie `3589`.",
+    "topic": "Konwersja stringów na liczby"
+  },
+  {
+    "id": 958,
+    "materialId": 80,
+    "front": "Kiedy trzeba użyć `delimiter=\";\"`?",
+    "back": "Gdy CSV ma średniki zamiast przecinków. To częste w polskim Excelu.",
+    "topic": "Separator średnikowy w polskim Excelu"
+  },
+  {
+    "id": 959,
+    "materialId": 80,
+    "front": "Co robi `csv.DictWriter`?",
+    "back": "Zapisuje dane do CSV ze słowników. Trzeba podać `fieldnames` i wywołać `writeheader()`.",
+    "topic": "Zapisywanie CSV przez `writer` i `DictWriter`"
+  },
+  {
+    "id": 960,
+    "materialId": 80,
+    "front": "Jaka jest różnica między `csv.writer` a `csv.DictWriter`?",
+    "back": "`csv.writer` zapisuje listy, a `csv.DictWriter` zapisuje słowniki.",
+    "topic": "Zapisywanie CSV przez `writer` i `DictWriter`"
+  },
+  {
+    "id": 961,
+    "materialId": 80,
+    "front": "Po co przy agregacji używa się `get(klucz, 0)`?",
+    "back": "Żeby bez błędu dodać nową wartość do słownika. Jeśli klucza jeszcze nie ma, `get(klucz, 0)` zwraca `0`.",
+    "topic": "Agregacja danych w słowniku"
+  },
+  {
+    "id": 962,
+    "materialId": 80,
+    "front": "Kiedy lepiej użyć `csv.DictReader` niż `csv.reader`?",
+    "back": "Gdy chcesz czytać dane po nazwach kolumn, a nie po numerach. To jest czytelniejsze i mniej mylące.",
+    "topic": "Czytanie CSV przez `csv.DictReader`"
+  },
+  {
+    "id": 963,
+    "materialId": 80,
+    "front": "Co się stanie, jeśli użyjesz złego separatora przy wczytywaniu CSV?",
+    "back": "Python może potraktować cały wiersz jak jedną kolumnę. Potem pojawi się problem z dostępem do nazwy kolumny, na przykład `KeyError`.",
+    "topic": "Separator średnikowy w polskim Excelu"
+  },
+  {
+    "id": 964,
+    "materialId": 80,
+    "front": "Dlaczego przy zapisie pliku CSV na Windows warto użyć `newline=\"\"`?",
+    "back": "Żeby nie pojawiały się puste linie między wierszami.",
+    "topic": "Zapisywanie CSV przez `writer` i `DictWriter`"
+  },
+  {
+    "id": 965,
+    "materialId": 81,
+    "front": "Co to jest `sys.argv`?",
+    "back": "`sys.argv` to lista wszystkich argumentów wpisanych po `python skrypt.py`. Pierwszy element to nazwa pliku, a kolejne to podane wartości.",
+    "topic": "sys.argv"
+  },
+  {
+    "id": 966,
+    "materialId": 81,
+    "front": "Jaka jest główna różnica między ręcznym czytaniem `sys.argv` a użyciem `argparse`?",
+    "back": "Przy `argparse` nie musisz sam pisać sprawdzania typu, komunikatów błędów ani pomocy. Parser robi to za Ciebie.",
+    "topic": "ArgumentParser"
+  },
+  {
+    "id": 967,
+    "materialId": 81,
+    "front": "Co robi `ArgumentParser()`?",
+    "back": "Tworzy parser, czyli obiekt, który zbiera i rozumie argumenty z linii poleceń.",
+    "topic": "ArgumentParser"
+  },
+  {
+    "id": 968,
+    "materialId": 81,
+    "front": "Co to jest argument pozycyjny?",
+    "back": "To argument bez `--`. Jest wymagany i liczy się jego kolejność, np. `parser.add_argument(\"zrodlo\")`.",
+    "topic": "argumenty pozycyjne"
+  },
+  {
+    "id": 969,
+    "materialId": 81,
+    "front": "Czym różni się argument opcjonalny od pozycyjnego?",
+    "back": "Opcjonalny ma `--` i nie musi być podany. Pozycyjny jest wymagany.",
+    "topic": "argumenty opcjonalne"
+  },
+  {
+    "id": 970,
+    "materialId": 81,
+    "front": "Po co używa się `default`?",
+    "back": "Żeby dać wartość domyślną, gdy użytkownik nie poda argumentu, np. `default=7`.",
+    "topic": "default i type"
+  },
+  {
+    "id": 971,
+    "materialId": 81,
+    "front": "Po co używa się `type=int`?",
+    "back": "Żeby `argparse` sam zamienił tekst na liczbę. Dzięki temu `args.dni` jest liczbą, a nie stringiem.",
+    "topic": "default i type"
+  },
+  {
+    "id": 972,
+    "materialId": 81,
+    "front": "Co robi `choices=[\"csv\", \"json\"]`?",
+    "back": "Ogranicza dozwolone wartości. Jeśli ktoś poda coś innego, `argparse` zgłosi błąd.",
+    "topic": "default i type"
+  },
+  {
+    "id": 973,
+    "materialId": 81,
+    "front": "Co robi `action=\"store_true\"`?",
+    "back": "Tworzy flagę bez wartości. Gdy flaga jest podana, dostajesz `True`. Gdy jej nie ma, dostajesz `False`.",
+    "topic": "flagi `store_true`"
+  },
+  {
+    "id": 974,
+    "materialId": 81,
+    "front": "Jaki częsty błąd popełniają początkujący przy fladze `--dry-run`?",
+    "back": "Piszą `args.dry-run` zamiast `args.dry_run`. W atrybucie musi być podkreślnik.",
+    "topic": "błędy i walidacja"
+  },
+  {
+    "id": 975,
+    "materialId": 81,
+    "front": "Po co pisać `help=...` w `add_argument()`?",
+    "back": "Żeby `argparse` sam zrobił ekran pomocy i opisał argumenty przy `--help`.",
+    "topic": "`--help`"
+  },
+  {
+    "id": 976,
+    "materialId": 81,
+    "front": "Kiedy warto użyć wzorca `main(args)`?",
+    "back": "Gdy chcesz oddzielić parsowanie argumentów od logiki programu. Dzięki temu łatwiej testować samą funkcję `main()`.",
+    "topic": "wzorzec `main(args)`"
+  },
+  {
+    "id": 977,
+    "materialId": 81,
+    "front": "Co się stanie, gdy nie podasz wymaganego argumentu pozycyjnego?",
+    "back": "`argparse` pokaże błąd i przerwie program. To dobre, bo skrypt nie wykona się z brakującymi danymi.",
+    "topic": "błędy i walidacja"
+  },
+  {
+    "id": 978,
+    "materialId": 82,
+    "front": "Co opisuje pierwsze pole w wyrażeniu `cron`?",
+    "back": "Pierwsze pole to minuta. Zakres to `0-59`.",
+    "topic": "składnia cron"
+  },
+  {
+    "id": 979,
+    "materialId": 82,
+    "front": "Co znaczy `*` w `cron`?",
+    "back": "`*` znaczy „każdy”. Na przykład w polu dnia tygodnia oznacza każdy dzień.",
+    "topic": "znaki specjalne w cron"
+  },
+  {
+    "id": 980,
+    "materialId": 82,
+    "front": "Co znaczy `*/5` w `cron`?",
+    "back": "`*/5` znaczy „co 5”. Na przykład `*/5 * * * *` to co 5 minut.",
+    "topic": "znaki specjalne w cron"
+  },
+  {
+    "id": 981,
+    "materialId": 82,
+    "front": "Jaka jest różnica między `0 6 * * *` a `* 6 * * *`?",
+    "back": "`0 6 * * *` odpala się raz o 6:00. `* 6 * * *` odpala się co minutę między 6:00 a 6:59.",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 982,
+    "materialId": 82,
+    "front": "Kiedy lepiej użyć `cron`, a kiedy `schedule`?",
+    "back": "`cron` lepiej użyć, gdy system ma budzić skrypt o czasie. `schedule` pasuje, gdy skrypt działa cały czas i sam czeka.",
+    "topic": "biblioteka schedule"
+  },
+  {
+    "id": 983,
+    "materialId": 82,
+    "front": "Co to znaczy, że skrypt jest idempotentny?",
+    "back": "To znaczy, że dwa uruchomienia z rzędu dają ten sam efekt co jedno. Nic się nie dubluje.",
+    "topic": "idempotencja"
+  },
+  {
+    "id": 984,
+    "materialId": 82,
+    "front": "Po co w `opisz_cron()` jest `split()`?",
+    "back": "Żeby rozdzielić wyrażenie `cron` na osobne pola. `cron` ma być czytany jako 5 części.",
+    "topic": "parsowanie cron"
+  },
+  {
+    "id": 985,
+    "materialId": 82,
+    "front": "Jaki częsty błąd robią początkujący z czasem w GitHub Actions?",
+    "back": "Zapominają, że czas jest w UTC. Przez to zadanie odpala się o innej godzinie niż oczekują.",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 986,
+    "materialId": 82,
+    "front": "Co oznacza `1-5` w polu dnia tygodnia?",
+    "back": "To zakres od poniedziałku do piątku, czyli dni robocze.",
+    "topic": "znaki specjalne w cron"
+  },
+  {
+    "id": 987,
+    "materialId": 82,
+    "front": "Co się stanie, jeśli wyrażenie `cron` ma 4 pola?",
+    "back": "To błąd. `cron` musi mieć dokładnie 5 pól.",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 988,
+    "materialId": 82,
+    "front": "Co robi `schedule.every().day.at(\"06:00\").do(raport)`?",
+    "back": "Planuje uruchomienie funkcji `raport()` codziennie o 06:00.",
+    "topic": "biblioteka schedule"
+  },
+  {
+    "id": 989,
+    "materialId": 82,
+    "front": "Kiedy lepiej użyć `0 6 * * *` zamiast `schedule`?",
+    "back": "Gdy chcesz, żeby system sam uruchamiał krótki skrypt o 6:00, bez ciągłej pętli w Pythonie.",
+    "topic": "cron w różnych narzędziach"
+  },
+  {
+    "id": 990,
+    "materialId": 83,
+    "front": "Co to jest pipeline `pobierz → przetworz → zapisz`?",
+    "back": "To prosty podział skryptu na 3 kroki: najpierw bierzesz dane, potem je obrabiasz, a na końcu zapisujesz wynik.",
+    "topic": "pipeline pobierz → przetworz → zapisz"
+  },
+  {
+    "id": 991,
+    "materialId": 83,
+    "front": "Po co dzielić kod na `pobierz()`, `przetworz()` i `zapisz()`?",
+    "back": "Bo taki kod jest prostszy do testowania i łatwiej go poprawiać. Jedna część nie miesza się z drugą.",
+    "topic": "pipeline pobierz → przetworz → zapisz"
+  },
+  {
+    "id": 992,
+    "materialId": 83,
+    "front": "Co to jest czysta funkcja w tej lekcji?",
+    "back": "To funkcja, która dostaje dane i zwraca wynik. Nie dotyka sieci ani dysku.",
+    "topic": "czyste funkcje"
+  },
+  {
+    "id": 993,
+    "materialId": 83,
+    "front": "Jaka jest różnica między `przetworz()` a `pobierz()`?",
+    "back": "`przetworz()` obrabia dane, a `pobierz()` je pobiera. `przetworz()` powinno być czyste, a `pobierz()` może robić I/O.",
+    "topic": "pipeline pobierz → przetworz → zapisz"
+  },
+  {
+    "id": 994,
+    "materialId": 83,
+    "front": "Kiedy lepiej użyć `logging` zamiast `print`?",
+    "back": "Gdy chcesz wiedzieć, co program robił i kiedy to zrobił. `logging` daje poziom i czas.",
+    "topic": "logging zamiast print"
+  },
+  {
+    "id": 995,
+    "materialId": 83,
+    "front": "Po co brać ustawienia z `os.environ`?",
+    "back": "Żeby nie trzymać sekretów i ustawień w kodzie. To bezpieczniejsze i wygodniejsze.",
+    "topic": "os.environ i konfiguracja"
+  },
+  {
+    "id": 996,
+    "materialId": 83,
+    "front": "Po co używać `argparse` w skrypcie uruchamianym przez cron?",
+    "back": "Bo wtedy parametry wejściowe przychodzą z linii poleceń. Skrypt sam wie, jak ma się uruchomić.",
+    "topic": "argparse i tryb dry-run"
+  },
+  {
+    "id": 997,
+    "materialId": 83,
+    "front": "Co robi flaga `--dry-run`?",
+    "back": "Pokazuje, co skrypt by zrobił, ale nie wykonuje prawdziwego zapisu. To bezpieczny test.",
+    "topic": "argparse i tryb dry-run"
+  },
+  {
+    "id": 998,
+    "materialId": 83,
+    "front": "Po co robić retry przy pobieraniu danych?",
+    "back": "Bo sieć może zawieść losowo. Kilka prób daje szansę, że skrypt jednak przejdzie dalej.",
+    "topic": "retry przy błędach sieci"
+  },
+  {
+    "id": 999,
+    "materialId": 83,
+    "front": "Co znaczy, że skrypt jest idempotentny?",
+    "back": "Drugie uruchomienie nie robi szkody. Na przykład nie wysyła drugi raz tego samego raportu.",
+    "topic": "idempotencja"
+  },
+  {
+    "id": 1000,
+    "materialId": 83,
+    "front": "Jaki błąd popełniają początkujący, gdy chcą ukryć problem?",
+    "back": "Często dają `except Exception: pass`. Wtedy program udaje, że wszystko jest dobrze, choć nie jest.",
+    "topic": "częste błędy"
+  },
+  {
+    "id": 1001,
+    "materialId": 83,
+    "front": "Co daje konkretny komunikat błędu, np. `ValueError: rekord 3 nie ma pola 'cena'`?",
+    "back": "Od razu widać, co się zepsuło i gdzie szukać problemu. To lepsze niż sam ogólny błąd.",
+    "topic": "czytelne błędy i kod wyjścia"
   }
 ]

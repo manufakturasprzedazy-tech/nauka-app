@@ -1,19 +1,19 @@
 import { useState, useCallback, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { CodeEditor } from './CodeEditor';
-import { CodeFeedback } from './CodeFeedback';
+import { CodeFeedback, type TestOutcome } from './CodeFeedback';
 import { Button } from '@/components/ui/Button';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { FormattedText } from '@/components/ui/FormattedText';
 import { db, getOrCreateTodayActivity } from '@/db/database';
 import { getApiKey } from '@/services/cryptoService';
-import { getCodingXP } from '@/services/gamification';
+import { XP } from '@/services/gamification';
+import { awardXP } from '@/services/xpService';
 import { reportQuestEvent } from '@/services/questService';
 import { checkProgressEvents } from '@/services/achievementService';
 import { sounds } from '@/services/soundService';
 import { haptics } from '@/services/haptics';
-import { compareCode, type CodeComparisonResult } from '@/services/codeComparison';
 import { evaluateCode } from '@/services/aiService';
 import { runPython, preload } from '@/services/pythonRunner';
 import type { CodingExercise as CodingExerciseType } from '@/types/content';
@@ -28,8 +28,9 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
   const [code, setCode] = useState(exercise.starterCode);
   const [phase, setPhase] = useState<Phase>('writing');
   const [showSolution, setShowSolution] = useState(false);
-  const [showHint, setShowHint] = useState(false);
-  const [feedbackResult, setFeedbackResult] = useState<CodeComparisonResult | null>(null);
+  const [hintsRevealed, setHintsRevealed] = useState(0);
+  const [feedbackResult, setFeedbackResult] = useState<TestOutcome | null>(null);
+  const [testsUnavailable, setTestsUnavailable] = useState(false);
   const [xpEarned, setXpEarned] = useState(0);
   const [apiKey, setApiKey] = useState<string | null>(null);
   const [aiLoading, setAiLoading] = useState(false);
@@ -47,85 +48,83 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
 
   const handleSubmit = useCallback(async () => {
     setPhase('reviewing');
+    setTestsUnavailable(false);
 
-    let result: CodeComparisonResult;
+    // Code is judged ONLY by tests — pass/fail, no heuristic guessing.
+    const hasAsserts = /(^|\n)\s*assert /.test(exercise.testCode ?? '');
+    let outcome: TestOutcome;
 
-    // Try Pyodide if there's test code
-    if (exercise.testCode?.trim()) {
+    if (!hasAsserts) {
+      outcome = {
+        passed: false,
+        passRate: 0,
+        noTests: true,
+        feedback: 'To ćwiczenie nie ma testów automatycznych. Porównaj swój kod z rozwiązaniem wzorcowym — XP nie jest tu przyznawane.',
+      };
+    } else {
       try {
         const pyResult = await runPython(code, exercise.testCode);
-
-        let score: number;
-        let feedback: string;
         const errors: string[] = [];
 
         if (pyResult.syntaxError) {
-          score = 1;
-          feedback = `Błąd składni: ${pyResult.syntaxError}`;
-          errors.push(pyResult.syntaxError);
+          outcome = { passed: false, passRate: 0, feedback: `Błąd składni: ${pyResult.syntaxError}`, errors: [pyResult.syntaxError] };
         } else if (pyResult.runtimeError) {
-          score = 1;
-          feedback = `Błąd wykonania: ${pyResult.runtimeError}`;
-          errors.push(pyResult.runtimeError);
+          outcome = { passed: false, passRate: 0, feedback: `Błąd wykonania: ${pyResult.runtimeError}`, errors: [pyResult.runtimeError] };
         } else {
           const { passRate } = pyResult;
-          if (passRate === 1) { score = 5; feedback = 'Wszystkie testy przechodzą!'; }
-          else if (passRate >= 0.75) { score = 4; feedback = 'Prawie wszystko działa!'; }
-          else if (passRate >= 0.5) { score = 3; feedback = 'Ponad połowa testów przechodzi.'; }
-          else if (passRate >= 0.25) { score = 2; feedback = 'Część testów przechodzi.'; }
-          else { score = 1; feedback = 'Większość testów nie przeszła.'; }
-
+          const passed = passRate === 1;
           for (const t of pyResult.testResults) {
             if (!t.passed && t.error) errors.push(`${t.test}: ${t.error}`);
           }
+          outcome = {
+            passed,
+            passRate,
+            feedback: passed
+              ? 'Wszystkie testy przechodzą — zaliczone!'
+              : 'Część testów nie przechodzi. Zobacz poniżej, które dokładnie — popraw kod i sprawdź ponownie.',
+            errors: errors.length > 0 ? errors : undefined,
+            testResults: pyResult.testResults,
+          };
         }
-
-        result = {
-          score,
-          feedback,
-          matchedConcepts: [],
-          missedConcepts: [],
-          errors: errors.length > 0 ? errors : undefined,
-          testResults: pyResult.testResults,
-        };
       } catch {
-        // Pyodide unavailable, fallback to offline comparison
-        result = compareCode(code, exercise.solution);
+        // Pyodide failed to load (e.g. fully offline before first cache) — no verdict, no fake score
+        setTestsUnavailable(true);
+        setPhase('writing');
+        return;
       }
-    } else {
-      result = compareCode(code, exercise.solution);
     }
 
-    setFeedbackResult(result);
+    setFeedbackResult(outcome);
 
-    const xp = getCodingXP(result.score);
+    // XP: 15 only for the first 100% pass of this exercise today
+    let xp = 0;
+    if (outcome.passed) {
+      xp = await awardXP('coding', exercise.id, XP.CODING_PASS);
+    }
     setXpEarned(xp);
 
-    // Save attempt
+    // Save attempt — completed only when ALL tests pass
     await db.codingAttempts.add({
       exerciseId: exercise.id,
       userCode: code,
-      completed: true,
+      completed: outcome.passed,
       completedAt: new Date().toISOString(),
-      score: result.score,
+      score: outcome.passed ? 5 : Math.max(1, Math.round(outcome.passRate * 4)),
       aiReviewed: false,
     });
 
-    const activity = await getOrCreateTodayActivity();
-    await db.dailyActivity.update(activity.id!, {
-      codingCompleted: activity.codingCompleted + 1,
-      xpEarned: activity.xpEarned + xp,
-    });
-
-    if (result.score >= 4) {
+    if (outcome.passed) {
+      const activity = await getOrCreateTodayActivity();
+      await db.dailyActivity.update(activity.id!, {
+        codingCompleted: activity.codingCompleted + 1,
+      });
       sounds.success();
       haptics.success();
-    } else if (result.score <= 2) {
+      await reportQuestEvent('coding');
+    } else {
       sounds.error();
       haptics.error();
     }
-    await reportQuestEvent('coding');
-    await reportQuestEvent('xp', xp);
     await checkProgressEvents();
 
     setPhase('reviewed');
@@ -146,7 +145,7 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
     setCode(exercise.starterCode);
     setPhase('writing');
     setShowSolution(false);
-    setShowHint(false);
+    setHintsRevealed(0);
     setFeedbackResult(null);
     setAiFeedback(null);
     setXpEarned(0);
@@ -176,21 +175,29 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
         <FormattedText text={exercise.description} className="text-sm text-slate-300" />
       </Card>
 
-      {/* Hints */}
-      {showHint && hints.length > 0 && (
+      {/* Hints — revealed progressively, one at a time */}
+      {hintsRevealed > 0 && hints.length > 0 && (
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
           <Card variant="outlined" className="border-l-4 border-l-amber-500">
             <div className="text-xs text-amber-400 font-medium mb-1 uppercase tracking-wider">
-              {hints.length > 1 ? 'Podpowiedzi' : 'Podpowiedź'}
+              Podpowiedzi ({Math.min(hintsRevealed, hints.length)}/{hints.length})
             </div>
             <ul className="text-sm text-slate-300 space-y-1">
-              {hints.map((h, i) => (
+              {hints.slice(0, hintsRevealed).map((h, i) => (
                 <li key={i} className="flex gap-2">
                   <span className="text-amber-500 shrink-0">•</span>
                   <FormattedText text={h} className="inline" />
                 </li>
               ))}
             </ul>
+            {hintsRevealed < hints.length && (
+              <button
+                onClick={() => setHintsRevealed(n => n + 1)}
+                className="mt-2 text-xs font-semibold text-amber-400 underline-offset-2 hover:underline"
+              >
+                Pokaż kolejną podpowiedź →
+              </button>
+            )}
           </Card>
         </motion.div>
       )}
@@ -204,11 +211,21 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
         <CodeEditor value={code} onChange={setCode} height="200px" />
       </div>
 
+      {/* Tests unavailable (Pyodide offline before first cache) */}
+      {testsUnavailable && (
+        <Card variant="outlined" className="border-l-4 border-l-amber-500">
+          <p className="text-sm text-slate-300">
+            ⚠️ Nie mogę teraz uruchomić testów (środowisko Pythona wymaga jednorazowego pobrania online).
+            Połącz się z internetem i spróbuj ponownie — nie zgaduję ocen.
+          </p>
+        </Card>
+      )}
+
       {/* Actions — writing phase */}
       {phase === 'writing' && (
         <div className="flex gap-2">
-          {!showHint && (
-            <Button variant="ghost" onClick={() => setShowHint(true)} fullWidth>
+          {hintsRevealed === 0 && hints.length > 0 && (
+            <Button variant="ghost" onClick={() => setHintsRevealed(1)} fullWidth>
               Podpowiedź
             </Button>
           )}
@@ -233,7 +250,7 @@ export function CodingExerciseView({ exercise }: CodingExerciseProps) {
             animate={{ opacity: 1, height: 'auto' }}
             className="space-y-4"
           >
-            <CodeFeedback result={feedbackResult} xpEarned={xpEarned} />
+            <CodeFeedback outcome={feedbackResult} xpEarned={xpEarned} />
 
             {/* AI detailed feedback */}
             {aiLoading && (

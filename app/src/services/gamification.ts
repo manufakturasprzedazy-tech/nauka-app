@@ -1,13 +1,23 @@
 import type { Level } from '@/types/progress';
 
-// XP rewards
+// XP rewards — "earned, not given": XP only for real, first-time-today progress.
+// Anti-farming enforcement lives in xpService.awardXP (unique per day per item).
 export const XP = {
-  FLASHCARD_BASE: 5,
-  FLASHCARD_EASY_BONUS: 3,
-  QUIZ_CORRECT: 10,
-  CODING_COMPLETE: 25,
+  FLASHCARD_PASS: 5, // first correct recall of a card today (Dobrze/Łatwe)
+  FLASHCARD_HARD: 3, // correct but difficult (Trudne)
+  QUIZ_CORRECT: 10, // first correct answer to a question today
+  CODING_PASS: 15, // first 100% test pass of an exercise today
+  PUZZLE_PASS: 5, // first correct Parsons arrangement today
+  LESSON_COMPLETE: 20, // closing a path node (once per lesson, lifetime)
+  DAILY_GOAL: 6, // hitting the daily goal (once per day)
   EXPLANATION_BASE: 15,
 } as const;
+
+/** Additive combo bonus: +1 XP from a streak of 3, up to +5. Replaces the old multiplier. */
+export function getComboBonus(combo: number): number {
+  if (combo < 3) return 0;
+  return Math.min(5, combo - 2);
+}
 
 // Level thresholds — career ladder toward MLOps
 const LEVEL_THRESHOLDS: { level: Level; minXP: number }[] = [
@@ -34,13 +44,6 @@ export function getLevelProgress(totalXP: number): { level: Level; current: numb
   const progress = (totalXP - currentThreshold) / (nextThreshold - currentThreshold);
 
   return { level, current: totalXP, nextThreshold, progress: Math.min(1, progress) };
-}
-
-export function getCodingXP(score: number): number {
-  if (score >= 4) return 25;
-  if (score === 3) return 15;
-  if (score === 2) return 10;
-  return 5;
 }
 
 export function getExplanationXP(selfRating: number): number {
