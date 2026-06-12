@@ -99,6 +99,17 @@ export function ProfilePage() {
     await db.dailyActivity.clear();
     await db.achievements.clear();
     await db.dailyQuests.clear();
+    await db.xpAwards.clear();
+    // Progress-related settings (lesson flags, daily counters, records) — keep
+    // API keys, sound/haptics, daily goal and onboarding flag intact
+    const PROGRESS_PREFIXES = ['lesson_read_', 'new_cards_'];
+    const PROGRESS_KEYS = ['best_combo', 'sprint_best', 'sprint_correct_total', 'puzzles_solved', 'perfect_quizzes', 'last_level', 'last_streak_milestone'];
+    const settings = await db.userSettings.toArray();
+    for (const s of settings) {
+      if (PROGRESS_KEYS.includes(s.key) || PROGRESS_PREFIXES.some(p => s.key.startsWith(p))) {
+        await db.userSettings.delete(s.id!);
+      }
+    }
     setShowReset(false);
     refresh();
   };
@@ -216,7 +227,7 @@ export function ProfilePage() {
                 <div className="flex items-center gap-2">
                   <Stepper onClick={() => setDailyGoal({ [item.key]: Math.max(1, dailyGoal[item.key] - 1) })}>−</Stepper>
                   <span className="text-sm text-white w-7 text-center tnum">{dailyGoal[item.key]}</span>
-                  <Stepper onClick={() => setDailyGoal({ [item.key]: dailyGoal[item.key] + 1 })}>+</Stepper>
+                  <Stepper onClick={() => setDailyGoal({ [item.key]: Math.min(50, dailyGoal[item.key] + 1) })}>+</Stepper>
                 </div>
               </div>
             ))}

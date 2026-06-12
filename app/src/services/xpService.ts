@@ -24,11 +24,12 @@ export async function awardXP(
   if (amount <= 0) return 0;
   const date = opts?.oncePerLifetime ? 'ever' : todayString();
 
-  // Daily cap for flashcards (100 XP ≈ 20 paid passes)
+  // Daily cap for flashcards (100 XP ≈ 20 paid passes) — partial fill near the limit
   if (kind === 'flashcard') {
     const todayAwards = await db.xpAwards.where('date').equals(todayString()).toArray();
     const flashcardXP = todayAwards.filter(a => a.kind === 'flashcard').reduce((s, a) => s + a.amount, 0);
-    if (flashcardXP + amount > FLASHCARD_DAILY_CAP) return 0;
+    amount = Math.min(amount, FLASHCARD_DAILY_CAP - flashcardXP);
+    if (amount <= 0) return 0;
   }
 
   try {

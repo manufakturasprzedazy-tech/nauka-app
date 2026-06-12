@@ -4,35 +4,41 @@ import { Header } from '@/components/layout/Header';
 import { Card } from '@/components/ui/Card';
 import { Badge } from '@/components/ui/Badge';
 import { useContentStore } from '@/stores/contentStore';
+import { getStartedMaterialIds } from '@/services/progressService';
 import { db } from '@/db/database';
 
 export function CodingPage() {
   const navigate = useNavigate();
   const { exercises, getMaterial } = useContentStore();
   const [completedIds, setCompletedIds] = useState<Set<number>>(new Set());
+  const [startedIds, setStartedIds] = useState<Set<number> | null>(null);
 
   useEffect(() => {
     db.codingAttempts.toArray().then(attempts => {
-      setCompletedIds(new Set(attempts.filter(a => a.completed && (a.score ?? 0) >= 3).map(a => a.exerciseId)));
+      setCompletedIds(new Set(attempts.filter(a => a.completed).map(a => a.exerciseId)));
     });
+    getStartedMaterialIds().then(setStartedIds);
   }, []);
+
+  // Practice scope: only exercises from started lessons (consistent with other modes)
+  const visible = startedIds ? exercises.filter(ex => startedIds.has(ex.materialId)) : [];
 
   // Group by material
   const grouped = new Map<number, typeof exercises>();
-  exercises.forEach(ex => {
+  visible.forEach(ex => {
     const arr = grouped.get(ex.materialId) || [];
     arr.push(ex);
     grouped.set(ex.materialId, arr);
   });
 
-  const doneCount = exercises.filter(ex => completedIds.has(ex.id)).length;
+  const doneCount = visible.filter(ex => completedIds.has(ex.id)).length;
 
   return (
     <div>
       <Header title="Kodowanie" />
       <div className="px-4 py-4 space-y-4">
         <p className="text-sm text-slate-400 tnum">
-          {doneCount}/{exercises.length} ćwiczeń rozwiązanych
+          {doneCount}/{visible.length} ćwiczeń rozwiązanych · kolejne pojawią się wraz z postępem na ścieżce
         </p>
         {Array.from(grouped.entries()).map(([materialId, exList]) => {
           const material = getMaterial(materialId);

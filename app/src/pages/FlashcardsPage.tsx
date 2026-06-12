@@ -18,7 +18,7 @@ export function FlashcardsPage() {
   const materialId = searchParams.get('material') ? Number(searchParams.get('material')) : undefined;
   const courseId = searchParams.get('course') ?? undefined;
 
-  const { dueCards, newCards, loading, reviewCard, reviewCount } = useFlashcards(courseId, materialId);
+  const { dueCards, newCards, dailyLimitReached, loading, reviewCard, reviewCount } = useFlashcards(courseId, materialId);
   const [sessionStarted, setSessionStarted] = useState(false);
   const [queue, setQueue] = useState<typeof dueCards>([]);
   const [currentIndex, setCurrentIndex] = useState(0);
@@ -79,6 +79,13 @@ export function FlashcardsPage() {
                 Rozpocznij sesję ({allCards.length})
               </Button>
             </>
+          ) : dailyLimitReached ? (
+            <EmptyState
+              icon={<PySnake mood="happy" size={64} />}
+              title="Limit nowych kart na dziś osiągnięty!"
+              description="10 nowych fiszek dziennie to optimum dla pamięci — jutro dostaniesz kolejne. Dziś poćwicz quiz albo kod."
+              action={<Button onClick={() => navigate('/quiz')}>Zrób quiz</Button>}
+            />
           ) : (
             <EmptyState
               icon={<PySnake mood="sleepy" size={64} />}

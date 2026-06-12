@@ -65,6 +65,14 @@ export function SprintPage() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [phase, timeLeft]);
 
+  // Queue exhausted before the timer — finish via effect, never during render
+  useEffect(() => {
+    if (phase === 'running' && index >= queue.length && queue.length > 0) {
+      finish();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [phase, index, queue.length]);
+
   const start = () => {
     useSessionStore.getState().resetCombo();
     setQueue(shuffleArray(pool));
@@ -88,7 +96,7 @@ export function SprintPage() {
     if (answered > 0) {
       const activity = await getOrCreateTodayActivity();
       await db.dailyActivity.update(activity.id!, {
-        quizAnswered: activity.quizAnswered + correct,
+        quizAnswered: activity.quizAnswered + answered,
       });
       await reportQuestEvent('quiz_correct', correct);
 
@@ -155,13 +163,18 @@ export function SprintPage() {
             </div>
             <h2 className="text-xl font-extrabold text-white mb-2">Sprint 60 sekund</h2>
             <p className="text-slate-400 text-sm max-w-xs mx-auto">
-              Jak najwięcej poprawnych odpowiedzi na czas. Seria poprawnych = <b className="text-amber-300">mnożnik XP</b>. Błędy trafiają do powtórki.
+              Jak najwięcej poprawnych odpowiedzi na czas. Seria poprawnych = <b className="text-amber-300">bonus do +5 XP</b>. Błędy trafiają do powtórki.
             </p>
             {bestScore > 0 && (
               <p className="mt-2 text-xs text-amber-300 tnum">🏆 Twój rekord: {bestScore}</p>
             )}
+            {pool.length === 0 && (
+              <p className="mt-3 text-xs text-slate-500 max-w-xs mx-auto">
+                Brak pytań w puli — zacznij najpierw jakąś lekcję w zakładce Kursy.
+              </p>
+            )}
           </div>
-          <Button onClick={start} fullWidth size="lg">Start!</Button>
+          <Button onClick={start} fullWidth size="lg" disabled={pool.length === 0}>Start!</Button>
         </div>
       </div>
     );
@@ -218,10 +231,7 @@ export function SprintPage() {
 
   // Running
   const q = queue[index];
-  if (!q) {
-    finish();
-    return null;
-  }
+  if (!q) return null; // queue exhausted — the effect above finishes the run
   const urgent = timeLeft <= 10;
 
   return (

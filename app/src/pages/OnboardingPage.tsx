@@ -8,17 +8,18 @@ import { useAppStore } from '@/stores/appStore';
 import { setSetting } from '@/db/database';
 import { cn } from '@/utils/cn';
 
+// Flashcard goals respect the 10-new-cards/day cap (reviews of forgotten cards count too)
 const GOALS = [
-  { id: 'chill', name: 'Spokojnie', desc: '~5 min dziennie', icon: '🌱', goal: { flashcards: 10, quizzes: 3, coding: 1, explanations: 1 } },
-  { id: 'solid', name: 'Solidnie', desc: '~15 min dziennie', icon: '🚀', goal: { flashcards: 20, quizzes: 5, coding: 2, explanations: 3 } },
-  { id: 'intense', name: 'Intensywnie', desc: '~30 min dziennie', icon: '🔥', goal: { flashcards: 30, quizzes: 10, coding: 3, explanations: 5 } },
+  { id: 'chill', name: 'Spokojnie', desc: '~5 min dziennie', icon: '🌱', goal: { flashcards: 10, quizzes: 3, coding: 1 } },
+  { id: 'solid', name: 'Solidnie', desc: '~15 min dziennie', icon: '🚀', goal: { flashcards: 15, quizzes: 5, coding: 2 } },
+  { id: 'intense', name: 'Intensywnie', desc: '~30 min dziennie', icon: '🔥', goal: { flashcards: 25, quizzes: 8, coding: 3 } },
 ];
 
 const TOUR = [
   { icon: '🎴', title: 'Fiszki z algorytmem SM-2', desc: 'Powtarzasz dokładnie wtedy, gdy mózg zaczyna zapominać. Mniej powtórek, lepsze efekty.' },
-  { icon: '⚡', title: 'Quizy z combo', desc: 'Seria poprawnych odpowiedzi nabija mnożnik XP. Combo x10 = podwójne punkty!' },
+  { icon: '⚡', title: 'Quizy z combo', desc: 'Seria poprawnych odpowiedzi daje bonus — do +5 XP za odpowiedź. Błąd zeruje serię.' },
   { icon: '💻', title: 'Prawdziwy kod', desc: 'Piszesz Pythona w edytorze, a testy sprawdzają Twój kod od razu na telefonie.' },
-  { icon: '🏆', title: 'Questy i osiągnięcia', desc: 'Codziennie 3 nowe misje, seria dni nauki i poziomy od Juniora do Architekta.' },
+  { icon: '🏆', title: 'Questy i osiągnięcia', desc: 'Codziennie 3 nowe misje, seria dni nauki i poziomy od Skrypciarza do MLOps Architecta.' },
 ];
 
 export function OnboardingPage() {

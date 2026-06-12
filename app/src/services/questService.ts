@@ -19,7 +19,7 @@ export interface QuestTemplate {
 
 export const QUEST_TEMPLATES: QuestTemplate[] = [
   { id: 'q_flash_10', event: 'flashcard', target: 10, reward: 20, icon: '🎴', label: 'Powtórz 10 fiszek' },
-  { id: 'q_flash_20', event: 'flashcard', target: 20, reward: 35, icon: '🎴', label: 'Powtórz 20 fiszek' },
+  { id: 'q_flash_15', event: 'flashcard', target: 15, reward: 30, icon: '🎴', label: 'Powtórz 15 fiszek' },
   { id: 'q_quiz_8', event: 'quiz_correct', target: 8, reward: 25, icon: '❓', label: 'Odpowiedz poprawnie na 8 pytań' },
   { id: 'q_quiz_12', event: 'quiz_correct', target: 12, reward: 35, icon: '❓', label: 'Odpowiedz poprawnie na 12 pytań' },
   { id: 'q_xp_100', event: 'xp', target: 100, reward: 25, icon: '⚡', label: 'Zdobądź 100 XP' },

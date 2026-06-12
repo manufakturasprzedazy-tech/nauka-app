@@ -4,7 +4,7 @@
 
 import { db } from '@/db/database';
 
-const BACKUP_VERSION = 3;
+const BACKUP_VERSION = 4;
 const EXCLUDED_SETTINGS = ['claude_api_key', 'openai_api_key', 'claude_api_key_enc', 'openai_api_key_enc'];
 
 interface BackupFile {
@@ -18,6 +18,7 @@ interface BackupFile {
     dailyActivity: unknown[];
     achievements: unknown[];
     dailyQuests: unknown[];
+    xpAwards: unknown[];
     userSettings: unknown[];
   };
 }
@@ -35,6 +36,7 @@ export async function exportBackup(): Promise<void> {
       dailyActivity: await db.dailyActivity.toArray(),
       achievements: await db.achievements.toArray(),
       dailyQuests: await db.dailyQuests.toArray(),
+      xpAwards: await db.xpAwards.toArray(),
       userSettings: settings,
     },
   };
@@ -70,7 +72,7 @@ export async function importBackup(file: File): Promise<void> {
 
   await db.transaction(
     'rw',
-    [db.flashcardReviews, db.quizAttempts, db.codingAttempts, db.explanationAttempts, db.dailyActivity, db.achievements, db.dailyQuests, db.userSettings],
+    [db.flashcardReviews, db.quizAttempts, db.codingAttempts, db.explanationAttempts, db.dailyActivity, db.achievements, db.dailyQuests, db.xpAwards, db.userSettings],
     async () => {
       await db.flashcardReviews.clear();
       await db.flashcardReviews.bulkAdd(stripIds(t.flashcardReviews) as never[]);
@@ -86,6 +88,8 @@ export async function importBackup(file: File): Promise<void> {
       await db.achievements.bulkAdd((t.achievements ?? []) as never[]);
       await db.dailyQuests.clear();
       await db.dailyQuests.bulkAdd(stripIds(t.dailyQuests ?? []) as never[]);
+      await db.xpAwards.clear();
+      await db.xpAwards.bulkAdd(stripIds(t.xpAwards ?? []) as never[]);
 
       // Settings: merge (keep current API keys), overwrite the rest
       for (const row of stripIds(t.userSettings ?? []) as { key: string; value: string }[]) {

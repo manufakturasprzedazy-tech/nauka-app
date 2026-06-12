@@ -101,11 +101,25 @@ export function PuzzlePage() {
     setPhase('building');
   };
 
+  // Wait for the scope before deciding the pool is empty (avoids a flash of "Brak puzzli")
+  if (!materialId && startedIds === null) {
+    return (
+      <div>
+        <Header title="Puzzle z kodu" showBack />
+        <div className="flex items-center justify-center h-64 text-slate-400">Ładowanie...</div>
+      </div>
+    );
+  }
+
   if (pool.length === 0) {
     return (
       <div>
         <Header title="Puzzle z kodu" showBack />
-        <EmptyState icon="🧩" title="Brak puzzli" description="Nie znalazłem ćwiczeń nadających się na puzzle w tym zakresie." />
+        <EmptyState
+          icon="🧩"
+          title="Brak puzzli w Twojej puli"
+          description="Puzzle powstają z ćwiczeń rozpoczętych lekcji — zacznij lekcję w zakładce Kursy, a pojawią się tutaj."
+        />
       </div>
     );
   }

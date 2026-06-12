@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { getSetting, setSetting } from '@/db/database';
 
-interface DailyGoal { flashcards: number; quizzes: number; coding: number; explanations: number }
+interface DailyGoal { flashcards: number; quizzes: number; coding: number }
 
 interface AppState {
   isDark: boolean;
@@ -11,7 +11,8 @@ interface AppState {
   loadPersisted: () => Promise<void>;
 }
 
-const DEFAULT_GOAL: DailyGoal = { flashcards: 20, quizzes: 5, coding: 2, explanations: 3 };
+// Single source of truth — achievementService uses it for the daily-goal bonus too
+export const DEFAULT_GOAL: DailyGoal = { flashcards: 15, quizzes: 5, coding: 2 };
 
 export const useAppStore = create<AppState>()((set, get) => ({
   isDark: true,

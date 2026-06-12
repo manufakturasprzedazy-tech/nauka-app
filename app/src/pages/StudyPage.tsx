@@ -1,13 +1,27 @@
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Header } from '@/components/layout/Header';
 import { Card } from '@/components/ui/Card';
 import { useFlashcards } from '@/hooks/useFlashcards';
 import { useContentStore } from '@/stores/contentStore';
+import { getStartedMaterialIds } from '@/services/progressService';
 
 export function StudyPage() {
   const { dueCards, newCards } = useFlashcards();
   const { quizzes, exercises } = useContentStore();
+  const [counts, setCounts] = useState({ quizzes: 0, exercises: 0 });
+
+  // Tile counters must match what the launchers actually offer (started lessons only)
+  useEffect(() => {
+    getStartedMaterialIds().then(started => {
+      setCounts({
+        quizzes: quizzes.filter(q => started.has(q.materialId)).length,
+        exercises: exercises.filter(e => started.has(e.materialId)).length,
+      });
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const modes = [
     {
@@ -24,7 +38,7 @@ export function StudyPage() {
       icon: '❓',
       title: 'Quiz',
       description: 'Wielokrotny wybór — sprawdź wiedzę',
-      stat: `${quizzes.length} pytań`,
+      stat: `${counts.quizzes} pytań w Twojej puli`,
       box: 'bg-emerald-500/15 border-emerald-500/25',
       statColor: 'text-emerald-300',
     },
@@ -42,7 +56,7 @@ export function StudyPage() {
       icon: '💻',
       title: 'Kodowanie',
       description: 'Pisz kod — ćwicz praktycznie',
-      stat: `${exercises.length} ćwiczeń`,
+      stat: `${counts.exercises} ćwiczeń w Twojej puli`,
       box: 'bg-amber-500/15 border-amber-500/25',
       statColor: 'text-amber-300',
     },

@@ -1,12 +1,5 @@
 const API_URL = 'https://api.anthropic.com/v1/messages';
 
-interface AIExplanationResult {
-  score: number | null;
-  feedback: string;
-  strengths?: string[];
-  improvements?: string[];
-}
-
 interface AICodeResult {
   score: number;
   feedback: string;
@@ -46,38 +39,6 @@ async function callClaude(apiKey: string, systemPrompt: string, userMessage: str
 
   const data = await response.json();
   return data.content[0].text;
-}
-
-export async function evaluateExplanation(
-  prompt: string,
-  modelAnswer: string,
-  userAnswer: string,
-  apiKey: string,
-): Promise<AIExplanationResult> {
-  const systemPrompt = `Jesteś nauczycielem programowania. Oceniasz wyjaśnienia ucznia po polsku.
-Odpowiedz TYLKO w formacie JSON:
-{"score": <1-5>, "feedback": "<2-3 zdania po polsku>", "strengths": ["..."], "improvements": ["..."]}`;
-
-  const userMessage = `Pytanie: ${prompt}
-
-Odpowiedź wzorcowa: ${modelAnswer}
-
-Odpowiedź ucznia: ${userAnswer}
-
-Oceń odpowiedź ucznia w skali 1-5 i daj krótki feedback.`;
-
-  const response = await callClaude(apiKey, systemPrompt, userMessage);
-  try {
-    const json = JSON.parse(response);
-    return {
-      score: json.score,
-      feedback: json.feedback,
-      strengths: json.strengths,
-      improvements: json.improvements,
-    };
-  } catch {
-    return { score: null, feedback: response };
-  }
 }
 
 export async function evaluateCode(

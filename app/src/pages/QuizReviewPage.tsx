@@ -20,6 +20,10 @@ export function QuizReviewPage() {
   const navigate = useNavigate();
   const [selectedMaterial, setSelectedMaterial] = useState<number | null>(null);
   const [retrying, setRetrying] = useState(false);
+  const [revealed, setRevealed] = useState<Set<number>>(new Set());
+
+  const reveal = (questionId: number) =>
+    setRevealed(prev => new Set(prev).add(questionId));
 
   // Get unique materials from wrong answers
   const materials = [...new Set(wrongAnswers.map(w => w.question.materialId))].map(id => {
@@ -115,8 +119,10 @@ export function QuizReviewPage() {
                 <button
                   onClick={() => setSelectedMaterial(null)}
                   className={cn(
-                    'px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors',
-                    !selectedMaterial ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400',
+                    'px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border',
+                    !selectedMaterial
+                      ? 'bg-indigo-600 border-indigo-500 text-white shadow-[0_0_12px_rgba(99,102,241,0.3)]'
+                      : 'bg-white/[0.03] border-slate-400/10 text-slate-400',
                   )}
                 >
                   Wszystkie ({wrongAnswers.length})
@@ -126,8 +132,10 @@ export function QuizReviewPage() {
                     key={m.id}
                     onClick={() => setSelectedMaterial(m.id)}
                     className={cn(
-                      'px-3 py-1.5 rounded-lg text-xs font-medium whitespace-nowrap transition-colors',
-                      selectedMaterial === m.id ? 'bg-blue-600 text-white' : 'bg-slate-800 text-slate-400',
+                      'px-3 py-1.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all border',
+                      selectedMaterial === m.id
+                        ? 'bg-indigo-600 border-indigo-500 text-white shadow-[0_0_12px_rgba(99,102,241,0.3)]'
+                        : 'bg-white/[0.03] border-slate-400/10 text-slate-400',
                     )}
                   >
                     {m.title} ({m.count})
@@ -157,24 +165,33 @@ export function QuizReviewPage() {
                     <FormattedText text={wa.question.question} className="text-sm text-white mb-3" />
 
                     {/* User's wrong answer */}
-                    <div className="p-2 rounded-lg bg-red-900/20 border border-red-800/30 mb-2">
-                      <span className="text-xs text-red-400 block mb-1">Twoja odpowiedź</span>
-                      <span className="text-sm text-red-300">
+                    <div className="p-2 rounded-lg bg-rose-900/20 border border-rose-800/30 mb-2">
+                      <span className="text-xs text-rose-400 block mb-1">Twoja odpowiedź</span>
+                      <span className="text-sm text-rose-300">
                         {String.fromCharCode(65 + wa.selectedIndex)}. {wa.question.choices[wa.selectedIndex]}
                       </span>
                     </div>
 
-                    {/* Correct answer */}
-                    <div className="p-2 rounded-lg bg-emerald-900/20 border border-emerald-800/30">
-                      <span className="text-xs text-emerald-400 block mb-1">Poprawna odpowiedź</span>
-                      <span className="text-sm text-emerald-300">
-                        {String.fromCharCode(65 + wa.question.correctIndex)}. {wa.question.choices[wa.question.correctIndex]}
-                      </span>
-                    </div>
-
-                    {/* Explanation */}
-                    {wa.question.explanation && (
-                      <p className="text-xs text-slate-400 mt-2 leading-relaxed">{wa.question.explanation}</p>
+                    {/* Correct answer — hidden until requested (try to recall first!) */}
+                    {revealed.has(wa.questionId) ? (
+                      <>
+                        <div className="p-2 rounded-lg bg-emerald-900/20 border border-emerald-800/30">
+                          <span className="text-xs text-emerald-400 block mb-1">Poprawna odpowiedź</span>
+                          <span className="text-sm text-emerald-300">
+                            {String.fromCharCode(65 + wa.question.correctIndex)}. {wa.question.choices[wa.question.correctIndex]}
+                          </span>
+                        </div>
+                        {wa.question.explanation && (
+                          <FormattedText text={wa.question.explanation} className="text-xs text-slate-400 mt-2 leading-relaxed" />
+                        )}
+                      </>
+                    ) : (
+                      <button
+                        onClick={() => reveal(wa.questionId)}
+                        className="w-full rounded-lg border border-slate-400/15 bg-white/[0.03] px-3 py-2 text-xs font-semibold text-slate-300 active:scale-[0.98] transition-transform"
+                      >
+                        🤔 Najpierw spróbuj sobie przypomnieć… potem odkryj odpowiedź
+                      </button>
                     )}
                   </Card>
                 </motion.div>

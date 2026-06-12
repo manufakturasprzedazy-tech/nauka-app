@@ -10,7 +10,6 @@ export const XP = {
   PUZZLE_PASS: 5, // first correct Parsons arrangement today
   LESSON_COMPLETE: 20, // closing a path node (once per lesson, lifetime)
   DAILY_GOAL: 6, // hitting the daily goal (once per day)
-  EXPLANATION_BASE: 15,
 } as const;
 
 /** Additive combo bonus: +1 XP from a streak of 3, up to +5. Replaces the old multiplier. */
@@ -46,11 +45,6 @@ export function getLevelProgress(totalXP: number): { level: Level; current: numb
   return { level, current: totalXP, nextThreshold, progress: Math.min(1, progress) };
 }
 
-export function getExplanationXP(selfRating: number): number {
-  // Scale XP by self-rating (1-5)
-  return Math.round(XP.EXPLANATION_BASE * (selfRating / 5));
-}
-
 // Achievement definitions
 export interface AchievementDef {
   id: string;
@@ -63,10 +57,10 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   { id: 'first_flashcard', name: 'Pierwsza fiszka', description: 'Powtórz pierwszą fiszkę', icon: '🎴' },
   { id: 'streak_7', name: '7-dniowy streak', description: 'Ucz się przez 7 dni z rzędu', icon: '🔥' },
   { id: 'streak_30', name: '30-dniowy streak', description: 'Ucz się przez 30 dni z rzędu', icon: '💎' },
-  { id: 'topic_master', name: 'Mistrz tematu', description: '100% fiszek z tematu opanowanych', icon: '🏆' },
+  { id: 'topic_master', name: 'Mistrz tematu', description: 'Opanuj wszystkie fiszki jednego tematu (min. 2 powtórki każdej)', icon: '🏆' },
   { id: 'debugger', name: 'Debugger', description: '10 ćwiczeń kodowania rozwiązanych', icon: '🐛' },
-  { id: 'professor', name: 'Profesor', description: '50 wyjaśnień napisanych', icon: '🎓' },
-  { id: 'polyglot', name: 'Poliglota', description: 'Wszystkie tematy rozpoczęte', icon: '🌍' },
+  { id: 'mlops_starter', name: 'Kierunek: MLOps', description: 'Rozpocznij kurs „Python dla MLOps i AI"', icon: '🚀' },
+  { id: 'marathoner', name: 'Maratończyk', description: 'Ukończ 10 lekcji w 100%', icon: '🏃' },
   { id: 'quiz_ace', name: 'As quizu', description: '10 quizów z wynikiem 100%', icon: '⭐' },
   { id: 'century', name: 'Setka', description: '100 fiszek powtórzonych', icon: '💯' },
   { id: 'coder', name: 'Koder', description: '5 ćwiczeń kodowania rozwiązanych', icon: '💻' },

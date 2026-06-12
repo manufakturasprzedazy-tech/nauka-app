@@ -163,7 +163,7 @@ function renderMarkdown(text: string, className: string) {
       if (trimmed.startsWith('### ')) {
         flushBullets();
         elements.push(
-          <h3 key={`${i}-h3-${j}`} className="text-base font-semibold text-blue-300 mt-4 mb-1">
+          <h3 key={`${i}-h3-${j}`} className="text-base font-semibold text-indigo-300 mt-4 mb-1">
             {renderInlineFormatting(trimmed.slice(4), `${i}-h3-${j}`)}
           </h3>
         );

@@ -23,6 +23,7 @@ async function getNewCardsStartedToday(): Promise<number> {
 export function useFlashcards(courseId?: string, materialId?: number) {
   const [dueCards, setDueCards] = useState<Flashcard[]>([]);
   const [newCards, setNewCards] = useState<Flashcard[]>([]);
+  const [dailyLimitReached, setDailyLimitReached] = useState(false);
   const [loading, setLoading] = useState(true);
   const [reviewCount, setReviewCount] = useState(0);
   const store = useContentStore();
@@ -66,7 +67,15 @@ export function useFlashcards(courseId?: string, materialId?: number) {
 
     setDueCards(due.slice(0, MAX_REVIEWS_PER_SESSION));
     setNewCards(fresh.slice(0, newBudget));
+    // Distinguish "nothing left" from "daily new-card budget spent"
+    setDailyLimitReached(due.length === 0 && newBudget === 0 && fresh.length > 0);
     setLoading(false);
+
+    // Housekeeping: drop stale per-day counters (only today's is needed)
+    db.userSettings.toArray().then(settings => {
+      const stale = settings.filter(s => s.key.startsWith('new_cards_') && s.key !== `new_cards_${today}`);
+      for (const s of stale) db.userSettings.delete(s.id!);
+    });
   }, [courseId, materialId, store]);
 
   useEffect(() => { loadCards(); }, [loadCards]);
@@ -132,5 +141,5 @@ export function useFlashcards(courseId?: string, materialId?: number) {
     return xp;
   }, []);
 
-  return { dueCards, newCards, loading, reviewCard, reviewCount, reload: loadCards };
+  return { dueCards, newCards, dailyLimitReached, loading, reviewCard, reviewCount, reload: loadCards };
 }

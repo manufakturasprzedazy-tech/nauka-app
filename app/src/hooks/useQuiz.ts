@@ -77,15 +77,16 @@ export function useQuiz() {
       const xp = base + bonus;
       if (xp > 0) lastXP = { amount: xp, bonus };
 
-      const activity = await getOrCreateTodayActivity();
-      await db.dailyActivity.update(activity.id!, {
-        quizAnswered: activity.quizAnswered + 1,
-      });
-
       await reportQuestEvent('quiz_correct');
       if (combo >= 2) await reportQuestEvent('combo', combo);
-      await checkProgressEvents();
     }
+
+    // quizAnswered counts every answered question (the daily goal says "answer", not "ace")
+    const activity = await getOrCreateTodayActivity();
+    await db.dailyActivity.update(activity.id!, {
+      quizAnswered: activity.quizAnswered + 1,
+    });
+    await checkProgressEvents();
 
     setState(s => ({
       ...s,

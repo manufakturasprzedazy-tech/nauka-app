@@ -102,15 +102,23 @@ export function QuizPage() {
             </div>
           </Card>
 
-          {/* Question count */}
+          {/* Question count — options beyond the real pool are disabled */}
           <Card variant="default">
             <p className="text-sm text-slate-400 mb-2">Liczba pytań</p>
             <div className="flex gap-2">
-              {[5, 10, 15, 20].map(n => (
-                <button key={n} onClick={() => setQuestionCount(n)} className={pill(questionCount === n)}>
-                  {n}
-                </button>
-              ))}
+              {[5, 10, 15, 20].map(n => {
+                const unavailable = n > availableQuestions.length;
+                return (
+                  <button
+                    key={n}
+                    onClick={() => !unavailable && setQuestionCount(n)}
+                    disabled={unavailable}
+                    className={`${pill(questionCount === n)} disabled:opacity-35`}
+                  >
+                    {n}
+                  </button>
+                );
+              })}
             </div>
           </Card>
 

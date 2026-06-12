@@ -1,4 +1,4 @@
-export interface Course {
+﻿export interface Course {
   id: string;
   name: string;
   icon: string;
@@ -52,10 +52,3 @@ export interface CodingExercise {
   topic: string;
 }
 
-export interface Explanation {
-  id: number;
-  materialId: number;
-  prompt: string;
-  modelAnswer: string;
-  topic: string;
-}

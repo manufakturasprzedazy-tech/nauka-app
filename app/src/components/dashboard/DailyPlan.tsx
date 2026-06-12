@@ -14,7 +14,7 @@ export function DailyPlan({ activity }: DailyPlanProps) {
   if (!activity) return null;
 
   const items = [
-    { label: 'Fiszki', done: activity.flashcardsReviewed, goal: dailyGoal.flashcards, link: '/fiszki', color: '#3b82f6', icon: '🎴' },
+    { label: 'Fiszki', done: activity.flashcardsReviewed, goal: dailyGoal.flashcards, link: '/fiszki', color: '#6366f1', icon: '🎴' },
     { label: 'Quiz', done: activity.quizAnswered, goal: dailyGoal.quizzes, link: '/quiz', color: '#10b981', icon: '❓' },
     { label: 'Kodowanie', done: activity.codingCompleted, goal: dailyGoal.coding, link: '/kodowanie', color: '#f59e0b', icon: '💻' },
   ];
@@ -42,13 +42,13 @@ export function DailyPlan({ activity }: DailyPlanProps) {
 
           return (
             <Link key={item.label} to={item.link}>
-              <div className="bg-slate-800/60 rounded-xl p-3 active:scale-[0.97] transition-transform">
+              <div className="rounded-xl border border-slate-400/10 bg-white/[0.03] p-3 active:scale-[0.97] transition-transform">
                 <div className="flex items-center gap-2 mb-1.5">
                   <span className="text-base">{item.icon}</span>
                   <span className="text-xs font-medium text-slate-300">{item.label}</span>
                 </div>
                 <div className="flex items-center gap-2">
-                  <div className="flex-1 h-1.5 bg-slate-700 rounded-full overflow-hidden">
+                  <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
                     <div
                       className="h-full rounded-full transition-all duration-500"
                       style={{ width: `${progress * 100}%`, backgroundColor: item.color }}

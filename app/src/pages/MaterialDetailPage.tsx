@@ -234,7 +234,7 @@ export function MaterialDetailPage() {
         {activeTab === 'flashcards' && (
           <div className="space-y-3">
             <Button onClick={() => navigate(`/fiszki?material=${material.id}`)} fullWidth>
-              Rozpocznij sesję ({flashcards.length} fiszek)
+              Rozpocznij sesję fiszek
             </Button>
             {flashcards.slice(0, 5).map(fc => (
               <Card key={fc.id} variant="default">

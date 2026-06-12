@@ -1,4 +1,8 @@
-import type { TestResult } from '@/services/codeComparison';
+export interface TestResult {
+  test: string;
+  passed: boolean;
+  error?: string | null;
+}
 
 export interface PythonRunResult {
   syntaxError?: string;

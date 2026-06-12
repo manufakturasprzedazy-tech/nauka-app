@@ -5,6 +5,8 @@ import { db, getSetting, setSetting } from '@/db/database';
 import { getLevel, XP } from '@/services/gamification';
 import { awardXP } from '@/services/xpService';
 import { useCelebrationStore } from '@/stores/celebrationStore';
+import { useContentStore } from '@/stores/contentStore';
+import { DEFAULT_GOAL } from '@/stores/appStore';
 import { todayString } from '@/utils/formatters';
 
 export const STREAK_MILESTONES = [3, 7, 14, 30, 50, 100];
@@ -70,9 +72,41 @@ export async function checkProgressEvents(): Promise<void> {
   if (streak >= 30) await unlock('streak_30');
 
   // --- Counting achievements ---
-  const reviewCount = await db.flashcardReviews.count();
-  if (reviewCount >= 1) await unlock('first_flashcard');
-  if (reviewCount >= 100) await unlock('century');
+  const reviews = await db.flashcardReviews.toArray();
+  if (reviews.length >= 1) await unlock('first_flashcard');
+  if (reviews.length >= 100) await unlock('century');
+
+  // --- Topic mastery: every card of some topic (≥6 cards) reviewed ≥2 times ---
+  const { flashcards, materials } = useContentStore.getState();
+  const repsByCard = new Map(reviews.map(r => [r.flashcardId, r.repetitions]));
+  const cardsByTopic = new Map<string, number[]>();
+  for (const f of flashcards) {
+    const arr = cardsByTopic.get(f.topic) ?? [];
+    arr.push(f.id);
+    cardsByTopic.set(f.topic, arr);
+  }
+  for (const [, cardIds] of cardsByTopic) {
+    if (cardIds.length >= 6 && cardIds.every(id => (repsByCard.get(id) ?? 0) >= 2)) {
+      await unlock('topic_master');
+      break;
+    }
+  }
+
+  // --- MLOps course started ---
+  const mlopsIds = new Set(materials.filter(m => m.courseId === 'mlops').map(m => m.id));
+  if (mlopsIds.size > 0) {
+    const settings = await db.userSettings.toArray();
+    const readMlops = settings.some(
+      s => s.key.startsWith('lesson_read_') && s.value === '1' && mlopsIds.has(Number(s.key.slice('lesson_read_'.length))),
+    );
+    const cardToMaterial = new Map(flashcards.map(f => [f.id, f.materialId]));
+    const reviewedMlops = reviews.some(r => mlopsIds.has(cardToMaterial.get(r.flashcardId) ?? -1));
+    if (readMlops || reviewedMlops) await unlock('mlops_starter');
+  }
+
+  // --- 10 lessons fully completed (lifetime lesson-complete awards) ---
+  const lifetimeAwards = await db.xpAwards.where('date').equals('ever').toArray();
+  if (lifetimeAwards.filter(a => a.kind === 'lesson').length >= 10) await unlock('marathoner');
 
   const codingDone = new Set(
     (await db.codingAttempts.toArray()).filter(a => a.completed).map(a => a.exerciseId),
@@ -87,7 +121,7 @@ export async function checkProgressEvents(): Promise<void> {
   // --- Daily goal bonus (+6 XP, once per day) ---
   try {
     const raw = await getSetting('daily_goal', '');
-    const goal = raw ? JSON.parse(raw) : { flashcards: 20, quizzes: 5, coding: 2 };
+    const goal = raw ? { ...DEFAULT_GOAL, ...JSON.parse(raw) } : DEFAULT_GOAL;
     const today = all.find(a => a.date === todayString());
     if (
       today &&
